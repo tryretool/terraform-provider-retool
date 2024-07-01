@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
 	"os"
 
 	api "github.com/tryretool/terraform-provider-retool/internal/sdk/api"
@@ -27,7 +28,7 @@ func main() {
 	auth := context.WithValue(context.Background(), api.ContextAccessToken, apiKey)
 	folders, httpResponse, error := client.FoldersAPI.FoldersGet(auth).Execute()
 	if error != nil {
-		fmt.Println("Error!", error, httpResponse)
+		log.Fatal("Error!", error, httpResponse)
 	} else {
 		fmt.Println("Folders:")
 		for _, folder := range folders.Data {
