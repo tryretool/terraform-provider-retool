@@ -6,14 +6,14 @@ import (
 	"log"
 	"os"
 
-	api "github.com/tryretool/terraform-provider-retool/internal/sdk/api"
+	"github.com/tryretool/terraform-provider-retool/internal/sdk/api"
 )
 
 func main() {
-	apiKey := os.Getenv("RETOOL_API_TOKEN")
+	apiKey := os.Getenv("RETOOL_ACCESS_TOKEN")
 
 	if apiKey == "" {
-		fmt.Println("Please set the RETOOL_API_TOKEN environment variable")
+		fmt.Println("Please set the RETOOL_ACCESS_TOKEN environment variable")
 		return
 	}
 

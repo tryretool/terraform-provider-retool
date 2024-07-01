@@ -27,5 +27,5 @@ Command line parameters for `openapi-generator` invocation are controlled via `g
 There's a simple executable in `client` folder that makes an API request to localhost:3000 and prints out the response.
 You can run it as follows:
 ```
-RETOOL_API_TOKEN=<your API token generated on localhost:3000> go install ./... && client
+RETOOL_ACCESS_TOKEN=<your API token generated on localhost:3000> go run client/main.go
 ```
