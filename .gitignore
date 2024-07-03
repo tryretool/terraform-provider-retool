@@ -25,3 +25,6 @@ go.work.sum
 .vscode/
 
 .DS_Store
+
+*.tfstate
+*.tfstate.backup
