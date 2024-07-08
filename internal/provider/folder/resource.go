@@ -3,6 +3,7 @@ package folder
 import (
 	"context"
 	"fmt"
+	"net/http"
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
@@ -108,11 +109,19 @@ func (r *folderResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 	}
 }
 
+// If httpResponse is not nil, add the status code to the properties map.
+func addHttpStatusCode(props map[string]any, httpResponse *http.Response) map[string]any {
+	if httpResponse != nil {
+		props["httpResponse.status_code"] = httpResponse.StatusCode
+	}
+	return props
+}
+
 func (r *folderResource) getRootFolderId(ctx context.Context, folderType string) (string, error) {
 	tflog.Info(ctx, "Getting root folder ID", map[string]any{"folderType": folderType})
 	response, httpResponse, err := r.client.FoldersAPI.FoldersGet(ctx).Execute()
 	if err != nil {
-		tflog.Error(ctx, "Error getting root folder ID", map[string]any{"error": err.Error(), "httpResponse.status_code": httpResponse.StatusCode})
+		tflog.Error(ctx, "Error getting root folder ID", addHttpStatusCode(map[string]any{"error": err.Error()}, httpResponse))
 		return "", err
 	}
 
@@ -168,7 +177,7 @@ func (r *folderResource) Create(ctx context.Context, req resource.CreateRequest,
 			"Error creating folder",
 			"Could not create folder, unexpected error: "+err.Error(),
 		)
-		tflog.Error(ctx, "Error creating folder", map[string]any{"error": err.Error(), "httpResponse.status_code": httpResponse.StatusCode})
+		tflog.Error(ctx, "Error creating folder", addHttpStatusCode(map[string]any{"error": err.Error()}, httpResponse))
 		return
 	}
 	tflog.Info(ctx, "Folder created", map[string]any{"id": response.Data.Id, "legacyId": response.Data.LegacyId, "isSystemFolder": response.Data.IsSystemFolder})
@@ -205,7 +214,7 @@ func (r *folderResource) Read(ctx context.Context, req resource.ReadRequest, res
 			"Error Reading Folder",
 			"Could not read folder ID "+state.Id.ValueString()+": "+err.Error(),
 		)
-		tflog.Error(ctx, "Error Reading Folder", map[string]any{"error": err.Error(), "httpResponse.status_code": httpResponse.StatusCode})
+		tflog.Error(ctx, "Error Reading Folder", addHttpStatusCode(map[string]any{"error": err.Error()}, httpResponse))
 		return
 	}
 
@@ -246,7 +255,7 @@ func (r *folderResource) Delete(ctx context.Context, req resource.DeleteRequest,
 			"Error Deleting Folder",
 			"Could not delete folder"+state.Id.ValueString()+", unexpected error: "+err.Error(),
 		)
-		tflog.Error(ctx, "Error Deleting Folder", map[string]any{"error": err.Error(), "httpResponse.status_code": httpResponse.StatusCode})
+		tflog.Error(ctx, "Error Deleting Folder", addHttpStatusCode(map[string]any{"error": err.Error()}, httpResponse))
 		return
 	}
 }
