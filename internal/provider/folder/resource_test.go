@@ -1,8 +1,13 @@
 package folder_test
 
 import (
+	"context"
+	"fmt"
+	"log"
+	"strings"
 	"testing"
 
+	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
 	"github.com/tryretool/terraform-provider-retool/internal/acctest"
 )
@@ -19,6 +24,42 @@ const testFolderConfig = `
 		parent_folder_id = retool_folder.test_folder.id
 	}
 `
+
+func TestMain(m *testing.M) {
+	resource.TestMain(m)
+}
+
+func sweepFolders(region string) error {
+	log.Printf("Sweeping folders in region %s", region)
+	client, err := acctest.SweeperClient()
+	if err != nil {
+		return err
+	}
+
+	folders, _, err := client.FoldersAPI.FoldersGet(context.Background()).Execute()
+	if err != nil {
+		return fmt.Errorf("Error reading folders: %s", err.Error())
+	}
+
+	for _, folder := range folders.Data {
+		if strings.HasPrefix(folder.Name, "tf-acc") {
+			log.Printf("Deleting folder %s", folder.Name)
+			tflog.Info(context.Background(), "Deleting folder", map[string]interface{}{"folder": folder.Name})
+			_, err := client.FoldersAPI.FoldersFolderIdDelete(context.Background(), folder.Id).Execute()
+			if err != nil {
+				return fmt.Errorf("Error deleting folder %s: %s", folder.Name, err.Error())
+			}
+		}
+	}
+	return nil
+}
+
+func init() {
+	resource.AddTestSweepers("retool_folder", &resource.Sweeper{
+		Name: "retool_folder",
+		F:    sweepFolders,
+	})
+}
 
 func TestAccFolder(t *testing.T) {
 	acctest.Test(t, resource.TestCase{

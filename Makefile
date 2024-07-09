@@ -1,7 +1,7 @@
 #-----------------------------------------------------------------------------------------------------------------------
 # Testing
 #-----------------------------------------------------------------------------------------------------------------------
-.PHONY: test-unit test-acc test-acc-record test-acc-replay
+.PHONY: test-unit test-acc test-acc-record test-acc-replay test-acc-sweep
 
 test-unit: ## Run unit tests. To run a specific test, pass the FILTER var. Usage `make test-unit FILTER="TestAccResourceServer"`
 	${call print, "Running unit tests"}
@@ -48,3 +48,11 @@ test-acc-replay:
 		-run "$(FILTER)" \
 		-timeout 30m \
 		./internal/provider/...
+
+test-acc-sweep: ## Remove all resources created by acceptance tests. Don't forget to set RETOOL_HOST, RETOOL_SCHEME and RETOOL_ACCESS_TOKEN env vars.
+	${call print, "Removing all resources created by acceptance tests"}
+	@TF_ACC=1  \
+		go test \
+		./internal/provider/... \
+		-sweep=default \
+		-v

@@ -32,6 +32,11 @@ make test-acc
 Note that the acceptance tests will create, modify and delete resources in the Retool org.
 You can run specific tests by setting `FILTER` env var as well.
 
+If acceptance tests fail and leave some undeleted resources on the Retool instance, you can delete them using "sweepers":
+```
+make test-acc-sweep
+```
+
 ### Recording and replaying HTTP requests for acceptance tests
 It's hard to run acceptance tests on CI hitting a live Retool instance. Instead, we have a way to record and store HTTP responses during acceptance test run, then use canned responses to avoid hitting Retool instance.
 Recorded responses are stored in `test/data/recordings/<test name>.yaml` files.
