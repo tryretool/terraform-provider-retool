@@ -1,7 +1,7 @@
 #-----------------------------------------------------------------------------------------------------------------------
 # Testing
 #-----------------------------------------------------------------------------------------------------------------------
-.PHONY: test-unit test-acc test-acc-record
+.PHONY: test-unit test-acc test-acc-record test-acc-replay
 
 test-unit: ## Run unit tests. To run a specific test, pass the FILTER var. Usage `make test-unit FILTER="TestAccResourceServer"`
 	${call print, "Running unit tests"}
