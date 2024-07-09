@@ -32,5 +32,22 @@ make test-acc
 Note that the acceptance tests will create, modify and delete resources in the Retool org.
 You can run specific tests by setting `FILTER` env var as well.
 
+### Recording and replaying HTTP requests for acceptance tests
+It's hard to run acceptance tests on CI hitting a live Retool instance. Instead, we have a way to record and store HTTP responses during acceptance test run, then use canned responses to avoid hitting Retool instance.
+Recorded responses are stored in `test/data/recordings/<test name>.yaml` files.
+
+To record responses for an acceptance test TestAccFoo:
+- Delete `test/data/recordings/TestAccFoo.yaml` if it already exists
+- Set `RETOOL_HOST`, `RETOOL_SCHEME` and `RETOOL_ACCESS_TOKEN` env vars to appropriate values for the Retool instance you're going to use.
+- Run `FILTER=TestAccFoo make test-acc-record` . This will run the acceptance test and store HTTP responses.
+
+To run acceptance test using pre-recorded responses, do
+```
+FILTER=TestAccFoo make test-acc-replay
+```
+
+
+See `internal/acctest` for implementation details. The implementation was mostly copied from Auth0's Terraform provider: https://github.com/auth0/terraform-provider-auth0/tree/main/internal/acctest
+
 ## Documentation
 Run `go generate` in the root of this repository to generate provider docs. See https://developer.hashicorp.com/terraform/tutorials/providers-plugin-framework/providers-plugin-framework-documentation-generation for more details on how to add new examples.
