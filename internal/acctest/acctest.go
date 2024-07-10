@@ -1,6 +1,7 @@
 package acctest
 
 import (
+	"fmt"
 	"os"
 	"testing"
 
@@ -10,6 +11,7 @@ import (
 	"gopkg.in/dnaeon/go-vcr.v3/recorder"
 
 	"github.com/tryretool/terraform-provider-retool/internal/provider"
+	"github.com/tryretool/terraform-provider-retool/internal/sdk/api"
 )
 
 const (
@@ -38,6 +40,33 @@ func Test(t *testing.T, testCase resource.TestCase) {
 
 	testCase.ProtoV6ProviderFactories = providerTestFactories
 	resource.Test(t, testCase)
+}
+
+func SweeperClient() (*api.APIClient, error) {
+	host := os.Getenv("RETOOL_HOST")
+	if host == "" {
+		return nil, fmt.Errorf("RETOOL_HOST must be set")
+	}
+	scheme := os.Getenv("RETOOL_SCHEME")
+	if scheme == "" {
+		scheme = "https"
+	}
+	accessToken := os.Getenv("RETOOL_ACCESS_TOKEN")
+	if accessToken == "" {
+		return nil, fmt.Errorf("RETOOL_ACCESS_TOKEN must be set")
+	}
+
+	clientConfig := api.NewConfiguration()
+	clientConfig.Host = host
+	clientConfig.Scheme = scheme
+	clientConfig.Servers = api.ServerConfigurations{
+		api.ServerConfiguration{
+			URL: "/api/v2",
+		},
+	}
+
+	clientConfig.AddDefaultHeader("Authorization", "Bearer "+accessToken)
+	return api.NewAPIClient(clientConfig), nil
 }
 
 func httpRecordingsAreEnabled() bool {
