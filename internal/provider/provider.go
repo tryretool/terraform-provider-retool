@@ -2,6 +2,7 @@ package provider
 
 import (
 	"context"
+	"net/http"
 	"os"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -30,12 +31,22 @@ func New(version string) func() provider.Provider {
 	}
 }
 
+func NewWithHttpClient(version string, httpClient *http.Client) func() provider.Provider {
+	return func() provider.Provider {
+		return &retoolProvider{
+			version:    version,
+			httpClient: httpClient,
+		}
+	}
+}
+
 // retoolProvider is the provider implementation.
 type retoolProvider struct {
 	// version is set to the provider version on release, "dev" when the
 	// provider is built and ran locally, and "test" when running acceptance
 	// testing.
-	version string
+	version    string
+	httpClient *http.Client
 }
 
 type retoolProviderModel struct {
@@ -165,6 +176,11 @@ func (p *retoolProvider) Configure(ctx context.Context, req provider.ConfigureRe
 			URL: "/api/v2",
 		},
 	}
+	// We need this to be able to record and replay HTTP interactions in the acceptance tests
+	if p.httpClient != nil {
+		clientConfig.HTTPClient = p.httpClient
+	}
+
 	clientConfig.AddDefaultHeader("Authorization", "Bearer "+accessToken)
 	client := api.NewAPIClient(clientConfig)
 
