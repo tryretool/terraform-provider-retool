@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -28,6 +27,7 @@ type ConfigurationVariablesPostRequest struct {
 	// Whether the configuration variable is a secret
 	Secret bool `json:"secret"`
 	Values []ConfigurationVariablesGet200ResponseDataInnerValuesInner `json:"values"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ConfigurationVariablesPostRequest ConfigurationVariablesPostRequest
@@ -172,6 +172,11 @@ func (o ConfigurationVariablesPostRequest) ToMap() (map[string]interface{}, erro
 	}
 	toSerialize["secret"] = o.Secret
 	toSerialize["values"] = o.Values
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -201,15 +206,23 @@ func (o *ConfigurationVariablesPostRequest) UnmarshalJSON(data []byte) (err erro
 
 	varConfigurationVariablesPostRequest := _ConfigurationVariablesPostRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varConfigurationVariablesPostRequest)
+	err = json.Unmarshal(data, &varConfigurationVariablesPostRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ConfigurationVariablesPostRequest(varConfigurationVariablesPostRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "secret")
+		delete(additionalProperties, "values")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -27,6 +26,7 @@ type AppTheme struct {
 	Name string `json:"name"`
 	// The theme object.
 	Theme map[string]interface{} `json:"theme"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AppTheme AppTheme
@@ -162,6 +162,11 @@ func (o AppTheme) ToMap() (map[string]interface{}, error) {
 	toSerialize["legacy_id"] = o.LegacyId
 	toSerialize["name"] = o.Name
 	toSerialize["theme"] = o.Theme
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -192,15 +197,23 @@ func (o *AppTheme) UnmarshalJSON(data []byte) (err error) {
 
 	varAppTheme := _AppTheme{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAppTheme)
+	err = json.Unmarshal(data, &varAppTheme)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AppTheme(varAppTheme)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "legacy_id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "theme")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

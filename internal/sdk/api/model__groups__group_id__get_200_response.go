@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type GroupsGroupIdGet200Response struct {
 	// API request succeeded
 	Success bool `json:"success"`
 	Data GroupsGroupIdGet200ResponseData `json:"data"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GroupsGroupIdGet200Response GroupsGroupIdGet200Response
@@ -107,6 +107,11 @@ func (o GroupsGroupIdGet200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["success"] = o.Success
 	toSerialize["data"] = o.Data
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *GroupsGroupIdGet200Response) UnmarshalJSON(data []byte) (err error) {
 
 	varGroupsGroupIdGet200Response := _GroupsGroupIdGet200Response{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGroupsGroupIdGet200Response)
+	err = json.Unmarshal(data, &varGroupsGroupIdGet200Response)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GroupsGroupIdGet200Response(varGroupsGroupIdGet200Response)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "success")
+		delete(additionalProperties, "data")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

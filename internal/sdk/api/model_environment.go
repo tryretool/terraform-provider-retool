@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -28,6 +27,7 @@ type Environment struct {
 	Default bool `json:"default"`
 	CreatedAt string `json:"created_at"`
 	UpdatedAt string `json:"updated_at"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Environment Environment
@@ -243,6 +243,11 @@ func (o Environment) ToMap() (map[string]interface{}, error) {
 	toSerialize["default"] = o.Default
 	toSerialize["created_at"] = o.CreatedAt
 	toSerialize["updated_at"] = o.UpdatedAt
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -276,15 +281,26 @@ func (o *Environment) UnmarshalJSON(data []byte) (err error) {
 
 	varEnvironment := _Environment{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEnvironment)
+	err = json.Unmarshal(data, &varEnvironment)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Environment(varEnvironment)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "color")
+		delete(additionalProperties, "default")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -13,7 +13,6 @@ package api
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -26,6 +25,7 @@ type CustomComponentLibraryRevisionFile struct {
 	FileContents string `json:"file_contents"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CustomComponentLibraryRevisionFile CustomComponentLibraryRevisionFile
@@ -161,6 +161,11 @@ func (o CustomComponentLibraryRevisionFile) ToMap() (map[string]interface{}, err
 	toSerialize["file_contents"] = o.FileContents
 	toSerialize["created_at"] = o.CreatedAt
 	toSerialize["updated_at"] = o.UpdatedAt
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -191,15 +196,23 @@ func (o *CustomComponentLibraryRevisionFile) UnmarshalJSON(data []byte) (err err
 
 	varCustomComponentLibraryRevisionFile := _CustomComponentLibraryRevisionFile{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCustomComponentLibraryRevisionFile)
+	err = json.Unmarshal(data, &varCustomComponentLibraryRevisionFile)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CustomComponentLibraryRevisionFile(varCustomComponentLibraryRevisionFile)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "filepath")
+		delete(additionalProperties, "file_contents")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

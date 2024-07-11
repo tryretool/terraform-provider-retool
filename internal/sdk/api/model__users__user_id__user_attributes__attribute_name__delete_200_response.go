@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type UsersUserIdUserAttributesAttributeNameDelete200Response struct {
 	// API request succeeded
 	Success bool `json:"success"`
 	Data UsersUserIdUserAttributesAttributeNameDelete200ResponseData `json:"data"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UsersUserIdUserAttributesAttributeNameDelete200Response UsersUserIdUserAttributesAttributeNameDelete200Response
@@ -107,6 +107,11 @@ func (o UsersUserIdUserAttributesAttributeNameDelete200Response) ToMap() (map[st
 	toSerialize := map[string]interface{}{}
 	toSerialize["success"] = o.Success
 	toSerialize["data"] = o.Data
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *UsersUserIdUserAttributesAttributeNameDelete200Response) UnmarshalJSON(
 
 	varUsersUserIdUserAttributesAttributeNameDelete200Response := _UsersUserIdUserAttributesAttributeNameDelete200Response{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUsersUserIdUserAttributesAttributeNameDelete200Response)
+	err = json.Unmarshal(data, &varUsersUserIdUserAttributesAttributeNameDelete200Response)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UsersUserIdUserAttributesAttributeNameDelete200Response(varUsersUserIdUserAttributesAttributeNameDelete200Response)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "success")
+		delete(additionalProperties, "data")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

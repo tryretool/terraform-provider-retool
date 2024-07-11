@@ -13,7 +13,6 @@ package api
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -26,6 +25,7 @@ type CustomComponentLibrariesLibraryIdRevisionsRevisionIdFilesGet200ResponseData
 	FileContents string `json:"file_contents"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CustomComponentLibrariesLibraryIdRevisionsRevisionIdFilesGet200ResponseDataInner CustomComponentLibrariesLibraryIdRevisionsRevisionIdFilesGet200ResponseDataInner
@@ -161,6 +161,11 @@ func (o CustomComponentLibrariesLibraryIdRevisionsRevisionIdFilesGet200ResponseD
 	toSerialize["file_contents"] = o.FileContents
 	toSerialize["created_at"] = o.CreatedAt
 	toSerialize["updated_at"] = o.UpdatedAt
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -191,15 +196,23 @@ func (o *CustomComponentLibrariesLibraryIdRevisionsRevisionIdFilesGet200Response
 
 	varCustomComponentLibrariesLibraryIdRevisionsRevisionIdFilesGet200ResponseDataInner := _CustomComponentLibrariesLibraryIdRevisionsRevisionIdFilesGet200ResponseDataInner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCustomComponentLibrariesLibraryIdRevisionsRevisionIdFilesGet200ResponseDataInner)
+	err = json.Unmarshal(data, &varCustomComponentLibrariesLibraryIdRevisionsRevisionIdFilesGet200ResponseDataInner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CustomComponentLibrariesLibraryIdRevisionsRevisionIdFilesGet200ResponseDataInner(varCustomComponentLibrariesLibraryIdRevisionsRevisionIdFilesGet200ResponseDataInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "filepath")
+		delete(additionalProperties, "file_contents")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

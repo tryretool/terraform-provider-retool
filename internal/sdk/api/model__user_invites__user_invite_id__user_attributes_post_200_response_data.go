@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &UserInvitesUserInviteIdUserAttributesPost200ResponseData
 type UserInvitesUserInviteIdUserAttributesPost200ResponseData struct {
 	// The updated user invite metadata, containing the new attribute value
 	Metadata map[string]interface{} `json:"metadata"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UserInvitesUserInviteIdUserAttributesPost200ResponseData UserInvitesUserInviteIdUserAttributesPost200ResponseData
@@ -80,6 +80,11 @@ func (o UserInvitesUserInviteIdUserAttributesPost200ResponseData) MarshalJSON() 
 func (o UserInvitesUserInviteIdUserAttributesPost200ResponseData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["metadata"] = o.Metadata
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *UserInvitesUserInviteIdUserAttributesPost200ResponseData) UnmarshalJSON
 
 	varUserInvitesUserInviteIdUserAttributesPost200ResponseData := _UserInvitesUserInviteIdUserAttributesPost200ResponseData{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUserInvitesUserInviteIdUserAttributesPost200ResponseData)
+	err = json.Unmarshal(data, &varUserInvitesUserInviteIdUserAttributesPost200ResponseData)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UserInvitesUserInviteIdUserAttributesPost200ResponseData(varUserInvitesUserInviteIdUserAttributesPost200ResponseData)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "metadata")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

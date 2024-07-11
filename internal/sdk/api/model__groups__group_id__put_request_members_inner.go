@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type GroupsGroupIdPutRequestMembersInner struct {
 	Id string `json:"id"`
 	// Whether the user is a group admin
 	IsGroupAdmin bool `json:"is_group_admin"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GroupsGroupIdPutRequestMembersInner GroupsGroupIdPutRequestMembersInner
@@ -109,6 +109,11 @@ func (o GroupsGroupIdPutRequestMembersInner) ToMap() (map[string]interface{}, er
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["is_group_admin"] = o.IsGroupAdmin
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -137,15 +142,21 @@ func (o *GroupsGroupIdPutRequestMembersInner) UnmarshalJSON(data []byte) (err er
 
 	varGroupsGroupIdPutRequestMembersInner := _GroupsGroupIdPutRequestMembersInner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGroupsGroupIdPutRequestMembersInner)
+	err = json.Unmarshal(data, &varGroupsGroupIdPutRequestMembersInner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GroupsGroupIdPutRequestMembersInner(varGroupsGroupIdPutRequestMembersInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "is_group_admin")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

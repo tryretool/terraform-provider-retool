@@ -13,7 +13,6 @@ package api
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -30,6 +29,7 @@ type CustomComponentLibrariesLibraryIdGet200ResponseData struct {
 	Label string `json:"label"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CustomComponentLibrariesLibraryIdGet200ResponseData CustomComponentLibrariesLibraryIdGet200ResponseData
@@ -219,6 +219,11 @@ func (o CustomComponentLibrariesLibraryIdGet200ResponseData) ToMap() (map[string
 	toSerialize["label"] = o.Label
 	toSerialize["created_at"] = o.CreatedAt
 	toSerialize["updated_at"] = o.UpdatedAt
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -251,15 +256,25 @@ func (o *CustomComponentLibrariesLibraryIdGet200ResponseData) UnmarshalJSON(data
 
 	varCustomComponentLibrariesLibraryIdGet200ResponseData := _CustomComponentLibrariesLibraryIdGet200ResponseData{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCustomComponentLibrariesLibraryIdGet200ResponseData)
+	err = json.Unmarshal(data, &varCustomComponentLibrariesLibraryIdGet200ResponseData)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CustomComponentLibrariesLibraryIdGet200ResponseData(varCustomComponentLibrariesLibraryIdGet200ResponseData)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "label")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

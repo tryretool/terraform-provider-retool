@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type ConfigurationVariablesGet200ResponseDataInnerValuesInner struct {
 	EnvironmentId string `json:"environment_id"`
 	// The value of the configuration variable
 	Value string `json:"value"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ConfigurationVariablesGet200ResponseDataInnerValuesInner ConfigurationVariablesGet200ResponseDataInnerValuesInner
@@ -108,6 +108,11 @@ func (o ConfigurationVariablesGet200ResponseDataInnerValuesInner) ToMap() (map[s
 	toSerialize := map[string]interface{}{}
 	toSerialize["environment_id"] = o.EnvironmentId
 	toSerialize["value"] = o.Value
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *ConfigurationVariablesGet200ResponseDataInnerValuesInner) UnmarshalJSON
 
 	varConfigurationVariablesGet200ResponseDataInnerValuesInner := _ConfigurationVariablesGet200ResponseDataInnerValuesInner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varConfigurationVariablesGet200ResponseDataInnerValuesInner)
+	err = json.Unmarshal(data, &varConfigurationVariablesGet200ResponseDataInnerValuesInner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ConfigurationVariablesGet200ResponseDataInnerValuesInner(varConfigurationVariablesGet200ResponseDataInnerValuesInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "environment_id")
+		delete(additionalProperties, "value")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

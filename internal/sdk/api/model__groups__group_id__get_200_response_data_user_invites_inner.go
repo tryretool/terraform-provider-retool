@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -32,6 +31,7 @@ type GroupsGroupIdGet200ResponseDataUserInvitesInner struct {
 	Metadata map[string]interface{} `json:"metadata"`
 	CreatedAt string `json:"created_at"`
 	InviteLink *string `json:"invite_link,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GroupsGroupIdGet200ResponseDataUserInvitesInner GroupsGroupIdGet200ResponseDataUserInvitesInner
@@ -368,6 +368,11 @@ func (o GroupsGroupIdGet200ResponseDataUserInvitesInner) ToMap() (map[string]int
 	if !IsNil(o.InviteLink) {
 		toSerialize["invite_link"] = o.InviteLink
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -404,15 +409,30 @@ func (o *GroupsGroupIdGet200ResponseDataUserInvitesInner) UnmarshalJSON(data []b
 
 	varGroupsGroupIdGet200ResponseDataUserInvitesInner := _GroupsGroupIdGet200ResponseDataUserInvitesInner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGroupsGroupIdGet200ResponseDataUserInvitesInner)
+	err = json.Unmarshal(data, &varGroupsGroupIdGet200ResponseDataUserInvitesInner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GroupsGroupIdGet200ResponseDataUserInvitesInner(varGroupsGroupIdGet200ResponseDataUserInvitesInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "legacy_id")
+		delete(additionalProperties, "invited_by")
+		delete(additionalProperties, "invited_email")
+		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "claimed_by")
+		delete(additionalProperties, "claimed_at")
+		delete(additionalProperties, "user_type")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "invite_link")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type SourceControlTestDeployPostRequestDeployParams struct {
 	// The commit SHA to dry deploy
 	CommitSha string `json:"commit_sha"`
 	IsFullSync *bool `json:"is_full_sync,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SourceControlTestDeployPostRequestDeployParams SourceControlTestDeployPostRequestDeployParams
@@ -116,6 +116,11 @@ func (o SourceControlTestDeployPostRequestDeployParams) ToMap() (map[string]inte
 	if !IsNil(o.IsFullSync) {
 		toSerialize["is_full_sync"] = o.IsFullSync
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -143,15 +148,21 @@ func (o *SourceControlTestDeployPostRequestDeployParams) UnmarshalJSON(data []by
 
 	varSourceControlTestDeployPostRequestDeployParams := _SourceControlTestDeployPostRequestDeployParams{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSourceControlTestDeployPostRequestDeployParams)
+	err = json.Unmarshal(data, &varSourceControlTestDeployPostRequestDeployParams)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SourceControlTestDeployPostRequestDeployParams(varSourceControlTestDeployPostRequestDeployParams)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "commit_sha")
+		delete(additionalProperties, "is_full_sync")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

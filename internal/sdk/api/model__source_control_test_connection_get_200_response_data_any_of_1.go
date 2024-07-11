@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &SourceControlTestConnectionGet200ResponseDataAnyOf1{}
 type SourceControlTestConnectionGet200ResponseDataAnyOf1 struct {
 	// Test connection succeeded
 	Success bool `json:"success"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SourceControlTestConnectionGet200ResponseDataAnyOf1 SourceControlTestConnectionGet200ResponseDataAnyOf1
@@ -80,6 +80,11 @@ func (o SourceControlTestConnectionGet200ResponseDataAnyOf1) MarshalJSON() ([]by
 func (o SourceControlTestConnectionGet200ResponseDataAnyOf1) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["success"] = o.Success
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *SourceControlTestConnectionGet200ResponseDataAnyOf1) UnmarshalJSON(data
 
 	varSourceControlTestConnectionGet200ResponseDataAnyOf1 := _SourceControlTestConnectionGet200ResponseDataAnyOf1{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSourceControlTestConnectionGet200ResponseDataAnyOf1)
+	err = json.Unmarshal(data, &varSourceControlTestConnectionGet200ResponseDataAnyOf1)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SourceControlTestConnectionGet200ResponseDataAnyOf1(varSourceControlTestConnectionGet200ResponseDataAnyOf1)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "success")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

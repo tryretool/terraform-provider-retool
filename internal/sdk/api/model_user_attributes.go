@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -33,6 +32,7 @@ type UserAttributes struct {
 	DefaultValue NullableString `json:"default_value"`
 	// The name of the Intercom user attribute that this attribute should be mapped to
 	IntercomAttributeName NullableString `json:"intercom_attribute_name"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UserAttributes UserAttributes
@@ -224,6 +224,11 @@ func (o UserAttributes) ToMap() (map[string]interface{}, error) {
 	toSerialize["data_type"] = o.DataType
 	toSerialize["default_value"] = o.DefaultValue.Get()
 	toSerialize["intercom_attribute_name"] = o.IntercomAttributeName.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -256,15 +261,25 @@ func (o *UserAttributes) UnmarshalJSON(data []byte) (err error) {
 
 	varUserAttributes := _UserAttributes{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUserAttributes)
+	err = json.Unmarshal(data, &varUserAttributes)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UserAttributes(varUserAttributes)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "label")
+		delete(additionalProperties, "data_type")
+		delete(additionalProperties, "default_value")
+		delete(additionalProperties, "intercom_attribute_name")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

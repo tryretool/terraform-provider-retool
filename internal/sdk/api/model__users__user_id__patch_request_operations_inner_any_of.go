@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type UsersUserIdPatchRequestOperationsInnerAnyOf struct {
 	Path string `json:"path"`
 	// A JSON value
 	Value interface{} `json:"value,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UsersUserIdPatchRequestOperationsInnerAnyOf UsersUserIdPatchRequestOperationsInnerAnyOf
@@ -144,6 +144,11 @@ func (o UsersUserIdPatchRequestOperationsInnerAnyOf) ToMap() (map[string]interfa
 	if o.Value != nil {
 		toSerialize["value"] = o.Value
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -172,15 +177,22 @@ func (o *UsersUserIdPatchRequestOperationsInnerAnyOf) UnmarshalJSON(data []byte)
 
 	varUsersUserIdPatchRequestOperationsInnerAnyOf := _UsersUserIdPatchRequestOperationsInnerAnyOf{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUsersUserIdPatchRequestOperationsInnerAnyOf)
+	err = json.Unmarshal(data, &varUsersUserIdPatchRequestOperationsInnerAnyOf)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UsersUserIdPatchRequestOperationsInnerAnyOf(varUsersUserIdPatchRequestOperationsInnerAnyOf)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "op")
+		delete(additionalProperties, "path")
+		delete(additionalProperties, "value")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

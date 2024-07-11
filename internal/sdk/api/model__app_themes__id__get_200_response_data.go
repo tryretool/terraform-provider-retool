@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -27,6 +26,7 @@ type AppThemesIdGet200ResponseData struct {
 	Name string `json:"name"`
 	// The theme object.
 	Theme map[string]interface{} `json:"theme"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AppThemesIdGet200ResponseData AppThemesIdGet200ResponseData
@@ -162,6 +162,11 @@ func (o AppThemesIdGet200ResponseData) ToMap() (map[string]interface{}, error) {
 	toSerialize["legacy_id"] = o.LegacyId
 	toSerialize["name"] = o.Name
 	toSerialize["theme"] = o.Theme
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -192,15 +197,23 @@ func (o *AppThemesIdGet200ResponseData) UnmarshalJSON(data []byte) (err error) {
 
 	varAppThemesIdGet200ResponseData := _AppThemesIdGet200ResponseData{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAppThemesIdGet200ResponseData)
+	err = json.Unmarshal(data, &varAppThemesIdGet200ResponseData)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AppThemesIdGet200ResponseData(varAppThemesIdGet200ResponseData)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "legacy_id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "theme")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

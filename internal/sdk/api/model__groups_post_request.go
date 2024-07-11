@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -44,6 +43,7 @@ type GroupsPostRequest struct {
 	AccountDetailsAccess *bool `json:"account_details_access,omitempty"`
 	// The app ID of the landing page
 	LandingPageAppId NullableString `json:"landing_page_app_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GroupsPostRequest GroupsPostRequest
@@ -496,6 +496,11 @@ func (o GroupsPostRequest) ToMap() (map[string]interface{}, error) {
 	if o.LandingPageAppId.IsSet() {
 		toSerialize["landing_page_app_id"] = o.LandingPageAppId.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -523,15 +528,31 @@ func (o *GroupsPostRequest) UnmarshalJSON(data []byte) (err error) {
 
 	varGroupsPostRequest := _GroupsPostRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGroupsPostRequest)
+	err = json.Unmarshal(data, &varGroupsPostRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GroupsPostRequest(varGroupsPostRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "members")
+		delete(additionalProperties, "universal_app_access")
+		delete(additionalProperties, "universal_resource_access")
+		delete(additionalProperties, "universal_workflow_access")
+		delete(additionalProperties, "user_invites")
+		delete(additionalProperties, "user_list_access")
+		delete(additionalProperties, "audit_log_access")
+		delete(additionalProperties, "unpublished_release_access")
+		delete(additionalProperties, "usage_analytics_access")
+		delete(additionalProperties, "account_details_access")
+		delete(additionalProperties, "landing_page_app_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

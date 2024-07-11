@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type UserInvitesPost200Response struct {
 	// API request succeeded
 	Success bool `json:"success"`
 	Data UserInvitesPost200ResponseData `json:"data"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UserInvitesPost200Response UserInvitesPost200Response
@@ -107,6 +107,11 @@ func (o UserInvitesPost200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["success"] = o.Success
 	toSerialize["data"] = o.Data
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *UserInvitesPost200Response) UnmarshalJSON(data []byte) (err error) {
 
 	varUserInvitesPost200Response := _UserInvitesPost200Response{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUserInvitesPost200Response)
+	err = json.Unmarshal(data, &varUserInvitesPost200Response)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UserInvitesPost200Response(varUserInvitesPost200Response)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "success")
+		delete(additionalProperties, "data")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

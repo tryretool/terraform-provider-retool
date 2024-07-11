@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -32,6 +31,7 @@ type UserInvitesPost200ResponseData struct {
 	Metadata map[string]interface{} `json:"metadata"`
 	CreatedAt string `json:"created_at"`
 	InviteLink *string `json:"invite_link,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UserInvitesPost200ResponseData UserInvitesPost200ResponseData
@@ -368,6 +368,11 @@ func (o UserInvitesPost200ResponseData) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.InviteLink) {
 		toSerialize["invite_link"] = o.InviteLink
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -404,15 +409,30 @@ func (o *UserInvitesPost200ResponseData) UnmarshalJSON(data []byte) (err error) 
 
 	varUserInvitesPost200ResponseData := _UserInvitesPost200ResponseData{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUserInvitesPost200ResponseData)
+	err = json.Unmarshal(data, &varUserInvitesPost200ResponseData)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UserInvitesPost200ResponseData(varUserInvitesPost200ResponseData)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "legacy_id")
+		delete(additionalProperties, "invited_by")
+		delete(additionalProperties, "invited_email")
+		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "claimed_by")
+		delete(additionalProperties, "claimed_at")
+		delete(additionalProperties, "user_type")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "invite_link")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

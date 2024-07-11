@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type UserInvitesUserInviteIdUserAttributesPostRequest struct {
 	Name string `json:"name"`
 	// The value of the user attribute
 	Value NullableString `json:"value"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UserInvitesUserInviteIdUserAttributesPostRequest UserInvitesUserInviteIdUserAttributesPostRequest
@@ -110,6 +110,11 @@ func (o UserInvitesUserInviteIdUserAttributesPostRequest) ToMap() (map[string]in
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
 	toSerialize["value"] = o.Value.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -138,15 +143,21 @@ func (o *UserInvitesUserInviteIdUserAttributesPostRequest) UnmarshalJSON(data []
 
 	varUserInvitesUserInviteIdUserAttributesPostRequest := _UserInvitesUserInviteIdUserAttributesPostRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUserInvitesUserInviteIdUserAttributesPostRequest)
+	err = json.Unmarshal(data, &varUserInvitesUserInviteIdUserAttributesPostRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UserInvitesUserInviteIdUserAttributesPostRequest(varUserInvitesUserInviteIdUserAttributesPostRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "value")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

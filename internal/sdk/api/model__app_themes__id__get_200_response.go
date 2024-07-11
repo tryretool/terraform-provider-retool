@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type AppThemesIdGet200Response struct {
 	// API request succeeded
 	Success bool `json:"success"`
 	Data AppThemesIdGet200ResponseData `json:"data"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AppThemesIdGet200Response AppThemesIdGet200Response
@@ -107,6 +107,11 @@ func (o AppThemesIdGet200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["success"] = o.Success
 	toSerialize["data"] = o.Data
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *AppThemesIdGet200Response) UnmarshalJSON(data []byte) (err error) {
 
 	varAppThemesIdGet200Response := _AppThemesIdGet200Response{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAppThemesIdGet200Response)
+	err = json.Unmarshal(data, &varAppThemesIdGet200Response)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AppThemesIdGet200Response(varAppThemesIdGet200Response)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "success")
+		delete(additionalProperties, "data")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

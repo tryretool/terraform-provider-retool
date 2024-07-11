@@ -13,7 +13,6 @@ package api
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -27,6 +26,7 @@ type CustomComponentLibrariesLibraryIdRevisionsGet200ResponseDataInner struct {
 	CustomComponentLibraryId string `json:"custom_component_library_id"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CustomComponentLibrariesLibraryIdRevisionsGet200ResponseDataInner CustomComponentLibrariesLibraryIdRevisionsGet200ResponseDataInner
@@ -188,6 +188,11 @@ func (o CustomComponentLibrariesLibraryIdRevisionsGet200ResponseDataInner) ToMap
 	toSerialize["custom_component_library_id"] = o.CustomComponentLibraryId
 	toSerialize["created_at"] = o.CreatedAt
 	toSerialize["updated_at"] = o.UpdatedAt
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -219,15 +224,24 @@ func (o *CustomComponentLibrariesLibraryIdRevisionsGet200ResponseDataInner) Unma
 
 	varCustomComponentLibrariesLibraryIdRevisionsGet200ResponseDataInner := _CustomComponentLibrariesLibraryIdRevisionsGet200ResponseDataInner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCustomComponentLibrariesLibraryIdRevisionsGet200ResponseDataInner)
+	err = json.Unmarshal(data, &varCustomComponentLibrariesLibraryIdRevisionsGet200ResponseDataInner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CustomComponentLibrariesLibraryIdRevisionsGet200ResponseDataInner(varCustomComponentLibrariesLibraryIdRevisionsGet200ResponseDataInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "version")
+		delete(additionalProperties, "custom_component_library_id")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

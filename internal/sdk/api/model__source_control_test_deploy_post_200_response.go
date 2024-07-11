@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type SourceControlTestDeployPost200Response struct {
 	// API request succeeded
 	Success bool `json:"success"`
 	Data SourceControlTestDeployPost200ResponseData `json:"data"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SourceControlTestDeployPost200Response SourceControlTestDeployPost200Response
@@ -107,6 +107,11 @@ func (o SourceControlTestDeployPost200Response) ToMap() (map[string]interface{},
 	toSerialize := map[string]interface{}{}
 	toSerialize["success"] = o.Success
 	toSerialize["data"] = o.Data
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *SourceControlTestDeployPost200Response) UnmarshalJSON(data []byte) (err
 
 	varSourceControlTestDeployPost200Response := _SourceControlTestDeployPost200Response{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSourceControlTestDeployPost200Response)
+	err = json.Unmarshal(data, &varSourceControlTestDeployPost200Response)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SourceControlTestDeployPost200Response(varSourceControlTestDeployPost200Response)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "success")
+		delete(additionalProperties, "data")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

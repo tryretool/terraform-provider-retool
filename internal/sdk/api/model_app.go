@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -39,6 +38,7 @@ type App struct {
 	IsModule bool `json:"is_module"`
 	// Whether the App is a mobile app
 	IsMobileApp bool `json:"is_mobile_app"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _App App
@@ -308,6 +308,11 @@ func (o App) ToMap() (map[string]interface{}, error) {
 	toSerialize["shortlink"] = o.Shortlink.Get()
 	toSerialize["is_module"] = o.IsModule
 	toSerialize["is_mobile_app"] = o.IsMobileApp
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -343,15 +348,28 @@ func (o *App) UnmarshalJSON(data []byte) (err error) {
 
 	varApp := _App{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varApp)
+	err = json.Unmarshal(data, &varApp)
 
 	if err != nil {
 		return err
 	}
 
 	*o = App(varApp)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "folder_id")
+		delete(additionalProperties, "protected")
+		delete(additionalProperties, "synced")
+		delete(additionalProperties, "shortlink")
+		delete(additionalProperties, "is_module")
+		delete(additionalProperties, "is_mobile_app")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

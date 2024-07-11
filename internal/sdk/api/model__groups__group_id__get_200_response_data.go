@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -49,6 +48,7 @@ type GroupsGroupIdGet200ResponseData struct {
 	AccountDetailsAccess bool `json:"account_details_access"`
 	// The app ID of the landing page
 	LandingPageAppId NullableString `json:"landing_page_app_id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GroupsGroupIdGet200ResponseData GroupsGroupIdGet200ResponseData
@@ -450,6 +450,11 @@ func (o GroupsGroupIdGet200ResponseData) ToMap() (map[string]interface{}, error)
 	toSerialize["usage_analytics_access"] = o.UsageAnalyticsAccess
 	toSerialize["account_details_access"] = o.AccountDetailsAccess
 	toSerialize["landing_page_app_id"] = o.LandingPageAppId.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -490,15 +495,33 @@ func (o *GroupsGroupIdGet200ResponseData) UnmarshalJSON(data []byte) (err error)
 
 	varGroupsGroupIdGet200ResponseData := _GroupsGroupIdGet200ResponseData{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGroupsGroupIdGet200ResponseData)
+	err = json.Unmarshal(data, &varGroupsGroupIdGet200ResponseData)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GroupsGroupIdGet200ResponseData(varGroupsGroupIdGet200ResponseData)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "legacy_id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "members")
+		delete(additionalProperties, "universal_app_access")
+		delete(additionalProperties, "universal_resource_access")
+		delete(additionalProperties, "universal_workflow_access")
+		delete(additionalProperties, "user_invites")
+		delete(additionalProperties, "user_list_access")
+		delete(additionalProperties, "audit_log_access")
+		delete(additionalProperties, "unpublished_release_access")
+		delete(additionalProperties, "usage_analytics_access")
+		delete(additionalProperties, "account_details_access")
+		delete(additionalProperties, "landing_page_app_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

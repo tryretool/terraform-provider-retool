@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -28,6 +27,7 @@ type ResourceConfigurationsGet200ResponseDataInnerEnvironment struct {
 	Default bool `json:"default"`
 	CreatedAt string `json:"created_at"`
 	UpdatedAt string `json:"updated_at"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ResourceConfigurationsGet200ResponseDataInnerEnvironment ResourceConfigurationsGet200ResponseDataInnerEnvironment
@@ -243,6 +243,11 @@ func (o ResourceConfigurationsGet200ResponseDataInnerEnvironment) ToMap() (map[s
 	toSerialize["default"] = o.Default
 	toSerialize["created_at"] = o.CreatedAt
 	toSerialize["updated_at"] = o.UpdatedAt
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -276,15 +281,26 @@ func (o *ResourceConfigurationsGet200ResponseDataInnerEnvironment) UnmarshalJSON
 
 	varResourceConfigurationsGet200ResponseDataInnerEnvironment := _ResourceConfigurationsGet200ResponseDataInnerEnvironment{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varResourceConfigurationsGet200ResponseDataInnerEnvironment)
+	err = json.Unmarshal(data, &varResourceConfigurationsGet200ResponseDataInnerEnvironment)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ResourceConfigurationsGet200ResponseDataInnerEnvironment(varResourceConfigurationsGet200ResponseDataInnerEnvironment)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "color")
+		delete(additionalProperties, "default")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

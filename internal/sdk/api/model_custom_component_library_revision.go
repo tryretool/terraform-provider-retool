@@ -13,7 +13,6 @@ package api
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -27,6 +26,7 @@ type CustomComponentLibraryRevision struct {
 	CustomComponentLibraryId string `json:"custom_component_library_id"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CustomComponentLibraryRevision CustomComponentLibraryRevision
@@ -188,6 +188,11 @@ func (o CustomComponentLibraryRevision) ToMap() (map[string]interface{}, error) 
 	toSerialize["custom_component_library_id"] = o.CustomComponentLibraryId
 	toSerialize["created_at"] = o.CreatedAt
 	toSerialize["updated_at"] = o.UpdatedAt
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -219,15 +224,24 @@ func (o *CustomComponentLibraryRevision) UnmarshalJSON(data []byte) (err error) 
 
 	varCustomComponentLibraryRevision := _CustomComponentLibraryRevision{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCustomComponentLibraryRevision)
+	err = json.Unmarshal(data, &varCustomComponentLibraryRevision)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CustomComponentLibraryRevision(varCustomComponentLibraryRevision)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "version")
+		delete(additionalProperties, "custom_component_library_id")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
