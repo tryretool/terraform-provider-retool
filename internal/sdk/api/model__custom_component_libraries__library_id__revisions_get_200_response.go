@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -31,6 +30,7 @@ type CustomComponentLibrariesLibraryIdRevisionsGet200Response struct {
 	NextToken NullableString `json:"next_token"`
 	// Whether there are more items in the collection
 	HasMore bool `json:"has_more"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CustomComponentLibrariesLibraryIdRevisionsGet200Response CustomComponentLibrariesLibraryIdRevisionsGet200Response
@@ -194,6 +194,11 @@ func (o CustomComponentLibrariesLibraryIdRevisionsGet200Response) ToMap() (map[s
 	toSerialize["total_count"] = o.TotalCount
 	toSerialize["next_token"] = o.NextToken.Get()
 	toSerialize["has_more"] = o.HasMore
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -225,15 +230,24 @@ func (o *CustomComponentLibrariesLibraryIdRevisionsGet200Response) UnmarshalJSON
 
 	varCustomComponentLibrariesLibraryIdRevisionsGet200Response := _CustomComponentLibrariesLibraryIdRevisionsGet200Response{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCustomComponentLibrariesLibraryIdRevisionsGet200Response)
+	err = json.Unmarshal(data, &varCustomComponentLibrariesLibraryIdRevisionsGet200Response)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CustomComponentLibrariesLibraryIdRevisionsGet200Response(varCustomComponentLibrariesLibraryIdRevisionsGet200Response)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "success")
+		delete(additionalProperties, "data")
+		delete(additionalProperties, "total_count")
+		delete(additionalProperties, "next_token")
+		delete(additionalProperties, "has_more")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

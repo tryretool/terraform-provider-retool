@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -31,6 +30,7 @@ type SourceControlConfigGet200ResponseDataAnyOf1 struct {
 	DefaultBranch string `json:"default_branch"`
 	// Repositories using Toolscript are 2.0.0. Repositories using legacy YAML are 1.0.0.
 	RepoVersion *string `json:"repo_version,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SourceControlConfigGet200ResponseDataAnyOf1 SourceControlConfigGet200ResponseDataAnyOf1
@@ -227,6 +227,11 @@ func (o SourceControlConfigGet200ResponseDataAnyOf1) ToMap() (map[string]interfa
 	if !IsNil(o.RepoVersion) {
 		toSerialize["repo_version"] = o.RepoVersion
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -258,15 +263,25 @@ func (o *SourceControlConfigGet200ResponseDataAnyOf1) UnmarshalJSON(data []byte)
 
 	varSourceControlConfigGet200ResponseDataAnyOf1 := _SourceControlConfigGet200ResponseDataAnyOf1{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSourceControlConfigGet200ResponseDataAnyOf1)
+	err = json.Unmarshal(data, &varSourceControlConfigGet200ResponseDataAnyOf1)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SourceControlConfigGet200ResponseDataAnyOf1(varSourceControlConfigGet200ResponseDataAnyOf1)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "config")
+		delete(additionalProperties, "provider")
+		delete(additionalProperties, "org")
+		delete(additionalProperties, "repo")
+		delete(additionalProperties, "default_branch")
+		delete(additionalProperties, "repo_version")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

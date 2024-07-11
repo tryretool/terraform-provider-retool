@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &GroupsGroupIdUserInvitesPostRequest{}
 // GroupsGroupIdUserInvitesPostRequest User Invites to add to the group
 type GroupsGroupIdUserInvitesPostRequest struct {
 	UserInviteIds []float32 `json:"userInviteIds"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GroupsGroupIdUserInvitesPostRequest GroupsGroupIdUserInvitesPostRequest
@@ -79,6 +79,11 @@ func (o GroupsGroupIdUserInvitesPostRequest) MarshalJSON() ([]byte, error) {
 func (o GroupsGroupIdUserInvitesPostRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["userInviteIds"] = o.UserInviteIds
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *GroupsGroupIdUserInvitesPostRequest) UnmarshalJSON(data []byte) (err er
 
 	varGroupsGroupIdUserInvitesPostRequest := _GroupsGroupIdUserInvitesPostRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGroupsGroupIdUserInvitesPostRequest)
+	err = json.Unmarshal(data, &varGroupsGroupIdUserInvitesPostRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GroupsGroupIdUserInvitesPostRequest(varGroupsGroupIdUserInvitesPostRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "userInviteIds")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -33,6 +32,7 @@ type FoldersGet200ResponseDataInner struct {
 	IsSystemFolder bool `json:"is_system_folder"`
 	// The type of the folder
 	FolderType string `json:"folder_type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FoldersGet200ResponseDataInner FoldersGet200ResponseDataInner
@@ -239,6 +239,11 @@ func (o FoldersGet200ResponseDataInner) ToMap() (map[string]interface{}, error) 
 	}
 	toSerialize["is_system_folder"] = o.IsSystemFolder
 	toSerialize["folder_type"] = o.FolderType
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -270,15 +275,25 @@ func (o *FoldersGet200ResponseDataInner) UnmarshalJSON(data []byte) (err error) 
 
 	varFoldersGet200ResponseDataInner := _FoldersGet200ResponseDataInner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFoldersGet200ResponseDataInner)
+	err = json.Unmarshal(data, &varFoldersGet200ResponseDataInner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FoldersGet200ResponseDataInner(varFoldersGet200ResponseDataInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "legacy_id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "parent_folder_id")
+		delete(additionalProperties, "is_system_folder")
+		delete(additionalProperties, "folder_type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

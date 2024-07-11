@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -30,6 +29,7 @@ type ConfigurationVariablesGet200ResponseDataInner struct {
 	// Whether the configuration variable is a secret
 	Secret bool `json:"secret"`
 	Values []ConfigurationVariablesGet200ResponseDataInnerValuesInner `json:"values"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ConfigurationVariablesGet200ResponseDataInner ConfigurationVariablesGet200ResponseDataInner
@@ -200,6 +200,11 @@ func (o ConfigurationVariablesGet200ResponseDataInner) ToMap() (map[string]inter
 	}
 	toSerialize["secret"] = o.Secret
 	toSerialize["values"] = o.Values
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -230,15 +235,24 @@ func (o *ConfigurationVariablesGet200ResponseDataInner) UnmarshalJSON(data []byt
 
 	varConfigurationVariablesGet200ResponseDataInner := _ConfigurationVariablesGet200ResponseDataInner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varConfigurationVariablesGet200ResponseDataInner)
+	err = json.Unmarshal(data, &varConfigurationVariablesGet200ResponseDataInner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ConfigurationVariablesGet200ResponseDataInner(varConfigurationVariablesGet200ResponseDataInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "secret")
+		delete(additionalProperties, "values")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

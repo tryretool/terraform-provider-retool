@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type CustomComponentLibrariesLibraryIdGet200Response struct {
 	// API request succeeded
 	Success bool `json:"success"`
 	Data CustomComponentLibrariesLibraryIdGet200ResponseData `json:"data"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CustomComponentLibrariesLibraryIdGet200Response CustomComponentLibrariesLibraryIdGet200Response
@@ -107,6 +107,11 @@ func (o CustomComponentLibrariesLibraryIdGet200Response) ToMap() (map[string]int
 	toSerialize := map[string]interface{}{}
 	toSerialize["success"] = o.Success
 	toSerialize["data"] = o.Data
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *CustomComponentLibrariesLibraryIdGet200Response) UnmarshalJSON(data []b
 
 	varCustomComponentLibrariesLibraryIdGet200Response := _CustomComponentLibrariesLibraryIdGet200Response{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCustomComponentLibrariesLibraryIdGet200Response)
+	err = json.Unmarshal(data, &varCustomComponentLibrariesLibraryIdGet200Response)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CustomComponentLibrariesLibraryIdGet200Response(varCustomComponentLibrariesLibraryIdGet200Response)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "success")
+		delete(additionalProperties, "data")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

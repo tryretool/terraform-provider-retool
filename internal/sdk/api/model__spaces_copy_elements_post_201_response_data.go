@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -29,6 +28,7 @@ type SpacesCopyElementsPost201ResponseData struct {
 	AppIds []string `json:"app_ids"`
 	// The uuids of the copied workflows.
 	WorkflowIds []string `json:"workflow_ids"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SpacesCopyElementsPost201ResponseData SpacesCopyElementsPost201ResponseData
@@ -164,6 +164,11 @@ func (o SpacesCopyElementsPost201ResponseData) ToMap() (map[string]interface{}, 
 	toSerialize["query_library_query_ids"] = o.QueryLibraryQueryIds
 	toSerialize["app_ids"] = o.AppIds
 	toSerialize["workflow_ids"] = o.WorkflowIds
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -194,15 +199,23 @@ func (o *SpacesCopyElementsPost201ResponseData) UnmarshalJSON(data []byte) (err 
 
 	varSpacesCopyElementsPost201ResponseData := _SpacesCopyElementsPost201ResponseData{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSpacesCopyElementsPost201ResponseData)
+	err = json.Unmarshal(data, &varSpacesCopyElementsPost201ResponseData)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SpacesCopyElementsPost201ResponseData(varSpacesCopyElementsPost201ResponseData)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "resource_ids")
+		delete(additionalProperties, "query_library_query_ids")
+		delete(additionalProperties, "app_ids")
+		delete(additionalProperties, "workflow_ids")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

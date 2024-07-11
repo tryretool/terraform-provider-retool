@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -28,6 +27,7 @@ type CustomComponentLibrariesPostRequest struct {
 	Description NullableString `json:"description"`
 	// How the library will be referred to in the Retool UI. Should be human readable.
 	Label string `json:"label"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CustomComponentLibrariesPostRequest CustomComponentLibrariesPostRequest
@@ -174,6 +174,11 @@ func (o CustomComponentLibrariesPostRequest) ToMap() (map[string]interface{}, er
 	toSerialize["name"] = o.Name
 	toSerialize["description"] = o.Description.Get()
 	toSerialize["label"] = o.Label
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -203,15 +208,23 @@ func (o *CustomComponentLibrariesPostRequest) UnmarshalJSON(data []byte) (err er
 
 	varCustomComponentLibrariesPostRequest := _CustomComponentLibrariesPostRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCustomComponentLibrariesPostRequest)
+	err = json.Unmarshal(data, &varCustomComponentLibrariesPostRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CustomComponentLibrariesPostRequest(varCustomComponentLibrariesPostRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "label")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

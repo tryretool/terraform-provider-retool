@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -29,6 +28,7 @@ type SourceControlSettingsGet200ResponseData struct {
 	CustomPullRequestTemplate string `json:"custom_pull_request_template"`
 	// When set to true, creates a read-only instance of Retool, where app editing is disabled. Defaults to false.
 	VersionControlLocked bool `json:"version_control_locked"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SourceControlSettingsGet200ResponseData SourceControlSettingsGet200ResponseData
@@ -164,6 +164,11 @@ func (o SourceControlSettingsGet200ResponseData) ToMap() (map[string]interface{}
 	toSerialize["custom_pull_request_template_enabled"] = o.CustomPullRequestTemplateEnabled
 	toSerialize["custom_pull_request_template"] = o.CustomPullRequestTemplate
 	toSerialize["version_control_locked"] = o.VersionControlLocked
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -194,15 +199,23 @@ func (o *SourceControlSettingsGet200ResponseData) UnmarshalJSON(data []byte) (er
 
 	varSourceControlSettingsGet200ResponseData := _SourceControlSettingsGet200ResponseData{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSourceControlSettingsGet200ResponseData)
+	err = json.Unmarshal(data, &varSourceControlSettingsGet200ResponseData)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SourceControlSettingsGet200ResponseData(varSourceControlSettingsGet200ResponseData)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "auto_branch_naming_enabled")
+		delete(additionalProperties, "custom_pull_request_template_enabled")
+		delete(additionalProperties, "custom_pull_request_template")
+		delete(additionalProperties, "version_control_locked")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

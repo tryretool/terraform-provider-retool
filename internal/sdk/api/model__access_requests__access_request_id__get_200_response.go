@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type AccessRequestsAccessRequestIdGet200Response struct {
 	// API request succeeded
 	Success bool `json:"success"`
 	Data AccessRequestsGet200ResponseDataInner `json:"data"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AccessRequestsAccessRequestIdGet200Response AccessRequestsAccessRequestIdGet200Response
@@ -107,6 +107,11 @@ func (o AccessRequestsAccessRequestIdGet200Response) ToMap() (map[string]interfa
 	toSerialize := map[string]interface{}{}
 	toSerialize["success"] = o.Success
 	toSerialize["data"] = o.Data
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *AccessRequestsAccessRequestIdGet200Response) UnmarshalJSON(data []byte)
 
 	varAccessRequestsAccessRequestIdGet200Response := _AccessRequestsAccessRequestIdGet200Response{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAccessRequestsAccessRequestIdGet200Response)
+	err = json.Unmarshal(data, &varAccessRequestsAccessRequestIdGet200Response)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AccessRequestsAccessRequestIdGet200Response(varAccessRequestsAccessRequestIdGet200Response)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "success")
+		delete(additionalProperties, "data")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

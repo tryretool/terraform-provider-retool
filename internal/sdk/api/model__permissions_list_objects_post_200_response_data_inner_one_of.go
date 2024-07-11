@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -26,6 +25,7 @@ type PermissionsListObjectsPost200ResponseDataInnerOneOf struct {
 	Id string `json:"id"`
 	// The access level of the folder
 	AccessLevel string `json:"access_level"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PermissionsListObjectsPost200ResponseDataInnerOneOf PermissionsListObjectsPost200ResponseDataInnerOneOf
@@ -135,6 +135,11 @@ func (o PermissionsListObjectsPost200ResponseDataInnerOneOf) ToMap() (map[string
 	toSerialize["type"] = o.Type
 	toSerialize["id"] = o.Id
 	toSerialize["access_level"] = o.AccessLevel
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -164,15 +169,22 @@ func (o *PermissionsListObjectsPost200ResponseDataInnerOneOf) UnmarshalJSON(data
 
 	varPermissionsListObjectsPost200ResponseDataInnerOneOf := _PermissionsListObjectsPost200ResponseDataInnerOneOf{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPermissionsListObjectsPost200ResponseDataInnerOneOf)
+	err = json.Unmarshal(data, &varPermissionsListObjectsPost200ResponseDataInnerOneOf)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PermissionsListObjectsPost200ResponseDataInnerOneOf(varPermissionsListObjectsPost200ResponseDataInnerOneOf)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "access_level")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

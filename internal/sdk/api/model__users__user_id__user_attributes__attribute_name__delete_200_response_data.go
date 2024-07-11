@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &UsersUserIdUserAttributesAttributeNameDelete200ResponseD
 type UsersUserIdUserAttributesAttributeNameDelete200ResponseData struct {
 	// The updated user metadata, without the deleted attribute
 	Metadata map[string]interface{} `json:"metadata"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UsersUserIdUserAttributesAttributeNameDelete200ResponseData UsersUserIdUserAttributesAttributeNameDelete200ResponseData
@@ -80,6 +80,11 @@ func (o UsersUserIdUserAttributesAttributeNameDelete200ResponseData) MarshalJSON
 func (o UsersUserIdUserAttributesAttributeNameDelete200ResponseData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["metadata"] = o.Metadata
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *UsersUserIdUserAttributesAttributeNameDelete200ResponseData) UnmarshalJ
 
 	varUsersUserIdUserAttributesAttributeNameDelete200ResponseData := _UsersUserIdUserAttributesAttributeNameDelete200ResponseData{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUsersUserIdUserAttributesAttributeNameDelete200ResponseData)
+	err = json.Unmarshal(data, &varUsersUserIdUserAttributesAttributeNameDelete200ResponseData)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UsersUserIdUserAttributesAttributeNameDelete200ResponseData(varUsersUserIdUserAttributesAttributeNameDelete200ResponseData)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "metadata")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

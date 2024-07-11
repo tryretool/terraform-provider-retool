@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &GroupsGroupIdMembersPostRequest{}
 // GroupsGroupIdMembersPostRequest Users to add to the group
 type GroupsGroupIdMembersPostRequest struct {
 	Members []GroupsGroupIdPutRequestMembersInner `json:"members"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GroupsGroupIdMembersPostRequest GroupsGroupIdMembersPostRequest
@@ -79,6 +79,11 @@ func (o GroupsGroupIdMembersPostRequest) MarshalJSON() ([]byte, error) {
 func (o GroupsGroupIdMembersPostRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["members"] = o.Members
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *GroupsGroupIdMembersPostRequest) UnmarshalJSON(data []byte) (err error)
 
 	varGroupsGroupIdMembersPostRequest := _GroupsGroupIdMembersPostRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGroupsGroupIdMembersPostRequest)
+	err = json.Unmarshal(data, &varGroupsGroupIdMembersPostRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GroupsGroupIdMembersPostRequest(varGroupsGroupIdMembersPostRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "members")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

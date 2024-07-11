@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -26,6 +25,7 @@ type AccessRequestsGet200ResponseDataInner struct {
 	LegacyId float32 `json:"legacy_id"`
 	RequestingEmail string `json:"requesting_email"`
 	UpdatedById NullableString `json:"updated_by_id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AccessRequestsGet200ResponseDataInner AccessRequestsGet200ResponseDataInner
@@ -189,6 +189,11 @@ func (o AccessRequestsGet200ResponseDataInner) ToMap() (map[string]interface{}, 
 	toSerialize["legacy_id"] = o.LegacyId
 	toSerialize["requesting_email"] = o.RequestingEmail
 	toSerialize["updated_by_id"] = o.UpdatedById.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -220,15 +225,24 @@ func (o *AccessRequestsGet200ResponseDataInner) UnmarshalJSON(data []byte) (err 
 
 	varAccessRequestsGet200ResponseDataInner := _AccessRequestsGet200ResponseDataInner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAccessRequestsGet200ResponseDataInner)
+	err = json.Unmarshal(data, &varAccessRequestsGet200ResponseDataInner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AccessRequestsGet200ResponseDataInner(varAccessRequestsGet200ResponseDataInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "legacy_id")
+		delete(additionalProperties, "requesting_email")
+		delete(additionalProperties, "updated_by_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

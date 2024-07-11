@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -28,6 +27,7 @@ type EnvironmentsEnvironmentIdGet200ResponseData struct {
 	Default bool `json:"default"`
 	CreatedAt string `json:"created_at"`
 	UpdatedAt string `json:"updated_at"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _EnvironmentsEnvironmentIdGet200ResponseData EnvironmentsEnvironmentIdGet200ResponseData
@@ -243,6 +243,11 @@ func (o EnvironmentsEnvironmentIdGet200ResponseData) ToMap() (map[string]interfa
 	toSerialize["default"] = o.Default
 	toSerialize["created_at"] = o.CreatedAt
 	toSerialize["updated_at"] = o.UpdatedAt
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -276,15 +281,26 @@ func (o *EnvironmentsEnvironmentIdGet200ResponseData) UnmarshalJSON(data []byte)
 
 	varEnvironmentsEnvironmentIdGet200ResponseData := _EnvironmentsEnvironmentIdGet200ResponseData{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEnvironmentsEnvironmentIdGet200ResponseData)
+	err = json.Unmarshal(data, &varEnvironmentsEnvironmentIdGet200ResponseData)
 
 	if err != nil {
 		return err
 	}
 
 	*o = EnvironmentsEnvironmentIdGet200ResponseData(varEnvironmentsEnvironmentIdGet200ResponseData)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "color")
+		delete(additionalProperties, "default")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

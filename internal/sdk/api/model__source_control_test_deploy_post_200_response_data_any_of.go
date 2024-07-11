@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type SourceControlTestDeployPost200ResponseDataAnyOf struct {
 	Success bool `json:"success"`
 	// Error message
 	Message string `json:"message"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SourceControlTestDeployPost200ResponseDataAnyOf SourceControlTestDeployPost200ResponseDataAnyOf
@@ -108,6 +108,11 @@ func (o SourceControlTestDeployPost200ResponseDataAnyOf) ToMap() (map[string]int
 	toSerialize := map[string]interface{}{}
 	toSerialize["success"] = o.Success
 	toSerialize["message"] = o.Message
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *SourceControlTestDeployPost200ResponseDataAnyOf) UnmarshalJSON(data []b
 
 	varSourceControlTestDeployPost200ResponseDataAnyOf := _SourceControlTestDeployPost200ResponseDataAnyOf{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSourceControlTestDeployPost200ResponseDataAnyOf)
+	err = json.Unmarshal(data, &varSourceControlTestDeployPost200ResponseDataAnyOf)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SourceControlTestDeployPost200ResponseDataAnyOf(varSourceControlTestDeployPost200ResponseDataAnyOf)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "success")
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

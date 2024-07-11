@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type SourceControlDeployPost200ResponseData struct {
 	// The deployment ID
 	Id string `json:"id"`
 	Status string `json:"status"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SourceControlDeployPost200ResponseData SourceControlDeployPost200ResponseData
@@ -107,6 +107,11 @@ func (o SourceControlDeployPost200ResponseData) ToMap() (map[string]interface{},
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["status"] = o.Status
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *SourceControlDeployPost200ResponseData) UnmarshalJSON(data []byte) (err
 
 	varSourceControlDeployPost200ResponseData := _SourceControlDeployPost200ResponseData{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSourceControlDeployPost200ResponseData)
+	err = json.Unmarshal(data, &varSourceControlDeployPost200ResponseData)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SourceControlDeployPost200ResponseData(varSourceControlDeployPost200ResponseData)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

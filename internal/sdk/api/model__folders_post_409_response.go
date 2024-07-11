@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type FoldersPost409Response struct {
 	Success bool `json:"success"`
 	// Error message
 	Message string `json:"message"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FoldersPost409Response FoldersPost409Response
@@ -108,6 +108,11 @@ func (o FoldersPost409Response) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["success"] = o.Success
 	toSerialize["message"] = o.Message
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *FoldersPost409Response) UnmarshalJSON(data []byte) (err error) {
 
 	varFoldersPost409Response := _FoldersPost409Response{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFoldersPost409Response)
+	err = json.Unmarshal(data, &varFoldersPost409Response)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FoldersPost409Response(varFoldersPost409Response)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "success")
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

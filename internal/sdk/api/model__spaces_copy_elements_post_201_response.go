@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type SpacesCopyElementsPost201Response struct {
 	// API request succeeded
 	Success bool `json:"success"`
 	Data SpacesCopyElementsPost201ResponseData `json:"data"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SpacesCopyElementsPost201Response SpacesCopyElementsPost201Response
@@ -107,6 +107,11 @@ func (o SpacesCopyElementsPost201Response) ToMap() (map[string]interface{}, erro
 	toSerialize := map[string]interface{}{}
 	toSerialize["success"] = o.Success
 	toSerialize["data"] = o.Data
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *SpacesCopyElementsPost201Response) UnmarshalJSON(data []byte) (err erro
 
 	varSpacesCopyElementsPost201Response := _SpacesCopyElementsPost201Response{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSpacesCopyElementsPost201Response)
+	err = json.Unmarshal(data, &varSpacesCopyElementsPost201Response)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SpacesCopyElementsPost201Response(varSpacesCopyElementsPost201Response)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "success")
+		delete(additionalProperties, "data")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

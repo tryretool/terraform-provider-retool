@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -33,6 +32,7 @@ type UserAttributesGet200ResponseDataInner struct {
 	DefaultValue NullableString `json:"default_value"`
 	// The name of the Intercom user attribute that this attribute should be mapped to
 	IntercomAttributeName NullableString `json:"intercom_attribute_name"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UserAttributesGet200ResponseDataInner UserAttributesGet200ResponseDataInner
@@ -224,6 +224,11 @@ func (o UserAttributesGet200ResponseDataInner) ToMap() (map[string]interface{}, 
 	toSerialize["data_type"] = o.DataType
 	toSerialize["default_value"] = o.DefaultValue.Get()
 	toSerialize["intercom_attribute_name"] = o.IntercomAttributeName.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -256,15 +261,25 @@ func (o *UserAttributesGet200ResponseDataInner) UnmarshalJSON(data []byte) (err 
 
 	varUserAttributesGet200ResponseDataInner := _UserAttributesGet200ResponseDataInner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUserAttributesGet200ResponseDataInner)
+	err = json.Unmarshal(data, &varUserAttributesGet200ResponseDataInner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UserAttributesGet200ResponseDataInner(varUserAttributesGet200ResponseDataInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "label")
+		delete(additionalProperties, "data_type")
+		delete(additionalProperties, "default_value")
+		delete(additionalProperties, "intercom_attribute_name")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
