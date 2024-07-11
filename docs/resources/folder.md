@@ -44,7 +44,7 @@ resource "retool_folder" "resource_example" {
 
 ### Read-Only
 
-- `id` (String) The id of the folder. Currently this is the same as legacy_id but will be different in the future.
+- `id` (String) The id of the folder.
 - `is_system_folder` (Boolean) Whether the folder is a system folder.
 - `legacy_id` (String) The legacy id of the folder.
 

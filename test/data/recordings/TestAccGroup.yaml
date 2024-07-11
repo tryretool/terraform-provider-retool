@@ -1,0 +1,404 @@
+---
+version: 2
+interactions:
+    - id: 0
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 271
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"account_details_access":true,"audit_log_access":true,"name":"tf-acc-test-group","universal_app_access":"use","universal_resource_access":"own","universal_workflow_access":"none","unpublished_release_access":false,"usage_analytics_access":true,"user_list_access":false}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/groups
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 455
+        uncompressed: false
+        body: '{"success":true,"data":{"id":26,"legacy_id":26,"name":"tf-acc-test-group","members":[],"universal_app_access":"use","universal_resource_access":"own","universal_workflow_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":true,"unpublished_release_access":false,"usage_analytics_access":true,"account_details_access":true,"landing_page_app_id":null,"updated_at":"2024-07-11T19:15:25.761Z","created_at":"2024-07-11T19:15:25.761Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 23.314625ms
+    - id: 1
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/groups/26
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 455
+        uncompressed: false
+        body: '{"success":true,"data":{"id":26,"legacy_id":26,"name":"tf-acc-test-group","members":[],"universal_app_access":"use","universal_resource_access":"own","universal_workflow_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":true,"unpublished_release_access":false,"usage_analytics_access":true,"account_details_access":true,"landing_page_app_id":null,"updated_at":"2024-07-11T19:15:25.761Z","created_at":"2024-07-11T19:15:25.761Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 15.266083ms
+    - id: 2
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/groups/26
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 455
+        uncompressed: false
+        body: '{"success":true,"data":{"id":26,"legacy_id":26,"name":"tf-acc-test-group","members":[],"universal_app_access":"use","universal_resource_access":"own","universal_workflow_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":true,"unpublished_release_access":false,"usage_analytics_access":true,"account_details_access":true,"landing_page_app_id":null,"updated_at":"2024-07-11T19:15:25.761Z","created_at":"2024-07-11T19:15:25.761Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 14.698791ms
+    - id: 3
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/groups/26
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 455
+        uncompressed: false
+        body: '{"success":true,"data":{"id":26,"legacy_id":26,"name":"tf-acc-test-group","members":[],"universal_app_access":"use","universal_resource_access":"own","universal_workflow_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":true,"unpublished_release_access":false,"usage_analytics_access":true,"account_details_access":true,"landing_page_app_id":null,"updated_at":"2024-07-11T19:15:25.761Z","created_at":"2024-07-11T19:15:25.761Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 13.360708ms
+    - id: 4
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/groups/26
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 455
+        uncompressed: false
+        body: '{"success":true,"data":{"id":26,"legacy_id":26,"name":"tf-acc-test-group","members":[],"universal_app_access":"use","universal_resource_access":"own","universal_workflow_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":true,"unpublished_release_access":false,"usage_analytics_access":true,"account_details_access":true,"landing_page_app_id":null,"updated_at":"2024-07-11T19:15:25.761Z","created_at":"2024-07-11T19:15:25.761Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 12.612958ms
+    - id: 5
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 340
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"account_details_access":false,"audit_log_access":false,"landing_page_app_id":null,"members":[],"name":"tf-acc-test-group-modified","universal_app_access":"own","universal_resource_access":"none","universal_workflow_access":"edit","unpublished_release_access":true,"usage_analytics_access":false,"user_invites":[],"user_list_access":true}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/groups/26
+        method: PUT
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 466
+        uncompressed: false
+        body: '{"success":true,"data":{"id":26,"legacy_id":26,"name":"tf-acc-test-group-modified","members":[],"universal_app_access":"own","universal_resource_access":"none","universal_workflow_access":"edit","user_invites":[],"user_list_access":true,"audit_log_access":false,"unpublished_release_access":true,"usage_analytics_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-07-11T19:15:26.262Z","created_at":"2024-07-11T19:15:25.761Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 19.280791ms
+    - id: 6
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/groups/26
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 466
+        uncompressed: false
+        body: '{"success":true,"data":{"id":26,"legacy_id":26,"name":"tf-acc-test-group-modified","members":[],"universal_app_access":"own","universal_resource_access":"none","universal_workflow_access":"edit","user_invites":[],"user_list_access":true,"audit_log_access":false,"unpublished_release_access":true,"usage_analytics_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-07-11T19:15:26.262Z","created_at":"2024-07-11T19:15:25.761Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 13.55575ms
+    - id: 7
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/groups/26
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 466
+        uncompressed: false
+        body: '{"success":true,"data":{"id":26,"legacy_id":26,"name":"tf-acc-test-group-modified","members":[],"universal_app_access":"own","universal_resource_access":"none","universal_workflow_access":"edit","user_invites":[],"user_list_access":true,"audit_log_access":false,"unpublished_release_access":true,"usage_analytics_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-07-11T19:15:26.262Z","created_at":"2024-07-11T19:15:25.761Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 12.860334ms
+    - id: 8
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/groups/26
+        method: DELETE
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: ""
+        headers: {}
+        status: 204 No Content
+        code: 204
+        duration: 24.38ms
+    - id: 9
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 290
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"account_details_access":false,"audit_log_access":false,"name":"tf-acc-test-group-with-defaults","universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","unpublished_release_access":false,"usage_analytics_access":false,"user_list_access":false}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/groups
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 474
+        uncompressed: false
+        body: '{"success":true,"data":{"id":27,"legacy_id":27,"name":"tf-acc-test-group-with-defaults","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-07-11T19:15:26.584Z","created_at":"2024-07-11T19:15:26.584Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 27.447833ms
+    - id: 10
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/groups/27
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 474
+        uncompressed: false
+        body: '{"success":true,"data":{"id":27,"legacy_id":27,"name":"tf-acc-test-group-with-defaults","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-07-11T19:15:26.584Z","created_at":"2024-07-11T19:15:26.584Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 13.213875ms
+    - id: 11
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/groups/27
+        method: DELETE
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: ""
+        headers: {}
+        status: 204 No Content
+        code: 204
+        duration: 18.259833ms
