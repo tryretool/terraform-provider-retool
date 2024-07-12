@@ -1452,7 +1452,7 @@ paths:
         name: resourceId
         required: true
         schema:
-          $ref: '#/components/schemas/_permissions_listObjects_post_200_response_data_inner_oneOf_2_id'
+          $ref: '#/components/schemas/_resources_get_200_response_data_inner_id'
         style: simple
       responses:
         "204":
@@ -1469,7 +1469,7 @@ paths:
         name: resourceId
         required: true
         schema:
-          $ref: '#/components/schemas/_permissions_listObjects_post_200_response_data_inner_oneOf_2_id'
+          $ref: '#/components/schemas/_resources_get_200_response_data_inner_id'
         style: simple
       responses:
         "200":
@@ -1574,7 +1574,7 @@ paths:
         name: resource_id
         required: false
         schema:
-          $ref: '#/components/schemas/_permissions_listObjects_post_200_response_data_inner_oneOf_2_id'
+          $ref: '#/components/schemas/_resources_get_200_response_data_inner_id'
         style: form
       - explode: true
         in: query
@@ -2398,7 +2398,7 @@ components:
       description: Resource
       properties:
         id:
-          $ref: '#/components/schemas/_permissions_listObjects_post_200_response_data_inner_oneOf_2_id'
+          $ref: '#/components/schemas/_resources_get_200_response_data_inner_id'
         type:
           description: The type of resource.
           enum:
@@ -6088,99 +6088,15 @@ components:
         type:
           enum:
           - folder
-          type: string
-        id:
-          description: The id of the folder
-          pattern: "^(app|workflow|resource)_([0-9]\\d*)$"
-          type: string
-        access_level:
-          description: The access level of the folder
-          enum:
-          - own
-          - edit
-          - use
-          type: string
-      required:
-      - access_level
-      - id
-      - type
-      type: object
-    _permissions_listObjects_post_200_response_data_inner_oneOf_1:
-      properties:
-        type:
-          enum:
           - app
-          type: string
-        id:
-          description: The app ID.
-          format: uuid
-          type: string
-        access_level:
-          description: The access level of the app
-          enum:
-          - own
-          - edit
-          - use
-          type: string
-      required:
-      - access_level
-      - id
-      - type
-      type: object
-    _permissions_listObjects_post_200_response_data_inner_oneOf_2_id:
-      anyOf:
-      - format: uuid
-        type: string
-      - format: uuid
-        type: string
-      - enum:
-        - retool_db
-        type: string
-      - enum:
-        - retool_email
-        type: string
-      - enum:
-        - retool_storage
-        type: string
-      - enum:
-        - retool_ai
-        type: string
-      description: The uuid for the resource.
-    _permissions_listObjects_post_200_response_data_inner_oneOf_2:
-      properties:
-        type:
-          enum:
           - resource
-          type: string
-        id:
-          $ref: '#/components/schemas/_permissions_listObjects_post_200_response_data_inner_oneOf_2_id'
-        access_level:
-          description: The access level of the resource
-          enum:
-          - own
-          - edit
-          - use
-          type: string
-      required:
-      - access_level
-      - id
-      - type
-      type: object
-    _permissions_listObjects_post_200_response_data_inner_oneOf_3:
-      properties:
-        type:
-          enum:
           - resource_configuration
           type: string
         id:
-          description: The resource configuration id.
-          format: uuid
+          description: The id of the object
           type: string
         access_level:
-          description: 'The access level of the resource configuration. Note that
-            the access level in practice of this resource configuration could be different
-            dependent on what the access level of the resource with the same id as
-            the "name" of this resource_configuration. '
+          description: The access level of the object
           enum:
           - own
           - edit
@@ -6194,9 +6110,6 @@ components:
     _permissions_listObjects_post_200_response_data_inner:
       oneOf:
       - $ref: '#/components/schemas/_permissions_listObjects_post_200_response_data_inner_oneOf'
-      - $ref: '#/components/schemas/_permissions_listObjects_post_200_response_data_inner_oneOf_1'
-      - $ref: '#/components/schemas/_permissions_listObjects_post_200_response_data_inner_oneOf_2'
-      - $ref: '#/components/schemas/_permissions_listObjects_post_200_response_data_inner_oneOf_3'
     _permissions_listObjects_post_200_response:
       example:
         data:
@@ -6237,58 +6150,16 @@ components:
       - total_count
       type: object
     _permissions_grant_post_request_object_oneOf:
-      additionalProperties: false
       properties:
         type:
           enum:
           - folder
-          type: string
-        id:
-          description: The id of the folder
-          pattern: "^(app|workflow|resource)_([0-9]\\d*)$"
-          type: string
-      required:
-      - id
-      - type
-      type: object
-    _permissions_grant_post_request_object_oneOf_1:
-      additionalProperties: false
-      properties:
-        type:
-          enum:
           - app
-          type: string
-        id:
-          description: The app ID.
-          format: uuid
-          type: string
-      required:
-      - id
-      - type
-      type: object
-    _permissions_grant_post_request_object_oneOf_2:
-      additionalProperties: false
-      properties:
-        type:
-          enum:
           - resource
-          type: string
-        id:
-          $ref: '#/components/schemas/_permissions_listObjects_post_200_response_data_inner_oneOf_2_id'
-      required:
-      - id
-      - type
-      type: object
-    _permissions_grant_post_request_object_oneOf_3:
-      additionalProperties: false
-      properties:
-        type:
-          enum:
           - resource_configuration
           type: string
         id:
-          description: The resource configuration id.
-          format: uuid
+          description: The id of the object
           type: string
       required:
       - id
@@ -6297,9 +6168,6 @@ components:
     _permissions_grant_post_request_object:
       oneOf:
       - $ref: '#/components/schemas/_permissions_grant_post_request_object_oneOf'
-      - $ref: '#/components/schemas/_permissions_grant_post_request_object_oneOf_1'
-      - $ref: '#/components/schemas/_permissions_grant_post_request_object_oneOf_2'
-      - $ref: '#/components/schemas/_permissions_grant_post_request_object_oneOf_3'
     _permissions_grant_post_request:
       additionalProperties: false
       properties:
@@ -6727,6 +6595,25 @@ components:
       - data
       - success
       type: object
+    _resources_get_200_response_data_inner_id:
+      anyOf:
+      - format: uuid
+        type: string
+      - format: uuid
+        type: string
+      - enum:
+        - retool_db
+        type: string
+      - enum:
+        - retool_email
+        type: string
+      - enum:
+        - retool_storage
+        type: string
+      - enum:
+        - retool_ai
+        type: string
+      description: The uuid for the resource.
     _resources_get_200_response_data_inner:
       additionalProperties: false
       description: Resource
@@ -6738,7 +6625,7 @@ components:
         display_name: display_name
       properties:
         id:
-          $ref: '#/components/schemas/_permissions_listObjects_post_200_response_data_inner_oneOf_2_id'
+          $ref: '#/components/schemas/_resources_get_200_response_data_inner_id'
         type:
           description: The type of resource.
           enum:

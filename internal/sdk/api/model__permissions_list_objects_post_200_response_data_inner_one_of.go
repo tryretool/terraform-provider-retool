@@ -21,9 +21,9 @@ var _ MappedNullable = &PermissionsListObjectsPost200ResponseDataInnerOneOf{}
 // PermissionsListObjectsPost200ResponseDataInnerOneOf struct for PermissionsListObjectsPost200ResponseDataInnerOneOf
 type PermissionsListObjectsPost200ResponseDataInnerOneOf struct {
 	Type string `json:"type"`
-	// The id of the folder
+	// The id of the object
 	Id string `json:"id"`
-	// The access level of the folder
+	// The access level of the object
 	AccessLevel string `json:"access_level"`
 	AdditionalProperties map[string]interface{}
 }

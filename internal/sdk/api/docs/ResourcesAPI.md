@@ -99,7 +99,7 @@ import (
 )
 
 func main() {
-	resourceId := *openapiclient.NewPermissionsListObjectsPost200ResponseDataInnerOneOf2Id() // PermissionsListObjectsPost200ResponseDataInnerOneOf2Id | 
+	resourceId := *openapiclient.NewResourcesGet200ResponseDataInnerId() // ResourcesGet200ResponseDataInnerId | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -117,7 +117,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourceId** | [**PermissionsListObjectsPost200ResponseDataInnerOneOf2Id**](.md) |  | 
+**resourceId** | [**ResourcesGet200ResponseDataInnerId**](.md) |  | 
 
 ### Other Parameters
 
@@ -167,7 +167,7 @@ import (
 )
 
 func main() {
-	resourceId := *openapiclient.NewPermissionsListObjectsPost200ResponseDataInnerOneOf2Id() // PermissionsListObjectsPost200ResponseDataInnerOneOf2Id | 
+	resourceId := *openapiclient.NewResourcesGet200ResponseDataInnerId() // ResourcesGet200ResponseDataInnerId | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -187,7 +187,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourceId** | [**PermissionsListObjectsPost200ResponseDataInnerOneOf2Id**](.md) |  | 
+**resourceId** | [**ResourcesGet200ResponseDataInnerId**](.md) |  | 
 
 ### Other Parameters
 

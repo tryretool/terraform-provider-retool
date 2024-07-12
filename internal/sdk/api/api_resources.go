@@ -143,7 +143,7 @@ func (a *ResourcesAPIService) ResourcesGetExecute(r ApiResourcesGetRequest) (*Re
 type ApiResourcesResourceIdDeleteRequest struct {
 	ctx context.Context
 	ApiService *ResourcesAPIService
-	resourceId PermissionsListObjectsPost200ResponseDataInnerOneOf2Id
+	resourceId ResourcesGet200ResponseDataInnerId
 }
 
 func (r ApiResourcesResourceIdDeleteRequest) Execute() (*http.Response, error) {
@@ -159,7 +159,7 @@ Available from API version 2.4.0+ and onprem version 3.28.0+. Deletes a resource
  @param resourceId
  @return ApiResourcesResourceIdDeleteRequest
 */
-func (a *ResourcesAPIService) ResourcesResourceIdDelete(ctx context.Context, resourceId PermissionsListObjectsPost200ResponseDataInnerOneOf2Id) ApiResourcesResourceIdDeleteRequest {
+func (a *ResourcesAPIService) ResourcesResourceIdDelete(ctx context.Context, resourceId ResourcesGet200ResponseDataInnerId) ApiResourcesResourceIdDeleteRequest {
 	return ApiResourcesResourceIdDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -235,7 +235,7 @@ func (a *ResourcesAPIService) ResourcesResourceIdDeleteExecute(r ApiResourcesRes
 type ApiResourcesResourceIdGetRequest struct {
 	ctx context.Context
 	ApiService *ResourcesAPIService
-	resourceId PermissionsListObjectsPost200ResponseDataInnerOneOf2Id
+	resourceId ResourcesGet200ResponseDataInnerId
 }
 
 func (r ApiResourcesResourceIdGetRequest) Execute() (*ResourcesResourceIdGet200Response, *http.Response, error) {
@@ -251,7 +251,7 @@ Available from API version 2.4.0+ and onprem version 3.28.0+. Returns a specific
  @param resourceId
  @return ApiResourcesResourceIdGetRequest
 */
-func (a *ResourcesAPIService) ResourcesResourceIdGet(ctx context.Context, resourceId PermissionsListObjectsPost200ResponseDataInnerOneOf2Id) ApiResourcesResourceIdGetRequest {
+func (a *ResourcesAPIService) ResourcesResourceIdGet(ctx context.Context, resourceId ResourcesGet200ResponseDataInnerId) ApiResourcesResourceIdGetRequest {
 	return ApiResourcesResourceIdGetRequest{
 		ApiService: a,
 		ctx: ctx,

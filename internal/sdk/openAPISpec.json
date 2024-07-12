@@ -9306,85 +9306,15 @@
                           {
                             "type": "object",
                             "properties": {
-                              "type": { "type": "string", "enum": ["folder"] },
+                              "type": { "type": "string", "enum": ["folder", "app", "resource", "resource_configuration"] },
                               "id": {
                                 "type": "string",
-                                "pattern": "^(app|workflow|resource)_([0-9]\\d*)$",
-                                "description": "The id of the folder"
+                                "description": "The id of the object"
                               },
                               "access_level": {
                                 "type": "string",
                                 "enum": ["own", "edit", "use"],
-                                "description": "The access level of the folder"
-                              }
-                            },
-                            "required": ["type", "id", "access_level"]
-                          },
-                          {
-                            "type": "object",
-                            "properties": {
-                              "type": { "type": "string", "enum": ["app"] },
-                              "id": {
-                                "type": "string",
-                                "format": "uuid",
-                                "description": "The app ID."
-                              },
-                              "access_level": {
-                                "type": "string",
-                                "enum": ["own", "edit", "use"],
-                                "description": "The access level of the app"
-                              }
-                            },
-                            "required": ["type", "id", "access_level"]
-                          },
-                          {
-                            "type": "object",
-                            "properties": {
-                              "type": {
-                                "type": "string",
-                                "enum": ["resource"]
-                              },
-                              "id": {
-                                "anyOf": [
-                                  { "type": "string", "format": "uuid" },
-                                  { "type": "string", "format": "uuid" },
-                                  { "type": "string", "enum": ["retool_db"] },
-                                  {
-                                    "type": "string",
-                                    "enum": ["retool_email"]
-                                  },
-                                  {
-                                    "type": "string",
-                                    "enum": ["retool_storage"]
-                                  },
-                                  { "type": "string", "enum": ["retool_ai"] }
-                                ],
-                                "description": "The uuid for the resource."
-                              },
-                              "access_level": {
-                                "type": "string",
-                                "enum": ["own", "edit", "use"],
-                                "description": "The access level of the resource"
-                              }
-                            },
-                            "required": ["type", "id", "access_level"]
-                          },
-                          {
-                            "type": "object",
-                            "properties": {
-                              "type": {
-                                "type": "string",
-                                "enum": ["resource_configuration"]
-                              },
-                              "id": {
-                                "type": "string",
-                                "format": "uuid",
-                                "description": "The resource configuration id."
-                              },
-                              "access_level": {
-                                "type": "string",
-                                "enum": ["own", "edit", "use"],
-                                "description": "The access level of the resource configuration. Note that the access level in practice of this resource configuration could be different dependent on what the access level of the resource with the same id as the \"name\" of this resource_configuration. "
+                                "description": "The access level of the object"
                               }
                             },
                             "required": ["type", "id", "access_level"]
@@ -9466,63 +9396,14 @@
                       {
                         "type": "object",
                         "properties": {
-                          "type": { "type": "string", "enum": ["folder"] },
+                          "type": { "type": "string", "enum": ["folder", "app", "resource", "resource_configuration"] },
                           "id": {
                             "type": "string",
-                            "pattern": "^(app|workflow|resource)_([0-9]\\d*)$",
-                            "description": "The id of the folder"
+                            "description": "The id of the object"
                           }
+                          
                         },
-                        "required": ["type", "id"],
-                        "additionalProperties": false
-                      },
-                      {
-                        "type": "object",
-                        "properties": {
-                          "type": { "type": "string", "enum": ["app"] },
-                          "id": {
-                            "type": "string",
-                            "format": "uuid",
-                            "description": "The app ID."
-                          }
-                        },
-                        "required": ["type", "id"],
-                        "additionalProperties": false
-                      },
-                      {
-                        "type": "object",
-                        "properties": {
-                          "type": { "type": "string", "enum": ["resource"] },
-                          "id": {
-                            "anyOf": [
-                              { "type": "string", "format": "uuid" },
-                              { "type": "string", "format": "uuid" },
-                              { "type": "string", "enum": ["retool_db"] },
-                              { "type": "string", "enum": ["retool_email"] },
-                              { "type": "string", "enum": ["retool_storage"] },
-                              { "type": "string", "enum": ["retool_ai"] }
-                            ],
-                            "description": "The uuid for the resource."
-                          }
-                        },
-                        "required": ["type", "id"],
-                        "additionalProperties": false
-                      },
-                      {
-                        "type": "object",
-                        "properties": {
-                          "type": {
-                            "type": "string",
-                            "enum": ["resource_configuration"]
-                          },
-                          "id": {
-                            "type": "string",
-                            "format": "uuid",
-                            "description": "The resource configuration id."
-                          }
-                        },
-                        "required": ["type", "id"],
-                        "additionalProperties": false
+                        "required": ["type", "id"]
                       }
                     ]
                   },
@@ -9558,85 +9439,15 @@
                           {
                             "type": "object",
                             "properties": {
-                              "type": { "type": "string", "enum": ["folder"] },
+                              "type": { "type": "string", "enum": ["folder", "app", "resource", "resource_configuration"] },
                               "id": {
                                 "type": "string",
-                                "pattern": "^(app|workflow|resource)_([0-9]\\d*)$",
-                                "description": "The id of the folder"
+                                "description": "The id of the object"
                               },
                               "access_level": {
                                 "type": "string",
                                 "enum": ["own", "edit", "use"],
-                                "description": "The access level of the folder"
-                              }
-                            },
-                            "required": ["type", "id", "access_level"]
-                          },
-                          {
-                            "type": "object",
-                            "properties": {
-                              "type": { "type": "string", "enum": ["app"] },
-                              "id": {
-                                "type": "string",
-                                "format": "uuid",
-                                "description": "The app ID."
-                              },
-                              "access_level": {
-                                "type": "string",
-                                "enum": ["own", "edit", "use"],
-                                "description": "The access level of the app"
-                              }
-                            },
-                            "required": ["type", "id", "access_level"]
-                          },
-                          {
-                            "type": "object",
-                            "properties": {
-                              "type": {
-                                "type": "string",
-                                "enum": ["resource"]
-                              },
-                              "id": {
-                                "anyOf": [
-                                  { "type": "string", "format": "uuid" },
-                                  { "type": "string", "format": "uuid" },
-                                  { "type": "string", "enum": ["retool_db"] },
-                                  {
-                                    "type": "string",
-                                    "enum": ["retool_email"]
-                                  },
-                                  {
-                                    "type": "string",
-                                    "enum": ["retool_storage"]
-                                  },
-                                  { "type": "string", "enum": ["retool_ai"] }
-                                ],
-                                "description": "The uuid for the resource."
-                              },
-                              "access_level": {
-                                "type": "string",
-                                "enum": ["own", "edit", "use"],
-                                "description": "The access level of the resource"
-                              }
-                            },
-                            "required": ["type", "id", "access_level"]
-                          },
-                          {
-                            "type": "object",
-                            "properties": {
-                              "type": {
-                                "type": "string",
-                                "enum": ["resource_configuration"]
-                              },
-                              "id": {
-                                "type": "string",
-                                "format": "uuid",
-                                "description": "The resource configuration id."
-                              },
-                              "access_level": {
-                                "type": "string",
-                                "enum": ["own", "edit", "use"],
-                                "description": "The access level of the resource configuration. Note that the access level in practice of this resource configuration could be different dependent on what the access level of the resource with the same id as the \"name\" of this resource_configuration. "
+                                "description": "The access level of the object"
                               }
                             },
                             "required": ["type", "id", "access_level"]
@@ -9718,63 +9529,13 @@
                       {
                         "type": "object",
                         "properties": {
-                          "type": { "type": "string", "enum": ["folder"] },
+                          "type": { "type": "string", "enum": ["folder", "app", "resource", "resource_configuration"] },
                           "id": {
                             "type": "string",
-                            "pattern": "^(app|workflow|resource)_([0-9]\\d*)$",
-                            "description": "The id of the folder"
+                            "description": "The id of the object"
                           }
                         },
-                        "required": ["type", "id"],
-                        "additionalProperties": false
-                      },
-                      {
-                        "type": "object",
-                        "properties": {
-                          "type": { "type": "string", "enum": ["app"] },
-                          "id": {
-                            "type": "string",
-                            "format": "uuid",
-                            "description": "The app ID."
-                          }
-                        },
-                        "required": ["type", "id"],
-                        "additionalProperties": false
-                      },
-                      {
-                        "type": "object",
-                        "properties": {
-                          "type": { "type": "string", "enum": ["resource"] },
-                          "id": {
-                            "anyOf": [
-                              { "type": "string", "format": "uuid" },
-                              { "type": "string", "format": "uuid" },
-                              { "type": "string", "enum": ["retool_db"] },
-                              { "type": "string", "enum": ["retool_email"] },
-                              { "type": "string", "enum": ["retool_storage"] },
-                              { "type": "string", "enum": ["retool_ai"] }
-                            ],
-                            "description": "The uuid for the resource."
-                          }
-                        },
-                        "required": ["type", "id"],
-                        "additionalProperties": false
-                      },
-                      {
-                        "type": "object",
-                        "properties": {
-                          "type": {
-                            "type": "string",
-                            "enum": ["resource_configuration"]
-                          },
-                          "id": {
-                            "type": "string",
-                            "format": "uuid",
-                            "description": "The resource configuration id."
-                          }
-                        },
-                        "required": ["type", "id"],
-                        "additionalProperties": false
+                        "required": ["type", "id"]
                       }
                     ]
                   }
@@ -9805,85 +9566,15 @@
                           {
                             "type": "object",
                             "properties": {
-                              "type": { "type": "string", "enum": ["folder"] },
+                              "type": { "type": "string", "enum": ["folder", "app", "resource", "resource_configuration"] },
                               "id": {
                                 "type": "string",
-                                "pattern": "^(app|workflow|resource)_([0-9]\\d*)$",
-                                "description": "The id of the folder"
+                                "description": "The id of the object"
                               },
                               "access_level": {
                                 "type": "string",
                                 "enum": ["own", "edit", "use"],
-                                "description": "The access level of the folder"
-                              }
-                            },
-                            "required": ["type", "id", "access_level"]
-                          },
-                          {
-                            "type": "object",
-                            "properties": {
-                              "type": { "type": "string", "enum": ["app"] },
-                              "id": {
-                                "type": "string",
-                                "format": "uuid",
-                                "description": "The app ID."
-                              },
-                              "access_level": {
-                                "type": "string",
-                                "enum": ["own", "edit", "use"],
-                                "description": "The access level of the app"
-                              }
-                            },
-                            "required": ["type", "id", "access_level"]
-                          },
-                          {
-                            "type": "object",
-                            "properties": {
-                              "type": {
-                                "type": "string",
-                                "enum": ["resource"]
-                              },
-                              "id": {
-                                "anyOf": [
-                                  { "type": "string", "format": "uuid" },
-                                  { "type": "string", "format": "uuid" },
-                                  { "type": "string", "enum": ["retool_db"] },
-                                  {
-                                    "type": "string",
-                                    "enum": ["retool_email"]
-                                  },
-                                  {
-                                    "type": "string",
-                                    "enum": ["retool_storage"]
-                                  },
-                                  { "type": "string", "enum": ["retool_ai"] }
-                                ],
-                                "description": "The uuid for the resource."
-                              },
-                              "access_level": {
-                                "type": "string",
-                                "enum": ["own", "edit", "use"],
-                                "description": "The access level of the resource"
-                              }
-                            },
-                            "required": ["type", "id", "access_level"]
-                          },
-                          {
-                            "type": "object",
-                            "properties": {
-                              "type": {
-                                "type": "string",
-                                "enum": ["resource_configuration"]
-                              },
-                              "id": {
-                                "type": "string",
-                                "format": "uuid",
-                                "description": "The resource configuration id."
-                              },
-                              "access_level": {
-                                "type": "string",
-                                "enum": ["own", "edit", "use"],
-                                "description": "The access level of the resource configuration. Note that the access level in practice of this resource configuration could be different dependent on what the access level of the resource with the same id as the \"name\" of this resource_configuration. "
+                                "description": "The access level of the object"
                               }
                             },
                             "required": ["type", "id", "access_level"]

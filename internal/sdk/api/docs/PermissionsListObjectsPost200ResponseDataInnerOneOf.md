@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** |  | 
-**Id** | **string** | The id of the folder | 
-**AccessLevel** | **string** | The access level of the folder | 
+**Id** | **string** | The id of the object | 
+**AccessLevel** | **string** | The access level of the object | 
 
 ## Methods
 

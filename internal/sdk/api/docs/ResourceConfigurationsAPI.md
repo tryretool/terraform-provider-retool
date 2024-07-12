@@ -171,7 +171,7 @@ import (
 func main() {
 	nextToken := "nextToken_example" // string |  (optional)
 	resourceType := "resourceType_example" // string |  (optional)
-	resourceId := *openapiclient.NewPermissionsListObjectsPost200ResponseDataInnerOneOf2Id() // PermissionsListObjectsPost200ResponseDataInnerOneOf2Id |  (optional)
+	resourceId := *openapiclient.NewResourcesGet200ResponseDataInnerId() // ResourcesGet200ResponseDataInnerId |  (optional)
 	environmentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -199,7 +199,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **nextToken** | **string** |  | 
  **resourceType** | **string** |  | 
- **resourceId** | [**PermissionsListObjectsPost200ResponseDataInnerOneOf2Id**](PermissionsListObjectsPost200ResponseDataInnerOneOf2Id.md) |  | 
+ **resourceId** | [**ResourcesGet200ResponseDataInnerId**](ResourcesGet200ResponseDataInnerId.md) |  | 
  **environmentId** | **string** |  | 
 
 ### Return type
