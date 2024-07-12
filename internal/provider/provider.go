@@ -14,6 +14,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 
 	"github.com/tryretool/terraform-provider-retool/internal/provider/folder"
+	"github.com/tryretool/terraform-provider-retool/internal/provider/group"
 	"github.com/tryretool/terraform-provider-retool/internal/sdk/api"
 )
 
@@ -202,5 +203,6 @@ func (p *retoolProvider) DataSources(_ context.Context) []func() datasource.Data
 func (p *retoolProvider) Resources(_ context.Context) []func() resource.Resource {
 	return []func() resource.Resource{
 		folder.NewResource,
+		group.NewResource,
 	}
 }
