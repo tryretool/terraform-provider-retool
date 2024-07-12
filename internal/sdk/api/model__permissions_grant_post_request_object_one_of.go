@@ -12,7 +12,6 @@ package api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,8 +21,9 @@ var _ MappedNullable = &PermissionsGrantPostRequestObjectOneOf{}
 // PermissionsGrantPostRequestObjectOneOf struct for PermissionsGrantPostRequestObjectOneOf
 type PermissionsGrantPostRequestObjectOneOf struct {
 	Type string `json:"type"`
-	// The id of the folder
+	// The id of the object
 	Id string `json:"id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PermissionsGrantPostRequestObjectOneOf PermissionsGrantPostRequestObjectOneOf
@@ -107,6 +107,11 @@ func (o PermissionsGrantPostRequestObjectOneOf) ToMap() (map[string]interface{},
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
 	toSerialize["id"] = o.Id
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *PermissionsGrantPostRequestObjectOneOf) UnmarshalJSON(data []byte) (err
 
 	varPermissionsGrantPostRequestObjectOneOf := _PermissionsGrantPostRequestObjectOneOf{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPermissionsGrantPostRequestObjectOneOf)
+	err = json.Unmarshal(data, &varPermissionsGrantPostRequestObjectOneOf)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PermissionsGrantPostRequestObjectOneOf(varPermissionsGrantPostRequestObjectOneOf)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

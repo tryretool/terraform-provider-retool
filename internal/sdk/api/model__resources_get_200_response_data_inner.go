@@ -21,7 +21,7 @@ var _ MappedNullable = &ResourcesGet200ResponseDataInner{}
 
 // ResourcesGet200ResponseDataInner Resource
 type ResourcesGet200ResponseDataInner struct {
-	Id PermissionsListObjectsPost200ResponseDataInnerOneOf2Id `json:"id"`
+	Id ResourcesGet200ResponseDataInnerId `json:"id"`
 	// The type of resource.
 	Type string `json:"type"`
 	DisplayName string `json:"display_name"`
@@ -35,7 +35,7 @@ type _ResourcesGet200ResponseDataInner ResourcesGet200ResponseDataInner
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResourcesGet200ResponseDataInner(id PermissionsListObjectsPost200ResponseDataInnerOneOf2Id, type_ string, displayName string, createdAt string, updatedAt string) *ResourcesGet200ResponseDataInner {
+func NewResourcesGet200ResponseDataInner(id ResourcesGet200ResponseDataInnerId, type_ string, displayName string, createdAt string, updatedAt string) *ResourcesGet200ResponseDataInner {
 	this := ResourcesGet200ResponseDataInner{}
 	this.Id = id
 	this.Type = type_
@@ -54,9 +54,9 @@ func NewResourcesGet200ResponseDataInnerWithDefaults() *ResourcesGet200ResponseD
 }
 
 // GetId returns the Id field value
-func (o *ResourcesGet200ResponseDataInner) GetId() PermissionsListObjectsPost200ResponseDataInnerOneOf2Id {
+func (o *ResourcesGet200ResponseDataInner) GetId() ResourcesGet200ResponseDataInnerId {
 	if o == nil {
-		var ret PermissionsListObjectsPost200ResponseDataInnerOneOf2Id
+		var ret ResourcesGet200ResponseDataInnerId
 		return ret
 	}
 
@@ -65,7 +65,7 @@ func (o *ResourcesGet200ResponseDataInner) GetId() PermissionsListObjectsPost200
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ResourcesGet200ResponseDataInner) GetIdOk() (*PermissionsListObjectsPost200ResponseDataInnerOneOf2Id, bool) {
+func (o *ResourcesGet200ResponseDataInner) GetIdOk() (*ResourcesGet200ResponseDataInnerId, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -73,7 +73,7 @@ func (o *ResourcesGet200ResponseDataInner) GetIdOk() (*PermissionsListObjectsPos
 }
 
 // SetId sets field value
-func (o *ResourcesGet200ResponseDataInner) SetId(v PermissionsListObjectsPost200ResponseDataInnerOneOf2Id) {
+func (o *ResourcesGet200ResponseDataInner) SetId(v ResourcesGet200ResponseDataInnerId) {
 	o.Id = v
 }
 

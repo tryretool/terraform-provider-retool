@@ -18,36 +18,12 @@ import (
 // PermissionsGrantPostRequestObject - struct for PermissionsGrantPostRequestObject
 type PermissionsGrantPostRequestObject struct {
 	PermissionsGrantPostRequestObjectOneOf *PermissionsGrantPostRequestObjectOneOf
-	PermissionsGrantPostRequestObjectOneOf1 *PermissionsGrantPostRequestObjectOneOf1
-	PermissionsGrantPostRequestObjectOneOf2 *PermissionsGrantPostRequestObjectOneOf2
-	PermissionsGrantPostRequestObjectOneOf3 *PermissionsGrantPostRequestObjectOneOf3
 }
 
 // PermissionsGrantPostRequestObjectOneOfAsPermissionsGrantPostRequestObject is a convenience function that returns PermissionsGrantPostRequestObjectOneOf wrapped in PermissionsGrantPostRequestObject
 func PermissionsGrantPostRequestObjectOneOfAsPermissionsGrantPostRequestObject(v *PermissionsGrantPostRequestObjectOneOf) PermissionsGrantPostRequestObject {
 	return PermissionsGrantPostRequestObject{
 		PermissionsGrantPostRequestObjectOneOf: v,
-	}
-}
-
-// PermissionsGrantPostRequestObjectOneOf1AsPermissionsGrantPostRequestObject is a convenience function that returns PermissionsGrantPostRequestObjectOneOf1 wrapped in PermissionsGrantPostRequestObject
-func PermissionsGrantPostRequestObjectOneOf1AsPermissionsGrantPostRequestObject(v *PermissionsGrantPostRequestObjectOneOf1) PermissionsGrantPostRequestObject {
-	return PermissionsGrantPostRequestObject{
-		PermissionsGrantPostRequestObjectOneOf1: v,
-	}
-}
-
-// PermissionsGrantPostRequestObjectOneOf2AsPermissionsGrantPostRequestObject is a convenience function that returns PermissionsGrantPostRequestObjectOneOf2 wrapped in PermissionsGrantPostRequestObject
-func PermissionsGrantPostRequestObjectOneOf2AsPermissionsGrantPostRequestObject(v *PermissionsGrantPostRequestObjectOneOf2) PermissionsGrantPostRequestObject {
-	return PermissionsGrantPostRequestObject{
-		PermissionsGrantPostRequestObjectOneOf2: v,
-	}
-}
-
-// PermissionsGrantPostRequestObjectOneOf3AsPermissionsGrantPostRequestObject is a convenience function that returns PermissionsGrantPostRequestObjectOneOf3 wrapped in PermissionsGrantPostRequestObject
-func PermissionsGrantPostRequestObjectOneOf3AsPermissionsGrantPostRequestObject(v *PermissionsGrantPostRequestObjectOneOf3) PermissionsGrantPostRequestObject {
-	return PermissionsGrantPostRequestObject{
-		PermissionsGrantPostRequestObjectOneOf3: v,
 	}
 }
 
@@ -69,51 +45,9 @@ func (dst *PermissionsGrantPostRequestObject) UnmarshalJSON(data []byte) error {
 		dst.PermissionsGrantPostRequestObjectOneOf = nil
 	}
 
-	// try to unmarshal data into PermissionsGrantPostRequestObjectOneOf1
-	err = newStrictDecoder(data).Decode(&dst.PermissionsGrantPostRequestObjectOneOf1)
-	if err == nil {
-		jsonPermissionsGrantPostRequestObjectOneOf1, _ := json.Marshal(dst.PermissionsGrantPostRequestObjectOneOf1)
-		if string(jsonPermissionsGrantPostRequestObjectOneOf1) == "{}" { // empty struct
-			dst.PermissionsGrantPostRequestObjectOneOf1 = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.PermissionsGrantPostRequestObjectOneOf1 = nil
-	}
-
-	// try to unmarshal data into PermissionsGrantPostRequestObjectOneOf2
-	err = newStrictDecoder(data).Decode(&dst.PermissionsGrantPostRequestObjectOneOf2)
-	if err == nil {
-		jsonPermissionsGrantPostRequestObjectOneOf2, _ := json.Marshal(dst.PermissionsGrantPostRequestObjectOneOf2)
-		if string(jsonPermissionsGrantPostRequestObjectOneOf2) == "{}" { // empty struct
-			dst.PermissionsGrantPostRequestObjectOneOf2 = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.PermissionsGrantPostRequestObjectOneOf2 = nil
-	}
-
-	// try to unmarshal data into PermissionsGrantPostRequestObjectOneOf3
-	err = newStrictDecoder(data).Decode(&dst.PermissionsGrantPostRequestObjectOneOf3)
-	if err == nil {
-		jsonPermissionsGrantPostRequestObjectOneOf3, _ := json.Marshal(dst.PermissionsGrantPostRequestObjectOneOf3)
-		if string(jsonPermissionsGrantPostRequestObjectOneOf3) == "{}" { // empty struct
-			dst.PermissionsGrantPostRequestObjectOneOf3 = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.PermissionsGrantPostRequestObjectOneOf3 = nil
-	}
-
 	if match > 1 { // more than 1 match
 		// reset to nil
 		dst.PermissionsGrantPostRequestObjectOneOf = nil
-		dst.PermissionsGrantPostRequestObjectOneOf1 = nil
-		dst.PermissionsGrantPostRequestObjectOneOf2 = nil
-		dst.PermissionsGrantPostRequestObjectOneOf3 = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(PermissionsGrantPostRequestObject)")
 	} else if match == 1 {
@@ -129,18 +63,6 @@ func (src PermissionsGrantPostRequestObject) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.PermissionsGrantPostRequestObjectOneOf)
 	}
 
-	if src.PermissionsGrantPostRequestObjectOneOf1 != nil {
-		return json.Marshal(&src.PermissionsGrantPostRequestObjectOneOf1)
-	}
-
-	if src.PermissionsGrantPostRequestObjectOneOf2 != nil {
-		return json.Marshal(&src.PermissionsGrantPostRequestObjectOneOf2)
-	}
-
-	if src.PermissionsGrantPostRequestObjectOneOf3 != nil {
-		return json.Marshal(&src.PermissionsGrantPostRequestObjectOneOf3)
-	}
-
 	return nil, nil // no data in oneOf schemas
 }
 
@@ -151,18 +73,6 @@ func (obj *PermissionsGrantPostRequestObject) GetActualInstance() (interface{}) 
 	}
 	if obj.PermissionsGrantPostRequestObjectOneOf != nil {
 		return obj.PermissionsGrantPostRequestObjectOneOf
-	}
-
-	if obj.PermissionsGrantPostRequestObjectOneOf1 != nil {
-		return obj.PermissionsGrantPostRequestObjectOneOf1
-	}
-
-	if obj.PermissionsGrantPostRequestObjectOneOf2 != nil {
-		return obj.PermissionsGrantPostRequestObjectOneOf2
-	}
-
-	if obj.PermissionsGrantPostRequestObjectOneOf3 != nil {
-		return obj.PermissionsGrantPostRequestObjectOneOf3
 	}
 
 	// all schemas are nil

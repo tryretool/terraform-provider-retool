@@ -21,7 +21,7 @@ var _ MappedNullable = &Resource{}
 
 // Resource Resource
 type Resource struct {
-	Id PermissionsListObjectsPost200ResponseDataInnerOneOf2Id `json:"id"`
+	Id ResourcesGet200ResponseDataInnerId `json:"id"`
 	// The type of resource.
 	Type string `json:"type"`
 	DisplayName string `json:"display_name"`
@@ -35,7 +35,7 @@ type _Resource Resource
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResource(id PermissionsListObjectsPost200ResponseDataInnerOneOf2Id, type_ string, displayName string, createdAt string, updatedAt string) *Resource {
+func NewResource(id ResourcesGet200ResponseDataInnerId, type_ string, displayName string, createdAt string, updatedAt string) *Resource {
 	this := Resource{}
 	this.Id = id
 	this.Type = type_
@@ -54,9 +54,9 @@ func NewResourceWithDefaults() *Resource {
 }
 
 // GetId returns the Id field value
-func (o *Resource) GetId() PermissionsListObjectsPost200ResponseDataInnerOneOf2Id {
+func (o *Resource) GetId() ResourcesGet200ResponseDataInnerId {
 	if o == nil {
-		var ret PermissionsListObjectsPost200ResponseDataInnerOneOf2Id
+		var ret ResourcesGet200ResponseDataInnerId
 		return ret
 	}
 
@@ -65,7 +65,7 @@ func (o *Resource) GetId() PermissionsListObjectsPost200ResponseDataInnerOneOf2I
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Resource) GetIdOk() (*PermissionsListObjectsPost200ResponseDataInnerOneOf2Id, bool) {
+func (o *Resource) GetIdOk() (*ResourcesGet200ResponseDataInnerId, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -73,7 +73,7 @@ func (o *Resource) GetIdOk() (*PermissionsListObjectsPost200ResponseDataInnerOne
 }
 
 // SetId sets field value
-func (o *Resource) SetId(v PermissionsListObjectsPost200ResponseDataInnerOneOf2Id) {
+func (o *Resource) SetId(v ResourcesGet200ResponseDataInnerId) {
 	o.Id = v
 }
 

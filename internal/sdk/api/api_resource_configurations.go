@@ -223,7 +223,7 @@ type ApiResourceConfigurationsGetRequest struct {
 	ApiService *ResourceConfigurationsAPIService
 	nextToken *string
 	resourceType *string
-	resourceId *PermissionsListObjectsPost200ResponseDataInnerOneOf2Id
+	resourceId *ResourcesGet200ResponseDataInnerId
 	environmentId *string
 }
 
@@ -237,7 +237,7 @@ func (r ApiResourceConfigurationsGetRequest) ResourceType(resourceType string) A
 	return r
 }
 
-func (r ApiResourceConfigurationsGetRequest) ResourceId(resourceId PermissionsListObjectsPost200ResponseDataInnerOneOf2Id) ApiResourceConfigurationsGetRequest {
+func (r ApiResourceConfigurationsGetRequest) ResourceId(resourceId ResourcesGet200ResponseDataInnerId) ApiResourceConfigurationsGetRequest {
 	r.resourceId = &resourceId
 	return r
 }

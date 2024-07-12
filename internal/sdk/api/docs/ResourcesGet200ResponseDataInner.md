@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | [**PermissionsListObjectsPost200ResponseDataInnerOneOf2Id**](PermissionsListObjectsPost200ResponseDataInnerOneOf2Id.md) |  | 
+**Id** | [**ResourcesGet200ResponseDataInnerId**](ResourcesGet200ResponseDataInnerId.md) |  | 
 **Type** | **string** | The type of resource. | 
 **DisplayName** | **string** |  | 
 **CreatedAt** | **string** |  | 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewResourcesGet200ResponseDataInner
 
-`func NewResourcesGet200ResponseDataInner(id PermissionsListObjectsPost200ResponseDataInnerOneOf2Id, type_ string, displayName string, createdAt string, updatedAt string, ) *ResourcesGet200ResponseDataInner`
+`func NewResourcesGet200ResponseDataInner(id ResourcesGet200ResponseDataInnerId, type_ string, displayName string, createdAt string, updatedAt string, ) *ResourcesGet200ResponseDataInner`
 
 NewResourcesGet200ResponseDataInner instantiates a new ResourcesGet200ResponseDataInner object
 This constructor will assign default values to properties that have it defined,
@@ -31,20 +31,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *ResourcesGet200ResponseDataInner) GetId() PermissionsListObjectsPost200ResponseDataInnerOneOf2Id`
+`func (o *ResourcesGet200ResponseDataInner) GetId() ResourcesGet200ResponseDataInnerId`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *ResourcesGet200ResponseDataInner) GetIdOk() (*PermissionsListObjectsPost200ResponseDataInnerOneOf2Id, bool)`
+`func (o *ResourcesGet200ResponseDataInner) GetIdOk() (*ResourcesGet200ResponseDataInnerId, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *ResourcesGet200ResponseDataInner) SetId(v PermissionsListObjectsPost200ResponseDataInnerOneOf2Id)`
+`func (o *ResourcesGet200ResponseDataInner) SetId(v ResourcesGet200ResponseDataInnerId)`
 
 SetId sets Id field to given value.
 

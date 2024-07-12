@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** |  | 
-**Id** | **string** | The resource configuration id. | 
+**Id** | **string** | The id of the object | 
 
 ## Methods
 
