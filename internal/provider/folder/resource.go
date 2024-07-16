@@ -202,6 +202,11 @@ func (r *folderResource) Read(ctx context.Context, req resource.ReadRequest, res
 	tflog.Info(ctx, "Reading folder", map[string]any{"id": state.Id})
 	response, httpResponse, err := r.client.FoldersAPI.FoldersFolderIdGet(ctx, state.Id.ValueString()).Execute()
 	if err != nil {
+		if httpResponse != nil && httpResponse.StatusCode == 404 {
+			tflog.Info(ctx, "Folder not found", map[string]any{"id": state.Id})
+			resp.State.RemoveResource(ctx)
+			return
+		}
 		resp.Diagnostics.AddError(
 			"Error Reading Folder",
 			"Could not read folder ID "+state.Id.ValueString()+": "+err.Error(),
@@ -242,7 +247,7 @@ func (r *folderResource) Delete(ctx context.Context, req resource.DeleteRequest,
 
 	// Delete existing order
 	httpResponse, err := r.client.FoldersAPI.FoldersFolderIdDelete(ctx, state.Id.ValueString()).Execute()
-	if err != nil {
+	if err != nil && !(httpResponse != nil && httpResponse.StatusCode == 404) { // it's ok to not find the resource being deleted
 		resp.Diagnostics.AddError(
 			"Error Deleting Folder",
 			"Could not delete folder"+state.Id.ValueString()+", unexpected error: "+err.Error(),

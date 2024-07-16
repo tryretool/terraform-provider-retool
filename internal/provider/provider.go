@@ -15,6 +15,7 @@ import (
 
 	"github.com/tryretool/terraform-provider-retool/internal/provider/folder"
 	"github.com/tryretool/terraform-provider-retool/internal/provider/group"
+	"github.com/tryretool/terraform-provider-retool/internal/provider/permissions"
 	"github.com/tryretool/terraform-provider-retool/internal/sdk/api"
 )
 
@@ -204,5 +205,6 @@ func (p *retoolProvider) Resources(_ context.Context) []func() resource.Resource
 	return []func() resource.Resource{
 		folder.NewResource,
 		group.NewResource,
+		permissions.NewResource,
 	}
 }
