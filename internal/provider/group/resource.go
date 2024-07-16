@@ -236,6 +236,11 @@ func (r *groupResource) Read(ctx context.Context, req resource.ReadRequest, resp
 	groupID := state.Id.ValueString()
 	group, httpResponse, err := r.client.GroupsAPI.GroupsGroupIdGet(ctx, groupID).Execute()
 	if err != nil {
+		if httpResponse != nil && httpResponse.StatusCode == 404 {
+			tflog.Info(ctx, "Group not found", map[string]any{"groupID": groupID})
+			resp.State.RemoveResource(ctx)
+			return
+		}
 		resp.Diagnostics.AddError(
 			"Error reading group",
 			fmt.Sprintf("Could not read group with ID %s: %s", groupID, err.Error()),
@@ -349,7 +354,7 @@ func (r *groupResource) Delete(ctx context.Context, req resource.DeleteRequest, 
 
 	groupId := state.Id.ValueString()
 	httpResponse, err := r.client.GroupsAPI.GroupsGroupIdDelete(ctx, groupId).Execute()
-	if err != nil {
+	if err != nil && !(httpResponse != nil && httpResponse.StatusCode == 404) { // it's ok to not find the group when deleting
 		resp.Diagnostics.AddError(
 			"Error Deleting Group",
 			"Could not delete group with ID "+groupId+": "+err.Error(),

@@ -1,0 +1,1145 @@
+---
+version: 2
+interactions:
+    - id: 0
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding:
+            - chunked
+        trailer: {}
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":[{"id":"app_1","legacy_id":"app_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"app","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"app_10","legacy_id":"app_10","name":"Example Subfolder","parent_folder_id":"app_9","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-16T00:01:50.085Z","created_at":"2024-07-16T00:01:50.085Z"},{"id":"app_2","legacy_id":"app_2","name":"archive","parent_folder_id":"app_1","is_system_folder":true,"folder_type":"app","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"app_6","legacy_id":"app_6","name":"Components","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"app_7","legacy_id":"app_7","name":"Navigation","parent_folder_id":"app_6","is_system_folder":false,"folder_type":"app","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"app_9","legacy_id":"app_9","name":"Example Folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-15T23:44:08.304Z","created_at":"2024-07-15T23:44:08.304Z"},{"id":"file_5","legacy_id":"file_5","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"file","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"resource_1","legacy_id":"resource_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"resource","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"resource_2","legacy_id":"resource_2","name":"sample","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"resource_3","legacy_id":"resource_3","name":"dev","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"resource_4","legacy_id":"resource_4","name":"shared","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"workflow_3","legacy_id":"workflow_3","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"workflow","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"workflow_4","legacy_id":"workflow_4","name":"archive","parent_folder_id":"workflow_3","is_system_folder":true,"folder_type":"workflow","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"}],"total_count":13,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 31.267708ms
+    - id: 1
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding:
+            - chunked
+        trailer: {}
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":[{"id":"app_1","legacy_id":"app_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"app","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"app_10","legacy_id":"app_10","name":"Example Subfolder","parent_folder_id":"app_9","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-16T00:01:50.085Z","created_at":"2024-07-16T00:01:50.085Z"},{"id":"app_2","legacy_id":"app_2","name":"archive","parent_folder_id":"app_1","is_system_folder":true,"folder_type":"app","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"app_6","legacy_id":"app_6","name":"Components","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"app_7","legacy_id":"app_7","name":"Navigation","parent_folder_id":"app_6","is_system_folder":false,"folder_type":"app","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"app_9","legacy_id":"app_9","name":"Example Folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-15T23:44:08.304Z","created_at":"2024-07-15T23:44:08.304Z"},{"id":"file_5","legacy_id":"file_5","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"file","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"resource_1","legacy_id":"resource_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"resource","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"resource_2","legacy_id":"resource_2","name":"sample","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"resource_3","legacy_id":"resource_3","name":"dev","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"resource_4","legacy_id":"resource_4","name":"shared","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"workflow_3","legacy_id":"workflow_3","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"workflow","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"workflow_4","legacy_id":"workflow_4","name":"archive","parent_folder_id":"workflow_3","is_system_folder":true,"folder_type":"workflow","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"}],"total_count":13,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 34.245209ms
+    - id: 2
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 276
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"account_details_access":false,"audit_log_access":false,"name":"tf-acc-test-group","universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","unpublished_release_access":false,"usage_analytics_access":false,"user_list_access":false}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/groups
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 460
+        uncompressed: false
+        body: '{"success":true,"data":{"id":21,"legacy_id":21,"name":"tf-acc-test-group","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-07-16T00:47:06.464Z","created_at":"2024-07-16T00:47:06.464Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 36.374417ms
+    - id: 3
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 78
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"folder_type":"app","name":"tf-acc-test-folder1","parent_folder_id":"app_1"}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 241
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"app_41","legacy_id":"app_41","name":"tf-acc-test-folder1","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-16T00:47:06.490Z","created_at":"2024-07-16T00:47:06.490Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 34.931667ms
+    - id: 4
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 78
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"folder_type":"app","name":"tf-acc-test-folder2","parent_folder_id":"app_1"}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 241
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"app_42","legacy_id":"app_42","name":"tf-acc-test-folder2","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-16T00:47:06.494Z","created_at":"2024-07-16T00:47:06.494Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 31.101333ms
+    - id: 5
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 99
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"access_level":"use","object":{"id":"app_41","type":"folder"},"subject":{"id":21,"type":"group"}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/permissions/grant
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 129
+        uncompressed: false
+        body: '{"success":true,"data":[{"type":"folder","id":"app_41","access_level":"use"}],"total_count":1,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 29.961083ms
+    - id: 6
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders/app_41
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 241
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"app_41","legacy_id":"app_41","name":"tf-acc-test-folder1","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-16T00:47:06.490Z","created_at":"2024-07-16T00:47:06.490Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 15.647042ms
+    - id: 7
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders/app_42
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 241
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"app_42","legacy_id":"app_42","name":"tf-acc-test-folder2","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-16T00:47:06.494Z","created_at":"2024-07-16T00:47:06.494Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 23.590167ms
+    - id: 8
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/groups/21
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 460
+        uncompressed: false
+        body: '{"success":true,"data":{"id":21,"legacy_id":21,"name":"tf-acc-test-group","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-07-16T00:47:06.464Z","created_at":"2024-07-16T00:47:06.464Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 23.991458ms
+    - id: 9
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 57
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"object_type":"app","subject":{"id":21,"type":"group"}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/permissions/listObjects
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 77
+        uncompressed: false
+        body: '{"success":true,"data":[],"total_count":0,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 12.78925ms
+    - id: 10
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 60
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"object_type":"folder","subject":{"id":21,"type":"group"}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/permissions/listObjects
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 129
+        uncompressed: false
+        body: '{"success":true,"data":[{"type":"folder","id":"app_41","access_level":"use"}],"total_count":1,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 13.964708ms
+    - id: 11
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 62
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"object_type":"resource","subject":{"id":21,"type":"group"}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/permissions/listObjects
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 77
+        uncompressed: false
+        body: '{"success":true,"data":[],"total_count":0,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 14.355541ms
+    - id: 12
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 76
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"object_type":"resource_configuration","subject":{"id":21,"type":"group"}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/permissions/listObjects
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 77
+        uncompressed: false
+        body: '{"success":true,"data":[],"total_count":0,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 9.557666ms
+    - id: 13
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/groups/21
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 460
+        uncompressed: false
+        body: '{"success":true,"data":{"id":21,"legacy_id":21,"name":"tf-acc-test-group","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-07-16T00:47:06.464Z","created_at":"2024-07-16T00:47:06.464Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 18.516833ms
+    - id: 14
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders/app_41
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 241
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"app_41","legacy_id":"app_41","name":"tf-acc-test-folder1","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-16T00:47:06.490Z","created_at":"2024-07-16T00:47:06.490Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 21.483ms
+    - id: 15
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders/app_42
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 241
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"app_42","legacy_id":"app_42","name":"tf-acc-test-folder2","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-16T00:47:06.494Z","created_at":"2024-07-16T00:47:06.494Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 22.299959ms
+    - id: 16
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 57
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"object_type":"app","subject":{"id":21,"type":"group"}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/permissions/listObjects
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 77
+        uncompressed: false
+        body: '{"success":true,"data":[],"total_count":0,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 10.980458ms
+    - id: 17
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 60
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"object_type":"folder","subject":{"id":21,"type":"group"}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/permissions/listObjects
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 129
+        uncompressed: false
+        body: '{"success":true,"data":[{"type":"folder","id":"app_41","access_level":"use"}],"total_count":1,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 13.883125ms
+    - id: 18
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 62
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"object_type":"resource","subject":{"id":21,"type":"group"}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/permissions/listObjects
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 77
+        uncompressed: false
+        body: '{"success":true,"data":[],"total_count":0,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 9.876625ms
+    - id: 19
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 76
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"object_type":"resource_configuration","subject":{"id":21,"type":"group"}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/permissions/listObjects
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 77
+        uncompressed: false
+        body: '{"success":true,"data":[],"total_count":0,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 12.101125ms
+    - id: 20
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 78
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"object":{"id":"app_41","type":"folder"},"subject":{"id":21,"type":"group"}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/permissions/revoke
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 77
+        uncompressed: false
+        body: '{"success":true,"data":[],"total_count":0,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 26.988542ms
+    - id: 21
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 99
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"access_level":"own","object":{"id":"app_42","type":"folder"},"subject":{"id":21,"type":"group"}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/permissions/grant
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 129
+        uncompressed: false
+        body: '{"success":true,"data":[{"type":"folder","id":"app_42","access_level":"own"}],"total_count":1,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 25.876292ms
+    - id: 22
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders/app_41
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 241
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"app_41","legacy_id":"app_41","name":"tf-acc-test-folder1","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-16T00:47:06.490Z","created_at":"2024-07-16T00:47:06.490Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 17.665292ms
+    - id: 23
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders/app_42
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 241
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"app_42","legacy_id":"app_42","name":"tf-acc-test-folder2","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-16T00:47:06.494Z","created_at":"2024-07-16T00:47:06.494Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 23.466334ms
+    - id: 24
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/groups/21
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 460
+        uncompressed: false
+        body: '{"success":true,"data":{"id":21,"legacy_id":21,"name":"tf-acc-test-group","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-07-16T00:47:06.464Z","created_at":"2024-07-16T00:47:06.464Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 24.084833ms
+    - id: 25
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 57
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"object_type":"app","subject":{"id":21,"type":"group"}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/permissions/listObjects
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 77
+        uncompressed: false
+        body: '{"success":true,"data":[],"total_count":0,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 10.75425ms
+    - id: 26
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 60
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"object_type":"folder","subject":{"id":21,"type":"group"}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/permissions/listObjects
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 129
+        uncompressed: false
+        body: '{"success":true,"data":[{"type":"folder","id":"app_42","access_level":"own"}],"total_count":1,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 16.9375ms
+    - id: 27
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 62
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"object_type":"resource","subject":{"id":21,"type":"group"}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/permissions/listObjects
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 77
+        uncompressed: false
+        body: '{"success":true,"data":[],"total_count":0,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 9.794334ms
+    - id: 28
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 76
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"object_type":"resource_configuration","subject":{"id":21,"type":"group"}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/permissions/listObjects
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 77
+        uncompressed: false
+        body: '{"success":true,"data":[],"total_count":0,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 9.51125ms
+    - id: 29
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders/app_41
+        method: DELETE
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: ""
+        headers: {}
+        status: 204 No Content
+        code: 204
+        duration: 20.458333ms
+    - id: 30
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 78
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"object":{"id":"app_42","type":"folder"},"subject":{"id":21,"type":"group"}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/permissions/revoke
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 77
+        uncompressed: false
+        body: '{"success":true,"data":[],"total_count":0,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 35.885792ms
+    - id: 31
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders/app_42
+        method: DELETE
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: ""
+        headers: {}
+        status: 204 No Content
+        code: 204
+        duration: 17.932916ms
+    - id: 32
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/groups/21
+        method: DELETE
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: ""
+        headers: {}
+        status: 204 No Content
+        code: 204
+        duration: 19.787083ms
