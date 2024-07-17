@@ -659,6 +659,11 @@ paths:
         schema:
           type: string
         style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/_spaces__spaceId__put_request'
       responses:
         "200":
           content:
@@ -5517,6 +5522,21 @@ components:
       required:
       - data
       - success
+      type: object
+    _spaces__spaceId__put_request:
+      properties:
+        name:
+          description: The name of the space.
+          minLength: 1
+          type: string
+        domain:
+          description: "The domain of the space. On Retool Cloud, specify subdomain\
+            \ of the space instead."
+          minLength: 1
+          type: string
+      required:
+      - domain
+      - name
       type: object
     _spaces__spaceId__put_200_response_data:
       additionalProperties: false

@@ -374,6 +374,7 @@ Class | Method | HTTP request | Description
  - [SpacesSpaceIdGet200ResponseData](docs/SpacesSpaceIdGet200ResponseData.md)
  - [SpacesSpaceIdPut200Response](docs/SpacesSpaceIdPut200Response.md)
  - [SpacesSpaceIdPut200ResponseData](docs/SpacesSpaceIdPut200ResponseData.md)
+ - [SpacesSpaceIdPutRequest](docs/SpacesSpaceIdPutRequest.md)
  - [SsoConfigPost200Response](docs/SsoConfigPost200Response.md)
  - [SsoConfigPost200ResponseData](docs/SsoConfigPost200ResponseData.md)
  - [SsoConfigPostRequest](docs/SsoConfigPostRequest.md)

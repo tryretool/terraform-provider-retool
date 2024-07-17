@@ -1,0 +1,371 @@
+---
+version: 2
+interactions:
+    - id: 0
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 210
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"domain":"tfspace.localhost","name":"tf-acc-test-space","options":{"copy_branding_and_themes_settings":true,"copy_sso_settings":true,"create_admin_user":false,"users_to_copy_as_admins":["admin@example.com"]}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/spaces
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 188
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"org_b35d89732e704738880a16f3bb7ce517","name":"tf-acc-test-space","domain":"","created_at":"2024-07-17T20:55:00.701Z","updated_at":"2024-07-17T20:55:02.068Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 1.389688833s
+    - id: 1
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/spaces/org_b35d89732e704738880a16f3bb7ce517
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 205
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"org_b35d89732e704738880a16f3bb7ce517","name":"tf-acc-test-space","domain":"tfspace.localhost","created_at":"2024-07-17T20:55:00.701Z","updated_at":"2024-07-17T20:55:02.061Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 17.135417ms
+    - id: 2
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/spaces/org_b35d89732e704738880a16f3bb7ce517
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 205
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"org_b35d89732e704738880a16f3bb7ce517","name":"tf-acc-test-space","domain":"tfspace.localhost","created_at":"2024-07-17T20:55:00.701Z","updated_at":"2024-07-17T20:55:02.061Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 14.159958ms
+    - id: 3
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/spaces/org_b35d89732e704738880a16f3bb7ce517
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 205
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"org_b35d89732e704738880a16f3bb7ce517","name":"tf-acc-test-space","domain":"tfspace.localhost","created_at":"2024-07-17T20:55:00.701Z","updated_at":"2024-07-17T20:55:02.061Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 12.185416ms
+    - id: 4
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 69
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"domain":"tfspaceupd.localhost","name":"tf-acc-test-space-updated"}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/spaces/org_b35d89732e704738880a16f3bb7ce517
+        method: PUT
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 216
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"org_b35d89732e704738880a16f3bb7ce517","name":"tf-acc-test-space-updated","domain":"tfspaceupd.localhost","created_at":"2024-07-17T20:55:00.701Z","updated_at":"2024-07-17T20:55:02.570Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 14.776666ms
+    - id: 5
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/spaces/org_b35d89732e704738880a16f3bb7ce517
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 216
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"org_b35d89732e704738880a16f3bb7ce517","name":"tf-acc-test-space-updated","domain":"tfspaceupd.localhost","created_at":"2024-07-17T20:55:00.701Z","updated_at":"2024-07-17T20:55:02.570Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 13.62125ms
+    - id: 6
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/spaces/org_b35d89732e704738880a16f3bb7ce517
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 216
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"org_b35d89732e704738880a16f3bb7ce517","name":"tf-acc-test-space-updated","domain":"tfspaceupd.localhost","created_at":"2024-07-17T20:55:00.701Z","updated_at":"2024-07-17T20:55:02.570Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 11.764666ms
+    - id: 7
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/spaces/org_b35d89732e704738880a16f3bb7ce517
+        method: DELETE
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: ""
+        headers: {}
+        status: 204 No Content
+        code: 204
+        duration: 24.216125ms
+    - id: 8
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 213
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"domain":"tfspacedefault.localhost","name":"tf-acc-test-space-with-defaults","options":{"copy_branding_and_themes_settings":false,"copy_sso_settings":false,"create_admin_user":true,"users_to_copy_as_admins":[]}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/spaces
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 202
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"org_80754aafe9c947b080d2ee3cabc9f1e8","name":"tf-acc-test-space-with-defaults","domain":"","created_at":"2024-07-17T20:55:02.885Z","updated_at":"2024-07-17T20:55:03.743Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 887.314833ms
+    - id: 9
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/spaces/org_80754aafe9c947b080d2ee3cabc9f1e8
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 226
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"org_80754aafe9c947b080d2ee3cabc9f1e8","name":"tf-acc-test-space-with-defaults","domain":"tfspacedefault.localhost","created_at":"2024-07-17T20:55:02.885Z","updated_at":"2024-07-17T20:55:03.743Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 16.68125ms
+    - id: 10
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/spaces/org_80754aafe9c947b080d2ee3cabc9f1e8
+        method: DELETE
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: ""
+        headers: {}
+        status: 204 No Content
+        code: 204
+        duration: 16.055417ms

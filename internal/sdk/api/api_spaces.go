@@ -565,6 +565,12 @@ type ApiSpacesSpaceIdPutRequest struct {
 	ctx context.Context
 	ApiService *SpacesAPIService
 	spaceId string
+	spacesSpaceIdPutRequest *SpacesSpaceIdPutRequest
+}
+
+func (r ApiSpacesSpaceIdPutRequest) SpacesSpaceIdPutRequest(spacesSpaceIdPutRequest SpacesSpaceIdPutRequest) ApiSpacesSpaceIdPutRequest {
+	r.spacesSpaceIdPutRequest = &spacesSpaceIdPutRequest
+	return r
 }
 
 func (r ApiSpacesSpaceIdPutRequest) Execute() (*SpacesSpaceIdPut200Response, *http.Response, error) {
@@ -611,7 +617,7 @@ func (a *SpacesAPIService) SpacesSpaceIdPutExecute(r ApiSpacesSpaceIdPutRequest)
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -627,6 +633,8 @@ func (a *SpacesAPIService) SpacesSpaceIdPutExecute(r ApiSpacesSpaceIdPutRequest)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.spacesSpaceIdPutRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
