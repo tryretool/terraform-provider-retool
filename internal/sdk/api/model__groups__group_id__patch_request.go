@@ -21,7 +21,7 @@ var _ MappedNullable = &GroupsGroupIdPatchRequest{}
 
 // GroupsGroupIdPatchRequest The body of a request to update a group. 
 type GroupsGroupIdPatchRequest struct {
-	// A list of operations to apply to the group. See https://tools.ietf.org/html/rfc6902 for details.
+	// A list of operations to apply to the group. See the [JSON PATCH specification](https://tools.ietf.org/html/rfc6902) for more details.
 	Operations []UsersUserIdPatchRequestOperationsInner `json:"operations"`
 }
 

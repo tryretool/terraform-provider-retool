@@ -19,9 +19,9 @@ import (
 // checks if the UsersUserIdPatchRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UsersUserIdPatchRequest{}
 
-// UsersUserIdPatchRequest struct for UsersUserIdPatchRequest
+// UsersUserIdPatchRequest The body of a request to update a user.
 type UsersUserIdPatchRequest struct {
-	// The body of a request to update a user.
+	// A list of operations to apply to the user. See the [JSON PATCH specification](https://tools.ietf.org/html/rfc6902) for more details.
 	Operations []UsersUserIdPatchRequestOperationsInner `json:"operations"`
 }
 

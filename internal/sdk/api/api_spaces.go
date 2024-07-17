@@ -454,7 +454,7 @@ type ApiSpacesSpaceIdGetRequest struct {
 	spaceId string
 }
 
-func (r ApiSpacesSpaceIdGetRequest) Execute() (*SpacesGet200Response, *http.Response, error) {
+func (r ApiSpacesSpaceIdGetRequest) Execute() (*SpacesSpaceIdGet200Response, *http.Response, error) {
 	return r.ApiService.SpacesSpaceIdGetExecute(r)
 }
 
@@ -476,13 +476,13 @@ func (a *SpacesAPIService) SpacesSpaceIdGet(ctx context.Context, spaceId string)
 }
 
 // Execute executes the request
-//  @return SpacesGet200Response
-func (a *SpacesAPIService) SpacesSpaceIdGetExecute(r ApiSpacesSpaceIdGetRequest) (*SpacesGet200Response, *http.Response, error) {
+//  @return SpacesSpaceIdGet200Response
+func (a *SpacesAPIService) SpacesSpaceIdGetExecute(r ApiSpacesSpaceIdGetRequest) (*SpacesSpaceIdGet200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *SpacesGet200Response
+		localVarReturnValue  *SpacesSpaceIdGet200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SpacesAPIService.SpacesSpaceIdGet")
@@ -537,6 +537,130 @@ func (a *SpacesAPIService) SpacesSpaceIdGetExecute(r ApiSpacesSpaceIdGetRequest)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v FoldersPost409Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiSpacesSpaceIdPutRequest struct {
+	ctx context.Context
+	ApiService *SpacesAPIService
+	spaceId string
+}
+
+func (r ApiSpacesSpaceIdPutRequest) Execute() (*SpacesSpaceIdPut200Response, *http.Response, error) {
+	return r.ApiService.SpacesSpaceIdPutExecute(r)
+}
+
+/*
+SpacesSpaceIdPut Update space
+
+Available for orgs with Spaces enabled. Get space by ID. The API token must have the "Spaces > Write" scope.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param spaceId
+ @return ApiSpacesSpaceIdPutRequest
+*/
+func (a *SpacesAPIService) SpacesSpaceIdPut(ctx context.Context, spaceId string) ApiSpacesSpaceIdPutRequest {
+	return ApiSpacesSpaceIdPutRequest{
+		ApiService: a,
+		ctx: ctx,
+		spaceId: spaceId,
+	}
+}
+
+// Execute executes the request
+//  @return SpacesSpaceIdPut200Response
+func (a *SpacesAPIService) SpacesSpaceIdPutExecute(r ApiSpacesSpaceIdPutRequest) (*SpacesSpaceIdPut200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SpacesSpaceIdPut200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SpacesAPIService.SpacesSpaceIdPut")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/spaces/{spaceId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"spaceId"+"}", url.PathEscape(parameterValueToString(r.spaceId, "spaceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v FoldersPost409Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
 			var v FoldersPost409Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

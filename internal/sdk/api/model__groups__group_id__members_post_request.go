@@ -18,8 +18,9 @@ import (
 // checks if the GroupsGroupIdMembersPostRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GroupsGroupIdMembersPostRequest{}
 
-// GroupsGroupIdMembersPostRequest Users to add to the group
+// GroupsGroupIdMembersPostRequest struct for GroupsGroupIdMembersPostRequest
 type GroupsGroupIdMembersPostRequest struct {
+	// Users to add to the group. Pass in an empty list to create a group with no members.
 	Members []GroupsGroupIdPutRequestMembersInner `json:"members"`
 	AdditionalProperties map[string]interface{}
 }

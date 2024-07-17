@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Operations** | [**[]UsersUserIdPatchRequestOperationsInner**](UsersUserIdPatchRequestOperationsInner.md) | A list of operations to apply to the group. See https://tools.ietf.org/html/rfc6902 for details. | 
+**Operations** | [**[]UsersUserIdPatchRequestOperationsInner**](UsersUserIdPatchRequestOperationsInner.md) | A list of operations to apply to the group. See the [JSON PATCH specification](https://tools.ietf.org/html/rfc6902) for more details. | 
 
 ## Methods
 

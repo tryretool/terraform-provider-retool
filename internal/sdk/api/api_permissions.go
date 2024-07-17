@@ -145,7 +145,7 @@ func (r ApiPermissionsListObjectsPostRequest) Execute() (*PermissionsListObjects
 }
 
 /*
-PermissionsListObjectsPost List folders a group can access
+PermissionsListObjectsPost List objects a group can access
 
 Returns the list of objects with corresponding access levels that a subject (group) has access to. The API token must have the "Permissions > Read" scope. Folders are supported from API version 2.0.0 + and onprem version 3.18+, apps are supported from API version 2.4.0+ and onprem version 3.26.0+, resources and resource_configurations are supported from onprem edge version 3.37.0+ and 3.47-stable+
 
@@ -247,7 +247,7 @@ func (r ApiPermissionsRevokePostRequest) PermissionsRevokePostRequest(permission
 	return r
 }
 
-func (r ApiPermissionsRevokePostRequest) Execute() (*PermissionsListObjectsPost200Response, *http.Response, error) {
+func (r ApiPermissionsRevokePostRequest) Execute() (*PermissionsRevokePost200Response, *http.Response, error) {
 	return r.ApiService.PermissionsRevokePostExecute(r)
 }
 
@@ -267,13 +267,13 @@ func (a *PermissionsAPIService) PermissionsRevokePost(ctx context.Context) ApiPe
 }
 
 // Execute executes the request
-//  @return PermissionsListObjectsPost200Response
-func (a *PermissionsAPIService) PermissionsRevokePostExecute(r ApiPermissionsRevokePostRequest) (*PermissionsListObjectsPost200Response, *http.Response, error) {
+//  @return PermissionsRevokePost200Response
+func (a *PermissionsAPIService) PermissionsRevokePostExecute(r ApiPermissionsRevokePostRequest) (*PermissionsRevokePost200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PermissionsListObjectsPost200Response
+		localVarReturnValue  *PermissionsRevokePost200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PermissionsAPIService.PermissionsRevokePost")

@@ -5,7 +5,7 @@ All URIs are relative to *http://.*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**PermissionsGrantPost**](PermissionsAPI.md#PermissionsGrantPost) | **Post** /permissions/grant | Grant permissions
-[**PermissionsListObjectsPost**](PermissionsAPI.md#PermissionsListObjectsPost) | **Post** /permissions/listObjects | List folders a group can access
+[**PermissionsListObjectsPost**](PermissionsAPI.md#PermissionsListObjectsPost) | **Post** /permissions/listObjects | List objects a group can access
 [**PermissionsRevokePost**](PermissionsAPI.md#PermissionsRevokePost) | **Post** /permissions/revoke | Revoke permissions
 
 
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 > PermissionsListObjectsPost200Response PermissionsListObjectsPost(ctx).PermissionsListObjectsPostRequest(permissionsListObjectsPostRequest).Execute()
 
-List folders a group can access
+List objects a group can access
 
 
 
@@ -144,7 +144,7 @@ Name | Type | Description  | Notes
 
 ## PermissionsRevokePost
 
-> PermissionsListObjectsPost200Response PermissionsRevokePost(ctx).PermissionsRevokePostRequest(permissionsRevokePostRequest).Execute()
+> PermissionsRevokePost200Response PermissionsRevokePost(ctx).PermissionsRevokePostRequest(permissionsRevokePostRequest).Execute()
 
 Revoke permissions
 
@@ -172,7 +172,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PermissionsAPI.PermissionsRevokePost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PermissionsRevokePost`: PermissionsListObjectsPost200Response
+	// response from `PermissionsRevokePost`: PermissionsRevokePost200Response
 	fmt.Fprintf(os.Stdout, "Response from `PermissionsAPI.PermissionsRevokePost`: %v\n", resp)
 }
 ```
@@ -192,7 +192,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PermissionsListObjectsPost200Response**](PermissionsListObjectsPost200Response.md)
+[**PermissionsRevokePost200Response**](PermissionsRevokePost200Response.md)
 
 ### Authorization
 

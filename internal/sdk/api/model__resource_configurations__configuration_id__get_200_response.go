@@ -25,7 +25,7 @@ type ResourceConfigurationsConfigurationIdGet200Response struct {
 	Id string `json:"id"`
 	Resource ResourcesGet200ResponseDataInner `json:"resource"`
 	Environment ResourceConfigurationsGet200ResponseDataInnerEnvironment `json:"environment"`
-	Options ResourceConfigurationsGet200ResponseDataInnerOptions `json:"options"`
+	Options ResourcesPostRequestOptions `json:"options"`
 	CreatedAt string `json:"created_at"`
 	UpdatedAt string `json:"updated_at"`
 }
@@ -36,7 +36,7 @@ type _ResourceConfigurationsConfigurationIdGet200Response ResourceConfigurations
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResourceConfigurationsConfigurationIdGet200Response(id string, resource ResourcesGet200ResponseDataInner, environment ResourceConfigurationsGet200ResponseDataInnerEnvironment, options ResourceConfigurationsGet200ResponseDataInnerOptions, createdAt string, updatedAt string) *ResourceConfigurationsConfigurationIdGet200Response {
+func NewResourceConfigurationsConfigurationIdGet200Response(id string, resource ResourcesGet200ResponseDataInner, environment ResourceConfigurationsGet200ResponseDataInnerEnvironment, options ResourcesPostRequestOptions, createdAt string, updatedAt string) *ResourceConfigurationsConfigurationIdGet200Response {
 	this := ResourceConfigurationsConfigurationIdGet200Response{}
 	this.Id = id
 	this.Resource = resource
@@ -128,9 +128,9 @@ func (o *ResourceConfigurationsConfigurationIdGet200Response) SetEnvironment(v R
 }
 
 // GetOptions returns the Options field value
-func (o *ResourceConfigurationsConfigurationIdGet200Response) GetOptions() ResourceConfigurationsGet200ResponseDataInnerOptions {
+func (o *ResourceConfigurationsConfigurationIdGet200Response) GetOptions() ResourcesPostRequestOptions {
 	if o == nil {
-		var ret ResourceConfigurationsGet200ResponseDataInnerOptions
+		var ret ResourcesPostRequestOptions
 		return ret
 	}
 
@@ -139,7 +139,7 @@ func (o *ResourceConfigurationsConfigurationIdGet200Response) GetOptions() Resou
 
 // GetOptionsOk returns a tuple with the Options field value
 // and a boolean to check if the value has been set.
-func (o *ResourceConfigurationsConfigurationIdGet200Response) GetOptionsOk() (*ResourceConfigurationsGet200ResponseDataInnerOptions, bool) {
+func (o *ResourceConfigurationsConfigurationIdGet200Response) GetOptionsOk() (*ResourcesPostRequestOptions, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -147,7 +147,7 @@ func (o *ResourceConfigurationsConfigurationIdGet200Response) GetOptionsOk() (*R
 }
 
 // SetOptions sets field value
-func (o *ResourceConfigurationsConfigurationIdGet200Response) SetOptions(v ResourceConfigurationsGet200ResponseDataInnerOptions) {
+func (o *ResourceConfigurationsConfigurationIdGet200Response) SetOptions(v ResourcesPostRequestOptions) {
 	o.Options = v
 }
 

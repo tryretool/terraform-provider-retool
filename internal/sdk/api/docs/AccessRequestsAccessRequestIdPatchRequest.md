@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Operations** | [**[]UsersUserIdPatchRequestOperationsInnerAnyOf2**](UsersUserIdPatchRequestOperationsInnerAnyOf2.md) | The body of a request to update an access request&#39;s status. | 
+**Operations** | [**[]UsersUserIdPatchRequestOperationsInnerAnyOf2**](UsersUserIdPatchRequestOperationsInnerAnyOf2.md) | A list of operations to apply to the access request. See the [JSON PATCH specification](https://tools.ietf.org/html/rfc6902) for more details. | 
 
 ## Methods
 

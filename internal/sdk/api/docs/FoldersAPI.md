@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**FoldersFolderIdDelete**](FoldersAPI.md#FoldersFolderIdDelete) | **Delete** /folders/{folderId} | Delete folder
 [**FoldersFolderIdGet**](FoldersAPI.md#FoldersFolderIdGet) | **Get** /folders/{folderId} | Get a folder
+[**FoldersFolderIdPatch**](FoldersAPI.md#FoldersFolderIdPatch) | **Patch** /folders/{folderId} | Update folder
 [**FoldersGet**](FoldersAPI.md#FoldersGet) | **Get** /folders | List folders
 [**FoldersPost**](FoldersAPI.md#FoldersPost) | **Post** /folders | Create folder
 
@@ -142,6 +143,78 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## FoldersFolderIdPatch
+
+> FoldersFolderIdPatch200Response FoldersFolderIdPatch(ctx, folderId).FoldersFolderIdPatchRequest(foldersFolderIdPatchRequest).Execute()
+
+Update folder
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	folderId := "folderId_example" // string | 
+	foldersFolderIdPatchRequest := *openapiclient.NewFoldersFolderIdPatchRequest([]openapiclient.FoldersFolderIdPatchRequestOperationsInner{*openapiclient.NewFoldersFolderIdPatchRequestOperationsInner("Op_example", "Path_example", "From_example")}) // FoldersFolderIdPatchRequest |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FoldersAPI.FoldersFolderIdPatch(context.Background(), folderId).FoldersFolderIdPatchRequest(foldersFolderIdPatchRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FoldersAPI.FoldersFolderIdPatch``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `FoldersFolderIdPatch`: FoldersFolderIdPatch200Response
+	fmt.Fprintf(os.Stdout, "Response from `FoldersAPI.FoldersFolderIdPatch`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**folderId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiFoldersFolderIdPatchRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **foldersFolderIdPatchRequest** | [**FoldersFolderIdPatchRequest**](FoldersFolderIdPatchRequest.md) |  | 
+
+### Return type
+
+[**FoldersFolderIdPatch200Response**](FoldersFolderIdPatch200Response.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

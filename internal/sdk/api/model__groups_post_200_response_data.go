@@ -48,6 +48,8 @@ type GroupsPost200ResponseData struct {
 	AccountDetailsAccess bool `json:"account_details_access"`
 	// The app ID of the landing page
 	LandingPageAppId NullableString `json:"landing_page_app_id"`
+	CreatedAt string `json:"created_at"`
+	UpdatedAt string `json:"updated_at"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -57,7 +59,7 @@ type _GroupsPost200ResponseData GroupsPost200ResponseData
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGroupsPost200ResponseData(id NullableFloat32, legacyId NullableFloat32, name string, members []GroupsGroupIdGet200ResponseDataMembersInner, universalAppAccess string, universalResourceAccess string, universalWorkflowAccess string, userInvites []GroupsGroupIdGet200ResponseDataUserInvitesInner, userListAccess bool, auditLogAccess bool, unpublishedReleaseAccess bool, usageAnalyticsAccess bool, accountDetailsAccess bool, landingPageAppId NullableString) *GroupsPost200ResponseData {
+func NewGroupsPost200ResponseData(id NullableFloat32, legacyId NullableFloat32, name string, members []GroupsGroupIdGet200ResponseDataMembersInner, universalAppAccess string, universalResourceAccess string, universalWorkflowAccess string, userInvites []GroupsGroupIdGet200ResponseDataUserInvitesInner, userListAccess bool, auditLogAccess bool, unpublishedReleaseAccess bool, usageAnalyticsAccess bool, accountDetailsAccess bool, landingPageAppId NullableString, createdAt string, updatedAt string) *GroupsPost200ResponseData {
 	this := GroupsPost200ResponseData{}
 	this.Id = id
 	this.LegacyId = legacyId
@@ -73,6 +75,8 @@ func NewGroupsPost200ResponseData(id NullableFloat32, legacyId NullableFloat32, 
 	this.UsageAnalyticsAccess = usageAnalyticsAccess
 	this.AccountDetailsAccess = accountDetailsAccess
 	this.LandingPageAppId = landingPageAppId
+	this.CreatedAt = createdAt
+	this.UpdatedAt = updatedAt
 	return &this
 }
 
@@ -426,6 +430,54 @@ func (o *GroupsPost200ResponseData) SetLandingPageAppId(v string) {
 	o.LandingPageAppId.Set(&v)
 }
 
+// GetCreatedAt returns the CreatedAt field value
+func (o *GroupsPost200ResponseData) GetCreatedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *GroupsPost200ResponseData) GetCreatedAtOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *GroupsPost200ResponseData) SetCreatedAt(v string) {
+	o.CreatedAt = v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value
+func (o *GroupsPost200ResponseData) GetUpdatedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
+// and a boolean to check if the value has been set.
+func (o *GroupsPost200ResponseData) GetUpdatedAtOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UpdatedAt, true
+}
+
+// SetUpdatedAt sets field value
+func (o *GroupsPost200ResponseData) SetUpdatedAt(v string) {
+	o.UpdatedAt = v
+}
+
 func (o GroupsPost200ResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -450,6 +502,8 @@ func (o GroupsPost200ResponseData) ToMap() (map[string]interface{}, error) {
 	toSerialize["usage_analytics_access"] = o.UsageAnalyticsAccess
 	toSerialize["account_details_access"] = o.AccountDetailsAccess
 	toSerialize["landing_page_app_id"] = o.LandingPageAppId.Get()
+	toSerialize["created_at"] = o.CreatedAt
+	toSerialize["updated_at"] = o.UpdatedAt
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -477,6 +531,8 @@ func (o *GroupsPost200ResponseData) UnmarshalJSON(data []byte) (err error) {
 		"usage_analytics_access",
 		"account_details_access",
 		"landing_page_app_id",
+		"created_at",
+		"updated_at",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -520,6 +576,8 @@ func (o *GroupsPost200ResponseData) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "usage_analytics_access")
 		delete(additionalProperties, "account_details_access")
 		delete(additionalProperties, "landing_page_app_id")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
 		o.AdditionalProperties = additionalProperties
 	}
 
