@@ -20,7 +20,7 @@ import (
 // checks if the Space type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Space{}
 
-// Space This object represents a space. Spaces can be used to separete your organization's data.
+// Space This object represents a space. Spaces can be used to separate your organization's data.
 type Space struct {
 	// The id of the space.
 	Id string `json:"id"`

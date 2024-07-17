@@ -19,9 +19,9 @@ import (
 // checks if the AccessRequestsAccessRequestIdPatchRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &AccessRequestsAccessRequestIdPatchRequest{}
 
-// AccessRequestsAccessRequestIdPatchRequest struct for AccessRequestsAccessRequestIdPatchRequest
+// AccessRequestsAccessRequestIdPatchRequest The body of a request to update an access request's status.
 type AccessRequestsAccessRequestIdPatchRequest struct {
-	// The body of a request to update an access request's status.
+	// A list of operations to apply to the access request. See the [JSON PATCH specification](https://tools.ietf.org/html/rfc6902) for more details.
 	Operations []UsersUserIdPatchRequestOperationsInnerAnyOf2 `json:"operations"`
 }
 

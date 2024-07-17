@@ -22,6 +22,7 @@ var _ MappedNullable = &GroupsPostRequest{}
 type GroupsPostRequest struct {
 	// The name of the group.
 	Name string `json:"name"`
+	// Users to add to the group. Pass in an empty list to create a group with no members.
 	Members []GroupsGroupIdPutRequestMembersInner `json:"members,omitempty"`
 	// The universal app access level for the group. This denotes the access level that this group has for all apps.
 	UniversalAppAccess *string `json:"universal_app_access,omitempty"`
@@ -43,6 +44,8 @@ type GroupsPostRequest struct {
 	AccountDetailsAccess *bool `json:"account_details_access,omitempty"`
 	// The app ID of the landing page
 	LandingPageAppId NullableString `json:"landing_page_app_id,omitempty"`
+	CreatedAt *string `json:"created_at,omitempty"`
+	UpdatedAt *string `json:"updated_at,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -452,6 +455,70 @@ func (o *GroupsPostRequest) UnsetLandingPageAppId() {
 	o.LandingPageAppId.Unset()
 }
 
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *GroupsPostRequest) GetCreatedAt() string {
+	if o == nil || IsNil(o.CreatedAt) {
+		var ret string
+		return ret
+	}
+	return *o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GroupsPostRequest) GetCreatedAtOk() (*string, bool) {
+	if o == nil || IsNil(o.CreatedAt) {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *GroupsPostRequest) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
+func (o *GroupsPostRequest) SetCreatedAt(v string) {
+	o.CreatedAt = &v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *GroupsPostRequest) GetUpdatedAt() string {
+	if o == nil || IsNil(o.UpdatedAt) {
+		var ret string
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GroupsPostRequest) GetUpdatedAtOk() (*string, bool) {
+	if o == nil || IsNil(o.UpdatedAt) {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *GroupsPostRequest) HasUpdatedAt() bool {
+	if o != nil && !IsNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
+func (o *GroupsPostRequest) SetUpdatedAt(v string) {
+	o.UpdatedAt = &v
+}
+
 func (o GroupsPostRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -495,6 +562,12 @@ func (o GroupsPostRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if o.LandingPageAppId.IsSet() {
 		toSerialize["landing_page_app_id"] = o.LandingPageAppId.Get()
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -551,6 +624,8 @@ func (o *GroupsPostRequest) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "usage_analytics_access")
 		delete(additionalProperties, "account_details_access")
 		delete(additionalProperties, "landing_page_app_id")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
 		o.AdditionalProperties = additionalProperties
 	}
 

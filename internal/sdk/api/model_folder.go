@@ -32,6 +32,8 @@ type Folder struct {
 	IsSystemFolder bool `json:"is_system_folder"`
 	// The type of the folder
 	FolderType string `json:"folder_type"`
+	CreatedAt string `json:"created_at"`
+	UpdatedAt string `json:"updated_at"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -41,13 +43,15 @@ type _Folder Folder
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFolder(id string, legacyId string, name string, isSystemFolder bool, folderType string) *Folder {
+func NewFolder(id string, legacyId string, name string, isSystemFolder bool, folderType string, createdAt string, updatedAt string) *Folder {
 	this := Folder{}
 	this.Id = id
 	this.LegacyId = legacyId
 	this.Name = name
 	this.IsSystemFolder = isSystemFolder
 	this.FolderType = folderType
+	this.CreatedAt = createdAt
+	this.UpdatedAt = updatedAt
 	return &this
 }
 
@@ -221,6 +225,54 @@ func (o *Folder) SetFolderType(v string) {
 	o.FolderType = v
 }
 
+// GetCreatedAt returns the CreatedAt field value
+func (o *Folder) GetCreatedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *Folder) GetCreatedAtOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *Folder) SetCreatedAt(v string) {
+	o.CreatedAt = v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value
+func (o *Folder) GetUpdatedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
+// and a boolean to check if the value has been set.
+func (o *Folder) GetUpdatedAtOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UpdatedAt, true
+}
+
+// SetUpdatedAt sets field value
+func (o *Folder) SetUpdatedAt(v string) {
+	o.UpdatedAt = v
+}
+
 func (o Folder) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -239,6 +291,8 @@ func (o Folder) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["is_system_folder"] = o.IsSystemFolder
 	toSerialize["folder_type"] = o.FolderType
+	toSerialize["created_at"] = o.CreatedAt
+	toSerialize["updated_at"] = o.UpdatedAt
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -257,6 +311,8 @@ func (o *Folder) UnmarshalJSON(data []byte) (err error) {
 		"name",
 		"is_system_folder",
 		"folder_type",
+		"created_at",
+		"updated_at",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -292,6 +348,8 @@ func (o *Folder) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "parent_folder_id")
 		delete(additionalProperties, "is_system_folder")
 		delete(additionalProperties, "folder_type")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
 		o.AdditionalProperties = additionalProperties
 	}
 

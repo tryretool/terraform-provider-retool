@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | The name of the group. | [optional] 
-**Members** | Pointer to [**[]GroupsGroupIdPutRequestMembersInner**](GroupsGroupIdPutRequestMembersInner.md) |  | [optional] 
+**Members** | Pointer to [**[]GroupsGroupIdPutRequestMembersInner**](GroupsGroupIdPutRequestMembersInner.md) | Users to add to the group. Pass in an empty list to create a group with no members. | [optional] 
 **UniversalAppAccess** | Pointer to **string** | The universal app access level for the group. This denotes the access level that this group has for all apps. | [optional] 
 **UniversalResourceAccess** | Pointer to **string** | The universal resource access level for the group. This denotes the access level that this group has for all resources. | [optional] 
 **UniversalWorkflowAccess** | Pointer to **string** | The universal workflow access level for the group. This denotes the access level that this group has for all workflows. | [optional] 
@@ -16,6 +16,8 @@ Name | Type | Description | Notes
 **UsageAnalyticsAccess** | Pointer to **bool** | Whether the group has access to usage analytics | [optional] 
 **AccountDetailsAccess** | Pointer to **bool** | Whether the group has access to account details | [optional] 
 **LandingPageAppId** | Pointer to **NullableString** | The app ID of the landing page | [optional] 
+**CreatedAt** | Pointer to **string** |  | [optional] 
+**UpdatedAt** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -346,6 +348,56 @@ HasLandingPageAppId returns a boolean if a field has been set.
 `func (o *GroupsGroupIdPutRequest) UnsetLandingPageAppId()`
 
 UnsetLandingPageAppId ensures that no value is present for LandingPageAppId, not even an explicit nil
+### GetCreatedAt
+
+`func (o *GroupsGroupIdPutRequest) GetCreatedAt() string`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *GroupsGroupIdPutRequest) GetCreatedAtOk() (*string, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *GroupsGroupIdPutRequest) SetCreatedAt(v string)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+### HasCreatedAt
+
+`func (o *GroupsGroupIdPutRequest) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
+
+### GetUpdatedAt
+
+`func (o *GroupsGroupIdPutRequest) GetUpdatedAt() string`
+
+GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+
+### GetUpdatedAtOk
+
+`func (o *GroupsGroupIdPutRequest) GetUpdatedAtOk() (*string, bool)`
+
+GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedAt
+
+`func (o *GroupsGroupIdPutRequest) SetUpdatedAt(v string)`
+
+SetUpdatedAt sets UpdatedAt field to given value.
+
+### HasUpdatedAt
+
+`func (o *GroupsGroupIdPutRequest) HasUpdatedAt() bool`
+
+HasUpdatedAt returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

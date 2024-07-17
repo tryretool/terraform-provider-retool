@@ -65,6 +65,8 @@ type APIClient struct {
 
 	GroupsAPI *GroupsAPIService
 
+	ObservabilityAPI *ObservabilityAPIService
+
 	PermissionsAPI *PermissionsAPIService
 
 	ResourceConfigurationsAPI *ResourceConfigurationsAPIService
@@ -76,6 +78,8 @@ type APIClient struct {
 	SourceControlAPI *SourceControlAPIService
 
 	SpacesAPI *SpacesAPIService
+
+	UsageAPI *UsageAPIService
 
 	UserAttributesAPI *UserAttributesAPIService
 
@@ -108,12 +112,14 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.EnvironmentAPI = (*EnvironmentAPIService)(&c.common)
 	c.FoldersAPI = (*FoldersAPIService)(&c.common)
 	c.GroupsAPI = (*GroupsAPIService)(&c.common)
+	c.ObservabilityAPI = (*ObservabilityAPIService)(&c.common)
 	c.PermissionsAPI = (*PermissionsAPIService)(&c.common)
 	c.ResourceConfigurationsAPI = (*ResourceConfigurationsAPIService)(&c.common)
 	c.ResourcesAPI = (*ResourcesAPIService)(&c.common)
 	c.SSOAPI = (*SSOAPIService)(&c.common)
 	c.SourceControlAPI = (*SourceControlAPIService)(&c.common)
 	c.SpacesAPI = (*SpacesAPIService)(&c.common)
+	c.UsageAPI = (*UsageAPIService)(&c.common)
 	c.UserAttributesAPI = (*UserAttributesAPIService)(&c.common)
 	c.UserInviteAPI = (*UserInviteAPIService)(&c.common)
 	c.UsersAPI = (*UsersAPIService)(&c.common)

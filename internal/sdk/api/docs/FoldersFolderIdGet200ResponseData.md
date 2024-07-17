@@ -10,12 +10,14 @@ Name | Type | Description | Notes
 **ParentFolderId** | Pointer to **NullableString** | The id of the parent folder | [optional] 
 **IsSystemFolder** | **bool** | Whether the folder is a system folder | 
 **FolderType** | **string** | The type of the folder | 
+**CreatedAt** | **string** |  | 
+**UpdatedAt** | **string** |  | 
 
 ## Methods
 
 ### NewFoldersFolderIdGet200ResponseData
 
-`func NewFoldersFolderIdGet200ResponseData(id string, legacyId string, name string, isSystemFolder bool, folderType string, ) *FoldersFolderIdGet200ResponseData`
+`func NewFoldersFolderIdGet200ResponseData(id string, legacyId string, name string, isSystemFolder bool, folderType string, createdAt string, updatedAt string, ) *FoldersFolderIdGet200ResponseData`
 
 NewFoldersFolderIdGet200ResponseData instantiates a new FoldersFolderIdGet200ResponseData object
 This constructor will assign default values to properties that have it defined,
@@ -163,6 +165,46 @@ and a boolean to check if the value has been set.
 `func (o *FoldersFolderIdGet200ResponseData) SetFolderType(v string)`
 
 SetFolderType sets FolderType field to given value.
+
+
+### GetCreatedAt
+
+`func (o *FoldersFolderIdGet200ResponseData) GetCreatedAt() string`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *FoldersFolderIdGet200ResponseData) GetCreatedAtOk() (*string, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *FoldersFolderIdGet200ResponseData) SetCreatedAt(v string)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+
+### GetUpdatedAt
+
+`func (o *FoldersFolderIdGet200ResponseData) GetUpdatedAt() string`
+
+GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+
+### GetUpdatedAtOk
+
+`func (o *FoldersFolderIdGet200ResponseData) GetUpdatedAtOk() (*string, bool)`
+
+GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedAt
+
+`func (o *FoldersFolderIdGet200ResponseData) SetUpdatedAt(v string)`
+
+SetUpdatedAt sets UpdatedAt field to given value.
 
 
 

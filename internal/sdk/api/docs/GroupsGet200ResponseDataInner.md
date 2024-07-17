@@ -18,12 +18,14 @@ Name | Type | Description | Notes
 **UsageAnalyticsAccess** | **bool** | Whether the group has access to usage analytics | 
 **AccountDetailsAccess** | **bool** | Whether the group has access to account details | 
 **LandingPageAppId** | **NullableString** | The app ID of the landing page | 
+**CreatedAt** | **string** |  | 
+**UpdatedAt** | **string** |  | 
 
 ## Methods
 
 ### NewGroupsGet200ResponseDataInner
 
-`func NewGroupsGet200ResponseDataInner(id NullableFloat32, legacyId NullableFloat32, name string, members []GroupsGroupIdGet200ResponseDataMembersInner, universalAppAccess string, universalResourceAccess string, universalWorkflowAccess string, userInvites []GroupsGroupIdGet200ResponseDataUserInvitesInner, userListAccess bool, auditLogAccess bool, unpublishedReleaseAccess bool, usageAnalyticsAccess bool, accountDetailsAccess bool, landingPageAppId NullableString, ) *GroupsGet200ResponseDataInner`
+`func NewGroupsGet200ResponseDataInner(id NullableFloat32, legacyId NullableFloat32, name string, members []GroupsGroupIdGet200ResponseDataMembersInner, universalAppAccess string, universalResourceAccess string, universalWorkflowAccess string, userInvites []GroupsGroupIdGet200ResponseDataUserInvitesInner, userListAccess bool, auditLogAccess bool, unpublishedReleaseAccess bool, usageAnalyticsAccess bool, accountDetailsAccess bool, landingPageAppId NullableString, createdAt string, updatedAt string, ) *GroupsGet200ResponseDataInner`
 
 NewGroupsGet200ResponseDataInner instantiates a new GroupsGet200ResponseDataInner object
 This constructor will assign default values to properties that have it defined,
@@ -348,6 +350,46 @@ SetLandingPageAppId sets LandingPageAppId field to given value.
 `func (o *GroupsGet200ResponseDataInner) UnsetLandingPageAppId()`
 
 UnsetLandingPageAppId ensures that no value is present for LandingPageAppId, not even an explicit nil
+### GetCreatedAt
+
+`func (o *GroupsGet200ResponseDataInner) GetCreatedAt() string`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *GroupsGet200ResponseDataInner) GetCreatedAtOk() (*string, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *GroupsGet200ResponseDataInner) SetCreatedAt(v string)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+
+### GetUpdatedAt
+
+`func (o *GroupsGet200ResponseDataInner) GetUpdatedAt() string`
+
+GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+
+### GetUpdatedAtOk
+
+`func (o *GroupsGet200ResponseDataInner) GetUpdatedAtOk() (*string, bool)`
+
+GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedAt
+
+`func (o *GroupsGet200ResponseDataInner) SetUpdatedAt(v string)`
+
+SetUpdatedAt sets UpdatedAt field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -103,6 +103,7 @@ Class | Method | HTTP request | Description
 *EnvironmentAPI* | [**EnvironmentsGet**](docs/EnvironmentAPI.md#environmentsget) | **Get** /environments | Get organization environments
 *FoldersAPI* | [**FoldersFolderIdDelete**](docs/FoldersAPI.md#foldersfolderiddelete) | **Delete** /folders/{folderId} | Delete folder
 *FoldersAPI* | [**FoldersFolderIdGet**](docs/FoldersAPI.md#foldersfolderidget) | **Get** /folders/{folderId} | Get a folder
+*FoldersAPI* | [**FoldersFolderIdPatch**](docs/FoldersAPI.md#foldersfolderidpatch) | **Patch** /folders/{folderId} | Update folder
 *FoldersAPI* | [**FoldersGet**](docs/FoldersAPI.md#foldersget) | **Get** /folders | List folders
 *FoldersAPI* | [**FoldersPost**](docs/FoldersAPI.md#folderspost) | **Post** /folders | Create folder
 *GroupsAPI* | [**GroupsGet**](docs/GroupsAPI.md#groupsget) | **Get** /groups | List groups
@@ -115,13 +116,19 @@ Class | Method | HTTP request | Description
 *GroupsAPI* | [**GroupsGroupIdUserInvitesPost**](docs/GroupsAPI.md#groupsgroupiduserinvitespost) | **Post** /groups/{groupId}/user_invites | Add user invites to group
 *GroupsAPI* | [**GroupsGroupIdUserInvitesUserInviteIdDelete**](docs/GroupsAPI.md#groupsgroupiduserinvitesuserinviteiddelete) | **Delete** /groups/{groupId}/user_invites/{userInviteId} | Remove user invite from group
 *GroupsAPI* | [**GroupsPost**](docs/GroupsAPI.md#groupspost) | **Post** /groups | Create group
+*ObservabilityAPI* | [**ObservabilityConfigConfigIdDelete**](docs/ObservabilityAPI.md#observabilityconfigconfigiddelete) | **Delete** /observability/config/{configId} | Delete an observability provider configuration
+*ObservabilityAPI* | [**ObservabilityConfigConfigIdPut**](docs/ObservabilityAPI.md#observabilityconfigconfigidput) | **Put** /observability/config/{configId} | Update an observability provider configuration
+*ObservabilityAPI* | [**ObservabilityConfigGet**](docs/ObservabilityAPI.md#observabilityconfigget) | **Get** /observability/config | Get observability provider configurations
+*ObservabilityAPI* | [**ObservabilityConfigPost**](docs/ObservabilityAPI.md#observabilityconfigpost) | **Post** /observability/config | Create a new observability provider configuration
+*ObservabilityAPI* | [**ObservabilityProviderProviderTestPost**](docs/ObservabilityAPI.md#observabilityproviderprovidertestpost) | **Post** /observability/provider/{provider}/test | Send a test error event to the observability provider
 *PermissionsAPI* | [**PermissionsGrantPost**](docs/PermissionsAPI.md#permissionsgrantpost) | **Post** /permissions/grant | Grant permissions
-*PermissionsAPI* | [**PermissionsListObjectsPost**](docs/PermissionsAPI.md#permissionslistobjectspost) | **Post** /permissions/listObjects | List folders a group can access
+*PermissionsAPI* | [**PermissionsListObjectsPost**](docs/PermissionsAPI.md#permissionslistobjectspost) | **Post** /permissions/listObjects | List objects a group can access
 *PermissionsAPI* | [**PermissionsRevokePost**](docs/PermissionsAPI.md#permissionsrevokepost) | **Post** /permissions/revoke | Revoke permissions
 *ResourceConfigurationsAPI* | [**ResourceConfigurationsConfigurationIdDelete**](docs/ResourceConfigurationsAPI.md#resourceconfigurationsconfigurationiddelete) | **Delete** /resource_configurations/{configurationId} | Delete resource configuration
 *ResourceConfigurationsAPI* | [**ResourceConfigurationsConfigurationIdGet**](docs/ResourceConfigurationsAPI.md#resourceconfigurationsconfigurationidget) | **Get** /resource_configurations/{configurationId} | Get resource configuration by id
 *ResourceConfigurationsAPI* | [**ResourceConfigurationsGet**](docs/ResourceConfigurationsAPI.md#resourceconfigurationsget) | **Get** /resource_configurations | Get resource configurations
 *ResourcesAPI* | [**ResourcesGet**](docs/ResourcesAPI.md#resourcesget) | **Get** /resources | Get resources
+*ResourcesAPI* | [**ResourcesPost**](docs/ResourcesAPI.md#resourcespost) | **Post** /resources | Create a resource
 *ResourcesAPI* | [**ResourcesResourceIdDelete**](docs/ResourcesAPI.md#resourcesresourceiddelete) | **Delete** /resources/{resourceId} | Delete resource
 *ResourcesAPI* | [**ResourcesResourceIdGet**](docs/ResourcesAPI.md#resourcesresourceidget) | **Get** /resources/{resourceId} | Get resource by id
 *SSOAPI* | [**SsoConfigPost**](docs/SSOAPI.md#ssoconfigpost) | **Post** /sso/config | Set SSO configuration
@@ -140,6 +147,13 @@ Class | Method | HTTP request | Description
 *SpacesAPI* | [**SpacesPost**](docs/SpacesAPI.md#spacespost) | **Post** /spaces | Create a space
 *SpacesAPI* | [**SpacesSpaceIdDelete**](docs/SpacesAPI.md#spacesspaceiddelete) | **Delete** /spaces/{spaceId} | Delete a space
 *SpacesAPI* | [**SpacesSpaceIdGet**](docs/SpacesAPI.md#spacesspaceidget) | **Get** /spaces/{spaceId} | Get space
+*SpacesAPI* | [**SpacesSpaceIdPut**](docs/SpacesAPI.md#spacesspaceidput) | **Put** /spaces/{spaceId} | Update space
+*UsageAPI* | [**UsageAppDetailsGet**](docs/UsageAPI.md#usageappdetailsget) | **Get** /usage/app_details | The app details for the selected app and organizations
+*UsageAPI* | [**UsageAppSummaryGet**](docs/UsageAPI.md#usageappsummaryget) | **Get** /usage/app_summary | The app summaries for the selected organizations
+*UsageAPI* | [**UsageGet**](docs/UsageAPI.md#usageget) | **Get** /usage | The usage summary for the selected organizations
+*UsageAPI* | [**UsageOrganizationsGet**](docs/UsageAPI.md#usageorganizationsget) | **Get** /usage/organizations | List organizations
+*UsageAPI* | [**UsageUserDetailsGet**](docs/UsageAPI.md#usageuserdetailsget) | **Get** /usage/user_details | The user details for the selected user and organizations
+*UsageAPI* | [**UsageUserSummaryGet**](docs/UsageAPI.md#usageusersummaryget) | **Get** /usage/user_summary | The summaries of user usage for the selected organizations
 *UserAttributesAPI* | [**UserAttributesGet**](docs/UserAttributesAPI.md#userattributesget) | **Get** /user_attributes | Get organization user attributes.
 *UserInviteAPI* | [**UserInvitesGet**](docs/UserInviteAPI.md#userinvitesget) | **Get** /user_invites | Get organization user invites
 *UserInviteAPI* | [**UserInvitesPost**](docs/UserInviteAPI.md#userinvitespost) | **Post** /user_invites | Create a new user invite
@@ -165,6 +179,7 @@ Class | Method | HTTP request | Description
  - [AccessRequestsGet200Response](docs/AccessRequestsGet200Response.md)
  - [AccessRequestsGet200ResponseDataInner](docs/AccessRequestsGet200ResponseDataInner.md)
  - [App](docs/App.md)
+ - [AppSummary](docs/AppSummary.md)
  - [AppTheme](docs/AppTheme.md)
  - [AppThemesIdGet200Response](docs/AppThemesIdGet200Response.md)
  - [AppThemesIdGet200ResponseData](docs/AppThemesIdGet200ResponseData.md)
@@ -200,6 +215,13 @@ Class | Method | HTTP request | Description
  - [Folder](docs/Folder.md)
  - [FoldersFolderIdGet200Response](docs/FoldersFolderIdGet200Response.md)
  - [FoldersFolderIdGet200ResponseData](docs/FoldersFolderIdGet200ResponseData.md)
+ - [FoldersFolderIdPatch200Response](docs/FoldersFolderIdPatch200Response.md)
+ - [FoldersFolderIdPatch200ResponseData](docs/FoldersFolderIdPatch200ResponseData.md)
+ - [FoldersFolderIdPatchRequest](docs/FoldersFolderIdPatchRequest.md)
+ - [FoldersFolderIdPatchRequestOperationsInner](docs/FoldersFolderIdPatchRequestOperationsInner.md)
+ - [FoldersFolderIdPatchRequestOperationsInnerAnyOf](docs/FoldersFolderIdPatchRequestOperationsInnerAnyOf.md)
+ - [FoldersFolderIdPatchRequestOperationsInnerAnyOf1](docs/FoldersFolderIdPatchRequestOperationsInnerAnyOf1.md)
+ - [FoldersFolderIdPatchRequestOperationsInnerAnyOf2](docs/FoldersFolderIdPatchRequestOperationsInnerAnyOf2.md)
  - [FoldersGet200Response](docs/FoldersGet200Response.md)
  - [FoldersGet200ResponseDataInner](docs/FoldersGet200ResponseDataInner.md)
  - [FoldersPost200Response](docs/FoldersPost200Response.md)
@@ -225,6 +247,24 @@ Class | Method | HTTP request | Description
  - [GroupsPostRequest](docs/GroupsPostRequest.md)
  - [MySQLOptions](docs/MySQLOptions.md)
  - [MySQLOptionsDatabaseOptions](docs/MySQLOptionsDatabaseOptions.md)
+ - [ObservabilityConfigConfigIdPut200Response](docs/ObservabilityConfigConfigIdPut200Response.md)
+ - [ObservabilityConfigConfigIdPut200ResponseData](docs/ObservabilityConfigConfigIdPut200ResponseData.md)
+ - [ObservabilityConfigConfigIdPutRequest](docs/ObservabilityConfigConfigIdPutRequest.md)
+ - [ObservabilityConfigGet200Response](docs/ObservabilityConfigGet200Response.md)
+ - [ObservabilityConfigGet200ResponseDataInner](docs/ObservabilityConfigGet200ResponseDataInner.md)
+ - [ObservabilityConfigGet200ResponseDataInnerConfig](docs/ObservabilityConfigGet200ResponseDataInnerConfig.md)
+ - [ObservabilityConfigGet200ResponseDataInnerConfigOneOf](docs/ObservabilityConfigGet200ResponseDataInnerConfigOneOf.md)
+ - [ObservabilityConfigGet200ResponseDataInnerConfigOneOf1](docs/ObservabilityConfigGet200ResponseDataInnerConfigOneOf1.md)
+ - [ObservabilityConfigPost200Response](docs/ObservabilityConfigPost200Response.md)
+ - [ObservabilityConfigPost200ResponseData](docs/ObservabilityConfigPost200ResponseData.md)
+ - [ObservabilityConfigPostRequest](docs/ObservabilityConfigPostRequest.md)
+ - [ObservabilityConfiguration](docs/ObservabilityConfiguration.md)
+ - [ObservabilityProviderProviderTestPost200Response](docs/ObservabilityProviderProviderTestPost200Response.md)
+ - [ObservabilityProviderProviderTestPost200ResponseData](docs/ObservabilityProviderProviderTestPost200ResponseData.md)
+ - [ObservabilityProviderProviderTestPost200ResponseDataAnyOf](docs/ObservabilityProviderProviderTestPost200ResponseDataAnyOf.md)
+ - [ObservabilityProviderProviderTestPost200ResponseDataAnyOf1](docs/ObservabilityProviderProviderTestPost200ResponseDataAnyOf1.md)
+ - [ObservabilityProviderProviderTestPostProviderParameter](docs/ObservabilityProviderProviderTestPostProviderParameter.md)
+ - [Organization](docs/Organization.md)
  - [PermissionsGrantPostRequest](docs/PermissionsGrantPostRequest.md)
  - [PermissionsGrantPostRequestObject](docs/PermissionsGrantPostRequestObject.md)
  - [PermissionsGrantPostRequestObjectOneOf](docs/PermissionsGrantPostRequestObjectOneOf.md)
@@ -235,6 +275,10 @@ Class | Method | HTTP request | Description
  - [PermissionsListObjectsPostRequestSubject](docs/PermissionsListObjectsPostRequestSubject.md)
  - [PermissionsListObjectsPostRequestSubjectOneOf](docs/PermissionsListObjectsPostRequestSubjectOneOf.md)
  - [PermissionsListObjectsPostRequestSubjectOneOf1](docs/PermissionsListObjectsPostRequestSubjectOneOf1.md)
+ - [PermissionsRevokePost200Response](docs/PermissionsRevokePost200Response.md)
+ - [PermissionsRevokePost200ResponseDataInner](docs/PermissionsRevokePost200ResponseDataInner.md)
+ - [PermissionsRevokePost200ResponseDataInnerOneOf](docs/PermissionsRevokePost200ResponseDataInnerOneOf.md)
+ - [PermissionsRevokePost200ResponseDataInnerOneOf1](docs/PermissionsRevokePost200ResponseDataInnerOneOf1.md)
  - [PermissionsRevokePostRequest](docs/PermissionsRevokePostRequest.md)
  - [PostgresOptions](docs/PostgresOptions.md)
  - [PostgresOptionsDatabaseOptions](docs/PostgresOptionsDatabaseOptions.md)
@@ -251,10 +295,13 @@ Class | Method | HTTP request | Description
  - [ResourceConfigurationsGet200Response](docs/ResourceConfigurationsGet200Response.md)
  - [ResourceConfigurationsGet200ResponseDataInner](docs/ResourceConfigurationsGet200ResponseDataInner.md)
  - [ResourceConfigurationsGet200ResponseDataInnerEnvironment](docs/ResourceConfigurationsGet200ResponseDataInnerEnvironment.md)
- - [ResourceConfigurationsGet200ResponseDataInnerOptions](docs/ResourceConfigurationsGet200ResponseDataInnerOptions.md)
  - [ResourcesGet200Response](docs/ResourcesGet200Response.md)
  - [ResourcesGet200ResponseDataInner](docs/ResourcesGet200ResponseDataInner.md)
  - [ResourcesGet200ResponseDataInnerId](docs/ResourcesGet200ResponseDataInnerId.md)
+ - [ResourcesPost200Response](docs/ResourcesPost200Response.md)
+ - [ResourcesPost200ResponseData](docs/ResourcesPost200ResponseData.md)
+ - [ResourcesPostRequest](docs/ResourcesPostRequest.md)
+ - [ResourcesPostRequestOptions](docs/ResourcesPostRequestOptions.md)
  - [ResourcesResourceIdGet200Response](docs/ResourcesResourceIdGet200Response.md)
  - [RestAPIOptions](docs/RestAPIOptions.md)
  - [RestAPIOptionsAuthenticationOptions](docs/RestAPIOptionsAuthenticationOptions.md)
@@ -323,6 +370,10 @@ Class | Method | HTTP request | Description
  - [SpacesPost200ResponseData](docs/SpacesPost200ResponseData.md)
  - [SpacesPostRequest](docs/SpacesPostRequest.md)
  - [SpacesPostRequestOptions](docs/SpacesPostRequestOptions.md)
+ - [SpacesSpaceIdGet200Response](docs/SpacesSpaceIdGet200Response.md)
+ - [SpacesSpaceIdGet200ResponseData](docs/SpacesSpaceIdGet200ResponseData.md)
+ - [SpacesSpaceIdPut200Response](docs/SpacesSpaceIdPut200Response.md)
+ - [SpacesSpaceIdPut200ResponseData](docs/SpacesSpaceIdPut200ResponseData.md)
  - [SsoConfigPost200Response](docs/SsoConfigPost200Response.md)
  - [SsoConfigPost200ResponseData](docs/SsoConfigPost200ResponseData.md)
  - [SsoConfigPostRequest](docs/SsoConfigPostRequest.md)
@@ -333,6 +384,26 @@ Class | Method | HTTP request | Description
  - [SsoConfigPostRequestDataOneOf3](docs/SsoConfigPostRequestDataOneOf3.md)
  - [SsoConfigPostRequestDataOneOf4](docs/SsoConfigPostRequestDataOneOf4.md)
  - [SsoConfiguration](docs/SsoConfiguration.md)
+ - [Usage](docs/Usage.md)
+ - [UsageAppDetailsGet200Response](docs/UsageAppDetailsGet200Response.md)
+ - [UsageAppDetailsGet200ResponseData](docs/UsageAppDetailsGet200ResponseData.md)
+ - [UsageAppDetailsGet200ResponseDataOverallSummaryInner](docs/UsageAppDetailsGet200ResponseDataOverallSummaryInner.md)
+ - [UsageAppDetailsGet200ResponseDataViewerSummaryInner](docs/UsageAppDetailsGet200ResponseDataViewerSummaryInner.md)
+ - [UsageAppDetailsGet200ResponseDataWeeklySummaryInner](docs/UsageAppDetailsGet200ResponseDataWeeklySummaryInner.md)
+ - [UsageAppDetailsGet200ResponseDataWeeklySummaryInnerWeeklyDataInner](docs/UsageAppDetailsGet200ResponseDataWeeklySummaryInnerWeeklyDataInner.md)
+ - [UsageAppSummaryGet200Response](docs/UsageAppSummaryGet200Response.md)
+ - [UsageAppSummaryGet200ResponseDataInner](docs/UsageAppSummaryGet200ResponseDataInner.md)
+ - [UsageGet200Response](docs/UsageGet200Response.md)
+ - [UsageGet200ResponseData](docs/UsageGet200ResponseData.md)
+ - [UsageGet200ResponseDataDailyT30UsageInner](docs/UsageGet200ResponseDataDailyT30UsageInner.md)
+ - [UsageOrganizationsGet200Response](docs/UsageOrganizationsGet200Response.md)
+ - [UsageOrganizationsGet200ResponseDataInner](docs/UsageOrganizationsGet200ResponseDataInner.md)
+ - [UsageUserDetailsGet200Response](docs/UsageUserDetailsGet200Response.md)
+ - [UsageUserDetailsGet200ResponseData](docs/UsageUserDetailsGet200ResponseData.md)
+ - [UsageUserDetailsGet200ResponseDataOverallSummaryInner](docs/UsageUserDetailsGet200ResponseDataOverallSummaryInner.md)
+ - [UsageUserDetailsGet200ResponseDataViewerSummaryInner](docs/UsageUserDetailsGet200ResponseDataViewerSummaryInner.md)
+ - [UsageUserSummaryGet200Response](docs/UsageUserSummaryGet200Response.md)
+ - [UsageUserSummaryGet200ResponseDataInner](docs/UsageUserSummaryGet200ResponseDataInner.md)
  - [User](docs/User.md)
  - [UserAttributes](docs/UserAttributes.md)
  - [UserAttributesGet200Response](docs/UserAttributesGet200Response.md)

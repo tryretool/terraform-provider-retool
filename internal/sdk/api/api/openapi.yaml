@@ -518,6 +518,52 @@ paths:
       summary: Get a folder
       tags:
       - Folders
+    patch:
+      description: Updates a folder by ID. The API token must have the "Folders >
+        Write" scope.
+      parameters:
+      - explode: false
+        in: path
+        name: folderId
+        required: true
+        schema:
+          description: The id of the folder
+          pattern: "^(app|workflow|resource)_([0-9]\\d*)$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/_folders__folderId__patch_request'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_folders__folderId__patch_200_response'
+          description: The updated folder.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_folders_post_409_response'
+          description: Folder not found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_folders_post_409_response'
+          description: Folder with the same name already exists.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_folders_post_409_response'
+          description: Error with folder structure.
+      summary: Update folder
+      tags:
+      - Folders
   /spaces:
     get:
       description: Available for orgs with Spaces enabled. List all child spaces of
@@ -591,7 +637,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/_spaces_get_200_response'
+                $ref: '#/components/schemas/_spaces__spaceId__get_200_response'
           description: The requested space.
         "404":
           content:
@@ -600,6 +646,39 @@ paths:
                 $ref: '#/components/schemas/_folders_post_409_response'
           description: Space not found.
       summary: Get space
+      tags:
+      - Spaces
+    put:
+      description: Available for orgs with Spaces enabled. Get space by ID. The API
+        token must have the "Spaces > Write" scope.
+      parameters:
+      - explode: false
+        in: path
+        name: spaceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_spaces__spaceId__put_200_response'
+          description: Updated space.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_folders_post_409_response'
+          description: Space not found.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_folders_post_409_response'
+          description: Invalid space domain.
+      summary: Update space
       tags:
       - Spaces
   /spaces/copyElements:
@@ -1075,7 +1154,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/_permissions_listObjects_post_200_response'
           description: A list of folders with corresponding access levels.
-      summary: List folders a group can access
+      summary: List objects a group can access
       tags:
       - Permissions
   /permissions/grant:
@@ -1123,7 +1202,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/_permissions_listObjects_post_200_response'
+                $ref: '#/components/schemas/_permissions_revoke_post_200_response'
           description: A list of folders with corresponding access levels
       summary: Revoke permissions
       tags:
@@ -1439,6 +1518,24 @@ paths:
                 $ref: '#/components/schemas/_resources_get_200_response'
           description: Returns a paginated list of resources.
       summary: Get resources
+      tags:
+      - Resources
+    post:
+      description: Available from onprem version 3.72.0+. Creates a resource. The
+        API token must have the "Resources > Write" scope.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/_resources_post_request'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_resources_post_200_response'
+          description: The created resource.
+      summary: Create a resource
       tags:
       - Resources
   /resources/{resourceId}:
@@ -1945,6 +2042,438 @@ paths:
       summary: Update a configuration variable
       tags:
       - Configuration Variables
+  /observability/config:
+    get:
+      description: Get observability configurations for the organization. The API
+        token must have the "Observability > Read" scope.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_observability_config_get_200_response'
+          description: Observability provider configuration retrieved.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_folders_post_409_response'
+          description: Incorrect scope.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_folders_post_409_response'
+          description: Configuration not found.
+      summary: Get observability provider configurations
+      tags:
+      - Observability
+    post:
+      description: Create observability configuration for the organization and returns
+        the created configuration. This will result in an error if configuration is
+        already set. The API token must have the "Observability > Write" scope.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/_observability_config_post_request'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_observability_config_post_200_response'
+          description: Observability provider configuration created.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_folders_post_409_response'
+          description: Bad request.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_folders_post_409_response'
+          description: Incorrect scope.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_folders_post_409_response'
+          description: Configuration already exists.
+      summary: Create a new observability provider configuration
+      tags:
+      - Observability
+  /observability/config/{configId}:
+    delete:
+      description: Delete observability configuration for the organization. The API
+        token must have the "Observability > Write" scope.
+      parameters:
+      - explode: false
+        in: path
+        name: configId
+        required: true
+        schema:
+          description: The id of the observability configuration to delete.
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Observability provider configuration deleted.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_folders_post_409_response'
+          description: Incorrect scope.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_folders_post_409_response'
+          description: Configuration not found.
+      summary: Delete an observability provider configuration
+      tags:
+      - Observability
+    put:
+      description: Update observability configuration for the organization and returns
+        the updated configuration. This will result in an error if no existing configuration
+        found. The API token must have the "Observability > Write" scope.
+      parameters:
+      - explode: false
+        in: path
+        name: configId
+        required: true
+        schema:
+          description: The id of the observability configuration to update.
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/_observability_config__configId__put_request'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_observability_config__configId__put_200_response'
+          description: Observability provider configuration updated.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_folders_post_409_response'
+          description: Bad request.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_folders_post_409_response'
+          description: Incorrect scope.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_folders_post_409_response'
+          description: No configuration exists.
+      summary: Update an observability provider configuration
+      tags:
+      - Observability
+  /observability/provider/{provider}/test:
+    post:
+      description: Send a test error event to the observability provider. The API
+        token must have the "Observability > Read" scope.
+      parameters:
+      - explode: false
+        in: path
+        name: provider
+        required: true
+        schema:
+          $ref: '#/components/schemas/_observability_provider__provider__test_post_provider_parameter'
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_observability_provider__provider__test_post_200_response'
+          description: Test event sent.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_folders_post_409_response'
+          description: Incorrect scope.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_folders_post_409_response'
+          description: Provider is not configured correctly.
+      summary: Send a test error event to the observability provider
+      tags:
+      - Observability
+  /usage/organizations:
+    get:
+      description: "Returns a list of organizations that the token has scope to access.\
+        \ The API token must have the 'usage' scope. 'usage:organization' scope returns\
+        \ just the organization, 'usage:spaces' returns all the spaces under the admin\
+        \ organization, 'usage:license' returns all the organizations that use that\
+        \ license key."
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_usage_organizations_get_200_response'
+          description: List of organizations
+      summary: List organizations
+      tags:
+      - Usage
+  /usage:
+    get:
+      description: "The usage summary for the selected organizations. Contains information\
+        \ about usage like page saves, page views, active users, and the growth in\
+        \ those fields in the specified time range. The API token must have the 'usage'\
+        \ scope. "
+      parameters:
+      - explode: true
+        in: query
+        name: org_ids
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: start_date
+        required: true
+        schema:
+          description: The start date of the date range
+          example: 2024-01-15
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: end_date
+        required: false
+        schema:
+          description: "The end date of the date range. If not specified, then minimum(start_date\
+            \ + 30 days, today - 1) is used."
+          example: 2024-01-30
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_usage_get_200_response'
+          description: The usage summary for the selected organizations
+      summary: The usage summary for the selected organizations
+      tags:
+      - Usage
+  /usage/app_summary:
+    get:
+      description: "The app summaries for the selected organizations. Contains information\
+        \ about the app like saves, views, unique editors and viewers in the specified\
+        \ time range. The API token must have the 'usage' scope. "
+      parameters:
+      - explode: true
+        in: query
+        name: org_ids
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: start_date
+        required: true
+        schema:
+          description: The start date of the date range
+          example: 2024-01-15
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: end_date
+        required: false
+        schema:
+          description: "The end date of the date range. If not specified, then minimum(start_date\
+            \ + 30 days, today - 1) is used."
+          example: 2024-01-30
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_usage_app_summary_get_200_response'
+          description: The app summaries for the selected organizations
+      summary: The app summaries for the selected organizations
+      tags:
+      - Usage
+  /usage/app_details:
+    get:
+      description: "The detailed app usage for the selected organizations. Contains\
+        \ information about the app, including the breakdown of saves and views in\
+        \ the specified time range. The API token must have the 'usage' scope."
+      parameters:
+      - explode: true
+        in: query
+        name: org_ids
+        required: false
+        schema:
+          description: The list of org ids to retrieve usage data for
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: start_date
+        required: true
+        schema:
+          description: The start date of the date range
+          example: 2024-01-15
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: end_date
+        required: false
+        schema:
+          description: "The end date of the date range. If not specified, then minimum(start_date\
+            \ + 30 days, today - 1) is used."
+          example: 2024-01-30
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: app_name
+        required: true
+        schema:
+          description: The name of the app to retrieve usage data for
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_usage_app_details_get_200_response'
+          description: The app details for the selected app and organizations
+      summary: The app details for the selected app and organizations
+      tags:
+      - Usage
+  /usage/user_summary:
+    get:
+      description: "The summaries of the user including email, last active time, the\
+        \ number of apps viewed and edited, for the selected organizations in the\
+        \ specified time range. The API token must have the 'usage' scope."
+      parameters:
+      - explode: true
+        in: query
+        name: org_ids
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: start_date
+        required: true
+        schema:
+          description: The start date of the date range
+          example: 2024-01-15
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: end_date
+        required: false
+        schema:
+          description: "The end date of the date range. If not specified, then minimum(start_date\
+            \ + 30 days, today - 1) is used."
+          example: 2024-01-30
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_usage_user_summary_get_200_response'
+          description: The user usage summies for the selected organizations
+      summary: The summaries of user usage for the selected organizations
+      tags:
+      - Usage
+  /usage/user_details:
+    get:
+      description: "Detailed usage by user for the selected organizations. Contains\
+        \ information about the user, including the breakdown of saves and views for\
+        \ apps in the specified time range. The API token must have the 'usage' scope."
+      parameters:
+      - explode: true
+        in: query
+        name: org_ids
+        required: false
+        schema:
+          description: The list of org ids to retrieve usage data for
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: start_date
+        required: true
+        schema:
+          description: The start date of the date range
+          example: 2024-01-15
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: end_date
+        required: false
+        schema:
+          description: "The end date of the date range. If not specified, then minimum(start_date\
+            \ + 30 days, today - 1) is used."
+          example: 2024-01-30
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: email
+        required: true
+        schema:
+          description: The email of the user to retrieve usage data for
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_usage_user_details_get_200_response'
+          description: The user details for the selected user email and organizations
+      summary: The user details for the selected user and organizations
+      tags:
+      - Usage
 components:
   parameters: {}
   schemas:
@@ -2080,9 +2609,16 @@ components:
           format: uuid
           nullable: true
           type: string
+        created_at:
+          example: 2019-02-08T11:45:48.899Z
+          type: string
+        updated_at:
+          example: 2019-02-24T18:28:18.790Z
+          type: string
       required:
       - account_details_access
       - audit_log_access
+      - created_at
       - id
       - landing_page_app_id
       - legacy_id
@@ -2092,6 +2628,7 @@ components:
       - universal_resource_access
       - universal_workflow_access
       - unpublished_release_access
+      - updated_at
       - usage_analytics_access
       - user_invites
       - user_list_access
@@ -2126,16 +2663,24 @@ components:
           - workflow
           - resource
           type: string
+        created_at:
+          example: 2019-02-08T11:45:48.899Z
+          type: string
+        updated_at:
+          example: 2019-02-24T18:28:18.790Z
+          type: string
       required:
+      - created_at
       - folder_type
       - id
       - is_system_folder
       - legacy_id
       - name
+      - updated_at
       type: object
     space:
       additionalProperties: false
-      description: This object represents a space. Spaces can be used to separete
+      description: This object represents a space. Spaces can be used to separate
         your organization's data.
       properties:
         id:
@@ -2497,7 +3042,7 @@ components:
         environment:
           $ref: '#/components/schemas/_resource_configurations_get_200_response_data_inner_environment'
         options:
-          $ref: '#/components/schemas/_resource_configurations_get_200_response_data_inner_options'
+          $ref: '#/components/schemas/_resources_post_request_options'
         created_at:
           example: 2019-02-08T11:45:48.899Z
           type: string
@@ -2637,6 +3182,123 @@ components:
       - name
       - secret
       - values
+      type: object
+    observability_configuration:
+      additionalProperties: false
+      description: Shape of external Observability provider config
+      properties:
+        id:
+          description: The id of the configuration.
+          format: uuid
+          type: string
+        config:
+          $ref: '#/components/schemas/_observability_config_get_200_response_data_inner_config'
+        enabled:
+          description: "When enabled, use this provider for apps observability monitoring."
+          type: boolean
+      required:
+      - config
+      - enabled
+      - id
+      type: object
+    organization:
+      additionalProperties: false
+      description: An organization in Retool
+      properties:
+        org_id:
+          description: The id of the organization
+          type: string
+        host:
+          description: The host of the organization
+          type: string
+        last_active:
+          example: 2019-02-08T11:45:48.899Z
+          format: date-time
+          type: string
+      required:
+      - host
+      - last_active
+      - org_id
+      type: object
+    usage:
+      additionalProperties: false
+      properties:
+        count_current_page_saves:
+          description: The number of page saves for all the organizations within the
+            date range
+          type: number
+        count_current_page_views:
+          description: The number of page views for all the organizations within the
+            date range
+          type: number
+        count_current_users:
+          description: The total number of unique users who have performed any tracked
+            activity in all the organizations within the date range
+          type: number
+        count_T30_users:
+          description: The number of unique users who have been active over the trailing
+            30 days from the end date provided
+          type: number
+        percent_growth_page_saves:
+          description: The percentage growth in page saves compared to the previous
+            cycle of the same length as the provided date range
+          type: number
+        percent_growth_page_views:
+          description: The percentage growth in page views compared to the previous
+            cycle of the same length as the provided date range
+          type: number
+        percent_growth_users:
+          description: The percentage growth in unique users compared to the previous
+            cycle of the same length as the provided date range
+          type: number
+        percent_growth_T30_users:
+          description: The percentage growth in T30 users (trailing 30 days users)
+            compared to the previous cycle of the same length as the provided date
+            range
+          type: number
+        daily_T30_usage:
+          items:
+            $ref: '#/components/schemas/_usage_get_200_response_data_daily_T30_usage_inner'
+          type: array
+      required:
+      - count_T30_users
+      - count_current_page_saves
+      - count_current_page_views
+      - count_current_users
+      - daily_T30_usage
+      - percent_growth_T30_users
+      - percent_growth_page_saves
+      - percent_growth_page_views
+      - percent_growth_users
+      type: object
+    appSummary:
+      additionalProperties: false
+      properties:
+        app_name:
+          description: The name of the app
+          type: string
+        host:
+          description: The organization host
+          type: string
+        count_app_views:
+          description: The number of views of the app in the time range specified
+          type: number
+        count_app_saves:
+          description: The number of saves of the app in the time range specified
+          type: number
+        count_viewers:
+          description: The number of viewers of the app in the time range specified
+          type: number
+        count_editors:
+          description: The number of editors of the app in the time range specified
+          type: number
+      required:
+      - app_name
+      - count_app_saves
+      - count_app_views
+      - count_editors
+      - count_viewers
+      - host
       type: object
     _users__userId__get_200_response_data:
       additionalProperties: false
@@ -2779,9 +3441,11 @@ components:
       - $ref: '#/components/schemas/_users__userId__patch_request_operations_inner_anyOf_2'
     _users__userId__patch_request:
       additionalProperties: false
+      description: The body of a request to update a user.
       properties:
         operations:
-          description: The body of a request to update a user.
+          description: "A list of operations to apply to the user. See the [JSON PATCH\
+            \ specification](https://tools.ietf.org/html/rfc6902) for more details."
           items:
             $ref: '#/components/schemas/_users__userId__patch_request_operations_inner'
           type: array
@@ -3132,8 +3796,10 @@ components:
         unpublished_release_access: true
         landing_page_app_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         user_list_access: true
+        created_at: 2019-02-08T11:45:48.899Z
         usage_analytics_access: true
         universal_app_access: none
+        updated_at: 2019-02-24T18:28:18.790Z
         user_invites:
         - metadata:
             key: ""
@@ -3242,9 +3908,16 @@ components:
           format: uuid
           nullable: true
           type: string
+        created_at:
+          example: 2019-02-08T11:45:48.899Z
+          type: string
+        updated_at:
+          example: 2019-02-24T18:28:18.790Z
+          type: string
       required:
       - account_details_access
       - audit_log_access
+      - created_at
       - id
       - landing_page_app_id
       - legacy_id
@@ -3254,6 +3927,7 @@ components:
       - universal_resource_access
       - universal_workflow_access
       - unpublished_release_access
+      - updated_at
       - usage_analytics_access
       - user_invites
       - user_list_access
@@ -3265,8 +3939,10 @@ components:
           unpublished_release_access: true
           landing_page_app_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           user_list_access: true
+          created_at: 2019-02-08T11:45:48.899Z
           usage_analytics_access: true
           universal_app_access: none
+          updated_at: 2019-02-24T18:28:18.790Z
           user_invites:
           - metadata:
               key: ""
@@ -3336,6 +4012,8 @@ components:
           minLength: 1
           type: string
         members:
+          description: Users to add to the group. Pass in an empty list to create
+            a group with no members.
           items:
             $ref: '#/components/schemas/_groups__groupId__put_request_members_inner'
           type: array
@@ -3391,6 +4069,12 @@ components:
           format: uuid
           nullable: true
           type: string
+        created_at:
+          example: 2019-02-08T11:45:48.899Z
+          type: string
+        updated_at:
+          example: 2019-02-24T18:28:18.790Z
+          type: string
       type: object
     _groups__groupId__put_200_response_data:
       description: The updated group
@@ -3399,8 +4083,10 @@ components:
         unpublished_release_access: true
         landing_page_app_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         user_list_access: true
+        created_at: 2019-02-08T11:45:48.899Z
         usage_analytics_access: true
         universal_app_access: none
+        updated_at: 2019-02-24T18:28:18.790Z
         user_invites:
         - metadata:
             key: ""
@@ -3509,9 +4195,16 @@ components:
           format: uuid
           nullable: true
           type: string
+        created_at:
+          example: 2019-02-08T11:45:48.899Z
+          type: string
+        updated_at:
+          example: 2019-02-24T18:28:18.790Z
+          type: string
       required:
       - account_details_access
       - audit_log_access
+      - created_at
       - id
       - landing_page_app_id
       - legacy_id
@@ -3521,6 +4214,7 @@ components:
       - universal_resource_access
       - universal_workflow_access
       - unpublished_release_access
+      - updated_at
       - usage_analytics_access
       - user_invites
       - user_list_access
@@ -3532,8 +4226,10 @@ components:
           unpublished_release_access: true
           landing_page_app_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           user_list_access: true
+          created_at: 2019-02-08T11:45:48.899Z
           usage_analytics_access: true
           universal_app_access: none
+          updated_at: 2019-02-24T18:28:18.790Z
           user_invites:
           - metadata:
               key: ""
@@ -3588,8 +4284,8 @@ components:
       description: 'The body of a request to update a group. '
       properties:
         operations:
-          description: A list of operations to apply to the group. See https://tools.ietf.org/html/rfc6902
-            for details.
+          description: "A list of operations to apply to the group. See the [JSON\
+            \ PATCH specification](https://tools.ietf.org/html/rfc6902) for more details."
           items:
             $ref: '#/components/schemas/_users__userId__patch_request_operations_inner'
           type: array
@@ -3607,8 +4303,10 @@ components:
         unpublished_release_access: true
         landing_page_app_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         user_list_access: true
+        created_at: 2019-02-08T11:45:48.899Z
         usage_analytics_access: true
         universal_app_access: none
+        updated_at: 2019-02-24T18:28:18.790Z
         user_invites:
         - metadata:
             key: ""
@@ -3717,9 +4415,16 @@ components:
           format: uuid
           nullable: true
           type: string
+        created_at:
+          example: 2019-02-08T11:45:48.899Z
+          type: string
+        updated_at:
+          example: 2019-02-24T18:28:18.790Z
+          type: string
       required:
       - account_details_access
       - audit_log_access
+      - created_at
       - id
       - landing_page_app_id
       - legacy_id
@@ -3729,6 +4434,7 @@ components:
       - universal_resource_access
       - universal_workflow_access
       - unpublished_release_access
+      - updated_at
       - usage_analytics_access
       - user_invites
       - user_list_access
@@ -3741,8 +4447,10 @@ components:
           unpublished_release_access: true
           landing_page_app_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           user_list_access: true
+          created_at: 2019-02-08T11:45:48.899Z
           usage_analytics_access: true
           universal_app_access: none
+          updated_at: 2019-02-24T18:28:18.790Z
           user_invites:
           - metadata:
               key: ""
@@ -3785,8 +4493,10 @@ components:
           unpublished_release_access: true
           landing_page_app_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           user_list_access: true
+          created_at: 2019-02-08T11:45:48.899Z
           usage_analytics_access: true
           universal_app_access: none
+          updated_at: 2019-02-24T18:28:18.790Z
           user_invites:
           - metadata:
               key: ""
@@ -3862,6 +4572,8 @@ components:
           minLength: 1
           type: string
         members:
+          description: Users to add to the group. Pass in an empty list to create
+            a group with no members.
           items:
             $ref: '#/components/schemas/_groups__groupId__put_request_members_inner'
           type: array
@@ -3917,6 +4629,12 @@ components:
           format: uuid
           nullable: true
           type: string
+        created_at:
+          example: 2019-02-08T11:45:48.899Z
+          type: string
+        updated_at:
+          example: 2019-02-24T18:28:18.790Z
+          type: string
       required:
       - name
       type: object
@@ -3927,8 +4645,10 @@ components:
         unpublished_release_access: true
         landing_page_app_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         user_list_access: true
+        created_at: 2019-02-08T11:45:48.899Z
         usage_analytics_access: true
         universal_app_access: none
+        updated_at: 2019-02-24T18:28:18.790Z
         user_invites:
         - metadata:
             key: ""
@@ -4037,9 +4757,16 @@ components:
           format: uuid
           nullable: true
           type: string
+        created_at:
+          example: 2019-02-08T11:45:48.899Z
+          type: string
+        updated_at:
+          example: 2019-02-24T18:28:18.790Z
+          type: string
       required:
       - account_details_access
       - audit_log_access
+      - created_at
       - id
       - landing_page_app_id
       - legacy_id
@@ -4049,6 +4776,7 @@ components:
       - universal_resource_access
       - universal_workflow_access
       - unpublished_release_access
+      - updated_at
       - usage_analytics_access
       - user_invites
       - user_list_access
@@ -4060,8 +4788,10 @@ components:
           unpublished_release_access: true
           landing_page_app_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           user_list_access: true
+          created_at: 2019-02-08T11:45:48.899Z
           usage_analytics_access: true
           universal_app_access: none
+          updated_at: 2019-02-24T18:28:18.790Z
           user_invites:
           - metadata:
               key: ""
@@ -4122,9 +4852,10 @@ components:
       - userInviteIds
       type: object
     _groups__groupId__members_post_request:
-      description: Users to add to the group
       properties:
         members:
+          description: Users to add to the group. Pass in an empty list to create
+            a group with no members.
           items:
             $ref: '#/components/schemas/_groups__groupId__put_request_members_inner'
           type: array
@@ -4135,9 +4866,11 @@ components:
       description: Folders
       example:
         folder_type: app
+        updated_at: 2019-02-24T18:28:18.790Z
         parent_folder_id: parent_folder_id
         name: name
         legacy_id: legacy_id
+        created_at: 2019-02-08T11:45:48.899Z
         id: id
         is_system_folder: true
       properties:
@@ -4168,26 +4901,38 @@ components:
           - workflow
           - resource
           type: string
+        created_at:
+          example: 2019-02-08T11:45:48.899Z
+          type: string
+        updated_at:
+          example: 2019-02-24T18:28:18.790Z
+          type: string
       required:
+      - created_at
       - folder_type
       - id
       - is_system_folder
       - legacy_id
       - name
+      - updated_at
       type: object
     _folders_get_200_response:
       example:
         data:
         - folder_type: app
+          updated_at: 2019-02-24T18:28:18.790Z
           parent_folder_id: parent_folder_id
           name: name
           legacy_id: legacy_id
+          created_at: 2019-02-08T11:45:48.899Z
           id: id
           is_system_folder: true
         - folder_type: app
+          updated_at: 2019-02-24T18:28:18.790Z
           parent_folder_id: parent_folder_id
           name: name
           legacy_id: legacy_id
+          created_at: 2019-02-08T11:45:48.899Z
           id: id
           is_system_folder: true
         success: true
@@ -4246,9 +4991,11 @@ components:
       description: The created folder.
       example:
         folder_type: app
+        updated_at: 2019-02-24T18:28:18.790Z
         parent_folder_id: parent_folder_id
         name: name
         legacy_id: legacy_id
+        created_at: 2019-02-08T11:45:48.899Z
         id: id
         is_system_folder: true
       properties:
@@ -4279,20 +5026,30 @@ components:
           - workflow
           - resource
           type: string
+        created_at:
+          example: 2019-02-08T11:45:48.899Z
+          type: string
+        updated_at:
+          example: 2019-02-24T18:28:18.790Z
+          type: string
       required:
+      - created_at
       - folder_type
       - id
       - is_system_folder
       - legacy_id
       - name
+      - updated_at
       type: object
     _folders_post_200_response:
       example:
         data:
           folder_type: app
+          updated_at: 2019-02-24T18:28:18.790Z
           parent_folder_id: parent_folder_id
           name: name
           legacy_id: legacy_id
+          created_at: 2019-02-08T11:45:48.899Z
           id: id
           is_system_folder: true
         success: true
@@ -4326,9 +5083,11 @@ components:
       description: The requested folder.
       example:
         folder_type: app
+        updated_at: 2019-02-24T18:28:18.790Z
         parent_folder_id: parent_folder_id
         name: name
         legacy_id: legacy_id
+        created_at: 2019-02-08T11:45:48.899Z
         id: id
         is_system_folder: true
       properties:
@@ -4359,20 +5118,30 @@ components:
           - workflow
           - resource
           type: string
+        created_at:
+          example: 2019-02-08T11:45:48.899Z
+          type: string
+        updated_at:
+          example: 2019-02-24T18:28:18.790Z
+          type: string
       required:
+      - created_at
       - folder_type
       - id
       - is_system_folder
       - legacy_id
       - name
+      - updated_at
       type: object
     _folders__folderId__get_200_response:
       example:
         data:
           folder_type: app
+          updated_at: 2019-02-24T18:28:18.790Z
           parent_folder_id: parent_folder_id
           name: name
           legacy_id: legacy_id
+          created_at: 2019-02-08T11:45:48.899Z
           id: id
           is_system_folder: true
         success: true
@@ -4382,6 +5151,147 @@ components:
           type: boolean
         data:
           $ref: '#/components/schemas/_folders__folderId__get_200_response_data'
+      required:
+      - data
+      - success
+      type: object
+    _folders__folderId__patch_request_operations_inner_anyOf:
+      properties:
+        op:
+          enum:
+          - move
+          type: string
+        path:
+          type: string
+        from:
+          type: string
+      required:
+      - from
+      - op
+      - path
+      type: object
+    _folders__folderId__patch_request_operations_inner_anyOf_1:
+      properties:
+        op:
+          enum:
+          - copy
+          type: string
+        path:
+          type: string
+        from:
+          type: string
+      required:
+      - from
+      - op
+      - path
+      type: object
+    _folders__folderId__patch_request_operations_inner_anyOf_2:
+      properties:
+        op:
+          enum:
+          - test
+          type: string
+        path:
+          type: string
+        value:
+          description: A JSON value
+          nullable: true
+      required:
+      - op
+      - path
+      type: object
+    _folders__folderId__patch_request_operations_inner:
+      anyOf:
+      - $ref: '#/components/schemas/_users__userId__patch_request_operations_inner_anyOf'
+      - $ref: '#/components/schemas/_users__userId__patch_request_operations_inner_anyOf_1'
+      - $ref: '#/components/schemas/_users__userId__patch_request_operations_inner_anyOf_2'
+      - $ref: '#/components/schemas/_folders__folderId__patch_request_operations_inner_anyOf'
+      - $ref: '#/components/schemas/_folders__folderId__patch_request_operations_inner_anyOf_1'
+      - $ref: '#/components/schemas/_folders__folderId__patch_request_operations_inner_anyOf_2'
+    _folders__folderId__patch_request:
+      additionalProperties: false
+      properties:
+        operations:
+          description: A list of operations to apply to the folder. See https://tools.ietf.org/html/rfc6902
+            for details.
+          items:
+            $ref: '#/components/schemas/_folders__folderId__patch_request_operations_inner'
+          type: array
+      required:
+      - operations
+      type: object
+    _folders__folderId__patch_200_response_data:
+      description: The updated folder.
+      example:
+        folder_type: app
+        updated_at: 2019-02-24T18:28:18.790Z
+        parent_folder_id: parent_folder_id
+        name: name
+        legacy_id: legacy_id
+        created_at: 2019-02-08T11:45:48.899Z
+        id: id
+        is_system_folder: true
+      properties:
+        id:
+          description: The id of the folder. Currently this is the same as legacy_id
+            but will be different in the future.
+          pattern: "^(app|workflow|resource)_([0-9]\\d*)$"
+          type: string
+        legacy_id:
+          description: The legacy id of the folder.
+          pattern: "^(app|workflow|resource)_([0-9]\\d*)$"
+          type: string
+        name:
+          description: The name of the folder
+          type: string
+        parent_folder_id:
+          description: The id of the parent folder
+          nullable: true
+          pattern: "^(app|workflow|resource)_([0-9]\\d*)$"
+          type: string
+        is_system_folder:
+          description: Whether the folder is a system folder
+          type: boolean
+        folder_type:
+          description: The type of the folder
+          enum:
+          - app
+          - workflow
+          - resource
+          type: string
+        created_at:
+          example: 2019-02-08T11:45:48.899Z
+          type: string
+        updated_at:
+          example: 2019-02-24T18:28:18.790Z
+          type: string
+      required:
+      - created_at
+      - folder_type
+      - id
+      - is_system_folder
+      - legacy_id
+      - name
+      - updated_at
+      type: object
+    _folders__folderId__patch_200_response:
+      example:
+        data:
+          folder_type: app
+          updated_at: 2019-02-24T18:28:18.790Z
+          parent_folder_id: parent_folder_id
+          name: name
+          legacy_id: legacy_id
+          created_at: 2019-02-08T11:45:48.899Z
+          id: id
+          is_system_folder: true
+        success: true
+      properties:
+        success:
+          description: API request succeeded
+          type: boolean
+        data:
+          $ref: '#/components/schemas/_folders__folderId__patch_200_response_data'
       required:
       - data
       - success
@@ -4550,6 +5460,114 @@ components:
           type: boolean
         data:
           $ref: '#/components/schemas/_spaces_post_200_response_data'
+      required:
+      - data
+      - success
+      type: object
+    _spaces__spaceId__get_200_response_data:
+      additionalProperties: false
+      description: The requested space
+      example:
+        updated_at: 2019-02-24T18:28:18.79Z
+        domain: domain
+        name: name
+        created_at: 2019-02-08T11:45:48.899Z
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          description: The id of the space.
+          format: uuid
+          type: string
+        name:
+          minLength: 1
+          type: string
+        domain:
+          minLength: 1
+          type: string
+        created_at:
+          example: 2019-02-08T11:45:48.899Z
+          format: date-time
+          type: string
+        updated_at:
+          example: 2019-02-24T18:28:18.79Z
+          format: date-time
+          type: string
+      required:
+      - created_at
+      - domain
+      - id
+      - name
+      - updated_at
+      type: object
+    _spaces__spaceId__get_200_response:
+      example:
+        data:
+          updated_at: 2019-02-24T18:28:18.79Z
+          domain: domain
+          name: name
+          created_at: 2019-02-08T11:45:48.899Z
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        success: true
+      properties:
+        success:
+          description: API request succeeded
+          type: boolean
+        data:
+          $ref: '#/components/schemas/_spaces__spaceId__get_200_response_data'
+      required:
+      - data
+      - success
+      type: object
+    _spaces__spaceId__put_200_response_data:
+      additionalProperties: false
+      description: Updated space
+      example:
+        updated_at: 2019-02-24T18:28:18.79Z
+        domain: domain
+        name: name
+        created_at: 2019-02-08T11:45:48.899Z
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          description: The id of the space.
+          format: uuid
+          type: string
+        name:
+          minLength: 1
+          type: string
+        domain:
+          minLength: 1
+          type: string
+        created_at:
+          example: 2019-02-08T11:45:48.899Z
+          format: date-time
+          type: string
+        updated_at:
+          example: 2019-02-24T18:28:18.79Z
+          format: date-time
+          type: string
+      required:
+      - created_at
+      - domain
+      - id
+      - name
+      - updated_at
+      type: object
+    _spaces__spaceId__put_200_response:
+      example:
+        data:
+          updated_at: 2019-02-24T18:28:18.79Z
+          domain: domain
+          name: name
+          created_at: 2019-02-08T11:45:48.899Z
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        success: true
+      properties:
+        success:
+          description: API request succeeded
+          type: boolean
+        data:
+          $ref: '#/components/schemas/_spaces__spaceId__put_200_response_data'
       required:
       - data
       - success
@@ -6198,6 +7216,98 @@ components:
       - object
       - subject
       type: object
+    _permissions_revoke_post_200_response_data_inner_oneOf:
+      example:
+        access_level: own
+        id: id
+        type: folder
+      properties:
+        type:
+          enum:
+          - folder
+          type: string
+        id:
+          description: The id of the folder
+          pattern: "^(app|workflow|resource)_([0-9]\\d*)$"
+          type: string
+        access_level:
+          description: The access level of the folder
+          enum:
+          - own
+          - edit
+          - use
+          type: string
+      required:
+      - access_level
+      - id
+      - type
+      type: object
+    _permissions_revoke_post_200_response_data_inner_oneOf_1:
+      properties:
+        type:
+          enum:
+          - app
+          type: string
+        id:
+          description: The app ID.
+          format: uuid
+          type: string
+        access_level:
+          description: The access level of the app
+          enum:
+          - own
+          - edit
+          - use
+          type: string
+      required:
+      - access_level
+      - id
+      - type
+      type: object
+    _permissions_revoke_post_200_response_data_inner:
+      oneOf:
+      - $ref: '#/components/schemas/_permissions_revoke_post_200_response_data_inner_oneOf'
+      - $ref: '#/components/schemas/_permissions_revoke_post_200_response_data_inner_oneOf_1'
+      - $ref: '#/components/schemas/_permissions_listObjects_post_200_response_data_inner_oneOf'
+    _permissions_revoke_post_200_response:
+      example:
+        data:
+        - access_level: own
+          id: id
+          type: folder
+        - access_level: own
+          id: id
+          type: folder
+        success: true
+        total_count: 0.8008281904610115
+        has_more: true
+        next_token: next_token
+      properties:
+        success:
+          description: API request succeeded
+          type: boolean
+        data:
+          description: An array of requested items
+          items:
+            $ref: '#/components/schemas/_permissions_revoke_post_200_response_data_inner'
+          type: array
+        total_count:
+          description: Total number of items in the response
+          type: number
+        next_token:
+          description: A token to retrieve the next page of items in the collection
+          nullable: true
+          type: string
+        has_more:
+          description: Whether there are more items in the collection
+          type: boolean
+      required:
+      - data
+      - has_more
+      - next_token
+      - success
+      - total_count
+      type: object
     _access_requests_get_200_response_data_inner:
       description: Access Request
       example:
@@ -6295,9 +7405,12 @@ components:
       type: object
     _access_requests__accessRequestId__patch_request:
       additionalProperties: false
+      description: The body of a request to update an access request's status.
       properties:
         operations:
-          description: The body of a request to update an access request's status.
+          description: "A list of operations to apply to the access request. See the\
+            \ [JSON PATCH specification](https://tools.ietf.org/html/rfc6902) for\
+            \ more details."
           items:
             $ref: '#/components/schemas/_users__userId__patch_request_operations_inner_anyOf_2'
           type: array
@@ -6754,62 +7867,6 @@ components:
       - next_token
       - success
       - total_count
-      type: object
-    _resources__resourceId__get_200_response:
-      description: A single resource
-      example:
-        data:
-          updated_at: 2019-02-24T18:28:18.790Z
-          created_at: 2019-02-08T11:45:48.899Z
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          type: airflow
-          display_name: display_name
-        success: true
-      properties:
-        success:
-          description: API request succeeded
-          type: boolean
-        data:
-          $ref: '#/components/schemas/_resources_get_200_response_data_inner'
-      required:
-      - data
-      - success
-      type: object
-    _resource_configurations_get_200_response_data_inner_environment:
-      description: Environment
-      example:
-        default: true
-        color: color
-        updated_at: updated_at
-        name: name
-        description: description
-        created_at: created_at
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        id:
-          format: uuid
-          type: string
-        name:
-          type: string
-        description:
-          nullable: true
-          type: string
-        color:
-          type: string
-        default:
-          type: boolean
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - color
-      - created_at
-      - default
-      - description
-      - id
-      - name
-      - updated_at
       type: object
     Postgres_Options_database_options_anyOf_ssl_settings:
       additionalProperties: false
@@ -7363,13 +8420,206 @@ components:
       - base_url
       title: Rest API Options
       type: object
-    _resource_configurations_get_200_response_data_inner_options:
+    _resources_post_request_options:
       anyOf:
       - $ref: '#/components/schemas/Postgres_Options'
       - $ref: '#/components/schemas/MySQL_Options'
       - $ref: '#/components/schemas/Redshift_Options'
       - $ref: '#/components/schemas/Snowflake_Options'
       - $ref: '#/components/schemas/Rest_API_Options'
+    _resources_post_request:
+      properties:
+        type:
+          description: The type of resource.
+          enum:
+          - mysql
+          - postgresql
+          - redshift
+          - restapi
+          - snowflake
+          type: string
+        display_name:
+          minLength: 1
+          type: string
+        options:
+          $ref: '#/components/schemas/_resources_post_request_options'
+      required:
+      - display_name
+      - options
+      - type
+      type: object
+    _resources_post_200_response_data:
+      additionalProperties: false
+      description: The created resource.
+      example:
+        updated_at: 2019-02-24T18:28:18.790Z
+        created_at: 2019-02-08T11:45:48.899Z
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        type: airflow
+        display_name: display_name
+      properties:
+        id:
+          $ref: '#/components/schemas/_resources_get_200_response_data_inner_id'
+        type:
+          description: The type of resource.
+          enum:
+          - airflow
+          - alloydb
+          - asana
+          - athena
+          - basecamp
+          - bigid
+          - bigquery
+          - cassandra
+          - circleci
+          - closeio
+          - cosmosdb
+          - couchdb
+          - databricks
+          - datadog
+          - datastore
+          - denodo
+          - dynamodb
+          - elasticsearch
+          - firebase
+          - front
+          - gcs
+          - github
+          - googleAnalytics
+          - googleMaps
+          - googleSearchConsole
+          - googlesheets
+          - graphql
+          - grpc
+          - hubspot
+          - jdbc
+          - jira
+          - lambda
+          - launchdarkly
+          - microsoftTeams
+          - mongodb
+          - mssql
+          - mysql
+          - notion
+          - onesignal
+          - openAI
+          - openapi
+          - oracledb
+          - postgresql
+          - presto
+          - redis
+          - redshift
+          - restapi
+          - rethinkdb
+          - rockset
+          - retoolEmail
+          - retoolAI
+          - retoolDb
+          - retoolStorage
+          - s3
+          - salesforce
+          - saphana
+          - sendgrid
+          - shell
+          - slack
+          - slackopenapi
+          - smtp
+          - snowflake
+          - stripe
+          - twilio
+          - vertica
+          type: string
+        display_name:
+          minLength: 1
+          type: string
+        created_at:
+          example: 2019-02-08T11:45:48.899Z
+          type: string
+        updated_at:
+          example: 2019-02-24T18:28:18.790Z
+          type: string
+      required:
+      - created_at
+      - display_name
+      - id
+      - type
+      - updated_at
+      type: object
+    _resources_post_200_response:
+      example:
+        data:
+          updated_at: 2019-02-24T18:28:18.790Z
+          created_at: 2019-02-08T11:45:48.899Z
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          type: airflow
+          display_name: display_name
+        success: true
+      properties:
+        success:
+          description: API request succeeded
+          type: boolean
+        data:
+          $ref: '#/components/schemas/_resources_post_200_response_data'
+      required:
+      - data
+      - success
+      type: object
+    _resources__resourceId__get_200_response:
+      description: A single resource
+      example:
+        data:
+          updated_at: 2019-02-24T18:28:18.790Z
+          created_at: 2019-02-08T11:45:48.899Z
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          type: airflow
+          display_name: display_name
+        success: true
+      properties:
+        success:
+          description: API request succeeded
+          type: boolean
+        data:
+          $ref: '#/components/schemas/_resources_get_200_response_data_inner'
+      required:
+      - data
+      - success
+      type: object
+    _resource_configurations_get_200_response_data_inner_environment:
+      description: Environment
+      example:
+        default: true
+        color: color
+        updated_at: updated_at
+        name: name
+        description: description
+        created_at: created_at
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          format: uuid
+          type: string
+        name:
+          type: string
+        description:
+          nullable: true
+          type: string
+        color:
+          type: string
+        default:
+          type: boolean
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - color
+      - created_at
+      - default
+      - description
+      - id
+      - name
+      - updated_at
+      type: object
     _resource_configurations_get_200_response_data_inner:
       additionalProperties: false
       description: A list of resource configurations.
@@ -7422,7 +8672,7 @@ components:
         environment:
           $ref: '#/components/schemas/_resource_configurations_get_200_response_data_inner_environment'
         options:
-          $ref: '#/components/schemas/_resource_configurations_get_200_response_data_inner_options'
+          $ref: '#/components/schemas/_resources_post_request_options'
         created_at:
           example: 2019-02-08T11:45:48.899Z
           type: string
@@ -7598,7 +8848,7 @@ components:
         environment:
           $ref: '#/components/schemas/_resource_configurations_get_200_response_data_inner_environment'
         options:
-          $ref: '#/components/schemas/_resource_configurations_get_200_response_data_inner_options'
+          $ref: '#/components/schemas/_resources_post_request_options'
         created_at:
           example: 2019-02-08T11:45:48.899Z
           type: string
@@ -8188,6 +9438,1035 @@ components:
           type: boolean
         data:
           $ref: '#/components/schemas/_configuration_variables_get_200_response_data_inner'
+      required:
+      - data
+      - success
+      type: object
+    _observability_config_get_200_response_data_inner_config_oneOf:
+      example:
+        provider: Sentry
+        dsn: dsn
+      properties:
+        provider:
+          description: This is an enumerated field that can only take the value "Sentry".
+            It identifies the provider of the observability configuration.
+          enum:
+          - Sentry
+          type: string
+        dsn:
+          description: This is a string field that represents the Data Source Name
+            (DSN). It is the unique identifier that helps Sentry know where to send
+            errors and exceptions.
+          type: string
+      required:
+      - dsn
+      - provider
+      type: object
+    _observability_config_get_200_response_data_inner_config_oneOf_1:
+      properties:
+        provider:
+          description: This is an enumerated field that can only take the value "Datadog".
+            It identifies the provider of the observability configuration.
+          enum:
+          - Datadog
+          type: string
+        api_key:
+          description: This is a string field that represents the API key for Datadog.
+            This key is used to authenticate with the Datadog API.
+          type: string
+      required:
+      - api_key
+      - provider
+      type: object
+    _observability_config_get_200_response_data_inner_config:
+      description: "Provider-specific configuration. For Datadog, provide an API key.\
+        \ For Sentry, provide a DSN."
+      oneOf:
+      - $ref: '#/components/schemas/_observability_config_get_200_response_data_inner_config_oneOf'
+      - $ref: '#/components/schemas/_observability_config_get_200_response_data_inner_config_oneOf_1'
+    _observability_config_get_200_response_data_inner:
+      additionalProperties: false
+      description: Shape of Get Observability Config Response
+      example:
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        config:
+          provider: Sentry
+          dsn: dsn
+        enabled: true
+      properties:
+        id:
+          description: The id of the configuration.
+          format: uuid
+          type: string
+        config:
+          $ref: '#/components/schemas/_observability_config_get_200_response_data_inner_config'
+        enabled:
+          description: "When enabled, use this provider for apps observability monitoring."
+          type: boolean
+      required:
+      - config
+      - enabled
+      - id
+      type: object
+    _observability_config_get_200_response:
+      example:
+        data:
+        - id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          config:
+            provider: Sentry
+            dsn: dsn
+          enabled: true
+        - id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          config:
+            provider: Sentry
+            dsn: dsn
+          enabled: true
+        success: true
+      properties:
+        success:
+          description: API request succeeded
+          type: boolean
+        data:
+          items:
+            $ref: '#/components/schemas/_observability_config_get_200_response_data_inner'
+          type: array
+      required:
+      - data
+      - success
+      type: object
+    _observability_config_post_request:
+      additionalProperties: false
+      description: Shape of Post Observability Config Request
+      properties:
+        config:
+          $ref: '#/components/schemas/_observability_config_get_200_response_data_inner_config'
+        enabled:
+          description: "When enabled, use this provider for apps observability monitoring."
+          type: boolean
+      required:
+      - config
+      - enabled
+      type: object
+    _observability_config_post_200_response_data:
+      additionalProperties: false
+      description: Shape of Post Observability Config Response
+      example:
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        config:
+          provider: Sentry
+          dsn: dsn
+        enabled: true
+      properties:
+        id:
+          description: The id of the configuration.
+          format: uuid
+          type: string
+        config:
+          $ref: '#/components/schemas/_observability_config_get_200_response_data_inner_config'
+        enabled:
+          description: "When enabled, use this provider for apps observability monitoring."
+          type: boolean
+      required:
+      - config
+      - enabled
+      - id
+      type: object
+    _observability_config_post_200_response:
+      example:
+        data:
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          config:
+            provider: Sentry
+            dsn: dsn
+          enabled: true
+        success: true
+      properties:
+        success:
+          description: API request succeeded
+          type: boolean
+        data:
+          $ref: '#/components/schemas/_observability_config_post_200_response_data'
+      required:
+      - data
+      - success
+      type: object
+    _observability_config__configId__put_request:
+      additionalProperties: false
+      description: Shape of Put Observability Config Request
+      properties:
+        config:
+          $ref: '#/components/schemas/_observability_config_get_200_response_data_inner_config'
+        enabled:
+          description: "When enabled, use this provider for apps observability monitoring."
+          type: boolean
+      type: object
+    _observability_config__configId__put_200_response_data:
+      additionalProperties: false
+      description: Shape of Put Observability Config Response
+      example:
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        config:
+          provider: Sentry
+          dsn: dsn
+        enabled: true
+      properties:
+        id:
+          description: The id of the configuration.
+          format: uuid
+          type: string
+        config:
+          $ref: '#/components/schemas/_observability_config_get_200_response_data_inner_config'
+        enabled:
+          description: "When enabled, use this provider for apps observability monitoring."
+          type: boolean
+      required:
+      - config
+      - enabled
+      - id
+      type: object
+    _observability_config__configId__put_200_response:
+      example:
+        data:
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          config:
+            provider: Sentry
+            dsn: dsn
+          enabled: true
+        success: true
+      properties:
+        success:
+          description: API request succeeded
+          type: boolean
+        data:
+          $ref: '#/components/schemas/_observability_config__configId__put_200_response_data'
+      required:
+      - data
+      - success
+      type: object
+    _observability_provider__provider__test_post_provider_parameter:
+      anyOf:
+      - enum:
+        - Sentry
+        type: string
+      - enum:
+        - Datadog
+        type: string
+      description: "The observability provider name, either \"Sentry\" or \"Datadog\""
+    _observability_provider__provider__test_post_200_response_data_anyOf:
+      example:
+        success: true
+        message: message
+      properties:
+        success:
+          description: Send test error failed
+          type: boolean
+        message:
+          description: Error message
+          type: string
+      required:
+      - message
+      - success
+      type: object
+    _observability_provider__provider__test_post_200_response_data_anyOf_1:
+      properties:
+        success:
+          description: Send test error succeeded
+          type: boolean
+      required:
+      - success
+      type: object
+    _observability_provider__provider__test_post_200_response_data:
+      anyOf:
+      - $ref: '#/components/schemas/_observability_provider__provider__test_post_200_response_data_anyOf'
+      - $ref: '#/components/schemas/_observability_provider__provider__test_post_200_response_data_anyOf_1'
+      description: Send test error response
+    _observability_provider__provider__test_post_200_response:
+      example:
+        data:
+          success: true
+          message: message
+        success: true
+      properties:
+        success:
+          description: API request succeeded
+          type: boolean
+        data:
+          $ref: '#/components/schemas/_observability_provider__provider__test_post_200_response_data'
+      required:
+      - data
+      - success
+      type: object
+    _usage_organizations_get_200_response_data_inner:
+      additionalProperties: false
+      description: An organization in Retool
+      example:
+        org_id: org_id
+        host: host
+        last_active: 2019-02-08T11:45:48.899Z
+      properties:
+        org_id:
+          description: The id of the organization
+          type: string
+        host:
+          description: The host of the organization
+          type: string
+        last_active:
+          example: 2019-02-08T11:45:48.899Z
+          format: date-time
+          type: string
+      required:
+      - host
+      - last_active
+      - org_id
+      type: object
+    _usage_organizations_get_200_response:
+      description: A list of organizations in this deployment.
+      example:
+        data:
+        - org_id: org_id
+          host: host
+          last_active: 2019-02-08T11:45:48.899Z
+        - org_id: org_id
+          host: host
+          last_active: 2019-02-08T11:45:48.899Z
+        success: true
+        total_count: 0.8008281904610115
+        has_more: true
+        next_token: next_token
+      properties:
+        success:
+          description: API request succeeded
+          type: boolean
+        data:
+          description: An array of requested items
+          items:
+            $ref: '#/components/schemas/_usage_organizations_get_200_response_data_inner'
+          type: array
+        total_count:
+          description: Total number of items in the response
+          type: number
+        next_token:
+          description: A token to retrieve the next page of items in the collection
+          nullable: true
+          type: string
+        has_more:
+          description: Whether there are more items in the collection
+          type: boolean
+      required:
+      - data
+      - has_more
+      - next_token
+      - success
+      - total_count
+      type: object
+    _usage_get_200_response_data_daily_T30_usage_inner:
+      example:
+        mau: 2.027123023002322
+        maa: 3.616076749251911
+        day: day
+      properties:
+        day:
+          type: string
+        maa:
+          description: The number of distinct applications that were active on the
+            given day
+          type: number
+        mau:
+          description: The number of distinct users who were active on the given day
+          type: number
+      required:
+      - day
+      - maa
+      - mau
+      type: object
+    _usage_get_200_response_data:
+      additionalProperties: false
+      example:
+        percent_growth_page_saves: 5.637376656633329
+        count_T30_users: 5.962133916683182
+        percent_growth_users: 7.061401241503109
+        percent_growth_T30_users: 9.301444243932576
+        count_current_page_views: 6.027456183070403
+        daily_T30_usage:
+        - mau: 2.027123023002322
+          maa: 3.616076749251911
+          day: day
+        - mau: 2.027123023002322
+          maa: 3.616076749251911
+          day: day
+        count_current_page_saves: 0.8008281904610115
+        percent_growth_page_views: 2.3021358869347655
+        count_current_users: 1.4658129805029452
+      properties:
+        count_current_page_saves:
+          description: The number of page saves for all the organizations within the
+            date range
+          type: number
+        count_current_page_views:
+          description: The number of page views for all the organizations within the
+            date range
+          type: number
+        count_current_users:
+          description: The total number of unique users who have performed any tracked
+            activity in all the organizations within the date range
+          type: number
+        count_T30_users:
+          description: The number of unique users who have been active over the trailing
+            30 days from the end date provided
+          type: number
+        percent_growth_page_saves:
+          description: The percentage growth in page saves compared to the previous
+            cycle of the same length as the provided date range
+          type: number
+        percent_growth_page_views:
+          description: The percentage growth in page views compared to the previous
+            cycle of the same length as the provided date range
+          type: number
+        percent_growth_users:
+          description: The percentage growth in unique users compared to the previous
+            cycle of the same length as the provided date range
+          type: number
+        percent_growth_T30_users:
+          description: The percentage growth in T30 users (trailing 30 days users)
+            compared to the previous cycle of the same length as the provided date
+            range
+          type: number
+        daily_T30_usage:
+          items:
+            $ref: '#/components/schemas/_usage_get_200_response_data_daily_T30_usage_inner'
+          type: array
+      required:
+      - count_T30_users
+      - count_current_page_saves
+      - count_current_page_views
+      - count_current_users
+      - daily_T30_usage
+      - percent_growth_T30_users
+      - percent_growth_page_saves
+      - percent_growth_page_views
+      - percent_growth_users
+      type: object
+    _usage_get_200_response:
+      description: The usage information for the organizations
+      example:
+        data:
+          percent_growth_page_saves: 5.637376656633329
+          count_T30_users: 5.962133916683182
+          percent_growth_users: 7.061401241503109
+          percent_growth_T30_users: 9.301444243932576
+          count_current_page_views: 6.027456183070403
+          daily_T30_usage:
+          - mau: 2.027123023002322
+            maa: 3.616076749251911
+            day: day
+          - mau: 2.027123023002322
+            maa: 3.616076749251911
+            day: day
+          count_current_page_saves: 0.8008281904610115
+          percent_growth_page_views: 2.3021358869347655
+          count_current_users: 1.4658129805029452
+        success: true
+      properties:
+        success:
+          description: API request succeeded
+          type: boolean
+        data:
+          $ref: '#/components/schemas/_usage_get_200_response_data'
+      required:
+      - data
+      - success
+      type: object
+    _usage_app_summary_get_200_response_data_inner:
+      additionalProperties: false
+      example:
+        app_name: app_name
+        count_app_views: 0.8008281904610115
+        count_editors: 5.962133916683182
+        host: host
+        count_viewers: 1.4658129805029452
+        count_app_saves: 6.027456183070403
+      properties:
+        app_name:
+          description: The name of the app
+          type: string
+        host:
+          description: The organization host
+          type: string
+        count_app_views:
+          description: The number of views of the app in the time range specified
+          type: number
+        count_app_saves:
+          description: The number of saves of the app in the time range specified
+          type: number
+        count_viewers:
+          description: The number of viewers of the app in the time range specified
+          type: number
+        count_editors:
+          description: The number of editors of the app in the time range specified
+          type: number
+      required:
+      - app_name
+      - count_app_saves
+      - count_app_views
+      - count_editors
+      - count_viewers
+      - host
+      type: object
+    _usage_app_summary_get_200_response:
+      description: The app summaries for the organizations
+      example:
+        data:
+        - app_name: app_name
+          count_app_views: 0.8008281904610115
+          count_editors: 5.962133916683182
+          host: host
+          count_viewers: 1.4658129805029452
+          count_app_saves: 6.027456183070403
+        - app_name: app_name
+          count_app_views: 0.8008281904610115
+          count_editors: 5.962133916683182
+          host: host
+          count_viewers: 1.4658129805029452
+          count_app_saves: 6.027456183070403
+        success: true
+        total_count: 5.637376656633329
+        has_more: true
+        next_token: next_token
+      properties:
+        success:
+          description: API request succeeded
+          type: boolean
+        data:
+          description: An array of requested items
+          items:
+            $ref: '#/components/schemas/_usage_app_summary_get_200_response_data_inner'
+          type: array
+        total_count:
+          description: Total number of items in the response
+          type: number
+        next_token:
+          description: A token to retrieve the next page of items in the collection
+          nullable: true
+          type: string
+        has_more:
+          description: Whether there are more items in the collection
+          type: boolean
+      required:
+      - data
+      - has_more
+      - next_token
+      - success
+      - total_count
+      type: object
+    _usage_app_details_get_200_response_data_overall_summary_inner:
+      additionalProperties: false
+      example:
+        app_name: app_name
+        count_app_views: 6.027456183070403
+        org_id: org_id
+        host: host
+        count_app_saves: 0.8008281904610115
+      properties:
+        org_id:
+          type: string
+        app_name:
+          type: string
+        count_app_saves:
+          type: number
+        count_app_views:
+          type: number
+        host:
+          type: string
+      required:
+      - app_name
+      - count_app_saves
+      - count_app_views
+      - host
+      - org_id
+      type: object
+    _usage_app_details_get_200_response_data_weekly_summary_inner_weekly_data_inner:
+      example:
+        week: week
+        count_app_views: 5.962133916683182
+        count_app_saves: 1.4658129805029452
+      properties:
+        week:
+          type: string
+        count_app_saves:
+          type: number
+        count_app_views:
+          type: number
+      required:
+      - count_app_saves
+      - count_app_views
+      - week
+      type: object
+    _usage_app_details_get_200_response_data_weekly_summary_inner:
+      additionalProperties: false
+      example:
+        weekly_data:
+        - week: week
+          count_app_views: 5.962133916683182
+          count_app_saves: 1.4658129805029452
+        - week: week
+          count_app_views: 5.962133916683182
+          count_app_saves: 1.4658129805029452
+        org_id: org_id
+      properties:
+        org_id:
+          type: string
+        weekly_data:
+          items:
+            $ref: '#/components/schemas/_usage_app_details_get_200_response_data_weekly_summary_inner_weekly_data_inner'
+          type: array
+      required:
+      - org_id
+      - weekly_data
+      type: object
+    _usage_app_details_get_200_response_data_viewer_summary_inner:
+      additionalProperties: false
+      example:
+        user_id: user_id
+        org_id: org_id
+        count: 5.637376656633329
+        host: host
+        email: email
+      properties:
+        email:
+          type: string
+        count:
+          type: number
+        user_id:
+          type: string
+        org_id:
+          type: string
+        host:
+          type: string
+      required:
+      - count
+      - email
+      - host
+      - org_id
+      - user_id
+      type: object
+    _usage_app_details_get_200_response_data:
+      additionalProperties: false
+      example:
+        editor_summary:
+        - user_id: user_id
+          org_id: org_id
+          count: 5.637376656633329
+          host: host
+          email: email
+        - user_id: user_id
+          org_id: org_id
+          count: 5.637376656633329
+          host: host
+          email: email
+        overall_summary:
+        - app_name: app_name
+          count_app_views: 6.027456183070403
+          org_id: org_id
+          host: host
+          count_app_saves: 0.8008281904610115
+        - app_name: app_name
+          count_app_views: 6.027456183070403
+          org_id: org_id
+          host: host
+          count_app_saves: 0.8008281904610115
+        weekly_summary:
+        - weekly_data:
+          - week: week
+            count_app_views: 5.962133916683182
+            count_app_saves: 1.4658129805029452
+          - week: week
+            count_app_views: 5.962133916683182
+            count_app_saves: 1.4658129805029452
+          org_id: org_id
+        - weekly_data:
+          - week: week
+            count_app_views: 5.962133916683182
+            count_app_saves: 1.4658129805029452
+          - week: week
+            count_app_views: 5.962133916683182
+            count_app_saves: 1.4658129805029452
+          org_id: org_id
+        viewer_summary:
+        - user_id: user_id
+          org_id: org_id
+          count: 5.637376656633329
+          host: host
+          email: email
+        - user_id: user_id
+          org_id: org_id
+          count: 5.637376656633329
+          host: host
+          email: email
+      properties:
+        overall_summary:
+          items:
+            $ref: '#/components/schemas/_usage_app_details_get_200_response_data_overall_summary_inner'
+          type: array
+        weekly_summary:
+          items:
+            $ref: '#/components/schemas/_usage_app_details_get_200_response_data_weekly_summary_inner'
+          type: array
+        viewer_summary:
+          items:
+            $ref: '#/components/schemas/_usage_app_details_get_200_response_data_viewer_summary_inner'
+          type: array
+        editor_summary:
+          items:
+            $ref: '#/components/schemas/_usage_app_details_get_200_response_data_viewer_summary_inner'
+          type: array
+      required:
+      - editor_summary
+      - overall_summary
+      - viewer_summary
+      - weekly_summary
+      type: object
+    _usage_app_details_get_200_response:
+      description: "The details about the app usage, such as edits and views, for\
+        \ the organizations"
+      example:
+        data:
+          editor_summary:
+          - user_id: user_id
+            org_id: org_id
+            count: 5.637376656633329
+            host: host
+            email: email
+          - user_id: user_id
+            org_id: org_id
+            count: 5.637376656633329
+            host: host
+            email: email
+          overall_summary:
+          - app_name: app_name
+            count_app_views: 6.027456183070403
+            org_id: org_id
+            host: host
+            count_app_saves: 0.8008281904610115
+          - app_name: app_name
+            count_app_views: 6.027456183070403
+            org_id: org_id
+            host: host
+            count_app_saves: 0.8008281904610115
+          weekly_summary:
+          - weekly_data:
+            - week: week
+              count_app_views: 5.962133916683182
+              count_app_saves: 1.4658129805029452
+            - week: week
+              count_app_views: 5.962133916683182
+              count_app_saves: 1.4658129805029452
+            org_id: org_id
+          - weekly_data:
+            - week: week
+              count_app_views: 5.962133916683182
+              count_app_saves: 1.4658129805029452
+            - week: week
+              count_app_views: 5.962133916683182
+              count_app_saves: 1.4658129805029452
+            org_id: org_id
+          viewer_summary:
+          - user_id: user_id
+            org_id: org_id
+            count: 5.637376656633329
+            host: host
+            email: email
+          - user_id: user_id
+            org_id: org_id
+            count: 5.637376656633329
+            host: host
+            email: email
+        success: true
+      properties:
+        success:
+          description: API request succeeded
+          type: boolean
+        data:
+          $ref: '#/components/schemas/_usage_app_details_get_200_response_data'
+      required:
+      - data
+      - success
+      type: object
+    _usage_user_summary_get_200_response_data_inner:
+      additionalProperties: false
+      example:
+        user_id: user_id
+        count_app_views: 0.8008281904610115
+        count_unique_apps: 1.4658129805029452
+        org_id: org_id
+        host: host
+        last_active: 2019-02-08T11:45:48.899Z
+        email: email
+        count_app_saves: 6.027456183070403
+      properties:
+        org_id:
+          description: The id of the organization to which this user belongs
+          type: string
+        user_id:
+          description: The id of the user
+          type: string
+        email:
+          description: The email of the user
+          type: string
+        host:
+          description: The host of the organization to which this user belongs
+          type: string
+        count_app_views:
+          description: The number of times the user viewed an app in the time range
+            specified
+          type: number
+        count_app_saves:
+          description: The number of times the user edited an app in the time range
+            specified
+          type: number
+        count_unique_apps:
+          description: The number of unique apps edited in the time range specified
+          type: number
+        last_active:
+          example: 2019-02-08T11:45:48.899Z
+          format: date-time
+          type: string
+      required:
+      - count_app_saves
+      - count_app_views
+      - count_unique_apps
+      - email
+      - host
+      - last_active
+      - org_id
+      - user_id
+      type: object
+    _usage_user_summary_get_200_response:
+      description: The user summaries for the organizations
+      example:
+        data:
+        - user_id: user_id
+          count_app_views: 0.8008281904610115
+          count_unique_apps: 1.4658129805029452
+          org_id: org_id
+          host: host
+          last_active: 2019-02-08T11:45:48.899Z
+          email: email
+          count_app_saves: 6.027456183070403
+        - user_id: user_id
+          count_app_views: 0.8008281904610115
+          count_unique_apps: 1.4658129805029452
+          org_id: org_id
+          host: host
+          last_active: 2019-02-08T11:45:48.899Z
+          email: email
+          count_app_saves: 6.027456183070403
+        success: true
+        total_count: 5.962133916683182
+        has_more: true
+        next_token: next_token
+      properties:
+        success:
+          description: API request succeeded
+          type: boolean
+        data:
+          description: An array of requested items
+          items:
+            $ref: '#/components/schemas/_usage_user_summary_get_200_response_data_inner'
+          type: array
+        total_count:
+          description: Total number of items in the response
+          type: number
+        next_token:
+          description: A token to retrieve the next page of items in the collection
+          nullable: true
+          type: string
+        has_more:
+          description: Whether there are more items in the collection
+          type: boolean
+      required:
+      - data
+      - has_more
+      - next_token
+      - success
+      - total_count
+      type: object
+    _usage_user_details_get_200_response_data_overall_summary_inner:
+      additionalProperties: false
+      example:
+        user_id: user_id
+        count_app_views: 6.027456183070403
+        org_id: org_id
+        host: host
+        count_app_saves: 0.8008281904610115
+      properties:
+        org_id:
+          type: string
+        user_id:
+          type: string
+        host:
+          type: string
+        count_app_saves:
+          type: number
+        count_app_views:
+          type: number
+      required:
+      - count_app_saves
+      - count_app_views
+      - host
+      - org_id
+      - user_id
+      type: object
+    _usage_user_details_get_200_response_data_viewer_summary_inner:
+      additionalProperties: false
+      example:
+        app_name: app_name
+        org_id: org_id
+        host: host
+        count: 1.4658129805029452
+      properties:
+        app_name:
+          type: string
+        org_id:
+          type: string
+        host:
+          type: string
+        count:
+          type: number
+      required:
+      - app_name
+      - count
+      - host
+      - org_id
+      type: object
+    _usage_user_details_get_200_response_data:
+      example:
+        editor_summary:
+        - app_name: app_name
+          org_id: org_id
+          host: host
+          count: 1.4658129805029452
+        - app_name: app_name
+          org_id: org_id
+          host: host
+          count: 1.4658129805029452
+        overall_summary:
+        - user_id: user_id
+          count_app_views: 6.027456183070403
+          org_id: org_id
+          host: host
+          count_app_saves: 0.8008281904610115
+        - user_id: user_id
+          count_app_views: 6.027456183070403
+          org_id: org_id
+          host: host
+          count_app_saves: 0.8008281904610115
+        weekly_summary:
+        - weekly_data:
+          - week: week
+            count_app_views: 5.962133916683182
+            count_app_saves: 1.4658129805029452
+          - week: week
+            count_app_views: 5.962133916683182
+            count_app_saves: 1.4658129805029452
+          org_id: org_id
+        - weekly_data:
+          - week: week
+            count_app_views: 5.962133916683182
+            count_app_saves: 1.4658129805029452
+          - week: week
+            count_app_views: 5.962133916683182
+            count_app_saves: 1.4658129805029452
+          org_id: org_id
+        viewer_summary:
+        - app_name: app_name
+          org_id: org_id
+          host: host
+          count: 1.4658129805029452
+        - app_name: app_name
+          org_id: org_id
+          host: host
+          count: 1.4658129805029452
+      properties:
+        overall_summary:
+          items:
+            $ref: '#/components/schemas/_usage_user_details_get_200_response_data_overall_summary_inner'
+          type: array
+        weekly_summary:
+          items:
+            $ref: '#/components/schemas/_usage_app_details_get_200_response_data_weekly_summary_inner'
+          type: array
+        viewer_summary:
+          items:
+            $ref: '#/components/schemas/_usage_user_details_get_200_response_data_viewer_summary_inner'
+          type: array
+        editor_summary:
+          items:
+            $ref: '#/components/schemas/_usage_user_details_get_200_response_data_viewer_summary_inner'
+          type: array
+      required:
+      - editor_summary
+      - overall_summary
+      - viewer_summary
+      - weekly_summary
+      type: object
+    _usage_user_details_get_200_response:
+      description: "The details about the users usage, such as edits and views on\
+        \ apps, for the organizations"
+      example:
+        data:
+          editor_summary:
+          - app_name: app_name
+            org_id: org_id
+            host: host
+            count: 1.4658129805029452
+          - app_name: app_name
+            org_id: org_id
+            host: host
+            count: 1.4658129805029452
+          overall_summary:
+          - user_id: user_id
+            count_app_views: 6.027456183070403
+            org_id: org_id
+            host: host
+            count_app_saves: 0.8008281904610115
+          - user_id: user_id
+            count_app_views: 6.027456183070403
+            org_id: org_id
+            host: host
+            count_app_saves: 0.8008281904610115
+          weekly_summary:
+          - weekly_data:
+            - week: week
+              count_app_views: 5.962133916683182
+              count_app_saves: 1.4658129805029452
+            - week: week
+              count_app_views: 5.962133916683182
+              count_app_saves: 1.4658129805029452
+            org_id: org_id
+          - weekly_data:
+            - week: week
+              count_app_views: 5.962133916683182
+              count_app_saves: 1.4658129805029452
+            - week: week
+              count_app_views: 5.962133916683182
+              count_app_saves: 1.4658129805029452
+            org_id: org_id
+          viewer_summary:
+          - app_name: app_name
+            org_id: org_id
+            host: host
+            count: 1.4658129805029452
+          - app_name: app_name
+            org_id: org_id
+            host: host
+            count: 1.4658129805029452
+        success: true
+      properties:
+        success:
+          description: API request succeeded
+          type: boolean
+        data:
+          $ref: '#/components/schemas/_usage_user_details_get_200_response_data'
       required:
       - data
       - success

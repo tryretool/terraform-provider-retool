@@ -197,6 +197,14 @@
             "nullable": true,
             "format": "uuid",
             "description": "The app ID of the landing page"
+          },
+          "created_at": {
+            "type": "string",
+            "example": "2019-02-08T11:45:48.899Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "example": "2019-02-24T18:28:18.790Z"
           }
         },
         "required": [
@@ -213,7 +221,9 @@
           "unpublished_release_access",
           "usage_analytics_access",
           "account_details_access",
-          "landing_page_app_id"
+          "landing_page_app_id",
+          "created_at",
+          "updated_at"
         ],
         "description": "This object represents a permission group. A permission group is a list of users by which to restrict access. You add users to one or more groups and then configure the group's level of access. This applies the same permissions to all group members. See https://docs.retool.com/org-users/concepts/permission-groups or more information."
       },
@@ -245,6 +255,14 @@
             "type": "string",
             "enum": ["app", "workflow", "resource"],
             "description": "The type of the folder"
+          },
+          "created_at": {
+            "type": "string",
+            "example": "2019-02-08T11:45:48.899Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "example": "2019-02-24T18:28:18.790Z"
           }
         },
         "required": [
@@ -252,7 +270,9 @@
           "legacy_id",
           "name",
           "is_system_folder",
-          "folder_type"
+          "folder_type",
+          "created_at",
+          "updated_at"
         ],
         "description": "This object represents app, resource and workflows folders."
       },
@@ -279,7 +299,7 @@
         },
         "required": ["id", "name", "domain", "created_at", "updated_at"],
         "additionalProperties": false,
-        "description": "This object represents a space. Spaces can be used to separete your organization's data."
+        "description": "This object represents a space. Spaces can be used to separate your organization's data."
       },
       "source_control_configuration": {
         "anyOf": [
@@ -1776,6 +1796,181 @@
           }
         },
         "required": ["id", "name", "secret", "values"]
+      },
+      "observability_configuration": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The id of the configuration."
+          },
+          "config": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "provider": {
+                    "type": "string",
+                    "enum": ["Sentry"],
+                    "description": "This is an enumerated field that can only take the value \"Sentry\". It identifies the provider of the observability configuration."
+                  },
+                  "dsn": {
+                    "type": "string",
+                    "description": "This is a string field that represents the Data Source Name (DSN). It is the unique identifier that helps Sentry know where to send errors and exceptions."
+                  }
+                },
+                "required": ["provider", "dsn"]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "provider": {
+                    "type": "string",
+                    "enum": ["Datadog"],
+                    "description": "This is an enumerated field that can only take the value \"Datadog\". It identifies the provider of the observability configuration."
+                  },
+                  "api_key": {
+                    "type": "string",
+                    "description": "This is a string field that represents the API key for Datadog. This key is used to authenticate with the Datadog API."
+                  }
+                },
+                "required": ["provider", "api_key"]
+              }
+            ],
+            "description": "Provider-specific configuration. For Datadog, provide an API key. For Sentry, provide a DSN."
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "When enabled, use this provider for apps observability monitoring."
+          }
+        },
+        "required": ["id", "config", "enabled"],
+        "additionalProperties": false,
+        "description": "Shape of external Observability provider config"
+      },
+      "organization": {
+        "type": "object",
+        "properties": {
+          "org_id": {
+            "type": "string",
+            "description": "The id of the organization"
+          },
+          "host": {
+            "type": "string",
+            "description": "The host of the organization"
+          },
+          "last_active": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2019-02-08T11:45:48.899Z"
+          }
+        },
+        "required": ["org_id", "host", "last_active"],
+        "additionalProperties": false,
+        "description": "An organization in Retool"
+      },
+      "usage": {
+        "type": "object",
+        "properties": {
+          "count_current_page_saves": {
+            "type": "number",
+            "description": "The number of page saves for all the organizations within the date range"
+          },
+          "count_current_page_views": {
+            "type": "number",
+            "description": "The number of page views for all the organizations within the date range"
+          },
+          "count_current_users": {
+            "type": "number",
+            "description": "The total number of unique users who have performed any tracked activity in all the organizations within the date range"
+          },
+          "count_T30_users": {
+            "type": "number",
+            "description": "The number of unique users who have been active over the trailing 30 days from the end date provided"
+          },
+          "percent_growth_page_saves": {
+            "type": "number",
+            "description": "The percentage growth in page saves compared to the previous cycle of the same length as the provided date range"
+          },
+          "percent_growth_page_views": {
+            "type": "number",
+            "description": "The percentage growth in page views compared to the previous cycle of the same length as the provided date range"
+          },
+          "percent_growth_users": {
+            "type": "number",
+            "description": "The percentage growth in unique users compared to the previous cycle of the same length as the provided date range"
+          },
+          "percent_growth_T30_users": {
+            "type": "number",
+            "description": "The percentage growth in T30 users (trailing 30 days users) compared to the previous cycle of the same length as the provided date range"
+          },
+          "daily_T30_usage": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "day": { "type": "string" },
+                "maa": {
+                  "type": "number",
+                  "description": "The number of distinct applications that were active on the given day"
+                },
+                "mau": {
+                  "type": "number",
+                  "description": "The number of distinct users who were active on the given day"
+                }
+              },
+              "required": ["day", "maa", "mau"]
+            }
+          }
+        },
+        "required": [
+          "count_current_page_saves",
+          "count_current_page_views",
+          "count_current_users",
+          "count_T30_users",
+          "percent_growth_page_saves",
+          "percent_growth_page_views",
+          "percent_growth_users",
+          "percent_growth_T30_users",
+          "daily_T30_usage"
+        ],
+        "additionalProperties": false
+      },
+      "appSummary": {
+        "type": "object",
+        "properties": {
+          "app_name": {
+            "type": "string",
+            "description": "The name of the app"
+          },
+          "host": { "type": "string", "description": "The organization host" },
+          "count_app_views": {
+            "type": "number",
+            "description": "The number of views of the app in the time range specified"
+          },
+          "count_app_saves": {
+            "type": "number",
+            "description": "The number of saves of the app in the time range specified"
+          },
+          "count_viewers": {
+            "type": "number",
+            "description": "The number of viewers of the app in the time range specified"
+          },
+          "count_editors": {
+            "type": "number",
+            "description": "The number of editors of the app in the time range specified"
+          }
+        },
+        "required": [
+          "app_name",
+          "host",
+          "count_app_views",
+          "count_app_saves",
+          "count_viewers",
+          "count_editors"
+        ],
+        "additionalProperties": false
       }
     },
     "parameters": {},
@@ -1954,11 +2149,12 @@
                         }
                       ]
                     },
-                    "description": "The body of a request to update a user."
+                    "description": "A list of operations to apply to the user. See the [JSON PATCH specification](https://tools.ietf.org/html/rfc6902) for more details."
                   }
                 },
                 "required": ["operations"],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "description": "The body of a request to update a user."
               }
             }
           }
@@ -2611,6 +2807,14 @@
                           "nullable": true,
                           "format": "uuid",
                           "description": "The app ID of the landing page"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "example": "2019-02-08T11:45:48.899Z"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "example": "2019-02-24T18:28:18.790Z"
                         }
                       },
                       "required": [
@@ -2627,7 +2831,9 @@
                         "unpublished_release_access",
                         "usage_analytics_access",
                         "account_details_access",
-                        "landing_page_app_id"
+                        "landing_page_app_id",
+                        "created_at",
+                        "updated_at"
                       ],
                       "description": "The requested group"
                     }
@@ -2699,7 +2905,7 @@
                         }
                       ]
                     },
-                    "description": "A list of operations to apply to the group. See https://tools.ietf.org/html/rfc6902 for details."
+                    "description": "A list of operations to apply to the group. See the [JSON PATCH specification](https://tools.ietf.org/html/rfc6902) for more details."
                   }
                 },
                 "required": ["operations"],
@@ -2857,6 +3063,14 @@
                           "nullable": true,
                           "format": "uuid",
                           "description": "The app ID of the landing page"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "example": "2019-02-08T11:45:48.899Z"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "example": "2019-02-24T18:28:18.790Z"
                         }
                       },
                       "required": [
@@ -2873,7 +3087,9 @@
                         "unpublished_release_access",
                         "usage_analytics_access",
                         "account_details_access",
-                        "landing_page_app_id"
+                        "landing_page_app_id",
+                        "created_at",
+                        "updated_at"
                       ],
                       "description": "The updated group"
                     }
@@ -2928,7 +3144,8 @@
                         }
                       },
                       "required": ["id", "is_group_admin"]
-                    }
+                    },
+                    "description": "Users to add to the group. Pass in an empty list to create a group with no members."
                   },
                   "universal_app_access": {
                     "type": "string",
@@ -3015,6 +3232,14 @@
                     "nullable": true,
                     "format": "uuid",
                     "description": "The app ID of the landing page"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "example": "2019-02-08T11:45:48.899Z"
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "example": "2019-02-24T18:28:18.790Z"
                   }
                 }
               }
@@ -3169,6 +3394,14 @@
                           "nullable": true,
                           "format": "uuid",
                           "description": "The app ID of the landing page"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "example": "2019-02-08T11:45:48.899Z"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "example": "2019-02-24T18:28:18.790Z"
                         }
                       },
                       "required": [
@@ -3185,7 +3418,9 @@
                         "unpublished_release_access",
                         "usage_analytics_access",
                         "account_details_access",
-                        "landing_page_app_id"
+                        "landing_page_app_id",
+                        "created_at",
+                        "updated_at"
                       ],
                       "description": "The updated group"
                     }
@@ -3353,6 +3588,14 @@
                             "nullable": true,
                             "format": "uuid",
                             "description": "The app ID of the landing page"
+                          },
+                          "created_at": {
+                            "type": "string",
+                            "example": "2019-02-08T11:45:48.899Z"
+                          },
+                          "updated_at": {
+                            "type": "string",
+                            "example": "2019-02-24T18:28:18.790Z"
                           }
                         },
                         "required": [
@@ -3369,7 +3612,9 @@
                           "unpublished_release_access",
                           "usage_analytics_access",
                           "account_details_access",
-                          "landing_page_app_id"
+                          "landing_page_app_id",
+                          "created_at",
+                          "updated_at"
                         ],
                         "description": "This object represents a permission group. A permission group is a list of users by which to restrict access. You add users to one or more groups and then configure the group's level of access. This applies the same permissions to all group members. See https://docs.retool.com/org-users/concepts/permission-groups or more information."
                       },
@@ -3434,7 +3679,8 @@
                         }
                       },
                       "required": ["id", "is_group_admin"]
-                    }
+                    },
+                    "description": "Users to add to the group. Pass in an empty list to create a group with no members."
                   },
                   "universal_app_access": {
                     "type": "string",
@@ -3521,6 +3767,14 @@
                     "nullable": true,
                     "format": "uuid",
                     "description": "The app ID of the landing page"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "example": "2019-02-08T11:45:48.899Z"
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "example": "2019-02-24T18:28:18.790Z"
                   }
                 },
                 "required": ["name"]
@@ -3676,6 +3930,14 @@
                           "nullable": true,
                           "format": "uuid",
                           "description": "The app ID of the landing page"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "example": "2019-02-08T11:45:48.899Z"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "example": "2019-02-24T18:28:18.790Z"
                         }
                       },
                       "required": [
@@ -3692,7 +3954,9 @@
                         "unpublished_release_access",
                         "usage_analytics_access",
                         "account_details_access",
-                        "landing_page_app_id"
+                        "landing_page_app_id",
+                        "created_at",
+                        "updated_at"
                       ],
                       "description": "The created group"
                     }
@@ -3887,6 +4151,14 @@
                           "nullable": true,
                           "format": "uuid",
                           "description": "The app ID of the landing page"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "example": "2019-02-08T11:45:48.899Z"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "example": "2019-02-24T18:28:18.790Z"
                         }
                       },
                       "required": [
@@ -3903,7 +4175,9 @@
                         "unpublished_release_access",
                         "usage_analytics_access",
                         "account_details_access",
-                        "landing_page_app_id"
+                        "landing_page_app_id",
+                        "created_at",
+                        "updated_at"
                       ],
                       "description": "The updated group"
                     }
@@ -3955,11 +4229,11 @@
                         }
                       },
                       "required": ["id", "is_group_admin"]
-                    }
+                    },
+                    "description": "Users to add to the group. Pass in an empty list to create a group with no members."
                   }
                 },
-                "required": ["members"],
-                "description": "Users to add to the group"
+                "required": ["members"]
               }
             }
           }
@@ -4112,6 +4386,14 @@
                           "nullable": true,
                           "format": "uuid",
                           "description": "The app ID of the landing page"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "example": "2019-02-08T11:45:48.899Z"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "example": "2019-02-24T18:28:18.790Z"
                         }
                       },
                       "required": [
@@ -4128,7 +4410,9 @@
                         "unpublished_release_access",
                         "usage_analytics_access",
                         "account_details_access",
-                        "landing_page_app_id"
+                        "landing_page_app_id",
+                        "created_at",
+                        "updated_at"
                       ],
                       "description": "The updated group"
                     }
@@ -4312,6 +4596,14 @@
                           "nullable": true,
                           "format": "uuid",
                           "description": "The app ID of the landing page"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "example": "2019-02-08T11:45:48.899Z"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "example": "2019-02-24T18:28:18.790Z"
                         }
                       },
                       "required": [
@@ -4328,7 +4620,9 @@
                         "unpublished_release_access",
                         "usage_analytics_access",
                         "account_details_access",
-                        "landing_page_app_id"
+                        "landing_page_app_id",
+                        "created_at",
+                        "updated_at"
                       ],
                       "description": "The updated group"
                     }
@@ -4427,6 +4721,14 @@
                             "type": "string",
                             "enum": ["app", "workflow", "resource"],
                             "description": "The type of the folder"
+                          },
+                          "created_at": {
+                            "type": "string",
+                            "example": "2019-02-08T11:45:48.899Z"
+                          },
+                          "updated_at": {
+                            "type": "string",
+                            "example": "2019-02-24T18:28:18.790Z"
                           }
                         },
                         "required": [
@@ -4434,7 +4736,9 @@
                           "legacy_id",
                           "name",
                           "is_system_folder",
-                          "folder_type"
+                          "folder_type",
+                          "created_at",
+                          "updated_at"
                         ],
                         "description": "Folders"
                       },
@@ -4543,6 +4847,14 @@
                           "type": "string",
                           "enum": ["app", "workflow", "resource"],
                           "description": "The type of the folder"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "example": "2019-02-08T11:45:48.899Z"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "example": "2019-02-24T18:28:18.790Z"
                         }
                       },
                       "required": [
@@ -4550,7 +4862,9 @@
                         "legacy_id",
                         "name",
                         "is_system_folder",
-                        "folder_type"
+                        "folder_type",
+                        "created_at",
+                        "updated_at"
                       ],
                       "description": "The created folder."
                     }
@@ -4670,6 +4984,14 @@
                           "type": "string",
                           "enum": ["app", "workflow", "resource"],
                           "description": "The type of the folder"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "example": "2019-02-08T11:45:48.899Z"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "example": "2019-02-24T18:28:18.790Z"
                         }
                       },
                       "required": [
@@ -4677,7 +4999,9 @@
                         "legacy_id",
                         "name",
                         "is_system_folder",
-                        "folder_type"
+                        "folder_type",
+                        "created_at",
+                        "updated_at"
                       ],
                       "description": "The requested folder."
                     }
@@ -4729,6 +5053,247 @@
           }
         ],
         "responses": { "204": { "description": "Folder deleted" } }
+      },
+      "patch": {
+        "summary": "Update folder",
+        "description": "Updates a folder by ID. The API token must have the \"Folders > Write\" scope.",
+        "tags": ["Folders"],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "pattern": "^(app|workflow|resource)_([0-9]\\d*)$",
+              "description": "The id of the folder"
+            },
+            "required": true,
+            "name": "folderId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "operations": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "op": { "type": "string", "enum": ["add"] },
+                            "path": { "type": "string" },
+                            "value": {
+                              "nullable": true,
+                              "description": "A JSON value"
+                            }
+                          },
+                          "required": ["op", "path"]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "op": { "type": "string", "enum": ["remove"] },
+                            "path": { "type": "string" }
+                          },
+                          "required": ["op", "path"]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "op": { "type": "string", "enum": ["replace"] },
+                            "path": { "type": "string" },
+                            "value": {
+                              "nullable": true,
+                              "description": "A JSON value"
+                            }
+                          },
+                          "required": ["op", "path"]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "op": { "type": "string", "enum": ["move"] },
+                            "path": { "type": "string" },
+                            "from": { "type": "string" }
+                          },
+                          "required": ["op", "path", "from"]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "op": { "type": "string", "enum": ["copy"] },
+                            "path": { "type": "string" },
+                            "from": { "type": "string" }
+                          },
+                          "required": ["op", "path", "from"]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "op": { "type": "string", "enum": ["test"] },
+                            "path": { "type": "string" },
+                            "value": {
+                              "nullable": true,
+                              "description": "A JSON value"
+                            }
+                          },
+                          "required": ["op", "path"]
+                        }
+                      ]
+                    },
+                    "description": "A list of operations to apply to the folder. See https://tools.ietf.org/html/rfc6902 for details."
+                  }
+                },
+                "required": ["operations"],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated folder.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [true],
+                      "description": "API request succeeded"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "pattern": "^(app|workflow|resource)_([0-9]\\d*)$",
+                          "description": "The id of the folder. Currently this is the same as legacy_id but will be different in the future."
+                        },
+                        "legacy_id": {
+                          "type": "string",
+                          "pattern": "^(app|workflow|resource)_([0-9]\\d*)$",
+                          "description": "The legacy id of the folder."
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "The name of the folder"
+                        },
+                        "parent_folder_id": {
+                          "type": "string",
+                          "nullable": true,
+                          "pattern": "^(app|workflow|resource)_([0-9]\\d*)$",
+                          "description": "The id of the parent folder"
+                        },
+                        "is_system_folder": {
+                          "type": "boolean",
+                          "description": "Whether the folder is a system folder"
+                        },
+                        "folder_type": {
+                          "type": "string",
+                          "enum": ["app", "workflow", "resource"],
+                          "description": "The type of the folder"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "example": "2019-02-08T11:45:48.899Z"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "example": "2019-02-24T18:28:18.790Z"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "legacy_id",
+                        "name",
+                        "is_system_folder",
+                        "folder_type",
+                        "created_at",
+                        "updated_at"
+                      ],
+                      "description": "The updated folder."
+                    }
+                  },
+                  "required": ["success", "data"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Folder not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [false],
+                      "description": "API request failed"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["success", "message"],
+                  "description": "API error response"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Folder with the same name already exists.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [false],
+                      "description": "API request failed"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["success", "message"],
+                  "description": "API error response"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Error with folder structure.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [false],
+                      "description": "API request failed"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["success", "message"],
+                  "description": "API error response"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/spaces": {
@@ -4936,67 +5501,154 @@
                       "description": "API request succeeded"
                     },
                     "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "format": "uuid",
-                            "description": "The id of the space."
-                          },
-                          "name": { "type": "string", "minLength": 1 },
-                          "domain": { "type": "string", "minLength": 1 },
-                          "created_at": {
-                            "type": "string",
-                            "format": "date-time",
-                            "example": "2019-02-08T11:45:48.899Z"
-                          },
-                          "updated_at": {
-                            "type": "string",
-                            "format": "date-time",
-                            "example": "2019-02-24T18:28:18.790Z"
-                          }
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "format": "uuid",
+                          "description": "The id of the space."
                         },
-                        "required": [
-                          "id",
-                          "name",
-                          "domain",
-                          "created_at",
-                          "updated_at"
-                        ],
-                        "additionalProperties": false,
-                        "description": "List of spaces"
+                        "name": { "type": "string", "minLength": 1 },
+                        "domain": { "type": "string", "minLength": 1 },
+                        "created_at": {
+                          "type": "string",
+                          "format": "date-time",
+                          "example": "2019-02-08T11:45:48.899Z"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "format": "date-time",
+                          "example": "2019-02-24T18:28:18.790Z"
+                        }
                       },
-                      "description": "An array of requested items"
-                    },
-                    "total_count": {
-                      "type": "number",
-                      "description": "Total number of items in the response"
-                    },
-                    "next_token": {
-                      "type": "string",
-                      "nullable": true,
-                      "description": "A token to retrieve the next page of items in the collection"
-                    },
-                    "has_more": {
-                      "type": "boolean",
-                      "description": "Whether there are more items in the collection"
+                      "required": [
+                        "id",
+                        "name",
+                        "domain",
+                        "created_at",
+                        "updated_at"
+                      ],
+                      "additionalProperties": false,
+                      "description": "The requested space"
                     }
                   },
-                  "required": [
-                    "success",
-                    "data",
-                    "total_count",
-                    "next_token",
-                    "has_more"
-                  ]
+                  "required": ["success", "data"]
                 }
               }
             }
           },
           "404": {
             "description": "Space not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [false],
+                      "description": "API request failed"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["success", "message"],
+                  "description": "API error response"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update space",
+        "description": "Available for orgs with Spaces enabled. Get space by ID. The API token must have the \"Spaces > Write\" scope.",
+        "tags": ["Spaces"],
+        "parameters": [
+          {
+            "schema": { "type": "string" },
+            "required": true,
+            "name": "spaceId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated space.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [true],
+                      "description": "API request succeeded"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "format": "uuid",
+                          "description": "The id of the space."
+                        },
+                        "name": { "type": "string", "minLength": 1 },
+                        "domain": { "type": "string", "minLength": 1 },
+                        "created_at": {
+                          "type": "string",
+                          "format": "date-time",
+                          "example": "2019-02-08T11:45:48.899Z"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "format": "date-time",
+                          "example": "2019-02-24T18:28:18.790Z"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "name",
+                        "domain",
+                        "created_at",
+                        "updated_at"
+                      ],
+                      "additionalProperties": false,
+                      "description": "Updated space"
+                    }
+                  },
+                  "required": ["success", "data"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Space not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [false],
+                      "description": "API request failed"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["success", "message"],
+                  "description": "API error response"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid space domain.",
             "content": {
               "application/json": {
                 "schema": {
@@ -9232,7 +9884,7 @@
     },
     "/permissions/listObjects": {
       "post": {
-        "summary": "List folders a group can access",
+        "summary": "List objects a group can access",
         "description": "Returns the list of objects with corresponding access levels that a subject (group) has access to. The API token must have the \"Permissions > Read\" scope. Folders are supported from API version 2.0.0 + and onprem version 3.18+, apps are supported from API version 2.4.0+ and onprem version 3.26.0+, resources and resource_configurations are supported from onprem edge version 3.37.0+ and 3.47-stable+",
         "tags": ["Permissions"],
         "requestBody": {
@@ -9306,9 +9958,17 @@
                           {
                             "type": "object",
                             "properties": {
-                              "type": { "type": "string", "enum": ["folder", "app", "resource", "resource_configuration"] },
-                              "id": {
+                              "type": {
                                 "type": "string",
+                                "enum": [
+                                  "folder",
+                                  "app",
+                                  "resource",
+                                  "resource_configuration"
+                                ]
+                              },
+                              "id": {
+                                    "type": "string",
                                 "description": "The id of the object"
                               },
                               "access_level": {
@@ -9396,12 +10056,19 @@
                       {
                         "type": "object",
                         "properties": {
-                          "type": { "type": "string", "enum": ["folder", "app", "resource", "resource_configuration"] },
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "folder",
+                              "app",
+                              "resource",
+                              "resource_configuration"
+                            ]
+                          },
                           "id": {
                             "type": "string",
                             "description": "The id of the object"
                           }
-                          
                         },
                         "required": ["type", "id"]
                       }
@@ -9439,9 +10106,17 @@
                           {
                             "type": "object",
                             "properties": {
-                              "type": { "type": "string", "enum": ["folder", "app", "resource", "resource_configuration"] },
-                              "id": {
+                              "type": {
                                 "type": "string",
+                                "enum": [
+                                  "folder",
+                                  "app",
+                                  "resource",
+                                  "resource_configuration"
+                                ]
+                              },
+                              "id": {
+                                    "type": "string",
                                 "description": "The id of the object"
                               },
                               "access_level": {
@@ -9529,7 +10204,15 @@
                       {
                         "type": "object",
                         "properties": {
-                          "type": { "type": "string", "enum": ["folder", "app", "resource", "resource_configuration"] },
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "folder",
+                              "app",
+                              "resource",
+                              "resource_configuration"
+                            ]
+                          },
                           "id": {
                             "type": "string",
                             "description": "The id of the object"
@@ -9566,9 +10249,51 @@
                           {
                             "type": "object",
                             "properties": {
-                              "type": { "type": "string", "enum": ["folder", "app", "resource", "resource_configuration"] },
+                              "type": { "type": "string", "enum": ["folder"] },
                               "id": {
                                 "type": "string",
+                                "pattern": "^(app|workflow|resource)_([0-9]\\d*)$",
+                                "description": "The id of the folder"
+                              },
+                              "access_level": {
+                                "type": "string",
+                                "enum": ["own", "edit", "use"],
+                                "description": "The access level of the folder"
+                              }
+                            },
+                            "required": ["type", "id", "access_level"]
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": { "type": "string", "enum": ["app"] },
+                              "id": {
+                                "type": "string",
+                                "format": "uuid",
+                                "description": "The app ID."
+                              },
+                              "access_level": {
+                                "type": "string",
+                                "enum": ["own", "edit", "use"],
+                                "description": "The access level of the app"
+                              }
+                            },
+                            "required": ["type", "id", "access_level"]
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "folder",
+                                  "app",
+                                  "resource",
+                                  "resource_configuration"
+                                ]
+                              },
+                              "id": {
+                                    "type": "string",
                                 "description": "The id of the object"
                               },
                               "access_level": {
@@ -9793,11 +10518,12 @@
                       },
                       "required": ["op", "path"]
                     },
-                    "description": "The body of a request to update an access request's status."
+                    "description": "A list of operations to apply to the access request. See the [JSON PATCH specification](https://tools.ietf.org/html/rfc6902) for more details."
                   }
                 },
                 "required": ["operations"],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "description": "The body of a request to update an access request's status."
               }
             }
           }
@@ -10502,6 +11228,661 @@
                     "has_more"
                   ],
                   "description": "A paginated list of resources."
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a resource",
+        "description": "Available from onprem version 3.72.0+. Creates a resource. The API token must have the \"Resources > Write\" scope.",
+        "tags": ["Resources"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "mysql",
+                      "postgresql",
+                      "redshift",
+                      "restapi",
+                      "snowflake"
+                    ],
+                    "description": "The type of resource."
+                  },
+                  "display_name": { "type": "string", "minLength": 1 },
+                  "options": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "database_options": {
+                            "anyOf": [
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "host": { "type": "string" },
+                                  "port": { "type": "string" },
+                                  "name": { "type": "string" },
+                                  "username": { "type": "string" },
+                                  "password": { "type": "string" },
+                                  "ssl_settings": {
+                                    "type": "object",
+                                    "properties": {
+                                      "enabled": { "type": "boolean" },
+                                      "client_key": {
+                                        "type": "string",
+                                        "nullable": true
+                                      },
+                                      "client_cert": {
+                                        "type": "string",
+                                        "nullable": true
+                                      },
+                                      "ca_cert": {
+                                        "type": "string",
+                                        "nullable": true
+                                      }
+                                    },
+                                    "additionalProperties": false
+                                  },
+                                  "ssh_tunnel_options": {
+                                    "type": "object",
+                                    "properties": {
+                                      "enabled": { "type": "boolean" },
+                                      "host": { "type": "string" },
+                                      "port": { "type": "string" },
+                                      "username": { "type": "string" },
+                                      "password": { "type": "string" },
+                                      "private_key_name": { "type": "string" }
+                                    },
+                                    "required": ["enabled", "host", "port"],
+                                    "additionalProperties": false
+                                  },
+                                  "disable_converting_queries_to_prepared_statements": {
+                                    "type": "boolean",
+                                    "description": "This allows you to use Javascript to dynamically generate SQL but also turns off SQL injection protection."
+                                  },
+                                  "show_write_gui_only": {
+                                    "type": "boolean",
+                                    "description": "This allows you to enable writing via only the restrictive GUI query editor."
+                                  }
+                                },
+                                "required": ["host", "port"],
+                                "additionalProperties": false
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "connection_string": { "type": "string" },
+                                  "disable_converting_queries_to_prepared_statements": {
+                                    "type": "boolean",
+                                    "description": "This allows you to use Javascript to dynamically generate SQL but also turns off SQL injection protection."
+                                  },
+                                  "show_write_gui_only": {
+                                    "type": "boolean",
+                                    "description": "This allows you to enable writing via only the restrictive GUI query editor."
+                                  }
+                                },
+                                "additionalProperties": false
+                              }
+                            ]
+                          }
+                        },
+                        "required": ["database_options"],
+                        "additionalProperties": false,
+                        "title": "Postgres Options"
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "database_options": {
+                            "type": "object",
+                            "properties": {
+                              "host": { "type": "string" },
+                              "port": { "type": "string" },
+                              "name": { "type": "string" },
+                              "username": { "type": "string" },
+                              "password": { "type": "string" },
+                              "ssl_settings": {
+                                "type": "object",
+                                "properties": {
+                                  "enabled": { "type": "boolean" },
+                                  "client_key": {
+                                    "type": "string",
+                                    "nullable": true
+                                  },
+                                  "client_cert": {
+                                    "type": "string",
+                                    "nullable": true
+                                  },
+                                  "ca_cert": {
+                                    "type": "string",
+                                    "nullable": true
+                                  }
+                                },
+                                "additionalProperties": false
+                              },
+                              "ssh_tunnel_options": {
+                                "type": "object",
+                                "properties": {
+                                  "enabled": { "type": "boolean" },
+                                  "host": { "type": "string" },
+                                  "port": { "type": "string" },
+                                  "username": { "type": "string" },
+                                  "password": { "type": "string" },
+                                  "private_key_name": { "type": "string" }
+                                },
+                                "required": ["enabled", "host", "port"],
+                                "additionalProperties": false
+                              },
+                              "disable_converting_queries_to_prepared_statements": {
+                                "type": "boolean",
+                                "description": "This allows you to use Javascript to dynamically generate SQL but also turns off SQL injection protection."
+                              },
+                              "show_write_gui_only": {
+                                "type": "boolean",
+                                "description": "This allows you to enable writing via only the restrictive GUI query editor."
+                              },
+                              "use_dynamic_database_names": {
+                                "type": "boolean",
+                                "description": "Enable this to allow the Database Name to be overridden by a dynamically generated value. This allows using Retool with a database that has been sharded into several different databases."
+                              },
+                              "use_dynamic_database_hosts": {
+                                "type": "boolean",
+                                "description": "Enable this to allow the Database Host to be overridden by a dynamically generated value. This allows using Retool with several different databases."
+                              },
+                              "convert_mysql_dates_to_javascript": {
+                                "type": "boolean",
+                                "default": true,
+                                "description": "This allows you to turn your MySQL date strings into Javascript Date objects."
+                              }
+                            },
+                            "required": ["host", "port"],
+                            "additionalProperties": false
+                          }
+                        },
+                        "required": ["database_options"],
+                        "additionalProperties": false,
+                        "title": "MySQL Options"
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "database_options": {
+                            "type": "object",
+                            "properties": {
+                              "host": { "type": "string" },
+                              "port": { "type": "string" },
+                              "name": { "type": "string" },
+                              "username": { "type": "string" },
+                              "password": { "type": "string" },
+                              "ssl_settings": {
+                                "type": "object",
+                                "properties": {
+                                  "enabled": { "type": "boolean" }
+                                },
+                                "additionalProperties": false
+                              },
+                              "disable_converting_queries_to_prepared_statements": {
+                                "type": "boolean",
+                                "description": "This allows you to use Javascript to dynamically generate SQL but also turns off SQL injection protection."
+                              },
+                              "show_write_gui_only": {
+                                "type": "boolean",
+                                "description": "This allows you to enable writing via only the restrictive GUI query editor."
+                              }
+                            },
+                            "required": ["host", "port"],
+                            "additionalProperties": false
+                          }
+                        },
+                        "required": ["database_options"],
+                        "additionalProperties": false,
+                        "title": "Redshift Options"
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "account_identifier": { "type": "string" },
+                          "database_options": {
+                            "type": "object",
+                            "properties": {
+                              "name": { "type": "string" },
+                              "schema": { "type": "string" },
+                              "warehouse": { "type": "string" },
+                              "disable_converting_queries_to_prepared_statements": {
+                                "type": "boolean",
+                                "description": "This allows you to use Javascript to dynamically generate SQL but also turns off SQL injection protection."
+                              },
+                              "show_write_gui_only": {
+                                "type": "boolean",
+                                "description": "This allows you to enable writing via only the restrictive GUI query editor."
+                              }
+                            },
+                            "required": ["name"],
+                            "additionalProperties": false
+                          },
+                          "user_role": { "type": "string" },
+                          "authentication_options": {
+                            "anyOf": [
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "authentication_type": {
+                                    "type": "string",
+                                    "enum": ["snowflake"]
+                                  },
+                                  "username": { "type": "string" },
+                                  "password": { "type": "string" }
+                                },
+                                "required": [
+                                  "authentication_type",
+                                  "username",
+                                  "password"
+                                ],
+                                "additionalProperties": false
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "authentication_type": {
+                                    "type": "string",
+                                    "enum": ["snowflake_jwt"]
+                                  },
+                                  "username": { "type": "string" },
+                                  "private_key": { "type": "string" },
+                                  "private_key_passphrase": { "type": "string" }
+                                },
+                                "required": [
+                                  "authentication_type",
+                                  "username",
+                                  "private_key"
+                                ],
+                                "additionalProperties": false
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "authentication_type": {
+                                    "type": "string",
+                                    "enum": ["oauth2"]
+                                  },
+                                  "oauth2_client_id": { "type": "string" },
+                                  "oauth2_client_secret": { "type": "string" },
+                                  "oauth2_callback_url": { "type": "string" }
+                                },
+                                "required": [
+                                  "authentication_type",
+                                  "oauth2_client_id",
+                                  "oauth2_client_secret"
+                                ],
+                                "additionalProperties": false
+                              }
+                            ]
+                          }
+                        },
+                        "required": [
+                          "account_identifier",
+                          "database_options",
+                          "authentication_options"
+                        ],
+                        "additionalProperties": false,
+                        "title": "Snowflake Options"
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "base_url": {
+                            "type": "string",
+                            "description": "Use the absolute URL (e.g https://example.com)."
+                          },
+                          "url_parameters": {
+                            "type": "array",
+                            "items": {
+                              "type": "array",
+                              "items": { "type": "string" }
+                            }
+                          },
+                          "headers": {
+                            "type": "array",
+                            "items": {
+                              "type": "array",
+                              "items": { "type": "string" }
+                            }
+                          },
+                          "extra_body_values": {
+                            "type": "array",
+                            "items": {
+                              "type": "array",
+                              "items": { "type": "string" }
+                            },
+                            "description": "Extra body values are not passed for GET or HEAD requests."
+                          },
+                          "cookies_to_forward": {
+                            "type": "array",
+                            "items": { "type": "string" },
+                            "description": "You can use the pattern COOKIE_your_cookie_name in the Headers section in order to implement the double-cookie submit pattern."
+                          },
+                          "forward_all_cookies": {
+                            "type": "boolean",
+                            "description": "This is useful if you have dynamic cookie names."
+                          },
+                          "authentication_options": {
+                            "anyOf": [
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "authentication_type": {
+                                    "type": "string",
+                                    "enum": ["auth0"]
+                                  },
+                                  "auth0_domain": { "type": "string" },
+                                  "auth0_client_id": { "type": "string" },
+                                  "auth0_client_secret": { "type": "string" },
+                                  "auth0_custom_audience": { "type": "string" }
+                                },
+                                "required": [
+                                  "authentication_type",
+                                  "auth0_domain",
+                                  "auth0_client_id",
+                                  "auth0_client_secret",
+                                  "auth0_custom_audience"
+                                ],
+                                "additionalProperties": false
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "authentication_type": {
+                                    "type": "string",
+                                    "enum": ["aws4"]
+                                  },
+                                  "amazon_aws_region": { "type": "string" },
+                                  "amazon_service_name": { "type": "string" },
+                                  "amazon_access_key_id": { "type": "string" },
+                                  "amazon_secret_access_key": {
+                                    "type": "string"
+                                  },
+                                  "auth_with_default_credential_provider_chain": {
+                                    "type": "boolean"
+                                  },
+                                  "enable_awsv4_authentication_via_headers": {
+                                    "type": "boolean"
+                                  }
+                                },
+                                "required": [
+                                  "authentication_type",
+                                  "amazon_aws_region",
+                                  "amazon_service_name",
+                                  "amazon_access_key_id",
+                                  "amazon_secret_access_key"
+                                ],
+                                "additionalProperties": false
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "authentication_type": {
+                                    "type": "string",
+                                    "enum": ["basic"]
+                                  },
+                                  "basic_username": { "type": "string" },
+                                  "basic_password": { "type": "string" }
+                                },
+                                "required": [
+                                  "authentication_type",
+                                  "basic_username"
+                                ],
+                                "additionalProperties": false
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "authentication_type": {
+                                    "type": "string",
+                                    "enum": ["digest"]
+                                  },
+                                  "digest_username": { "type": "string" },
+                                  "digest_password": { "type": "string" }
+                                },
+                                "required": [
+                                  "authentication_type",
+                                  "digest_username",
+                                  "digest_password"
+                                ],
+                                "additionalProperties": false
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "authentication_type": {
+                                    "type": "string",
+                                    "enum": ["oauth1"]
+                                  },
+                                  "oauth1_signature_method": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string",
+                                        "enum": ["HMAC-SHA1"]
+                                      },
+                                      {
+                                        "type": "string",
+                                        "enum": ["HMAC-SHA256"]
+                                      },
+                                      {
+                                        "type": "string",
+                                        "enum": ["PLAINTEXT"]
+                                      }
+                                    ]
+                                  },
+                                  "oauth1_consumer_key": { "type": "string" },
+                                  "oauth1_consumer_secret": {
+                                    "type": "string"
+                                  },
+                                  "oauth1_token_key": { "type": "string" },
+                                  "oauth1_token_secret": { "type": "string" },
+                                  "oauth1_realm_parameter": { "type": "string" }
+                                },
+                                "required": [
+                                  "authentication_type",
+                                  "oauth1_signature_method",
+                                  "oauth1_consumer_key",
+                                  "oauth1_consumer_secret",
+                                  "oauth1_token_key",
+                                  "oauth1_token_secret",
+                                  "oauth1_realm_parameter"
+                                ],
+                                "additionalProperties": false
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "authentication_type": {
+                                    "type": "string",
+                                    "enum": ["oauth2"]
+                                  },
+                                  "oauth2_client_id": { "type": "string" },
+                                  "oauth2_client_secret": { "type": "string" },
+                                  "oauth2_callback_url": { "type": "string" },
+                                  "oauth2_auth_url": { "type": "string" },
+                                  "oauth2_access_token_url": {
+                                    "type": "string"
+                                  },
+                                  "oauth2_scope": { "type": "string" },
+                                  "oauth2_audience": { "type": "string" },
+                                  "oauth2_share_user_credentials": {
+                                    "type": "boolean"
+                                  },
+                                  "verify_session_url": { "type": "string" },
+                                  "oauth2_access_token": { "type": "string" },
+                                  "oauth2_refresh_token": { "type": "string" },
+                                  "oauth2_id_token": { "type": "string" },
+                                  "oauth2_access_token_lifespan_seconds": {
+                                    "type": "number",
+                                    "nullable": true
+                                  }
+                                },
+                                "required": [
+                                  "authentication_type",
+                                  "oauth2_client_id",
+                                  "oauth2_client_secret",
+                                  "oauth2_auth_url",
+                                  "oauth2_access_token_url"
+                                ],
+                                "additionalProperties": false
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "authentication_type": {
+                                    "type": "string",
+                                    "enum": ["none"]
+                                  }
+                                },
+                                "required": ["authentication_type"],
+                                "additionalProperties": false
+                              }
+                            ],
+                            "description": "Note that custom auth is not yet supported."
+                          }
+                        },
+                        "required": ["base_url"],
+                        "additionalProperties": false,
+                        "title": "Rest API Options"
+                      }
+                    ]
+                  }
+                },
+                "required": ["type", "display_name", "options"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The created resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [true],
+                      "description": "API request succeeded"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "anyOf": [
+                            { "type": "string", "format": "uuid" },
+                            { "type": "string", "format": "uuid" },
+                            { "type": "string", "enum": ["retool_db"] },
+                            { "type": "string", "enum": ["retool_email"] },
+                            { "type": "string", "enum": ["retool_storage"] },
+                            { "type": "string", "enum": ["retool_ai"] }
+                          ],
+                          "description": "The uuid for the resource."
+                        },
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "airflow",
+                            "alloydb",
+                            "asana",
+                            "athena",
+                            "basecamp",
+                            "bigid",
+                            "bigquery",
+                            "cassandra",
+                            "circleci",
+                            "closeio",
+                            "cosmosdb",
+                            "couchdb",
+                            "databricks",
+                            "datadog",
+                            "datastore",
+                            "denodo",
+                            "dynamodb",
+                            "elasticsearch",
+                            "firebase",
+                            "front",
+                            "gcs",
+                            "github",
+                            "googleAnalytics",
+                            "googleMaps",
+                            "googleSearchConsole",
+                            "googlesheets",
+                            "graphql",
+                            "grpc",
+                            "hubspot",
+                            "jdbc",
+                            "jira",
+                            "lambda",
+                            "launchdarkly",
+                            "microsoftTeams",
+                            "mongodb",
+                            "mssql",
+                            "mysql",
+                            "notion",
+                            "onesignal",
+                            "openAI",
+                            "openapi",
+                            "oracledb",
+                            "postgresql",
+                            "presto",
+                            "redis",
+                            "redshift",
+                            "restapi",
+                            "rethinkdb",
+                            "rockset",
+                            "retoolEmail",
+                            "retoolAI",
+                            "retoolDb",
+                            "retoolStorage",
+                            "s3",
+                            "salesforce",
+                            "saphana",
+                            "sendgrid",
+                            "shell",
+                            "slack",
+                            "slackopenapi",
+                            "smtp",
+                            "snowflake",
+                            "stripe",
+                            "twilio",
+                            "vertica"
+                          ],
+                          "description": "The type of resource."
+                        },
+                        "display_name": { "type": "string", "minLength": 1 },
+                        "created_at": {
+                          "type": "string",
+                          "example": "2019-02-08T11:45:48.899Z"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "example": "2019-02-24T18:28:18.790Z"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "type",
+                        "display_name",
+                        "created_at",
+                        "updated_at"
+                      ],
+                      "additionalProperties": false,
+                      "description": "The created resource."
+                    }
+                  },
+                  "required": ["success", "data"]
                 }
               }
             }
@@ -13335,6 +14716,1498 @@
           }
         ],
         "responses": { "204": { "description": "Group deleted" } }
+      }
+    },
+    "/observability/config": {
+      "post": {
+        "summary": "Create a new observability provider configuration",
+        "description": "Create observability configuration for the organization and returns the created configuration. This will result in an error if configuration is already set. The API token must have the \"Observability > Write\" scope.",
+        "tags": ["Observability"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "config": {
+                    "oneOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "provider": {
+                            "type": "string",
+                            "enum": ["Sentry"],
+                            "description": "This is an enumerated field that can only take the value \"Sentry\". It identifies the provider of the observability configuration."
+                          },
+                          "dsn": {
+                            "type": "string",
+                            "description": "This is a string field that represents the Data Source Name (DSN). It is the unique identifier that helps Sentry know where to send errors and exceptions."
+                          }
+                        },
+                        "required": ["provider", "dsn"]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "provider": {
+                            "type": "string",
+                            "enum": ["Datadog"],
+                            "description": "This is an enumerated field that can only take the value \"Datadog\". It identifies the provider of the observability configuration."
+                          },
+                          "api_key": {
+                            "type": "string",
+                            "description": "This is a string field that represents the API key for Datadog. This key is used to authenticate with the Datadog API."
+                          }
+                        },
+                        "required": ["provider", "api_key"]
+                      }
+                    ],
+                    "description": "Provider-specific configuration. For Datadog, provide an API key. For Sentry, provide a DSN."
+                  },
+                  "enabled": {
+                    "type": "boolean",
+                    "description": "When enabled, use this provider for apps observability monitoring."
+                  }
+                },
+                "required": ["config", "enabled"],
+                "additionalProperties": false,
+                "description": "Shape of Post Observability Config Request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Observability provider configuration created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [true],
+                      "description": "API request succeeded"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "format": "uuid",
+                          "description": "The id of the configuration."
+                        },
+                        "config": {
+                          "oneOf": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "provider": {
+                                  "type": "string",
+                                  "enum": ["Sentry"],
+                                  "description": "This is an enumerated field that can only take the value \"Sentry\". It identifies the provider of the observability configuration."
+                                },
+                                "dsn": {
+                                  "type": "string",
+                                  "description": "This is a string field that represents the Data Source Name (DSN). It is the unique identifier that helps Sentry know where to send errors and exceptions."
+                                }
+                              },
+                              "required": ["provider", "dsn"]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "provider": {
+                                  "type": "string",
+                                  "enum": ["Datadog"],
+                                  "description": "This is an enumerated field that can only take the value \"Datadog\". It identifies the provider of the observability configuration."
+                                },
+                                "api_key": {
+                                  "type": "string",
+                                  "description": "This is a string field that represents the API key for Datadog. This key is used to authenticate with the Datadog API."
+                                }
+                              },
+                              "required": ["provider", "api_key"]
+                            }
+                          ],
+                          "description": "Provider-specific configuration. For Datadog, provide an API key. For Sentry, provide a DSN."
+                        },
+                        "enabled": {
+                          "type": "boolean",
+                          "description": "When enabled, use this provider for apps observability monitoring."
+                        }
+                      },
+                      "required": ["id", "config", "enabled"],
+                      "additionalProperties": false,
+                      "description": "Shape of Post Observability Config Response"
+                    }
+                  },
+                  "required": ["success", "data"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [false],
+                      "description": "API request failed"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["success", "message"],
+                  "description": "API error response"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Incorrect scope.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [false],
+                      "description": "API request failed"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["success", "message"],
+                  "description": "API error response"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Configuration already exists.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [false],
+                      "description": "API request failed"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["success", "message"],
+                  "description": "API error response"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get observability provider configurations",
+        "description": "Get observability configurations for the organization. The API token must have the \"Observability > Read\" scope.",
+        "tags": ["Observability"],
+        "responses": {
+          "200": {
+            "description": "Observability provider configuration retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [true],
+                      "description": "API request succeeded"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "format": "uuid",
+                            "description": "The id of the configuration."
+                          },
+                          "config": {
+                            "oneOf": [
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "provider": {
+                                    "type": "string",
+                                    "enum": ["Sentry"],
+                                    "description": "This is an enumerated field that can only take the value \"Sentry\". It identifies the provider of the observability configuration."
+                                  },
+                                  "dsn": {
+                                    "type": "string",
+                                    "description": "This is a string field that represents the Data Source Name (DSN). It is the unique identifier that helps Sentry know where to send errors and exceptions."
+                                  }
+                                },
+                                "required": ["provider", "dsn"]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "provider": {
+                                    "type": "string",
+                                    "enum": ["Datadog"],
+                                    "description": "This is an enumerated field that can only take the value \"Datadog\". It identifies the provider of the observability configuration."
+                                  },
+                                  "api_key": {
+                                    "type": "string",
+                                    "description": "This is a string field that represents the API key for Datadog. This key is used to authenticate with the Datadog API."
+                                  }
+                                },
+                                "required": ["provider", "api_key"]
+                              }
+                            ],
+                            "description": "Provider-specific configuration. For Datadog, provide an API key. For Sentry, provide a DSN."
+                          },
+                          "enabled": {
+                            "type": "boolean",
+                            "description": "When enabled, use this provider for apps observability monitoring."
+                          }
+                        },
+                        "required": ["id", "config", "enabled"],
+                        "additionalProperties": false,
+                        "description": "Shape of Get Observability Config Response"
+                      }
+                    }
+                  },
+                  "required": ["success", "data"]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Incorrect scope.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [false],
+                      "description": "API request failed"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["success", "message"],
+                  "description": "API error response"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Configuration not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [false],
+                      "description": "API request failed"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["success", "message"],
+                  "description": "API error response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/observability/config/{configId}": {
+      "put": {
+        "summary": "Update an observability provider configuration",
+        "description": "Update observability configuration for the organization and returns the updated configuration. This will result in an error if no existing configuration found. The API token must have the \"Observability > Write\" scope.",
+        "tags": ["Observability"],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "description": "The id of the observability configuration to update."
+            },
+            "required": true,
+            "name": "configId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "config": {
+                    "oneOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "provider": {
+                            "type": "string",
+                            "enum": ["Sentry"],
+                            "description": "This is an enumerated field that can only take the value \"Sentry\". It identifies the provider of the observability configuration."
+                          },
+                          "dsn": {
+                            "type": "string",
+                            "description": "This is a string field that represents the Data Source Name (DSN). It is the unique identifier that helps Sentry know where to send errors and exceptions."
+                          }
+                        },
+                        "required": ["provider", "dsn"]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "provider": {
+                            "type": "string",
+                            "enum": ["Datadog"],
+                            "description": "This is an enumerated field that can only take the value \"Datadog\". It identifies the provider of the observability configuration."
+                          },
+                          "api_key": {
+                            "type": "string",
+                            "description": "This is a string field that represents the API key for Datadog. This key is used to authenticate with the Datadog API."
+                          }
+                        },
+                        "required": ["provider", "api_key"]
+                      }
+                    ],
+                    "description": "Provider-specific configuration. For Datadog, provide an API key. For Sentry, provide a DSN."
+                  },
+                  "enabled": {
+                    "type": "boolean",
+                    "description": "When enabled, use this provider for apps observability monitoring."
+                  }
+                },
+                "additionalProperties": false,
+                "description": "Shape of Put Observability Config Request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Observability provider configuration updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [true],
+                      "description": "API request succeeded"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "format": "uuid",
+                          "description": "The id of the configuration."
+                        },
+                        "config": {
+                          "oneOf": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "provider": {
+                                  "type": "string",
+                                  "enum": ["Sentry"],
+                                  "description": "This is an enumerated field that can only take the value \"Sentry\". It identifies the provider of the observability configuration."
+                                },
+                                "dsn": {
+                                  "type": "string",
+                                  "description": "This is a string field that represents the Data Source Name (DSN). It is the unique identifier that helps Sentry know where to send errors and exceptions."
+                                }
+                              },
+                              "required": ["provider", "dsn"]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "provider": {
+                                  "type": "string",
+                                  "enum": ["Datadog"],
+                                  "description": "This is an enumerated field that can only take the value \"Datadog\". It identifies the provider of the observability configuration."
+                                },
+                                "api_key": {
+                                  "type": "string",
+                                  "description": "This is a string field that represents the API key for Datadog. This key is used to authenticate with the Datadog API."
+                                }
+                              },
+                              "required": ["provider", "api_key"]
+                            }
+                          ],
+                          "description": "Provider-specific configuration. For Datadog, provide an API key. For Sentry, provide a DSN."
+                        },
+                        "enabled": {
+                          "type": "boolean",
+                          "description": "When enabled, use this provider for apps observability monitoring."
+                        }
+                      },
+                      "required": ["id", "config", "enabled"],
+                      "additionalProperties": false,
+                      "description": "Shape of Put Observability Config Response"
+                    }
+                  },
+                  "required": ["success", "data"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [false],
+                      "description": "API request failed"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["success", "message"],
+                  "description": "API error response"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Incorrect scope.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [false],
+                      "description": "API request failed"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["success", "message"],
+                  "description": "API error response"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "No configuration exists.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [false],
+                      "description": "API request failed"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["success", "message"],
+                  "description": "API error response"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete an observability provider configuration",
+        "description": "Delete observability configuration for the organization. The API token must have the \"Observability > Write\" scope.",
+        "tags": ["Observability"],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "description": "The id of the observability configuration to delete."
+            },
+            "required": true,
+            "name": "configId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Observability provider configuration deleted."
+          },
+          "403": {
+            "description": "Incorrect scope.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [false],
+                      "description": "API request failed"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["success", "message"],
+                  "description": "API error response"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Configuration not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [false],
+                      "description": "API request failed"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["success", "message"],
+                  "description": "API error response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/observability/provider/{provider}/test": {
+      "post": {
+        "summary": "Send a test error event to the observability provider",
+        "description": "Send a test error event to the observability provider. The API token must have the \"Observability > Read\" scope.",
+        "tags": ["Observability"],
+        "parameters": [
+          {
+            "schema": {
+              "anyOf": [
+                { "type": "string", "enum": ["Sentry"] },
+                { "type": "string", "enum": ["Datadog"] }
+              ],
+              "description": "The observability provider name, either \"Sentry\" or \"Datadog\""
+            },
+            "required": true,
+            "name": "provider",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Test event sent.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [true],
+                      "description": "API request succeeded"
+                    },
+                    "data": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "success": {
+                              "type": "boolean",
+                              "enum": [false],
+                              "description": "Send test error failed"
+                            },
+                            "message": {
+                              "type": "string",
+                              "description": "Error message"
+                            }
+                          },
+                          "required": ["success", "message"]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "success": {
+                              "type": "boolean",
+                              "enum": [true],
+                              "description": "Send test error succeeded"
+                            }
+                          },
+                          "required": ["success"]
+                        }
+                      ],
+                      "description": "Send test error response"
+                    }
+                  },
+                  "required": ["success", "data"]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Incorrect scope.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [false],
+                      "description": "API request failed"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["success", "message"],
+                  "description": "API error response"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Provider is not configured correctly.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [false],
+                      "description": "API request failed"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["success", "message"],
+                  "description": "API error response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usage/organizations": {
+      "get": {
+        "summary": "List organizations",
+        "description": "Returns a list of organizations that the token has scope to access. The API token must have the 'usage' scope. 'usage:organization' scope returns just the organization, 'usage:spaces' returns all the spaces under the admin organization, 'usage:license' returns all the organizations that use that license key.",
+        "tags": ["Usage"],
+        "responses": {
+          "200": {
+            "description": "List of organizations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [true],
+                      "description": "API request succeeded"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "org_id": {
+                            "type": "string",
+                            "description": "The id of the organization"
+                          },
+                          "host": {
+                            "type": "string",
+                            "description": "The host of the organization"
+                          },
+                          "last_active": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2019-02-08T11:45:48.899Z"
+                          }
+                        },
+                        "required": ["org_id", "host", "last_active"],
+                        "additionalProperties": false,
+                        "description": "An organization in Retool"
+                      },
+                      "description": "An array of requested items"
+                    },
+                    "total_count": {
+                      "type": "number",
+                      "description": "Total number of items in the response"
+                    },
+                    "next_token": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "A token to retrieve the next page of items in the collection"
+                    },
+                    "has_more": {
+                      "type": "boolean",
+                      "description": "Whether there are more items in the collection"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data",
+                    "total_count",
+                    "next_token",
+                    "has_more"
+                  ],
+                  "description": "A list of organizations in this deployment."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usage": {
+      "get": {
+        "summary": "The usage summary for the selected organizations",
+        "description": "The usage summary for the selected organizations. Contains information about usage like page saves, page views, active users, and the growth in those fields in the specified time range. The API token must have the 'usage' scope. ",
+        "tags": ["Usage"],
+        "parameters": [
+          {
+            "schema": { "type": "array", "items": { "type": "string" } },
+            "required": false,
+            "name": "org_ids",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "The start date of the date range",
+              "example": "2024-01-15"
+            },
+            "required": true,
+            "name": "start_date",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "The end date of the date range. If not specified, then minimum(start_date + 30 days, today - 1) is used.",
+              "example": "2024-01-30"
+            },
+            "required": false,
+            "name": "end_date",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The usage summary for the selected organizations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [true],
+                      "description": "API request succeeded"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "count_current_page_saves": {
+                          "type": "number",
+                          "description": "The number of page saves for all the organizations within the date range"
+                        },
+                        "count_current_page_views": {
+                          "type": "number",
+                          "description": "The number of page views for all the organizations within the date range"
+                        },
+                        "count_current_users": {
+                          "type": "number",
+                          "description": "The total number of unique users who have performed any tracked activity in all the organizations within the date range"
+                        },
+                        "count_T30_users": {
+                          "type": "number",
+                          "description": "The number of unique users who have been active over the trailing 30 days from the end date provided"
+                        },
+                        "percent_growth_page_saves": {
+                          "type": "number",
+                          "description": "The percentage growth in page saves compared to the previous cycle of the same length as the provided date range"
+                        },
+                        "percent_growth_page_views": {
+                          "type": "number",
+                          "description": "The percentage growth in page views compared to the previous cycle of the same length as the provided date range"
+                        },
+                        "percent_growth_users": {
+                          "type": "number",
+                          "description": "The percentage growth in unique users compared to the previous cycle of the same length as the provided date range"
+                        },
+                        "percent_growth_T30_users": {
+                          "type": "number",
+                          "description": "The percentage growth in T30 users (trailing 30 days users) compared to the previous cycle of the same length as the provided date range"
+                        },
+                        "daily_T30_usage": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "day": { "type": "string" },
+                              "maa": {
+                                "type": "number",
+                                "description": "The number of distinct applications that were active on the given day"
+                              },
+                              "mau": {
+                                "type": "number",
+                                "description": "The number of distinct users who were active on the given day"
+                              }
+                            },
+                            "required": ["day", "maa", "mau"]
+                          }
+                        }
+                      },
+                      "required": [
+                        "count_current_page_saves",
+                        "count_current_page_views",
+                        "count_current_users",
+                        "count_T30_users",
+                        "percent_growth_page_saves",
+                        "percent_growth_page_views",
+                        "percent_growth_users",
+                        "percent_growth_T30_users",
+                        "daily_T30_usage"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": ["success", "data"],
+                  "description": "The usage information for the organizations"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usage/app_summary": {
+      "get": {
+        "summary": "The app summaries for the selected organizations",
+        "description": "The app summaries for the selected organizations. Contains information about the app like saves, views, unique editors and viewers in the specified time range. The API token must have the 'usage' scope. ",
+        "tags": ["Usage"],
+        "parameters": [
+          {
+            "schema": { "type": "array", "items": { "type": "string" } },
+            "required": false,
+            "name": "org_ids",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "The start date of the date range",
+              "example": "2024-01-15"
+            },
+            "required": true,
+            "name": "start_date",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "The end date of the date range. If not specified, then minimum(start_date + 30 days, today - 1) is used.",
+              "example": "2024-01-30"
+            },
+            "required": false,
+            "name": "end_date",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The app summaries for the selected organizations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [true],
+                      "description": "API request succeeded"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "app_name": {
+                            "type": "string",
+                            "description": "The name of the app"
+                          },
+                          "host": {
+                            "type": "string",
+                            "description": "The organization host"
+                          },
+                          "count_app_views": {
+                            "type": "number",
+                            "description": "The number of views of the app in the time range specified"
+                          },
+                          "count_app_saves": {
+                            "type": "number",
+                            "description": "The number of saves of the app in the time range specified"
+                          },
+                          "count_viewers": {
+                            "type": "number",
+                            "description": "The number of viewers of the app in the time range specified"
+                          },
+                          "count_editors": {
+                            "type": "number",
+                            "description": "The number of editors of the app in the time range specified"
+                          }
+                        },
+                        "required": [
+                          "app_name",
+                          "host",
+                          "count_app_views",
+                          "count_app_saves",
+                          "count_viewers",
+                          "count_editors"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "description": "An array of requested items"
+                    },
+                    "total_count": {
+                      "type": "number",
+                      "description": "Total number of items in the response"
+                    },
+                    "next_token": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "A token to retrieve the next page of items in the collection"
+                    },
+                    "has_more": {
+                      "type": "boolean",
+                      "description": "Whether there are more items in the collection"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data",
+                    "total_count",
+                    "next_token",
+                    "has_more"
+                  ],
+                  "description": "The app summaries for the organizations"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usage/app_details": {
+      "get": {
+        "summary": "The app details for the selected app and organizations",
+        "description": "The detailed app usage for the selected organizations. Contains information about the app, including the breakdown of saves and views in the specified time range. The API token must have the 'usage' scope.",
+        "tags": ["Usage"],
+        "parameters": [
+          {
+            "schema": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "The list of org ids to retrieve usage data for"
+            },
+            "required": false,
+            "name": "org_ids",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "The start date of the date range",
+              "example": "2024-01-15"
+            },
+            "required": true,
+            "name": "start_date",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "The end date of the date range. If not specified, then minimum(start_date + 30 days, today - 1) is used.",
+              "example": "2024-01-30"
+            },
+            "required": false,
+            "name": "end_date",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "The name of the app to retrieve usage data for"
+            },
+            "required": true,
+            "name": "app_name",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The app details for the selected app and organizations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [true],
+                      "description": "API request succeeded"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "overall_summary": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "org_id": { "type": "string" },
+                              "app_name": { "type": "string" },
+                              "count_app_saves": { "type": "number" },
+                              "count_app_views": { "type": "number" },
+                              "host": { "type": "string" }
+                            },
+                            "required": [
+                              "org_id",
+                              "app_name",
+                              "count_app_saves",
+                              "count_app_views",
+                              "host"
+                            ],
+                            "additionalProperties": false
+                          }
+                        },
+                        "weekly_summary": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "org_id": { "type": "string" },
+                              "weekly_data": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "week": { "type": "string" },
+                                    "count_app_saves": { "type": "number" },
+                                    "count_app_views": { "type": "number" }
+                                  },
+                                  "required": [
+                                    "week",
+                                    "count_app_saves",
+                                    "count_app_views"
+                                  ]
+                                }
+                              }
+                            },
+                            "required": ["org_id", "weekly_data"],
+                            "additionalProperties": false
+                          }
+                        },
+                        "viewer_summary": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "email": { "type": "string" },
+                              "count": { "type": "number" },
+                              "user_id": { "type": "string" },
+                              "org_id": { "type": "string" },
+                              "host": { "type": "string" }
+                            },
+                            "required": [
+                              "email",
+                              "count",
+                              "user_id",
+                              "org_id",
+                              "host"
+                            ],
+                            "additionalProperties": false
+                          }
+                        },
+                        "editor_summary": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "email": { "type": "string" },
+                              "count": { "type": "number" },
+                              "user_id": { "type": "string" },
+                              "org_id": { "type": "string" },
+                              "host": { "type": "string" }
+                            },
+                            "required": [
+                              "email",
+                              "count",
+                              "user_id",
+                              "org_id",
+                              "host"
+                            ],
+                            "additionalProperties": false
+                          }
+                        }
+                      },
+                      "required": [
+                        "overall_summary",
+                        "weekly_summary",
+                        "viewer_summary",
+                        "editor_summary"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": ["success", "data"],
+                  "description": "The details about the app usage, such as edits and views, for the organizations"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usage/user_summary": {
+      "get": {
+        "summary": "The summaries of user usage for the selected organizations",
+        "description": "The summaries of the user including email, last active time, the number of apps viewed and edited, for the selected organizations in the specified time range. The API token must have the 'usage' scope.",
+        "tags": ["Usage"],
+        "parameters": [
+          {
+            "schema": { "type": "array", "items": { "type": "string" } },
+            "required": false,
+            "name": "org_ids",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "The start date of the date range",
+              "example": "2024-01-15"
+            },
+            "required": true,
+            "name": "start_date",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "The end date of the date range. If not specified, then minimum(start_date + 30 days, today - 1) is used.",
+              "example": "2024-01-30"
+            },
+            "required": false,
+            "name": "end_date",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The user usage summies for the selected organizations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [true],
+                      "description": "API request succeeded"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "org_id": {
+                            "type": "string",
+                            "description": "The id of the organization to which this user belongs"
+                          },
+                          "user_id": {
+                            "type": "string",
+                            "description": "The id of the user"
+                          },
+                          "email": {
+                            "type": "string",
+                            "description": "The email of the user"
+                          },
+                          "host": {
+                            "type": "string",
+                            "description": "The host of the organization to which this user belongs"
+                          },
+                          "count_app_views": {
+                            "type": "number",
+                            "description": "The number of times the user viewed an app in the time range specified"
+                          },
+                          "count_app_saves": {
+                            "type": "number",
+                            "description": "The number of times the user edited an app in the time range specified"
+                          },
+                          "count_unique_apps": {
+                            "type": "number",
+                            "description": "The number of unique apps edited in the time range specified"
+                          },
+                          "last_active": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2019-02-08T11:45:48.899Z"
+                          }
+                        },
+                        "required": [
+                          "org_id",
+                          "user_id",
+                          "email",
+                          "host",
+                          "count_app_views",
+                          "count_app_saves",
+                          "count_unique_apps",
+                          "last_active"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "description": "An array of requested items"
+                    },
+                    "total_count": {
+                      "type": "number",
+                      "description": "Total number of items in the response"
+                    },
+                    "next_token": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "A token to retrieve the next page of items in the collection"
+                    },
+                    "has_more": {
+                      "type": "boolean",
+                      "description": "Whether there are more items in the collection"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data",
+                    "total_count",
+                    "next_token",
+                    "has_more"
+                  ],
+                  "description": "The user summaries for the organizations"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usage/user_details": {
+      "get": {
+        "summary": "The user details for the selected user and organizations",
+        "description": "Detailed usage by user for the selected organizations. Contains information about the user, including the breakdown of saves and views for apps in the specified time range. The API token must have the 'usage' scope.",
+        "tags": ["Usage"],
+        "parameters": [
+          {
+            "schema": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "The list of org ids to retrieve usage data for"
+            },
+            "required": false,
+            "name": "org_ids",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "The start date of the date range",
+              "example": "2024-01-15"
+            },
+            "required": true,
+            "name": "start_date",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "The end date of the date range. If not specified, then minimum(start_date + 30 days, today - 1) is used.",
+              "example": "2024-01-30"
+            },
+            "required": false,
+            "name": "end_date",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "The email of the user to retrieve usage data for"
+            },
+            "required": true,
+            "name": "email",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The user details for the selected user email and organizations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [true],
+                      "description": "API request succeeded"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "overall_summary": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "org_id": { "type": "string" },
+                              "user_id": { "type": "string" },
+                              "host": { "type": "string" },
+                              "count_app_saves": { "type": "number" },
+                              "count_app_views": { "type": "number" }
+                            },
+                            "required": [
+                              "org_id",
+                              "user_id",
+                              "host",
+                              "count_app_saves",
+                              "count_app_views"
+                            ],
+                            "additionalProperties": false
+                          }
+                        },
+                        "weekly_summary": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "org_id": { "type": "string" },
+                              "weekly_data": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "week": { "type": "string" },
+                                    "count_app_saves": { "type": "number" },
+                                    "count_app_views": { "type": "number" }
+                                  },
+                                  "required": [
+                                    "week",
+                                    "count_app_saves",
+                                    "count_app_views"
+                                  ]
+                                }
+                              }
+                            },
+                            "required": ["org_id", "weekly_data"],
+                            "additionalProperties": false
+                          }
+                        },
+                        "viewer_summary": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "app_name": { "type": "string" },
+                              "org_id": { "type": "string" },
+                              "host": { "type": "string" },
+                              "count": { "type": "number" }
+                            },
+                            "required": ["app_name", "org_id", "host", "count"],
+                            "additionalProperties": false
+                          }
+                        },
+                        "editor_summary": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "app_name": { "type": "string" },
+                              "org_id": { "type": "string" },
+                              "host": { "type": "string" },
+                              "count": { "type": "number" }
+                            },
+                            "required": ["app_name", "org_id", "host", "count"],
+                            "additionalProperties": false
+                          }
+                        }
+                      },
+                      "required": [
+                        "overall_summary",
+                        "weekly_summary",
+                        "viewer_summary",
+                        "editor_summary"
+                      ]
+                    }
+                  },
+                  "required": ["success", "data"],
+                  "description": "The details about the users usage, such as edits and views on apps, for the organizations"
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

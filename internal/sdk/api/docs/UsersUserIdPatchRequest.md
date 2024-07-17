@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Operations** | [**[]UsersUserIdPatchRequestOperationsInner**](UsersUserIdPatchRequestOperationsInner.md) | The body of a request to update a user. | 
+**Operations** | [**[]UsersUserIdPatchRequestOperationsInner**](UsersUserIdPatchRequestOperationsInner.md) | A list of operations to apply to the user. See the [JSON PATCH specification](https://tools.ietf.org/html/rfc6902) for more details. | 
 
 ## Methods
 
