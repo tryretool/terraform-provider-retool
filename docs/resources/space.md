@@ -53,5 +53,5 @@ Optional:
 
 - `copy_branding_and_themes_settings` (Boolean) Copy branding and themes settings from the admin Space.
 - `copy_sso_settings` (Boolean) Copy SSO settings from the admin Space.
-- `create_admin_user` (Boolean) Whether to create an admin user for the space instead of simply inviting them.
-- `users_to_copy_as_admins` (List of String) List of user IDs to copy as admins.
+- `create_admin_user` (Boolean) Create an admin user in the new space for the creator instead of just sending out an invite.
+- `users_to_copy_as_admins` (List of String) List of emails of users from the admin space that need to be added to the new space as admins.
