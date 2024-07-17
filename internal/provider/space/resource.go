@@ -124,7 +124,7 @@ func (r *spaceResource) Schema(ctx context.Context, req resource.SchemaRequest, 
 					"users_to_copy_as_admins": schema.ListAttribute{
 						Optional:    true,
 						Computed:    true,
-						Description: "List of user IDs to copy as admins.",
+						Description: "List of emails of users from the admin space that need to be added to the new space as admins.",
 						ElementType: types.StringType,
 						Default:     listdefault.StaticValue(emptyList),
 						PlanModifiers: []planmodifier.List{
@@ -134,7 +134,7 @@ func (r *spaceResource) Schema(ctx context.Context, req resource.SchemaRequest, 
 					"create_admin_user": schema.BoolAttribute{
 						Optional:    true,
 						Computed:    true,
-						Description: "Whether to create an admin user for the space instead of simply inviting them.",
+						Description: "Create an admin user in the new space for the creator instead of just sending out an invite.",
 						Default:     booldefault.StaticBool(true),
 						PlanModifiers: []planmodifier.Bool{
 							boolplanmodifier.UseStateForUnknown(),
