@@ -5574,6 +5574,28 @@
             "in": "path"
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "The name of the space."
+                  },
+                  "domain": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "The domain of the space. On Retool Cloud, specify subdomain of the space instead."
+                  }
+                },
+                "required": ["name", "domain"]
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Updated space.",

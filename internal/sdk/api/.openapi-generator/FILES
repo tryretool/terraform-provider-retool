@@ -239,6 +239,7 @@ docs/SpacesSpaceIdGet200Response.md
 docs/SpacesSpaceIdGet200ResponseData.md
 docs/SpacesSpaceIdPut200Response.md
 docs/SpacesSpaceIdPut200ResponseData.md
+docs/SpacesSpaceIdPutRequest.md
 docs/SsoConfigPost200Response.md
 docs/SsoConfigPost200ResponseData.md
 docs/SsoConfigPostRequest.md
@@ -451,6 +452,7 @@ model__spaces__space_id__get_200_response.go
 model__spaces__space_id__get_200_response_data.go
 model__spaces__space_id__put_200_response.go
 model__spaces__space_id__put_200_response_data.go
+model__spaces__space_id__put_request.go
 model__spaces_copy_elements_post_201_response.go
 model__spaces_copy_elements_post_201_response_data.go
 model__spaces_copy_elements_post_request.go
