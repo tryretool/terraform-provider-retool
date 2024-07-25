@@ -69,12 +69,12 @@ func (r *permissionResource) Configure(ctx context.Context, req resource.Configu
 		return
 	}
 
-	client, ok := req.ProviderData.(*api.APIClient)
+	providerData, ok := req.ProviderData.(*utils.ProviderData)
 	if !ok {
-		resp.Diagnostics.AddError("Unexpected Resource Configure Type", "Expected *api.APIClient, got: %T. Please report this issue to the provider developers.")
+		resp.Diagnostics.AddError("Unexpected Resource Configure Type", "Expected *utils.ProviderData, got: %T. Please report this issue to the provider developers.")
 		return
 	}
-	r.client = client
+	r.client = providerData.Client
 }
 
 func (r *permissionResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {

@@ -156,12 +156,12 @@ func (r *spaceResource) Configure(ctx context.Context, req resource.ConfigureReq
 		return
 	}
 
-	client, ok := req.ProviderData.(*api.APIClient)
+	providerData, ok := req.ProviderData.(*utils.ProviderData)
 	if !ok {
-		resp.Diagnostics.AddError("Unexpected Resource Configure Type", "Expected *api.APIClient, got: %T. Please report this issue to the provider developers.")
+		resp.Diagnostics.AddError("Unexpected Resource Configure Type", "Expected *utils.ProviderData, got: %T. Please report this issue to the provider developers.")
 		return
 	}
-	r.client = client
+	r.client = providerData.Client
 }
 
 func (r *spaceResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {

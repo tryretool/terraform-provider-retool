@@ -17,6 +17,7 @@ import (
 	"github.com/tryretool/terraform-provider-retool/internal/provider/group"
 	"github.com/tryretool/terraform-provider-retool/internal/provider/permissions"
 	"github.com/tryretool/terraform-provider-retool/internal/provider/space"
+	"github.com/tryretool/terraform-provider-retool/internal/provider/utils"
 	"github.com/tryretool/terraform-provider-retool/internal/sdk/api"
 )
 
@@ -187,10 +188,15 @@ func (p *retoolProvider) Configure(ctx context.Context, req provider.ConfigureRe
 	clientConfig.AddDefaultHeader("Authorization", "Bearer "+accessToken)
 	client := api.NewAPIClient(clientConfig)
 
-	// Make the Retool client available during DataSource and Resource
-	// type Configure methods.
-	resp.DataSourceData = client
-	resp.ResourceData = client
+	// Make the Retool client available during DataSource and Resource type Configure methods.
+	// Also, init the cache for the root folder ids.
+	rootFolderIdCache := make(map[string]string)
+	providerData := utils.ProviderData{
+		Client:            client,
+		RootFolderIdCache: &rootFolderIdCache,
+	}
+	resp.DataSourceData = &providerData
+	resp.ResourceData = &providerData
 	tflog.Info(ctx, "Retool API client configured")
 }
 

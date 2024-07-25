@@ -32,7 +32,8 @@ func NewResource() resource.Resource {
 
 // folderResource is the resource implementation.
 type folderResource struct {
-	client *api.APIClient
+	client            *api.APIClient
+	rootFolderIdCache *map[string]string
 }
 
 // Configure adds the provider configured client to the resource.
@@ -43,14 +44,15 @@ func (r *folderResource) Configure(_ context.Context, req resource.ConfigureRequ
 		return
 	}
 
-	client, ok := req.ProviderData.(*api.APIClient)
+	providerData, ok := req.ProviderData.(*utils.ProviderData)
 	if !ok {
 		resp.Diagnostics.AddError(
 			"Unexpected Resource Configure Type",
-			"Expected *api.APIClient, got: %T. Please report this issue to the provider developers.",
+			"Expected *utils.ProviderData, got: %T. Please report this issue to the provider developers.",
 		)
 	}
-	r.client = client
+	r.client = providerData.Client
+	r.rootFolderIdCache = providerData.RootFolderIdCache
 }
 
 // Metadata returns the resource type name.

@@ -59,14 +59,14 @@ func (r *groupResource) Configure(_ context.Context, req resource.ConfigureReque
 		return
 	}
 
-	client, ok := req.ProviderData.(*api.APIClient)
+	providerData, ok := req.ProviderData.(*utils.ProviderData)
 	if !ok {
 		resp.Diagnostics.AddError(
 			"Unexpected Resource Configure Type",
-			"Expected *api.APIClient, got: %T. Please report this issue to the provider developers.",
+			"Expected *utils.ProviderData, got: %T. Please report this issue to the provider developers.",
 		)
 	}
-	r.client = client
+	r.client = providerData.Client
 }
 
 // Metadata associated with the Group resource
