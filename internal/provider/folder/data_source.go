@@ -124,10 +124,13 @@ func (d *foldersDataSource) Read(ctx context.Context, req datasource.ReadRequest
 			Id:             types.StringValue(folder.Id),
 			LegacyId:       types.StringValue(folder.LegacyId),
 			Name:           types.StringValue(folder.Name),
-			ParentFolderId: types.StringPointerValue(folder.ParentFolderId.Get()),
+			ParentFolderId: types.StringPointerValue(maybeReplaceRootFolderIdWithConstant(ctx, folder.FolderType, folder.ParentFolderId.Get(), d.client, d.rootFolderIdCache, &resp.Diagnostics)),
 			IsSystemFolder: types.BoolValue(folder.IsSystemFolder),
 			FolderType:     types.StringValue(folder.FolderType),
 		})
+		if resp.Diagnostics.HasError() {
+			return
+		}
 	}
 
 	// Set state

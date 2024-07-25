@@ -37,6 +37,11 @@ const testUpdatedFolderConfig = `
 		folder_type = "app"
 		parent_folder_id = retool_folder.parent_folder.id
 	}
+
+	resource "retool_folder" "child_folder" {
+		name = "tf-acc-test-child-folder"
+		folder_type = "app"
+	}
 `
 
 func TestMain(m *testing.M) {
@@ -116,6 +121,7 @@ func TestAccFolder(t *testing.T) {
 					resource.TestCheckResourceAttrSet("retool_folder.test_folder", "id"),
 					resource.TestCheckResourceAttrSet("retool_folder.test_folder", "legacy_id"),
 					resource.TestCheckResourceAttrPair("retool_folder.test_folder", "parent_folder_id", "retool_folder.parent_folder", "id"),
+					resource.TestCheckResourceAttr("retool_folder.child_folder", "parent_folder_id", "ROOT"),
 				),
 			},
 		},

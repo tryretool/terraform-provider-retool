@@ -28,13 +28,13 @@ interactions:
         trailer: {}
         content_length: -1
         uncompressed: true
-        body: '{"success":true,"data":[{"id":"app_1","legacy_id":"app_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.316Z","created_at":"2023-11-11T00:41:17.316Z"},{"id":"app_2","legacy_id":"app_2","name":"archive","parent_folder_id":"app_1","is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.319Z","created_at":"2023-11-11T00:41:17.319Z"},{"id":"app_6","legacy_id":"app_6","name":"Components","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.000Z","created_at":"2023-11-11T00:54:28.000Z"},{"id":"app_66","legacy_id":"app_66","name":"Folder 1","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-24T23:55:55.968Z","created_at":"2024-07-24T23:55:55.968Z"},{"id":"app_67","legacy_id":"app_67","name":"Folder 2 with a long name","parent_folder_id":"app_66","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T00:03:32.119Z","created_at":"2024-07-24T23:55:55.971Z"},{"id":"app_7","legacy_id":"app_7","name":"Navigation","parent_folder_id":"app_6","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.579Z","created_at":"2023-11-11T00:54:28.579Z"},{"id":"file_5","legacy_id":"file_5","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"file","updated_at":"2023-11-11T00:41:17.328Z","created_at":"2023-11-11T00:41:17.328Z"},{"id":"resource_1","legacy_id":"resource_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"resource","updated_at":"2023-11-11T00:41:17.321Z","created_at":"2023-11-11T00:41:17.321Z"},{"id":"resource_2","legacy_id":"resource_2","name":"sample","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:41:18.336Z","created_at":"2023-11-11T00:41:18.336Z"},{"id":"resource_3","legacy_id":"resource_3","name":"dev","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:22.753Z","created_at":"2023-11-11T00:54:22.753Z"},{"id":"resource_4","legacy_id":"resource_4","name":"shared","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:23.102Z","created_at":"2023-11-11T00:54:23.102Z"},{"id":"workflow_3","legacy_id":"workflow_3","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.324Z","created_at":"2023-11-11T00:41:17.324Z"},{"id":"workflow_4","legacy_id":"workflow_4","name":"archive","parent_folder_id":"workflow_3","is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.326Z","created_at":"2023-11-11T00:41:17.326Z"}],"total_count":13,"next_token":null,"has_more":false}'
+        body: '{"success":true,"data":[{"id":"app_1","legacy_id":"app_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.316Z","created_at":"2023-11-11T00:41:17.316Z"},{"id":"app_2","legacy_id":"app_2","name":"archive","parent_folder_id":"app_1","is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.319Z","created_at":"2023-11-11T00:41:17.319Z"},{"id":"app_6","legacy_id":"app_6","name":"Components","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.000Z","created_at":"2023-11-11T00:54:28.000Z"},{"id":"app_7","legacy_id":"app_7","name":"Navigation","parent_folder_id":"app_6","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.579Z","created_at":"2023-11-11T00:54:28.579Z"},{"id":"app_75","legacy_id":"app_75","name":"Example Folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:46:17.690Z","created_at":"2024-07-25T17:46:17.690Z"},{"id":"app_76","legacy_id":"app_76","name":"Example Subfolder","parent_folder_id":"app_75","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:57:49.060Z","created_at":"2024-07-25T17:57:49.060Z"},{"id":"file_5","legacy_id":"file_5","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"file","updated_at":"2023-11-11T00:41:17.328Z","created_at":"2023-11-11T00:41:17.328Z"},{"id":"resource_1","legacy_id":"resource_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"resource","updated_at":"2023-11-11T00:41:17.321Z","created_at":"2023-11-11T00:41:17.321Z"},{"id":"resource_2","legacy_id":"resource_2","name":"sample","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:41:18.336Z","created_at":"2023-11-11T00:41:18.336Z"},{"id":"resource_3","legacy_id":"resource_3","name":"dev","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:22.753Z","created_at":"2023-11-11T00:54:22.753Z"},{"id":"resource_4","legacy_id":"resource_4","name":"shared","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:23.102Z","created_at":"2023-11-11T00:54:23.102Z"},{"id":"workflow_3","legacy_id":"workflow_3","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.324Z","created_at":"2023-11-11T00:41:17.324Z"},{"id":"workflow_4","legacy_id":"workflow_4","name":"archive","parent_folder_id":"workflow_3","is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.326Z","created_at":"2023-11-11T00:41:17.326Z"}],"total_count":13,"next_token":null,"has_more":false}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 81.878416ms
+        duration: 82.476167ms
     - id: 1
       request:
         proto: HTTP/1.1
@@ -62,13 +62,13 @@ interactions:
         trailer: {}
         content_length: -1
         uncompressed: true
-        body: '{"success":true,"data":[{"id":"app_1","legacy_id":"app_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.316Z","created_at":"2023-11-11T00:41:17.316Z"},{"id":"app_2","legacy_id":"app_2","name":"archive","parent_folder_id":"app_1","is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.319Z","created_at":"2023-11-11T00:41:17.319Z"},{"id":"app_6","legacy_id":"app_6","name":"Components","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.000Z","created_at":"2023-11-11T00:54:28.000Z"},{"id":"app_66","legacy_id":"app_66","name":"Folder 1","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-24T23:55:55.968Z","created_at":"2024-07-24T23:55:55.968Z"},{"id":"app_67","legacy_id":"app_67","name":"Folder 2 with a long name","parent_folder_id":"app_66","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T00:03:32.119Z","created_at":"2024-07-24T23:55:55.971Z"},{"id":"app_7","legacy_id":"app_7","name":"Navigation","parent_folder_id":"app_6","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.579Z","created_at":"2023-11-11T00:54:28.579Z"},{"id":"app_71","legacy_id":"app_71","name":"tf-acc-test-folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T00:46:14.703Z","created_at":"2024-07-25T00:46:14.703Z"},{"id":"file_5","legacy_id":"file_5","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"file","updated_at":"2023-11-11T00:41:17.328Z","created_at":"2023-11-11T00:41:17.328Z"},{"id":"resource_1","legacy_id":"resource_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"resource","updated_at":"2023-11-11T00:41:17.321Z","created_at":"2023-11-11T00:41:17.321Z"},{"id":"resource_2","legacy_id":"resource_2","name":"sample","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:41:18.336Z","created_at":"2023-11-11T00:41:18.336Z"},{"id":"resource_3","legacy_id":"resource_3","name":"dev","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:22.753Z","created_at":"2023-11-11T00:54:22.753Z"},{"id":"resource_4","legacy_id":"resource_4","name":"shared","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:23.102Z","created_at":"2023-11-11T00:54:23.102Z"},{"id":"workflow_3","legacy_id":"workflow_3","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.324Z","created_at":"2023-11-11T00:41:17.324Z"},{"id":"workflow_4","legacy_id":"workflow_4","name":"archive","parent_folder_id":"workflow_3","is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.326Z","created_at":"2023-11-11T00:41:17.326Z"}],"total_count":14,"next_token":null,"has_more":false}'
+        body: '{"success":true,"data":[{"id":"app_1","legacy_id":"app_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.316Z","created_at":"2023-11-11T00:41:17.316Z"},{"id":"app_2","legacy_id":"app_2","name":"archive","parent_folder_id":"app_1","is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.319Z","created_at":"2023-11-11T00:41:17.319Z"},{"id":"app_6","legacy_id":"app_6","name":"Components","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.000Z","created_at":"2023-11-11T00:54:28.000Z"},{"id":"app_7","legacy_id":"app_7","name":"Navigation","parent_folder_id":"app_6","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.579Z","created_at":"2023-11-11T00:54:28.579Z"},{"id":"app_75","legacy_id":"app_75","name":"Example Folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:46:17.690Z","created_at":"2024-07-25T17:46:17.690Z"},{"id":"app_76","legacy_id":"app_76","name":"Example Subfolder","parent_folder_id":"app_75","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:57:49.060Z","created_at":"2024-07-25T17:57:49.060Z"},{"id":"file_5","legacy_id":"file_5","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"file","updated_at":"2023-11-11T00:41:17.328Z","created_at":"2023-11-11T00:41:17.328Z"},{"id":"resource_1","legacy_id":"resource_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"resource","updated_at":"2023-11-11T00:41:17.321Z","created_at":"2023-11-11T00:41:17.321Z"},{"id":"resource_2","legacy_id":"resource_2","name":"sample","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:41:18.336Z","created_at":"2023-11-11T00:41:18.336Z"},{"id":"resource_3","legacy_id":"resource_3","name":"dev","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:22.753Z","created_at":"2023-11-11T00:54:22.753Z"},{"id":"resource_4","legacy_id":"resource_4","name":"shared","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:23.102Z","created_at":"2023-11-11T00:54:23.102Z"},{"id":"workflow_3","legacy_id":"workflow_3","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.324Z","created_at":"2023-11-11T00:41:17.324Z"},{"id":"workflow_4","legacy_id":"workflow_4","name":"archive","parent_folder_id":"workflow_3","is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.326Z","created_at":"2023-11-11T00:41:17.326Z"}],"total_count":13,"next_token":null,"has_more":false}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 64.639833ms
+        duration: 74.8495ms
     - id: 2
       request:
         proto: HTTP/1.1
@@ -96,10 +96,316 @@ interactions:
         trailer: {}
         content_length: -1
         uncompressed: true
-        body: '{"success":true,"data":[{"id":"app_1","legacy_id":"app_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.316Z","created_at":"2023-11-11T00:41:17.316Z"},{"id":"app_2","legacy_id":"app_2","name":"archive","parent_folder_id":"app_1","is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.319Z","created_at":"2023-11-11T00:41:17.319Z"},{"id":"app_6","legacy_id":"app_6","name":"Components","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.000Z","created_at":"2023-11-11T00:54:28.000Z"},{"id":"app_66","legacy_id":"app_66","name":"Folder 1","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-24T23:55:55.968Z","created_at":"2024-07-24T23:55:55.968Z"},{"id":"app_67","legacy_id":"app_67","name":"Folder 2 with a long name","parent_folder_id":"app_66","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T00:03:32.119Z","created_at":"2024-07-24T23:55:55.971Z"},{"id":"app_7","legacy_id":"app_7","name":"Navigation","parent_folder_id":"app_6","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.579Z","created_at":"2023-11-11T00:54:28.579Z"},{"id":"app_71","legacy_id":"app_71","name":"tf-acc-test-folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T00:46:14.703Z","created_at":"2024-07-25T00:46:14.703Z"},{"id":"app_72","legacy_id":"app_72","name":"tf-acc-test-child-folder","parent_folder_id":"app_71","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T00:46:14.807Z","created_at":"2024-07-25T00:46:14.807Z"},{"id":"file_5","legacy_id":"file_5","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"file","updated_at":"2023-11-11T00:41:17.328Z","created_at":"2023-11-11T00:41:17.328Z"},{"id":"resource_1","legacy_id":"resource_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"resource","updated_at":"2023-11-11T00:41:17.321Z","created_at":"2023-11-11T00:41:17.321Z"},{"id":"resource_2","legacy_id":"resource_2","name":"sample","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:41:18.336Z","created_at":"2023-11-11T00:41:18.336Z"},{"id":"resource_3","legacy_id":"resource_3","name":"dev","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:22.753Z","created_at":"2023-11-11T00:54:22.753Z"},{"id":"resource_4","legacy_id":"resource_4","name":"shared","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:23.102Z","created_at":"2023-11-11T00:54:23.102Z"},{"id":"workflow_3","legacy_id":"workflow_3","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.324Z","created_at":"2023-11-11T00:41:17.324Z"},{"id":"workflow_4","legacy_id":"workflow_4","name":"archive","parent_folder_id":"workflow_3","is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.326Z","created_at":"2023-11-11T00:41:17.326Z"}],"total_count":15,"next_token":null,"has_more":false}'
+        body: '{"success":true,"data":[{"id":"app_1","legacy_id":"app_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.316Z","created_at":"2023-11-11T00:41:17.316Z"},{"id":"app_2","legacy_id":"app_2","name":"archive","parent_folder_id":"app_1","is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.319Z","created_at":"2023-11-11T00:41:17.319Z"},{"id":"app_6","legacy_id":"app_6","name":"Components","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.000Z","created_at":"2023-11-11T00:54:28.000Z"},{"id":"app_7","legacy_id":"app_7","name":"Navigation","parent_folder_id":"app_6","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.579Z","created_at":"2023-11-11T00:54:28.579Z"},{"id":"app_75","legacy_id":"app_75","name":"Example Folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:46:17.690Z","created_at":"2024-07-25T17:46:17.690Z"},{"id":"app_76","legacy_id":"app_76","name":"Example Subfolder","parent_folder_id":"app_75","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:57:49.060Z","created_at":"2024-07-25T17:57:49.060Z"},{"id":"file_5","legacy_id":"file_5","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"file","updated_at":"2023-11-11T00:41:17.328Z","created_at":"2023-11-11T00:41:17.328Z"},{"id":"resource_1","legacy_id":"resource_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"resource","updated_at":"2023-11-11T00:41:17.321Z","created_at":"2023-11-11T00:41:17.321Z"},{"id":"resource_2","legacy_id":"resource_2","name":"sample","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:41:18.336Z","created_at":"2023-11-11T00:41:18.336Z"},{"id":"resource_3","legacy_id":"resource_3","name":"dev","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:22.753Z","created_at":"2023-11-11T00:54:22.753Z"},{"id":"resource_4","legacy_id":"resource_4","name":"shared","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:23.102Z","created_at":"2023-11-11T00:54:23.102Z"},{"id":"workflow_3","legacy_id":"workflow_3","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.324Z","created_at":"2023-11-11T00:41:17.324Z"},{"id":"workflow_4","legacy_id":"workflow_4","name":"archive","parent_folder_id":"workflow_3","is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.326Z","created_at":"2023-11-11T00:41:17.326Z"}],"total_count":13,"next_token":null,"has_more":false}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 65.881416ms
+        duration: 75.127667ms
+    - id: 3
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding:
+            - chunked
+        trailer: {}
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":[{"id":"app_1","legacy_id":"app_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.316Z","created_at":"2023-11-11T00:41:17.316Z"},{"id":"app_2","legacy_id":"app_2","name":"archive","parent_folder_id":"app_1","is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.319Z","created_at":"2023-11-11T00:41:17.319Z"},{"id":"app_6","legacy_id":"app_6","name":"Components","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.000Z","created_at":"2023-11-11T00:54:28.000Z"},{"id":"app_7","legacy_id":"app_7","name":"Navigation","parent_folder_id":"app_6","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.579Z","created_at":"2023-11-11T00:54:28.579Z"},{"id":"app_75","legacy_id":"app_75","name":"Example Folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:46:17.690Z","created_at":"2024-07-25T17:46:17.690Z"},{"id":"app_76","legacy_id":"app_76","name":"Example Subfolder","parent_folder_id":"app_75","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:57:49.060Z","created_at":"2024-07-25T17:57:49.060Z"},{"id":"app_93","legacy_id":"app_93","name":"tf-acc-test-folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:27:07.493Z","created_at":"2024-07-25T18:27:07.493Z"},{"id":"file_5","legacy_id":"file_5","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"file","updated_at":"2023-11-11T00:41:17.328Z","created_at":"2023-11-11T00:41:17.328Z"},{"id":"resource_1","legacy_id":"resource_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"resource","updated_at":"2023-11-11T00:41:17.321Z","created_at":"2023-11-11T00:41:17.321Z"},{"id":"resource_2","legacy_id":"resource_2","name":"sample","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:41:18.336Z","created_at":"2023-11-11T00:41:18.336Z"},{"id":"resource_3","legacy_id":"resource_3","name":"dev","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:22.753Z","created_at":"2023-11-11T00:54:22.753Z"},{"id":"resource_4","legacy_id":"resource_4","name":"shared","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:23.102Z","created_at":"2023-11-11T00:54:23.102Z"},{"id":"workflow_3","legacy_id":"workflow_3","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.324Z","created_at":"2023-11-11T00:41:17.324Z"},{"id":"workflow_4","legacy_id":"workflow_4","name":"archive","parent_folder_id":"workflow_3","is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.326Z","created_at":"2023-11-11T00:41:17.326Z"}],"total_count":14,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 84.379792ms
+    - id: 4
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding:
+            - chunked
+        trailer: {}
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":[{"id":"app_1","legacy_id":"app_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.316Z","created_at":"2023-11-11T00:41:17.316Z"},{"id":"app_2","legacy_id":"app_2","name":"archive","parent_folder_id":"app_1","is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.319Z","created_at":"2023-11-11T00:41:17.319Z"},{"id":"app_6","legacy_id":"app_6","name":"Components","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.000Z","created_at":"2023-11-11T00:54:28.000Z"},{"id":"app_7","legacy_id":"app_7","name":"Navigation","parent_folder_id":"app_6","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.579Z","created_at":"2023-11-11T00:54:28.579Z"},{"id":"app_75","legacy_id":"app_75","name":"Example Folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:46:17.690Z","created_at":"2024-07-25T17:46:17.690Z"},{"id":"app_76","legacy_id":"app_76","name":"Example Subfolder","parent_folder_id":"app_75","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:57:49.060Z","created_at":"2024-07-25T17:57:49.060Z"},{"id":"app_93","legacy_id":"app_93","name":"tf-acc-test-folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:27:07.493Z","created_at":"2024-07-25T18:27:07.493Z"},{"id":"app_94","legacy_id":"app_94","name":"tf-acc-test-child-folder","parent_folder_id":"app_93","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:27:07.607Z","created_at":"2024-07-25T18:27:07.607Z"},{"id":"file_5","legacy_id":"file_5","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"file","updated_at":"2023-11-11T00:41:17.328Z","created_at":"2023-11-11T00:41:17.328Z"},{"id":"resource_1","legacy_id":"resource_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"resource","updated_at":"2023-11-11T00:41:17.321Z","created_at":"2023-11-11T00:41:17.321Z"},{"id":"resource_2","legacy_id":"resource_2","name":"sample","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:41:18.336Z","created_at":"2023-11-11T00:41:18.336Z"},{"id":"resource_3","legacy_id":"resource_3","name":"dev","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:22.753Z","created_at":"2023-11-11T00:54:22.753Z"},{"id":"resource_4","legacy_id":"resource_4","name":"shared","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:23.102Z","created_at":"2023-11-11T00:54:23.102Z"},{"id":"workflow_3","legacy_id":"workflow_3","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.324Z","created_at":"2023-11-11T00:41:17.324Z"},{"id":"workflow_4","legacy_id":"workflow_4","name":"archive","parent_folder_id":"workflow_3","is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.326Z","created_at":"2023-11-11T00:41:17.326Z"}],"total_count":15,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 73.635417ms
+    - id: 5
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding:
+            - chunked
+        trailer: {}
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":[{"id":"app_1","legacy_id":"app_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.316Z","created_at":"2023-11-11T00:41:17.316Z"},{"id":"app_2","legacy_id":"app_2","name":"archive","parent_folder_id":"app_1","is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.319Z","created_at":"2023-11-11T00:41:17.319Z"},{"id":"app_6","legacy_id":"app_6","name":"Components","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.000Z","created_at":"2023-11-11T00:54:28.000Z"},{"id":"app_7","legacy_id":"app_7","name":"Navigation","parent_folder_id":"app_6","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.579Z","created_at":"2023-11-11T00:54:28.579Z"},{"id":"app_75","legacy_id":"app_75","name":"Example Folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:46:17.690Z","created_at":"2024-07-25T17:46:17.690Z"},{"id":"app_76","legacy_id":"app_76","name":"Example Subfolder","parent_folder_id":"app_75","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:57:49.060Z","created_at":"2024-07-25T17:57:49.060Z"},{"id":"app_93","legacy_id":"app_93","name":"tf-acc-test-folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:27:07.493Z","created_at":"2024-07-25T18:27:07.493Z"},{"id":"app_94","legacy_id":"app_94","name":"tf-acc-test-child-folder","parent_folder_id":"app_93","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:27:07.607Z","created_at":"2024-07-25T18:27:07.607Z"},{"id":"file_5","legacy_id":"file_5","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"file","updated_at":"2023-11-11T00:41:17.328Z","created_at":"2023-11-11T00:41:17.328Z"},{"id":"resource_1","legacy_id":"resource_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"resource","updated_at":"2023-11-11T00:41:17.321Z","created_at":"2023-11-11T00:41:17.321Z"},{"id":"resource_2","legacy_id":"resource_2","name":"sample","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:41:18.336Z","created_at":"2023-11-11T00:41:18.336Z"},{"id":"resource_3","legacy_id":"resource_3","name":"dev","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:22.753Z","created_at":"2023-11-11T00:54:22.753Z"},{"id":"resource_4","legacy_id":"resource_4","name":"shared","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:23.102Z","created_at":"2023-11-11T00:54:23.102Z"},{"id":"workflow_3","legacy_id":"workflow_3","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.324Z","created_at":"2023-11-11T00:41:17.324Z"},{"id":"workflow_4","legacy_id":"workflow_4","name":"archive","parent_folder_id":"workflow_3","is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.326Z","created_at":"2023-11-11T00:41:17.326Z"}],"total_count":15,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 66.55525ms
+    - id: 6
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding:
+            - chunked
+        trailer: {}
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":[{"id":"app_1","legacy_id":"app_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.316Z","created_at":"2023-11-11T00:41:17.316Z"},{"id":"app_2","legacy_id":"app_2","name":"archive","parent_folder_id":"app_1","is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.319Z","created_at":"2023-11-11T00:41:17.319Z"},{"id":"app_6","legacy_id":"app_6","name":"Components","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.000Z","created_at":"2023-11-11T00:54:28.000Z"},{"id":"app_7","legacy_id":"app_7","name":"Navigation","parent_folder_id":"app_6","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.579Z","created_at":"2023-11-11T00:54:28.579Z"},{"id":"app_75","legacy_id":"app_75","name":"Example Folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:46:17.690Z","created_at":"2024-07-25T17:46:17.690Z"},{"id":"app_76","legacy_id":"app_76","name":"Example Subfolder","parent_folder_id":"app_75","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:57:49.060Z","created_at":"2024-07-25T17:57:49.060Z"},{"id":"app_93","legacy_id":"app_93","name":"tf-acc-test-folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:27:07.493Z","created_at":"2024-07-25T18:27:07.493Z"},{"id":"app_94","legacy_id":"app_94","name":"tf-acc-test-child-folder","parent_folder_id":"app_93","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:27:07.607Z","created_at":"2024-07-25T18:27:07.607Z"},{"id":"file_5","legacy_id":"file_5","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"file","updated_at":"2023-11-11T00:41:17.328Z","created_at":"2023-11-11T00:41:17.328Z"},{"id":"resource_1","legacy_id":"resource_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"resource","updated_at":"2023-11-11T00:41:17.321Z","created_at":"2023-11-11T00:41:17.321Z"},{"id":"resource_2","legacy_id":"resource_2","name":"sample","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:41:18.336Z","created_at":"2023-11-11T00:41:18.336Z"},{"id":"resource_3","legacy_id":"resource_3","name":"dev","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:22.753Z","created_at":"2023-11-11T00:54:22.753Z"},{"id":"resource_4","legacy_id":"resource_4","name":"shared","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:23.102Z","created_at":"2023-11-11T00:54:23.102Z"},{"id":"workflow_3","legacy_id":"workflow_3","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.324Z","created_at":"2023-11-11T00:41:17.324Z"},{"id":"workflow_4","legacy_id":"workflow_4","name":"archive","parent_folder_id":"workflow_3","is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.326Z","created_at":"2023-11-11T00:41:17.326Z"}],"total_count":15,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 65.2715ms
+    - id: 7
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding:
+            - chunked
+        trailer: {}
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":[{"id":"app_1","legacy_id":"app_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.316Z","created_at":"2023-11-11T00:41:17.316Z"},{"id":"app_2","legacy_id":"app_2","name":"archive","parent_folder_id":"app_1","is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.319Z","created_at":"2023-11-11T00:41:17.319Z"},{"id":"app_6","legacy_id":"app_6","name":"Components","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.000Z","created_at":"2023-11-11T00:54:28.000Z"},{"id":"app_7","legacy_id":"app_7","name":"Navigation","parent_folder_id":"app_6","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.579Z","created_at":"2023-11-11T00:54:28.579Z"},{"id":"app_75","legacy_id":"app_75","name":"Example Folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:46:17.690Z","created_at":"2024-07-25T17:46:17.690Z"},{"id":"app_76","legacy_id":"app_76","name":"Example Subfolder","parent_folder_id":"app_75","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:57:49.060Z","created_at":"2024-07-25T17:57:49.060Z"},{"id":"app_93","legacy_id":"app_93","name":"tf-acc-test-folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:27:07.493Z","created_at":"2024-07-25T18:27:07.493Z"},{"id":"app_94","legacy_id":"app_94","name":"tf-acc-test-child-folder","parent_folder_id":"app_93","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:27:07.607Z","created_at":"2024-07-25T18:27:07.607Z"},{"id":"file_5","legacy_id":"file_5","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"file","updated_at":"2023-11-11T00:41:17.328Z","created_at":"2023-11-11T00:41:17.328Z"},{"id":"resource_1","legacy_id":"resource_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"resource","updated_at":"2023-11-11T00:41:17.321Z","created_at":"2023-11-11T00:41:17.321Z"},{"id":"resource_2","legacy_id":"resource_2","name":"sample","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:41:18.336Z","created_at":"2023-11-11T00:41:18.336Z"},{"id":"resource_3","legacy_id":"resource_3","name":"dev","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:22.753Z","created_at":"2023-11-11T00:54:22.753Z"},{"id":"resource_4","legacy_id":"resource_4","name":"shared","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:23.102Z","created_at":"2023-11-11T00:54:23.102Z"},{"id":"workflow_3","legacy_id":"workflow_3","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.324Z","created_at":"2023-11-11T00:41:17.324Z"},{"id":"workflow_4","legacy_id":"workflow_4","name":"archive","parent_folder_id":"workflow_3","is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.326Z","created_at":"2023-11-11T00:41:17.326Z"}],"total_count":15,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 69.99325ms
+    - id: 8
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding:
+            - chunked
+        trailer: {}
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":[{"id":"app_1","legacy_id":"app_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.316Z","created_at":"2023-11-11T00:41:17.316Z"},{"id":"app_2","legacy_id":"app_2","name":"archive","parent_folder_id":"app_1","is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.319Z","created_at":"2023-11-11T00:41:17.319Z"},{"id":"app_6","legacy_id":"app_6","name":"Components","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.000Z","created_at":"2023-11-11T00:54:28.000Z"},{"id":"app_7","legacy_id":"app_7","name":"Navigation","parent_folder_id":"app_6","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.579Z","created_at":"2023-11-11T00:54:28.579Z"},{"id":"app_75","legacy_id":"app_75","name":"Example Folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:46:17.690Z","created_at":"2024-07-25T17:46:17.690Z"},{"id":"app_76","legacy_id":"app_76","name":"Example Subfolder","parent_folder_id":"app_75","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:57:49.060Z","created_at":"2024-07-25T17:57:49.060Z"},{"id":"app_93","legacy_id":"app_93","name":"tf-acc-test-folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:27:07.493Z","created_at":"2024-07-25T18:27:07.493Z"},{"id":"app_94","legacy_id":"app_94","name":"tf-acc-test-child-folder","parent_folder_id":"app_93","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:27:07.607Z","created_at":"2024-07-25T18:27:07.607Z"},{"id":"file_5","legacy_id":"file_5","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"file","updated_at":"2023-11-11T00:41:17.328Z","created_at":"2023-11-11T00:41:17.328Z"},{"id":"resource_1","legacy_id":"resource_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"resource","updated_at":"2023-11-11T00:41:17.321Z","created_at":"2023-11-11T00:41:17.321Z"},{"id":"resource_2","legacy_id":"resource_2","name":"sample","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:41:18.336Z","created_at":"2023-11-11T00:41:18.336Z"},{"id":"resource_3","legacy_id":"resource_3","name":"dev","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:22.753Z","created_at":"2023-11-11T00:54:22.753Z"},{"id":"resource_4","legacy_id":"resource_4","name":"shared","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:23.102Z","created_at":"2023-11-11T00:54:23.102Z"},{"id":"workflow_3","legacy_id":"workflow_3","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.324Z","created_at":"2023-11-11T00:41:17.324Z"},{"id":"workflow_4","legacy_id":"workflow_4","name":"archive","parent_folder_id":"workflow_3","is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.326Z","created_at":"2023-11-11T00:41:17.326Z"}],"total_count":15,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 72.297042ms
+    - id: 9
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding:
+            - chunked
+        trailer: {}
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":[{"id":"app_1","legacy_id":"app_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.316Z","created_at":"2023-11-11T00:41:17.316Z"},{"id":"app_2","legacy_id":"app_2","name":"archive","parent_folder_id":"app_1","is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.319Z","created_at":"2023-11-11T00:41:17.319Z"},{"id":"app_6","legacy_id":"app_6","name":"Components","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.000Z","created_at":"2023-11-11T00:54:28.000Z"},{"id":"app_7","legacy_id":"app_7","name":"Navigation","parent_folder_id":"app_6","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.579Z","created_at":"2023-11-11T00:54:28.579Z"},{"id":"app_75","legacy_id":"app_75","name":"Example Folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:46:17.690Z","created_at":"2024-07-25T17:46:17.690Z"},{"id":"app_76","legacy_id":"app_76","name":"Example Subfolder","parent_folder_id":"app_75","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:57:49.060Z","created_at":"2024-07-25T17:57:49.060Z"},{"id":"app_93","legacy_id":"app_93","name":"tf-acc-test-folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:27:07.493Z","created_at":"2024-07-25T18:27:07.493Z"},{"id":"app_94","legacy_id":"app_94","name":"tf-acc-test-child-folder","parent_folder_id":"app_93","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:27:07.607Z","created_at":"2024-07-25T18:27:07.607Z"},{"id":"file_5","legacy_id":"file_5","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"file","updated_at":"2023-11-11T00:41:17.328Z","created_at":"2023-11-11T00:41:17.328Z"},{"id":"resource_1","legacy_id":"resource_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"resource","updated_at":"2023-11-11T00:41:17.321Z","created_at":"2023-11-11T00:41:17.321Z"},{"id":"resource_2","legacy_id":"resource_2","name":"sample","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:41:18.336Z","created_at":"2023-11-11T00:41:18.336Z"},{"id":"resource_3","legacy_id":"resource_3","name":"dev","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:22.753Z","created_at":"2023-11-11T00:54:22.753Z"},{"id":"resource_4","legacy_id":"resource_4","name":"shared","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:23.102Z","created_at":"2023-11-11T00:54:23.102Z"},{"id":"workflow_3","legacy_id":"workflow_3","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.324Z","created_at":"2023-11-11T00:41:17.324Z"},{"id":"workflow_4","legacy_id":"workflow_4","name":"archive","parent_folder_id":"workflow_3","is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.326Z","created_at":"2023-11-11T00:41:17.326Z"}],"total_count":15,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 83.171666ms
+    - id: 10
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding:
+            - chunked
+        trailer: {}
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":[{"id":"app_1","legacy_id":"app_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.316Z","created_at":"2023-11-11T00:41:17.316Z"},{"id":"app_2","legacy_id":"app_2","name":"archive","parent_folder_id":"app_1","is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.319Z","created_at":"2023-11-11T00:41:17.319Z"},{"id":"app_6","legacy_id":"app_6","name":"Components","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.000Z","created_at":"2023-11-11T00:54:28.000Z"},{"id":"app_7","legacy_id":"app_7","name":"Navigation","parent_folder_id":"app_6","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.579Z","created_at":"2023-11-11T00:54:28.579Z"},{"id":"app_75","legacy_id":"app_75","name":"Example Folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:46:17.690Z","created_at":"2024-07-25T17:46:17.690Z"},{"id":"app_76","legacy_id":"app_76","name":"Example Subfolder","parent_folder_id":"app_75","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:57:49.060Z","created_at":"2024-07-25T17:57:49.060Z"},{"id":"app_93","legacy_id":"app_93","name":"tf-acc-test-folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:27:07.493Z","created_at":"2024-07-25T18:27:07.493Z"},{"id":"app_94","legacy_id":"app_94","name":"tf-acc-test-child-folder","parent_folder_id":"app_93","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:27:07.607Z","created_at":"2024-07-25T18:27:07.607Z"},{"id":"file_5","legacy_id":"file_5","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"file","updated_at":"2023-11-11T00:41:17.328Z","created_at":"2023-11-11T00:41:17.328Z"},{"id":"resource_1","legacy_id":"resource_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"resource","updated_at":"2023-11-11T00:41:17.321Z","created_at":"2023-11-11T00:41:17.321Z"},{"id":"resource_2","legacy_id":"resource_2","name":"sample","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:41:18.336Z","created_at":"2023-11-11T00:41:18.336Z"},{"id":"resource_3","legacy_id":"resource_3","name":"dev","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:22.753Z","created_at":"2023-11-11T00:54:22.753Z"},{"id":"resource_4","legacy_id":"resource_4","name":"shared","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:23.102Z","created_at":"2023-11-11T00:54:23.102Z"},{"id":"workflow_3","legacy_id":"workflow_3","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.324Z","created_at":"2023-11-11T00:41:17.324Z"},{"id":"workflow_4","legacy_id":"workflow_4","name":"archive","parent_folder_id":"workflow_3","is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.326Z","created_at":"2023-11-11T00:41:17.326Z"}],"total_count":15,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 80.49275ms
+    - id: 11
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding:
+            - chunked
+        trailer: {}
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":[{"id":"app_1","legacy_id":"app_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.316Z","created_at":"2023-11-11T00:41:17.316Z"},{"id":"app_2","legacy_id":"app_2","name":"archive","parent_folder_id":"app_1","is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.319Z","created_at":"2023-11-11T00:41:17.319Z"},{"id":"app_6","legacy_id":"app_6","name":"Components","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.000Z","created_at":"2023-11-11T00:54:28.000Z"},{"id":"app_7","legacy_id":"app_7","name":"Navigation","parent_folder_id":"app_6","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.579Z","created_at":"2023-11-11T00:54:28.579Z"},{"id":"app_75","legacy_id":"app_75","name":"Example Folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:46:17.690Z","created_at":"2024-07-25T17:46:17.690Z"},{"id":"app_76","legacy_id":"app_76","name":"Example Subfolder","parent_folder_id":"app_75","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:57:49.060Z","created_at":"2024-07-25T17:57:49.060Z"},{"id":"app_93","legacy_id":"app_93","name":"tf-acc-test-folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:27:07.493Z","created_at":"2024-07-25T18:27:07.493Z"},{"id":"app_94","legacy_id":"app_94","name":"tf-acc-test-child-folder","parent_folder_id":"app_93","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:27:07.607Z","created_at":"2024-07-25T18:27:07.607Z"},{"id":"file_5","legacy_id":"file_5","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"file","updated_at":"2023-11-11T00:41:17.328Z","created_at":"2023-11-11T00:41:17.328Z"},{"id":"resource_1","legacy_id":"resource_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"resource","updated_at":"2023-11-11T00:41:17.321Z","created_at":"2023-11-11T00:41:17.321Z"},{"id":"resource_2","legacy_id":"resource_2","name":"sample","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:41:18.336Z","created_at":"2023-11-11T00:41:18.336Z"},{"id":"resource_3","legacy_id":"resource_3","name":"dev","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:22.753Z","created_at":"2023-11-11T00:54:22.753Z"},{"id":"resource_4","legacy_id":"resource_4","name":"shared","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:23.102Z","created_at":"2023-11-11T00:54:23.102Z"},{"id":"workflow_3","legacy_id":"workflow_3","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.324Z","created_at":"2023-11-11T00:41:17.324Z"},{"id":"workflow_4","legacy_id":"workflow_4","name":"archive","parent_folder_id":"workflow_3","is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.326Z","created_at":"2023-11-11T00:41:17.326Z"}],"total_count":15,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 72.585833ms
