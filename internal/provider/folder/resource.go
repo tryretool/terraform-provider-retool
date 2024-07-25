@@ -232,7 +232,53 @@ func (r *folderResource) Read(ctx context.Context, req resource.ReadRequest, res
 
 // Update updates the resource and sets the updated Terraform state on success.
 func (r *folderResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	// TODO(dzmitry.kishylau): Implement the Update method when we have correspnding API endpoint.
+	var state folderModel
+	diags := req.State.Get(ctx, &state)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	var plan folderModel
+	diags = req.Plan.Get(ctx, &plan)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	if plan.Name.Equal(state.Name) && plan.ParentFolderId.Equal(state.ParentFolderId) {
+		// No changes
+		tflog.Info(ctx, "No changes detected for folder", map[string]any{"id": state.Id})
+		return
+	}
+
+	// Generate API request body
+	patchReq := api.FoldersFolderIdPatchRequest{}
+	if !plan.Name.Equal(state.Name) {
+		op := api.NewUsersUserIdPatchRequestOperationsInnerAnyOf("replace", "/name")
+		op.Value = plan.Name.ValueString()
+		patchReq.Operations = append(patchReq.Operations, api.FoldersFolderIdPatchRequestOperationsInner{UsersUserIdPatchRequestOperationsInnerAnyOf: op})
+	}
+	if !plan.ParentFolderId.Equal(state.ParentFolderId) {
+		op := api.NewUsersUserIdPatchRequestOperationsInnerAnyOf("replace", "/parent_folder_id")
+		op.Value = plan.ParentFolderId.ValueString()
+		patchReq.Operations = append(patchReq.Operations, api.FoldersFolderIdPatchRequestOperationsInner{UsersUserIdPatchRequestOperationsInnerAnyOf: op})
+	}
+	_, httpResponse, err := r.client.FoldersAPI.FoldersFolderIdPatch(ctx, state.Id.ValueString()).FoldersFolderIdPatchRequest(patchReq).Execute()
+	if err != nil {
+		resp.Diagnostics.AddError(
+			"Error Updating Folder",
+			"Could not update folder "+state.Id.ValueString()+", unexpected error: "+err.Error(),
+		)
+		tflog.Error(ctx, "Error Updating Folder", utils.AddHttpStatusCode(map[string]any{"error": err.Error()}, httpResponse))
+		return
+	}
+
+	diags = resp.State.Set(ctx, plan)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
 }
 
 // Delete deletes the resource and removes the Terraform state on success.
@@ -246,7 +292,11 @@ func (r *folderResource) Delete(ctx context.Context, req resource.DeleteRequest,
 	}
 
 	// Delete existing order
-	httpResponse, err := r.client.FoldersAPI.FoldersFolderIdDelete(ctx, state.Id.ValueString()).Execute()
+	recursive := true
+	deleteRequest := api.FoldersFolderIdDeleteRequest{}
+	deleteRequest.Recursive = &recursive
+
+	httpResponse, err := r.client.FoldersAPI.FoldersFolderIdDelete(ctx, state.Id.ValueString()).FoldersFolderIdDeleteRequest(deleteRequest).Execute()
 	if err != nil && !(httpResponse != nil && httpResponse.StatusCode == 404) { // it's ok to not find the resource being deleted
 		resp.Diagnostics.AddError(
 			"Error Deleting Folder",

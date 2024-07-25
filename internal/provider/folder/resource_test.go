@@ -10,6 +10,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
 	"github.com/tryretool/terraform-provider-retool/internal/acctest"
+	"github.com/tryretool/terraform-provider-retool/internal/sdk/api"
 )
 
 const testFolderConfig = `
@@ -22,6 +23,19 @@ const testFolderConfig = `
 		name = "tf-acc-test-child-folder"
 		folder_type = "app"
 		parent_folder_id = retool_folder.test_folder.id
+	}
+`
+
+const testUpdatedFolderConfig = `
+	resource "retool_folder" "parent_folder" {
+		name = "tf-acc-parent-folder"
+		folder_type = "app"
+	}
+
+	resource "retool_folder" "test_folder" {
+		name = "tf-acc-test-folder-renamed"
+		folder_type = "app"
+		parent_folder_id = retool_folder.parent_folder.id
 	}
 `
 
@@ -45,7 +59,10 @@ func sweepFolders(region string) error {
 		if strings.HasPrefix(folder.Name, "tf-acc") {
 			log.Printf("Deleting folder %s", folder.Name)
 			tflog.Info(context.Background(), "Deleting folder", map[string]interface{}{"folder": folder.Name})
-			_, err := client.FoldersAPI.FoldersFolderIdDelete(context.Background(), folder.Id).Execute()
+			recursive := true
+			deleteRequest := api.FoldersFolderIdDeleteRequest{}
+			deleteRequest.Recursive = &recursive
+			_, err := client.FoldersAPI.FoldersFolderIdDelete(context.Background(), folder.Id).FoldersFolderIdDeleteRequest(deleteRequest).Execute()
 			if err != nil {
 				return fmt.Errorf("Error deleting folder %s: %s", folder.Name, err.Error())
 			}
@@ -88,6 +105,18 @@ func TestAccFolder(t *testing.T) {
 				ResourceName:      "retool_folder.test_folder",
 				ImportState:       true,
 				ImportStateVerify: true,
+			},
+			// Update and Read
+			{
+				Config: testUpdatedFolderConfig,
+				Check: resource.ComposeTestCheckFunc(
+					resource.TestCheckResourceAttr("retool_folder.test_folder", "name", "tf-acc-test-folder-renamed"),
+					resource.TestCheckResourceAttr("retool_folder.test_folder", "folder_type", "app"),
+					resource.TestCheckResourceAttr("retool_folder.test_folder", "is_system_folder", "false"),
+					resource.TestCheckResourceAttrSet("retool_folder.test_folder", "id"),
+					resource.TestCheckResourceAttrSet("retool_folder.test_folder", "legacy_id"),
+					resource.TestCheckResourceAttrPair("retool_folder.test_folder", "parent_folder_id", "retool_folder.parent_folder", "id"),
+				),
 			},
 		},
 	})

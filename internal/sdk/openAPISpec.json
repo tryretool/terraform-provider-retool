@@ -5052,7 +5052,52 @@
             "in": "path"
           }
         ],
-        "responses": { "204": { "description": "Folder deleted" } }
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "recursive": {
+                    "type": "boolean",
+                    "description": "Should the folder's contents also be deleted?"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Folder deleted"
+          },
+          "404": {
+            "description": "Folder not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [false],
+                      "description": "API request failed"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "message"
+                  ],
+                  "description": "API error response"
+                }
+              }
+            }
+          }
+        }
       },
       "patch": {
         "summary": "Update folder",
