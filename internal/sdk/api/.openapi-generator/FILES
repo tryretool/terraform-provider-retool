@@ -70,6 +70,7 @@ docs/EnvironmentsEnvironmentIdGet200ResponseData.md
 docs/EnvironmentsGet200Response.md
 docs/Folder.md
 docs/FoldersAPI.md
+docs/FoldersFolderIdDeleteRequest.md
 docs/FoldersFolderIdGet200Response.md
 docs/FoldersFolderIdGet200ResponseData.md
 docs/FoldersFolderIdPatch200Response.md
@@ -336,6 +337,7 @@ model__custom_component_libraries_post_request.go
 model__environments__environment_id__get_200_response.go
 model__environments__environment_id__get_200_response_data.go
 model__environments_get_200_response.go
+model__folders__folder_id__delete_request.go
 model__folders__folder_id__get_200_response.go
 model__folders__folder_id__get_200_response_data.go
 model__folders__folder_id__patch_200_response.go

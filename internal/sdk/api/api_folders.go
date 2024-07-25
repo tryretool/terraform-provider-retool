@@ -27,6 +27,12 @@ type ApiFoldersFolderIdDeleteRequest struct {
 	ctx context.Context
 	ApiService *FoldersAPIService
 	folderId string
+	foldersFolderIdDeleteRequest *FoldersFolderIdDeleteRequest
+}
+
+func (r ApiFoldersFolderIdDeleteRequest) FoldersFolderIdDeleteRequest(foldersFolderIdDeleteRequest FoldersFolderIdDeleteRequest) ApiFoldersFolderIdDeleteRequest {
+	r.foldersFolderIdDeleteRequest = &foldersFolderIdDeleteRequest
+	return r
 }
 
 func (r ApiFoldersFolderIdDeleteRequest) Execute() (*http.Response, error) {
@@ -71,7 +77,7 @@ func (a *FoldersAPIService) FoldersFolderIdDeleteExecute(r ApiFoldersFolderIdDel
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -80,13 +86,15 @@ func (a *FoldersAPIService) FoldersFolderIdDeleteExecute(r ApiFoldersFolderIdDel
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.foldersFolderIdDeleteRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -108,6 +116,16 @@ func (a *FoldersAPIService) FoldersFolderIdDeleteExecute(r ApiFoldersFolderIdDel
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v FoldersPost409Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}

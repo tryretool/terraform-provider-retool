@@ -213,6 +213,7 @@ Class | Method | HTTP request | Description
  - [EnvironmentsEnvironmentIdGet200ResponseData](docs/EnvironmentsEnvironmentIdGet200ResponseData.md)
  - [EnvironmentsGet200Response](docs/EnvironmentsGet200Response.md)
  - [Folder](docs/Folder.md)
+ - [FoldersFolderIdDeleteRequest](docs/FoldersFolderIdDeleteRequest.md)
  - [FoldersFolderIdGet200Response](docs/FoldersFolderIdGet200Response.md)
  - [FoldersFolderIdGet200ResponseData](docs/FoldersFolderIdGet200ResponseData.md)
  - [FoldersFolderIdPatch200Response](docs/FoldersFolderIdPatch200Response.md)

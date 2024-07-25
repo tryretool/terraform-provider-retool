@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## FoldersFolderIdDelete
 
-> FoldersFolderIdDelete(ctx, folderId).Execute()
+> FoldersFolderIdDelete(ctx, folderId).FoldersFolderIdDeleteRequest(foldersFolderIdDeleteRequest).Execute()
 
 Delete folder
 
@@ -34,10 +34,11 @@ import (
 
 func main() {
 	folderId := "folderId_example" // string | 
+	foldersFolderIdDeleteRequest := *openapiclient.NewFoldersFolderIdDeleteRequest() // FoldersFolderIdDeleteRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FoldersAPI.FoldersFolderIdDelete(context.Background(), folderId).Execute()
+	r, err := apiClient.FoldersAPI.FoldersFolderIdDelete(context.Background(), folderId).FoldersFolderIdDeleteRequest(foldersFolderIdDeleteRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FoldersAPI.FoldersFolderIdDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -61,6 +62,7 @@ Other parameters are passed through a pointer to a apiFoldersFolderIdDeleteReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **foldersFolderIdDeleteRequest** | [**FoldersFolderIdDeleteRequest**](FoldersFolderIdDeleteRequest.md) |  | 
 
 ### Return type
 
@@ -72,8 +74,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

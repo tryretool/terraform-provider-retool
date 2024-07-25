@@ -483,9 +483,20 @@ paths:
           pattern: "^(app|workflow|resource)_([0-9]\\d*)$"
           type: string
         style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/_folders__folderId__delete_request'
       responses:
         "204":
           description: Folder deleted
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_folders_post_409_response'
+          description: Folder not found
       summary: Delete folder
       tags:
       - Folders
@@ -5159,6 +5170,12 @@ components:
       required:
       - data
       - success
+      type: object
+    _folders__folderId__delete_request:
+      properties:
+        recursive:
+          description: Should the folder's contents also be deleted?
+          type: boolean
       type: object
     _folders__folderId__patch_request_operations_inner_anyOf:
       properties:
