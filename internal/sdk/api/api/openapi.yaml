@@ -2600,6 +2600,13 @@ components:
           - edit
           - own
           type: string
+        universal_query_library_access:
+          description: Level of access that the group has to the Query Library.
+          enum:
+          - none
+          - use
+          - edit
+          type: string
         user_invites:
           description: A list of user invites that will be added to the group
           items:
@@ -3813,6 +3820,7 @@ components:
         landing_page_app_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         user_list_access: true
         created_at: 2019-02-08T11:45:48.899Z
+        universal_query_library_access: none
         usage_analytics_access: true
         universal_app_access: none
         updated_at: 2019-02-24T18:28:18.790Z
@@ -3899,6 +3907,13 @@ components:
           - edit
           - own
           type: string
+        universal_query_library_access:
+          description: Level of access that the group has to the Query Library.
+          enum:
+          - none
+          - use
+          - edit
+          type: string
         user_invites:
           description: A list of user invites that will be added to the group
           items:
@@ -3940,6 +3955,7 @@ components:
       - members
       - name
       - universal_app_access
+      - universal_query_library_access
       - universal_resource_access
       - universal_workflow_access
       - unpublished_release_access
@@ -3956,6 +3972,7 @@ components:
           landing_page_app_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           user_list_access: true
           created_at: 2019-02-08T11:45:48.899Z
+          universal_query_library_access: none
           usage_analytics_access: true
           universal_app_access: none
           updated_at: 2019-02-24T18:28:18.790Z
@@ -4060,6 +4077,13 @@ components:
           - edit
           - own
           type: string
+        universal_query_library_access:
+          description: Level of access that the group has to the Query Library.
+          enum:
+          - none
+          - use
+          - edit
+          type: string
         user_invites:
           description: A list of user invites that will be added to the group
           items:
@@ -4100,6 +4124,7 @@ components:
         landing_page_app_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         user_list_access: true
         created_at: 2019-02-08T11:45:48.899Z
+        universal_query_library_access: none
         usage_analytics_access: true
         universal_app_access: none
         updated_at: 2019-02-24T18:28:18.790Z
@@ -4186,6 +4211,13 @@ components:
           - edit
           - own
           type: string
+        universal_query_library_access:
+          description: Level of access that the group has to the Query Library.
+          enum:
+          - none
+          - use
+          - edit
+          type: string
         user_invites:
           description: A list of user invites that will be added to the group
           items:
@@ -4227,6 +4259,7 @@ components:
       - members
       - name
       - universal_app_access
+      - universal_query_library_access
       - universal_resource_access
       - universal_workflow_access
       - unpublished_release_access
@@ -4243,6 +4276,7 @@ components:
           landing_page_app_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           user_list_access: true
           created_at: 2019-02-08T11:45:48.899Z
+          universal_query_library_access: none
           usage_analytics_access: true
           universal_app_access: none
           updated_at: 2019-02-24T18:28:18.790Z
@@ -4295,6 +4329,56 @@ components:
       - data
       - success
       type: object
+    Add_Operation:
+      properties:
+        op:
+          enum:
+          - add
+          type: string
+        path:
+          type: string
+        value:
+          description: A JSON value
+          nullable: true
+      required:
+      - op
+      - path
+      title: Add Operation
+      type: object
+    Remove_Operation:
+      properties:
+        op:
+          enum:
+          - remove
+          type: string
+        path:
+          type: string
+      required:
+      - op
+      - path
+      title: Remove Operation
+      type: object
+    Replace_Operation:
+      properties:
+        op:
+          enum:
+          - replace
+          type: string
+        path:
+          type: string
+        value:
+          description: A JSON value
+          nullable: true
+      required:
+      - op
+      - path
+      title: Replace Operation
+      type: object
+    _groups__groupId__patch_request_operations_inner:
+      anyOf:
+      - $ref: '#/components/schemas/Add_Operation'
+      - $ref: '#/components/schemas/Remove_Operation'
+      - $ref: '#/components/schemas/Replace_Operation'
     _groups__groupId__patch_request:
       additionalProperties: false
       description: 'The body of a request to update a group. '
@@ -4303,7 +4387,7 @@ components:
           description: "A list of operations to apply to the group. See the [JSON\
             \ PATCH specification](https://tools.ietf.org/html/rfc6902) for more details."
           items:
-            $ref: '#/components/schemas/_users__userId__patch_request_operations_inner'
+            $ref: '#/components/schemas/_groups__groupId__patch_request_operations_inner'
           type: array
       required:
       - operations
@@ -4320,6 +4404,7 @@ components:
         landing_page_app_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         user_list_access: true
         created_at: 2019-02-08T11:45:48.899Z
+        universal_query_library_access: none
         usage_analytics_access: true
         universal_app_access: none
         updated_at: 2019-02-24T18:28:18.790Z
@@ -4406,6 +4491,13 @@ components:
           - edit
           - own
           type: string
+        universal_query_library_access:
+          description: Level of access that the group has to the Query Library.
+          enum:
+          - none
+          - use
+          - edit
+          type: string
         user_invites:
           description: A list of user invites that will be added to the group
           items:
@@ -4447,6 +4539,7 @@ components:
       - members
       - name
       - universal_app_access
+      - universal_query_library_access
       - universal_resource_access
       - universal_workflow_access
       - unpublished_release_access
@@ -4464,6 +4557,7 @@ components:
           landing_page_app_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           user_list_access: true
           created_at: 2019-02-08T11:45:48.899Z
+          universal_query_library_access: none
           usage_analytics_access: true
           universal_app_access: none
           updated_at: 2019-02-24T18:28:18.790Z
@@ -4510,6 +4604,7 @@ components:
           landing_page_app_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           user_list_access: true
           created_at: 2019-02-08T11:45:48.899Z
+          universal_query_library_access: none
           usage_analytics_access: true
           universal_app_access: none
           updated_at: 2019-02-24T18:28:18.790Z
@@ -4620,6 +4715,13 @@ components:
           - edit
           - own
           type: string
+        universal_query_library_access:
+          description: Level of access that the group has to the Query Library.
+          enum:
+          - none
+          - use
+          - edit
+          type: string
         user_invites:
           description: A list of user invites that will be added to the group
           items:
@@ -4662,6 +4764,7 @@ components:
         landing_page_app_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         user_list_access: true
         created_at: 2019-02-08T11:45:48.899Z
+        universal_query_library_access: none
         usage_analytics_access: true
         universal_app_access: none
         updated_at: 2019-02-24T18:28:18.790Z
@@ -4748,6 +4851,13 @@ components:
           - edit
           - own
           type: string
+        universal_query_library_access:
+          description: Level of access that the group has to the Query Library.
+          enum:
+          - none
+          - use
+          - edit
+          type: string
         user_invites:
           description: A list of user invites that will be added to the group
           items:
@@ -4789,6 +4899,7 @@ components:
       - members
       - name
       - universal_app_access
+      - universal_query_library_access
       - universal_resource_access
       - universal_workflow_access
       - unpublished_release_access
@@ -4805,6 +4916,7 @@ components:
           landing_page_app_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           user_list_access: true
           created_at: 2019-02-08T11:45:48.899Z
+          universal_query_library_access: none
           usage_analytics_access: true
           universal_app_access: none
           updated_at: 2019-02-24T18:28:18.790Z

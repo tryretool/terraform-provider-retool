@@ -29,6 +29,7 @@ docs/AccessRequestsAccessRequestIdPatch200Response.md
 docs/AccessRequestsAccessRequestIdPatchRequest.md
 docs/AccessRequestsGet200Response.md
 docs/AccessRequestsGet200ResponseDataInner.md
+docs/AddOperation.md
 docs/App.md
 docs/AppSummary.md
 docs/AppTheme.md
@@ -96,6 +97,7 @@ docs/GroupsGroupIdGet200ResponseDataMembersInner.md
 docs/GroupsGroupIdGet200ResponseDataUserInvitesInner.md
 docs/GroupsGroupIdMembersPostRequest.md
 docs/GroupsGroupIdPatchRequest.md
+docs/GroupsGroupIdPatchRequestOperationsInner.md
 docs/GroupsGroupIdPut200Response.md
 docs/GroupsGroupIdPut200ResponseData.md
 docs/GroupsGroupIdPutRequest.md
@@ -150,6 +152,8 @@ docs/PostgresOptionsDatabaseOptionsAnyOfSslSettings.md
 docs/RedshiftOptions.md
 docs/RedshiftOptionsDatabaseOptions.md
 docs/RedshiftOptionsDatabaseOptionsSslSettings.md
+docs/RemoveOperation.md
+docs/ReplaceOperation.md
 docs/Resource.md
 docs/ResourceConfiguration.md
 docs/ResourceConfigurationsAPI.md
@@ -359,6 +363,7 @@ model__groups__group_id__get_200_response_data_members_inner.go
 model__groups__group_id__get_200_response_data_user_invites_inner.go
 model__groups__group_id__members_post_request.go
 model__groups__group_id__patch_request.go
+model__groups__group_id__patch_request_operations_inner.go
 model__groups__group_id__put_200_response.go
 model__groups__group_id__put_200_response_data.go
 model__groups__group_id__put_request.go
@@ -522,6 +527,7 @@ model__users_post_200_response.go
 model__users_post_200_response_data.go
 model__users_post_request.go
 model_access_request.go
+model_add_operation.go
 model_app.go
 model_app_summary.go
 model_app_theme.go
@@ -545,6 +551,8 @@ model_postgres_options_database_options_any_of_ssl_settings.go
 model_redshift_options.go
 model_redshift_options_database_options.go
 model_redshift_options_database_options_ssl_settings.go
+model_remove_operation.go
+model_replace_operation.go
 model_resource.go
 model_resource_configuration.go
 model_rest_api_options.go

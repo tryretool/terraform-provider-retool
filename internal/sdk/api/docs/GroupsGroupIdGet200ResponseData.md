@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **UniversalAppAccess** | **string** | The universal app access level for the group. This denotes the access level that this group has for all apps. | 
 **UniversalResourceAccess** | **string** | The universal resource access level for the group. This denotes the access level that this group has for all resources. | 
 **UniversalWorkflowAccess** | **string** | The universal workflow access level for the group. This denotes the access level that this group has for all workflows. | 
+**UniversalQueryLibraryAccess** | **string** | Level of access that the group has to the Query Library. | 
 **UserInvites** | [**[]GroupsGroupIdGet200ResponseDataUserInvitesInner**](GroupsGroupIdGet200ResponseDataUserInvitesInner.md) | A list of user invites that will be added to the group | 
 **UserListAccess** | **bool** | Whether the group has access to the user list | 
 **AuditLogAccess** | **bool** | Whether the group has access to the audit log | 
@@ -25,7 +26,7 @@ Name | Type | Description | Notes
 
 ### NewGroupsGroupIdGet200ResponseData
 
-`func NewGroupsGroupIdGet200ResponseData(id NullableFloat32, legacyId NullableFloat32, name string, members []GroupsGroupIdGet200ResponseDataMembersInner, universalAppAccess string, universalResourceAccess string, universalWorkflowAccess string, userInvites []GroupsGroupIdGet200ResponseDataUserInvitesInner, userListAccess bool, auditLogAccess bool, unpublishedReleaseAccess bool, usageAnalyticsAccess bool, accountDetailsAccess bool, landingPageAppId NullableString, createdAt string, updatedAt string, ) *GroupsGroupIdGet200ResponseData`
+`func NewGroupsGroupIdGet200ResponseData(id NullableFloat32, legacyId NullableFloat32, name string, members []GroupsGroupIdGet200ResponseDataMembersInner, universalAppAccess string, universalResourceAccess string, universalWorkflowAccess string, universalQueryLibraryAccess string, userInvites []GroupsGroupIdGet200ResponseDataUserInvitesInner, userListAccess bool, auditLogAccess bool, unpublishedReleaseAccess bool, usageAnalyticsAccess bool, accountDetailsAccess bool, landingPageAppId NullableString, createdAt string, updatedAt string, ) *GroupsGroupIdGet200ResponseData`
 
 NewGroupsGroupIdGet200ResponseData instantiates a new GroupsGroupIdGet200ResponseData object
 This constructor will assign default values to properties that have it defined,
@@ -198,6 +199,26 @@ and a boolean to check if the value has been set.
 `func (o *GroupsGroupIdGet200ResponseData) SetUniversalWorkflowAccess(v string)`
 
 SetUniversalWorkflowAccess sets UniversalWorkflowAccess field to given value.
+
+
+### GetUniversalQueryLibraryAccess
+
+`func (o *GroupsGroupIdGet200ResponseData) GetUniversalQueryLibraryAccess() string`
+
+GetUniversalQueryLibraryAccess returns the UniversalQueryLibraryAccess field if non-nil, zero value otherwise.
+
+### GetUniversalQueryLibraryAccessOk
+
+`func (o *GroupsGroupIdGet200ResponseData) GetUniversalQueryLibraryAccessOk() (*string, bool)`
+
+GetUniversalQueryLibraryAccessOk returns a tuple with the UniversalQueryLibraryAccess field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUniversalQueryLibraryAccess
+
+`func (o *GroupsGroupIdGet200ResponseData) SetUniversalQueryLibraryAccess(v string)`
+
+SetUniversalQueryLibraryAccess sets UniversalQueryLibraryAccess field to given value.
 
 
 ### GetUserInvites

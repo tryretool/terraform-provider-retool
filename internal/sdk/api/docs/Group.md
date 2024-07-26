@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **UniversalAppAccess** | **string** | The universal app access level for the group. This denotes the access level that this group has for all apps. | 
 **UniversalResourceAccess** | **string** | The universal resource access level for the group. This denotes the access level that this group has for all resources. | 
 **UniversalWorkflowAccess** | **string** | The universal workflow access level for the group. This denotes the access level that this group has for all workflows. | 
+**UniversalQueryLibraryAccess** | Pointer to **string** | Level of access that the group has to the Query Library. | [optional] 
 **UserInvites** | [**[]GroupsGroupIdGet200ResponseDataUserInvitesInner**](GroupsGroupIdGet200ResponseDataUserInvitesInner.md) | A list of user invites that will be added to the group | 
 **UserListAccess** | **bool** | Whether the group has access to the user list | 
 **AuditLogAccess** | **bool** | Whether the group has access to the audit log | 
@@ -199,6 +200,31 @@ and a boolean to check if the value has been set.
 
 SetUniversalWorkflowAccess sets UniversalWorkflowAccess field to given value.
 
+
+### GetUniversalQueryLibraryAccess
+
+`func (o *Group) GetUniversalQueryLibraryAccess() string`
+
+GetUniversalQueryLibraryAccess returns the UniversalQueryLibraryAccess field if non-nil, zero value otherwise.
+
+### GetUniversalQueryLibraryAccessOk
+
+`func (o *Group) GetUniversalQueryLibraryAccessOk() (*string, bool)`
+
+GetUniversalQueryLibraryAccessOk returns a tuple with the UniversalQueryLibraryAccess field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUniversalQueryLibraryAccess
+
+`func (o *Group) SetUniversalQueryLibraryAccess(v string)`
+
+SetUniversalQueryLibraryAccess sets UniversalQueryLibraryAccess field to given value.
+
+### HasUniversalQueryLibraryAccess
+
+`func (o *Group) HasUniversalQueryLibraryAccess() bool`
+
+HasUniversalQueryLibraryAccess returns a boolean if a field has been set.
 
 ### GetUserInvites
 

@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Operations** | [**[]UsersUserIdPatchRequestOperationsInner**](UsersUserIdPatchRequestOperationsInner.md) | A list of operations to apply to the group. See the [JSON PATCH specification](https://tools.ietf.org/html/rfc6902) for more details. | 
+**Operations** | [**[]GroupsGroupIdPatchRequestOperationsInner**](GroupsGroupIdPatchRequestOperationsInner.md) | A list of operations to apply to the group. See the [JSON PATCH specification](https://tools.ietf.org/html/rfc6902) for more details. | 
 
 ## Methods
 
 ### NewGroupsGroupIdPatchRequest
 
-`func NewGroupsGroupIdPatchRequest(operations []UsersUserIdPatchRequestOperationsInner, ) *GroupsGroupIdPatchRequest`
+`func NewGroupsGroupIdPatchRequest(operations []GroupsGroupIdPatchRequestOperationsInner, ) *GroupsGroupIdPatchRequest`
 
 NewGroupsGroupIdPatchRequest instantiates a new GroupsGroupIdPatchRequest object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetOperations
 
-`func (o *GroupsGroupIdPatchRequest) GetOperations() []UsersUserIdPatchRequestOperationsInner`
+`func (o *GroupsGroupIdPatchRequest) GetOperations() []GroupsGroupIdPatchRequestOperationsInner`
 
 GetOperations returns the Operations field if non-nil, zero value otherwise.
 
 ### GetOperationsOk
 
-`func (o *GroupsGroupIdPatchRequest) GetOperationsOk() (*[]UsersUserIdPatchRequestOperationsInner, bool)`
+`func (o *GroupsGroupIdPatchRequest) GetOperationsOk() (*[]GroupsGroupIdPatchRequestOperationsInner, bool)`
 
 GetOperationsOk returns a tuple with the Operations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOperations
 
-`func (o *GroupsGroupIdPatchRequest) SetOperations(v []UsersUserIdPatchRequestOperationsInner)`
+`func (o *GroupsGroupIdPatchRequest) SetOperations(v []GroupsGroupIdPatchRequestOperationsInner)`
 
 SetOperations sets Operations field to given value.
 

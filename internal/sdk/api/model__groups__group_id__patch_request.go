@@ -22,7 +22,7 @@ var _ MappedNullable = &GroupsGroupIdPatchRequest{}
 // GroupsGroupIdPatchRequest The body of a request to update a group. 
 type GroupsGroupIdPatchRequest struct {
 	// A list of operations to apply to the group. See the [JSON PATCH specification](https://tools.ietf.org/html/rfc6902) for more details.
-	Operations []UsersUserIdPatchRequestOperationsInner `json:"operations"`
+	Operations []GroupsGroupIdPatchRequestOperationsInner `json:"operations"`
 }
 
 type _GroupsGroupIdPatchRequest GroupsGroupIdPatchRequest
@@ -31,7 +31,7 @@ type _GroupsGroupIdPatchRequest GroupsGroupIdPatchRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGroupsGroupIdPatchRequest(operations []UsersUserIdPatchRequestOperationsInner) *GroupsGroupIdPatchRequest {
+func NewGroupsGroupIdPatchRequest(operations []GroupsGroupIdPatchRequestOperationsInner) *GroupsGroupIdPatchRequest {
 	this := GroupsGroupIdPatchRequest{}
 	this.Operations = operations
 	return &this
@@ -46,9 +46,9 @@ func NewGroupsGroupIdPatchRequestWithDefaults() *GroupsGroupIdPatchRequest {
 }
 
 // GetOperations returns the Operations field value
-func (o *GroupsGroupIdPatchRequest) GetOperations() []UsersUserIdPatchRequestOperationsInner {
+func (o *GroupsGroupIdPatchRequest) GetOperations() []GroupsGroupIdPatchRequestOperationsInner {
 	if o == nil {
-		var ret []UsersUserIdPatchRequestOperationsInner
+		var ret []GroupsGroupIdPatchRequestOperationsInner
 		return ret
 	}
 
@@ -57,7 +57,7 @@ func (o *GroupsGroupIdPatchRequest) GetOperations() []UsersUserIdPatchRequestOpe
 
 // GetOperationsOk returns a tuple with the Operations field value
 // and a boolean to check if the value has been set.
-func (o *GroupsGroupIdPatchRequest) GetOperationsOk() ([]UsersUserIdPatchRequestOperationsInner, bool) {
+func (o *GroupsGroupIdPatchRequest) GetOperationsOk() ([]GroupsGroupIdPatchRequestOperationsInner, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -65,7 +65,7 @@ func (o *GroupsGroupIdPatchRequest) GetOperationsOk() ([]UsersUserIdPatchRequest
 }
 
 // SetOperations sets field value
-func (o *GroupsGroupIdPatchRequest) SetOperations(v []UsersUserIdPatchRequestOperationsInner) {
+func (o *GroupsGroupIdPatchRequest) SetOperations(v []GroupsGroupIdPatchRequestOperationsInner) {
 	o.Operations = v
 }
 

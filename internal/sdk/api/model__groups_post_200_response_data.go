@@ -34,6 +34,8 @@ type GroupsPost200ResponseData struct {
 	UniversalResourceAccess string `json:"universal_resource_access"`
 	// The universal workflow access level for the group. This denotes the access level that this group has for all workflows.
 	UniversalWorkflowAccess string `json:"universal_workflow_access"`
+	// Level of access that the group has to the Query Library.
+	UniversalQueryLibraryAccess string `json:"universal_query_library_access"`
 	// A list of user invites that will be added to the group
 	UserInvites []GroupsGroupIdGet200ResponseDataUserInvitesInner `json:"user_invites"`
 	// Whether the group has access to the user list
@@ -59,7 +61,7 @@ type _GroupsPost200ResponseData GroupsPost200ResponseData
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGroupsPost200ResponseData(id NullableFloat32, legacyId NullableFloat32, name string, members []GroupsGroupIdGet200ResponseDataMembersInner, universalAppAccess string, universalResourceAccess string, universalWorkflowAccess string, userInvites []GroupsGroupIdGet200ResponseDataUserInvitesInner, userListAccess bool, auditLogAccess bool, unpublishedReleaseAccess bool, usageAnalyticsAccess bool, accountDetailsAccess bool, landingPageAppId NullableString, createdAt string, updatedAt string) *GroupsPost200ResponseData {
+func NewGroupsPost200ResponseData(id NullableFloat32, legacyId NullableFloat32, name string, members []GroupsGroupIdGet200ResponseDataMembersInner, universalAppAccess string, universalResourceAccess string, universalWorkflowAccess string, universalQueryLibraryAccess string, userInvites []GroupsGroupIdGet200ResponseDataUserInvitesInner, userListAccess bool, auditLogAccess bool, unpublishedReleaseAccess bool, usageAnalyticsAccess bool, accountDetailsAccess bool, landingPageAppId NullableString, createdAt string, updatedAt string) *GroupsPost200ResponseData {
 	this := GroupsPost200ResponseData{}
 	this.Id = id
 	this.LegacyId = legacyId
@@ -68,6 +70,7 @@ func NewGroupsPost200ResponseData(id NullableFloat32, legacyId NullableFloat32, 
 	this.UniversalAppAccess = universalAppAccess
 	this.UniversalResourceAccess = universalResourceAccess
 	this.UniversalWorkflowAccess = universalWorkflowAccess
+	this.UniversalQueryLibraryAccess = universalQueryLibraryAccess
 	this.UserInvites = userInvites
 	this.UserListAccess = userListAccess
 	this.AuditLogAccess = auditLogAccess
@@ -258,6 +261,30 @@ func (o *GroupsPost200ResponseData) GetUniversalWorkflowAccessOk() (*string, boo
 // SetUniversalWorkflowAccess sets field value
 func (o *GroupsPost200ResponseData) SetUniversalWorkflowAccess(v string) {
 	o.UniversalWorkflowAccess = v
+}
+
+// GetUniversalQueryLibraryAccess returns the UniversalQueryLibraryAccess field value
+func (o *GroupsPost200ResponseData) GetUniversalQueryLibraryAccess() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UniversalQueryLibraryAccess
+}
+
+// GetUniversalQueryLibraryAccessOk returns a tuple with the UniversalQueryLibraryAccess field value
+// and a boolean to check if the value has been set.
+func (o *GroupsPost200ResponseData) GetUniversalQueryLibraryAccessOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UniversalQueryLibraryAccess, true
+}
+
+// SetUniversalQueryLibraryAccess sets field value
+func (o *GroupsPost200ResponseData) SetUniversalQueryLibraryAccess(v string) {
+	o.UniversalQueryLibraryAccess = v
 }
 
 // GetUserInvites returns the UserInvites field value
@@ -495,6 +522,7 @@ func (o GroupsPost200ResponseData) ToMap() (map[string]interface{}, error) {
 	toSerialize["universal_app_access"] = o.UniversalAppAccess
 	toSerialize["universal_resource_access"] = o.UniversalResourceAccess
 	toSerialize["universal_workflow_access"] = o.UniversalWorkflowAccess
+	toSerialize["universal_query_library_access"] = o.UniversalQueryLibraryAccess
 	toSerialize["user_invites"] = o.UserInvites
 	toSerialize["user_list_access"] = o.UserListAccess
 	toSerialize["audit_log_access"] = o.AuditLogAccess
@@ -524,6 +552,7 @@ func (o *GroupsPost200ResponseData) UnmarshalJSON(data []byte) (err error) {
 		"universal_app_access",
 		"universal_resource_access",
 		"universal_workflow_access",
+		"universal_query_library_access",
 		"user_invites",
 		"user_list_access",
 		"audit_log_access",
@@ -569,6 +598,7 @@ func (o *GroupsPost200ResponseData) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "universal_app_access")
 		delete(additionalProperties, "universal_resource_access")
 		delete(additionalProperties, "universal_workflow_access")
+		delete(additionalProperties, "universal_query_library_access")
 		delete(additionalProperties, "user_invites")
 		delete(additionalProperties, "user_list_access")
 		delete(additionalProperties, "audit_log_access")

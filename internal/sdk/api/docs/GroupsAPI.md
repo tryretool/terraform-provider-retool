@@ -383,7 +383,7 @@ import (
 
 func main() {
 	groupId := "groupId_example" // string | 
-	groupsGroupIdPatchRequest := *openapiclient.NewGroupsGroupIdPatchRequest([]openapiclient.UsersUserIdPatchRequestOperationsInner{*openapiclient.NewUsersUserIdPatchRequestOperationsInner("Op_example", "Path_example")}) // GroupsGroupIdPatchRequest |  (optional)
+	groupsGroupIdPatchRequest := *openapiclient.NewGroupsGroupIdPatchRequest([]openapiclient.GroupsGroupIdPatchRequestOperationsInner{*openapiclient.NewGroupsGroupIdPatchRequestOperationsInner("Op_example", "Path_example")}) // GroupsGroupIdPatchRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
