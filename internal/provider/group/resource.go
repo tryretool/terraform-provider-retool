@@ -33,18 +33,19 @@ type groupResource struct {
 
 // groupResourceModel defines the data model for the Group resource
 type groupResourceModel struct {
-	Id                       types.String `tfsdk:"id"`
-	LegacyId                 types.String `tfsdk:"legacy_id"`
-	Name                     types.String `tfsdk:"name"`
-	UniversalAppAccess       types.String `tfsdk:"universal_app_access"`
-	UniversalResourceAccess  types.String `tfsdk:"universal_resource_access"`
-	UniversalWorkflowAccess  types.String `tfsdk:"universal_workflow_access"`
-	UserListAccess           types.Bool   `tfsdk:"user_list_access"`
-	AuditLogAccess           types.Bool   `tfsdk:"audit_log_access"`
-	UnpublishedReleaseAccess types.Bool   `tfsdk:"unpublished_release_access"`
-	UsageAnalyticsAccess     types.Bool   `tfsdk:"usage_analytics_access"`
-	AccountDetailsAccess     types.Bool   `tfsdk:"account_details_access"`
-	LandingPageAppId         types.String `tfsdk:"landing_page_app_id"`
+	Id                          types.String `tfsdk:"id"`
+	LegacyId                    types.String `tfsdk:"legacy_id"`
+	Name                        types.String `tfsdk:"name"`
+	UniversalAppAccess          types.String `tfsdk:"universal_app_access"`
+	UniversalResourceAccess     types.String `tfsdk:"universal_resource_access"`
+	UniversalWorkflowAccess     types.String `tfsdk:"universal_workflow_access"`
+	UniversalQueryLibraryAccess types.String `tfsdk:"universal_query_library_access"`
+	UserListAccess              types.Bool   `tfsdk:"user_list_access"`
+	AuditLogAccess              types.Bool   `tfsdk:"audit_log_access"`
+	UnpublishedReleaseAccess    types.Bool   `tfsdk:"unpublished_release_access"`
+	UsageAnalyticsAccess        types.Bool   `tfsdk:"usage_analytics_access"`
+	AccountDetailsAccess        types.Bool   `tfsdk:"account_details_access"`
+	LandingPageAppId            types.String `tfsdk:"landing_page_app_id"`
 }
 
 func NewResource() resource.Resource {
@@ -123,6 +124,15 @@ func (r *groupResource) Schema(ctx context.Context, req resource.SchemaRequest, 
 					stringvalidator.OneOf("none", "use", "edit", "own"),
 				},
 			},
+			"universal_query_library_access": schema.StringAttribute{
+				Optional:    true,
+				Computed:    true,
+				Default:     stringdefault.StaticString("none"),
+				Description: "Level of access that the group has to the Query Library.",
+				Validators: []validator.String{
+					stringvalidator.OneOf("none", "use", "edit"),
+				},
+			},
 			"user_list_access": schema.BoolAttribute{
 				Optional:    true,
 				Computed:    true,
@@ -177,6 +187,7 @@ func (r *groupResource) Create(ctx context.Context, req resource.CreateRequest, 
 	group.UniversalAppAccess = plan.UniversalAppAccess.ValueStringPointer()
 	group.UniversalResourceAccess = plan.UniversalResourceAccess.ValueStringPointer()
 	group.UniversalWorkflowAccess = plan.UniversalWorkflowAccess.ValueStringPointer()
+	group.UniversalQueryLibraryAccess = plan.UniversalQueryLibraryAccess.ValueStringPointer()
 	group.UserListAccess = plan.UserListAccess.ValueBoolPointer()
 	group.AuditLogAccess = plan.AuditLogAccess.ValueBoolPointer()
 	group.UnpublishedReleaseAccess = plan.UnpublishedReleaseAccess.ValueBoolPointer()
@@ -256,6 +267,7 @@ func (r *groupResource) Read(ctx context.Context, req resource.ReadRequest, resp
 	state.UniversalAppAccess = types.StringValue(group.Data.UniversalAppAccess)
 	state.UniversalResourceAccess = types.StringValue(group.Data.UniversalResourceAccess)
 	state.UniversalWorkflowAccess = types.StringValue(group.Data.UniversalWorkflowAccess)
+	state.UniversalQueryLibraryAccess = types.StringValue(group.Data.UniversalQueryLibraryAccess)
 	state.UserListAccess = types.BoolValue(group.Data.UserListAccess)
 	state.AuditLogAccess = types.BoolValue(group.Data.AuditLogAccess)
 	state.UnpublishedReleaseAccess = types.BoolValue(group.Data.UnpublishedReleaseAccess)
@@ -304,6 +316,7 @@ func (r *groupResource) Update(ctx context.Context, req resource.UpdateRequest, 
 		UniversalAppAccess:       plan.UniversalAppAccess.ValueStringPointer(),
 		UniversalResourceAccess:  plan.UniversalResourceAccess.ValueStringPointer(),
 		UniversalWorkflowAccess:  plan.UniversalWorkflowAccess.ValueStringPointer(),
+		UniversalQueryLibraryAccess: plan.UniversalQueryLibraryAccess.ValueStringPointer(),
 		UserListAccess:           plan.UserListAccess.ValueBoolPointer(),
 		AuditLogAccess:           plan.AuditLogAccess.ValueBoolPointer(),
 		UnpublishedReleaseAccess: plan.UnpublishedReleaseAccess.ValueBoolPointer(),
