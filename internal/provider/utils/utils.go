@@ -4,7 +4,15 @@ import (
 	"math"
 	"net/http"
 	"strconv"
+
+	"github.com/tryretool/terraform-provider-retool/internal/sdk/api"
 )
+
+// providerData is the data structure that is passed to the DataSource and Resource
+type ProviderData struct {
+	Client            *api.APIClient
+	RootFolderIdCache *map[string]string
+}
 
 // If httpResponse is not nil, add the status code to the properties map.
 func AddHttpStatusCode(props map[string]any, httpResponse *http.Response) map[string]any {

@@ -28,13 +28,13 @@ interactions:
         trailer: {}
         content_length: -1
         uncompressed: true
-        body: '{"success":true,"data":[{"id":"app_1","legacy_id":"app_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"app","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"app_10","legacy_id":"app_10","name":"Example Subfolder","parent_folder_id":"app_9","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-16T00:01:50.085Z","created_at":"2024-07-16T00:01:50.085Z"},{"id":"app_2","legacy_id":"app_2","name":"archive","parent_folder_id":"app_1","is_system_folder":true,"folder_type":"app","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"app_6","legacy_id":"app_6","name":"Components","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"app_7","legacy_id":"app_7","name":"Navigation","parent_folder_id":"app_6","is_system_folder":false,"folder_type":"app","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"app_9","legacy_id":"app_9","name":"Example Folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-15T23:44:08.304Z","created_at":"2024-07-15T23:44:08.304Z"},{"id":"file_5","legacy_id":"file_5","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"file","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"resource_1","legacy_id":"resource_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"resource","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"resource_2","legacy_id":"resource_2","name":"sample","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"resource_3","legacy_id":"resource_3","name":"dev","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"resource_4","legacy_id":"resource_4","name":"shared","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"workflow_3","legacy_id":"workflow_3","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"workflow","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"workflow_4","legacy_id":"workflow_4","name":"archive","parent_folder_id":"workflow_3","is_system_folder":true,"folder_type":"workflow","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"}],"total_count":13,"next_token":null,"has_more":false}'
+        body: '{"success":true,"data":[{"id":"app_1","legacy_id":"app_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.316Z","created_at":"2023-11-11T00:41:17.316Z"},{"id":"app_2","legacy_id":"app_2","name":"archive","parent_folder_id":"app_1","is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.319Z","created_at":"2023-11-11T00:41:17.319Z"},{"id":"app_6","legacy_id":"app_6","name":"Components","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.000Z","created_at":"2023-11-11T00:54:28.000Z"},{"id":"app_7","legacy_id":"app_7","name":"Navigation","parent_folder_id":"app_6","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.579Z","created_at":"2023-11-11T00:54:28.579Z"},{"id":"app_75","legacy_id":"app_75","name":"Example Folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:46:17.690Z","created_at":"2024-07-25T17:46:17.690Z"},{"id":"app_76","legacy_id":"app_76","name":"Example Subfolder","parent_folder_id":"app_75","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:57:49.060Z","created_at":"2024-07-25T17:57:49.060Z"},{"id":"file_5","legacy_id":"file_5","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"file","updated_at":"2023-11-11T00:41:17.328Z","created_at":"2023-11-11T00:41:17.328Z"},{"id":"resource_1","legacy_id":"resource_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"resource","updated_at":"2023-11-11T00:41:17.321Z","created_at":"2023-11-11T00:41:17.321Z"},{"id":"resource_2","legacy_id":"resource_2","name":"sample","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:41:18.336Z","created_at":"2023-11-11T00:41:18.336Z"},{"id":"resource_3","legacy_id":"resource_3","name":"dev","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:22.753Z","created_at":"2023-11-11T00:54:22.753Z"},{"id":"resource_4","legacy_id":"resource_4","name":"shared","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:23.102Z","created_at":"2023-11-11T00:54:23.102Z"},{"id":"workflow_3","legacy_id":"workflow_3","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.324Z","created_at":"2023-11-11T00:41:17.324Z"},{"id":"workflow_4","legacy_id":"workflow_4","name":"archive","parent_folder_id":"workflow_3","is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.326Z","created_at":"2023-11-11T00:41:17.326Z"}],"total_count":13,"next_token":null,"has_more":false}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 31.267708ms
+        duration: 127.152041ms
     - id: 1
       request:
         proto: HTTP/1.1
@@ -62,13 +62,13 @@ interactions:
         trailer: {}
         content_length: -1
         uncompressed: true
-        body: '{"success":true,"data":[{"id":"app_1","legacy_id":"app_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"app","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"app_10","legacy_id":"app_10","name":"Example Subfolder","parent_folder_id":"app_9","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-16T00:01:50.085Z","created_at":"2024-07-16T00:01:50.085Z"},{"id":"app_2","legacy_id":"app_2","name":"archive","parent_folder_id":"app_1","is_system_folder":true,"folder_type":"app","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"app_6","legacy_id":"app_6","name":"Components","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"app_7","legacy_id":"app_7","name":"Navigation","parent_folder_id":"app_6","is_system_folder":false,"folder_type":"app","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"app_9","legacy_id":"app_9","name":"Example Folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-15T23:44:08.304Z","created_at":"2024-07-15T23:44:08.304Z"},{"id":"file_5","legacy_id":"file_5","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"file","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"resource_1","legacy_id":"resource_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"resource","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"resource_2","legacy_id":"resource_2","name":"sample","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"resource_3","legacy_id":"resource_3","name":"dev","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"resource_4","legacy_id":"resource_4","name":"shared","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"workflow_3","legacy_id":"workflow_3","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"workflow","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"},{"id":"workflow_4","legacy_id":"workflow_4","name":"archive","parent_folder_id":"workflow_3","is_system_folder":true,"folder_type":"workflow","updated_at":"2023-01-01T00:00:00.000Z","created_at":"2023-01-01T00:00:00.000Z"}],"total_count":13,"next_token":null,"has_more":false}'
+        body: '{"success":true,"data":[{"id":"app_1","legacy_id":"app_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.316Z","created_at":"2023-11-11T00:41:17.316Z"},{"id":"app_2","legacy_id":"app_2","name":"archive","parent_folder_id":"app_1","is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.319Z","created_at":"2023-11-11T00:41:17.319Z"},{"id":"app_6","legacy_id":"app_6","name":"Components","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.000Z","created_at":"2023-11-11T00:54:28.000Z"},{"id":"app_7","legacy_id":"app_7","name":"Navigation","parent_folder_id":"app_6","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.579Z","created_at":"2023-11-11T00:54:28.579Z"},{"id":"app_75","legacy_id":"app_75","name":"Example Folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:46:17.690Z","created_at":"2024-07-25T17:46:17.690Z"},{"id":"app_76","legacy_id":"app_76","name":"Example Subfolder","parent_folder_id":"app_75","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:57:49.060Z","created_at":"2024-07-25T17:57:49.060Z"},{"id":"file_5","legacy_id":"file_5","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"file","updated_at":"2023-11-11T00:41:17.328Z","created_at":"2023-11-11T00:41:17.328Z"},{"id":"resource_1","legacy_id":"resource_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"resource","updated_at":"2023-11-11T00:41:17.321Z","created_at":"2023-11-11T00:41:17.321Z"},{"id":"resource_2","legacy_id":"resource_2","name":"sample","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:41:18.336Z","created_at":"2023-11-11T00:41:18.336Z"},{"id":"resource_3","legacy_id":"resource_3","name":"dev","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:22.753Z","created_at":"2023-11-11T00:54:22.753Z"},{"id":"resource_4","legacy_id":"resource_4","name":"shared","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:23.102Z","created_at":"2023-11-11T00:54:23.102Z"},{"id":"workflow_3","legacy_id":"workflow_3","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.324Z","created_at":"2023-11-11T00:41:17.324Z"},{"id":"workflow_4","legacy_id":"workflow_4","name":"archive","parent_folder_id":"workflow_3","is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.326Z","created_at":"2023-11-11T00:41:17.326Z"}],"total_count":13,"next_token":null,"has_more":false}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 34.245209ms
+        duration: 130.029792ms
     - id: 2
       request:
         proto: HTTP/1.1
@@ -96,52 +96,16 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 460
+        content_length: 500
         uncompressed: false
-        body: '{"success":true,"data":{"id":21,"legacy_id":21,"name":"tf-acc-test-group","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-07-16T00:47:06.464Z","created_at":"2024-07-16T00:47:06.464Z"}}'
+        body: '{"success":true,"data":{"id":47,"legacy_id":47,"name":"tf-acc-test-group","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","universal_query_library_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-07-25T18:30:13.821Z","created_at":"2024-07-25T18:30:13.821Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 36.374417ms
+        duration: 143.075291ms
     - id: 3
-      request:
-        proto: HTTP/1.1
-        proto_major: 1
-        proto_minor: 1
-        content_length: 78
-        transfer_encoding: []
-        trailer: {}
-        host: recorded.retool.dev
-        remote_addr: ""
-        request_uri: ""
-        body: |
-            {"folder_type":"app","name":"tf-acc-test-folder1","parent_folder_id":"app_1"}
-        form: {}
-        headers:
-            Content-Type:
-                - application/json
-            User-Agent:
-                - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/folders
-        method: POST
-      response:
-        proto: HTTP/1.1
-        proto_major: 1
-        proto_minor: 1
-        transfer_encoding: []
-        trailer: {}
-        content_length: 241
-        uncompressed: false
-        body: '{"success":true,"data":{"id":"app_41","legacy_id":"app_41","name":"tf-acc-test-folder1","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-16T00:47:06.490Z","created_at":"2024-07-16T00:47:06.490Z"}}'
-        headers:
-            Content-Type:
-                - application/json; charset=utf-8
-        status: 200 OK
-        code: 200
-        duration: 34.931667ms
-    - id: 4
       request:
         proto: HTTP/1.1
         proto_major: 1
@@ -170,13 +134,49 @@ interactions:
         trailer: {}
         content_length: 241
         uncompressed: false
-        body: '{"success":true,"data":{"id":"app_42","legacy_id":"app_42","name":"tf-acc-test-folder2","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-16T00:47:06.494Z","created_at":"2024-07-16T00:47:06.494Z"}}'
+        body: '{"success":true,"data":{"id":"app_96","legacy_id":"app_96","name":"tf-acc-test-folder2","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:30:13.922Z","created_at":"2024-07-25T18:30:13.922Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 31.101333ms
+        duration: 144.571416ms
+    - id: 4
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 78
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"folder_type":"app","name":"tf-acc-test-folder1","parent_folder_id":"app_1"}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 241
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"app_97","legacy_id":"app_97","name":"tf-acc-test-folder1","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:30:13.934Z","created_at":"2024-07-25T18:30:13.934Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 145.7495ms
     - id: 5
       request:
         proto: HTTP/1.1
@@ -189,7 +189,7 @@ interactions:
         remote_addr: ""
         request_uri: ""
         body: |
-            {"access_level":"use","object":{"id":"app_41","type":"folder"},"subject":{"id":21,"type":"group"}}
+            {"access_level":"use","object":{"id":"app_97","type":"folder"},"subject":{"id":47,"type":"group"}}
         form: {}
         headers:
             Content-Type:
@@ -206,13 +206,13 @@ interactions:
         trailer: {}
         content_length: 129
         uncompressed: false
-        body: '{"success":true,"data":[{"type":"folder","id":"app_41","access_level":"use"}],"total_count":1,"next_token":null,"has_more":false}'
+        body: '{"success":true,"data":[{"type":"folder","id":"app_97","access_level":"use"}],"total_count":1,"next_token":null,"has_more":false}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 29.961083ms
+        duration: 201.416042ms
     - id: 6
       request:
         proto: HTTP/1.1
@@ -229,7 +229,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/folders/app_41
+        url: https://recorded.retool.dev/api/v2/folders/app_97
         method: GET
       response:
         proto: HTTP/1.1
@@ -239,13 +239,13 @@ interactions:
         trailer: {}
         content_length: 241
         uncompressed: false
-        body: '{"success":true,"data":{"id":"app_41","legacy_id":"app_41","name":"tf-acc-test-folder1","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-16T00:47:06.490Z","created_at":"2024-07-16T00:47:06.490Z"}}'
+        body: '{"success":true,"data":{"id":"app_97","legacy_id":"app_97","name":"tf-acc-test-folder1","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:30:13.934Z","created_at":"2024-07-25T18:30:13.934Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 15.647042ms
+        duration: 88.695042ms
     - id: 7
       request:
         proto: HTTP/1.1
@@ -262,7 +262,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/folders/app_42
+        url: https://recorded.retool.dev/api/v2/folders/app_96
         method: GET
       response:
         proto: HTTP/1.1
@@ -272,13 +272,13 @@ interactions:
         trailer: {}
         content_length: 241
         uncompressed: false
-        body: '{"success":true,"data":{"id":"app_42","legacy_id":"app_42","name":"tf-acc-test-folder2","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-16T00:47:06.494Z","created_at":"2024-07-16T00:47:06.494Z"}}'
+        body: '{"success":true,"data":{"id":"app_96","legacy_id":"app_96","name":"tf-acc-test-folder2","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:30:13.922Z","created_at":"2024-07-25T18:30:13.922Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 23.590167ms
+        duration: 91.108292ms
     - id: 8
       request:
         proto: HTTP/1.1
@@ -295,7 +295,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/groups/21
+        url: https://recorded.retool.dev/api/v2/groups/47
         method: GET
       response:
         proto: HTTP/1.1
@@ -303,16 +303,84 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 460
+        content_length: 500
         uncompressed: false
-        body: '{"success":true,"data":{"id":21,"legacy_id":21,"name":"tf-acc-test-group","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-07-16T00:47:06.464Z","created_at":"2024-07-16T00:47:06.464Z"}}'
+        body: '{"success":true,"data":{"id":47,"legacy_id":47,"name":"tf-acc-test-group","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","universal_query_library_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-07-25T18:30:13.821Z","created_at":"2024-07-25T18:30:13.821Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 23.991458ms
+        duration: 100.477875ms
     - id: 9
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding:
+            - chunked
+        trailer: {}
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":[{"id":"app_1","legacy_id":"app_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.316Z","created_at":"2023-11-11T00:41:17.316Z"},{"id":"app_2","legacy_id":"app_2","name":"archive","parent_folder_id":"app_1","is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.319Z","created_at":"2023-11-11T00:41:17.319Z"},{"id":"app_6","legacy_id":"app_6","name":"Components","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.000Z","created_at":"2023-11-11T00:54:28.000Z"},{"id":"app_7","legacy_id":"app_7","name":"Navigation","parent_folder_id":"app_6","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.579Z","created_at":"2023-11-11T00:54:28.579Z"},{"id":"app_75","legacy_id":"app_75","name":"Example Folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:46:17.690Z","created_at":"2024-07-25T17:46:17.690Z"},{"id":"app_76","legacy_id":"app_76","name":"Example Subfolder","parent_folder_id":"app_75","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:57:49.060Z","created_at":"2024-07-25T17:57:49.060Z"},{"id":"app_96","legacy_id":"app_96","name":"tf-acc-test-folder2","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:30:13.922Z","created_at":"2024-07-25T18:30:13.922Z"},{"id":"app_97","legacy_id":"app_97","name":"tf-acc-test-folder1","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:30:13.934Z","created_at":"2024-07-25T18:30:13.934Z"},{"id":"file_5","legacy_id":"file_5","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"file","updated_at":"2023-11-11T00:41:17.328Z","created_at":"2023-11-11T00:41:17.328Z"},{"id":"resource_1","legacy_id":"resource_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"resource","updated_at":"2023-11-11T00:41:17.321Z","created_at":"2023-11-11T00:41:17.321Z"},{"id":"resource_2","legacy_id":"resource_2","name":"sample","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:41:18.336Z","created_at":"2023-11-11T00:41:18.336Z"},{"id":"resource_3","legacy_id":"resource_3","name":"dev","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:22.753Z","created_at":"2023-11-11T00:54:22.753Z"},{"id":"resource_4","legacy_id":"resource_4","name":"shared","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:23.102Z","created_at":"2023-11-11T00:54:23.102Z"},{"id":"workflow_3","legacy_id":"workflow_3","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.324Z","created_at":"2023-11-11T00:41:17.324Z"},{"id":"workflow_4","legacy_id":"workflow_4","name":"archive","parent_folder_id":"workflow_3","is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.326Z","created_at":"2023-11-11T00:41:17.326Z"}],"total_count":15,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 82.608125ms
+    - id: 10
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding:
+            - chunked
+        trailer: {}
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":[{"id":"app_1","legacy_id":"app_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.316Z","created_at":"2023-11-11T00:41:17.316Z"},{"id":"app_2","legacy_id":"app_2","name":"archive","parent_folder_id":"app_1","is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.319Z","created_at":"2023-11-11T00:41:17.319Z"},{"id":"app_6","legacy_id":"app_6","name":"Components","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.000Z","created_at":"2023-11-11T00:54:28.000Z"},{"id":"app_7","legacy_id":"app_7","name":"Navigation","parent_folder_id":"app_6","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.579Z","created_at":"2023-11-11T00:54:28.579Z"},{"id":"app_75","legacy_id":"app_75","name":"Example Folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:46:17.690Z","created_at":"2024-07-25T17:46:17.690Z"},{"id":"app_76","legacy_id":"app_76","name":"Example Subfolder","parent_folder_id":"app_75","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:57:49.060Z","created_at":"2024-07-25T17:57:49.060Z"},{"id":"app_96","legacy_id":"app_96","name":"tf-acc-test-folder2","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:30:13.922Z","created_at":"2024-07-25T18:30:13.922Z"},{"id":"app_97","legacy_id":"app_97","name":"tf-acc-test-folder1","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:30:13.934Z","created_at":"2024-07-25T18:30:13.934Z"},{"id":"file_5","legacy_id":"file_5","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"file","updated_at":"2023-11-11T00:41:17.328Z","created_at":"2023-11-11T00:41:17.328Z"},{"id":"resource_1","legacy_id":"resource_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"resource","updated_at":"2023-11-11T00:41:17.321Z","created_at":"2023-11-11T00:41:17.321Z"},{"id":"resource_2","legacy_id":"resource_2","name":"sample","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:41:18.336Z","created_at":"2023-11-11T00:41:18.336Z"},{"id":"resource_3","legacy_id":"resource_3","name":"dev","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:22.753Z","created_at":"2023-11-11T00:54:22.753Z"},{"id":"resource_4","legacy_id":"resource_4","name":"shared","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:23.102Z","created_at":"2023-11-11T00:54:23.102Z"},{"id":"workflow_3","legacy_id":"workflow_3","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.324Z","created_at":"2023-11-11T00:41:17.324Z"},{"id":"workflow_4","legacy_id":"workflow_4","name":"archive","parent_folder_id":"workflow_3","is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.326Z","created_at":"2023-11-11T00:41:17.326Z"}],"total_count":15,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 83.546833ms
+    - id: 11
       request:
         proto: HTTP/1.1
         proto_major: 1
@@ -324,7 +392,7 @@ interactions:
         remote_addr: ""
         request_uri: ""
         body: |
-            {"object_type":"app","subject":{"id":21,"type":"group"}}
+            {"object_type":"app","subject":{"id":47,"type":"group"}}
         form: {}
         headers:
             Content-Type:
@@ -347,8 +415,8 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 12.78925ms
-    - id: 10
+        duration: 83.199291ms
+    - id: 12
       request:
         proto: HTTP/1.1
         proto_major: 1
@@ -360,7 +428,7 @@ interactions:
         remote_addr: ""
         request_uri: ""
         body: |
-            {"object_type":"folder","subject":{"id":21,"type":"group"}}
+            {"object_type":"folder","subject":{"id":47,"type":"group"}}
         form: {}
         headers:
             Content-Type:
@@ -377,14 +445,14 @@ interactions:
         trailer: {}
         content_length: 129
         uncompressed: false
-        body: '{"success":true,"data":[{"type":"folder","id":"app_41","access_level":"use"}],"total_count":1,"next_token":null,"has_more":false}'
+        body: '{"success":true,"data":[{"type":"folder","id":"app_97","access_level":"use"}],"total_count":1,"next_token":null,"has_more":false}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 13.964708ms
-    - id: 11
+        duration: 105.435125ms
+    - id: 13
       request:
         proto: HTTP/1.1
         proto_major: 1
@@ -396,7 +464,7 @@ interactions:
         remote_addr: ""
         request_uri: ""
         body: |
-            {"object_type":"resource","subject":{"id":21,"type":"group"}}
+            {"object_type":"resource","subject":{"id":47,"type":"group"}}
         form: {}
         headers:
             Content-Type:
@@ -419,8 +487,8 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 14.355541ms
-    - id: 12
+        duration: 85.834ms
+    - id: 14
       request:
         proto: HTTP/1.1
         proto_major: 1
@@ -432,7 +500,7 @@ interactions:
         remote_addr: ""
         request_uri: ""
         body: |
-            {"object_type":"resource_configuration","subject":{"id":21,"type":"group"}}
+            {"object_type":"resource_configuration","subject":{"id":47,"type":"group"}}
         form: {}
         headers:
             Content-Type:
@@ -455,73 +523,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 9.557666ms
-    - id: 13
-      request:
-        proto: HTTP/1.1
-        proto_major: 1
-        proto_minor: 1
-        content_length: 0
-        transfer_encoding: []
-        trailer: {}
-        host: recorded.retool.dev
-        remote_addr: ""
-        request_uri: ""
-        body: ""
-        form: {}
-        headers:
-            User-Agent:
-                - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/groups/21
-        method: GET
-      response:
-        proto: HTTP/1.1
-        proto_major: 1
-        proto_minor: 1
-        transfer_encoding: []
-        trailer: {}
-        content_length: 460
-        uncompressed: false
-        body: '{"success":true,"data":{"id":21,"legacy_id":21,"name":"tf-acc-test-group","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-07-16T00:47:06.464Z","created_at":"2024-07-16T00:47:06.464Z"}}'
-        headers:
-            Content-Type:
-                - application/json; charset=utf-8
-        status: 200 OK
-        code: 200
-        duration: 18.516833ms
-    - id: 14
-      request:
-        proto: HTTP/1.1
-        proto_major: 1
-        proto_minor: 1
-        content_length: 0
-        transfer_encoding: []
-        trailer: {}
-        host: recorded.retool.dev
-        remote_addr: ""
-        request_uri: ""
-        body: ""
-        form: {}
-        headers:
-            User-Agent:
-                - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/folders/app_41
-        method: GET
-      response:
-        proto: HTTP/1.1
-        proto_major: 1
-        proto_minor: 1
-        transfer_encoding: []
-        trailer: {}
-        content_length: 241
-        uncompressed: false
-        body: '{"success":true,"data":{"id":"app_41","legacy_id":"app_41","name":"tf-acc-test-folder1","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-16T00:47:06.490Z","created_at":"2024-07-16T00:47:06.490Z"}}'
-        headers:
-            Content-Type:
-                - application/json; charset=utf-8
-        status: 200 OK
-        code: 200
-        duration: 21.483ms
+        duration: 91.066291ms
     - id: 15
       request:
         proto: HTTP/1.1
@@ -538,7 +540,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/folders/app_42
+        url: https://recorded.retool.dev/api/v2/folders/app_96
         method: GET
       response:
         proto: HTTP/1.1
@@ -548,14 +550,148 @@ interactions:
         trailer: {}
         content_length: 241
         uncompressed: false
-        body: '{"success":true,"data":{"id":"app_42","legacy_id":"app_42","name":"tf-acc-test-folder2","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-16T00:47:06.494Z","created_at":"2024-07-16T00:47:06.494Z"}}'
+        body: '{"success":true,"data":{"id":"app_96","legacy_id":"app_96","name":"tf-acc-test-folder2","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:30:13.922Z","created_at":"2024-07-25T18:30:13.922Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 22.299959ms
+        duration: 99.696416ms
     - id: 16
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/groups/47
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 500
+        uncompressed: false
+        body: '{"success":true,"data":{"id":47,"legacy_id":47,"name":"tf-acc-test-group","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","universal_query_library_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-07-25T18:30:13.821Z","created_at":"2024-07-25T18:30:13.821Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 100.607291ms
+    - id: 17
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders/app_97
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 241
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"app_97","legacy_id":"app_97","name":"tf-acc-test-folder1","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:30:13.934Z","created_at":"2024-07-25T18:30:13.934Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 103.604458ms
+    - id: 18
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding:
+            - chunked
+        trailer: {}
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":[{"id":"app_1","legacy_id":"app_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.316Z","created_at":"2023-11-11T00:41:17.316Z"},{"id":"app_2","legacy_id":"app_2","name":"archive","parent_folder_id":"app_1","is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.319Z","created_at":"2023-11-11T00:41:17.319Z"},{"id":"app_6","legacy_id":"app_6","name":"Components","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.000Z","created_at":"2023-11-11T00:54:28.000Z"},{"id":"app_7","legacy_id":"app_7","name":"Navigation","parent_folder_id":"app_6","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.579Z","created_at":"2023-11-11T00:54:28.579Z"},{"id":"app_75","legacy_id":"app_75","name":"Example Folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:46:17.690Z","created_at":"2024-07-25T17:46:17.690Z"},{"id":"app_76","legacy_id":"app_76","name":"Example Subfolder","parent_folder_id":"app_75","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:57:49.060Z","created_at":"2024-07-25T17:57:49.060Z"},{"id":"app_96","legacy_id":"app_96","name":"tf-acc-test-folder2","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:30:13.922Z","created_at":"2024-07-25T18:30:13.922Z"},{"id":"app_97","legacy_id":"app_97","name":"tf-acc-test-folder1","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:30:13.934Z","created_at":"2024-07-25T18:30:13.934Z"},{"id":"file_5","legacy_id":"file_5","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"file","updated_at":"2023-11-11T00:41:17.328Z","created_at":"2023-11-11T00:41:17.328Z"},{"id":"resource_1","legacy_id":"resource_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"resource","updated_at":"2023-11-11T00:41:17.321Z","created_at":"2023-11-11T00:41:17.321Z"},{"id":"resource_2","legacy_id":"resource_2","name":"sample","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:41:18.336Z","created_at":"2023-11-11T00:41:18.336Z"},{"id":"resource_3","legacy_id":"resource_3","name":"dev","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:22.753Z","created_at":"2023-11-11T00:54:22.753Z"},{"id":"resource_4","legacy_id":"resource_4","name":"shared","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:23.102Z","created_at":"2023-11-11T00:54:23.102Z"},{"id":"workflow_3","legacy_id":"workflow_3","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.324Z","created_at":"2023-11-11T00:41:17.324Z"},{"id":"workflow_4","legacy_id":"workflow_4","name":"archive","parent_folder_id":"workflow_3","is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.326Z","created_at":"2023-11-11T00:41:17.326Z"}],"total_count":15,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 90.431875ms
+    - id: 19
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding:
+            - chunked
+        trailer: {}
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":[{"id":"app_1","legacy_id":"app_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.316Z","created_at":"2023-11-11T00:41:17.316Z"},{"id":"app_2","legacy_id":"app_2","name":"archive","parent_folder_id":"app_1","is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.319Z","created_at":"2023-11-11T00:41:17.319Z"},{"id":"app_6","legacy_id":"app_6","name":"Components","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.000Z","created_at":"2023-11-11T00:54:28.000Z"},{"id":"app_7","legacy_id":"app_7","name":"Navigation","parent_folder_id":"app_6","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.579Z","created_at":"2023-11-11T00:54:28.579Z"},{"id":"app_75","legacy_id":"app_75","name":"Example Folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:46:17.690Z","created_at":"2024-07-25T17:46:17.690Z"},{"id":"app_76","legacy_id":"app_76","name":"Example Subfolder","parent_folder_id":"app_75","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:57:49.060Z","created_at":"2024-07-25T17:57:49.060Z"},{"id":"app_96","legacy_id":"app_96","name":"tf-acc-test-folder2","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:30:13.922Z","created_at":"2024-07-25T18:30:13.922Z"},{"id":"app_97","legacy_id":"app_97","name":"tf-acc-test-folder1","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:30:13.934Z","created_at":"2024-07-25T18:30:13.934Z"},{"id":"file_5","legacy_id":"file_5","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"file","updated_at":"2023-11-11T00:41:17.328Z","created_at":"2023-11-11T00:41:17.328Z"},{"id":"resource_1","legacy_id":"resource_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"resource","updated_at":"2023-11-11T00:41:17.321Z","created_at":"2023-11-11T00:41:17.321Z"},{"id":"resource_2","legacy_id":"resource_2","name":"sample","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:41:18.336Z","created_at":"2023-11-11T00:41:18.336Z"},{"id":"resource_3","legacy_id":"resource_3","name":"dev","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:22.753Z","created_at":"2023-11-11T00:54:22.753Z"},{"id":"resource_4","legacy_id":"resource_4","name":"shared","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:23.102Z","created_at":"2023-11-11T00:54:23.102Z"},{"id":"workflow_3","legacy_id":"workflow_3","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.324Z","created_at":"2023-11-11T00:41:17.324Z"},{"id":"workflow_4","legacy_id":"workflow_4","name":"archive","parent_folder_id":"workflow_3","is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.326Z","created_at":"2023-11-11T00:41:17.326Z"}],"total_count":15,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 94.976292ms
+    - id: 20
       request:
         proto: HTTP/1.1
         proto_major: 1
@@ -567,7 +703,7 @@ interactions:
         remote_addr: ""
         request_uri: ""
         body: |
-            {"object_type":"app","subject":{"id":21,"type":"group"}}
+            {"object_type":"app","subject":{"id":47,"type":"group"}}
         form: {}
         headers:
             Content-Type:
@@ -590,8 +726,8 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 10.980458ms
-    - id: 17
+        duration: 85.497666ms
+    - id: 21
       request:
         proto: HTTP/1.1
         proto_major: 1
@@ -603,7 +739,7 @@ interactions:
         remote_addr: ""
         request_uri: ""
         body: |
-            {"object_type":"folder","subject":{"id":21,"type":"group"}}
+            {"object_type":"folder","subject":{"id":47,"type":"group"}}
         form: {}
         headers:
             Content-Type:
@@ -620,14 +756,14 @@ interactions:
         trailer: {}
         content_length: 129
         uncompressed: false
-        body: '{"success":true,"data":[{"type":"folder","id":"app_41","access_level":"use"}],"total_count":1,"next_token":null,"has_more":false}'
+        body: '{"success":true,"data":[{"type":"folder","id":"app_97","access_level":"use"}],"total_count":1,"next_token":null,"has_more":false}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 13.883125ms
-    - id: 18
+        duration: 105.752875ms
+    - id: 22
       request:
         proto: HTTP/1.1
         proto_major: 1
@@ -639,7 +775,7 @@ interactions:
         remote_addr: ""
         request_uri: ""
         body: |
-            {"object_type":"resource","subject":{"id":21,"type":"group"}}
+            {"object_type":"resource","subject":{"id":47,"type":"group"}}
         form: {}
         headers:
             Content-Type:
@@ -662,8 +798,8 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 9.876625ms
-    - id: 19
+        duration: 87.406667ms
+    - id: 23
       request:
         proto: HTTP/1.1
         proto_major: 1
@@ -675,7 +811,7 @@ interactions:
         remote_addr: ""
         request_uri: ""
         body: |
-            {"object_type":"resource_configuration","subject":{"id":21,"type":"group"}}
+            {"object_type":"resource_configuration","subject":{"id":47,"type":"group"}}
         form: {}
         headers:
             Content-Type:
@@ -698,8 +834,8 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 12.101125ms
-    - id: 20
+        duration: 89.426792ms
+    - id: 24
       request:
         proto: HTTP/1.1
         proto_major: 1
@@ -711,7 +847,7 @@ interactions:
         remote_addr: ""
         request_uri: ""
         body: |
-            {"object":{"id":"app_41","type":"folder"},"subject":{"id":21,"type":"group"}}
+            {"object":{"id":"app_97","type":"folder"},"subject":{"id":47,"type":"group"}}
         form: {}
         headers:
             Content-Type:
@@ -734,8 +870,8 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 26.988542ms
-    - id: 21
+        duration: 130.235ms
+    - id: 25
       request:
         proto: HTTP/1.1
         proto_major: 1
@@ -747,7 +883,7 @@ interactions:
         remote_addr: ""
         request_uri: ""
         body: |
-            {"access_level":"own","object":{"id":"app_42","type":"folder"},"subject":{"id":21,"type":"group"}}
+            {"access_level":"own","object":{"id":"app_96","type":"folder"},"subject":{"id":47,"type":"group"}}
         form: {}
         headers:
             Content-Type:
@@ -764,256 +900,112 @@ interactions:
         trailer: {}
         content_length: 129
         uncompressed: false
-        body: '{"success":true,"data":[{"type":"folder","id":"app_42","access_level":"own"}],"total_count":1,"next_token":null,"has_more":false}'
+        body: '{"success":true,"data":[{"type":"folder","id":"app_96","access_level":"own"}],"total_count":1,"next_token":null,"has_more":false}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 25.876292ms
-    - id: 22
-      request:
-        proto: HTTP/1.1
-        proto_major: 1
-        proto_minor: 1
-        content_length: 0
-        transfer_encoding: []
-        trailer: {}
-        host: recorded.retool.dev
-        remote_addr: ""
-        request_uri: ""
-        body: ""
-        form: {}
-        headers:
-            User-Agent:
-                - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/folders/app_41
-        method: GET
-      response:
-        proto: HTTP/1.1
-        proto_major: 1
-        proto_minor: 1
-        transfer_encoding: []
-        trailer: {}
-        content_length: 241
-        uncompressed: false
-        body: '{"success":true,"data":{"id":"app_41","legacy_id":"app_41","name":"tf-acc-test-folder1","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-16T00:47:06.490Z","created_at":"2024-07-16T00:47:06.490Z"}}'
-        headers:
-            Content-Type:
-                - application/json; charset=utf-8
-        status: 200 OK
-        code: 200
-        duration: 17.665292ms
-    - id: 23
-      request:
-        proto: HTTP/1.1
-        proto_major: 1
-        proto_minor: 1
-        content_length: 0
-        transfer_encoding: []
-        trailer: {}
-        host: recorded.retool.dev
-        remote_addr: ""
-        request_uri: ""
-        body: ""
-        form: {}
-        headers:
-            User-Agent:
-                - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/folders/app_42
-        method: GET
-      response:
-        proto: HTTP/1.1
-        proto_major: 1
-        proto_minor: 1
-        transfer_encoding: []
-        trailer: {}
-        content_length: 241
-        uncompressed: false
-        body: '{"success":true,"data":{"id":"app_42","legacy_id":"app_42","name":"tf-acc-test-folder2","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-16T00:47:06.494Z","created_at":"2024-07-16T00:47:06.494Z"}}'
-        headers:
-            Content-Type:
-                - application/json; charset=utf-8
-        status: 200 OK
-        code: 200
-        duration: 23.466334ms
-    - id: 24
-      request:
-        proto: HTTP/1.1
-        proto_major: 1
-        proto_minor: 1
-        content_length: 0
-        transfer_encoding: []
-        trailer: {}
-        host: recorded.retool.dev
-        remote_addr: ""
-        request_uri: ""
-        body: ""
-        form: {}
-        headers:
-            User-Agent:
-                - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/groups/21
-        method: GET
-      response:
-        proto: HTTP/1.1
-        proto_major: 1
-        proto_minor: 1
-        transfer_encoding: []
-        trailer: {}
-        content_length: 460
-        uncompressed: false
-        body: '{"success":true,"data":{"id":21,"legacy_id":21,"name":"tf-acc-test-group","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-07-16T00:47:06.464Z","created_at":"2024-07-16T00:47:06.464Z"}}'
-        headers:
-            Content-Type:
-                - application/json; charset=utf-8
-        status: 200 OK
-        code: 200
-        duration: 24.084833ms
-    - id: 25
-      request:
-        proto: HTTP/1.1
-        proto_major: 1
-        proto_minor: 1
-        content_length: 57
-        transfer_encoding: []
-        trailer: {}
-        host: recorded.retool.dev
-        remote_addr: ""
-        request_uri: ""
-        body: |
-            {"object_type":"app","subject":{"id":21,"type":"group"}}
-        form: {}
-        headers:
-            Content-Type:
-                - application/json
-            User-Agent:
-                - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/permissions/listObjects
-        method: POST
-      response:
-        proto: HTTP/1.1
-        proto_major: 1
-        proto_minor: 1
-        transfer_encoding: []
-        trailer: {}
-        content_length: 77
-        uncompressed: false
-        body: '{"success":true,"data":[],"total_count":0,"next_token":null,"has_more":false}'
-        headers:
-            Content-Type:
-                - application/json; charset=utf-8
-        status: 200 OK
-        code: 200
-        duration: 10.75425ms
+        duration: 147.978542ms
     - id: 26
       request:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
-        content_length: 60
+        content_length: 0
         transfer_encoding: []
         trailer: {}
         host: recorded.retool.dev
         remote_addr: ""
         request_uri: ""
-        body: |
-            {"object_type":"folder","subject":{"id":21,"type":"group"}}
+        body: ""
         form: {}
         headers:
-            Content-Type:
-                - application/json
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/permissions/listObjects
-        method: POST
+        url: https://recorded.retool.dev/api/v2/folders/app_97
+        method: GET
       response:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 129
+        content_length: 241
         uncompressed: false
-        body: '{"success":true,"data":[{"type":"folder","id":"app_42","access_level":"own"}],"total_count":1,"next_token":null,"has_more":false}'
+        body: '{"success":true,"data":{"id":"app_97","legacy_id":"app_97","name":"tf-acc-test-folder1","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:30:13.934Z","created_at":"2024-07-25T18:30:13.934Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 16.9375ms
+        duration: 84.441542ms
     - id: 27
       request:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
-        content_length: 62
+        content_length: 0
         transfer_encoding: []
         trailer: {}
         host: recorded.retool.dev
         remote_addr: ""
         request_uri: ""
-        body: |
-            {"object_type":"resource","subject":{"id":21,"type":"group"}}
+        body: ""
         form: {}
         headers:
-            Content-Type:
-                - application/json
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/permissions/listObjects
-        method: POST
+        url: https://recorded.retool.dev/api/v2/folders/app_96
+        method: GET
       response:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 77
+        content_length: 241
         uncompressed: false
-        body: '{"success":true,"data":[],"total_count":0,"next_token":null,"has_more":false}'
+        body: '{"success":true,"data":{"id":"app_96","legacy_id":"app_96","name":"tf-acc-test-folder2","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:30:13.922Z","created_at":"2024-07-25T18:30:13.922Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 9.794334ms
+        duration: 90.379083ms
     - id: 28
       request:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
-        content_length: 76
+        content_length: 0
         transfer_encoding: []
         trailer: {}
         host: recorded.retool.dev
         remote_addr: ""
         request_uri: ""
-        body: |
-            {"object_type":"resource_configuration","subject":{"id":21,"type":"group"}}
+        body: ""
         form: {}
         headers:
-            Content-Type:
-                - application/json
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/permissions/listObjects
-        method: POST
+        url: https://recorded.retool.dev/api/v2/groups/47
+        method: GET
       response:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 77
+        content_length: 500
         uncompressed: false
-        body: '{"success":true,"data":[],"total_count":0,"next_token":null,"has_more":false}'
+        body: '{"success":true,"data":{"id":47,"legacy_id":47,"name":"tf-acc-test-group","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","universal_query_library_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-07-25T18:30:13.821Z","created_at":"2024-07-25T18:30:13.821Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 9.51125ms
+        duration: 92.052ms
     - id: 29
       request:
         proto: HTTP/1.1
@@ -1030,7 +1022,222 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/folders/app_41
+        url: https://recorded.retool.dev/api/v2/folders
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding:
+            - chunked
+        trailer: {}
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":[{"id":"app_1","legacy_id":"app_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.316Z","created_at":"2023-11-11T00:41:17.316Z"},{"id":"app_2","legacy_id":"app_2","name":"archive","parent_folder_id":"app_1","is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.319Z","created_at":"2023-11-11T00:41:17.319Z"},{"id":"app_6","legacy_id":"app_6","name":"Components","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.000Z","created_at":"2023-11-11T00:54:28.000Z"},{"id":"app_7","legacy_id":"app_7","name":"Navigation","parent_folder_id":"app_6","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.579Z","created_at":"2023-11-11T00:54:28.579Z"},{"id":"app_75","legacy_id":"app_75","name":"Example Folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:46:17.690Z","created_at":"2024-07-25T17:46:17.690Z"},{"id":"app_76","legacy_id":"app_76","name":"Example Subfolder","parent_folder_id":"app_75","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:57:49.060Z","created_at":"2024-07-25T17:57:49.060Z"},{"id":"app_96","legacy_id":"app_96","name":"tf-acc-test-folder2","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:30:13.922Z","created_at":"2024-07-25T18:30:13.922Z"},{"id":"app_97","legacy_id":"app_97","name":"tf-acc-test-folder1","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:30:13.934Z","created_at":"2024-07-25T18:30:13.934Z"},{"id":"file_5","legacy_id":"file_5","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"file","updated_at":"2023-11-11T00:41:17.328Z","created_at":"2023-11-11T00:41:17.328Z"},{"id":"resource_1","legacy_id":"resource_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"resource","updated_at":"2023-11-11T00:41:17.321Z","created_at":"2023-11-11T00:41:17.321Z"},{"id":"resource_2","legacy_id":"resource_2","name":"sample","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:41:18.336Z","created_at":"2023-11-11T00:41:18.336Z"},{"id":"resource_3","legacy_id":"resource_3","name":"dev","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:22.753Z","created_at":"2023-11-11T00:54:22.753Z"},{"id":"resource_4","legacy_id":"resource_4","name":"shared","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:23.102Z","created_at":"2023-11-11T00:54:23.102Z"},{"id":"workflow_3","legacy_id":"workflow_3","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.324Z","created_at":"2023-11-11T00:41:17.324Z"},{"id":"workflow_4","legacy_id":"workflow_4","name":"archive","parent_folder_id":"workflow_3","is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.326Z","created_at":"2023-11-11T00:41:17.326Z"}],"total_count":15,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 79.192916ms
+    - id: 30
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding:
+            - chunked
+        trailer: {}
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":[{"id":"app_1","legacy_id":"app_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.316Z","created_at":"2023-11-11T00:41:17.316Z"},{"id":"app_2","legacy_id":"app_2","name":"archive","parent_folder_id":"app_1","is_system_folder":true,"folder_type":"app","updated_at":"2023-11-11T00:41:17.319Z","created_at":"2023-11-11T00:41:17.319Z"},{"id":"app_6","legacy_id":"app_6","name":"Components","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.000Z","created_at":"2023-11-11T00:54:28.000Z"},{"id":"app_7","legacy_id":"app_7","name":"Navigation","parent_folder_id":"app_6","is_system_folder":false,"folder_type":"app","updated_at":"2023-11-11T00:54:28.579Z","created_at":"2023-11-11T00:54:28.579Z"},{"id":"app_75","legacy_id":"app_75","name":"Example Folder","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:46:17.690Z","created_at":"2024-07-25T17:46:17.690Z"},{"id":"app_76","legacy_id":"app_76","name":"Example Subfolder","parent_folder_id":"app_75","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T17:57:49.060Z","created_at":"2024-07-25T17:57:49.060Z"},{"id":"app_96","legacy_id":"app_96","name":"tf-acc-test-folder2","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:30:13.922Z","created_at":"2024-07-25T18:30:13.922Z"},{"id":"app_97","legacy_id":"app_97","name":"tf-acc-test-folder1","parent_folder_id":"app_1","is_system_folder":false,"folder_type":"app","updated_at":"2024-07-25T18:30:13.934Z","created_at":"2024-07-25T18:30:13.934Z"},{"id":"file_5","legacy_id":"file_5","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"file","updated_at":"2023-11-11T00:41:17.328Z","created_at":"2023-11-11T00:41:17.328Z"},{"id":"resource_1","legacy_id":"resource_1","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"resource","updated_at":"2023-11-11T00:41:17.321Z","created_at":"2023-11-11T00:41:17.321Z"},{"id":"resource_2","legacy_id":"resource_2","name":"sample","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:41:18.336Z","created_at":"2023-11-11T00:41:18.336Z"},{"id":"resource_3","legacy_id":"resource_3","name":"dev","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:22.753Z","created_at":"2023-11-11T00:54:22.753Z"},{"id":"resource_4","legacy_id":"resource_4","name":"shared","parent_folder_id":"resource_1","is_system_folder":false,"folder_type":"resource","updated_at":"2023-11-11T00:54:23.102Z","created_at":"2023-11-11T00:54:23.102Z"},{"id":"workflow_3","legacy_id":"workflow_3","name":"root","parent_folder_id":null,"is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.324Z","created_at":"2023-11-11T00:41:17.324Z"},{"id":"workflow_4","legacy_id":"workflow_4","name":"archive","parent_folder_id":"workflow_3","is_system_folder":true,"folder_type":"workflow","updated_at":"2023-11-11T00:41:17.326Z","created_at":"2023-11-11T00:41:17.326Z"}],"total_count":15,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 76.1675ms
+    - id: 31
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 57
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"object_type":"app","subject":{"id":47,"type":"group"}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/permissions/listObjects
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 77
+        uncompressed: false
+        body: '{"success":true,"data":[],"total_count":0,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 106.144291ms
+    - id: 32
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 60
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"object_type":"folder","subject":{"id":47,"type":"group"}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/permissions/listObjects
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 129
+        uncompressed: false
+        body: '{"success":true,"data":[{"type":"folder","id":"app_96","access_level":"own"}],"total_count":1,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 91.25375ms
+    - id: 33
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 62
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"object_type":"resource","subject":{"id":47,"type":"group"}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/permissions/listObjects
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 77
+        uncompressed: false
+        body: '{"success":true,"data":[],"total_count":0,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 86.55ms
+    - id: 34
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 76
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"object_type":"resource_configuration","subject":{"id":47,"type":"group"}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/permissions/listObjects
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 77
+        uncompressed: false
+        body: '{"success":true,"data":[],"total_count":0,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 82.602333ms
+    - id: 35
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 19
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"recursive":true}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders/app_97
         method: DELETE
       response:
         proto: HTTP/1.1
@@ -1044,8 +1251,8 @@ interactions:
         headers: {}
         status: 204 No Content
         code: 204
-        duration: 20.458333ms
-    - id: 30
+        duration: 92.302416ms
+    - id: 36
       request:
         proto: HTTP/1.1
         proto_major: 1
@@ -1057,7 +1264,7 @@ interactions:
         remote_addr: ""
         request_uri: ""
         body: |
-            {"object":{"id":"app_42","type":"folder"},"subject":{"id":21,"type":"group"}}
+            {"object":{"id":"app_96","type":"folder"},"subject":{"id":47,"type":"group"}}
         form: {}
         headers:
             Content-Type:
@@ -1080,8 +1287,42 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 35.885792ms
-    - id: 31
+        duration: 141.754875ms
+    - id: 37
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 19
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"recursive":true}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/folders/app_96
+        method: DELETE
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: ""
+        headers: {}
+        status: 204 No Content
+        code: 204
+        duration: 104.972916ms
+    - id: 38
       request:
         proto: HTTP/1.1
         proto_major: 1
@@ -1097,7 +1338,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/folders/app_42
+        url: https://recorded.retool.dev/api/v2/groups/47
         method: DELETE
       response:
         proto: HTTP/1.1
@@ -1111,35 +1352,4 @@ interactions:
         headers: {}
         status: 204 No Content
         code: 204
-        duration: 17.932916ms
-    - id: 32
-      request:
-        proto: HTTP/1.1
-        proto_major: 1
-        proto_minor: 1
-        content_length: 0
-        transfer_encoding: []
-        trailer: {}
-        host: recorded.retool.dev
-        remote_addr: ""
-        request_uri: ""
-        body: ""
-        form: {}
-        headers:
-            User-Agent:
-                - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/groups/21
-        method: DELETE
-      response:
-        proto: HTTP/1.1
-        proto_major: 1
-        proto_minor: 1
-        transfer_encoding: []
-        trailer: {}
-        content_length: 0
-        uncompressed: false
-        body: ""
-        headers: {}
-        status: 204 No Content
-        code: 204
-        duration: 19.787083ms
+        duration: 107.418625ms
