@@ -29,6 +29,8 @@ type GroupsGroupIdPutRequest struct {
 	UniversalResourceAccess *string `json:"universal_resource_access,omitempty"`
 	// The universal workflow access level for the group. This denotes the access level that this group has for all workflows.
 	UniversalWorkflowAccess *string `json:"universal_workflow_access,omitempty"`
+	// Level of access that the group has to the Query Library.
+	UniversalQueryLibraryAccess *string `json:"universal_query_library_access,omitempty"`
 	// A list of user invites that will be added to the group
 	UserInvites []GroupsGroupIdGet200ResponseDataUserInvitesInner `json:"user_invites,omitempty"`
 	// Whether the group has access to the user list
@@ -225,6 +227,38 @@ func (o *GroupsGroupIdPutRequest) HasUniversalWorkflowAccess() bool {
 // SetUniversalWorkflowAccess gets a reference to the given string and assigns it to the UniversalWorkflowAccess field.
 func (o *GroupsGroupIdPutRequest) SetUniversalWorkflowAccess(v string) {
 	o.UniversalWorkflowAccess = &v
+}
+
+// GetUniversalQueryLibraryAccess returns the UniversalQueryLibraryAccess field value if set, zero value otherwise.
+func (o *GroupsGroupIdPutRequest) GetUniversalQueryLibraryAccess() string {
+	if o == nil || IsNil(o.UniversalQueryLibraryAccess) {
+		var ret string
+		return ret
+	}
+	return *o.UniversalQueryLibraryAccess
+}
+
+// GetUniversalQueryLibraryAccessOk returns a tuple with the UniversalQueryLibraryAccess field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GroupsGroupIdPutRequest) GetUniversalQueryLibraryAccessOk() (*string, bool) {
+	if o == nil || IsNil(o.UniversalQueryLibraryAccess) {
+		return nil, false
+	}
+	return o.UniversalQueryLibraryAccess, true
+}
+
+// HasUniversalQueryLibraryAccess returns a boolean if a field has been set.
+func (o *GroupsGroupIdPutRequest) HasUniversalQueryLibraryAccess() bool {
+	if o != nil && !IsNil(o.UniversalQueryLibraryAccess) {
+		return true
+	}
+
+	return false
+}
+
+// SetUniversalQueryLibraryAccess gets a reference to the given string and assigns it to the UniversalQueryLibraryAccess field.
+func (o *GroupsGroupIdPutRequest) SetUniversalQueryLibraryAccess(v string) {
+	o.UniversalQueryLibraryAccess = &v
 }
 
 // GetUserInvites returns the UserInvites field value if set, zero value otherwise.
@@ -550,6 +584,9 @@ func (o GroupsGroupIdPutRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.UniversalWorkflowAccess) {
 		toSerialize["universal_workflow_access"] = o.UniversalWorkflowAccess
 	}
+	if !IsNil(o.UniversalQueryLibraryAccess) {
+		toSerialize["universal_query_library_access"] = o.UniversalQueryLibraryAccess
+	}
 	if !IsNil(o.UserInvites) {
 		toSerialize["user_invites"] = o.UserInvites
 	}
@@ -604,6 +641,7 @@ func (o *GroupsGroupIdPutRequest) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "universal_app_access")
 		delete(additionalProperties, "universal_resource_access")
 		delete(additionalProperties, "universal_workflow_access")
+		delete(additionalProperties, "universal_query_library_access")
 		delete(additionalProperties, "user_invites")
 		delete(additionalProperties, "user_list_access")
 		delete(additionalProperties, "audit_log_access")

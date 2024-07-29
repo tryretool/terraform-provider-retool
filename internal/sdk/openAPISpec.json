@@ -130,6 +130,15 @@
             "enum": ["none", "use", "edit", "own"],
             "description": "The universal workflow access level for the group. This denotes the access level that this group has for all workflows."
           },
+          "universal_query_library_access": {
+            "type": "string",
+            "enum": [
+              "none",
+              "use",
+              "edit"
+            ],
+            "description": "Level of access that the group has to the Query Library."
+          },
           "user_invites": {
             "type": "array",
             "items": {
@@ -2627,8 +2636,10 @@
     "/groups/{groupId}": {
       "delete": {
         "summary": "Delete group",
-        "description": "Deletes a group with the given groupId. The API token must have the \"Groups > Write\" scope.",
-        "tags": ["Groups"],
+        "description": "Deletes a group with the given groupId. The API token must have the \"Groups \u003E Write\" scope.",
+        "tags": [
+          "Groups"
+        ],
         "parameters": [
           {
             "schema": {
@@ -2641,12 +2652,18 @@
             "in": "path"
           }
         ],
-        "responses": { "204": { "description": "Group deleted" } }
+        "responses": {
+          "204": {
+            "description": "Group deleted"
+          }
+        }
       },
       "get": {
         "summary": "Get group",
-        "description": "Get a group with a given groupId. The API token must have the \"Groups > Read\" scope.",
-        "tags": ["Groups"],
+        "description": "Get a group with a given groupId. The API token must have the \"Groups \u003E Read\" scope.",
+        "tags": [
+          "Groups"
+        ],
         "parameters": [
           {
             "schema": {
@@ -2709,38 +2726,74 @@
                                 "description": "Whether the user is a group admin"
                               }
                             },
-                            "required": ["id", "email", "is_group_admin"]
+                            "required": [
+                              "id",
+                              "email",
+                              "is_group_admin"
+                            ]
                           },
                           "description": "The members of the group."
                         },
                         "universal_app_access": {
                           "type": "string",
-                          "enum": ["none", "use", "edit", "own"],
+                          "enum": [
+                            "none",
+                            "use",
+                            "edit",
+                            "own"
+                          ],
                           "description": "The universal app access level for the group. This denotes the access level that this group has for all apps."
                         },
                         "universal_resource_access": {
                           "type": "string",
-                          "enum": ["none", "use", "edit", "own"],
+                          "enum": [
+                            "none",
+                            "use",
+                            "edit",
+                            "own"
+                          ],
                           "description": "The universal resource access level for the group. This denotes the access level that this group has for all resources."
                         },
                         "universal_workflow_access": {
                           "type": "string",
-                          "enum": ["none", "use", "edit", "own"],
+                          "enum": [
+                            "none",
+                            "use",
+                            "edit",
+                            "own"
+                          ],
                           "description": "The universal workflow access level for the group. This denotes the access level that this group has for all workflows."
+                        },
+                        "universal_query_library_access": {
+                          "type": "string",
+                          "enum": [
+                            "none",
+                            "use",
+                            "edit"
+                          ],
+                          "description": "Level of access that the group has to the Query Library."
                         },
                         "user_invites": {
                           "type": "array",
                           "items": {
                             "type": "object",
                             "properties": {
-                              "id": { "type": "number" },
-                              "legacy_id": { "type": "number" },
-                              "invited_by": { "type": "string" },
+                              "id": {
+                                "type": "number"
+                              },
+                              "legacy_id": {
+                                "type": "number"
+                              },
+                              "invited_by": {
+                                "type": "string"
+                              },
                               "invited_email": {
                                 "type": "string",
                                 "format": "email"
                               },
-                              "expires_at": { "type": "string" },
+                              "expires_at": {
+                                "type": "string"
+                              },
                               "claimed_by": {
                                 "type": "string",
                                 "nullable": true
@@ -2752,15 +2805,25 @@
                               "user_type": {
                                 "type": "string",
                                 "nullable": true,
-                                "enum": ["default", "mobile", "external"]
+                                "enum": [
+                                  "default",
+                                  "mobile",
+                                  "external"
+                                ]
                               },
                               "metadata": {
                                 "type": "object",
                                 "nullable": true,
-                                "additionalProperties": { "nullable": true },
-                                "default": {}
+                                "additionalProperties": {
+                                  "nullable": true
+                                },
+                                "default": {
+
+                                }
                               },
-                              "created_at": { "type": "string" },
+                              "created_at": {
+                                "type": "string"
+                              },
                               "invite_link": {
                                 "type": "string",
                                 "format": "uri"
@@ -2825,6 +2888,7 @@
                         "universal_app_access",
                         "universal_resource_access",
                         "universal_workflow_access",
+                        "universal_query_library_access",
                         "user_invites",
                         "user_list_access",
                         "audit_log_access",
@@ -2838,7 +2902,10 @@
                       "description": "The requested group"
                     }
                   },
-                  "required": ["success", "data"]
+                  "required": [
+                    "success",
+                    "data"
+                  ]
                 }
               }
             }
@@ -2847,8 +2914,10 @@
       },
       "patch": {
         "summary": "Update group",
-        "description": "Update a group in an organization using JSON Patch (RFC 6902). Returns the updated group. The API token must have the \"Groups > Write\" scope.",
-        "tags": ["Groups"],
+        "description": "Update a group in an organization using JSON Patch (RFC 6902). Returns the updated group. The API token must have the \"Groups \u003E Write\" scope.",
+        "tags": [
+          "Groups"
+        ],
         "parameters": [
           {
             "schema": {
@@ -2874,41 +2943,76 @@
                         {
                           "type": "object",
                           "properties": {
-                            "op": { "type": "string", "enum": ["add"] },
-                            "path": { "type": "string" },
+                            "op": {
+                              "type": "string",
+                              "enum": [
+                                "add"
+                              ]
+                            },
+                            "path": {
+                              "type": "string"
+                            },
                             "value": {
                               "nullable": true,
                               "description": "A JSON value"
                             }
                           },
-                          "required": ["op", "path"]
+                          "required": [
+                            "op",
+                            "path"
+                          ],
+                          "title": "Add Operation"
                         },
                         {
                           "type": "object",
                           "properties": {
-                            "op": { "type": "string", "enum": ["remove"] },
-                            "path": { "type": "string" }
+                            "op": {
+                              "type": "string",
+                              "enum": [
+                                "remove"
+                              ]
+                            },
+                            "path": {
+                              "type": "string"
+                            }
                           },
-                          "required": ["op", "path"]
+                          "required": [
+                            "op",
+                            "path"
+                          ],
+                          "title": "Remove Operation"
                         },
                         {
                           "type": "object",
                           "properties": {
-                            "op": { "type": "string", "enum": ["replace"] },
-                            "path": { "type": "string" },
+                            "op": {
+                              "type": "string",
+                              "enum": [
+                                "replace"
+                              ]
+                            },
+                            "path": {
+                              "type": "string"
+                            },
                             "value": {
                               "nullable": true,
                               "description": "A JSON value"
                             }
                           },
-                          "required": ["op", "path"]
+                          "required": [
+                            "op",
+                            "path"
+                          ],
+                          "title": "Replace Operation"
                         }
                       ]
                     },
                     "description": "A list of operations to apply to the group. See the [JSON PATCH specification](https://tools.ietf.org/html/rfc6902) for more details."
                   }
                 },
-                "required": ["operations"],
+                "required": [
+                  "operations"
+                ],
                 "additionalProperties": false,
                 "description": "The body of a request to update a group. "
               }
@@ -2965,38 +3069,74 @@
                                 "description": "Whether the user is a group admin"
                               }
                             },
-                            "required": ["id", "email", "is_group_admin"]
+                            "required": [
+                              "id",
+                              "email",
+                              "is_group_admin"
+                            ]
                           },
                           "description": "The members of the group."
                         },
                         "universal_app_access": {
                           "type": "string",
-                          "enum": ["none", "use", "edit", "own"],
+                          "enum": [
+                            "none",
+                            "use",
+                            "edit",
+                            "own"
+                          ],
                           "description": "The universal app access level for the group. This denotes the access level that this group has for all apps."
                         },
                         "universal_resource_access": {
                           "type": "string",
-                          "enum": ["none", "use", "edit", "own"],
+                          "enum": [
+                            "none",
+                            "use",
+                            "edit",
+                            "own"
+                          ],
                           "description": "The universal resource access level for the group. This denotes the access level that this group has for all resources."
                         },
                         "universal_workflow_access": {
                           "type": "string",
-                          "enum": ["none", "use", "edit", "own"],
+                          "enum": [
+                            "none",
+                            "use",
+                            "edit",
+                            "own"
+                          ],
                           "description": "The universal workflow access level for the group. This denotes the access level that this group has for all workflows."
+                        },
+                        "universal_query_library_access": {
+                          "type": "string",
+                          "enum": [
+                            "none",
+                            "use",
+                            "edit"
+                          ],
+                          "description": "Level of access that the group has to the Query Library."
                         },
                         "user_invites": {
                           "type": "array",
                           "items": {
                             "type": "object",
                             "properties": {
-                              "id": { "type": "number" },
-                              "legacy_id": { "type": "number" },
-                              "invited_by": { "type": "string" },
+                              "id": {
+                                "type": "number"
+                              },
+                              "legacy_id": {
+                                "type": "number"
+                              },
+                              "invited_by": {
+                                "type": "string"
+                              },
                               "invited_email": {
                                 "type": "string",
                                 "format": "email"
                               },
-                              "expires_at": { "type": "string" },
+                              "expires_at": {
+                                "type": "string"
+                              },
                               "claimed_by": {
                                 "type": "string",
                                 "nullable": true
@@ -3008,15 +3148,25 @@
                               "user_type": {
                                 "type": "string",
                                 "nullable": true,
-                                "enum": ["default", "mobile", "external"]
+                                "enum": [
+                                  "default",
+                                  "mobile",
+                                  "external"
+                                ]
                               },
                               "metadata": {
                                 "type": "object",
                                 "nullable": true,
-                                "additionalProperties": { "nullable": true },
-                                "default": {}
+                                "additionalProperties": {
+                                  "nullable": true
+                                },
+                                "default": {
+
+                                }
                               },
-                              "created_at": { "type": "string" },
+                              "created_at": {
+                                "type": "string"
+                              },
                               "invite_link": {
                                 "type": "string",
                                 "format": "uri"
@@ -3081,6 +3231,7 @@
                         "universal_app_access",
                         "universal_resource_access",
                         "universal_workflow_access",
+                        "universal_query_library_access",
                         "user_invites",
                         "user_list_access",
                         "audit_log_access",
@@ -3094,7 +3245,10 @@
                       "description": "The updated group"
                     }
                   },
-                  "required": ["success", "data"]
+                  "required": [
+                    "success",
+                    "data"
+                  ]
                 }
               }
             }
@@ -3103,8 +3257,10 @@
       },
       "put": {
         "summary": "Update group",
-        "description": "Update the entire group and returns the updated group. The API token must have the \"Groups > Write\" scope.",
-        "tags": ["Groups"],
+        "description": "Update the entire group and returns the updated group. The API token must have the \"Groups \u003E Write\" scope.",
+        "tags": [
+          "Groups"
+        ],
         "parameters": [
           {
             "schema": {
@@ -3143,53 +3299,107 @@
                           "description": "Whether the user is a group admin"
                         }
                       },
-                      "required": ["id", "is_group_admin"]
+                      "required": [
+                        "id",
+                        "is_group_admin"
+                      ]
                     },
                     "description": "Users to add to the group. Pass in an empty list to create a group with no members."
                   },
                   "universal_app_access": {
                     "type": "string",
-                    "enum": ["none", "use", "edit", "own"],
+                    "enum": [
+                      "none",
+                      "use",
+                      "edit",
+                      "own"
+                    ],
                     "description": "The universal app access level for the group. This denotes the access level that this group has for all apps."
                   },
                   "universal_resource_access": {
                     "type": "string",
-                    "enum": ["none", "use", "edit", "own"],
+                    "enum": [
+                      "none",
+                      "use",
+                      "edit",
+                      "own"
+                    ],
                     "description": "The universal resource access level for the group. This denotes the access level that this group has for all resources."
                   },
                   "universal_workflow_access": {
                     "type": "string",
-                    "enum": ["none", "use", "edit", "own"],
+                    "enum": [
+                      "none",
+                      "use",
+                      "edit",
+                      "own"
+                    ],
                     "description": "The universal workflow access level for the group. This denotes the access level that this group has for all workflows."
+                  },
+                  "universal_query_library_access": {
+                    "type": "string",
+                    "enum": [
+                      "none",
+                      "use",
+                      "edit"
+                    ],
+                    "description": "Level of access that the group has to the Query Library."
                   },
                   "user_invites": {
                     "type": "array",
                     "items": {
                       "type": "object",
                       "properties": {
-                        "id": { "type": "number" },
-                        "legacy_id": { "type": "number" },
-                        "invited_by": { "type": "string" },
+                        "id": {
+                          "type": "number"
+                        },
+                        "legacy_id": {
+                          "type": "number"
+                        },
+                        "invited_by": {
+                          "type": "string"
+                        },
                         "invited_email": {
                           "type": "string",
                           "format": "email"
                         },
-                        "expires_at": { "type": "string" },
-                        "claimed_by": { "type": "string", "nullable": true },
-                        "claimed_at": { "type": "string", "nullable": true },
+                        "expires_at": {
+                          "type": "string"
+                        },
+                        "claimed_by": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "claimed_at": {
+                          "type": "string",
+                          "nullable": true
+                        },
                         "user_type": {
                           "type": "string",
                           "nullable": true,
-                          "enum": ["default", "mobile", "external"]
+                          "enum": [
+                            "default",
+                            "mobile",
+                            "external"
+                          ]
                         },
                         "metadata": {
                           "type": "object",
                           "nullable": true,
-                          "additionalProperties": { "nullable": true },
-                          "default": {}
+                          "additionalProperties": {
+                            "nullable": true
+                          },
+                          "default": {
+
+                          }
                         },
-                        "created_at": { "type": "string" },
-                        "invite_link": { "type": "string", "format": "uri" }
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "invite_link": {
+                          "type": "string",
+                          "format": "uri"
+                        }
                       },
                       "required": [
                         "id",
@@ -3296,38 +3506,74 @@
                                 "description": "Whether the user is a group admin"
                               }
                             },
-                            "required": ["id", "email", "is_group_admin"]
+                            "required": [
+                              "id",
+                              "email",
+                              "is_group_admin"
+                            ]
                           },
                           "description": "The members of the group."
                         },
                         "universal_app_access": {
                           "type": "string",
-                          "enum": ["none", "use", "edit", "own"],
+                          "enum": [
+                            "none",
+                            "use",
+                            "edit",
+                            "own"
+                          ],
                           "description": "The universal app access level for the group. This denotes the access level that this group has for all apps."
                         },
                         "universal_resource_access": {
                           "type": "string",
-                          "enum": ["none", "use", "edit", "own"],
+                          "enum": [
+                            "none",
+                            "use",
+                            "edit",
+                            "own"
+                          ],
                           "description": "The universal resource access level for the group. This denotes the access level that this group has for all resources."
                         },
                         "universal_workflow_access": {
                           "type": "string",
-                          "enum": ["none", "use", "edit", "own"],
+                          "enum": [
+                            "none",
+                            "use",
+                            "edit",
+                            "own"
+                          ],
                           "description": "The universal workflow access level for the group. This denotes the access level that this group has for all workflows."
+                        },
+                        "universal_query_library_access": {
+                          "type": "string",
+                          "enum": [
+                            "none",
+                            "use",
+                            "edit"
+                          ],
+                          "description": "Level of access that the group has to the Query Library."
                         },
                         "user_invites": {
                           "type": "array",
                           "items": {
                             "type": "object",
                             "properties": {
-                              "id": { "type": "number" },
-                              "legacy_id": { "type": "number" },
-                              "invited_by": { "type": "string" },
+                              "id": {
+                                "type": "number"
+                              },
+                              "legacy_id": {
+                                "type": "number"
+                              },
+                              "invited_by": {
+                                "type": "string"
+                              },
                               "invited_email": {
                                 "type": "string",
                                 "format": "email"
                               },
-                              "expires_at": { "type": "string" },
+                              "expires_at": {
+                                "type": "string"
+                              },
                               "claimed_by": {
                                 "type": "string",
                                 "nullable": true
@@ -3339,15 +3585,25 @@
                               "user_type": {
                                 "type": "string",
                                 "nullable": true,
-                                "enum": ["default", "mobile", "external"]
+                                "enum": [
+                                  "default",
+                                  "mobile",
+                                  "external"
+                                ]
                               },
                               "metadata": {
                                 "type": "object",
                                 "nullable": true,
-                                "additionalProperties": { "nullable": true },
-                                "default": {}
+                                "additionalProperties": {
+                                  "nullable": true
+                                },
+                                "default": {
+
+                                }
                               },
-                              "created_at": { "type": "string" },
+                              "created_at": {
+                                "type": "string"
+                              },
                               "invite_link": {
                                 "type": "string",
                                 "format": "uri"
@@ -3412,6 +3668,7 @@
                         "universal_app_access",
                         "universal_resource_access",
                         "universal_workflow_access",
+                        "universal_query_library_access",
                         "user_invites",
                         "user_list_access",
                         "audit_log_access",
@@ -3425,7 +3682,10 @@
                       "description": "The updated group"
                     }
                   },
-                  "required": ["success", "data"]
+                  "required": [
+                    "success",
+                    "data"
+                  ]
                 }
               }
             }
@@ -3436,8 +3696,10 @@
     "/groups": {
       "get": {
         "summary": "List groups",
-        "description": "Get all permission groups for an organization or space. The API token must have the \"Groups > Read\" scope.",
-        "tags": ["Groups"],
+        "description": "Get all permission groups for an organization or space. The API token must have the \"Groups \u003E Read\" scope.",
+        "tags": [
+          "Groups"
+        ],
         "responses": {
           "200": {
             "description": "List of groups",
@@ -3490,38 +3752,74 @@
                                   "description": "Whether the user is a group admin"
                                 }
                               },
-                              "required": ["id", "email", "is_group_admin"]
+                              "required": [
+                                "id",
+                                "email",
+                                "is_group_admin"
+                              ]
                             },
                             "description": "The members of the group."
                           },
                           "universal_app_access": {
                             "type": "string",
-                            "enum": ["none", "use", "edit", "own"],
+                            "enum": [
+                              "none",
+                              "use",
+                              "edit",
+                              "own"
+                            ],
                             "description": "The universal app access level for the group. This denotes the access level that this group has for all apps."
                           },
                           "universal_resource_access": {
                             "type": "string",
-                            "enum": ["none", "use", "edit", "own"],
+                            "enum": [
+                              "none",
+                              "use",
+                              "edit",
+                              "own"
+                            ],
                             "description": "The universal resource access level for the group. This denotes the access level that this group has for all resources."
                           },
                           "universal_workflow_access": {
                             "type": "string",
-                            "enum": ["none", "use", "edit", "own"],
+                            "enum": [
+                              "none",
+                              "use",
+                              "edit",
+                              "own"
+                            ],
                             "description": "The universal workflow access level for the group. This denotes the access level that this group has for all workflows."
+                          },
+                          "universal_query_library_access": {
+                            "type": "string",
+                            "enum": [
+                              "none",
+                              "use",
+                              "edit"
+                            ],
+                            "description": "Level of access that the group has to the Query Library."
                           },
                           "user_invites": {
                             "type": "array",
                             "items": {
                               "type": "object",
                               "properties": {
-                                "id": { "type": "number" },
-                                "legacy_id": { "type": "number" },
-                                "invited_by": { "type": "string" },
+                                "id": {
+                                  "type": "number"
+                                },
+                                "legacy_id": {
+                                  "type": "number"
+                                },
+                                "invited_by": {
+                                  "type": "string"
+                                },
                                 "invited_email": {
                                   "type": "string",
                                   "format": "email"
                                 },
-                                "expires_at": { "type": "string" },
+                                "expires_at": {
+                                  "type": "string"
+                                },
                                 "claimed_by": {
                                   "type": "string",
                                   "nullable": true
@@ -3533,15 +3831,25 @@
                                 "user_type": {
                                   "type": "string",
                                   "nullable": true,
-                                  "enum": ["default", "mobile", "external"]
+                                  "enum": [
+                                    "default",
+                                    "mobile",
+                                    "external"
+                                  ]
                                 },
                                 "metadata": {
                                   "type": "object",
                                   "nullable": true,
-                                  "additionalProperties": { "nullable": true },
-                                  "default": {}
+                                  "additionalProperties": {
+                                    "nullable": true
+                                  },
+                                  "default": {
+
+                                  }
                                 },
-                                "created_at": { "type": "string" },
+                                "created_at": {
+                                  "type": "string"
+                                },
                                 "invite_link": {
                                   "type": "string",
                                   "format": "uri"
@@ -3606,6 +3914,7 @@
                           "universal_app_access",
                           "universal_resource_access",
                           "universal_workflow_access",
+                          "universal_query_library_access",
                           "user_invites",
                           "user_list_access",
                           "audit_log_access",
@@ -3650,8 +3959,10 @@
       },
       "post": {
         "summary": "Create group",
-        "description": "Creates a group and returns the created group. The API token must have the \"Groups > Write\" scope.",
-        "tags": ["Groups"],
+        "description": "Creates a group and returns the created group. The API token must have the \"Groups \u003E Write\" scope.",
+        "tags": [
+          "Groups"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -3678,53 +3989,107 @@
                           "description": "Whether the user is a group admin"
                         }
                       },
-                      "required": ["id", "is_group_admin"]
+                      "required": [
+                        "id",
+                        "is_group_admin"
+                      ]
                     },
                     "description": "Users to add to the group. Pass in an empty list to create a group with no members."
                   },
                   "universal_app_access": {
                     "type": "string",
-                    "enum": ["none", "use", "edit", "own"],
+                    "enum": [
+                      "none",
+                      "use",
+                      "edit",
+                      "own"
+                    ],
                     "description": "The universal app access level for the group. This denotes the access level that this group has for all apps."
                   },
                   "universal_resource_access": {
                     "type": "string",
-                    "enum": ["none", "use", "edit", "own"],
+                    "enum": [
+                      "none",
+                      "use",
+                      "edit",
+                      "own"
+                    ],
                     "description": "The universal resource access level for the group. This denotes the access level that this group has for all resources."
                   },
                   "universal_workflow_access": {
                     "type": "string",
-                    "enum": ["none", "use", "edit", "own"],
+                    "enum": [
+                      "none",
+                      "use",
+                      "edit",
+                      "own"
+                    ],
                     "description": "The universal workflow access level for the group. This denotes the access level that this group has for all workflows."
+                  },
+                  "universal_query_library_access": {
+                    "type": "string",
+                    "enum": [
+                      "none",
+                      "use",
+                      "edit"
+                    ],
+                    "description": "Level of access that the group has to the Query Library."
                   },
                   "user_invites": {
                     "type": "array",
                     "items": {
                       "type": "object",
                       "properties": {
-                        "id": { "type": "number" },
-                        "legacy_id": { "type": "number" },
-                        "invited_by": { "type": "string" },
+                        "id": {
+                          "type": "number"
+                        },
+                        "legacy_id": {
+                          "type": "number"
+                        },
+                        "invited_by": {
+                          "type": "string"
+                        },
                         "invited_email": {
                           "type": "string",
                           "format": "email"
                         },
-                        "expires_at": { "type": "string" },
-                        "claimed_by": { "type": "string", "nullable": true },
-                        "claimed_at": { "type": "string", "nullable": true },
+                        "expires_at": {
+                          "type": "string"
+                        },
+                        "claimed_by": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "claimed_at": {
+                          "type": "string",
+                          "nullable": true
+                        },
                         "user_type": {
                           "type": "string",
                           "nullable": true,
-                          "enum": ["default", "mobile", "external"]
+                          "enum": [
+                            "default",
+                            "mobile",
+                            "external"
+                          ]
                         },
                         "metadata": {
                           "type": "object",
                           "nullable": true,
-                          "additionalProperties": { "nullable": true },
-                          "default": {}
+                          "additionalProperties": {
+                            "nullable": true
+                          },
+                          "default": {
+
+                          }
                         },
-                        "created_at": { "type": "string" },
-                        "invite_link": { "type": "string", "format": "uri" }
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "invite_link": {
+                          "type": "string",
+                          "format": "uri"
+                        }
                       },
                       "required": [
                         "id",
@@ -3777,7 +4142,9 @@
                     "example": "2019-02-24T18:28:18.790Z"
                   }
                 },
-                "required": ["name"]
+                "required": [
+                  "name"
+                ]
               }
             }
           }
@@ -3832,38 +4199,74 @@
                                 "description": "Whether the user is a group admin"
                               }
                             },
-                            "required": ["id", "email", "is_group_admin"]
+                            "required": [
+                              "id",
+                              "email",
+                              "is_group_admin"
+                            ]
                           },
                           "description": "The members of the group."
                         },
                         "universal_app_access": {
                           "type": "string",
-                          "enum": ["none", "use", "edit", "own"],
+                          "enum": [
+                            "none",
+                            "use",
+                            "edit",
+                            "own"
+                          ],
                           "description": "The universal app access level for the group. This denotes the access level that this group has for all apps."
                         },
                         "universal_resource_access": {
                           "type": "string",
-                          "enum": ["none", "use", "edit", "own"],
+                          "enum": [
+                            "none",
+                            "use",
+                            "edit",
+                            "own"
+                          ],
                           "description": "The universal resource access level for the group. This denotes the access level that this group has for all resources."
                         },
                         "universal_workflow_access": {
                           "type": "string",
-                          "enum": ["none", "use", "edit", "own"],
+                          "enum": [
+                            "none",
+                            "use",
+                            "edit",
+                            "own"
+                          ],
                           "description": "The universal workflow access level for the group. This denotes the access level that this group has for all workflows."
+                        },
+                        "universal_query_library_access": {
+                          "type": "string",
+                          "enum": [
+                            "none",
+                            "use",
+                            "edit"
+                          ],
+                          "description": "Level of access that the group has to the Query Library."
                         },
                         "user_invites": {
                           "type": "array",
                           "items": {
                             "type": "object",
                             "properties": {
-                              "id": { "type": "number" },
-                              "legacy_id": { "type": "number" },
-                              "invited_by": { "type": "string" },
+                              "id": {
+                                "type": "number"
+                              },
+                              "legacy_id": {
+                                "type": "number"
+                              },
+                              "invited_by": {
+                                "type": "string"
+                              },
                               "invited_email": {
                                 "type": "string",
                                 "format": "email"
                               },
-                              "expires_at": { "type": "string" },
+                              "expires_at": {
+                                "type": "string"
+                              },
                               "claimed_by": {
                                 "type": "string",
                                 "nullable": true
@@ -3875,15 +4278,25 @@
                               "user_type": {
                                 "type": "string",
                                 "nullable": true,
-                                "enum": ["default", "mobile", "external"]
+                                "enum": [
+                                  "default",
+                                  "mobile",
+                                  "external"
+                                ]
                               },
                               "metadata": {
                                 "type": "object",
                                 "nullable": true,
-                                "additionalProperties": { "nullable": true },
-                                "default": {}
+                                "additionalProperties": {
+                                  "nullable": true
+                                },
+                                "default": {
+
+                                }
                               },
-                              "created_at": { "type": "string" },
+                              "created_at": {
+                                "type": "string"
+                              },
                               "invite_link": {
                                 "type": "string",
                                 "format": "uri"
@@ -3948,6 +4361,7 @@
                         "universal_app_access",
                         "universal_resource_access",
                         "universal_workflow_access",
+                        "universal_query_library_access",
                         "user_invites",
                         "user_list_access",
                         "audit_log_access",
@@ -3961,7 +4375,10 @@
                       "description": "The created group"
                     }
                   },
-                  "required": ["success", "data"]
+                  "required": [
+                    "success",
+                    "data"
+                  ]
                 }
               }
             }
@@ -3972,8 +4389,10 @@
     "/groups/{groupId}/user_invites": {
       "post": {
         "summary": "Add user invites to group",
-        "description": "Available from API version 2.4.0+ and onprem version 3.28.0+. Adds a user invite to specified group and returns the group. The API token must have the \"Groups > Write\" scope.",
-        "tags": ["Groups"],
+        "description": "Available from API version 2.4.0+ and onprem version 3.28.0+. Adds a user invite to specified group and returns the group. The API token must have the \"Groups \u003E Write\" scope.",
+        "tags": [
+          "Groups"
+        ],
         "parameters": [
           {
             "schema": {
@@ -3994,10 +4413,14 @@
                 "properties": {
                   "userInviteIds": {
                     "type": "array",
-                    "items": { "type": "number" }
+                    "items": {
+                      "type": "number"
+                    }
                   }
                 },
-                "required": ["userInviteIds"],
+                "required": [
+                  "userInviteIds"
+                ],
                 "description": "User Invites to add to the group"
               }
             }
@@ -4053,38 +4476,74 @@
                                 "description": "Whether the user is a group admin"
                               }
                             },
-                            "required": ["id", "email", "is_group_admin"]
+                            "required": [
+                              "id",
+                              "email",
+                              "is_group_admin"
+                            ]
                           },
                           "description": "The members of the group."
                         },
                         "universal_app_access": {
                           "type": "string",
-                          "enum": ["none", "use", "edit", "own"],
+                          "enum": [
+                            "none",
+                            "use",
+                            "edit",
+                            "own"
+                          ],
                           "description": "The universal app access level for the group. This denotes the access level that this group has for all apps."
                         },
                         "universal_resource_access": {
                           "type": "string",
-                          "enum": ["none", "use", "edit", "own"],
+                          "enum": [
+                            "none",
+                            "use",
+                            "edit",
+                            "own"
+                          ],
                           "description": "The universal resource access level for the group. This denotes the access level that this group has for all resources."
                         },
                         "universal_workflow_access": {
                           "type": "string",
-                          "enum": ["none", "use", "edit", "own"],
+                          "enum": [
+                            "none",
+                            "use",
+                            "edit",
+                            "own"
+                          ],
                           "description": "The universal workflow access level for the group. This denotes the access level that this group has for all workflows."
+                        },
+                        "universal_query_library_access": {
+                          "type": "string",
+                          "enum": [
+                            "none",
+                            "use",
+                            "edit"
+                          ],
+                          "description": "Level of access that the group has to the Query Library."
                         },
                         "user_invites": {
                           "type": "array",
                           "items": {
                             "type": "object",
                             "properties": {
-                              "id": { "type": "number" },
-                              "legacy_id": { "type": "number" },
-                              "invited_by": { "type": "string" },
+                              "id": {
+                                "type": "number"
+                              },
+                              "legacy_id": {
+                                "type": "number"
+                              },
+                              "invited_by": {
+                                "type": "string"
+                              },
                               "invited_email": {
                                 "type": "string",
                                 "format": "email"
                               },
-                              "expires_at": { "type": "string" },
+                              "expires_at": {
+                                "type": "string"
+                              },
                               "claimed_by": {
                                 "type": "string",
                                 "nullable": true
@@ -4096,15 +4555,25 @@
                               "user_type": {
                                 "type": "string",
                                 "nullable": true,
-                                "enum": ["default", "mobile", "external"]
+                                "enum": [
+                                  "default",
+                                  "mobile",
+                                  "external"
+                                ]
                               },
                               "metadata": {
                                 "type": "object",
                                 "nullable": true,
-                                "additionalProperties": { "nullable": true },
-                                "default": {}
+                                "additionalProperties": {
+                                  "nullable": true
+                                },
+                                "default": {
+
+                                }
                               },
-                              "created_at": { "type": "string" },
+                              "created_at": {
+                                "type": "string"
+                              },
                               "invite_link": {
                                 "type": "string",
                                 "format": "uri"
@@ -4169,6 +4638,7 @@
                         "universal_app_access",
                         "universal_resource_access",
                         "universal_workflow_access",
+                        "universal_query_library_access",
                         "user_invites",
                         "user_list_access",
                         "audit_log_access",
@@ -4182,7 +4652,10 @@
                       "description": "The updated group"
                     }
                   },
-                  "required": ["success", "data"]
+                  "required": [
+                    "success",
+                    "data"
+                  ]
                 }
               }
             }
@@ -4193,8 +4666,10 @@
     "/groups/{groupId}/members": {
       "post": {
         "summary": "Add users to group",
-        "description": "Adds a user to specified group and returns the group. Can optionally set or unset group admins by using the `is_group_admin` property. The API token must have the \"Groups > Write\" scope.",
-        "tags": ["Groups"],
+        "description": "Adds a user to specified group and returns the group. Can optionally set or unset group admins by using the `is_group_admin` property. The API token must have the \"Groups \u003E Write\" scope.",
+        "tags": [
+          "Groups"
+        ],
         "parameters": [
           {
             "schema": {
@@ -4228,12 +4703,17 @@
                           "description": "Whether the user is a group admin"
                         }
                       },
-                      "required": ["id", "is_group_admin"]
+                      "required": [
+                        "id",
+                        "is_group_admin"
+                      ]
                     },
                     "description": "Users to add to the group. Pass in an empty list to create a group with no members."
                   }
                 },
-                "required": ["members"]
+                "required": [
+                  "members"
+                ]
               }
             }
           }
@@ -4288,38 +4768,74 @@
                                 "description": "Whether the user is a group admin"
                               }
                             },
-                            "required": ["id", "email", "is_group_admin"]
+                            "required": [
+                              "id",
+                              "email",
+                              "is_group_admin"
+                            ]
                           },
                           "description": "The members of the group."
                         },
                         "universal_app_access": {
                           "type": "string",
-                          "enum": ["none", "use", "edit", "own"],
+                          "enum": [
+                            "none",
+                            "use",
+                            "edit",
+                            "own"
+                          ],
                           "description": "The universal app access level for the group. This denotes the access level that this group has for all apps."
                         },
                         "universal_resource_access": {
                           "type": "string",
-                          "enum": ["none", "use", "edit", "own"],
+                          "enum": [
+                            "none",
+                            "use",
+                            "edit",
+                            "own"
+                          ],
                           "description": "The universal resource access level for the group. This denotes the access level that this group has for all resources."
                         },
                         "universal_workflow_access": {
                           "type": "string",
-                          "enum": ["none", "use", "edit", "own"],
+                          "enum": [
+                            "none",
+                            "use",
+                            "edit",
+                            "own"
+                          ],
                           "description": "The universal workflow access level for the group. This denotes the access level that this group has for all workflows."
+                        },
+                        "universal_query_library_access": {
+                          "type": "string",
+                          "enum": [
+                            "none",
+                            "use",
+                            "edit"
+                          ],
+                          "description": "Level of access that the group has to the Query Library."
                         },
                         "user_invites": {
                           "type": "array",
                           "items": {
                             "type": "object",
                             "properties": {
-                              "id": { "type": "number" },
-                              "legacy_id": { "type": "number" },
-                              "invited_by": { "type": "string" },
+                              "id": {
+                                "type": "number"
+                              },
+                              "legacy_id": {
+                                "type": "number"
+                              },
+                              "invited_by": {
+                                "type": "string"
+                              },
                               "invited_email": {
                                 "type": "string",
                                 "format": "email"
                               },
-                              "expires_at": { "type": "string" },
+                              "expires_at": {
+                                "type": "string"
+                              },
                               "claimed_by": {
                                 "type": "string",
                                 "nullable": true
@@ -4331,15 +4847,25 @@
                               "user_type": {
                                 "type": "string",
                                 "nullable": true,
-                                "enum": ["default", "mobile", "external"]
+                                "enum": [
+                                  "default",
+                                  "mobile",
+                                  "external"
+                                ]
                               },
                               "metadata": {
                                 "type": "object",
                                 "nullable": true,
-                                "additionalProperties": { "nullable": true },
-                                "default": {}
+                                "additionalProperties": {
+                                  "nullable": true
+                                },
+                                "default": {
+
+                                }
                               },
-                              "created_at": { "type": "string" },
+                              "created_at": {
+                                "type": "string"
+                              },
                               "invite_link": {
                                 "type": "string",
                                 "format": "uri"
@@ -4404,6 +4930,7 @@
                         "universal_app_access",
                         "universal_resource_access",
                         "universal_workflow_access",
+                        "universal_query_library_access",
                         "user_invites",
                         "user_list_access",
                         "audit_log_access",
@@ -4417,7 +4944,10 @@
                       "description": "The updated group"
                     }
                   },
-                  "required": ["success", "data"]
+                  "required": [
+                    "success",
+                    "data"
+                  ]
                 }
               }
             }
@@ -4428,8 +4958,10 @@
     "/groups/{groupId}/members/{userSid}": {
       "delete": {
         "summary": "Remove user from group",
-        "description": "Removes the user from the group and returns the group. The API token must have the \"Groups > Write\" scope.",
-        "tags": ["Groups"],
+        "description": "Removes the user from the group and returns the group. The API token must have the \"Groups \u003E Write\" scope.",
+        "tags": [
+          "Groups"
+        ],
         "parameters": [
           {
             "schema": {
@@ -4442,7 +4974,10 @@
             "in": "path"
           },
           {
-            "schema": { "type": "string", "pattern": "user_([a-z0-9]+)" },
+            "schema": {
+              "type": "string",
+              "pattern": "user_([a-z0-9]+)"
+            },
             "required": true,
             "name": "userSid",
             "in": "path"
@@ -4498,38 +5033,74 @@
                                 "description": "Whether the user is a group admin"
                               }
                             },
-                            "required": ["id", "email", "is_group_admin"]
+                            "required": [
+                              "id",
+                              "email",
+                              "is_group_admin"
+                            ]
                           },
                           "description": "The members of the group."
                         },
                         "universal_app_access": {
                           "type": "string",
-                          "enum": ["none", "use", "edit", "own"],
+                          "enum": [
+                            "none",
+                            "use",
+                            "edit",
+                            "own"
+                          ],
                           "description": "The universal app access level for the group. This denotes the access level that this group has for all apps."
                         },
                         "universal_resource_access": {
                           "type": "string",
-                          "enum": ["none", "use", "edit", "own"],
+                          "enum": [
+                            "none",
+                            "use",
+                            "edit",
+                            "own"
+                          ],
                           "description": "The universal resource access level for the group. This denotes the access level that this group has for all resources."
                         },
                         "universal_workflow_access": {
                           "type": "string",
-                          "enum": ["none", "use", "edit", "own"],
+                          "enum": [
+                            "none",
+                            "use",
+                            "edit",
+                            "own"
+                          ],
                           "description": "The universal workflow access level for the group. This denotes the access level that this group has for all workflows."
+                        },
+                        "universal_query_library_access": {
+                          "type": "string",
+                          "enum": [
+                            "none",
+                            "use",
+                            "edit"
+                          ],
+                          "description": "Level of access that the group has to the Query Library."
                         },
                         "user_invites": {
                           "type": "array",
                           "items": {
                             "type": "object",
                             "properties": {
-                              "id": { "type": "number" },
-                              "legacy_id": { "type": "number" },
-                              "invited_by": { "type": "string" },
+                              "id": {
+                                "type": "number"
+                              },
+                              "legacy_id": {
+                                "type": "number"
+                              },
+                              "invited_by": {
+                                "type": "string"
+                              },
                               "invited_email": {
                                 "type": "string",
                                 "format": "email"
                               },
-                              "expires_at": { "type": "string" },
+                              "expires_at": {
+                                "type": "string"
+                              },
                               "claimed_by": {
                                 "type": "string",
                                 "nullable": true
@@ -4541,15 +5112,25 @@
                               "user_type": {
                                 "type": "string",
                                 "nullable": true,
-                                "enum": ["default", "mobile", "external"]
+                                "enum": [
+                                  "default",
+                                  "mobile",
+                                  "external"
+                                ]
                               },
                               "metadata": {
                                 "type": "object",
                                 "nullable": true,
-                                "additionalProperties": { "nullable": true },
-                                "default": {}
+                                "additionalProperties": {
+                                  "nullable": true
+                                },
+                                "default": {
+
+                                }
                               },
-                              "created_at": { "type": "string" },
+                              "created_at": {
+                                "type": "string"
+                              },
                               "invite_link": {
                                 "type": "string",
                                 "format": "uri"
@@ -4614,6 +5195,7 @@
                         "universal_app_access",
                         "universal_resource_access",
                         "universal_workflow_access",
+                        "universal_query_library_access",
                         "user_invites",
                         "user_list_access",
                         "audit_log_access",
@@ -4627,7 +5209,10 @@
                       "description": "The updated group"
                     }
                   },
-                  "required": ["success", "data"]
+                  "required": [
+                    "success",
+                    "data"
+                  ]
                 }
               }
             }
@@ -4638,8 +5223,10 @@
     "/groups/{groupId}/user_invites/{userInviteId}": {
       "delete": {
         "summary": "Remove user invite from group",
-        "description": "Available from API version 2.4.0+ and onprem version 3.28.0+. Removes the user invite from the group. The API token must have the \"Groups > Write\" scope.",
-        "tags": ["Groups"],
+        "description": "Available from API version 2.4.0+ and onprem version 3.28.0+. Removes the user invite from the group. The API token must have the \"Groups \u003E Write\" scope.",
+        "tags": [
+          "Groups"
+        ],
         "parameters": [
           {
             "schema": {
@@ -4665,7 +5252,9 @@
         "responses": {
           "204": {
             "description": "Successfully deleted user invite from group.",
-            "content": {}
+            "content": {
+
+            }
           }
         }
       }

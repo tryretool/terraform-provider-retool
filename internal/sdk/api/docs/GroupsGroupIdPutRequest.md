@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **UniversalAppAccess** | Pointer to **string** | The universal app access level for the group. This denotes the access level that this group has for all apps. | [optional] 
 **UniversalResourceAccess** | Pointer to **string** | The universal resource access level for the group. This denotes the access level that this group has for all resources. | [optional] 
 **UniversalWorkflowAccess** | Pointer to **string** | The universal workflow access level for the group. This denotes the access level that this group has for all workflows. | [optional] 
+**UniversalQueryLibraryAccess** | Pointer to **string** | Level of access that the group has to the Query Library. | [optional] 
 **UserInvites** | Pointer to [**[]GroupsGroupIdGet200ResponseDataUserInvitesInner**](GroupsGroupIdGet200ResponseDataUserInvitesInner.md) | A list of user invites that will be added to the group | [optional] 
 **UserListAccess** | Pointer to **bool** | Whether the group has access to the user list | [optional] 
 **AuditLogAccess** | Pointer to **bool** | Whether the group has access to the audit log | [optional] 
@@ -162,6 +163,31 @@ SetUniversalWorkflowAccess sets UniversalWorkflowAccess field to given value.
 `func (o *GroupsGroupIdPutRequest) HasUniversalWorkflowAccess() bool`
 
 HasUniversalWorkflowAccess returns a boolean if a field has been set.
+
+### GetUniversalQueryLibraryAccess
+
+`func (o *GroupsGroupIdPutRequest) GetUniversalQueryLibraryAccess() string`
+
+GetUniversalQueryLibraryAccess returns the UniversalQueryLibraryAccess field if non-nil, zero value otherwise.
+
+### GetUniversalQueryLibraryAccessOk
+
+`func (o *GroupsGroupIdPutRequest) GetUniversalQueryLibraryAccessOk() (*string, bool)`
+
+GetUniversalQueryLibraryAccessOk returns a tuple with the UniversalQueryLibraryAccess field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUniversalQueryLibraryAccess
+
+`func (o *GroupsGroupIdPutRequest) SetUniversalQueryLibraryAccess(v string)`
+
+SetUniversalQueryLibraryAccess sets UniversalQueryLibraryAccess field to given value.
+
+### HasUniversalQueryLibraryAccess
+
+`func (o *GroupsGroupIdPutRequest) HasUniversalQueryLibraryAccess() bool`
+
+HasUniversalQueryLibraryAccess returns a boolean if a field has been set.
 
 ### GetUserInvites
 

@@ -18,6 +18,7 @@ const testGroupConfig = `
 		universal_app_access = "use"
 		universal_resource_access = "own"
 		universal_workflow_access = "none"
+		universal_query_library_access = "edit"
 		user_list_access = false
 		audit_log_access = true
 		unpublished_release_access = false
@@ -32,6 +33,7 @@ const testUpdatedGroupConfig = `
 		universal_app_access = "own"
 		universal_resource_access = "none"
 		universal_workflow_access = "edit"
+		universal_query_library_access = "none"
 		user_list_access = true
 		audit_log_access = false
 		unpublished_release_access = true
@@ -61,6 +63,7 @@ func TestAccGroup(t *testing.T) {
 					resource.TestCheckResourceAttr("retool_group.test_group", "universal_app_access", "use"),
 					resource.TestCheckResourceAttr("retool_group.test_group", "universal_resource_access", "own"),
 					resource.TestCheckResourceAttr("retool_group.test_group", "universal_workflow_access", "none"),
+					resource.TestCheckResourceAttr("retool_group.test_group", "universal_query_library_access", "edit"),
 					resource.TestCheckResourceAttr("retool_group.test_group", "user_list_access", "false"),
 					resource.TestCheckResourceAttr("retool_group.test_group", "audit_log_access", "true"),
 					resource.TestCheckResourceAttr("retool_group.test_group", "unpublished_release_access", "false"),
@@ -85,6 +88,7 @@ func TestAccGroup(t *testing.T) {
 					resource.TestCheckResourceAttr("retool_group.test_group", "universal_app_access", "own"),
 					resource.TestCheckResourceAttr("retool_group.test_group", "universal_resource_access", "none"),
 					resource.TestCheckResourceAttr("retool_group.test_group", "universal_workflow_access", "edit"),
+					resource.TestCheckResourceAttr("retool_group.test_group", "universal_query_library_access", "none"),
 					resource.TestCheckResourceAttr("retool_group.test_group", "user_list_access", "true"),
 					resource.TestCheckResourceAttr("retool_group.test_group", "audit_log_access", "false"),
 					resource.TestCheckResourceAttr("retool_group.test_group", "unpublished_release_access", "true"),
@@ -103,6 +107,7 @@ func TestAccGroup(t *testing.T) {
 					resource.TestCheckResourceAttr("retool_group.test_group_with_defaults", "universal_app_access", "none"),
 					resource.TestCheckResourceAttr("retool_group.test_group_with_defaults", "universal_resource_access", "none"),
 					resource.TestCheckResourceAttr("retool_group.test_group_with_defaults", "universal_workflow_access", "none"),
+					resource.TestCheckResourceAttr("retool_group.test_group_with_defaults", "universal_query_library_access", "none"),
 					resource.TestCheckResourceAttr("retool_group.test_group_with_defaults", "user_list_access", "false"),
 					resource.TestCheckResourceAttr("retool_group.test_group_with_defaults", "audit_log_access", "false"),
 					resource.TestCheckResourceAttr("retool_group.test_group_with_defaults", "unpublished_release_access", "false"),
