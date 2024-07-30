@@ -131,6 +131,8 @@ Class | Method | HTTP request | Description
 *ResourcesAPI* | [**ResourcesPost**](docs/ResourcesAPI.md#resourcespost) | **Post** /resources | Create a resource
 *ResourcesAPI* | [**ResourcesResourceIdDelete**](docs/ResourcesAPI.md#resourcesresourceiddelete) | **Delete** /resources/{resourceId} | Delete resource
 *ResourcesAPI* | [**ResourcesResourceIdGet**](docs/ResourcesAPI.md#resourcesresourceidget) | **Get** /resources/{resourceId} | Get resource by id
+*SSOAPI* | [**SsoConfigDelete**](docs/SSOAPI.md#ssoconfigdelete) | **Delete** /sso/config | Remove SSO configuration
+*SSOAPI* | [**SsoConfigGet**](docs/SSOAPI.md#ssoconfigget) | **Get** /sso/config | Get SSO configuration
 *SSOAPI* | [**SsoConfigPost**](docs/SSOAPI.md#ssoconfigpost) | **Post** /sso/config | Set SSO configuration
 *SourceControlAPI* | [**SourceControlConfigDelete**](docs/SourceControlAPI.md#sourcecontrolconfigdelete) | **Delete** /source_control/config | Delete source control provider configuration
 *SourceControlAPI* | [**SourceControlConfigGet**](docs/SourceControlAPI.md#sourcecontrolconfigget) | **Get** /source_control/config | Get source control configuration
@@ -318,6 +320,7 @@ Class | Method | HTTP request | Description
  - [RestAPIOptionsAuthenticationOptionsAnyOf4Oauth1SignatureMethod](docs/RestAPIOptionsAuthenticationOptionsAnyOf4Oauth1SignatureMethod.md)
  - [RestAPIOptionsAuthenticationOptionsAnyOf5](docs/RestAPIOptionsAuthenticationOptionsAnyOf5.md)
  - [RestAPIOptionsAuthenticationOptionsAnyOf6](docs/RestAPIOptionsAuthenticationOptionsAnyOf6.md)
+ - [SSOConfig](docs/SSOConfig.md)
  - [SnowflakeOptions](docs/SnowflakeOptions.md)
  - [SnowflakeOptionsAuthenticationOptions](docs/SnowflakeOptionsAuthenticationOptions.md)
  - [SnowflakeOptionsAuthenticationOptionsAnyOf](docs/SnowflakeOptionsAuthenticationOptionsAnyOf.md)
@@ -380,6 +383,8 @@ Class | Method | HTTP request | Description
  - [SpacesSpaceIdPut200Response](docs/SpacesSpaceIdPut200Response.md)
  - [SpacesSpaceIdPut200ResponseData](docs/SpacesSpaceIdPut200ResponseData.md)
  - [SpacesSpaceIdPutRequest](docs/SpacesSpaceIdPutRequest.md)
+ - [SsoConfigGet200Response](docs/SsoConfigGet200Response.md)
+ - [SsoConfigGet200ResponseData](docs/SsoConfigGet200ResponseData.md)
  - [SsoConfigPost200Response](docs/SsoConfigPost200Response.md)
  - [SsoConfigPost200ResponseData](docs/SsoConfigPost200ResponseData.md)
  - [SsoConfigPostRequest](docs/SsoConfigPostRequest.md)

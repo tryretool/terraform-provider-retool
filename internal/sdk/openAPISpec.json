@@ -10144,28 +10144,18 @@
                           "properties": {
                             "config_type": {
                               "type": "string",
-                              "enum": ["google"]
+                              "enum": [
+                                "google & oidc", "google", "saml", "google & saml", "oidc"
+                              ]
                             },
-                            "google_client_id": { "type": "string" },
-                            "google_client_secret": { "type": "string" },
+                            "google_client_id": {
+                              "type": "string"
+                            },
+                            "google_client_secret": {
+                              "type": "string"
+                            },
                             "disable_email_password_login": {
                               "type": "boolean"
-                            }
-                          },
-                          "required": [
-                            "config_type",
-                            "google_client_id",
-                            "google_client_secret",
-                            "disable_email_password_login"
-                          ],
-                          "additionalProperties": false
-                        },
-                        {
-                          "type": "object",
-                          "properties": {
-                            "config_type": {
-                              "type": "string",
-                              "enum": ["oidc"]
                             },
                             "oidc_client_id": {
                               "type": "string",
@@ -10175,7 +10165,10 @@
                               "type": "string",
                               "minLength": 1
                             },
-                            "oidc_scopes": { "type": "string", "minLength": 1 },
+                            "oidc_scopes": {
+                              "type": "string",
+                              "minLength": 1
+                            },
                             "oidc_auth_url": {
                               "type": "string",
                               "minLength": 1
@@ -10188,7 +10181,9 @@
                               "type": "string",
                               "minLength": 1
                             },
-                            "oidc_audience": { "type": "string" },
+                            "oidc_audience": {
+                              "type": "string"
+                            },
                             "jwt_email_key": {
                               "type": "string",
                               "minLength": 1
@@ -10205,164 +10200,16 @@
                               "type": "string",
                               "minLength": 1
                             },
-                            "roles_mapping": { "type": "string" },
-                            "jit_enabled": { "type": "boolean" },
-                            "restricted_domain": { "type": "string" },
+                            "roles_mapping": {
+                              "type": "string"
+                            },
+                            "jit_enabled": {
+                              "type": "boolean"
+                            },
+                            "restricted_domain": {
+                              "type": "string"
+                            },
                             "trigger_login_automatically": {
-                              "type": "boolean"
-                            },
-                            "disable_email_password_login": {
-                              "type": "boolean"
-                            }
-                          },
-                          "required": [
-                            "config_type",
-                            "oidc_client_id",
-                            "oidc_client_secret",
-                            "oidc_scopes",
-                            "oidc_auth_url",
-                            "oidc_token_url",
-                            "jwt_email_key",
-                            "jwt_first_name_key",
-                            "jwt_last_name_key",
-                            "jit_enabled",
-                            "trigger_login_automatically",
-                            "disable_email_password_login"
-                          ],
-                          "additionalProperties": false
-                        },
-                        {
-                          "type": "object",
-                          "properties": {
-                            "config_type": {
-                              "type": "string",
-                              "enum": ["google & oidc"]
-                            },
-                            "google_client_id": { "type": "string" },
-                            "google_client_secret": { "type": "string" },
-                            "disable_email_password_login": {
-                              "type": "boolean"
-                            },
-                            "oidc_client_id": {
-                              "type": "string",
-                              "minLength": 1
-                            },
-                            "oidc_client_secret": {
-                              "type": "string",
-                              "minLength": 1
-                            },
-                            "oidc_scopes": { "type": "string", "minLength": 1 },
-                            "oidc_auth_url": {
-                              "type": "string",
-                              "minLength": 1
-                            },
-                            "oidc_token_url": {
-                              "type": "string",
-                              "minLength": 1
-                            },
-                            "oidc_userinfo_url": {
-                              "type": "string",
-                              "minLength": 1
-                            },
-                            "oidc_audience": { "type": "string" },
-                            "jwt_email_key": {
-                              "type": "string",
-                              "minLength": 1
-                            },
-                            "jwt_roles_key": {
-                              "type": "string",
-                              "minLength": 1
-                            },
-                            "jwt_first_name_key": {
-                              "type": "string",
-                              "minLength": 1
-                            },
-                            "jwt_last_name_key": {
-                              "type": "string",
-                              "minLength": 1
-                            },
-                            "roles_mapping": { "type": "string" },
-                            "jit_enabled": { "type": "boolean" },
-                            "restricted_domain": { "type": "string" },
-                            "trigger_login_automatically": { "type": "boolean" }
-                          },
-                          "required": [
-                            "config_type",
-                            "google_client_id",
-                            "google_client_secret",
-                            "disable_email_password_login",
-                            "oidc_client_id",
-                            "oidc_client_secret",
-                            "oidc_scopes",
-                            "oidc_auth_url",
-                            "oidc_token_url",
-                            "jwt_email_key",
-                            "jwt_first_name_key",
-                            "jwt_last_name_key",
-                            "jit_enabled",
-                            "trigger_login_automatically"
-                          ],
-                          "additionalProperties": false
-                        },
-                        {
-                          "type": "object",
-                          "properties": {
-                            "config_type": {
-                              "type": "string",
-                              "enum": ["saml"]
-                            },
-                            "idp_metadata_xml": {
-                              "type": "string",
-                              "minLength": 1
-                            },
-                            "saml_first_name_attribute": {
-                              "type": "string",
-                              "minLength": 1
-                            },
-                            "saml_last_name_attribute": {
-                              "type": "string",
-                              "minLength": 1
-                            },
-                            "saml_groups_attribute": { "type": "string" },
-                            "saml_sync_group_claims": { "type": "boolean" },
-                            "ldap_sync_group_claims": { "type": "boolean" },
-                            "ldap_role_mapping": { "type": "string" },
-                            "ldap_server_url": { "type": "string" },
-                            "ldap_base_domain_components": { "type": "string" },
-                            "ldap_server_name": { "type": "string" },
-                            "ldap_server_key": { "type": "string" },
-                            "ldap_server_certificate": { "type": "string" },
-                            "jit_enabled": { "type": "boolean" },
-                            "restricted_domain": { "type": "string" },
-                            "trigger_login_automatically": {
-                              "type": "boolean"
-                            },
-                            "disable_email_password_login": {
-                              "type": "boolean"
-                            }
-                          },
-                          "required": [
-                            "config_type",
-                            "idp_metadata_xml",
-                            "saml_first_name_attribute",
-                            "saml_last_name_attribute",
-                            "saml_sync_group_claims",
-                            "jit_enabled",
-                            "trigger_login_automatically",
-                            "disable_email_password_login"
-                          ],
-                          "additionalProperties": false
-                        },
-                        {
-                          "type": "object",
-                          "properties": {
-                            "config_type": {
-                              "type": "string",
-                              "enum": ["google & saml"]
-                            },
-                            "google_client_id": { "type": "string" },
-                            "google_client_secret": { "type": "string" },
-                            "disable_email_password_login": {
                               "type": "boolean"
                             },
                             "idp_metadata_xml": {
@@ -10377,32 +10224,41 @@
                               "type": "string",
                               "minLength": 1
                             },
-                            "saml_groups_attribute": { "type": "string" },
-                            "saml_sync_group_claims": { "type": "boolean" },
-                            "ldap_sync_group_claims": { "type": "boolean" },
-                            "ldap_role_mapping": { "type": "string" },
-                            "ldap_server_url": { "type": "string" },
-                            "ldap_base_domain_components": { "type": "string" },
-                            "ldap_server_name": { "type": "string" },
-                            "ldap_server_key": { "type": "string" },
-                            "ldap_server_certificate": { "type": "string" },
-                            "jit_enabled": { "type": "boolean" },
-                            "restricted_domain": { "type": "string" },
-                            "trigger_login_automatically": { "type": "boolean" }
+                            "saml_groups_attribute": {
+                              "type": "string"
+                            },
+                            "saml_sync_group_claims": {
+                              "type": "boolean"
+                            },
+                            "ldap_sync_group_claims": {
+                              "type": "boolean"
+                            },
+                            "ldap_role_mapping": {
+                              "type": "string"
+                            },
+                            "ldap_server_url": {
+                              "type": "string"
+                            },
+                            "ldap_base_domain_components": {
+                              "type": "string"
+                            },
+                            "ldap_server_name": {
+                              "type": "string"
+                            },
+                            "ldap_server_key": {
+                              "type": "string"
+                            },
+                            "ldap_server_certificate": {
+                              "type": "string"
+                            }
                           },
                           "required": [
                             "config_type",
-                            "google_client_id",
-                            "google_client_secret",
                             "disable_email_password_login",
-                            "idp_metadata_xml",
-                            "saml_first_name_attribute",
-                            "saml_last_name_attribute",
-                            "saml_sync_group_claims",
-                            "jit_enabled",
-                            "trigger_login_automatically"
+                            "jit_enabled"
                           ],
-                          "additionalProperties": false
+                          "additionalProperties": false,
+                          "title": "SSO Config"
                         }
                       ],
                       "description": "Result of setting SSO configuration"
@@ -10437,7 +10293,227 @@
             }
           }
         }
-      }
+      },
+      "delete": {
+        "summary": "Remove SSO configuration",
+        "description": "Removes SSO configuration for organization or space. The API token must have the \"Spaces \u003E Write\" scope. Note that this will not remove the SSO configuration if it is configured via env variables.",
+        "tags": [
+          "SSO"
+        ],
+        "responses": {
+          "204": {
+            "description": "SSO configuration for the organization or space has been successfully removed."
+          }
+        }
+      },
+      "get": {
+        "summary": "Get SSO configuration",
+        "description": "Reads SSO configuration of organization or space. The API token must have the \"Spaces \u003E Read\" scope. Note that this will not return the SSO configuration if it is configured via env variables.",
+        "tags": [
+          "SSO"
+        ],
+        "responses": {
+          "200": {
+            "description": "SSO configuration for the organization or space.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [true],
+                      "description": "API request succeeded"
+                    },
+                    "data": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "config_type": {
+                              "type": "string",
+                              "enum": [
+                                "google & oidc", "google", "saml", "google & saml", "oidc"
+                              ]
+                            },
+                            "google_client_id": {
+                              "type": "string"
+                            },
+                            "google_client_secret": {
+                              "type": "string"
+                            },
+                            "disable_email_password_login": {
+                              "type": "boolean"
+                            },
+                            "oidc_client_id": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "oidc_client_secret": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "oidc_scopes": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "oidc_auth_url": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "oidc_token_url": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "oidc_userinfo_url": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "oidc_audience": {
+                              "type": "string"
+                            },
+                            "jwt_email_key": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "jwt_roles_key": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "jwt_first_name_key": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "jwt_last_name_key": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "roles_mapping": {
+                              "type": "string"
+                            },
+                            "jit_enabled": {
+                              "type": "boolean"
+                            },
+                            "restricted_domain": {
+                              "type": "string"
+                            },
+                            "trigger_login_automatically": {
+                              "type": "boolean"
+                            },
+                            "idp_metadata_xml": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "saml_first_name_attribute": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "saml_last_name_attribute": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "saml_groups_attribute": {
+                              "type": "string"
+                            },
+                            "saml_sync_group_claims": {
+                              "type": "boolean"
+                            },
+                            "ldap_sync_group_claims": {
+                              "type": "boolean"
+                            },
+                            "ldap_role_mapping": {
+                              "type": "string"
+                            },
+                            "ldap_server_url": {
+                              "type": "string"
+                            },
+                            "ldap_base_domain_components": {
+                              "type": "string"
+                            },
+                            "ldap_server_name": {
+                              "type": "string"
+                            },
+                            "ldap_server_key": {
+                              "type": "string"
+                            },
+                            "ldap_server_certificate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "config_type",
+                            "disable_email_password_login",
+                            "jit_enabled"
+                          ],
+                          "additionalProperties": false,
+                          "title": "SSO Config"
+                        }
+                      ],
+                      "description": "SSO configuration"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "SSO is not configured for this organization or space.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [false],
+                      "description": "API request failed"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "message"
+                  ],
+                  "description": "API error response"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "The organization has unsupported type of SSO configurations.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [false],
+                      "description": "API request failed"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "message"
+                  ],
+                  "description": "API error response"
+                }
+              }
+            }
+          }
+        }
+      }      
     },
     "/user_attributes": {
       "get": {

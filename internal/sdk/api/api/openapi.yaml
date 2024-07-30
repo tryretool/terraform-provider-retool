@@ -1112,6 +1112,43 @@ paths:
       tags:
       - Apps
   /sso/config:
+    delete:
+      description: Removes SSO configuration for organization or space. The API token
+        must have the "Spaces > Write" scope. Note that this will not remove the SSO
+        configuration if it is configured via env variables.
+      responses:
+        "204":
+          description: SSO configuration for the organization or space has been successfully
+            removed.
+      summary: Remove SSO configuration
+      tags:
+      - SSO
+    get:
+      description: Reads SSO configuration of organization or space. The API token
+        must have the "Spaces > Read" scope. Note that this will not return the SSO
+        configuration if it is configured via env variables.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_sso_config_get_200_response'
+          description: SSO configuration for the organization or space.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_folders_post_409_response'
+          description: SSO is not configured for this organization or space.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_folders_post_409_response'
+          description: The organization has unsupported type of SSO configurations.
+      summary: Get SSO configuration
+      tags:
+      - SSO
     post:
       description: Sets SSO configuration for organization or space. The API token
         must have the "Spaces > Write" scope.
@@ -6789,13 +6826,179 @@ components:
       - success
       - total_count
       type: object
-    _sso_config_post_request_data_oneOf:
+    SSO_Config:
       additionalProperties: false
       example:
-        google_client_secret: google_client_secret
+        roles_mapping: roles_mapping
+        ldap_server_certificate: ldap_server_certificate
+        saml_last_name_attribute: saml_last_name_attribute
+        ldap_sync_group_claims: true
+        oidc_auth_url: oidc_auth_url
         disable_email_password_login: true
-        config_type: google
+        ldap_server_url: ldap_server_url
+        trigger_login_automatically: true
+        oidc_userinfo_url: oidc_userinfo_url
+        jwt_email_key: jwt_email_key
+        saml_sync_group_claims: true
+        saml_groups_attribute: saml_groups_attribute
+        config_type: google & oidc
+        ldap_base_domain_components: ldap_base_domain_components
+        oidc_audience: oidc_audience
+        google_client_secret: google_client_secret
+        restricted_domain: restricted_domain
+        ldap_server_name: ldap_server_name
+        ldap_server_key: ldap_server_key
+        jit_enabled: true
+        oidc_scopes: oidc_scopes
+        oidc_client_id: oidc_client_id
+        jwt_roles_key: jwt_roles_key
+        jwt_last_name_key: jwt_last_name_key
         google_client_id: google_client_id
+        jwt_first_name_key: jwt_first_name_key
+        oidc_client_secret: oidc_client_secret
+        oidc_token_url: oidc_token_url
+        ldap_role_mapping: ldap_role_mapping
+        idp_metadata_xml: idp_metadata_xml
+        saml_first_name_attribute: saml_first_name_attribute
+      properties:
+        config_type:
+          enum:
+          - google & oidc
+          - google
+          - saml
+          - google & saml
+          - oidc
+          type: string
+        google_client_id:
+          type: string
+        google_client_secret:
+          type: string
+        disable_email_password_login:
+          type: boolean
+        oidc_client_id:
+          minLength: 1
+          type: string
+        oidc_client_secret:
+          minLength: 1
+          type: string
+        oidc_scopes:
+          minLength: 1
+          type: string
+        oidc_auth_url:
+          minLength: 1
+          type: string
+        oidc_token_url:
+          minLength: 1
+          type: string
+        oidc_userinfo_url:
+          minLength: 1
+          type: string
+        oidc_audience:
+          type: string
+        jwt_email_key:
+          minLength: 1
+          type: string
+        jwt_roles_key:
+          minLength: 1
+          type: string
+        jwt_first_name_key:
+          minLength: 1
+          type: string
+        jwt_last_name_key:
+          minLength: 1
+          type: string
+        roles_mapping:
+          type: string
+        jit_enabled:
+          type: boolean
+        restricted_domain:
+          type: string
+        trigger_login_automatically:
+          type: boolean
+        idp_metadata_xml:
+          minLength: 1
+          type: string
+        saml_first_name_attribute:
+          minLength: 1
+          type: string
+        saml_last_name_attribute:
+          minLength: 1
+          type: string
+        saml_groups_attribute:
+          type: string
+        saml_sync_group_claims:
+          type: boolean
+        ldap_sync_group_claims:
+          type: boolean
+        ldap_role_mapping:
+          type: string
+        ldap_server_url:
+          type: string
+        ldap_base_domain_components:
+          type: string
+        ldap_server_name:
+          type: string
+        ldap_server_key:
+          type: string
+        ldap_server_certificate:
+          type: string
+      required:
+      - config_type
+      - disable_email_password_login
+      - jit_enabled
+      title: SSO Config
+      type: object
+    _sso_config_get_200_response_data:
+      description: SSO configuration
+      oneOf:
+      - $ref: '#/components/schemas/SSO_Config'
+    _sso_config_get_200_response:
+      example:
+        data:
+          roles_mapping: roles_mapping
+          ldap_server_certificate: ldap_server_certificate
+          saml_last_name_attribute: saml_last_name_attribute
+          ldap_sync_group_claims: true
+          oidc_auth_url: oidc_auth_url
+          disable_email_password_login: true
+          ldap_server_url: ldap_server_url
+          trigger_login_automatically: true
+          oidc_userinfo_url: oidc_userinfo_url
+          jwt_email_key: jwt_email_key
+          saml_sync_group_claims: true
+          saml_groups_attribute: saml_groups_attribute
+          config_type: google & oidc
+          ldap_base_domain_components: ldap_base_domain_components
+          oidc_audience: oidc_audience
+          google_client_secret: google_client_secret
+          restricted_domain: restricted_domain
+          ldap_server_name: ldap_server_name
+          ldap_server_key: ldap_server_key
+          jit_enabled: true
+          oidc_scopes: oidc_scopes
+          oidc_client_id: oidc_client_id
+          jwt_roles_key: jwt_roles_key
+          jwt_last_name_key: jwt_last_name_key
+          google_client_id: google_client_id
+          jwt_first_name_key: jwt_first_name_key
+          oidc_client_secret: oidc_client_secret
+          oidc_token_url: oidc_token_url
+          ldap_role_mapping: ldap_role_mapping
+          idp_metadata_xml: idp_metadata_xml
+          saml_first_name_attribute: saml_first_name_attribute
+        success: true
+      properties:
+        success:
+          description: API request succeeded
+          type: boolean
+        data:
+          $ref: '#/components/schemas/_sso_config_get_200_response_data'
+      required:
+      - data
+      - success
+      type: object
+    _sso_config_post_request_data_oneOf:
+      additionalProperties: false
       properties:
         config_type:
           enum:
@@ -7076,18 +7279,41 @@ components:
     _sso_config_post_200_response_data:
       description: Result of setting SSO configuration
       oneOf:
-      - $ref: '#/components/schemas/_sso_config_post_request_data_oneOf'
-      - $ref: '#/components/schemas/_sso_config_post_request_data_oneOf_1'
-      - $ref: '#/components/schemas/_sso_config_post_request_data_oneOf_2'
-      - $ref: '#/components/schemas/_sso_config_post_request_data_oneOf_3'
-      - $ref: '#/components/schemas/_sso_config_post_request_data_oneOf_4'
+      - $ref: '#/components/schemas/SSO_Config'
     _sso_config_post_200_response:
       example:
         data:
-          google_client_secret: google_client_secret
+          roles_mapping: roles_mapping
+          ldap_server_certificate: ldap_server_certificate
+          saml_last_name_attribute: saml_last_name_attribute
+          ldap_sync_group_claims: true
+          oidc_auth_url: oidc_auth_url
           disable_email_password_login: true
-          config_type: google
+          ldap_server_url: ldap_server_url
+          trigger_login_automatically: true
+          oidc_userinfo_url: oidc_userinfo_url
+          jwt_email_key: jwt_email_key
+          saml_sync_group_claims: true
+          saml_groups_attribute: saml_groups_attribute
+          config_type: google & oidc
+          ldap_base_domain_components: ldap_base_domain_components
+          oidc_audience: oidc_audience
+          google_client_secret: google_client_secret
+          restricted_domain: restricted_domain
+          ldap_server_name: ldap_server_name
+          ldap_server_key: ldap_server_key
+          jit_enabled: true
+          oidc_scopes: oidc_scopes
+          oidc_client_id: oidc_client_id
+          jwt_roles_key: jwt_roles_key
+          jwt_last_name_key: jwt_last_name_key
           google_client_id: google_client_id
+          jwt_first_name_key: jwt_first_name_key
+          oidc_client_secret: oidc_client_secret
+          oidc_token_url: oidc_token_url
+          ldap_role_mapping: ldap_role_mapping
+          idp_metadata_xml: idp_metadata_xml
+          saml_first_name_attribute: saml_first_name_attribute
         success: true
       properties:
         success:

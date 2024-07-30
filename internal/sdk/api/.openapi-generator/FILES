@@ -181,6 +181,7 @@ docs/RestAPIOptionsAuthenticationOptionsAnyOf4Oauth1SignatureMethod.md
 docs/RestAPIOptionsAuthenticationOptionsAnyOf5.md
 docs/RestAPIOptionsAuthenticationOptionsAnyOf6.md
 docs/SSOAPI.md
+docs/SSOConfig.md
 docs/SnowflakeOptions.md
 docs/SnowflakeOptionsAuthenticationOptions.md
 docs/SnowflakeOptionsAuthenticationOptionsAnyOf.md
@@ -245,6 +246,8 @@ docs/SpacesSpaceIdGet200ResponseData.md
 docs/SpacesSpaceIdPut200Response.md
 docs/SpacesSpaceIdPut200ResponseData.md
 docs/SpacesSpaceIdPutRequest.md
+docs/SsoConfigGet200Response.md
+docs/SsoConfigGet200ResponseData.md
 docs/SsoConfigPost200Response.md
 docs/SsoConfigPost200ResponseData.md
 docs/SsoConfigPostRequest.md
@@ -470,6 +473,8 @@ model__spaces_post_200_response.go
 model__spaces_post_200_response_data.go
 model__spaces_post_request.go
 model__spaces_post_request_options.go
+model__sso_config_get_200_response.go
+model__sso_config_get_200_response_data.go
 model__sso_config_post_200_response.go
 model__sso_config_post_200_response_data.go
 model__sso_config_post_request.go
@@ -574,6 +579,7 @@ model_snowflake_options_database_options.go
 model_source_control_configuration.go
 model_source_control_settings.go
 model_space.go
+model_sso_config.go
 model_sso_configuration.go
 model_usage.go
 model_user.go

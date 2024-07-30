@@ -17,45 +17,13 @@ import (
 
 // SsoConfigPost200ResponseData - Result of setting SSO configuration
 type SsoConfigPost200ResponseData struct {
-	SsoConfigPostRequestDataOneOf *SsoConfigPostRequestDataOneOf
-	SsoConfigPostRequestDataOneOf1 *SsoConfigPostRequestDataOneOf1
-	SsoConfigPostRequestDataOneOf2 *SsoConfigPostRequestDataOneOf2
-	SsoConfigPostRequestDataOneOf3 *SsoConfigPostRequestDataOneOf3
-	SsoConfigPostRequestDataOneOf4 *SsoConfigPostRequestDataOneOf4
+	SSOConfig *SSOConfig
 }
 
-// SsoConfigPostRequestDataOneOfAsSsoConfigPost200ResponseData is a convenience function that returns SsoConfigPostRequestDataOneOf wrapped in SsoConfigPost200ResponseData
-func SsoConfigPostRequestDataOneOfAsSsoConfigPost200ResponseData(v *SsoConfigPostRequestDataOneOf) SsoConfigPost200ResponseData {
+// SSOConfigAsSsoConfigPost200ResponseData is a convenience function that returns SSOConfig wrapped in SsoConfigPost200ResponseData
+func SSOConfigAsSsoConfigPost200ResponseData(v *SSOConfig) SsoConfigPost200ResponseData {
 	return SsoConfigPost200ResponseData{
-		SsoConfigPostRequestDataOneOf: v,
-	}
-}
-
-// SsoConfigPostRequestDataOneOf1AsSsoConfigPost200ResponseData is a convenience function that returns SsoConfigPostRequestDataOneOf1 wrapped in SsoConfigPost200ResponseData
-func SsoConfigPostRequestDataOneOf1AsSsoConfigPost200ResponseData(v *SsoConfigPostRequestDataOneOf1) SsoConfigPost200ResponseData {
-	return SsoConfigPost200ResponseData{
-		SsoConfigPostRequestDataOneOf1: v,
-	}
-}
-
-// SsoConfigPostRequestDataOneOf2AsSsoConfigPost200ResponseData is a convenience function that returns SsoConfigPostRequestDataOneOf2 wrapped in SsoConfigPost200ResponseData
-func SsoConfigPostRequestDataOneOf2AsSsoConfigPost200ResponseData(v *SsoConfigPostRequestDataOneOf2) SsoConfigPost200ResponseData {
-	return SsoConfigPost200ResponseData{
-		SsoConfigPostRequestDataOneOf2: v,
-	}
-}
-
-// SsoConfigPostRequestDataOneOf3AsSsoConfigPost200ResponseData is a convenience function that returns SsoConfigPostRequestDataOneOf3 wrapped in SsoConfigPost200ResponseData
-func SsoConfigPostRequestDataOneOf3AsSsoConfigPost200ResponseData(v *SsoConfigPostRequestDataOneOf3) SsoConfigPost200ResponseData {
-	return SsoConfigPost200ResponseData{
-		SsoConfigPostRequestDataOneOf3: v,
-	}
-}
-
-// SsoConfigPostRequestDataOneOf4AsSsoConfigPost200ResponseData is a convenience function that returns SsoConfigPostRequestDataOneOf4 wrapped in SsoConfigPost200ResponseData
-func SsoConfigPostRequestDataOneOf4AsSsoConfigPost200ResponseData(v *SsoConfigPostRequestDataOneOf4) SsoConfigPost200ResponseData {
-	return SsoConfigPost200ResponseData{
-		SsoConfigPostRequestDataOneOf4: v,
+		SSOConfig: v,
 	}
 }
 
@@ -64,78 +32,22 @@ func SsoConfigPostRequestDataOneOf4AsSsoConfigPost200ResponseData(v *SsoConfigPo
 func (dst *SsoConfigPost200ResponseData) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into SsoConfigPostRequestDataOneOf
-	err = newStrictDecoder(data).Decode(&dst.SsoConfigPostRequestDataOneOf)
+	// try to unmarshal data into SSOConfig
+	err = newStrictDecoder(data).Decode(&dst.SSOConfig)
 	if err == nil {
-		jsonSsoConfigPostRequestDataOneOf, _ := json.Marshal(dst.SsoConfigPostRequestDataOneOf)
-		if string(jsonSsoConfigPostRequestDataOneOf) == "{}" { // empty struct
-			dst.SsoConfigPostRequestDataOneOf = nil
+		jsonSSOConfig, _ := json.Marshal(dst.SSOConfig)
+		if string(jsonSSOConfig) == "{}" { // empty struct
+			dst.SSOConfig = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.SsoConfigPostRequestDataOneOf = nil
-	}
-
-	// try to unmarshal data into SsoConfigPostRequestDataOneOf1
-	err = newStrictDecoder(data).Decode(&dst.SsoConfigPostRequestDataOneOf1)
-	if err == nil {
-		jsonSsoConfigPostRequestDataOneOf1, _ := json.Marshal(dst.SsoConfigPostRequestDataOneOf1)
-		if string(jsonSsoConfigPostRequestDataOneOf1) == "{}" { // empty struct
-			dst.SsoConfigPostRequestDataOneOf1 = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.SsoConfigPostRequestDataOneOf1 = nil
-	}
-
-	// try to unmarshal data into SsoConfigPostRequestDataOneOf2
-	err = newStrictDecoder(data).Decode(&dst.SsoConfigPostRequestDataOneOf2)
-	if err == nil {
-		jsonSsoConfigPostRequestDataOneOf2, _ := json.Marshal(dst.SsoConfigPostRequestDataOneOf2)
-		if string(jsonSsoConfigPostRequestDataOneOf2) == "{}" { // empty struct
-			dst.SsoConfigPostRequestDataOneOf2 = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.SsoConfigPostRequestDataOneOf2 = nil
-	}
-
-	// try to unmarshal data into SsoConfigPostRequestDataOneOf3
-	err = newStrictDecoder(data).Decode(&dst.SsoConfigPostRequestDataOneOf3)
-	if err == nil {
-		jsonSsoConfigPostRequestDataOneOf3, _ := json.Marshal(dst.SsoConfigPostRequestDataOneOf3)
-		if string(jsonSsoConfigPostRequestDataOneOf3) == "{}" { // empty struct
-			dst.SsoConfigPostRequestDataOneOf3 = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.SsoConfigPostRequestDataOneOf3 = nil
-	}
-
-	// try to unmarshal data into SsoConfigPostRequestDataOneOf4
-	err = newStrictDecoder(data).Decode(&dst.SsoConfigPostRequestDataOneOf4)
-	if err == nil {
-		jsonSsoConfigPostRequestDataOneOf4, _ := json.Marshal(dst.SsoConfigPostRequestDataOneOf4)
-		if string(jsonSsoConfigPostRequestDataOneOf4) == "{}" { // empty struct
-			dst.SsoConfigPostRequestDataOneOf4 = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.SsoConfigPostRequestDataOneOf4 = nil
+		dst.SSOConfig = nil
 	}
 
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.SsoConfigPostRequestDataOneOf = nil
-		dst.SsoConfigPostRequestDataOneOf1 = nil
-		dst.SsoConfigPostRequestDataOneOf2 = nil
-		dst.SsoConfigPostRequestDataOneOf3 = nil
-		dst.SsoConfigPostRequestDataOneOf4 = nil
+		dst.SSOConfig = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(SsoConfigPost200ResponseData)")
 	} else if match == 1 {
@@ -147,24 +59,8 @@ func (dst *SsoConfigPost200ResponseData) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src SsoConfigPost200ResponseData) MarshalJSON() ([]byte, error) {
-	if src.SsoConfigPostRequestDataOneOf != nil {
-		return json.Marshal(&src.SsoConfigPostRequestDataOneOf)
-	}
-
-	if src.SsoConfigPostRequestDataOneOf1 != nil {
-		return json.Marshal(&src.SsoConfigPostRequestDataOneOf1)
-	}
-
-	if src.SsoConfigPostRequestDataOneOf2 != nil {
-		return json.Marshal(&src.SsoConfigPostRequestDataOneOf2)
-	}
-
-	if src.SsoConfigPostRequestDataOneOf3 != nil {
-		return json.Marshal(&src.SsoConfigPostRequestDataOneOf3)
-	}
-
-	if src.SsoConfigPostRequestDataOneOf4 != nil {
-		return json.Marshal(&src.SsoConfigPostRequestDataOneOf4)
+	if src.SSOConfig != nil {
+		return json.Marshal(&src.SSOConfig)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -175,24 +71,8 @@ func (obj *SsoConfigPost200ResponseData) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
-	if obj.SsoConfigPostRequestDataOneOf != nil {
-		return obj.SsoConfigPostRequestDataOneOf
-	}
-
-	if obj.SsoConfigPostRequestDataOneOf1 != nil {
-		return obj.SsoConfigPostRequestDataOneOf1
-	}
-
-	if obj.SsoConfigPostRequestDataOneOf2 != nil {
-		return obj.SsoConfigPostRequestDataOneOf2
-	}
-
-	if obj.SsoConfigPostRequestDataOneOf3 != nil {
-		return obj.SsoConfigPostRequestDataOneOf3
-	}
-
-	if obj.SsoConfigPostRequestDataOneOf4 != nil {
-		return obj.SsoConfigPostRequestDataOneOf4
+	if obj.SSOConfig != nil {
+		return obj.SSOConfig
 	}
 
 	// all schemas are nil
