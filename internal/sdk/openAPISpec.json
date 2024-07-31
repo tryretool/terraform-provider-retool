@@ -10254,8 +10254,7 @@
                           },
                           "required": [
                             "config_type",
-                            "disable_email_password_login",
-                            "jit_enabled"
+                            "disable_email_password_login"
                           ],
                           "additionalProperties": false,
                           "title": "SSO Config"
@@ -10442,8 +10441,7 @@
                           },
                           "required": [
                             "config_type",
-                            "disable_email_password_login",
-                            "jit_enabled"
+                            "disable_email_password_login"
                           ],
                           "additionalProperties": false,
                           "title": "SSO Config"

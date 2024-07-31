@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 **JwtFirstNameKey** | Pointer to **string** |  | [optional] 
 **JwtLastNameKey** | Pointer to **string** |  | [optional] 
 **RolesMapping** | Pointer to **string** |  | [optional] 
-**JitEnabled** | **bool** |  | 
+**JitEnabled** | Pointer to **bool** |  | [optional] 
 **RestrictedDomain** | Pointer to **string** |  | [optional] 
 **TriggerLoginAutomatically** | Pointer to **bool** |  | [optional] 
 **IdpMetadataXml** | Pointer to **string** |  | [optional] 
@@ -40,7 +40,7 @@ Name | Type | Description | Notes
 
 ### NewSsoConfigGet200ResponseData
 
-`func NewSsoConfigGet200ResponseData(configType string, disableEmailPasswordLogin bool, jitEnabled bool, ) *SsoConfigGet200ResponseData`
+`func NewSsoConfigGet200ResponseData(configType string, disableEmailPasswordLogin bool, ) *SsoConfigGet200ResponseData`
 
 NewSsoConfigGet200ResponseData instantiates a new SsoConfigGet200ResponseData object
 This constructor will assign default values to properties that have it defined,
@@ -464,6 +464,11 @@ and a boolean to check if the value has been set.
 
 SetJitEnabled sets JitEnabled field to given value.
 
+### HasJitEnabled
+
+`func (o *SsoConfigGet200ResponseData) HasJitEnabled() bool`
+
+HasJitEnabled returns a boolean if a field has been set.
 
 ### GetRestrictedDomain
 
