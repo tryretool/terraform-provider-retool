@@ -181,11 +181,9 @@ func (r *spaceResource) Create(ctx context.Context, req resource.CreateRequest, 
 
 	tflog.Info(ctx, "Creating Space", map[string]interface{}{"name": plan.Name, "domain": plan.Domain})
 
-	usersToCopy := make([]types.String, 0, len(createOptions.UsersToCopyAsAdmins.Elements()))
-	createOptions.UsersToCopyAsAdmins.ElementsAs(ctx, &usersToCopy, false)
-	usersToCopyStr := make([]string, 0, len(createOptions.UsersToCopyAsAdmins.Elements()))
-	for _, user := range usersToCopy {
-		usersToCopyStr = append(usersToCopyStr, user.ValueString())
+	usersToCopyStr := utils.GetStringListValue(ctx, createOptions.UsersToCopyAsAdmins, &resp.Diagnostics)
+	if resp.Diagnostics.HasError() {
+		return
 	}
 
 	request := api.SpacesPostRequest{

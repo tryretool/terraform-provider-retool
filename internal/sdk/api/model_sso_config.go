@@ -37,7 +37,7 @@ type SSOConfig struct {
 	JwtFirstNameKey *string `json:"jwt_first_name_key,omitempty"`
 	JwtLastNameKey *string `json:"jwt_last_name_key,omitempty"`
 	RolesMapping *string `json:"roles_mapping,omitempty"`
-	JitEnabled bool `json:"jit_enabled"`
+	JitEnabled *bool `json:"jit_enabled,omitempty"`
 	RestrictedDomain *string `json:"restricted_domain,omitempty"`
 	TriggerLoginAutomatically *bool `json:"trigger_login_automatically,omitempty"`
 	IdpMetadataXml *string `json:"idp_metadata_xml,omitempty"`
@@ -60,11 +60,10 @@ type _SSOConfig SSOConfig
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSSOConfig(configType string, disableEmailPasswordLogin bool, jitEnabled bool) *SSOConfig {
+func NewSSOConfig(configType string, disableEmailPasswordLogin bool) *SSOConfig {
 	this := SSOConfig{}
 	this.ConfigType = configType
 	this.DisableEmailPasswordLogin = disableEmailPasswordLogin
-	this.JitEnabled = jitEnabled
 	return &this
 }
 
@@ -572,28 +571,36 @@ func (o *SSOConfig) SetRolesMapping(v string) {
 	o.RolesMapping = &v
 }
 
-// GetJitEnabled returns the JitEnabled field value
+// GetJitEnabled returns the JitEnabled field value if set, zero value otherwise.
 func (o *SSOConfig) GetJitEnabled() bool {
-	if o == nil {
+	if o == nil || IsNil(o.JitEnabled) {
 		var ret bool
 		return ret
 	}
-
-	return o.JitEnabled
+	return *o.JitEnabled
 }
 
-// GetJitEnabledOk returns a tuple with the JitEnabled field value
+// GetJitEnabledOk returns a tuple with the JitEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SSOConfig) GetJitEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.JitEnabled) {
 		return nil, false
 	}
-	return &o.JitEnabled, true
+	return o.JitEnabled, true
 }
 
-// SetJitEnabled sets field value
+// HasJitEnabled returns a boolean if a field has been set.
+func (o *SSOConfig) HasJitEnabled() bool {
+	if o != nil && !IsNil(o.JitEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetJitEnabled gets a reference to the given bool and assigns it to the JitEnabled field.
 func (o *SSOConfig) SetJitEnabled(v bool) {
-	o.JitEnabled = v
+	o.JitEnabled = &v
 }
 
 // GetRestrictedDomain returns the RestrictedDomain field value if set, zero value otherwise.
@@ -1098,7 +1105,9 @@ func (o SSOConfig) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RolesMapping) {
 		toSerialize["roles_mapping"] = o.RolesMapping
 	}
-	toSerialize["jit_enabled"] = o.JitEnabled
+	if !IsNil(o.JitEnabled) {
+		toSerialize["jit_enabled"] = o.JitEnabled
+	}
 	if !IsNil(o.RestrictedDomain) {
 		toSerialize["restricted_domain"] = o.RestrictedDomain
 	}
@@ -1151,7 +1160,6 @@ func (o *SSOConfig) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"config_type",
 		"disable_email_password_login",
-		"jit_enabled",
 	}
 
 	allProperties := make(map[string]interface{})

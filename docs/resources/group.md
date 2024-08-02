@@ -40,6 +40,7 @@ resource "retool_group" "example" {
 - `audit_log_access` (Boolean) Whether the group has access to the audit log.
 - `landing_page_app_id` (String) The app ID of the landing page.
 - `universal_app_access` (String) The universal app access level for the group. This denotes the access level that this group has for all apps.
+- `universal_query_library_access` (String) Level of access that the group has to the Query Library.
 - `universal_resource_access` (String) The universal resource access level for the group. This denotes the access level that this group has for all resources.
 - `universal_workflow_access` (String) The universal workflow access level for the group. This denotes the access level that this group has for all workflows.
 - `unpublished_release_access` (Boolean) Whether the group has access to unpublished releases.

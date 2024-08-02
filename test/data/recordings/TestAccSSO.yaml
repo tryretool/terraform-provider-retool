@@ -1,0 +1,613 @@
+---
+version: 2
+interactions:
+    - id: 0
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 140
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"data":{"config_type":"google","disable_email_password_login":true,"google_client_id":"client_id","google_client_secret":"client_secret"}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/sso/config
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 195
+        uncompressed: false
+        body: '{"success":true,"data":{"config_type":"google","google_client_id":"client_id","google_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)","disable_email_password_login":true}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 78.960208ms
+    - id: 1
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/sso/config
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 195
+        uncompressed: false
+        body: '{"success":true,"data":{"config_type":"google","google_client_id":"client_id","google_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)","disable_email_password_login":true}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 68.082708ms
+    - id: 2
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/sso/config
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 195
+        uncompressed: false
+        body: '{"success":true,"data":{"config_type":"google","google_client_id":"client_id","google_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)","disable_email_password_login":true}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 64.6505ms
+    - id: 3
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 571
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"data":{"config_type":"oidc","disable_email_password_login":true,"jit_enabled":true,"jwt_email_key":"idToken.email","jwt_first_name_key":"idToken.given_name","jwt_last_name_key":"idToken.family_name","jwt_roles_key":"idToken.roles","oidc_auth_url":"https://example.com/auth","oidc_client_id":"client_id","oidc_client_secret":"client_secret","oidc_scopes":"openid email profile","oidc_token_url":"https://example.com/token","restricted_domain":"example.com,example.org","roles_mapping":"user-\u003euser_group,admin-\u003eadmin_group","trigger_login_automatically":true}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/sso/config
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 616
+        uncompressed: false
+        body: '{"success":true,"data":{"config_type":"oidc","oidc_client_id":"client_id","oidc_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)","oidc_scopes":"openid email profile","oidc_auth_url":"https://example.com/auth","oidc_token_url":"https://example.com/token","jwt_email_key":"idToken.email","jwt_roles_key":"idToken.roles","jwt_first_name_key":"idToken.given_name","jwt_last_name_key":"idToken.family_name","roles_mapping":"user->user_group,admin->admin_group","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"jit_enabled":true,"disable_email_password_login":true}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 66.145375ms
+    - id: 4
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/sso/config
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 616
+        uncompressed: false
+        body: '{"success":true,"data":{"config_type":"oidc","oidc_client_id":"client_id","oidc_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)","oidc_scopes":"openid email profile","oidc_auth_url":"https://example.com/auth","oidc_token_url":"https://example.com/token","jwt_email_key":"idToken.email","jwt_roles_key":"idToken.roles","jwt_first_name_key":"idToken.given_name","jwt_last_name_key":"idToken.family_name","roles_mapping":"user->user_group,admin->admin_group","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"jit_enabled":true,"disable_email_password_login":true}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 75.095458ms
+    - id: 5
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/sso/config
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 616
+        uncompressed: false
+        body: '{"success":true,"data":{"config_type":"oidc","oidc_client_id":"client_id","oidc_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)","oidc_scopes":"openid email profile","oidc_auth_url":"https://example.com/auth","oidc_token_url":"https://example.com/token","jwt_email_key":"idToken.email","jwt_roles_key":"idToken.roles","jwt_first_name_key":"idToken.given_name","jwt_last_name_key":"idToken.family_name","roles_mapping":"user->user_group,admin->admin_group","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"jit_enabled":true,"disable_email_password_login":true}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 66.517375ms
+    - id: 6
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 655
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"data":{"config_type":"google \u0026 oidc","disable_email_password_login":true,"google_client_id":"client_id","google_client_secret":"client_secret","jit_enabled":true,"jwt_email_key":"idToken.email","jwt_first_name_key":"idToken.given_name","jwt_last_name_key":"idToken.family_name","jwt_roles_key":"idToken.roles","oidc_auth_url":"https://example.com/auth","oidc_client_id":"client_id","oidc_client_secret":"client_secret","oidc_scopes":"openid email profile","oidc_token_url":"https://example.com/token","restricted_domain":"example.com,example.org","roles_mapping":"user-\u003euser_group,admin-\u003eadmin_group","trigger_login_automatically":true}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/sso/config
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 736
+        uncompressed: false
+        body: '{"success":true,"data":{"config_type":"google & oidc","oidc_client_id":"client_id","oidc_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)","oidc_scopes":"openid email profile","oidc_auth_url":"https://example.com/auth","oidc_token_url":"https://example.com/token","jwt_email_key":"idToken.email","jwt_roles_key":"idToken.roles","jwt_first_name_key":"idToken.given_name","jwt_last_name_key":"idToken.family_name","roles_mapping":"user->user_group,admin->admin_group","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"jit_enabled":true,"disable_email_password_login":true,"google_client_id":"client_id","google_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 69.07325ms
+    - id: 7
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/sso/config
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 736
+        uncompressed: false
+        body: '{"success":true,"data":{"config_type":"google & oidc","oidc_client_id":"client_id","oidc_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)","oidc_scopes":"openid email profile","oidc_auth_url":"https://example.com/auth","oidc_token_url":"https://example.com/token","jwt_email_key":"idToken.email","jwt_roles_key":"idToken.roles","jwt_first_name_key":"idToken.given_name","jwt_last_name_key":"idToken.family_name","roles_mapping":"user->user_group,admin->admin_group","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"jit_enabled":true,"disable_email_password_login":true,"google_client_id":"client_id","google_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 68.416792ms
+    - id: 8
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/sso/config
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 736
+        uncompressed: false
+        body: '{"success":true,"data":{"config_type":"google & oidc","oidc_client_id":"client_id","oidc_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)","oidc_scopes":"openid email profile","oidc_auth_url":"https://example.com/auth","oidc_token_url":"https://example.com/token","jwt_email_key":"idToken.email","jwt_roles_key":"idToken.roles","jwt_first_name_key":"idToken.given_name","jwt_last_name_key":"idToken.family_name","roles_mapping":"user->user_group,admin->admin_group","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"jit_enabled":true,"disable_email_password_login":true,"google_client_id":"client_id","google_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 77.130542ms
+    - id: 9
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 671
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"data":{"config_type":"saml","disable_email_password_login":true,"idp_metadata_xml":"metadata_xml","jit_enabled":true,"ldap_base_domain_components":"dc=example,dc=com","ldap_role_mapping":"admin-\u003eadmin_group,user-\u003euser_group,user-\u003eanother_user_group","ldap_server_certificate":"server_cert","ldap_server_key":"server_key","ldap_server_name":"ldap.example.com","ldap_server_url":"ldap://example.com","ldap_sync_group_claims":true,"restricted_domain":"example.com,example.org","saml_first_name_attribute":"first_name","saml_groups_attribute":"groups","saml_last_name_attribute":"last_name","saml_sync_group_claims":true,"trigger_login_automatically":true}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/sso/config
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 757
+        uncompressed: false
+        body: '{"success":true,"data":{"config_type":"saml","saml_first_name_attribute":"first_name","saml_last_name_attribute":"last_name","saml_groups_attribute":"groups","saml_sync_group_claims":true,"ldap_sync_group_claims":true,"ldap_role_mapping":"admin->admin_group,user->user_group,user->another_user_group","ldap_server_url":"ldap://example.com","ldap_base_domain_components":"dc=example,dc=com","ldap_server_name":"ldap.example.com","ldap_server_key":"__RETOOL_ENCRYPTED__(7a08f5924114b5646723610a16e7710d)","ldap_server_certificate":"__RETOOL_ENCRYPTED__(28d15d7f8ebcb352f48f3295057cfb22)","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"idp_metadata_xml":"metadata_xml","jit_enabled":true,"disable_email_password_login":true}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 70.918167ms
+    - id: 10
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/sso/config
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 757
+        uncompressed: false
+        body: '{"success":true,"data":{"config_type":"saml","saml_first_name_attribute":"first_name","saml_last_name_attribute":"last_name","saml_groups_attribute":"groups","saml_sync_group_claims":true,"ldap_sync_group_claims":true,"ldap_role_mapping":"admin->admin_group,user->user_group,user->another_user_group","ldap_server_url":"ldap://example.com","ldap_base_domain_components":"dc=example,dc=com","ldap_server_name":"ldap.example.com","ldap_server_key":"__RETOOL_ENCRYPTED__(7a08f5924114b5646723610a16e7710d)","ldap_server_certificate":"__RETOOL_ENCRYPTED__(28d15d7f8ebcb352f48f3295057cfb22)","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"idp_metadata_xml":"metadata_xml","jit_enabled":true,"disable_email_password_login":true}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 65.665084ms
+    - id: 11
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/sso/config
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 757
+        uncompressed: false
+        body: '{"success":true,"data":{"config_type":"saml","saml_first_name_attribute":"first_name","saml_last_name_attribute":"last_name","saml_groups_attribute":"groups","saml_sync_group_claims":true,"ldap_sync_group_claims":true,"ldap_role_mapping":"admin->admin_group,user->user_group,user->another_user_group","ldap_server_url":"ldap://example.com","ldap_base_domain_components":"dc=example,dc=com","ldap_server_name":"ldap.example.com","ldap_server_key":"__RETOOL_ENCRYPTED__(7a08f5924114b5646723610a16e7710d)","ldap_server_certificate":"__RETOOL_ENCRYPTED__(28d15d7f8ebcb352f48f3295057cfb22)","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"idp_metadata_xml":"metadata_xml","jit_enabled":true,"disable_email_password_login":true}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 64.130125ms
+    - id: 12
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 755
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"data":{"config_type":"google \u0026 saml","disable_email_password_login":true,"google_client_id":"client_id","google_client_secret":"client_secret","idp_metadata_xml":"metadata_xml","jit_enabled":true,"ldap_base_domain_components":"dc=example,dc=com","ldap_role_mapping":"admin-\u003eadmin_group,user-\u003euser_group,user-\u003eanother_user_group","ldap_server_certificate":"server_cert","ldap_server_key":"server_key","ldap_server_name":"ldap.example.com","ldap_server_url":"ldap://example.com","ldap_sync_group_claims":true,"restricted_domain":"example.com,example.org","saml_first_name_attribute":"first_name","saml_groups_attribute":"groups","saml_last_name_attribute":"last_name","saml_sync_group_claims":true,"trigger_login_automatically":true}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/sso/config
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 877
+        uncompressed: false
+        body: '{"success":true,"data":{"config_type":"google & saml","saml_first_name_attribute":"first_name","saml_last_name_attribute":"last_name","saml_groups_attribute":"groups","saml_sync_group_claims":true,"ldap_sync_group_claims":true,"ldap_role_mapping":"admin->admin_group,user->user_group,user->another_user_group","ldap_server_url":"ldap://example.com","ldap_base_domain_components":"dc=example,dc=com","ldap_server_name":"ldap.example.com","ldap_server_key":"__RETOOL_ENCRYPTED__(7a08f5924114b5646723610a16e7710d)","ldap_server_certificate":"__RETOOL_ENCRYPTED__(28d15d7f8ebcb352f48f3295057cfb22)","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"idp_metadata_xml":"metadata_xml","jit_enabled":true,"disable_email_password_login":true,"google_client_id":"client_id","google_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 76.172458ms
+    - id: 13
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/sso/config
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 877
+        uncompressed: false
+        body: '{"success":true,"data":{"config_type":"google & saml","saml_first_name_attribute":"first_name","saml_last_name_attribute":"last_name","saml_groups_attribute":"groups","saml_sync_group_claims":true,"ldap_sync_group_claims":true,"ldap_role_mapping":"admin->admin_group,user->user_group,user->another_user_group","ldap_server_url":"ldap://example.com","ldap_base_domain_components":"dc=example,dc=com","ldap_server_name":"ldap.example.com","ldap_server_key":"__RETOOL_ENCRYPTED__(7a08f5924114b5646723610a16e7710d)","ldap_server_certificate":"__RETOOL_ENCRYPTED__(28d15d7f8ebcb352f48f3295057cfb22)","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"idp_metadata_xml":"metadata_xml","jit_enabled":true,"disable_email_password_login":true,"google_client_id":"client_id","google_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 66.833375ms
+    - id: 14
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/sso/config
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 877
+        uncompressed: false
+        body: '{"success":true,"data":{"config_type":"google & saml","saml_first_name_attribute":"first_name","saml_last_name_attribute":"last_name","saml_groups_attribute":"groups","saml_sync_group_claims":true,"ldap_sync_group_claims":true,"ldap_role_mapping":"admin->admin_group,user->user_group,user->another_user_group","ldap_server_url":"ldap://example.com","ldap_base_domain_components":"dc=example,dc=com","ldap_server_name":"ldap.example.com","ldap_server_key":"__RETOOL_ENCRYPTED__(7a08f5924114b5646723610a16e7710d)","ldap_server_certificate":"__RETOOL_ENCRYPTED__(28d15d7f8ebcb352f48f3295057cfb22)","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"idp_metadata_xml":"metadata_xml","jit_enabled":true,"disable_email_password_login":true,"google_client_id":"client_id","google_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 74.223292ms
+    - id: 15
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 835
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"data":{"config_type":"google \u0026 saml","disable_email_password_login":false,"google_client_id":"new_client_id","google_client_secret":"new_client_secret","idp_metadata_xml":"new_metadata_xml","jit_enabled":false,"ldap_base_domain_components":"dc=newexample,dc=com","ldap_role_mapping":"guest-\u003eguest_group,user-\u003enew_user_group,user-\u003eanother_user_group,admin-\u003enew_admin_group","ldap_server_certificate":"new_server_cert","ldap_server_key":"new_server_key","ldap_server_name":"ldap.newexample.com","ldap_server_url":"ldap://newexample.com","ldap_sync_group_claims":true,"restricted_domain":"example.com,newexample.org","saml_first_name_attribute":"new_first_name","saml_groups_attribute":"new_groups","saml_last_name_attribute":"new_last_name","saml_sync_group_claims":false,"trigger_login_automatically":false}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/sso/config
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 972
+        uncompressed: false
+        body: '{"success":true,"data":{"config_type":"google & saml","saml_first_name_attribute":"new_first_name","saml_last_name_attribute":"new_last_name","saml_groups_attribute":"new_groups","saml_sync_group_claims":false,"ldap_sync_group_claims":true,"ldap_role_mapping":"guest->guest_group,user->new_user_group,user->another_user_group,admin->new_admin_group","ldap_server_url":"ldap://newexample.com","ldap_base_domain_components":"dc=newexample,dc=com","ldap_server_name":"ldap.newexample.com","ldap_server_key":"__RETOOL_ENCRYPTED__(584912862e8fa80ebe82df90d7b2b647)","ldap_server_certificate":"__RETOOL_ENCRYPTED__(c0caca8d3a97da3dab7777ea87901be2)","restricted_domain":"example.com,newexample.org","trigger_login_automatically":false,"idp_metadata_xml":"new_metadata_xml","jit_enabled":false,"disable_email_password_login":false,"google_client_id":"new_client_id","google_client_secret":"__RETOOL_ENCRYPTED__(f7ce585aa5033c7a69bcdc5c18803f21d7bfedc7b3ed484ad9909cf188b999ad)"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 78.884041ms
+    - id: 16
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/sso/config
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 972
+        uncompressed: false
+        body: '{"success":true,"data":{"config_type":"google & saml","saml_first_name_attribute":"new_first_name","saml_last_name_attribute":"new_last_name","saml_groups_attribute":"new_groups","saml_sync_group_claims":false,"ldap_sync_group_claims":true,"ldap_role_mapping":"guest->guest_group,user->new_user_group,user->another_user_group,admin->new_admin_group","ldap_server_url":"ldap://newexample.com","ldap_base_domain_components":"dc=newexample,dc=com","ldap_server_name":"ldap.newexample.com","ldap_server_key":"__RETOOL_ENCRYPTED__(584912862e8fa80ebe82df90d7b2b647)","ldap_server_certificate":"__RETOOL_ENCRYPTED__(c0caca8d3a97da3dab7777ea87901be2)","restricted_domain":"example.com,newexample.org","trigger_login_automatically":false,"idp_metadata_xml":"new_metadata_xml","jit_enabled":false,"disable_email_password_login":false,"google_client_id":"new_client_id","google_client_secret":"__RETOOL_ENCRYPTED__(f7ce585aa5033c7a69bcdc5c18803f21d7bfedc7b3ed484ad9909cf188b999ad)"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 69.607291ms
+    - id: 17
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/sso/config
+        method: DELETE
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: ""
+        headers: {}
+        status: 204 No Content
+        code: 204
+        duration: 70.039166ms

@@ -6945,7 +6945,6 @@ components:
       required:
       - config_type
       - disable_email_password_login
-      - jit_enabled
       title: SSO Config
       type: object
     _sso_config_get_200_response_data:
