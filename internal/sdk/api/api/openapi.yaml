@@ -2770,11 +2770,11 @@ components:
       type: object
     source_control_configuration:
       anyOf:
-      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf'
-      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf_1'
-      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf_2'
-      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf_3'
-      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf_4'
+      - $ref: '#/components/schemas/source_control_configuration_anyOf'
+      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf_1'
+      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf_2'
+      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf_3'
+      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf_4'
       description: This object represents the Source Control provider configuration
         for the organization or space. See https://docs.retool.com/source-control
         for more information.
@@ -5879,7 +5879,7 @@ components:
       - data
       - success
       type: object
-    _source_control_config_get_200_response_data_anyOf_config_anyOf:
+    _source_control_config_get_200_response_data_oneOf_config_oneOf:
       additionalProperties: false
       example:
         installation_id: installation_id
@@ -5916,7 +5916,7 @@ components:
       - private_key
       - type
       type: object
-    _source_control_config_get_200_response_data_anyOf_config_anyOf_1:
+    _source_control_config_get_200_response_data_oneOf_config_oneOf_1:
       additionalProperties: false
       properties:
         type:
@@ -5938,11 +5938,11 @@ components:
       - personal_access_token
       - type
       type: object
-    _source_control_config_get_200_response_data_anyOf_config:
-      anyOf:
-      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf_config_anyOf'
-      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf_config_anyOf_1'
-    _source_control_config_get_200_response_data_anyOf:
+    _source_control_config_get_200_response_data_oneOf_config:
+      oneOf:
+      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf_config_oneOf'
+      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf_config_oneOf_1'
+    _source_control_config_get_200_response_data_oneOf:
       example:
         repo_version: repo_version
         provider: GitHub
@@ -5958,7 +5958,7 @@ components:
           url: url
       properties:
         config:
-          $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf_config'
+          $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf_config'
         provider:
           enum:
           - GitHub
@@ -5983,7 +5983,7 @@ components:
       - provider
       - repo
       type: object
-    _source_control_config_get_200_response_data_anyOf_1_config:
+    _source_control_config_get_200_response_data_oneOf_1_config:
       additionalProperties: false
       properties:
         project_id:
@@ -6003,10 +6003,10 @@ components:
       - project_id
       - url
       type: object
-    _source_control_config_get_200_response_data_anyOf_1:
+    _source_control_config_get_200_response_data_oneOf_1:
       properties:
         config:
-          $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf_1_config'
+          $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf_1_config'
         provider:
           enum:
           - GitLab
@@ -6031,7 +6031,7 @@ components:
       - provider
       - repo
       type: object
-    _source_control_config_get_200_response_data_anyOf_2_config:
+    _source_control_config_get_200_response_data_oneOf_2_config:
       additionalProperties: false
       properties:
         url:
@@ -6060,10 +6060,10 @@ components:
       - secret_access_key
       - url
       type: object
-    _source_control_config_get_200_response_data_anyOf_2:
+    _source_control_config_get_200_response_data_oneOf_2:
       properties:
         config:
-          $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf_2_config'
+          $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf_2_config'
         provider:
           enum:
           - AWS CodeCommit
@@ -6088,7 +6088,7 @@ components:
       - provider
       - repo
       type: object
-    _source_control_config_get_200_response_data_anyOf_3_config:
+    _source_control_config_get_200_response_data_oneOf_3_config:
       additionalProperties: false
       properties:
         username:
@@ -6109,10 +6109,10 @@ components:
       - app_password
       - username
       type: object
-    _source_control_config_get_200_response_data_anyOf_3:
+    _source_control_config_get_200_response_data_oneOf_3:
       properties:
         config:
-          $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf_3_config'
+          $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf_3_config'
         provider:
           enum:
           - Bitbucket
@@ -6137,7 +6137,7 @@ components:
       - provider
       - repo
       type: object
-    _source_control_config_get_200_response_data_anyOf_4_config:
+    _source_control_config_get_200_response_data_oneOf_4_config:
       additionalProperties: false
       properties:
         url:
@@ -6164,10 +6164,10 @@ components:
       - use_basic_auth
       - user
       type: object
-    _source_control_config_get_200_response_data_anyOf_4:
+    _source_control_config_get_200_response_data_oneOf_4:
       properties:
         config:
-          $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf_4_config'
+          $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf_4_config'
         provider:
           enum:
           - Azure Repos
@@ -6193,13 +6193,13 @@ components:
       - repo
       type: object
     _source_control_config_get_200_response_data:
-      anyOf:
-      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf'
-      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf_1'
-      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf_2'
-      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf_3'
-      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf_4'
       description: Source Control Provider Config
+      oneOf:
+      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf'
+      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf_1'
+      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf_2'
+      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf_3'
+      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf_4'
     _source_control_config_get_200_response:
       additionalProperties: false
       example:
@@ -6228,15 +6228,15 @@ components:
       - success
       type: object
     _source_control_config_put_request_config:
-      anyOf:
-      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf'
-      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf_1'
-      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf_2'
-      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf_3'
-      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf_4'
       description: This object represents the Source Control provider configuration
         for the organization or space. See https://docs.retool.com/source-control
         for more information.
+      oneOf:
+      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf'
+      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf_1'
+      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf_2'
+      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf_3'
+      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf_4'
     _source_control_config_put_request:
       additionalProperties: false
       description: Shape of Source Control provider config request
@@ -6247,13 +6247,13 @@ components:
       - config
       type: object
     _source_control_config_put_200_response_data:
-      anyOf:
-      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf'
-      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf_1'
-      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf_2'
-      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf_3'
-      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf_4'
       description: Created or updated Source Control Provider Config
+      oneOf:
+      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf'
+      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf_1'
+      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf_2'
+      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf_3'
+      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf_4'
     _source_control_config_put_200_response:
       example:
         data:
@@ -6281,13 +6281,13 @@ components:
       - success
       type: object
     _source_control_config_post_200_response_data:
-      anyOf:
-      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf'
-      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf_1'
-      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf_2'
-      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf_3'
-      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_anyOf_4'
       description: Created Source Control Provider Config
+      oneOf:
+      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf'
+      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf_1'
+      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf_2'
+      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf_3'
+      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf_4'
     _source_control_config_post_200_response:
       example:
         data:
@@ -10844,6 +10844,38 @@ components:
       required:
       - data
       - success
+      type: object
+    source_control_configuration_anyOf_config:
+      anyOf:
+      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf_config_oneOf'
+      - $ref: '#/components/schemas/_source_control_config_get_200_response_data_oneOf_config_oneOf_1'
+    source_control_configuration_anyOf:
+      properties:
+        config:
+          $ref: '#/components/schemas/source_control_configuration_anyOf_config'
+        provider:
+          enum:
+          - GitHub
+          type: string
+        org:
+          description: The user or organization to which the repository belongs to.
+          type: string
+        repo:
+          description: The name of the repository you created to use with Retool.
+          type: string
+        default_branch:
+          description: "The default branch, e.g., main."
+          type: string
+        repo_version:
+          description: Repositories using Toolscript are 2.0.0. Repositories using
+            legacy YAML are 1.0.0.
+          type: string
+      required:
+      - config
+      - default_branch
+      - org
+      - provider
+      - repo
       type: object
   securitySchemes:
     BearerAuth:

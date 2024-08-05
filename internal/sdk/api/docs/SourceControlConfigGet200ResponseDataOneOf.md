@@ -1,10 +1,10 @@
-# SourceControlConfigPutRequestConfig
+# SourceControlConfigGet200ResponseDataOneOf
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Config** | [**SourceControlConfigGet200ResponseDataOneOf4Config**](SourceControlConfigGet200ResponseDataOneOf4Config.md) |  | 
+**Config** | [**SourceControlConfigGet200ResponseDataOneOfConfig**](SourceControlConfigGet200ResponseDataOneOfConfig.md) |  | 
 **Provider** | **string** |  | 
 **Org** | **string** | The user or organization to which the repository belongs to. | 
 **Repo** | **string** | The name of the repository you created to use with Retool. | 
@@ -13,145 +13,145 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewSourceControlConfigPutRequestConfig
+### NewSourceControlConfigGet200ResponseDataOneOf
 
-`func NewSourceControlConfigPutRequestConfig(config SourceControlConfigGet200ResponseDataOneOf4Config, provider string, org string, repo string, defaultBranch string, ) *SourceControlConfigPutRequestConfig`
+`func NewSourceControlConfigGet200ResponseDataOneOf(config SourceControlConfigGet200ResponseDataOneOfConfig, provider string, org string, repo string, defaultBranch string, ) *SourceControlConfigGet200ResponseDataOneOf`
 
-NewSourceControlConfigPutRequestConfig instantiates a new SourceControlConfigPutRequestConfig object
+NewSourceControlConfigGet200ResponseDataOneOf instantiates a new SourceControlConfigGet200ResponseDataOneOf object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewSourceControlConfigPutRequestConfigWithDefaults
+### NewSourceControlConfigGet200ResponseDataOneOfWithDefaults
 
-`func NewSourceControlConfigPutRequestConfigWithDefaults() *SourceControlConfigPutRequestConfig`
+`func NewSourceControlConfigGet200ResponseDataOneOfWithDefaults() *SourceControlConfigGet200ResponseDataOneOf`
 
-NewSourceControlConfigPutRequestConfigWithDefaults instantiates a new SourceControlConfigPutRequestConfig object
+NewSourceControlConfigGet200ResponseDataOneOfWithDefaults instantiates a new SourceControlConfigGet200ResponseDataOneOf object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetConfig
 
-`func (o *SourceControlConfigPutRequestConfig) GetConfig() SourceControlConfigGet200ResponseDataOneOf4Config`
+`func (o *SourceControlConfigGet200ResponseDataOneOf) GetConfig() SourceControlConfigGet200ResponseDataOneOfConfig`
 
 GetConfig returns the Config field if non-nil, zero value otherwise.
 
 ### GetConfigOk
 
-`func (o *SourceControlConfigPutRequestConfig) GetConfigOk() (*SourceControlConfigGet200ResponseDataOneOf4Config, bool)`
+`func (o *SourceControlConfigGet200ResponseDataOneOf) GetConfigOk() (*SourceControlConfigGet200ResponseDataOneOfConfig, bool)`
 
 GetConfigOk returns a tuple with the Config field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConfig
 
-`func (o *SourceControlConfigPutRequestConfig) SetConfig(v SourceControlConfigGet200ResponseDataOneOf4Config)`
+`func (o *SourceControlConfigGet200ResponseDataOneOf) SetConfig(v SourceControlConfigGet200ResponseDataOneOfConfig)`
 
 SetConfig sets Config field to given value.
 
 
 ### GetProvider
 
-`func (o *SourceControlConfigPutRequestConfig) GetProvider() string`
+`func (o *SourceControlConfigGet200ResponseDataOneOf) GetProvider() string`
 
 GetProvider returns the Provider field if non-nil, zero value otherwise.
 
 ### GetProviderOk
 
-`func (o *SourceControlConfigPutRequestConfig) GetProviderOk() (*string, bool)`
+`func (o *SourceControlConfigGet200ResponseDataOneOf) GetProviderOk() (*string, bool)`
 
 GetProviderOk returns a tuple with the Provider field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProvider
 
-`func (o *SourceControlConfigPutRequestConfig) SetProvider(v string)`
+`func (o *SourceControlConfigGet200ResponseDataOneOf) SetProvider(v string)`
 
 SetProvider sets Provider field to given value.
 
 
 ### GetOrg
 
-`func (o *SourceControlConfigPutRequestConfig) GetOrg() string`
+`func (o *SourceControlConfigGet200ResponseDataOneOf) GetOrg() string`
 
 GetOrg returns the Org field if non-nil, zero value otherwise.
 
 ### GetOrgOk
 
-`func (o *SourceControlConfigPutRequestConfig) GetOrgOk() (*string, bool)`
+`func (o *SourceControlConfigGet200ResponseDataOneOf) GetOrgOk() (*string, bool)`
 
 GetOrgOk returns a tuple with the Org field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOrg
 
-`func (o *SourceControlConfigPutRequestConfig) SetOrg(v string)`
+`func (o *SourceControlConfigGet200ResponseDataOneOf) SetOrg(v string)`
 
 SetOrg sets Org field to given value.
 
 
 ### GetRepo
 
-`func (o *SourceControlConfigPutRequestConfig) GetRepo() string`
+`func (o *SourceControlConfigGet200ResponseDataOneOf) GetRepo() string`
 
 GetRepo returns the Repo field if non-nil, zero value otherwise.
 
 ### GetRepoOk
 
-`func (o *SourceControlConfigPutRequestConfig) GetRepoOk() (*string, bool)`
+`func (o *SourceControlConfigGet200ResponseDataOneOf) GetRepoOk() (*string, bool)`
 
 GetRepoOk returns a tuple with the Repo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRepo
 
-`func (o *SourceControlConfigPutRequestConfig) SetRepo(v string)`
+`func (o *SourceControlConfigGet200ResponseDataOneOf) SetRepo(v string)`
 
 SetRepo sets Repo field to given value.
 
 
 ### GetDefaultBranch
 
-`func (o *SourceControlConfigPutRequestConfig) GetDefaultBranch() string`
+`func (o *SourceControlConfigGet200ResponseDataOneOf) GetDefaultBranch() string`
 
 GetDefaultBranch returns the DefaultBranch field if non-nil, zero value otherwise.
 
 ### GetDefaultBranchOk
 
-`func (o *SourceControlConfigPutRequestConfig) GetDefaultBranchOk() (*string, bool)`
+`func (o *SourceControlConfigGet200ResponseDataOneOf) GetDefaultBranchOk() (*string, bool)`
 
 GetDefaultBranchOk returns a tuple with the DefaultBranch field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDefaultBranch
 
-`func (o *SourceControlConfigPutRequestConfig) SetDefaultBranch(v string)`
+`func (o *SourceControlConfigGet200ResponseDataOneOf) SetDefaultBranch(v string)`
 
 SetDefaultBranch sets DefaultBranch field to given value.
 
 
 ### GetRepoVersion
 
-`func (o *SourceControlConfigPutRequestConfig) GetRepoVersion() string`
+`func (o *SourceControlConfigGet200ResponseDataOneOf) GetRepoVersion() string`
 
 GetRepoVersion returns the RepoVersion field if non-nil, zero value otherwise.
 
 ### GetRepoVersionOk
 
-`func (o *SourceControlConfigPutRequestConfig) GetRepoVersionOk() (*string, bool)`
+`func (o *SourceControlConfigGet200ResponseDataOneOf) GetRepoVersionOk() (*string, bool)`
 
 GetRepoVersionOk returns a tuple with the RepoVersion field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRepoVersion
 
-`func (o *SourceControlConfigPutRequestConfig) SetRepoVersion(v string)`
+`func (o *SourceControlConfigGet200ResponseDataOneOf) SetRepoVersion(v string)`
 
 SetRepoVersion sets RepoVersion field to given value.
 
 ### HasRepoVersion
 
-`func (o *SourceControlConfigPutRequestConfig) HasRepoVersion() bool`
+`func (o *SourceControlConfigGet200ResponseDataOneOf) HasRepoVersion() bool`
 
 HasRepoVersion returns a boolean if a field has been set.
 
