@@ -158,7 +158,7 @@ import (
 )
 
 func main() {
-	sourceControlConfigPutRequest := *openapiclient.NewSourceControlConfigPutRequest(*openapiclient.NewSourceControlConfigPutRequestConfig(*openapiclient.NewSourceControlConfigGet200ResponseDataAnyOf4Config("Url_example", "Project_example", "User_example", "PersonalAccessToken_example", false), "Provider_example", "Org_example", "Repo_example", "DefaultBranch_example")) // SourceControlConfigPutRequest |  (optional)
+	sourceControlConfigPutRequest := *openapiclient.NewSourceControlConfigPutRequest(openapiclient._source_control_config_put_request_config{SourceControlConfigGet200ResponseDataOneOf: openapiclient.NewSourceControlConfigGet200ResponseDataOneOf(openapiclient._source_control_config_get_200_response_data_oneOf_config{SourceControlConfigGet200ResponseDataOneOfConfigOneOf: openapiclient.NewSourceControlConfigGet200ResponseDataOneOfConfigOneOf("Type_example", "AppId_example", "InstallationId_example", "PrivateKey_example")}, "Provider_example", "Org_example", "Repo_example", "DefaultBranch_example")}) // SourceControlConfigPutRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -224,7 +224,7 @@ import (
 )
 
 func main() {
-	sourceControlConfigPutRequest := *openapiclient.NewSourceControlConfigPutRequest(*openapiclient.NewSourceControlConfigPutRequestConfig(*openapiclient.NewSourceControlConfigGet200ResponseDataAnyOf4Config("Url_example", "Project_example", "User_example", "PersonalAccessToken_example", false), "Provider_example", "Org_example", "Repo_example", "DefaultBranch_example")) // SourceControlConfigPutRequest |  (optional)
+	sourceControlConfigPutRequest := *openapiclient.NewSourceControlConfigPutRequest(openapiclient._source_control_config_put_request_config{SourceControlConfigGet200ResponseDataOneOf: openapiclient.NewSourceControlConfigGet200ResponseDataOneOf(openapiclient._source_control_config_get_200_response_data_oneOf_config{SourceControlConfigGet200ResponseDataOneOfConfigOneOf: openapiclient.NewSourceControlConfigGet200ResponseDataOneOfConfigOneOf("Type_example", "AppId_example", "InstallationId_example", "PrivateKey_example")}, "Provider_example", "Org_example", "Repo_example", "DefaultBranch_example")}) // SourceControlConfigPutRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

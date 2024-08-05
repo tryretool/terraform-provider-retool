@@ -6552,12 +6552,12 @@
                       "description": "API request succeeded"
                     },
                     "data": {
-                      "anyOf": [
+                      "oneOf": [
                         {
                           "type": "object",
                           "properties": {
                             "config": {
-                              "anyOf": [
+                              "oneOf": [
                                 {
                                   "type": "object",
                                   "properties": {
@@ -6916,12 +6916,12 @@
                 "type": "object",
                 "properties": {
                   "config": {
-                    "anyOf": [
+                    "oneOf": [
                       {
                         "type": "object",
                         "properties": {
                           "config": {
-                            "anyOf": [
+                            "oneOf": [
                               {
                                 "type": "object",
                                 "properties": {
@@ -7273,12 +7273,12 @@
                       "description": "API request succeeded"
                     },
                     "data": {
-                      "anyOf": [
+                      "oneOf": [
                         {
                           "type": "object",
                           "properties": {
                             "config": {
-                              "anyOf": [
+                              "oneOf": [
                                 {
                                   "type": "object",
                                   "properties": {
@@ -7682,12 +7682,12 @@
                 "type": "object",
                 "properties": {
                   "config": {
-                    "anyOf": [
+                    "oneOf": [
                       {
                         "type": "object",
                         "properties": {
                           "config": {
-                            "anyOf": [
+                            "oneOf": [
                               {
                                 "type": "object",
                                 "properties": {
@@ -8039,12 +8039,12 @@
                       "description": "API request succeeded"
                     },
                     "data": {
-                      "anyOf": [
+                      "oneOf": [
                         {
                           "type": "object",
                           "properties": {
                             "config": {
-                              "anyOf": [
+                              "oneOf": [
                                 {
                                   "type": "object",
                                   "properties": {
@@ -8402,12 +8402,12 @@
                       "description": "API request succeeded"
                     },
                     "data": {
-                      "anyOf": [
+                      "oneOf": [
                         {
                           "type": "object",
                           "properties": {
                             "config": {
-                              "anyOf": [
+                              "oneOf": [
                                 {
                                   "type": "object",
                                   "properties": {

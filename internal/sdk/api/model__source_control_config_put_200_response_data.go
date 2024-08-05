@@ -15,109 +15,188 @@ import (
 	"fmt"
 )
 
-// SourceControlConfigPut200ResponseData Created or updated Source Control Provider Config
+// SourceControlConfigPut200ResponseData - Created or updated Source Control Provider Config
 type SourceControlConfigPut200ResponseData struct {
-	SourceControlConfigGet200ResponseDataAnyOf *SourceControlConfigGet200ResponseDataAnyOf
-	SourceControlConfigGet200ResponseDataAnyOf1 *SourceControlConfigGet200ResponseDataAnyOf1
-	SourceControlConfigGet200ResponseDataAnyOf2 *SourceControlConfigGet200ResponseDataAnyOf2
-	SourceControlConfigGet200ResponseDataAnyOf3 *SourceControlConfigGet200ResponseDataAnyOf3
-	SourceControlConfigGet200ResponseDataAnyOf4 *SourceControlConfigGet200ResponseDataAnyOf4
+	SourceControlConfigGet200ResponseDataOneOf *SourceControlConfigGet200ResponseDataOneOf
+	SourceControlConfigGet200ResponseDataOneOf1 *SourceControlConfigGet200ResponseDataOneOf1
+	SourceControlConfigGet200ResponseDataOneOf2 *SourceControlConfigGet200ResponseDataOneOf2
+	SourceControlConfigGet200ResponseDataOneOf3 *SourceControlConfigGet200ResponseDataOneOf3
+	SourceControlConfigGet200ResponseDataOneOf4 *SourceControlConfigGet200ResponseDataOneOf4
 }
 
-// Unmarshal JSON data into any of the pointers in the struct
+// SourceControlConfigGet200ResponseDataOneOfAsSourceControlConfigPut200ResponseData is a convenience function that returns SourceControlConfigGet200ResponseDataOneOf wrapped in SourceControlConfigPut200ResponseData
+func SourceControlConfigGet200ResponseDataOneOfAsSourceControlConfigPut200ResponseData(v *SourceControlConfigGet200ResponseDataOneOf) SourceControlConfigPut200ResponseData {
+	return SourceControlConfigPut200ResponseData{
+		SourceControlConfigGet200ResponseDataOneOf: v,
+	}
+}
+
+// SourceControlConfigGet200ResponseDataOneOf1AsSourceControlConfigPut200ResponseData is a convenience function that returns SourceControlConfigGet200ResponseDataOneOf1 wrapped in SourceControlConfigPut200ResponseData
+func SourceControlConfigGet200ResponseDataOneOf1AsSourceControlConfigPut200ResponseData(v *SourceControlConfigGet200ResponseDataOneOf1) SourceControlConfigPut200ResponseData {
+	return SourceControlConfigPut200ResponseData{
+		SourceControlConfigGet200ResponseDataOneOf1: v,
+	}
+}
+
+// SourceControlConfigGet200ResponseDataOneOf2AsSourceControlConfigPut200ResponseData is a convenience function that returns SourceControlConfigGet200ResponseDataOneOf2 wrapped in SourceControlConfigPut200ResponseData
+func SourceControlConfigGet200ResponseDataOneOf2AsSourceControlConfigPut200ResponseData(v *SourceControlConfigGet200ResponseDataOneOf2) SourceControlConfigPut200ResponseData {
+	return SourceControlConfigPut200ResponseData{
+		SourceControlConfigGet200ResponseDataOneOf2: v,
+	}
+}
+
+// SourceControlConfigGet200ResponseDataOneOf3AsSourceControlConfigPut200ResponseData is a convenience function that returns SourceControlConfigGet200ResponseDataOneOf3 wrapped in SourceControlConfigPut200ResponseData
+func SourceControlConfigGet200ResponseDataOneOf3AsSourceControlConfigPut200ResponseData(v *SourceControlConfigGet200ResponseDataOneOf3) SourceControlConfigPut200ResponseData {
+	return SourceControlConfigPut200ResponseData{
+		SourceControlConfigGet200ResponseDataOneOf3: v,
+	}
+}
+
+// SourceControlConfigGet200ResponseDataOneOf4AsSourceControlConfigPut200ResponseData is a convenience function that returns SourceControlConfigGet200ResponseDataOneOf4 wrapped in SourceControlConfigPut200ResponseData
+func SourceControlConfigGet200ResponseDataOneOf4AsSourceControlConfigPut200ResponseData(v *SourceControlConfigGet200ResponseDataOneOf4) SourceControlConfigPut200ResponseData {
+	return SourceControlConfigPut200ResponseData{
+		SourceControlConfigGet200ResponseDataOneOf4: v,
+	}
+}
+
+
+// Unmarshal JSON data into one of the pointers in the struct
 func (dst *SourceControlConfigPut200ResponseData) UnmarshalJSON(data []byte) error {
 	var err error
-	// try to unmarshal JSON data into SourceControlConfigGet200ResponseDataAnyOf
-	err = json.Unmarshal(data, &dst.SourceControlConfigGet200ResponseDataAnyOf);
+	match := 0
+	// try to unmarshal data into SourceControlConfigGet200ResponseDataOneOf
+	err = newStrictDecoder(data).Decode(&dst.SourceControlConfigGet200ResponseDataOneOf)
 	if err == nil {
-		jsonSourceControlConfigGet200ResponseDataAnyOf, _ := json.Marshal(dst.SourceControlConfigGet200ResponseDataAnyOf)
-		if string(jsonSourceControlConfigGet200ResponseDataAnyOf) == "{}" { // empty struct
-			dst.SourceControlConfigGet200ResponseDataAnyOf = nil
+		jsonSourceControlConfigGet200ResponseDataOneOf, _ := json.Marshal(dst.SourceControlConfigGet200ResponseDataOneOf)
+		if string(jsonSourceControlConfigGet200ResponseDataOneOf) == "{}" { // empty struct
+			dst.SourceControlConfigGet200ResponseDataOneOf = nil
 		} else {
-			return nil // data stored in dst.SourceControlConfigGet200ResponseDataAnyOf, return on the first match
+			match++
 		}
 	} else {
-		dst.SourceControlConfigGet200ResponseDataAnyOf = nil
+		dst.SourceControlConfigGet200ResponseDataOneOf = nil
 	}
 
-	// try to unmarshal JSON data into SourceControlConfigGet200ResponseDataAnyOf1
-	err = json.Unmarshal(data, &dst.SourceControlConfigGet200ResponseDataAnyOf1);
+	// try to unmarshal data into SourceControlConfigGet200ResponseDataOneOf1
+	err = newStrictDecoder(data).Decode(&dst.SourceControlConfigGet200ResponseDataOneOf1)
 	if err == nil {
-		jsonSourceControlConfigGet200ResponseDataAnyOf1, _ := json.Marshal(dst.SourceControlConfigGet200ResponseDataAnyOf1)
-		if string(jsonSourceControlConfigGet200ResponseDataAnyOf1) == "{}" { // empty struct
-			dst.SourceControlConfigGet200ResponseDataAnyOf1 = nil
+		jsonSourceControlConfigGet200ResponseDataOneOf1, _ := json.Marshal(dst.SourceControlConfigGet200ResponseDataOneOf1)
+		if string(jsonSourceControlConfigGet200ResponseDataOneOf1) == "{}" { // empty struct
+			dst.SourceControlConfigGet200ResponseDataOneOf1 = nil
 		} else {
-			return nil // data stored in dst.SourceControlConfigGet200ResponseDataAnyOf1, return on the first match
+			match++
 		}
 	} else {
-		dst.SourceControlConfigGet200ResponseDataAnyOf1 = nil
+		dst.SourceControlConfigGet200ResponseDataOneOf1 = nil
 	}
 
-	// try to unmarshal JSON data into SourceControlConfigGet200ResponseDataAnyOf2
-	err = json.Unmarshal(data, &dst.SourceControlConfigGet200ResponseDataAnyOf2);
+	// try to unmarshal data into SourceControlConfigGet200ResponseDataOneOf2
+	err = newStrictDecoder(data).Decode(&dst.SourceControlConfigGet200ResponseDataOneOf2)
 	if err == nil {
-		jsonSourceControlConfigGet200ResponseDataAnyOf2, _ := json.Marshal(dst.SourceControlConfigGet200ResponseDataAnyOf2)
-		if string(jsonSourceControlConfigGet200ResponseDataAnyOf2) == "{}" { // empty struct
-			dst.SourceControlConfigGet200ResponseDataAnyOf2 = nil
+		jsonSourceControlConfigGet200ResponseDataOneOf2, _ := json.Marshal(dst.SourceControlConfigGet200ResponseDataOneOf2)
+		if string(jsonSourceControlConfigGet200ResponseDataOneOf2) == "{}" { // empty struct
+			dst.SourceControlConfigGet200ResponseDataOneOf2 = nil
 		} else {
-			return nil // data stored in dst.SourceControlConfigGet200ResponseDataAnyOf2, return on the first match
+			match++
 		}
 	} else {
-		dst.SourceControlConfigGet200ResponseDataAnyOf2 = nil
+		dst.SourceControlConfigGet200ResponseDataOneOf2 = nil
 	}
 
-	// try to unmarshal JSON data into SourceControlConfigGet200ResponseDataAnyOf3
-	err = json.Unmarshal(data, &dst.SourceControlConfigGet200ResponseDataAnyOf3);
+	// try to unmarshal data into SourceControlConfigGet200ResponseDataOneOf3
+	err = newStrictDecoder(data).Decode(&dst.SourceControlConfigGet200ResponseDataOneOf3)
 	if err == nil {
-		jsonSourceControlConfigGet200ResponseDataAnyOf3, _ := json.Marshal(dst.SourceControlConfigGet200ResponseDataAnyOf3)
-		if string(jsonSourceControlConfigGet200ResponseDataAnyOf3) == "{}" { // empty struct
-			dst.SourceControlConfigGet200ResponseDataAnyOf3 = nil
+		jsonSourceControlConfigGet200ResponseDataOneOf3, _ := json.Marshal(dst.SourceControlConfigGet200ResponseDataOneOf3)
+		if string(jsonSourceControlConfigGet200ResponseDataOneOf3) == "{}" { // empty struct
+			dst.SourceControlConfigGet200ResponseDataOneOf3 = nil
 		} else {
-			return nil // data stored in dst.SourceControlConfigGet200ResponseDataAnyOf3, return on the first match
+			match++
 		}
 	} else {
-		dst.SourceControlConfigGet200ResponseDataAnyOf3 = nil
+		dst.SourceControlConfigGet200ResponseDataOneOf3 = nil
 	}
 
-	// try to unmarshal JSON data into SourceControlConfigGet200ResponseDataAnyOf4
-	err = json.Unmarshal(data, &dst.SourceControlConfigGet200ResponseDataAnyOf4);
+	// try to unmarshal data into SourceControlConfigGet200ResponseDataOneOf4
+	err = newStrictDecoder(data).Decode(&dst.SourceControlConfigGet200ResponseDataOneOf4)
 	if err == nil {
-		jsonSourceControlConfigGet200ResponseDataAnyOf4, _ := json.Marshal(dst.SourceControlConfigGet200ResponseDataAnyOf4)
-		if string(jsonSourceControlConfigGet200ResponseDataAnyOf4) == "{}" { // empty struct
-			dst.SourceControlConfigGet200ResponseDataAnyOf4 = nil
+		jsonSourceControlConfigGet200ResponseDataOneOf4, _ := json.Marshal(dst.SourceControlConfigGet200ResponseDataOneOf4)
+		if string(jsonSourceControlConfigGet200ResponseDataOneOf4) == "{}" { // empty struct
+			dst.SourceControlConfigGet200ResponseDataOneOf4 = nil
 		} else {
-			return nil // data stored in dst.SourceControlConfigGet200ResponseDataAnyOf4, return on the first match
+			match++
 		}
 	} else {
-		dst.SourceControlConfigGet200ResponseDataAnyOf4 = nil
+		dst.SourceControlConfigGet200ResponseDataOneOf4 = nil
 	}
 
-	return fmt.Errorf("data failed to match schemas in anyOf(SourceControlConfigPut200ResponseData)")
+	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.SourceControlConfigGet200ResponseDataOneOf = nil
+		dst.SourceControlConfigGet200ResponseDataOneOf1 = nil
+		dst.SourceControlConfigGet200ResponseDataOneOf2 = nil
+		dst.SourceControlConfigGet200ResponseDataOneOf3 = nil
+		dst.SourceControlConfigGet200ResponseDataOneOf4 = nil
+
+		return fmt.Errorf("data matches more than one schema in oneOf(SourceControlConfigPut200ResponseData)")
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		return fmt.Errorf("data failed to match schemas in oneOf(SourceControlConfigPut200ResponseData)")
+	}
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src *SourceControlConfigPut200ResponseData) MarshalJSON() ([]byte, error) {
-	if src.SourceControlConfigGet200ResponseDataAnyOf != nil {
-		return json.Marshal(&src.SourceControlConfigGet200ResponseDataAnyOf)
+func (src SourceControlConfigPut200ResponseData) MarshalJSON() ([]byte, error) {
+	if src.SourceControlConfigGet200ResponseDataOneOf != nil {
+		return json.Marshal(&src.SourceControlConfigGet200ResponseDataOneOf)
 	}
 
-	if src.SourceControlConfigGet200ResponseDataAnyOf1 != nil {
-		return json.Marshal(&src.SourceControlConfigGet200ResponseDataAnyOf1)
+	if src.SourceControlConfigGet200ResponseDataOneOf1 != nil {
+		return json.Marshal(&src.SourceControlConfigGet200ResponseDataOneOf1)
 	}
 
-	if src.SourceControlConfigGet200ResponseDataAnyOf2 != nil {
-		return json.Marshal(&src.SourceControlConfigGet200ResponseDataAnyOf2)
+	if src.SourceControlConfigGet200ResponseDataOneOf2 != nil {
+		return json.Marshal(&src.SourceControlConfigGet200ResponseDataOneOf2)
 	}
 
-	if src.SourceControlConfigGet200ResponseDataAnyOf3 != nil {
-		return json.Marshal(&src.SourceControlConfigGet200ResponseDataAnyOf3)
+	if src.SourceControlConfigGet200ResponseDataOneOf3 != nil {
+		return json.Marshal(&src.SourceControlConfigGet200ResponseDataOneOf3)
 	}
 
-	if src.SourceControlConfigGet200ResponseDataAnyOf4 != nil {
-		return json.Marshal(&src.SourceControlConfigGet200ResponseDataAnyOf4)
+	if src.SourceControlConfigGet200ResponseDataOneOf4 != nil {
+		return json.Marshal(&src.SourceControlConfigGet200ResponseDataOneOf4)
 	}
 
-	return nil, nil // no data in anyOf schemas
+	return nil, nil // no data in oneOf schemas
+}
+
+// Get the actual instance
+func (obj *SourceControlConfigPut200ResponseData) GetActualInstance() (interface{}) {
+	if obj == nil {
+		return nil
+	}
+	if obj.SourceControlConfigGet200ResponseDataOneOf != nil {
+		return obj.SourceControlConfigGet200ResponseDataOneOf
+	}
+
+	if obj.SourceControlConfigGet200ResponseDataOneOf1 != nil {
+		return obj.SourceControlConfigGet200ResponseDataOneOf1
+	}
+
+	if obj.SourceControlConfigGet200ResponseDataOneOf2 != nil {
+		return obj.SourceControlConfigGet200ResponseDataOneOf2
+	}
+
+	if obj.SourceControlConfigGet200ResponseDataOneOf3 != nil {
+		return obj.SourceControlConfigGet200ResponseDataOneOf3
+	}
+
+	if obj.SourceControlConfigGet200ResponseDataOneOf4 != nil {
+		return obj.SourceControlConfigGet200ResponseDataOneOf4
+	}
+
+	// all schemas are nil
+	return nil
 }
 
 type NullableSourceControlConfigPut200ResponseData struct {
