@@ -11,13 +11,12 @@ import (
 	"github.com/tryretool/terraform-provider-retool/internal/sdk/api"
 )
 
-// Ensure SSOResource implements the tfsdk.Resource interface
+// Ensure sourceControlResource implements the tfsdk.Resource interface
 var (
 	_ resource.Resource              = &sourceControlResource{}
 	_ resource.ResourceWithConfigure = &sourceControlResource{}
 )
 
-// ssoResource schema structure
 type sourceControlResource struct {
 	client *api.APIClient
 }
@@ -154,12 +153,12 @@ func (r *sourceControlResource) Configure(_ context.Context, req resource.Config
 	r.client = providerData.Client
 }
 
-// Metadata associated with the SSO resource
+// Metadata associated with the Source Control resource
 func (r *sourceControlResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_source_control"
 }
 
-// Schema returns the schema for the SSO resource
+// Schema returns the schema for the Source Control resource
 func (r *sourceControlResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{
