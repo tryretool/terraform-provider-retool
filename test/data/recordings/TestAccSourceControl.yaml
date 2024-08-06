@@ -1,0 +1,715 @@
+---
+version: 2
+interactions:
+    - id: 0
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 295
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"config":{"config":{"app_id":"123456","enterprise_api_url":"https://github.mycompany.com/api/v3","installation_id":"123457","private_key":"private-key","type":"App","url":"https://github.com"},"default_branch":"main","org":"my-org","provider":"GitHub","repo":"my-repo","repo_version":"1.0.0"}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/source_control/config
+        method: PUT
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 321
+        uncompressed: false
+        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"GitHub","config":{"app_id":"123456","installation_id":"123457","private_key":"---encrypted-on-server---","type":"App","url":"https://github.com","enterprise_api_url":"https://github.mycompany.com/api/v3"}}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 201 Created
+        code: 201
+        duration: 85.687ms
+    - id: 1
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/source_control/config
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 321
+        uncompressed: false
+        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"GitHub","config":{"app_id":"123456","installation_id":"123457","private_key":"---encrypted-on-server---","type":"App","url":"https://github.com","enterprise_api_url":"https://github.mycompany.com/api/v3"}}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 61.137208ms
+    - id: 2
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/source_control/config
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 321
+        uncompressed: false
+        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"GitHub","config":{"app_id":"123456","installation_id":"123457","private_key":"---encrypted-on-server---","type":"App","url":"https://github.com","enterprise_api_url":"https://github.mycompany.com/api/v3"}}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 66.7385ms
+    - id: 3
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 275
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"config":{"config":{"enterprise_api_url":"https://github.mycompany.com/api/v3","personal_access_token":"personal-access-token","type":"Personal","url":"https://github.com"},"default_branch":"main","org":"my-org","provider":"GitHub","repo":"my-repo","repo_version":"1.0.0"}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/source_control/config
+        method: PUT
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 291
+        uncompressed: false
+        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"GitHub","config":{"personal_access_token":"---encrypted-on-server---","type":"Personal","url":"https://github.com","enterprise_api_url":"https://github.mycompany.com/api/v3"}}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 71.157875ms
+    - id: 4
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/source_control/config
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 291
+        uncompressed: false
+        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"GitHub","config":{"personal_access_token":"---encrypted-on-server---","type":"Personal","url":"https://github.com","enterprise_api_url":"https://github.mycompany.com/api/v3"}}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 59.890291ms
+    - id: 5
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/source_control/config
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 291
+        uncompressed: false
+        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"GitHub","config":{"personal_access_token":"---encrypted-on-server---","type":"Personal","url":"https://github.com","enterprise_api_url":"https://github.mycompany.com/api/v3"}}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 66.875542ms
+    - id: 6
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 215
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"config":{"config":{"project_access_token":"project-access-token","project_id":12345,"url":"https://gitlab.com"},"default_branch":"main","org":"my-org","provider":"GitLab","repo":"my-repo","repo_version":"1.0.0"}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/source_control/config
+        method: PUT
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 232
+        uncompressed: false
+        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"GitLab","config":{"project_id":12345,"project_access_token":"---encrypted-on-server---","url":"https://gitlab.com"}}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 75.892667ms
+    - id: 7
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/source_control/config
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 232
+        uncompressed: false
+        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"GitLab","config":{"project_id":12345,"project_access_token":"---encrypted-on-server---","url":"https://gitlab.com"}}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 82.638042ms
+    - id: 8
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/source_control/config
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 232
+        uncompressed: false
+        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"GitLab","config":{"project_id":12345,"project_access_token":"---encrypted-on-server---","url":"https://gitlab.com"}}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 57.807208ms
+    - id: 9
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 364
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"config":{"config":{"access_key_id":"access-key-id","https_password":"https-password","https_username":"https-username","region":"us-west-2","secret_access_key":"secret-access-key","url":"https://git-codecommit.us-west-2.amazonaws.com/v1/repos/my-repo"},"default_branch":"main","org":"my-org","provider":"AWS CodeCommit","repo":"my-repo","repo_version":"1.0.0"}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/source_control/config
+        method: PUT
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 407
+        uncompressed: false
+        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"AWS CodeCommit","config":{"url":"https://git-codecommit.us-west-2.amazonaws.com/v1/repos/my-repo","region":"us-west-2","access_key_id":"---encrypted-on-server---","secret_access_key":"---encrypted-on-server---","https_username":"https-username","https_password":"---encrypted-on-server---"}}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 73.462583ms
+    - id: 10
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/source_control/config
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 407
+        uncompressed: false
+        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"AWS CodeCommit","config":{"url":"https://git-codecommit.us-west-2.amazonaws.com/v1/repos/my-repo","region":"us-west-2","access_key_id":"---encrypted-on-server---","secret_access_key":"---encrypted-on-server---","https_username":"https-username","https_password":"---encrypted-on-server---"}}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 62.278042ms
+    - id: 11
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/source_control/config
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 407
+        uncompressed: false
+        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"AWS CodeCommit","config":{"url":"https://git-codecommit.us-west-2.amazonaws.com/v1/repos/my-repo","region":"us-west-2","access_key_id":"---encrypted-on-server---","secret_access_key":"---encrypted-on-server---","https_username":"https-username","https_password":"---encrypted-on-server---"}}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 61.009625ms
+    - id: 12
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 270
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"config":{"config":{"app_password":"app_password","enterprise_api_url":"https://bitbucket.mycompany.com/api/v3","url":"https://bitbucket.org","username":"username"},"default_branch":"main","org":"my-org","provider":"Bitbucket","repo":"my-repo","repo_version":"1.0.0"}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/source_control/config
+        method: PUT
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 295
+        uncompressed: false
+        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"Bitbucket","config":{"username":"username","url":"https://bitbucket.org","enterprise_api_url":"https://bitbucket.mycompany.com/api/v3","app_password":"---encrypted-on-server---"}}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 74.323292ms
+    - id: 13
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/source_control/config
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 295
+        uncompressed: false
+        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"Bitbucket","config":{"username":"username","url":"https://bitbucket.org","enterprise_api_url":"https://bitbucket.mycompany.com/api/v3","app_password":"---encrypted-on-server---"}}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 63.040875ms
+    - id: 14
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/source_control/config
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 295
+        uncompressed: false
+        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"Bitbucket","config":{"username":"username","url":"https://bitbucket.org","enterprise_api_url":"https://bitbucket.mycompany.com/api/v3","app_password":"---encrypted-on-server---"}}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 64.819708ms
+    - id: 15
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 278
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"config":{"config":{"personal_access_token":"personal-access-token","project":"project","url":"https://dev.azure.com/organization","use_basic_auth":true,"user":"user-id"},"default_branch":"main","org":"my-org","provider":"Azure Repos","repo":"my-repo","repo_version":"1.0.0"}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/source_control/config
+        method: PUT
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 294
+        uncompressed: false
+        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"Azure Repos","config":{"url":"https://dev.azure.com/organization","project":"project","user":"user-id","personal_access_token":"---encrypted-on-server---","use_basic_auth":true}}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 74.518625ms
+    - id: 16
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/source_control/config
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 294
+        uncompressed: false
+        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"Azure Repos","config":{"url":"https://dev.azure.com/organization","project":"project","user":"user-id","personal_access_token":"---encrypted-on-server---","use_basic_auth":true}}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 61.311458ms
+    - id: 17
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/source_control/config
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 294
+        uncompressed: false
+        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"Azure Repos","config":{"url":"https://dev.azure.com/organization","project":"project","user":"user-id","personal_access_token":"---encrypted-on-server---","use_basic_auth":true}}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 59.920084ms
+    - id: 18
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 335
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"config":{"config":{"personal_access_token":"personal-access-token-updated","project":"project-updated","url":"https://dev.azure.com/organization-updated","use_basic_auth":false,"user":"user-id-updated"},"default_branch":"main-updated","org":"my-org-updated","provider":"Azure Repos","repo":"my-repo-updated","repo_version":"2.0.0"}}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/source_control/config
+        method: PUT
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 343
+        uncompressed: false
+        body: '{"success":true,"data":{"org":"my-org-updated","repo":"my-repo-updated","default_branch":"main-updated","repo_version":"2.0.0","provider":"Azure Repos","config":{"url":"https://dev.azure.com/organization-updated","project":"project-updated","user":"user-id-updated","personal_access_token":"---encrypted-on-server---","use_basic_auth":false}}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 80.171292ms
+    - id: 19
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/source_control/config
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 343
+        uncompressed: false
+        body: '{"success":true,"data":{"org":"my-org-updated","repo":"my-repo-updated","default_branch":"main-updated","repo_version":"2.0.0","provider":"Azure Repos","config":{"url":"https://dev.azure.com/organization-updated","project":"project-updated","user":"user-id-updated","personal_access_token":"---encrypted-on-server---","use_basic_auth":false}}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 61.546667ms
+    - id: 20
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/source_control/config
+        method: DELETE
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: ""
+        headers: {}
+        status: 204 No Content
+        code: 204
+        duration: 81.297541ms
