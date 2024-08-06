@@ -564,15 +564,15 @@ func (r *sourceControlResource) Read(ctx context.Context, req resource.ReadReque
 	response, httpResponse, err := r.client.SourceControlAPI.SourceControlConfigGet(context.Background()).Execute()
 	if err != nil {
 		if httpResponse != nil && httpResponse.StatusCode == 404 {
-			tflog.Info(ctx, "SSO is not configured")
+			tflog.Info(ctx, "Source Control is not configured")
 			resp.State.RemoveResource(ctx)
 			return
 		}
 		resp.Diagnostics.AddError(
-			"Error reading SSO config",
-			fmt.Sprintf("Could not read SSO config: %s", err.Error()),
+			"Error reading Source Control config",
+			fmt.Sprintf("Could not read Source Control config: %s", err.Error()),
 		)
-		tflog.Error(ctx, "Error reading SSO config", utils.AddHttpStatusCode(map[string]any{"error": err.Error()}, httpResponse))
+		tflog.Error(ctx, "Error reading Source Control config", utils.AddHttpStatusCode(map[string]any{"error": err.Error()}, httpResponse))
 		return
 	}
 
