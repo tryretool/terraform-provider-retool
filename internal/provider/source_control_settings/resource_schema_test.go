@@ -1,4 +1,4 @@
-package source_control
+package source_control_settings
 
 import (
 	"context"
@@ -10,7 +10,7 @@ import (
 	fwresource "github.com/hashicorp/terraform-plugin-framework/resource"
 )
 
-func TestSourceControlResourceSchema(t *testing.T) {
+func TestSourceControlSettingsResourceSchema(t *testing.T) {
 	t.Parallel()
 
 	ctx := context.Background()
