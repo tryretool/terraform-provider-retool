@@ -341,14 +341,14 @@ func (r *sourceControlResource) ValidateConfig(ctx context.Context, req resource
 		return
 	}
 
-	var sourceControlProviders []bool = []bool{
+	var sourceControlProviders = []bool{
 		!utils.IsEmptyObject(model.GitHub),
 		!utils.IsEmptyObject(model.GitLab),
 		!utils.IsEmptyObject(model.AWSCodeCommit),
 		!utils.IsEmptyObject(model.Bitbucket),
 		!utils.IsEmptyObject(model.AzureRepos),
 	}
-	var countSetProviders int = 0
+	var countSetProviders int
 	for _, providerSet := range sourceControlProviders {
 		if providerSet {
 			countSetProviders++

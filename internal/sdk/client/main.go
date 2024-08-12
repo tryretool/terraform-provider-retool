@@ -26,9 +26,9 @@ func main() {
 	}
 	client := api.NewAPIClient(config)
 	auth := context.WithValue(context.Background(), api.ContextAccessToken, apiKey)
-	folders, httpResponse, error := client.FoldersAPI.FoldersGet(auth).Execute()
-	if error != nil {
-		log.Fatal("Error!", error, httpResponse)
+	folders, httpResponse, err := client.FoldersAPI.FoldersGet(auth).Execute()
+	if err != nil {
+		log.Fatal("Error!", err, httpResponse)
 	} else {
 		fmt.Println("Folders:")
 		for _, folder := range folders.Data {

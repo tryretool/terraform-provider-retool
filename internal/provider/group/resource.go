@@ -312,18 +312,18 @@ func (r *groupResource) Update(ctx context.Context, req resource.UpdateRequest, 
 
 	// Prepare the update payload
 	updatePayload := api.GroupsGroupIdPutRequest{
-		Name:                     plan.Name.ValueStringPointer(),
-		UniversalAppAccess:       plan.UniversalAppAccess.ValueStringPointer(),
-		UniversalResourceAccess:  plan.UniversalResourceAccess.ValueStringPointer(),
-		UniversalWorkflowAccess:  plan.UniversalWorkflowAccess.ValueStringPointer(),
+		Name:                        plan.Name.ValueStringPointer(),
+		UniversalAppAccess:          plan.UniversalAppAccess.ValueStringPointer(),
+		UniversalResourceAccess:     plan.UniversalResourceAccess.ValueStringPointer(),
+		UniversalWorkflowAccess:     plan.UniversalWorkflowAccess.ValueStringPointer(),
 		UniversalQueryLibraryAccess: plan.UniversalQueryLibraryAccess.ValueStringPointer(),
-		UserListAccess:           plan.UserListAccess.ValueBoolPointer(),
-		AuditLogAccess:           plan.AuditLogAccess.ValueBoolPointer(),
-		UnpublishedReleaseAccess: plan.UnpublishedReleaseAccess.ValueBoolPointer(),
-		UsageAnalyticsAccess:     plan.UsageAnalyticsAccess.ValueBoolPointer(),
-		AccountDetailsAccess:     plan.AccountDetailsAccess.ValueBoolPointer(),
-		Members:                  convertGroupMembersToPutRequestType(group.Data.Members),
-		UserInvites:              group.Data.UserInvites,
+		UserListAccess:              plan.UserListAccess.ValueBoolPointer(),
+		AuditLogAccess:              plan.AuditLogAccess.ValueBoolPointer(),
+		UnpublishedReleaseAccess:    plan.UnpublishedReleaseAccess.ValueBoolPointer(),
+		UsageAnalyticsAccess:        plan.UsageAnalyticsAccess.ValueBoolPointer(),
+		AccountDetailsAccess:        plan.AccountDetailsAccess.ValueBoolPointer(),
+		Members:                     convertGroupMembersToPutRequestType(group.Data.Members),
+		UserInvites:                 group.Data.UserInvites,
 	}
 	updatePayload.LandingPageAppId.Set(plan.LandingPageAppId.ValueStringPointer())
 
