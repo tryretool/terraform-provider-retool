@@ -1,4 +1,25 @@
 #-----------------------------------------------------------------------------------------------------------------------
+# Docs
+#-----------------------------------------------------------------------------------------------------------------------
+.PHONY: docs check-docs
+
+docs: ## Generate docs
+	${call print, "Generating docs"}
+	@go generate
+
+check-docs: ## Check if docs are up-to-date
+	${call print, "Checking that documentation was generated correctly"}
+	@go generate
+	@if [ -n "$$(git status --porcelain)" ]; \
+	then \
+		echo "Go generate resulted in changed files:"; \
+		echo "$$(git diff)"; \
+		echo "Please run \`make docs\` to regenerate docs."; \
+		exit 1; \
+	fi
+	@echo "Documentation is generated correctly."
+	
+#-----------------------------------------------------------------------------------------------------------------------
 # Testing
 #-----------------------------------------------------------------------------------------------------------------------
 .PHONY: test-unit test-acc test-acc-record test-acc-replay test-acc-sweep
