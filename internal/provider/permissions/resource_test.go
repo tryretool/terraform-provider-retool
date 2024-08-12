@@ -19,6 +19,7 @@ resource "retool_folder" "test_folder1" {
 
 resource "retool_folder" "test_folder2" {
 	name = "tf-acc-test-folder2"
+	parent_folder_id = retool_folder.test_folder1.id
 	folder_type = "app"
 }
 
@@ -51,6 +52,7 @@ resource "retool_folder" "test_folder1" {
 
 resource "retool_folder" "test_folder2" {
 	name = "tf-acc-test-folder2"
+	parent_folder_id = retool_folder.test_folder1.id
 	folder_type = "app"
 }
 
