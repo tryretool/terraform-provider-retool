@@ -34,6 +34,7 @@ type scmSettingsModel struct {
 	VersionControlLocked             types.Bool   `tfsdk:"version_control_locked"`
 }
 
+// Create new Source Control settings resource.
 func NewResource() resource.Resource {
 	return &scmSettingsResource{}
 }
@@ -57,12 +58,12 @@ func (r *scmSettingsResource) Configure(_ context.Context, req resource.Configur
 }
 
 // Metadata associated with the Source Control Settings resource.
-func (r *scmSettingsResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (r *scmSettingsResource) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_source_control_settings"
 }
 
 // Schema returns the schema for the Source Control resource.
-func (r *scmSettingsResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (r *scmSettingsResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{
 			"auto_branch_naming_enabled": schema.BoolAttribute{
@@ -106,7 +107,7 @@ func updateSourceControlSettings(ctx context.Context, client *api.APIClient, mod
 	_, httpResponse, err := client.SourceControlAPI.SourceControlSettingsPut(context.Background()).SourceControlSettingsPutRequest(apiRequest).Execute()
 	if err != nil {
 		globalDiags.AddError("Failed to update Source Control settings", err.Error())
-		tflog.Error(ctx, "Error updating Source Control settings", utils.AddHttpStatusCode(map[string]interface{}{"error": err.Error()}, httpResponse))
+		tflog.Error(ctx, "Error updating Source Control settings", utils.AddHTTPStatusCode(map[string]interface{}{"error": err.Error()}, httpResponse))
 		return
 	}
 }
@@ -137,7 +138,7 @@ func (r *scmSettingsResource) Create(ctx context.Context, req resource.CreateReq
 }
 
 // Read Source Control settings.
-func (r *scmSettingsResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
+func (r *scmSettingsResource) Read(ctx context.Context, _ resource.ReadRequest, resp *resource.ReadResponse) {
 	response, httpResponse, err := r.client.SourceControlAPI.SourceControlSettingsGet(context.Background()).Execute()
 	if err != nil {
 		if httpResponse != nil && httpResponse.StatusCode == 404 {
@@ -149,7 +150,7 @@ func (r *scmSettingsResource) Read(ctx context.Context, req resource.ReadRequest
 			"Error reading Source Control settings",
 			fmt.Sprintf("Could not read Source Control config: %s", err.Error()),
 		)
-		tflog.Error(ctx, "Error reading Source Control config", utils.AddHttpStatusCode(map[string]any{"error": err.Error()}, httpResponse))
+		tflog.Error(ctx, "Error reading Source Control config", utils.AddHTTPStatusCode(map[string]any{"error": err.Error()}, httpResponse))
 		return
 	}
 
@@ -194,7 +195,7 @@ func (r *scmSettingsResource) Update(ctx context.Context, req resource.UpdateReq
 }
 
 // Delete Source Control settings.
-func (r *scmSettingsResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
+func (r *scmSettingsResource) Delete(ctx context.Context, _ resource.DeleteRequest, resp *resource.DeleteResponse) {
 	// There's no DELETE endpoint, so we'll just set everything to default values
 	// and call the update function.
 	model := scmSettingsModel{

@@ -140,6 +140,7 @@ type sourceControlModel struct {
 	AzureRepos    types.Object `tfsdk:"azure_repos"`
 }
 
+// Create new Source Control resource.
 func NewResource() resource.Resource {
 	return &sourceControlResource{}
 }
@@ -163,12 +164,12 @@ func (r *sourceControlResource) Configure(_ context.Context, req resource.Config
 }
 
 // Metadata associated with the Source Control resource.
-func (r *sourceControlResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (r *sourceControlResource) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_source_control"
 }
 
 // Schema returns the schema for the Source Control resource.
-func (r *sourceControlResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (r *sourceControlResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{
 			"org": schema.StringAttribute{
@@ -381,7 +382,8 @@ func (r *sourceControlResource) ValidateConfig(ctx context.Context, req resource
 
 func updateSourceControlConfig(ctx context.Context, client *api.APIClient, model sourceControlModel, globalDiags *diag.Diagnostics) {
 	var config api.SourceControlConfigPutRequestConfig
-	if !utils.IsEmptyObject(model.GitHub) {
+	switch {
+	case !utils.IsEmptyObject(model.GitHub):
 		var githubConfig githubConfigModel
 		diags := model.GitHub.As(ctx, &githubConfig, basetypes.ObjectAsOptions{})
 		globalDiags.Append(diags...)
@@ -425,7 +427,7 @@ func updateSourceControlConfig(ctx context.Context, client *api.APIClient, model
 				RepoVersion:   model.RepoVersion.ValueStringPointer(),
 			},
 		}
-	} else if !utils.IsEmptyObject(model.GitLab) {
+	case !utils.IsEmptyObject(model.GitLab):
 		var gitlabConfig gitlabConfigModel
 		diags := model.GitLab.As(ctx, &gitlabConfig, basetypes.ObjectAsOptions{})
 		globalDiags.Append(diags...)
@@ -433,7 +435,7 @@ func updateSourceControlConfig(ctx context.Context, client *api.APIClient, model
 			return
 		}
 
-		projectId, err := strconv.ParseFloat(gitlabConfig.ProjectID.ValueString(), 32)
+		projectID, err := strconv.ParseFloat(gitlabConfig.ProjectID.ValueString(), 32)
 		if err != nil {
 			globalDiags.AddError("Invalid project ID", "The project ID must be a number")
 			return
@@ -442,7 +444,7 @@ func updateSourceControlConfig(ctx context.Context, client *api.APIClient, model
 			SourceControlConfigGet200ResponseDataOneOf1: &api.SourceControlConfigGet200ResponseDataOneOf1{
 				Provider: "GitLab",
 				Config: api.SourceControlConfigGet200ResponseDataOneOf1Config{
-					ProjectId:          float32(projectId),
+					ProjectId:          float32(projectID),
 					Url:                gitlabConfig.URL.ValueString(),
 					ProjectAccessToken: gitlabConfig.ProjectAccessToken.ValueString(),
 				},
@@ -452,7 +454,7 @@ func updateSourceControlConfig(ctx context.Context, client *api.APIClient, model
 				RepoVersion:   model.RepoVersion.ValueStringPointer(),
 			},
 		}
-	} else if !utils.IsEmptyObject(model.AWSCodeCommit) {
+	case !utils.IsEmptyObject(model.AWSCodeCommit):
 		var awsCodeCommitConfig awsCodeCommitConfigModel
 		diags := model.AWSCodeCommit.As(ctx, &awsCodeCommitConfig, basetypes.ObjectAsOptions{})
 		globalDiags.Append(diags...)
@@ -477,7 +479,7 @@ func updateSourceControlConfig(ctx context.Context, client *api.APIClient, model
 				RepoVersion:   model.RepoVersion.ValueStringPointer(),
 			},
 		}
-	} else if !utils.IsEmptyObject(model.Bitbucket) {
+	case !utils.IsEmptyObject(model.Bitbucket):
 		var bitbucketConfig bitbucketConfigModel
 		diags := model.Bitbucket.As(ctx, &bitbucketConfig, basetypes.ObjectAsOptions{})
 		globalDiags.Append(diags...)
@@ -499,7 +501,7 @@ func updateSourceControlConfig(ctx context.Context, client *api.APIClient, model
 				RepoVersion:   model.RepoVersion.ValueStringPointer(),
 			},
 		}
-	} else if !utils.IsEmptyObject(model.AzureRepos) {
+	case !utils.IsEmptyObject(model.AzureRepos):
 		var azureReposConfig azureReposConfigModel
 		diags := model.AzureRepos.As(ctx, &azureReposConfig, basetypes.ObjectAsOptions{})
 		globalDiags.Append(diags...)
@@ -531,7 +533,7 @@ func updateSourceControlConfig(ctx context.Context, client *api.APIClient, model
 	_, httpResponse, err := client.SourceControlAPI.SourceControlConfigPut(context.Background()).SourceControlConfigPutRequest(apiRequest).Execute()
 	if err != nil {
 		globalDiags.AddError("Failed to update Source Control config", err.Error())
-		tflog.Error(ctx, "Error updating Source Control config", utils.AddHttpStatusCode(map[string]interface{}{"error": err.Error()}, httpResponse))
+		tflog.Error(ctx, "Error updating Source Control config", utils.AddHTTPStatusCode(map[string]interface{}{"error": err.Error()}, httpResponse))
 		return
 	}
 }
@@ -562,7 +564,7 @@ func (r *sourceControlResource) Create(ctx context.Context, req resource.CreateR
 }
 
 // Read Source Control config.
-func (r *sourceControlResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
+func (r *sourceControlResource) Read(ctx context.Context, _ resource.ReadRequest, resp *resource.ReadResponse) {
 	response, httpResponse, err := r.client.SourceControlAPI.SourceControlConfigGet(context.Background()).Execute()
 	if err != nil {
 		if httpResponse != nil && httpResponse.StatusCode == 404 {
@@ -574,7 +576,7 @@ func (r *sourceControlResource) Read(ctx context.Context, req resource.ReadReque
 			"Error reading Source Control config",
 			fmt.Sprintf("Could not read Source Control config: %s", err.Error()),
 		)
-		tflog.Error(ctx, "Error reading Source Control config", utils.AddHttpStatusCode(map[string]any{"error": err.Error()}, httpResponse))
+		tflog.Error(ctx, "Error reading Source Control config", utils.AddHTTPStatusCode(map[string]any{"error": err.Error()}, httpResponse))
 		return
 	}
 
@@ -586,7 +588,8 @@ func (r *sourceControlResource) Read(ctx context.Context, req resource.ReadReque
 	state.Bitbucket = types.ObjectNull(bitbucketConfigModel{}.attributeTypes())
 	state.AzureRepos = types.ObjectNull(azureReposConfigModel{}.attributeTypes())
 
-	if response.Data.SourceControlConfigGet200ResponseDataOneOf != nil {
+	switch {
+	case response.Data.SourceControlConfigGet200ResponseDataOneOf != nil:
 		state.Org = types.StringValue(response.Data.SourceControlConfigGet200ResponseDataOneOf.Org)
 		state.Repo = types.StringValue(response.Data.SourceControlConfigGet200ResponseDataOneOf.Repo)
 		state.DefaultBranch = types.StringValue(response.Data.SourceControlConfigGet200ResponseDataOneOf.DefaultBranch)
@@ -620,7 +623,8 @@ func (r *sourceControlResource) Read(ctx context.Context, req resource.ReadReque
 			return
 		}
 		state.GitHub = githubConfigModelObj
-	} else if response.Data.SourceControlConfigGet200ResponseDataOneOf1 != nil {
+
+	case response.Data.SourceControlConfigGet200ResponseDataOneOf1 != nil:
 		state.Org = types.StringValue(response.Data.SourceControlConfigGet200ResponseDataOneOf1.Org)
 		state.Repo = types.StringValue(response.Data.SourceControlConfigGet200ResponseDataOneOf1.Repo)
 		state.DefaultBranch = types.StringValue(response.Data.SourceControlConfigGet200ResponseDataOneOf1.DefaultBranch)
@@ -637,7 +641,8 @@ func (r *sourceControlResource) Read(ctx context.Context, req resource.ReadReque
 			return
 		}
 		state.GitLab = gitlabConfigModelObj
-	} else if response.Data.SourceControlConfigGet200ResponseDataOneOf2 != nil {
+
+	case response.Data.SourceControlConfigGet200ResponseDataOneOf2 != nil:
 		state.Org = types.StringValue(response.Data.SourceControlConfigGet200ResponseDataOneOf2.Org)
 		state.Repo = types.StringValue(response.Data.SourceControlConfigGet200ResponseDataOneOf2.Repo)
 		state.DefaultBranch = types.StringValue(response.Data.SourceControlConfigGet200ResponseDataOneOf2.DefaultBranch)
@@ -657,7 +662,8 @@ func (r *sourceControlResource) Read(ctx context.Context, req resource.ReadReque
 			return
 		}
 		state.AWSCodeCommit = awsCodeCommitConfigModelObj
-	} else if response.Data.SourceControlConfigGet200ResponseDataOneOf3 != nil {
+
+	case response.Data.SourceControlConfigGet200ResponseDataOneOf3 != nil:
 		state.Org = types.StringValue(response.Data.SourceControlConfigGet200ResponseDataOneOf3.Org)
 		state.Repo = types.StringValue(response.Data.SourceControlConfigGet200ResponseDataOneOf3.Repo)
 		state.DefaultBranch = types.StringValue(response.Data.SourceControlConfigGet200ResponseDataOneOf3.DefaultBranch)
@@ -675,7 +681,8 @@ func (r *sourceControlResource) Read(ctx context.Context, req resource.ReadReque
 			return
 		}
 		state.Bitbucket = bitbucketConfigModelObj
-	} else if response.Data.SourceControlConfigGet200ResponseDataOneOf4 != nil {
+
+	case response.Data.SourceControlConfigGet200ResponseDataOneOf4 != nil:
 		state.Org = types.StringValue(response.Data.SourceControlConfigGet200ResponseDataOneOf4.Org)
 		state.Repo = types.StringValue(response.Data.SourceControlConfigGet200ResponseDataOneOf4.Repo)
 		state.DefaultBranch = types.StringValue(response.Data.SourceControlConfigGet200ResponseDataOneOf4.DefaultBranch)
@@ -729,14 +736,14 @@ func (r *sourceControlResource) Update(ctx context.Context, req resource.UpdateR
 }
 
 // Delete Source Control config.
-func (r *sourceControlResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
+func (r *sourceControlResource) Delete(ctx context.Context, _ resource.DeleteRequest, resp *resource.DeleteResponse) {
 	httpResponse, err := r.client.SourceControlAPI.SourceControlConfigDelete(context.Background()).Execute()
 	if err != nil && !(httpResponse != nil && httpResponse.StatusCode == 404) { // It's ok to not find the source control config when deleting.
 		resp.Diagnostics.AddError(
 			"Error Deleting Source Control Config",
 			"Could not Source Control config: "+err.Error(),
 		)
-		tflog.Error(ctx, "Error Deleting Source Control Config", utils.AddHttpStatusCode(map[string]any{"error": err.Error()}, httpResponse))
+		tflog.Error(ctx, "Error Deleting Source Control Config", utils.AddHTTPStatusCode(map[string]any{"error": err.Error()}, httpResponse))
 		return
 	}
 }

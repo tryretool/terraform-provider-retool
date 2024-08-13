@@ -16,11 +16,11 @@ import (
 // providerData is the data structure that is passed to the DataSource and Resource.
 type ProviderData struct {
 	Client            *api.APIClient
-	RootFolderIdCache *map[string]string
+	RootFolderIDCache *map[string]string
 }
 
 // If httpResponse is not nil, add the status code to the properties map.
-func AddHttpStatusCode(props map[string]any, httpResponse *http.Response) map[string]any {
+func AddHTTPStatusCode(props map[string]any, httpResponse *http.Response) map[string]any {
 	if httpResponse != nil {
 		props["httpResponse.status_code"] = httpResponse.StatusCode
 	}
@@ -36,6 +36,7 @@ func Float32PtrToIntString(f *float32) string {
 	return strconv.Itoa(int(rounded))
 }
 
+// Converts a TF list of strings into Go list of strings.
 func GetStringListValue(ctx context.Context, list types.List, diags *diag.Diagnostics) []string {
 	listValue := make([]types.String, 0, len(list.Elements()))
 	d := list.ElementsAs(ctx, &listValue, false)
@@ -52,10 +53,12 @@ func IsEmptyObject(value types.Object) bool {
 	return value.IsNull() || value.IsUnknown()
 }
 
+// Returns true if the map value is null, unknown, or empty.
 func IsEmptyMap(value types.Map) bool {
 	return value.IsNull() || value.IsUnknown() || len(value.Elements()) == 0
 }
 
+// Returns true if the list value is null, unknown, or empty.
 func IsEmptyList(value types.List) bool {
 	return value.IsNull() || value.IsUnknown() || len(value.Elements()) == 0
 }

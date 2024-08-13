@@ -20,8 +20,8 @@ const (
 
 	// RecordingsHost is used for testing with our recorded http interactions.
 	// The idea is that no matter which domain you're using to record the requests, the playback will always use this domain.
-	RecordingsHost   = "recorded.retool.dev"
-	RecordingsScheme = "https"
+	recordingsHost   = "recorded.retool.dev"
+	recordingsScheme = "https"
 )
 
 // NewHTTPRecorder creates a new instance of our http recorder used in tests.
@@ -99,6 +99,6 @@ func redactHeaders(i *cassette.Interaction) {
 }
 
 func redactHostAndScheme(i *cassette.Interaction, host string, scheme string) {
-	i.Request.Host = strings.ReplaceAll(i.Request.Host, host, RecordingsHost)
-	i.Request.URL = strings.ReplaceAll(i.Request.URL, scheme+"://"+host, RecordingsScheme+"://"+RecordingsHost)
+	i.Request.Host = strings.ReplaceAll(i.Request.Host, host, recordingsHost)
+	i.Request.URL = strings.ReplaceAll(i.Request.URL, scheme+"://"+host, recordingsScheme+"://"+recordingsHost)
 }

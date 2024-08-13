@@ -36,7 +36,7 @@ var (
 )
 
 type spaceResourceModel struct {
-	Id            types.String `tfsdk:"id"`
+	ID            types.String `tfsdk:"id"`
 	Name          types.String `tfsdk:"name"`
 	Domain        types.String `tfsdk:"domain"`
 	CreateOptions types.Object `tfsdk:"create_options"`
@@ -49,15 +49,16 @@ type spaceCreateOptionsModel struct {
 	CreateAdminUser               types.Bool `tfsdk:"create_admin_user"`
 }
 
+// Create new Space resource.
 func NewResource() resource.Resource {
 	return &spaceResource{}
 }
 
-func (r *spaceResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (r *spaceResource) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_space"
 }
 
-func (r *spaceResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (r *spaceResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	emptyList, diags := types.ListValue(types.StringType, []attr.Value{})
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -152,7 +153,7 @@ func (r *spaceResource) Schema(ctx context.Context, req resource.SchemaRequest, 
 	}
 }
 
-func (r *spaceResource) Configure(ctx context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
+func (r *spaceResource) Configure(_ context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
 	}
@@ -203,17 +204,17 @@ func (r *spaceResource) Create(ctx context.Context, req resource.CreateRequest, 
 			"Error creating Space",
 			"Could not create Space, unexpected error: "+err.Error(),
 		)
-		tflog.Error(ctx, "Error creating Space", utils.AddHttpStatusCode(map[string]interface{}{"error": err.Error()}, httpResponse))
+		tflog.Error(ctx, "Error creating Space", utils.AddHTTPStatusCode(map[string]interface{}{"error": err.Error()}, httpResponse))
 		return
 	}
 
-	plan.Id = types.StringValue(response.Data.Id)
+	plan.ID = types.StringValue(response.Data.Id)
 	diags = resp.State.Set(ctx, &plan)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
-	tflog.Info(ctx, "Space created", map[string]interface{}{"id": plan.Id})
+	tflog.Info(ctx, "Space created", map[string]interface{}{"id": plan.ID})
 }
 
 func (r *spaceResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
@@ -224,12 +225,12 @@ func (r *spaceResource) Read(ctx context.Context, req resource.ReadRequest, resp
 		return
 	}
 
-	spaceId := state.Id.ValueString()
-	tflog.Info(ctx, "Reading Space", map[string]interface{}{"id": spaceId})
-	response, httpResponse, err := r.client.SpacesAPI.SpacesSpaceIdGet(ctx, spaceId).Execute()
+	spaceID := state.ID.ValueString()
+	tflog.Info(ctx, "Reading Space", map[string]interface{}{"id": spaceID})
+	response, httpResponse, err := r.client.SpacesAPI.SpacesSpaceIdGet(ctx, spaceID).Execute()
 	if err != nil {
 		if httpResponse != nil && httpResponse.StatusCode == 404 {
-			tflog.Info(ctx, "Space not found", map[string]any{"id": spaceId})
+			tflog.Info(ctx, "Space not found", map[string]any{"id": spaceID})
 			resp.State.RemoveResource(ctx)
 			return
 		}
@@ -238,7 +239,7 @@ func (r *spaceResource) Read(ctx context.Context, req resource.ReadRequest, resp
 			"Error reading Space",
 			"Could not read Space, unexpected error: "+err.Error(),
 		)
-		tflog.Error(ctx, "Error reading Space", utils.AddHttpStatusCode(map[string]interface{}{"error": err.Error(), "id": spaceId}, httpResponse))
+		tflog.Error(ctx, "Error reading Space", utils.AddHTTPStatusCode(map[string]interface{}{"error": err.Error(), "id": spaceID}, httpResponse))
 		return
 	}
 	state.Name = types.StringValue(response.Data.Name)
@@ -248,7 +249,7 @@ func (r *spaceResource) Read(ctx context.Context, req resource.ReadRequest, resp
 	if resp.Diagnostics.HasError() {
 		return
 	}
-	tflog.Info(ctx, "Space read", map[string]interface{}{"id": spaceId})
+	tflog.Info(ctx, "Space read", map[string]interface{}{"id": spaceID})
 }
 
 func (r *spaceResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
@@ -266,20 +267,20 @@ func (r *spaceResource) Update(ctx context.Context, req resource.UpdateRequest, 
 		return
 	}
 
-	spaceId := state.Id.ValueString()
-	tflog.Info(ctx, "Updating Space", map[string]interface{}{"id": spaceId, "name": plan.Name.ValueString(), "domain": plan.Domain.ValueString()})
+	spaceID := state.ID.ValueString()
+	tflog.Info(ctx, "Updating Space", map[string]interface{}{"id": spaceID, "name": plan.Name.ValueString(), "domain": plan.Domain.ValueString()})
 
 	request := api.SpacesSpaceIdPutRequest{
 		Name:   plan.Name.ValueString(),
 		Domain: plan.Domain.ValueString(),
 	}
-	_, httpResponse, err := r.client.SpacesAPI.SpacesSpaceIdPut(ctx, spaceId).SpacesSpaceIdPutRequest(request).Execute()
+	_, httpResponse, err := r.client.SpacesAPI.SpacesSpaceIdPut(ctx, spaceID).SpacesSpaceIdPutRequest(request).Execute()
 	if err != nil {
 		resp.Diagnostics.AddError(
 			"Error updating Space",
-			"Could not update Space with id "+spaceId+", unexpected error: "+err.Error(),
+			"Could not update Space with id "+spaceID+", unexpected error: "+err.Error(),
 		)
-		tflog.Error(ctx, "Error updating Space", utils.AddHttpStatusCode(map[string]interface{}{"error": err.Error(), "id": spaceId}, httpResponse))
+		tflog.Error(ctx, "Error updating Space", utils.AddHTTPStatusCode(map[string]interface{}{"error": err.Error(), "id": spaceID}, httpResponse))
 		return
 	}
 
@@ -288,7 +289,7 @@ func (r *spaceResource) Update(ctx context.Context, req resource.UpdateRequest, 
 	if resp.Diagnostics.HasError() {
 		return
 	}
-	tflog.Info(ctx, "Space updated", map[string]interface{}{"id": spaceId})
+	tflog.Info(ctx, "Space updated", map[string]interface{}{"id": spaceID})
 }
 
 func (r *spaceResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
@@ -299,15 +300,15 @@ func (r *spaceResource) Delete(ctx context.Context, req resource.DeleteRequest, 
 		return
 	}
 
-	spaceId := state.Id.ValueString()
-	tflog.Info(ctx, "Deleting Space", map[string]interface{}{"id": spaceId})
-	httpResponse, err := r.client.SpacesAPI.SpacesSpaceIdDelete(ctx, spaceId).Execute()
+	spaceID := state.ID.ValueString()
+	tflog.Info(ctx, "Deleting Space", map[string]interface{}{"id": spaceID})
+	httpResponse, err := r.client.SpacesAPI.SpacesSpaceIdDelete(ctx, spaceID).Execute()
 	if err != nil && !(httpResponse != nil && httpResponse.StatusCode == 404) {
 		resp.Diagnostics.AddError(
 			"Error deleting Space",
-			"Could not delete Space with id "+spaceId+", unexpected error: "+err.Error(),
+			"Could not delete Space with id "+spaceID+", unexpected error: "+err.Error(),
 		)
-		tflog.Error(ctx, "Error deleting Space", utils.AddHttpStatusCode(map[string]interface{}{"error": err.Error(), "id": spaceId}, httpResponse))
+		tflog.Error(ctx, "Error deleting Space", utils.AddHTTPStatusCode(map[string]interface{}{"error": err.Error(), "id": spaceID}, httpResponse))
 		return
 	}
 }

@@ -33,7 +33,7 @@ var (
 	_ provider.Provider = &retoolProvider{}
 )
 
-const MINIMUM_RETOOL_VERSION = "v3.75.0"
+const minimumRetoolVersion = "v3.75.0"
 
 // New is a helper function to simplify provider server and testing implementation.
 func New(version string) func() provider.Provider {
@@ -44,7 +44,8 @@ func New(version string) func() provider.Provider {
 	}
 }
 
-func NewWithHttpClient(version string, httpClient *http.Client) func() provider.Provider {
+// Create a new provider with a custom HTTP client.
+func NewWithHTTPClient(version string, httpClient *http.Client) func() provider.Provider {
 	return func() provider.Provider {
 		return &retoolProvider{
 			version:    version,
@@ -95,7 +96,7 @@ func (p *retoolProvider) Schema(_ context.Context, _ provider.SchemaRequest, res
 	}
 }
 
-type HealthCheckResponse struct {
+type healthCheckResponse struct {
 	Version string `json:"version"`
 }
 
@@ -106,7 +107,12 @@ func checkMinimalVersion(ctx context.Context, host string, scheme string) bool {
 		tflog.Error(ctx, "Failed to check Retool version", map[string]any{"error": err})
 		return false
 	}
-	defer httpResponse.Body.Close()
+	defer func() {
+		err := httpResponse.Body.Close()
+		if err != nil {
+			tflog.Error(ctx, "Failed to close response body", map[string]any{"error": err})
+		}
+	}()
 
 	// Read the response body.
 	body, err := io.ReadAll(httpResponse.Body)
@@ -116,7 +122,7 @@ func checkMinimalVersion(ctx context.Context, host string, scheme string) bool {
 	}
 
 	// Parse the JSON response.
-	var healthCheck HealthCheckResponse
+	var healthCheck healthCheckResponse
 	err = json.Unmarshal(body, &healthCheck)
 	if err != nil {
 		tflog.Error(ctx, "Failed to parse JSON response from healthcheck", map[string]any{"error": err, "body": string(body)})
@@ -124,7 +130,7 @@ func checkMinimalVersion(ctx context.Context, host string, scheme string) bool {
 	}
 	tflog.Info(ctx, "Retool version", map[string]any{"version": healthCheck.Version})
 
-	return semver.Compare("v"+healthCheck.Version, MINIMUM_RETOOL_VERSION) >= 0
+	return semver.Compare("v"+healthCheck.Version, minimumRetoolVersion) >= 0
 }
 
 // Configure prepares a Retool API client for data sources and resources.
@@ -216,7 +222,7 @@ func (p *retoolProvider) Configure(ctx context.Context, req provider.ConfigureRe
 	// We only check the minimum version if there's no HTTP client override
 	// This is a hacky way to avoid doing the check when running acceptance tests in "record" or "replay" mode.
 	if p.httpClient == nil && !checkMinimalVersion(ctx, host, scheme) {
-		resp.Diagnostics.AddError("Incompatible Retool version", "The Retool instance version is not supported. Minimum version required is "+MINIMUM_RETOOL_VERSION)
+		resp.Diagnostics.AddError("Incompatible Retool version", "The Retool instance version is not supported. Minimum version required is "+minimumRetoolVersion)
 		return
 	}
 
@@ -238,10 +244,10 @@ func (p *retoolProvider) Configure(ctx context.Context, req provider.ConfigureRe
 
 	// Make the Retool client available during DataSource and Resource type Configure methods.
 	// Also, init the cache for the root folder ids.
-	rootFolderIdCache := make(map[string]string)
+	rootFolderIDCache := make(map[string]string)
 	providerData := utils.ProviderData{
 		Client:            client,
-		RootFolderIdCache: &rootFolderIdCache,
+		RootFolderIDCache: &rootFolderIDCache,
 	}
 	resp.DataSourceData = &providerData
 	resp.ResourceData = &providerData
