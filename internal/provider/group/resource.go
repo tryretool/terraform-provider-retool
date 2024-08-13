@@ -1,3 +1,4 @@
+// Package group provides the implementation of the Group resource.
 package group
 
 import (
@@ -15,23 +16,24 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
+
 	"github.com/tryretool/terraform-provider-retool/internal/provider/utils"
 	"github.com/tryretool/terraform-provider-retool/internal/sdk/api"
 )
 
-// Ensure GroupResource implements the tfsdk.Resource interface
+// Ensure GroupResource implements the tfsdk.Resource interface.
 var (
 	_ resource.Resource                = &groupResource{}
 	_ resource.ResourceWithConfigure   = &groupResource{}
 	_ resource.ResourceWithImportState = &groupResource{}
 )
 
-// groupResource schema structure
+// groupResource schema structure.
 type groupResource struct {
 	client *api.APIClient
 }
 
-// groupResourceModel defines the data model for the Group resource
+// groupResourceModel defines the data model for the Group resource.
 type groupResourceModel struct {
 	Id                          types.String `tfsdk:"id"`
 	LegacyId                    types.String `tfsdk:"legacy_id"`
@@ -70,12 +72,12 @@ func (r *groupResource) Configure(_ context.Context, req resource.ConfigureReque
 	r.client = providerData.Client
 }
 
-// Metadata associated with the Group resource
+// Metadata associated with the Group resource.
 func (r *groupResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_group"
 }
 
-// Schema returns the schema for the Group resource
+// Schema returns the schema for the Group resource.
 func (r *groupResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{
@@ -173,7 +175,7 @@ func (r *groupResource) Schema(ctx context.Context, req resource.SchemaRequest, 
 
 // Create creates the group resource and sets the initial Terraform state.
 func (r *groupResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	// Retrieve values from plan
+	// Retrieve values from plan.
 	var plan groupResourceModel
 	diags := req.Plan.Get(ctx, &plan)
 	resp.Diagnostics.Append(diags...)
@@ -181,7 +183,7 @@ func (r *groupResource) Create(ctx context.Context, req resource.CreateRequest, 
 		return
 	}
 
-	// Generate API request body from plan
+	// Generate API request body from plan.
 	var group api.GroupsPostRequest
 	group.Name = plan.Name.ValueString()
 	group.UniversalAppAccess = plan.UniversalAppAccess.ValueStringPointer()
@@ -199,7 +201,7 @@ func (r *groupResource) Create(ctx context.Context, req resource.CreateRequest, 
 
 	tflog.Info(ctx, "Creating a group", map[string]interface{}{"name": plan.Name.ValueString()})
 
-	// Create new group
+	// Create new group.
 	response, httpResponse, err := r.client.GroupsAPI.GroupsPost(ctx).GroupsPostRequest(group).Execute()
 	if err != nil {
 		resp.Diagnostics.AddError(
@@ -219,11 +221,11 @@ func (r *groupResource) Create(ctx context.Context, req resource.CreateRequest, 
 		return
 	}
 
-	// Map response body to schema and populate Computed attribute values
+	// Map response body to schema and populate Computed attribute values.
 	plan.Id = types.StringValue(utils.Float32PtrToIntString(response.Data.Id.Get()))
 	plan.LegacyId = types.StringValue(utils.Float32PtrToIntString(response.Data.LegacyId.Get()))
 
-	// Set state to fully populated data
+	// Set state to fully populated data.
 	diags = resp.State.Set(ctx, plan)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -234,7 +236,7 @@ func (r *groupResource) Create(ctx context.Context, req resource.CreateRequest, 
 	tflog.Info(ctx, "Group created", map[string]interface{}{"id": response.Data.Id.Get(), "legacyId": response.Data.LegacyId.Get()})
 }
 
-// Read a Group resource
+// Read a Group resource.
 func (r *groupResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 	var state groupResourceModel
 	diags := req.State.Get(ctx, &state)
@@ -243,7 +245,7 @@ func (r *groupResource) Read(ctx context.Context, req resource.ReadRequest, resp
 		return
 	}
 
-	// Use the ID from the state to read the group
+	// Use the ID from the state to read the group.
 	groupID := state.Id.ValueString()
 	group, httpResponse, err := r.client.GroupsAPI.GroupsGroupIdGet(ctx, groupID).Execute()
 	if err != nil {
@@ -260,7 +262,7 @@ func (r *groupResource) Read(ctx context.Context, req resource.ReadRequest, resp
 		return
 	}
 
-	// Map the API response to the Terraform state
+	// Map the API response to the Terraform state.
 	state.Id = types.StringValue(utils.Float32PtrToIntString(group.Data.Id.Get()))
 	state.LegacyId = types.StringValue(utils.Float32PtrToIntString(group.Data.LegacyId.Get()))
 	state.Name = types.StringValue(group.Data.Name)
@@ -282,7 +284,7 @@ func (r *groupResource) Read(ctx context.Context, req resource.ReadRequest, resp
 	}
 }
 
-// Update a Group resource
+// Update a Group resource.
 func (r *groupResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 	var plan groupResourceModel
 	diags := req.Plan.Get(ctx, &plan)
@@ -310,7 +312,7 @@ func (r *groupResource) Update(ctx context.Context, req resource.UpdateRequest, 
 		return
 	}
 
-	// Prepare the update payload
+	// Prepare the update payload.
 	updatePayload := api.GroupsGroupIdPutRequest{
 		Name:                        plan.Name.ValueStringPointer(),
 		UniversalAppAccess:          plan.UniversalAppAccess.ValueStringPointer(),
@@ -327,7 +329,7 @@ func (r *groupResource) Update(ctx context.Context, req resource.UpdateRequest, 
 	}
 	updatePayload.LandingPageAppId.Set(plan.LandingPageAppId.ValueStringPointer())
 
-	// Perform the update operation
+	// Perform the update operation.
 	_, httpResponse, err = r.client.GroupsAPI.GroupsGroupIdPut(ctx, groupID).GroupsGroupIdPutRequest(updatePayload).Execute()
 	if err != nil {
 		resp.Diagnostics.AddError(
@@ -356,7 +358,7 @@ func convertGroupMembersToPutRequestType(responseMembers []api.GroupsGroupIdGet2
 	return members
 }
 
-// Delete a Group resource
+// Delete a Group resource.
 func (r *groupResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 	var state groupResourceModel
 	diags := req.State.Get(ctx, &state)
@@ -367,7 +369,7 @@ func (r *groupResource) Delete(ctx context.Context, req resource.DeleteRequest, 
 
 	groupId := state.Id.ValueString()
 	httpResponse, err := r.client.GroupsAPI.GroupsGroupIdDelete(ctx, groupId).Execute()
-	if err != nil && !(httpResponse != nil && httpResponse.StatusCode == 404) { // it's ok to not find the group when deleting
+	if err != nil && !(httpResponse != nil && httpResponse.StatusCode == 404) { // It's ok to not find the group when deleting.
 		resp.Diagnostics.AddError(
 			"Error Deleting Group",
 			"Could not delete group with ID "+groupId+": "+err.Error(),
@@ -377,8 +379,8 @@ func (r *groupResource) Delete(ctx context.Context, req resource.DeleteRequest, 
 	}
 }
 
-// ImportState allows importing of a Group resource
+// ImportState allows importing of a Group resource.
 func (r *groupResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
-	// Retrieve import ID and save to id attribute
+	// Retrieve import ID and save to id attribute.
 	resource.ImportStatePassthroughID(ctx, path.Root("id"), req, resp)
 }

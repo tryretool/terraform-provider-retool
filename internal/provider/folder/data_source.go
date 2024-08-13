@@ -1,3 +1,4 @@
+// Package folder provides implementation of the Folder resource and Folders data source.
 package folder
 
 import (
@@ -8,6 +9,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
+
 	"github.com/tryretool/terraform-provider-retool/internal/provider/utils"
 	"github.com/tryretool/terraform-provider-retool/internal/sdk/api"
 )
@@ -133,7 +135,7 @@ func (d *foldersDataSource) Read(ctx context.Context, req datasource.ReadRequest
 		}
 	}
 
-	// Set state
+	// Set state.
 	diags := resp.State.Set(ctx, &state)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {

@@ -7,6 +7,7 @@ import (
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
+
 	"github.com/tryretool/terraform-provider-retool/internal/acctest"
 )
 
@@ -174,7 +175,7 @@ func TestMain(m *testing.M) {
 func TestAccSSO(t *testing.T) {
 	acctest.Test(t, resource.TestCase{
 		Steps: []resource.TestStep{
-			// Read and Create
+			// Read and Create.
 			{
 				Config: testGoogleConfig,
 				Check: resource.ComposeTestCheckFunc(
@@ -294,7 +295,7 @@ func TestAccSSO(t *testing.T) {
 					resource.TestCheckResourceAttrSet("retool_sso.sso", "saml.ldap_config.encrypted_server_certificate"),
 				),
 			},
-			// Update and Read
+			// Update and Read.
 			{
 				Config: testUpdatedGoogleSamlConfig,
 				Check: resource.ComposeTestCheckFunc(

@@ -8,6 +8,7 @@ import (
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
+
 	"github.com/tryretool/terraform-provider-retool/internal/acctest"
 	"github.com/tryretool/terraform-provider-retool/internal/provider/utils"
 )
@@ -25,7 +26,7 @@ const testGroupConfig = `
 		usage_analytics_access = true
 		account_details_access = true
 	}
-		` // not testing landing_page_app_id because it has to match an existing app id, which is hard to achieve when hitting random Retool instance
+		` // Not testing landing_page_app_id because it has to match an existing app id, which is hard to achieve when hitting random Retool instance.
 
 const testUpdatedGroupConfig = `
 	resource "retool_group" "test_group" {
@@ -55,7 +56,7 @@ func TestMain(m *testing.M) {
 func TestAccGroup(t *testing.T) {
 	acctest.Test(t, resource.TestCase{
 		Steps: []resource.TestStep{
-			// Read and Create
+			// Read and Create.
 			{
 				Config: testGroupConfig,
 				Check: resource.ComposeTestCheckFunc(
@@ -74,13 +75,13 @@ func TestAccGroup(t *testing.T) {
 					resource.TestCheckNoResourceAttr("retool_group.test_group", "landing_page_app_id"),
 				),
 			},
-			// Import state
+			// Import state.
 			{
 				ResourceName:      "retool_group.test_group",
 				ImportState:       true,
 				ImportStateVerify: true,
 			},
-			// Update and Read
+			// Update and Read.
 			{
 				Config: testUpdatedGroupConfig,
 				Check: resource.ComposeTestCheckFunc(
@@ -99,7 +100,7 @@ func TestAccGroup(t *testing.T) {
 					resource.TestCheckNoResourceAttr("retool_group.test_group", "landing_page_app_id"),
 				),
 			},
-			// Check default values
+			// Check default values.
 			{
 				Config: testDefaultValuesConfig,
 				Check: resource.ComposeTestCheckFunc(

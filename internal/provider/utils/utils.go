@@ -1,3 +1,4 @@
+// Package utils provides utility functions for the provider and resources.
 package utils
 
 import (
@@ -8,10 +9,11 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/types"
+
 	"github.com/tryretool/terraform-provider-retool/internal/sdk/api"
 )
 
-// providerData is the data structure that is passed to the DataSource and Resource
+// providerData is the data structure that is passed to the DataSource and Resource.
 type ProviderData struct {
 	Client            *api.APIClient
 	RootFolderIdCache *map[string]string
@@ -28,7 +30,7 @@ func AddHttpStatusCode(props map[string]any, httpResponse *http.Response) map[st
 // Some of the ids are returned as numbers, and our SDK client represents them as float32, but we need them as strings.
 func Float32PtrToIntString(f *float32) string {
 	if f == nil {
-		return "" // or some default value
+		return "" // Or some default value.
 	}
 	rounded := math.Round(float64(*f))
 	return strconv.Itoa(int(rounded))

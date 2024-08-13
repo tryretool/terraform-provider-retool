@@ -1,3 +1,4 @@
+// Package acctest provides a harness for our acceptance tests and test sweepers.
 package acctest
 
 import (

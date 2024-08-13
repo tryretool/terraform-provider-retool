@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
+
 	"github.com/tryretool/terraform-provider-retool/internal/acctest"
 )
 
@@ -81,7 +82,7 @@ func TestMain(m *testing.M) {
 func TestAccPermissions(t *testing.T) {
 	acctest.Test(t, resource.TestCase{
 		Steps: []resource.TestStep{
-			// Read and Create
+			// Read and Create.
 			{
 				Config: testPermissionsConfig,
 				Check: resource.ComposeAggregateTestCheckFunc(
@@ -93,7 +94,7 @@ func TestAccPermissions(t *testing.T) {
 					resource.TestCheckResourceAttr("retool_permissions.test_permissions", "permissions.0.access_level", "use"),
 				),
 			},
-			// Update and Read
+			// Update and Read.
 			{
 				Config: testUpdatedPermissionsConfig,
 				Check: resource.ComposeAggregateTestCheckFunc(
@@ -107,5 +108,4 @@ func TestAccPermissions(t *testing.T) {
 			},
 		},
 	})
-
 }

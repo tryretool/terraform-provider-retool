@@ -1,4 +1,4 @@
-package source_control
+package sourcecontrol
 
 import (
 	"context"
@@ -6,6 +6,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+
 	"github.com/tryretool/terraform-provider-retool/internal/sdk/api"
 )
 

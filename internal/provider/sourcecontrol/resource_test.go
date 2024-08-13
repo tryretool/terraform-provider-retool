@@ -1,4 +1,4 @@
-package source_control_test
+package sourcecontrol_test
 
 import (
 	"context"
@@ -7,6 +7,7 @@ import (
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
+
 	"github.com/tryretool/terraform-provider-retool/internal/acctest"
 )
 
@@ -127,7 +128,7 @@ func TestMain(m *testing.M) {
 func TestAccSourceControl(t *testing.T) {
 	acctest.Test(t, resource.TestCase{
 		Steps: []resource.TestStep{
-			// Read and Create
+			// Read and Create.
 			{
 				Config: testGithubAppConfig,
 				Check: resource.ComposeTestCheckFunc(
@@ -141,7 +142,7 @@ func TestAccSourceControl(t *testing.T) {
 					resource.TestCheckResourceAttr("retool_source_control.scm", "github.url", "https://github.com"),
 					resource.TestCheckResourceAttr("retool_source_control.scm", "github.enterprise_api_url", "https://github.mycompany.com/api/v3"),
 				),
-				ExpectNonEmptyPlan: true, // because it'd want to refresh secret strings
+				ExpectNonEmptyPlan: true, // Because it'd want to refresh secret strings.
 			},
 			{
 				Config: testGithubPersonalConfig,
@@ -154,7 +155,7 @@ func TestAccSourceControl(t *testing.T) {
 					resource.TestCheckResourceAttr("retool_source_control.scm", "github.url", "https://github.com"),
 					resource.TestCheckResourceAttr("retool_source_control.scm", "github.enterprise_api_url", "https://github.mycompany.com/api/v3"),
 				),
-				ExpectNonEmptyPlan: true, // because it'd want to refresh secret strings
+				ExpectNonEmptyPlan: true, // Because it'd want to refresh secret strings.
 			},
 			{
 				Config: testGitLabConfig,
@@ -167,7 +168,7 @@ func TestAccSourceControl(t *testing.T) {
 					resource.TestCheckResourceAttr("retool_source_control.scm", "gitlab.project_access_token", "project-access-token"),
 					resource.TestCheckResourceAttr("retool_source_control.scm", "gitlab.project_id", "12345"),
 				),
-				ExpectNonEmptyPlan: true, // because it'd want to refresh secret strings
+				ExpectNonEmptyPlan: true, // Because it'd want to refresh secret strings.
 			},
 			{
 				Config: testAWSCodeCommitConfig,
@@ -183,7 +184,7 @@ func TestAccSourceControl(t *testing.T) {
 					resource.TestCheckResourceAttr("retool_source_control.scm", "aws_codecommit.https_username", "https-username"),
 					resource.TestCheckResourceAttr("retool_source_control.scm", "aws_codecommit.https_password", "https-password"),
 				),
-				ExpectNonEmptyPlan: true, // because it'd want to refresh secret strings
+				ExpectNonEmptyPlan: true, // Because it'd want to refresh secret strings.
 			},
 			{
 				Config: testBitbucketConfig,
@@ -197,7 +198,7 @@ func TestAccSourceControl(t *testing.T) {
 					resource.TestCheckResourceAttr("retool_source_control.scm", "bitbucket.url", "https://bitbucket.org"),
 					resource.TestCheckResourceAttr("retool_source_control.scm", "bitbucket.enterprise_api_url", "https://bitbucket.mycompany.com/api/v3"),
 				),
-				ExpectNonEmptyPlan: true, // because it'd want to refresh secret strings
+				ExpectNonEmptyPlan: true, // Because it'd want to refresh secret strings.
 			},
 			{
 				Config: testAzureReposConfig,
@@ -212,9 +213,9 @@ func TestAccSourceControl(t *testing.T) {
 					resource.TestCheckResourceAttr("retool_source_control.scm", "azure_repos.personal_access_token", "personal-access-token"),
 					resource.TestCheckResourceAttr("retool_source_control.scm", "azure_repos.use_basic_auth", "true"),
 				),
-				ExpectNonEmptyPlan: true, // because it'd want to refresh secret strings
+				ExpectNonEmptyPlan: true, // Because it'd want to refresh secret strings.
 			},
-			// Update
+			// Update.
 			{
 				Config: testAzureReposUpdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
@@ -228,7 +229,7 @@ func TestAccSourceControl(t *testing.T) {
 					resource.TestCheckResourceAttr("retool_source_control.scm", "azure_repos.personal_access_token", "personal-access-token-updated"),
 					resource.TestCheckResourceAttr("retool_source_control.scm", "azure_repos.use_basic_auth", "false"),
 				),
-				ExpectNonEmptyPlan: true, // because it'd want to refresh secret strings
+				ExpectNonEmptyPlan: true, // Because it'd want to refresh secret strings.
 			},
 		},
 	})

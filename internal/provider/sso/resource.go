@@ -1,3 +1,4 @@
+// Package sso provides implementation of the SSO resource.
 package sso
 
 import (
@@ -17,17 +18,18 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
+
 	"github.com/tryretool/terraform-provider-retool/internal/provider/utils"
 	"github.com/tryretool/terraform-provider-retool/internal/sdk/api"
 )
 
-// Ensure SSOResource implements the tfsdk.Resource interface
+// Ensure SSOResource implements the tfsdk.Resource interface.
 var (
 	_ resource.Resource              = &ssoResource{}
 	_ resource.ResourceWithConfigure = &ssoResource{}
 )
 
-// ssoResource schema structure
+// ssoResource schema structure.
 type ssoResource struct {
 	client *api.APIClient
 }
@@ -167,12 +169,12 @@ func (r *ssoResource) Configure(_ context.Context, req resource.ConfigureRequest
 	r.client = providerData.Client
 }
 
-// Metadata associated with the SSO resource
+// Metadata associated with the SSO resource.
 func (r *ssoResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_sso"
 }
 
-// Schema returns the schema for the SSO resource
+// Schema returns the schema for the SSO resource.
 func (r *ssoResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{
@@ -396,7 +398,7 @@ func (r *ssoResource) Schema(ctx context.Context, req resource.SchemaRequest, re
 	}
 }
 
-// Custom validation implementation to prevent common errors in the SSO config
+// Custom validation implementation to prevent common errors in the SSO config.
 func (r *ssoResource) ValidateConfig(ctx context.Context, req resource.ValidateConfigRequest, resp *resource.ValidateConfigResponse) {
 	var model ssoResourceModel
 	diags := req.Config.Get(ctx, &model)
@@ -405,20 +407,20 @@ func (r *ssoResource) ValidateConfig(ctx context.Context, req resource.ValidateC
 		return
 	}
 
-	// Either google, oidc, or saml must be configured
+	// Either google, oidc, or saml must be configured.
 	if utils.IsEmptyObject(model.Google) && utils.IsEmptyObject(model.OIDC) && utils.IsEmptyObject(model.SAML) {
 		resp.Diagnostics.AddError("sso_config_validation", "Either google, oidc, or saml must be configured")
 		return
 	}
 
-	// You can't configure both SAML and OIDC at the same time
+	// You can't configure both SAML and OIDC at the same time.
 	if !utils.IsEmptyObject(model.OIDC) && !utils.IsEmptyObject(model.SAML) {
 		resp.Diagnostics.AddError("sso_config_validation", "You can't configure both SAML and OIDC at the same time")
 	}
 }
 
 // Converts a saml/ldap role mapping from a map to a string
-// The encoding is "multivalue", so { "key1": ["value1", "value2"], "key2": ["value3"] } becomes "key1->value1,key1->value2,key2->value3"
+// The encoding is "multivalue", so { "key1": ["value1", "value2"], "key2": ["value3"] } becomes "key1->value1,key1->value2,key2->value3".
 func getLdapRolesMapping(ctx context.Context, samlConfig samlConfigModel, diags *diag.Diagnostics) *string {
 	if utils.IsEmptyMap(samlConfig.RolesMapping) {
 		return nil
@@ -430,7 +432,7 @@ func getLdapRolesMapping(ctx context.Context, samlConfig samlConfigModel, diags 
 	if diags.HasError() {
 		return nil
 	}
-	// Iterate over elements, convert each value to a list of strings, and add to the tokens array
+	// Iterate over elements, convert each value to a list of strings, and add to the tokens array.
 	roleMapping := make([]string, 0, len(elements))
 	for key, value := range elements {
 		for _, v := range utils.GetStringListValue(ctx, value, diags) {
@@ -445,7 +447,7 @@ func getLdapRolesMapping(ctx context.Context, samlConfig samlConfigModel, diags 
 }
 
 // Converts OIDC role mapping from a map to a string
-// { "key1": "value1", "key2: value2"} is converted to "key1->value1,key2->value2"
+// { "key1": "value1", "key2: value2"} is converted to "key1->value1,key2->value2".
 func getOidcRolesMapping(ctx context.Context, oidcConfig oidcConfigModel, diags *diag.Diagnostics) *string {
 	if utils.IsEmptyMap(oidcConfig.RolesMapping) {
 		return nil
@@ -466,7 +468,7 @@ func getOidcRolesMapping(ctx context.Context, oidcConfig oidcConfigModel, diags 
 	return &result
 }
 
-// Converts RestrictedDomains list attribute to a comma-separated string
+// Converts RestrictedDomains list attribute to a comma-separated string.
 func getRestrictedDomains(ctx context.Context, restrictedDomains types.List, diags *diag.Diagnostics) *string {
 	if utils.IsEmptyList(restrictedDomains) {
 		return nil
@@ -485,9 +487,9 @@ type encryptedSecrets struct {
 }
 
 // Helper method that prepares and makes the API POST request to update the SSO config
-// Returns a struct containing the encrypted secrets - these need to be stored in the state
+// Returns a struct containing the encrypted secrets - these need to be stored in the state.
 func (r *ssoResource) updateSSOConfig(ctx context.Context, plan ssoResourceModel, globalDiags *diag.Diagnostics) *encryptedSecrets {
-	// Generate API request body from plan
+	// Generate API request body from plan.
 	var apiRequest api.SsoConfigPostRequest
 
 	// Request object is a union of 5 structs - one for each SSO type
@@ -497,7 +499,7 @@ func (r *ssoResource) updateSSOConfig(ctx context.Context, plan ssoResourceModel
 		if !utils.IsEmptyObject(plan.SAML) {
 			tflog.Info(ctx, "Google & SAML SSO settings detected")
 			// SSO type is "google & saml"
-			// Get google and saml configs
+			// Get google and saml configs.
 			var googleConfig googleConfigModel
 			diags := plan.Google.As(ctx, &googleConfig, basetypes.ObjectAsOptions{})
 			globalDiags.Append(diags...)
@@ -526,7 +528,7 @@ func (r *ssoResource) updateSSOConfig(ctx context.Context, plan ssoResourceModel
 				TriggerLoginAutomatically: samlConfig.TriggerLoginAutomatically.ValueBool(),
 				RestrictedDomain:          getRestrictedDomains(ctx, samlConfig.RestrictedDomains, globalDiags),
 			}
-			// Add ldap config if present
+			// Add ldap config if present.
 			if !utils.IsEmptyObject(samlConfig.LDAPConfig) {
 				var ldapConfig ldapConfigModel
 				diags = samlConfig.LDAPConfig.As(ctx, &ldapConfig, basetypes.ObjectAsOptions{})
@@ -546,7 +548,7 @@ func (r *ssoResource) updateSSOConfig(ctx context.Context, plan ssoResourceModel
 			apiRequest.Data.SsoConfigPostRequestDataOneOf4 = &ssoConfig
 		} else if !utils.IsEmptyObject(plan.OIDC) {
 			// SSO type is "google & oidc"
-			// Get google and oidc configs
+			// Get google and oidc configs.
 			var googleConfig googleConfigModel
 			diags := plan.Google.As(ctx, &googleConfig, basetypes.ObjectAsOptions{})
 			globalDiags.Append(diags...)
@@ -585,7 +587,7 @@ func (r *ssoResource) updateSSOConfig(ctx context.Context, plan ssoResourceModel
 			}
 			apiRequest.Data.SsoConfigPostRequestDataOneOf2 = &ssoConfig
 		} else {
-			// SSO type is "google"
+			// SSO type is "google".
 			var googleConfig googleConfigModel
 			diags := plan.Google.As(ctx, &googleConfig, basetypes.ObjectAsOptions{})
 			globalDiags.Append(diags...)
@@ -604,7 +606,7 @@ func (r *ssoResource) updateSSOConfig(ctx context.Context, plan ssoResourceModel
 			apiRequest.Data.SsoConfigPostRequestDataOneOf = &ssoConfig
 		}
 	} else if !utils.IsEmptyObject(plan.OIDC) {
-		// SSO type is "oidc"
+		// SSO type is "oidc".
 		var oidcConfig oidcConfigModel
 		diags := plan.OIDC.As(ctx, &oidcConfig, basetypes.ObjectAsOptions{})
 		globalDiags.Append(diags...)
@@ -634,9 +636,8 @@ func (r *ssoResource) updateSSOConfig(ctx context.Context, plan ssoResourceModel
 			return nil
 		}
 		apiRequest.Data.SsoConfigPostRequestDataOneOf1 = &ssoConfig
-
 	} else if !utils.IsEmptyObject(plan.SAML) {
-		// SSO type is "saml"
+		// SSO type is "saml".
 		var samlConfig samlConfigModel
 		diags := plan.SAML.As(ctx, &samlConfig, basetypes.ObjectAsOptions{})
 		globalDiags.Append(diags...)
@@ -657,7 +658,7 @@ func (r *ssoResource) updateSSOConfig(ctx context.Context, plan ssoResourceModel
 			TriggerLoginAutomatically: samlConfig.TriggerLoginAutomatically.ValueBool(),
 			RestrictedDomain:          getRestrictedDomains(ctx, samlConfig.RestrictedDomains, globalDiags),
 		}
-		// Add ldap config if present
+		// Add ldap config if present.
 		if !utils.IsEmptyObject(samlConfig.LDAPConfig) {
 			var ldapConfig ldapConfigModel
 			diags = samlConfig.LDAPConfig.As(ctx, &ldapConfig, basetypes.ObjectAsOptions{})
@@ -703,7 +704,7 @@ func (r *ssoResource) updateSSOConfig(ctx context.Context, plan ssoResourceModel
 	return secrets
 }
 
-// Sets encrypted secrets in the state
+// Sets encrypted secrets in the state.
 func setEncryptedSecrets(ctx context.Context, state *tfsdk.State, secrets *encryptedSecrets, globalDiags *diag.Diagnostics) {
 	var obj types.Object
 	if diags := state.GetAttribute(ctx, path.Root("google"), &obj); !diags.HasError() && !obj.IsNull() {
@@ -722,9 +723,9 @@ func setEncryptedSecrets(ctx context.Context, state *tfsdk.State, secrets *encry
 	}
 }
 
-// Updates SSO config and sets state
+// Updates SSO config and sets state.
 func (r *ssoResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	// Retrieve values from plan
+	// Retrieve values from plan.
 	tflog.Info(ctx, "Getting the plan model")
 	var plan ssoResourceModel
 	diags := req.Plan.Get(ctx, &plan)
@@ -739,14 +740,14 @@ func (r *ssoResource) Create(ctx context.Context, req resource.CreateRequest, re
 		return
 	}
 
-	// Set state to fully populated data
+	// Set state to fully populated data.
 	diags = resp.State.Set(ctx, plan)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		tflog.Error(ctx, "Error creating SSO conifg", map[string]interface{}{"error": "Could not set state"})
 		return
 	}
-	// Update encrypted secret strings in the state
+	// Update encrypted secret strings in the state.
 	setEncryptedSecrets(ctx, &resp.State, secrets, &resp.Diagnostics)
 	if resp.Diagnostics.HasError() {
 		tflog.Error(ctx, "Error creating SSO config", map[string]interface{}{"error": "Could not set encrypted secrets"})
@@ -776,7 +777,7 @@ func getSecretValue(ctx context.Context, state *tfsdk.State, newEncryptedSecret 
 	return types.StringNull()
 }
 
-// Converts a string of the form "key1->value1,key1->value2,key2->value3" to a map of the form { "key1": ["value1", "value2"], "key2": ["value3"] }
+// Converts a string of the form "key1->value1,key1->value2,key2->value3" to a map of the form { "key1": ["value1", "value2"], "key2": ["value3"] }.
 func parseLdapRolesMappingValue(ctx context.Context, rolesMappingValue string) map[string][]string {
 	rolesMapping := make(map[string][]string)
 	roleMapTuples := strings.Split(rolesMappingValue, ",")
@@ -793,7 +794,7 @@ func parseLdapRolesMappingValue(ctx context.Context, rolesMappingValue string) m
 	return rolesMapping
 }
 
-// Check if any of the LDAP config attributes are present
+// Check if any of the LDAP config attributes are present.
 func isLdapConfigPresent(ssoConfig *api.SSOConfig) bool {
 	return ssoConfig.LdapServerUrl != nil ||
 		ssoConfig.LdapBaseDomainComponents != nil ||
@@ -802,7 +803,7 @@ func isLdapConfigPresent(ssoConfig *api.SSOConfig) bool {
 		ssoConfig.LdapServerCertificate != nil
 }
 
-// Read SSO config
+// Read SSO config.
 func (r *ssoResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 	var state ssoResourceModel
 	diags := req.State.Get(ctx, &state)
@@ -991,7 +992,7 @@ func (r *ssoResource) Read(ctx context.Context, req resource.ReadRequest, resp *
 	}
 }
 
-// Update SSO config
+// Update SSO config.
 func (r *ssoResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 	var plan ssoResourceModel
 	diags := req.Plan.Get(ctx, &plan)
@@ -1011,16 +1012,15 @@ func (r *ssoResource) Update(ctx context.Context, req resource.UpdateRequest, re
 		return
 	}
 
-	// Update encrypted secret strings in the state
+	// Update encrypted secret strings in the state.
 	setEncryptedSecrets(ctx, &resp.State, secrets, &resp.Diagnostics)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 }
 
-// Delete SSO config
+// Delete SSO config.
 func (r *ssoResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-
 	httpResponse, err := r.client.SSOAPI.SsoConfigDelete(ctx).Execute()
 	if err != nil {
 		resp.Diagnostics.AddError(
