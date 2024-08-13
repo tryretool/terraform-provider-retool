@@ -40,13 +40,4 @@ issues:
       linters:
         - gosec
   exclude:
-    - "var-naming:.*Id.* should be .*ID"
-    - "var-naming:.*Api.* should be .*API"
-    - "var-naming:.*Http.* should be .*HTTP"
-    - "exported: exported .* should have comment"
     - "exported: comment on exported .* should be of the form"
-    - "unused-parameter:"
-    - "ifElseChain:"
-    - "var-naming:.*ALL_CAPS.*"
-    - "superfluous-else"
-    - "Error return value of .* is not checked"

@@ -11,18 +11,19 @@ import (
 	"github.com/tryretool/terraform-provider-retool/internal/sdk/api"
 )
 
-const ROOT_FOLDER_ID string = "ROOT"
+// Fake "id" that we use to represent the root folder.
+const RootFolderID string = "ROOT"
 
-func getRootFolderId(ctx context.Context, folderType string, client *api.APIClient, cache *map[string]string) (string, error) {
+func getRootFolderID(ctx context.Context, folderType string, client *api.APIClient, cache *map[string]string) (string, error) {
 	if cache != nil {
-		if rootFolderId, ok := (*cache)[folderType]; ok {
-			return rootFolderId, nil
+		if rootFolderID, ok := (*cache)[folderType]; ok {
+			return rootFolderID, nil
 		}
 	}
 	tflog.Info(ctx, "Getting root folder ID", map[string]any{"folderType": folderType})
 	response, httpResponse, err := client.FoldersAPI.FoldersGet(ctx).Execute()
 	if err != nil {
-		tflog.Error(ctx, "Error getting root folder ID", utils.AddHttpStatusCode(map[string]any{"error": err.Error()}, httpResponse))
+		tflog.Error(ctx, "Error getting root folder ID", utils.AddHTTPStatusCode(map[string]any{"error": err.Error()}, httpResponse))
 		return "", err
 	}
 
@@ -39,9 +40,9 @@ func getRootFolderId(ctx context.Context, folderType string, client *api.APIClie
 	return "", fmt.Errorf("root folder not found for type %s", folderType)
 }
 
-func maybeReplaceRootFolderIdWithConstant(ctx context.Context, folderType string, folderId *string, client *api.APIClient, cache *map[string]string, diags *diag.Diagnostics) *string {
-	if folderId != nil {
-		rootFolderId, err := getRootFolderId(ctx, folderType, client, cache)
+func maybeReplaceRootFolderIDWithConstant(ctx context.Context, folderType string, folderID *string, client *api.APIClient, cache *map[string]string, diags *diag.Diagnostics) *string {
+	if folderID != nil {
+		rootFolderID, err := getRootFolderID(ctx, folderType, client, cache)
 		if err != nil {
 			diags.AddError(
 				"Error reading folder",
@@ -49,10 +50,10 @@ func maybeReplaceRootFolderIdWithConstant(ctx context.Context, folderType string
 			)
 			return nil
 		}
-		if *folderId == rootFolderId {
-			tempStr := ROOT_FOLDER_ID
+		if *folderID == rootFolderID {
+			tempStr := RootFolderID
 			return &tempStr
 		}
 	}
-	return folderId
+	return folderID
 }

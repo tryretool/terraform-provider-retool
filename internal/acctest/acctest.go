@@ -15,21 +15,14 @@ import (
 	"github.com/tryretool/terraform-provider-retool/internal/sdk/api"
 )
 
-const (
-	ProviderTestConfig = `
-	provider "retool" {
-	}
-	`
-)
-
 // This file borrows heavily from Auth0's Terraform provider: https://github.com/auth0/terraform-provider-auth0/blob/main/internal/acctest/acctest.go
-
 var (
 	providerTestFactories = map[string]func() (tfprotov6.ProviderServer, error){
 		"retool": providerserver.NewProtocol6WithError(provider.New("test")()),
 	}
 )
 
+// Wrapper around resource.Test that allows for HTTP recordings.
 func Test(t *testing.T, testCase resource.TestCase) {
 	if httpRecordingsAreEnabled() {
 		httpRecorder := newHTTPRecorder(t)
@@ -43,6 +36,7 @@ func Test(t *testing.T, testCase resource.TestCase) {
 	resource.Test(t, testCase)
 }
 
+// Init API client to be used by the test sweepers.
 func SweeperClient() (*api.APIClient, error) {
 	host := os.Getenv("RETOOL_HOST")
 	if host == "" {
@@ -78,7 +72,7 @@ func httpRecordingsAreEnabled() bool {
 func testFactoriesWithHTTPRecordings(httpRecorder *recorder.Recorder) map[string]func() (tfprotov6.ProviderServer, error) {
 	return map[string]func() (tfprotov6.ProviderServer, error){
 		"retool": func() (tfprotov6.ProviderServer, error) {
-			retoolProvider := provider.NewWithHttpClient("test", httpRecorder.GetDefaultClient())()
+			retoolProvider := provider.NewWithHTTPClient("test", httpRecorder.GetDefaultClient())()
 			return providerserver.NewProtocol6WithError(retoolProvider)()
 		},
 	}

@@ -147,6 +147,7 @@ type ssoResourceModel struct {
 	DisableEmailPasswordLogin types.Bool   `tfsdk:"disable_email_password_login"`
 }
 
+// Create new SSO resource.
 func NewResource() resource.Resource {
 	return &ssoResource{}
 }
@@ -170,12 +171,12 @@ func (r *ssoResource) Configure(_ context.Context, req resource.ConfigureRequest
 }
 
 // Metadata associated with the SSO resource.
-func (r *ssoResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (r *ssoResource) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_sso"
 }
 
 // Schema returns the schema for the SSO resource.
-func (r *ssoResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (r *ssoResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{
 			"google": schema.SingleNestedAttribute{
@@ -494,9 +495,11 @@ func (r *ssoResource) updateSSOConfig(ctx context.Context, plan ssoResourceModel
 
 	// Request object is a union of 5 structs - one for each SSO type
 	// Since the structs don't share any common interfaces, we need to fill each of them separately, meaning that the code for Google is repeated 3 times, and for OIDC and SAML 2 times. I'm sorry.
-	if !utils.IsEmptyObject(plan.Google) {
+	switch {
+	case !utils.IsEmptyObject(plan.Google):
 		tflog.Info(ctx, "Google SSO settings detected")
-		if !utils.IsEmptyObject(plan.SAML) {
+		switch {
+		case !utils.IsEmptyObject(plan.SAML):
 			tflog.Info(ctx, "Google & SAML SSO settings detected")
 			// SSO type is "google & saml"
 			// Get google and saml configs.
@@ -546,7 +549,7 @@ func (r *ssoResource) updateSSOConfig(ctx context.Context, plan ssoResourceModel
 				return nil
 			}
 			apiRequest.Data.SsoConfigPostRequestDataOneOf4 = &ssoConfig
-		} else if !utils.IsEmptyObject(plan.OIDC) {
+		case !utils.IsEmptyObject(plan.OIDC):
 			// SSO type is "google & oidc"
 			// Get google and oidc configs.
 			var googleConfig googleConfigModel
@@ -586,7 +589,7 @@ func (r *ssoResource) updateSSOConfig(ctx context.Context, plan ssoResourceModel
 				return nil
 			}
 			apiRequest.Data.SsoConfigPostRequestDataOneOf2 = &ssoConfig
-		} else {
+		default:
 			// SSO type is "google".
 			var googleConfig googleConfigModel
 			diags := plan.Google.As(ctx, &googleConfig, basetypes.ObjectAsOptions{})
@@ -605,7 +608,7 @@ func (r *ssoResource) updateSSOConfig(ctx context.Context, plan ssoResourceModel
 			}
 			apiRequest.Data.SsoConfigPostRequestDataOneOf = &ssoConfig
 		}
-	} else if !utils.IsEmptyObject(plan.OIDC) {
+	case !utils.IsEmptyObject(plan.OIDC):
 		// SSO type is "oidc".
 		var oidcConfig oidcConfigModel
 		diags := plan.OIDC.As(ctx, &oidcConfig, basetypes.ObjectAsOptions{})
@@ -636,7 +639,7 @@ func (r *ssoResource) updateSSOConfig(ctx context.Context, plan ssoResourceModel
 			return nil
 		}
 		apiRequest.Data.SsoConfigPostRequestDataOneOf1 = &ssoConfig
-	} else if !utils.IsEmptyObject(plan.SAML) {
+	case !utils.IsEmptyObject(plan.SAML):
 		// SSO type is "saml".
 		var samlConfig samlConfigModel
 		diags := plan.SAML.As(ctx, &samlConfig, basetypes.ObjectAsOptions{})
@@ -676,7 +679,7 @@ func (r *ssoResource) updateSSOConfig(ctx context.Context, plan ssoResourceModel
 			return nil
 		}
 		apiRequest.Data.SsoConfigPostRequestDataOneOf3 = &ssoConfig
-	} else {
+	default:
 		globalDiags.AddError(
 			"Error creating SSO config",
 			"One of attributes google, oidc, or saml must be set",
@@ -692,7 +695,7 @@ func (r *ssoResource) updateSSOConfig(ctx context.Context, plan ssoResourceModel
 			"Error creating SSO config",
 			"Could not create SSO config, unexpected error: "+err.Error(),
 		)
-		tflog.Error(ctx, "Error creating SSO config", utils.AddHttpStatusCode(map[string]interface{}{"error": err.Error()}, httpResponse))
+		tflog.Error(ctx, "Error creating SSO config", utils.AddHTTPStatusCode(map[string]interface{}{"error": err.Error()}, httpResponse))
 		return nil
 	}
 	secrets := &encryptedSecrets{
@@ -823,7 +826,7 @@ func (r *ssoResource) Read(ctx context.Context, req resource.ReadRequest, resp *
 			"Error reading SSO config",
 			fmt.Sprintf("Could not read SSO config: %s", err.Error()),
 		)
-		tflog.Error(ctx, "Error reading SSO config", utils.AddHttpStatusCode(map[string]any{"error": err.Error()}, httpResponse))
+		tflog.Error(ctx, "Error reading SSO config", utils.AddHTTPStatusCode(map[string]any{"error": err.Error()}, httpResponse))
 		return
 	}
 
@@ -1020,14 +1023,14 @@ func (r *ssoResource) Update(ctx context.Context, req resource.UpdateRequest, re
 }
 
 // Delete SSO config.
-func (r *ssoResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
+func (r *ssoResource) Delete(ctx context.Context, _ resource.DeleteRequest, resp *resource.DeleteResponse) {
 	httpResponse, err := r.client.SSOAPI.SsoConfigDelete(ctx).Execute()
 	if err != nil {
 		resp.Diagnostics.AddError(
 			"Error Deleting SSO config",
 			"Could not delete SSO config: "+err.Error(),
 		)
-		tflog.Error(ctx, "Error Deleting SSO config", utils.AddHttpStatusCode(map[string]any{"error": err.Error()}, httpResponse))
+		tflog.Error(ctx, "Error Deleting SSO config", utils.AddHTTPStatusCode(map[string]any{"error": err.Error()}, httpResponse))
 		return
 	}
 }

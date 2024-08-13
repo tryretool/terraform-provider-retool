@@ -14,6 +14,7 @@ import (
 	"github.com/tryretool/terraform-provider-retool/internal/sdk/api"
 )
 
+// NewDataSource creates a new data source for folders.
 func NewDataSource() datasource.DataSource {
 	return &foldersDataSource{}
 }
@@ -26,7 +27,7 @@ var (
 
 type foldersDataSource struct {
 	client            *api.APIClient
-	rootFolderIdCache *map[string]string
+	rootFolderIDCache *map[string]string
 }
 
 type foldersDataSourceModel struct {
@@ -34,10 +35,10 @@ type foldersDataSourceModel struct {
 }
 
 type folderModel struct {
-	Id             types.String `tfsdk:"id"`
-	LegacyId       types.String `tfsdk:"legacy_id"`
+	ID             types.String `tfsdk:"id"`
+	LegacyID       types.String `tfsdk:"legacy_id"`
 	Name           types.String `tfsdk:"name"`
-	ParentFolderId types.String `tfsdk:"parent_folder_id"`
+	ParentFolderID types.String `tfsdk:"parent_folder_id"`
 	IsSystemFolder types.Bool   `tfsdk:"is_system_folder"`
 	FolderType     types.String `tfsdk:"folder_type"`
 }
@@ -61,7 +62,7 @@ func (d *foldersDataSource) Configure(_ context.Context, req datasource.Configur
 	}
 
 	d.client = providerData.Client
-	d.rootFolderIdCache = providerData.RootFolderIdCache
+	d.rootFolderIDCache = providerData.RootFolderIDCache
 }
 
 func (d *foldersDataSource) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
@@ -107,7 +108,7 @@ func (d *foldersDataSource) Schema(_ context.Context, _ datasource.SchemaRequest
 	}
 }
 
-func (d *foldersDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+func (d *foldersDataSource) Read(ctx context.Context, _ datasource.ReadRequest, resp *datasource.ReadResponse) {
 	var state foldersDataSourceModel
 
 	folders, _, err := d.client.FoldersAPI.FoldersGet(ctx).Execute()
@@ -123,10 +124,10 @@ func (d *foldersDataSource) Read(ctx context.Context, req datasource.ReadRequest
 	// Fun fact: even though the response has next_token and has_more fields, the API does not support pagination and always returns all folders.
 	for _, folder := range folders.Data {
 		state.Folders = append(state.Folders, folderModel{
-			Id:             types.StringValue(folder.Id),
-			LegacyId:       types.StringValue(folder.LegacyId),
+			ID:             types.StringValue(folder.Id),
+			LegacyID:       types.StringValue(folder.LegacyId),
 			Name:           types.StringValue(folder.Name),
-			ParentFolderId: types.StringPointerValue(maybeReplaceRootFolderIdWithConstant(ctx, folder.FolderType, folder.ParentFolderId.Get(), d.client, d.rootFolderIdCache, &resp.Diagnostics)),
+			ParentFolderID: types.StringPointerValue(maybeReplaceRootFolderIDWithConstant(ctx, folder.FolderType, folder.ParentFolderId.Get(), d.client, d.rootFolderIDCache, &resp.Diagnostics)),
 			IsSystemFolder: types.BoolValue(folder.IsSystemFolder),
 			FolderType:     types.StringValue(folder.FolderType),
 		})

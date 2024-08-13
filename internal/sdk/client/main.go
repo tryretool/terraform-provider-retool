@@ -30,10 +30,9 @@ func main() {
 	folders, httpResponse, err := client.FoldersAPI.FoldersGet(auth).Execute()
 	if err != nil {
 		log.Fatal("Error!", err, httpResponse)
-	} else {
-		fmt.Println("Folders:")
-		for _, folder := range folders.Data {
-			fmt.Printf("%s (%s)\n", folder.Name, folder.FolderType)
-		}
+	}
+	fmt.Println("Folders:")
+	for _, folder := range folders.Data {
+		fmt.Printf("%s (%s)\n", folder.Name, folder.FolderType)
 	}
 }

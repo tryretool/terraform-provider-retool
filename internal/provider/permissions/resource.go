@@ -40,12 +40,12 @@ type permissionsResourceModel struct {
 }
 
 type permissionSubjectModel struct {
-	Id   types.String `tfsdk:"id"`
+	ID   types.String `tfsdk:"id"`
 	Type types.String `tfsdk:"type"`
 }
 
 type permissionObjectModel struct {
-	Id   types.String `tfsdk:"id"`
+	ID   types.String `tfsdk:"id"`
 	Type types.String `tfsdk:"type"`
 }
 
@@ -62,11 +62,12 @@ type permissionModel struct {
 	AccessLevel types.String `tfsdk:"access_level"`
 }
 
+// Create new Permissions resource.
 func NewResource() resource.Resource {
 	return &permissionResource{}
 }
 
-func (r *permissionResource) Configure(ctx context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
+func (r *permissionResource) Configure(_ context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
 	}
@@ -79,11 +80,11 @@ func (r *permissionResource) Configure(ctx context.Context, req resource.Configu
 	r.client = providerData.Client
 }
 
-func (r *permissionResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (r *permissionResource) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_permissions"
 }
 
-func (r *permissionResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (r *permissionResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{
 			"subject": schema.SingleNestedAttribute{
@@ -145,31 +146,31 @@ func (r *permissionResource) Schema(ctx context.Context, req resource.SchemaRequ
 	}
 }
 
-func createNewApiPermissionsSubject(subjectModel permissionSubjectModel) api.PermissionsListObjectsPostRequestSubject {
+func createNewAPIPermissionsSubject(subjectModel permissionSubjectModel) api.PermissionsListObjectsPostRequestSubject {
 	subject := api.PermissionsListObjectsPostRequestSubject{}
 	// ...OneOf represents a group subject, while OneOf1 represents a user subject.
 	if subjectModel.Type.ValueString() == "group" {
-		groupId, err := strconv.Atoi(subjectModel.Id.ValueString())
+		groupID, err := strconv.Atoi(subjectModel.ID.ValueString())
 		if err != nil {
 			return api.PermissionsListObjectsPostRequestSubject{}
 		}
-		floatGroupId := float32(groupId) // Our client uses float32 to represent "number" ids.
-		subject.PermissionsListObjectsPostRequestSubjectOneOf = api.NewPermissionsListObjectsPostRequestSubjectOneOf("group", *api.NewNullableFloat32(&floatGroupId))
+		floatGroupID := float32(groupID) // Our client uses float32 to represent "number" ids.
+		subject.PermissionsListObjectsPostRequestSubjectOneOf = api.NewPermissionsListObjectsPostRequestSubjectOneOf("group", *api.NewNullableFloat32(&floatGroupID))
 	} else if subjectModel.Type.ValueString() == "user" {
-		subject.PermissionsListObjectsPostRequestSubjectOneOf1 = api.NewPermissionsListObjectsPostRequestSubjectOneOf1("user", subjectModel.Id.ValueString())
+		subject.PermissionsListObjectsPostRequestSubjectOneOf1 = api.NewPermissionsListObjectsPostRequestSubjectOneOf1("user", subjectModel.ID.ValueString())
 	}
 	return subject
 }
 
-func createNewApiPermissionsObject(objectModel permissionObjectModel) api.PermissionsGrantPostRequestObject {
+func createNewAPIPermissionsObject(objectModel permissionObjectModel) api.PermissionsGrantPostRequestObject {
 	object := api.PermissionsGrantPostRequestObject{
-		PermissionsGrantPostRequestObjectOneOf: api.NewPermissionsGrantPostRequestObjectOneOf(objectModel.Type.ValueString(), objectModel.Id.ValueString()),
+		PermissionsGrantPostRequestObjectOneOf: api.NewPermissionsGrantPostRequestObjectOneOf(objectModel.Type.ValueString(), objectModel.ID.ValueString()),
 	}
 	return object
 }
 
-func getPermissionId(subject permissionSubjectModel, object permissionObjectModel) string {
-	return subject.Type.ValueString() + "|" + subject.Id.ValueString() + "|" + object.Type.ValueString() + "|" + object.Id.ValueString()
+func getPermissionID(subject permissionSubjectModel, object permissionObjectModel) string {
+	return subject.Type.ValueString() + "|" + subject.ID.ValueString() + "|" + object.Type.ValueString() + "|" + object.ID.ValueString()
 }
 
 // Make an API call to revoke a permission.
@@ -181,20 +182,20 @@ func (r *permissionResource) revokePermission(ctx context.Context, subject permi
 		return diags
 	}
 
-	permissionId := getPermissionId(subject, object)
-	tflog.Info(ctx, "Deleting permission", map[string]any{"id": permissionId})
+	permissionID := getPermissionID(subject, object)
+	tflog.Info(ctx, "Deleting permission", map[string]any{"id": permissionID})
 
-	request := api.NewPermissionsRevokePostRequest(createNewApiPermissionsSubject(subject), createNewApiPermissionsObject(object))
+	request := api.NewPermissionsRevokePostRequest(createNewAPIPermissionsSubject(subject), createNewAPIPermissionsObject(object))
 	_, httpResponse, err := r.client.PermissionsAPI.PermissionsRevokePost(ctx).PermissionsRevokePostRequest(*request).Execute()
 	if err != nil {
 		diags.AddError(
 			"Error deleting permission",
-			"Could not delete permission with ID "+permissionId+": "+err.Error(),
+			"Could not delete permission with ID "+permissionID+": "+err.Error(),
 		)
-		tflog.Error(ctx, "Error Deleting Permission", utils.AddHttpStatusCode(map[string]any{"error": err.Error(), "id": permissionId}, httpResponse))
+		tflog.Error(ctx, "Error Deleting Permission", utils.AddHTTPStatusCode(map[string]any{"error": err.Error(), "id": permissionID}, httpResponse))
 		return diags
 	}
-	tflog.Info(ctx, "Permission deleted", map[string]any{"id": permissionId})
+	tflog.Info(ctx, "Permission deleted", map[string]any{"id": permissionID})
 	return diags
 }
 
@@ -208,15 +209,15 @@ func (r *permissionResource) grantPermission(ctx context.Context, subject permis
 	}
 
 	// Only used for logging.
-	permissionId := getPermissionId(subject, object)
+	permissionID := getPermissionID(subject, object)
 
 	// Generate API request body from plan.
-	apiSubject := createNewApiPermissionsSubject(subject)
-	apiObject := createNewApiPermissionsObject(object)
+	apiSubject := createNewAPIPermissionsSubject(subject)
+	apiObject := createNewAPIPermissionsObject(object)
 
 	grantRequest := api.NewPermissionsGrantPostRequest(apiSubject, apiObject, permission.AccessLevel.ValueString())
 
-	tflog.Info(ctx, "Creating a permission", map[string]interface{}{"id": permissionId, "access level": permission.AccessLevel.ValueString()})
+	tflog.Info(ctx, "Creating a permission", map[string]interface{}{"id": permissionID, "access level": permission.AccessLevel.ValueString()})
 
 	// Grant the permission.
 	_, httpResponse, err := r.client.PermissionsAPI.PermissionsGrantPost(ctx).PermissionsGrantPostRequest(*grantRequest).Execute()
@@ -225,10 +226,10 @@ func (r *permissionResource) grantPermission(ctx context.Context, subject permis
 			"Error creating permission",
 			"Could not create permission, unexpected error: "+err.Error(),
 		)
-		tflog.Error(ctx, "Error creating permission", utils.AddHttpStatusCode(map[string]interface{}{"error": err.Error()}, httpResponse))
+		tflog.Error(ctx, "Error creating permission", utils.AddHTTPStatusCode(map[string]interface{}{"error": err.Error()}, httpResponse))
 		return diags
 	}
-	tflog.Info(ctx, "Permission created", map[string]interface{}{"id": permissionId})
+	tflog.Info(ctx, "Permission created", map[string]interface{}{"id": permissionID})
 	return diags
 }
 
@@ -286,34 +287,34 @@ func (r *permissionResource) Read(ctx context.Context, req resource.ReadRequest,
 
 	var permissions []permissionModel
 
-	subjectId := stateSubject.Id.ValueString() + "|" + stateSubject.Type.ValueString()
+	subjectID := stateSubject.ID.ValueString() + "|" + stateSubject.Type.ValueString()
 
 	// We'll need to get all the permissions for the given subject.
 	for _, objectType := range []string{"app", "folder", "resource", "resource_configuration"} {
-		request := api.NewPermissionsListObjectsPostRequest(createNewApiPermissionsSubject(stateSubject), objectType)
+		request := api.NewPermissionsListObjectsPostRequest(createNewAPIPermissionsSubject(stateSubject), objectType)
 
-		tflog.Info(ctx, "Reading permission", map[string]interface{}{"subjectId": subjectId})
+		tflog.Info(ctx, "Reading permission", map[string]interface{}{"subjectId": subjectID})
 
 		permissionsResponse, httpResponse, err := r.client.PermissionsAPI.PermissionsListObjectsPost(ctx).PermissionsListObjectsPostRequest(*request).Execute()
 		if err != nil {
 			resp.Diagnostics.AddError(
 				"Error reading permission",
-				fmt.Sprintf("Could not read permissions for id: %s, object type: %s, error: %s", subjectId, objectType, err.Error()),
+				fmt.Sprintf("Could not read permissions for id: %s, object type: %s, error: %s", subjectID, objectType, err.Error()),
 			)
-			tflog.Error(ctx, "Error reading group", utils.AddHttpStatusCode(map[string]any{"permissionId": subjectId, "objectType": objectType, "error": err.Error()}, httpResponse))
+			tflog.Error(ctx, "Error reading group", utils.AddHTTPStatusCode(map[string]any{"permissionId": subjectID, "objectType": objectType, "error": err.Error()}, httpResponse))
 			return
 		}
 
 		// Now let's populate the state with permissions based on our API response.
 		for _, obj := range permissionsResponse.Data {
-			var objId string
+			var objID string
 			var accessLevel string
 			if obj.PermissionsListObjectsPost200ResponseDataInnerOneOf != nil {
-				objId = obj.PermissionsListObjectsPost200ResponseDataInnerOneOf.Id
+				objID = obj.PermissionsListObjectsPost200ResponseDataInnerOneOf.Id
 				accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerOneOf.AccessLevel
 			}
 			objValue := permissionObjectModel{
-				Id:   types.StringValue(objId),
+				ID:   types.StringValue(objID),
 				Type: types.StringValue(objectType),
 			}
 			object, diags := types.ObjectValueFrom(ctx, objValue.AttributeTypes(), objValue)
@@ -338,7 +339,7 @@ func (r *permissionResource) Read(ctx context.Context, req resource.ReadRequest,
 }
 
 type objectKey struct {
-	Id   string
+	ID   string
 	Type string
 }
 
@@ -353,7 +354,7 @@ func mapPermissionsByOjbect(ctx context.Context, permissions []permissionModel) 
 		if diags.HasError() {
 			return nil, allDiags
 		}
-		permissionsByObject[objectKey{Id: obj.Id.ValueString(), Type: obj.Type.ValueString()}] = perm
+		permissionsByObject[objectKey{ID: obj.ID.ValueString(), Type: obj.Type.ValueString()}] = perm
 	}
 	return permissionsByObject, allDiags
 }
@@ -424,8 +425,8 @@ func (r *permissionResource) Update(ctx context.Context, req resource.UpdateRequ
 		return
 	}
 
-	subjectId := stateSubject.Id.ValueString() + "|" + stateSubject.Type.ValueString()
-	tflog.Info(ctx, "Revoking old permissions", map[string]any{"subject_id": subjectId})
+	subjectID := stateSubject.ID.ValueString() + "|" + stateSubject.Type.ValueString()
+	tflog.Info(ctx, "Revoking old permissions", map[string]any{"subject_id": subjectID})
 	// Revoke old permissions.
 	for _, perm := range diff.Revoke {
 		diags = r.revokePermission(ctx, stateSubject, perm)
@@ -435,7 +436,7 @@ func (r *permissionResource) Update(ctx context.Context, req resource.UpdateRequ
 		}
 	}
 
-	tflog.Info(ctx, "Granting new permissions", map[string]any{"subject_id": subjectId})
+	tflog.Info(ctx, "Granting new permissions", map[string]any{"subject_id": subjectID})
 	// Grant new permissions.
 	for _, perm := range diff.Grant {
 		diags = r.grantPermission(ctx, stateSubject, perm)
@@ -444,7 +445,7 @@ func (r *permissionResource) Update(ctx context.Context, req resource.UpdateRequ
 			return
 		}
 	}
-	tflog.Info(ctx, "Permissions updated", map[string]any{"subject_id": subjectId})
+	tflog.Info(ctx, "Permissions updated", map[string]any{"subject_id": subjectID})
 
 	diags = resp.State.Set(ctx, plan)
 	resp.Diagnostics.Append(diags...)

@@ -35,7 +35,7 @@ func NewResource() resource.Resource {
 // folderResource is the resource implementation.
 type folderResource struct {
 	client            *api.APIClient
-	rootFolderIdCache *map[string]string
+	rootFolderIDCache *map[string]string
 }
 
 // Configure adds the provider configured client to the resource.
@@ -54,7 +54,7 @@ func (r *folderResource) Configure(_ context.Context, req resource.ConfigureRequ
 		)
 	}
 	r.client = providerData.Client
-	r.rootFolderIdCache = providerData.RootFolderIdCache
+	r.rootFolderIDCache = providerData.RootFolderIDCache
 }
 
 // Metadata returns the resource type name.
@@ -88,7 +88,7 @@ func (r *folderResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 				Computed:    true,
 				Optional:    true,
 				Description: "The id of the parent folder.",
-				Default:     stringdefault.StaticString(ROOT_FOLDER_ID),
+				Default:     stringdefault.StaticString(RootFolderID),
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
@@ -114,20 +114,20 @@ func (r *folderResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 	}
 }
 
-func (r *folderResource) getTrueParentFolderId(ctx context.Context, folderType, parentFolderId string, diags *diag.Diagnostics) string {
-	if parentFolderId == ROOT_FOLDER_ID {
+func (r *folderResource) getTrueParentFolderID(ctx context.Context, folderType, parentFolderID string, diags *diag.Diagnostics) string {
+	if parentFolderID == RootFolderID {
 		// Get root folder ID.
-		rootFolderId, err := getRootFolderId(ctx, folderType, r.client, r.rootFolderIdCache)
+		rootFolderID, err := getRootFolderID(ctx, folderType, r.client, r.rootFolderIDCache)
 		if err != nil {
 			diags.AddError(
 				"Error converting root folder id to the actual id",
 				"Could not find root folder for type "+folderType+": "+err.Error(),
 			)
-			return parentFolderId
+			return parentFolderID
 		}
-		return rootFolderId
+		return rootFolderID
 	}
-	return parentFolderId
+	return parentFolderID
 }
 
 // Create creates the resource and sets the initial Terraform state.
@@ -142,16 +142,16 @@ func (r *folderResource) Create(ctx context.Context, req resource.CreateRequest,
 
 	// Generate API request body from plan.
 	var folder api.FoldersPostRequest
-	parentFolderId := r.getTrueParentFolderId(ctx, plan.FolderType.ValueString(), plan.ParentFolderId.ValueString(), &resp.Diagnostics)
+	parentFolderID := r.getTrueParentFolderID(ctx, plan.FolderType.ValueString(), plan.ParentFolderID.ValueString(), &resp.Diagnostics)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
 	folder.Name = plan.Name.ValueString()
-	folder.ParentFolderId.Set(&parentFolderId)
+	folder.ParentFolderId.Set(&parentFolderID)
 	folder.FolderType = plan.FolderType.ValueString()
 
-	tflog.Info(ctx, "Creating a folder", map[string]any{"name": plan.Name.ValueString(), "folderType": plan.FolderType.ValueString(), "parentFolderId": parentFolderId})
+	tflog.Info(ctx, "Creating a folder", map[string]any{"name": plan.Name.ValueString(), "folderType": plan.FolderType.ValueString(), "parentFolderId": parentFolderID})
 	// Create new folder.
 	response, httpResponse, err := r.client.FoldersAPI.FoldersPost(ctx).FoldersPostRequest(folder).Execute()
 
@@ -160,14 +160,14 @@ func (r *folderResource) Create(ctx context.Context, req resource.CreateRequest,
 			"Error creating folder",
 			"Could not create folder, unexpected error: "+err.Error(),
 		)
-		tflog.Error(ctx, "Error creating folder", utils.AddHttpStatusCode(map[string]any{"error": err.Error()}, httpResponse))
+		tflog.Error(ctx, "Error creating folder", utils.AddHTTPStatusCode(map[string]any{"error": err.Error()}, httpResponse))
 		return
 	}
 	tflog.Info(ctx, "Folder created", map[string]any{"id": response.Data.Id, "legacyId": response.Data.LegacyId, "isSystemFolder": response.Data.IsSystemFolder})
 
 	// Map response body to schema and populate Computed attribute values.
-	plan.Id = types.StringValue(response.Data.Id)
-	plan.LegacyId = types.StringValue(response.Data.LegacyId)
+	plan.ID = types.StringValue(response.Data.Id)
+	plan.LegacyID = types.StringValue(response.Data.LegacyId)
 	plan.IsSystemFolder = types.BoolValue(response.Data.IsSystemFolder)
 
 	// Set state to fully populated data.
@@ -189,27 +189,27 @@ func (r *folderResource) Read(ctx context.Context, req resource.ReadRequest, res
 	}
 
 	// Get refreshed folder value from Retool API.
-	tflog.Info(ctx, "Reading folder", map[string]any{"id": state.Id})
-	response, httpResponse, err := r.client.FoldersAPI.FoldersFolderIdGet(ctx, state.Id.ValueString()).Execute()
+	tflog.Info(ctx, "Reading folder", map[string]any{"id": state.ID})
+	response, httpResponse, err := r.client.FoldersAPI.FoldersFolderIdGet(ctx, state.ID.ValueString()).Execute()
 	if err != nil {
 		if httpResponse != nil && httpResponse.StatusCode == 404 {
-			tflog.Info(ctx, "Folder not found", map[string]any{"id": state.Id})
+			tflog.Info(ctx, "Folder not found", map[string]any{"id": state.ID})
 			resp.State.RemoveResource(ctx)
 			return
 		}
 		resp.Diagnostics.AddError(
 			"Error Reading Folder",
-			"Could not read folder ID "+state.Id.ValueString()+": "+err.Error(),
+			"Could not read folder ID "+state.ID.ValueString()+": "+err.Error(),
 		)
-		tflog.Error(ctx, "Error Reading Folder", utils.AddHttpStatusCode(map[string]any{"error": err.Error()}, httpResponse))
+		tflog.Error(ctx, "Error Reading Folder", utils.AddHTTPStatusCode(map[string]any{"error": err.Error()}, httpResponse))
 		return
 	}
 
 	// Update the state.
-	state.LegacyId = types.StringValue(response.Data.LegacyId)
+	state.LegacyID = types.StringValue(response.Data.LegacyId)
 	state.Name = types.StringValue(response.Data.Name)
 	// To keep the state consistent, we need to convert the root folder ID to the string constant ROOT_FOLDER_ID.
-	state.ParentFolderId = types.StringPointerValue(maybeReplaceRootFolderIdWithConstant(ctx, response.Data.FolderType, response.Data.ParentFolderId.Get(), r.client, r.rootFolderIdCache, &resp.Diagnostics))
+	state.ParentFolderID = types.StringPointerValue(maybeReplaceRootFolderIDWithConstant(ctx, response.Data.FolderType, response.Data.ParentFolderId.Get(), r.client, r.rootFolderIDCache, &resp.Diagnostics))
 	state.IsSystemFolder = types.BoolValue(response.Data.IsSystemFolder)
 	state.FolderType = types.StringValue(response.Data.FolderType)
 	if resp.Diagnostics.HasError() {
@@ -240,9 +240,9 @@ func (r *folderResource) Update(ctx context.Context, req resource.UpdateRequest,
 		return
 	}
 
-	if plan.Name.Equal(state.Name) && plan.ParentFolderId.Equal(state.ParentFolderId) {
+	if plan.Name.Equal(state.Name) && plan.ParentFolderID.Equal(state.ParentFolderID) {
 		// No changes.
-		tflog.Info(ctx, "No changes detected for folder", map[string]any{"id": state.Id})
+		tflog.Info(ctx, "No changes detected for folder", map[string]any{"id": state.ID})
 		return
 	}
 
@@ -253,22 +253,22 @@ func (r *folderResource) Update(ctx context.Context, req resource.UpdateRequest,
 		op.Value = plan.Name.ValueString()
 		patchReq.Operations = append(patchReq.Operations, api.FoldersFolderIdPatchRequestOperationsInner{UsersUserIdPatchRequestOperationsInnerAnyOf: op})
 	}
-	if !plan.ParentFolderId.Equal(state.ParentFolderId) {
-		parentFolderId := r.getTrueParentFolderId(ctx, plan.FolderType.ValueString(), plan.ParentFolderId.ValueString(), &resp.Diagnostics)
+	if !plan.ParentFolderID.Equal(state.ParentFolderID) {
+		parentFolderID := r.getTrueParentFolderID(ctx, plan.FolderType.ValueString(), plan.ParentFolderID.ValueString(), &resp.Diagnostics)
 		if resp.Diagnostics.HasError() {
 			return
 		}
 		op := api.NewUsersUserIdPatchRequestOperationsInnerAnyOf("replace", "/parent_folder_id")
-		op.Value = parentFolderId
+		op.Value = parentFolderID
 		patchReq.Operations = append(patchReq.Operations, api.FoldersFolderIdPatchRequestOperationsInner{UsersUserIdPatchRequestOperationsInnerAnyOf: op})
 	}
-	_, httpResponse, err := r.client.FoldersAPI.FoldersFolderIdPatch(ctx, state.Id.ValueString()).FoldersFolderIdPatchRequest(patchReq).Execute()
+	_, httpResponse, err := r.client.FoldersAPI.FoldersFolderIdPatch(ctx, state.ID.ValueString()).FoldersFolderIdPatchRequest(patchReq).Execute()
 	if err != nil {
 		resp.Diagnostics.AddError(
 			"Error Updating Folder",
-			"Could not update folder "+state.Id.ValueString()+", unexpected error: "+err.Error(),
+			"Could not update folder "+state.ID.ValueString()+", unexpected error: "+err.Error(),
 		)
-		tflog.Error(ctx, "Error Updating Folder", utils.AddHttpStatusCode(map[string]any{"error": err.Error()}, httpResponse))
+		tflog.Error(ctx, "Error Updating Folder", utils.AddHTTPStatusCode(map[string]any{"error": err.Error()}, httpResponse))
 		return
 	}
 
@@ -294,13 +294,13 @@ func (r *folderResource) Delete(ctx context.Context, req resource.DeleteRequest,
 	deleteRequest := api.FoldersFolderIdDeleteRequest{}
 	deleteRequest.Recursive = &recursive
 
-	httpResponse, err := r.client.FoldersAPI.FoldersFolderIdDelete(ctx, state.Id.ValueString()).FoldersFolderIdDeleteRequest(deleteRequest).Execute()
+	httpResponse, err := r.client.FoldersAPI.FoldersFolderIdDelete(ctx, state.ID.ValueString()).FoldersFolderIdDeleteRequest(deleteRequest).Execute()
 	if err != nil && !(httpResponse != nil && httpResponse.StatusCode == 404) { // It's ok to not find the resource being deleted.
 		resp.Diagnostics.AddError(
 			"Error Deleting Folder",
-			"Could not delete folder"+state.Id.ValueString()+", unexpected error: "+err.Error(),
+			"Could not delete folder"+state.ID.ValueString()+", unexpected error: "+err.Error(),
 		)
-		tflog.Error(ctx, "Error Deleting Folder", utils.AddHttpStatusCode(map[string]any{"error": err.Error()}, httpResponse))
+		tflog.Error(ctx, "Error Deleting Folder", utils.AddHTTPStatusCode(map[string]any{"error": err.Error()}, httpResponse))
 		return
 	}
 }

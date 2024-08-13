@@ -35,8 +35,8 @@ type groupResource struct {
 
 // groupResourceModel defines the data model for the Group resource.
 type groupResourceModel struct {
-	Id                          types.String `tfsdk:"id"`
-	LegacyId                    types.String `tfsdk:"legacy_id"`
+	ID                          types.String `tfsdk:"id"`
+	LegacyID                    types.String `tfsdk:"legacy_id"`
 	Name                        types.String `tfsdk:"name"`
 	UniversalAppAccess          types.String `tfsdk:"universal_app_access"`
 	UniversalResourceAccess     types.String `tfsdk:"universal_resource_access"`
@@ -47,9 +47,10 @@ type groupResourceModel struct {
 	UnpublishedReleaseAccess    types.Bool   `tfsdk:"unpublished_release_access"`
 	UsageAnalyticsAccess        types.Bool   `tfsdk:"usage_analytics_access"`
 	AccountDetailsAccess        types.Bool   `tfsdk:"account_details_access"`
-	LandingPageAppId            types.String `tfsdk:"landing_page_app_id"`
+	LandingPageAppID            types.String `tfsdk:"landing_page_app_id"`
 }
 
+// Create new Group resource.
 func NewResource() resource.Resource {
 	return &groupResource{}
 }
@@ -73,12 +74,12 @@ func (r *groupResource) Configure(_ context.Context, req resource.ConfigureReque
 }
 
 // Metadata associated with the Group resource.
-func (r *groupResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (r *groupResource) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_group"
 }
 
 // Schema returns the schema for the Group resource.
-func (r *groupResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (r *groupResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
@@ -195,8 +196,8 @@ func (r *groupResource) Create(ctx context.Context, req resource.CreateRequest, 
 	group.UnpublishedReleaseAccess = plan.UnpublishedReleaseAccess.ValueBoolPointer()
 	group.UsageAnalyticsAccess = plan.UsageAnalyticsAccess.ValueBoolPointer()
 	group.AccountDetailsAccess = plan.AccountDetailsAccess.ValueBoolPointer()
-	if !plan.LandingPageAppId.IsNull() && !plan.LandingPageAppId.IsUnknown() {
-		group.LandingPageAppId.Set(plan.LandingPageAppId.ValueStringPointer())
+	if !plan.LandingPageAppID.IsNull() && !plan.LandingPageAppID.IsUnknown() {
+		group.LandingPageAppId.Set(plan.LandingPageAppID.ValueStringPointer())
 	}
 
 	tflog.Info(ctx, "Creating a group", map[string]interface{}{"name": plan.Name.ValueString()})
@@ -208,7 +209,7 @@ func (r *groupResource) Create(ctx context.Context, req resource.CreateRequest, 
 			"Error creating group",
 			"Could not create group, unexpected error: "+err.Error(),
 		)
-		tflog.Error(ctx, "Error creating group", utils.AddHttpStatusCode(map[string]interface{}{"error": err.Error()}, httpResponse))
+		tflog.Error(ctx, "Error creating group", utils.AddHTTPStatusCode(map[string]interface{}{"error": err.Error()}, httpResponse))
 		return
 	}
 
@@ -222,8 +223,8 @@ func (r *groupResource) Create(ctx context.Context, req resource.CreateRequest, 
 	}
 
 	// Map response body to schema and populate Computed attribute values.
-	plan.Id = types.StringValue(utils.Float32PtrToIntString(response.Data.Id.Get()))
-	plan.LegacyId = types.StringValue(utils.Float32PtrToIntString(response.Data.LegacyId.Get()))
+	plan.ID = types.StringValue(utils.Float32PtrToIntString(response.Data.Id.Get()))
+	plan.LegacyID = types.StringValue(utils.Float32PtrToIntString(response.Data.LegacyId.Get()))
 
 	// Set state to fully populated data.
 	diags = resp.State.Set(ctx, plan)
@@ -246,7 +247,7 @@ func (r *groupResource) Read(ctx context.Context, req resource.ReadRequest, resp
 	}
 
 	// Use the ID from the state to read the group.
-	groupID := state.Id.ValueString()
+	groupID := state.ID.ValueString()
 	group, httpResponse, err := r.client.GroupsAPI.GroupsGroupIdGet(ctx, groupID).Execute()
 	if err != nil {
 		if httpResponse != nil && httpResponse.StatusCode == 404 {
@@ -258,13 +259,13 @@ func (r *groupResource) Read(ctx context.Context, req resource.ReadRequest, resp
 			"Error reading group",
 			fmt.Sprintf("Could not read group with ID %s: %s", groupID, err.Error()),
 		)
-		tflog.Error(ctx, "Error reading group", utils.AddHttpStatusCode(map[string]any{"groupID": groupID, "error": err.Error()}, httpResponse))
+		tflog.Error(ctx, "Error reading group", utils.AddHTTPStatusCode(map[string]any{"groupID": groupID, "error": err.Error()}, httpResponse))
 		return
 	}
 
 	// Map the API response to the Terraform state.
-	state.Id = types.StringValue(utils.Float32PtrToIntString(group.Data.Id.Get()))
-	state.LegacyId = types.StringValue(utils.Float32PtrToIntString(group.Data.LegacyId.Get()))
+	state.ID = types.StringValue(utils.Float32PtrToIntString(group.Data.Id.Get()))
+	state.LegacyID = types.StringValue(utils.Float32PtrToIntString(group.Data.LegacyId.Get()))
 	state.Name = types.StringValue(group.Data.Name)
 	state.UniversalAppAccess = types.StringValue(group.Data.UniversalAppAccess)
 	state.UniversalResourceAccess = types.StringValue(group.Data.UniversalResourceAccess)
@@ -275,7 +276,7 @@ func (r *groupResource) Read(ctx context.Context, req resource.ReadRequest, resp
 	state.UnpublishedReleaseAccess = types.BoolValue(group.Data.UnpublishedReleaseAccess)
 	state.UsageAnalyticsAccess = types.BoolValue(group.Data.UsageAnalyticsAccess)
 	state.AccountDetailsAccess = types.BoolValue(group.Data.AccountDetailsAccess)
-	state.LandingPageAppId = types.StringPointerValue(group.Data.LandingPageAppId.Get())
+	state.LandingPageAppID = types.StringPointerValue(group.Data.LandingPageAppId.Get())
 
 	diags = resp.State.Set(ctx, &state)
 	resp.Diagnostics.Append(diags...)
@@ -301,14 +302,14 @@ func (r *groupResource) Update(ctx context.Context, req resource.UpdateRequest, 
 	}
 
 	// First we need to get the group by ID to get the current values of the members and user_invites fields, since we don't have those in the plan.
-	groupID := state.Id.ValueString()
+	groupID := state.ID.ValueString()
 	group, httpResponse, err := r.client.GroupsAPI.GroupsGroupIdGet(ctx, groupID).Execute()
 	if err != nil {
 		resp.Diagnostics.AddError(
 			"Error reading group",
 			fmt.Sprintf("Could not read group with ID %s: %s", groupID, err.Error()),
 		)
-		tflog.Error(ctx, "Error reading group", utils.AddHttpStatusCode(map[string]any{"groupID": groupID, "error": err.Error()}, httpResponse))
+		tflog.Error(ctx, "Error reading group", utils.AddHTTPStatusCode(map[string]any{"groupID": groupID, "error": err.Error()}, httpResponse))
 		return
 	}
 
@@ -327,7 +328,7 @@ func (r *groupResource) Update(ctx context.Context, req resource.UpdateRequest, 
 		Members:                     convertGroupMembersToPutRequestType(group.Data.Members),
 		UserInvites:                 group.Data.UserInvites,
 	}
-	updatePayload.LandingPageAppId.Set(plan.LandingPageAppId.ValueStringPointer())
+	updatePayload.LandingPageAppId.Set(plan.LandingPageAppID.ValueStringPointer())
 
 	// Perform the update operation.
 	_, httpResponse, err = r.client.GroupsAPI.GroupsGroupIdPut(ctx, groupID).GroupsGroupIdPutRequest(updatePayload).Execute()
@@ -336,7 +337,7 @@ func (r *groupResource) Update(ctx context.Context, req resource.UpdateRequest, 
 			"Error updating group",
 			fmt.Sprintf("Could not update group with ID %s: %s", groupID, err.Error()),
 		)
-		tflog.Error(ctx, "Error updating group", utils.AddHttpStatusCode(map[string]any{"groupID": groupID, "error": err.Error()}, httpResponse))
+		tflog.Error(ctx, "Error updating group", utils.AddHTTPStatusCode(map[string]any{"groupID": groupID, "error": err.Error()}, httpResponse))
 		return
 	}
 
@@ -367,14 +368,14 @@ func (r *groupResource) Delete(ctx context.Context, req resource.DeleteRequest, 
 		return
 	}
 
-	groupId := state.Id.ValueString()
-	httpResponse, err := r.client.GroupsAPI.GroupsGroupIdDelete(ctx, groupId).Execute()
+	groupID := state.ID.ValueString()
+	httpResponse, err := r.client.GroupsAPI.GroupsGroupIdDelete(ctx, groupID).Execute()
 	if err != nil && !(httpResponse != nil && httpResponse.StatusCode == 404) { // It's ok to not find the group when deleting.
 		resp.Diagnostics.AddError(
 			"Error Deleting Group",
-			"Could not delete group with ID "+groupId+": "+err.Error(),
+			"Could not delete group with ID "+groupID+": "+err.Error(),
 		)
-		tflog.Error(ctx, "Error Deleting Group", utils.AddHttpStatusCode(map[string]any{"error": err.Error(), "groupId": groupId}, httpResponse))
+		tflog.Error(ctx, "Error Deleting Group", utils.AddHTTPStatusCode(map[string]any{"error": err.Error(), "groupId": groupID}, httpResponse))
 		return
 	}
 }
