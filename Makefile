@@ -1,4 +1,42 @@
 #-----------------------------------------------------------------------------------------------------------------------
+# Dependencies
+#-----------------------------------------------------------------------------------------------------------------------
+$(GO_BIN)/golangci-lint:
+	${call print, "Installing golangci-lint"}
+	@go install -v github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Docs
+#-----------------------------------------------------------------------------------------------------------------------
+.PHONY: docs check-docs
+
+docs: ## Generate docs
+	${call print, "Generating docs"}
+	@go generate
+
+check-docs: ## Check if docs are up-to-date
+	${call print, "Checking that documentation was generated correctly"}
+	@go generate
+	@if [ -n "$$(git status --porcelain)" ]; \
+	then \
+		echo "Go generate resulted in changed files:"; \
+		echo "$$(git diff)"; \
+		echo "Please run \`make docs\` to regenerate docs."; \
+		exit 1; \
+	fi
+	@echo "Documentation is generated correctly."
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Static analysis and linting
+#-----------------------------------------------------------------------------------------------------------------------
+.PHONY: lint
+
+lint: $(GO_BIN)/golangci-lint ## Run go linter checks
+	${call print, "Running golangci-lint over project"}
+	@golangci-lint run -v --fix -c .golangci.yml ./...
+
+
+#-----------------------------------------------------------------------------------------------------------------------
 # Testing
 #-----------------------------------------------------------------------------------------------------------------------
 .PHONY: test-unit test-acc test-acc-record test-acc-replay test-acc-sweep

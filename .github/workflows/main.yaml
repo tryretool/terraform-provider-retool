@@ -1,0 +1,57 @@
+name: Main Workflow
+
+on:
+  pull_request: {}
+  push:
+    branches:
+      - main
+
+jobs:
+  unit_tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the code 
+        uses: actions/checkout@v4
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          check-latest: true
+      - name: Run unit tests
+        run: make test-unit
+
+  acceptance_tests:
+    name: Acceptance Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the code 
+        uses: actions/checkout@v4
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          check-latest: true
+      - name: Run acceptance tests
+        run: make test-acc-replay
+
+  checks:
+    name: Checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the code 
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          check-latest: true
+
+      - name: Check the docs are up to date
+        run: make check-docs
+
+      - name: Run linters
+        uses: golangci/golangci-lint-action@v6
+        with:
+          version: latest
