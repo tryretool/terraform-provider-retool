@@ -8,6 +8,7 @@ import (
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
+
 	"github.com/tryretool/terraform-provider-retool/internal/acctest"
 )
 
@@ -51,7 +52,7 @@ func TestMain(m *testing.M) {
 func TestAccSpace(t *testing.T) {
 	acctest.Test(t, resource.TestCase{
 		Steps: []resource.TestStep{
-			// Read and Create
+			// Read and Create.
 			{
 				Config: testSpaceConfig,
 				Check: resource.ComposeTestCheckFunc(
@@ -64,12 +65,12 @@ func TestAccSpace(t *testing.T) {
 					resource.TestCheckResourceAttr("retool_space.test_space", "create_options.users_to_copy_as_admins.0", "admin@example.com"),
 				),
 			},
-			// Import state
+			// Import state.
 			{
 				ResourceName: "retool_space.test_space",
 				ImportState:  true,
 			},
-			// Update and Read
+			// Update and Read.
 			{
 				Config: testUpdatedSpaceConfig,
 				Check: resource.ComposeTestCheckFunc(
@@ -82,7 +83,7 @@ func TestAccSpace(t *testing.T) {
 					resource.TestCheckResourceAttr("retool_space.test_space", "create_options.users_to_copy_as_admins.0", "admin@example.com"),
 				),
 			},
-			// Check default values
+			// Check default values.
 			{
 				Config: testDefaultValuesConfig,
 				Check: resource.ComposeTestCheckFunc(

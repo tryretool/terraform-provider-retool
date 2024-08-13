@@ -9,9 +9,9 @@ linters:
     - gofmt
     - staticcheck
     - revive
-#    - godot
-#    - whitespace
-#    - goimports
+    - godot
+    - whitespace
+    - goimports
     - gosimple
     - errcheck
     - unconvert
@@ -40,16 +40,13 @@ issues:
       linters:
         - gosec
   exclude:
-    - "should have a package comment"
     - "var-naming:.*Id.* should be .*ID"
     - "var-naming:.*Api.* should be .*API"
     - "var-naming:.*Http.* should be .*HTTP"
     - "exported: exported .* should have comment"
     - "exported: comment on exported .* should be of the form"
-    - "var-naming: don't use an underscore in package name"
     - "unused-parameter:"
     - "ifElseChain:"
     - "var-naming:.*ALL_CAPS.*"
     - "superfluous-else"
-    - "package-comments:"
     - "Error return value of .* is not checked"

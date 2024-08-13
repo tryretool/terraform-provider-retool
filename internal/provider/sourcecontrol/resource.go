@@ -1,4 +1,5 @@
-package source_control
+// Package sourcecontrol provides implementation of the Source Control resource.
+package sourcecontrol
 
 import (
 	"context"
@@ -14,11 +15,12 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
+
 	"github.com/tryretool/terraform-provider-retool/internal/provider/utils"
 	"github.com/tryretool/terraform-provider-retool/internal/sdk/api"
 )
 
-// Ensure sourceControlResource implements the tfsdk.Resource interface
+// Ensure sourceControlResource implements the tfsdk.Resource interface.
 var (
 	_ resource.Resource              = &sourceControlResource{}
 	_ resource.ResourceWithConfigure = &sourceControlResource{}
@@ -160,12 +162,12 @@ func (r *sourceControlResource) Configure(_ context.Context, req resource.Config
 	r.client = providerData.Client
 }
 
-// Metadata associated with the Source Control resource
+// Metadata associated with the Source Control resource.
 func (r *sourceControlResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_source_control"
 }
 
-// Schema returns the schema for the Source Control resource
+// Schema returns the schema for the Source Control resource.
 func (r *sourceControlResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{
@@ -332,7 +334,7 @@ func (r *sourceControlResource) Schema(ctx context.Context, req resource.SchemaR
 	}
 }
 
-// Custom validation implementation to prevent common errors in the Source Control config
+// Custom validation implementation to prevent common errors in the Source Control config.
 func (r *sourceControlResource) ValidateConfig(ctx context.Context, req resource.ValidateConfigRequest, resp *resource.ValidateConfigResponse) {
 	var model sourceControlModel
 	diags := req.Config.Get(ctx, &model)
@@ -404,7 +406,7 @@ func updateSourceControlConfig(ctx context.Context, client *api.APIClient, model
 				EnterpriseApiUrl: githubConfig.EnterpriseAPIURL.ValueStringPointer(),
 			}
 		} else {
-			// assuming here that the personal access token is set
+			// Assuming here that the personal access token is set.
 			innerConfig.SourceControlConfigGet200ResponseDataOneOfConfigOneOf1 = &api.SourceControlConfigGet200ResponseDataOneOfConfigOneOf1{
 				Type:                "Personal",
 				PersonalAccessToken: githubConfig.PersonalAccessToken.ValueString(),
@@ -534,7 +536,7 @@ func updateSourceControlConfig(ctx context.Context, client *api.APIClient, model
 	}
 }
 
-// Updates Source Control config and sets state
+// Updates Source Control config and sets state.
 func (r *sourceControlResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
 	var plan sourceControlModel
 	diags := req.Plan.Get(ctx, &plan)
@@ -548,7 +550,7 @@ func (r *sourceControlResource) Create(ctx context.Context, req resource.CreateR
 		return
 	}
 
-	// Set state to fully populated data
+	// Set state to fully populated data.
 	diags = resp.State.Set(ctx, plan)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -559,7 +561,7 @@ func (r *sourceControlResource) Create(ctx context.Context, req resource.CreateR
 	tflog.Info(ctx, "Source Control config created")
 }
 
-// Read Source Control config
+// Read Source Control config.
 func (r *sourceControlResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 	response, httpResponse, err := r.client.SourceControlAPI.SourceControlConfigGet(context.Background()).Execute()
 	if err != nil {
@@ -577,7 +579,7 @@ func (r *sourceControlResource) Read(ctx context.Context, req resource.ReadReque
 	}
 
 	var state sourceControlModel
-	// First init all object fields to empty objects
+	// First init all object fields to empty objects.
 	state.GitHub = types.ObjectNull(githubConfigModel{}.attributeTypes())
 	state.GitLab = types.ObjectNull(gitlabConfigModel{}.attributeTypes())
 	state.AWSCodeCommit = types.ObjectNull(awsCodeCommitConfigModel{}.attributeTypes())
@@ -595,7 +597,7 @@ func (r *sourceControlResource) Read(ctx context.Context, req resource.ReadReque
 			appAuthConfig := appAuthConfigModel{
 				AppID:          types.StringValue(response.Data.SourceControlConfigGet200ResponseDataOneOf.Config.SourceControlConfigGet200ResponseDataOneOfConfigOneOf.AppId),
 				InstallationID: types.StringValue(response.Data.SourceControlConfigGet200ResponseDataOneOf.Config.SourceControlConfigGet200ResponseDataOneOfConfigOneOf.InstallationId),
-				PrivateKey:     types.StringNull(), // API sends placeholder value that we don't need
+				PrivateKey:     types.StringNull(), // API sends placeholder value that we don't need.
 			}
 			appAuthConfigModelObj, diags := types.ObjectValueFrom(ctx, appAuthConfig.attributeTypes(), appAuthConfig)
 			resp.Diagnostics.Append(diags...)
@@ -607,7 +609,7 @@ func (r *sourceControlResource) Read(ctx context.Context, req resource.ReadReque
 			githubConfigModel.URL = types.StringPointerValue(response.Data.SourceControlConfigGet200ResponseDataOneOf.Config.SourceControlConfigGet200ResponseDataOneOfConfigOneOf.Url)
 			githubConfigModel.EnterpriseAPIURL = types.StringPointerValue(response.Data.SourceControlConfigGet200ResponseDataOneOf.Config.SourceControlConfigGet200ResponseDataOneOfConfigOneOf.EnterpriseApiUrl)
 		} else {
-			githubConfigModel.PersonalAccessToken = types.StringNull() // API sends placeholder value that we don't need
+			githubConfigModel.PersonalAccessToken = types.StringNull() // API sends placeholder value that we don't need.
 			githubConfigModel.AppAuthentication = types.ObjectNull(appAuthConfigModel{}.attributeTypes())
 			githubConfigModel.URL = types.StringPointerValue(response.Data.SourceControlConfigGet200ResponseDataOneOf.Config.SourceControlConfigGet200ResponseDataOneOfConfigOneOf1.Url)
 			githubConfigModel.EnterpriseAPIURL = types.StringPointerValue(response.Data.SourceControlConfigGet200ResponseDataOneOf.Config.SourceControlConfigGet200ResponseDataOneOfConfigOneOf1.EnterpriseApiUrl)
@@ -627,7 +629,7 @@ func (r *sourceControlResource) Read(ctx context.Context, req resource.ReadReque
 		gitlabConfigModel := gitlabConfigModel{
 			ProjectID:          types.StringValue(utils.Float32PtrToIntString(&response.Data.SourceControlConfigGet200ResponseDataOneOf1.Config.ProjectId)),
 			URL:                types.StringValue(response.Data.SourceControlConfigGet200ResponseDataOneOf1.Config.Url),
-			ProjectAccessToken: types.StringNull(), // API sends placeholder value that we don't need
+			ProjectAccessToken: types.StringNull(), // API sends placeholder value that we don't need.
 		}
 		gitlabConfigModelObj, diags := types.ObjectValueFrom(ctx, gitlabConfigModel.attributeTypes(), gitlabConfigModel)
 		resp.Diagnostics.Append(diags...)
@@ -644,10 +646,10 @@ func (r *sourceControlResource) Read(ctx context.Context, req resource.ReadReque
 		awsCodeCommitConfigModel := awsCodeCommitConfigModel{
 			URL:             types.StringValue(response.Data.SourceControlConfigGet200ResponseDataOneOf2.Config.Url),
 			Region:          types.StringValue(response.Data.SourceControlConfigGet200ResponseDataOneOf2.Config.Region),
-			AccessKeyID:     types.StringNull(), // API sends placeholder value that we don't need
-			SecretAccessKey: types.StringNull(), // API sends placeholder value that we don't need,
+			AccessKeyID:     types.StringNull(), // API sends placeholder value that we don't need.
+			SecretAccessKey: types.StringNull(), // API sends placeholder value that we don't need,.
 			HTTPSUsername:   types.StringValue(response.Data.SourceControlConfigGet200ResponseDataOneOf2.Config.HttpsUsername),
-			HTTPSPassword:   types.StringNull(), // API sends placeholder value that we don't need
+			HTTPSPassword:   types.StringNull(), // API sends placeholder value that we don't need.
 		}
 		awsCodeCommitConfigModelObj, diags := types.ObjectValueFrom(ctx, awsCodeCommitConfigModel.attributeTypes(), awsCodeCommitConfigModel)
 		resp.Diagnostics.Append(diags...)
@@ -665,7 +667,7 @@ func (r *sourceControlResource) Read(ctx context.Context, req resource.ReadReque
 			Username:         types.StringValue(response.Data.SourceControlConfigGet200ResponseDataOneOf3.Config.Username),
 			URL:              types.StringPointerValue(response.Data.SourceControlConfigGet200ResponseDataOneOf3.Config.Url),
 			EnterpriseAPIURL: types.StringPointerValue(response.Data.SourceControlConfigGet200ResponseDataOneOf3.Config.EnterpriseApiUrl),
-			AppPassword:      types.StringNull(), // API sends placeholder value that we don't need
+			AppPassword:      types.StringNull(), // API sends placeholder value that we don't need.
 		}
 		bitbucketConfigModelObj, diags := types.ObjectValueFrom(ctx, bitbucketConfigModel.attributeTypes(), bitbucketConfigModel)
 		resp.Diagnostics.Append(diags...)
@@ -683,7 +685,7 @@ func (r *sourceControlResource) Read(ctx context.Context, req resource.ReadReque
 			URL:                 types.StringValue(response.Data.SourceControlConfigGet200ResponseDataOneOf4.Config.Url),
 			Project:             types.StringValue(response.Data.SourceControlConfigGet200ResponseDataOneOf4.Config.Project),
 			User:                types.StringValue(response.Data.SourceControlConfigGet200ResponseDataOneOf4.Config.User),
-			PersonalAccessToken: types.StringNull(), // API sends placeholder value that we don't need
+			PersonalAccessToken: types.StringNull(), // API sends placeholder value that we don't need.
 			UseBasicAuth:        types.BoolValue(response.Data.SourceControlConfigGet200ResponseDataOneOf4.Config.UseBasicAuth),
 		}
 		azureReposConfigModelObj, diags := types.ObjectValueFrom(ctx, azureReposConfigModel.attributeTypes(), azureReposConfigModel)
@@ -701,7 +703,7 @@ func (r *sourceControlResource) Read(ctx context.Context, req resource.ReadReque
 	}
 }
 
-// Update Source Control config
+// Update Source Control config.
 func (r *sourceControlResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 	var plan sourceControlModel
 	diags := req.Plan.Get(ctx, &plan)
@@ -715,7 +717,7 @@ func (r *sourceControlResource) Update(ctx context.Context, req resource.UpdateR
 		return
 	}
 
-	// Set state to fully populated data
+	// Set state to fully populated data.
 	diags = resp.State.Set(ctx, plan)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -726,10 +728,10 @@ func (r *sourceControlResource) Update(ctx context.Context, req resource.UpdateR
 	tflog.Info(ctx, "Source Control config updated")
 }
 
-// Delete Source Control config
+// Delete Source Control config.
 func (r *sourceControlResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 	httpResponse, err := r.client.SourceControlAPI.SourceControlConfigDelete(context.Background()).Execute()
-	if err != nil && !(httpResponse != nil && httpResponse.StatusCode == 404) { // it's ok to not find the source control config when deleting
+	if err != nil && !(httpResponse != nil && httpResponse.StatusCode == 404) { // It's ok to not find the source control config when deleting.
 		resp.Diagnostics.AddError(
 			"Error Deleting Source Control Config",
 			"Could not Source Control config: "+err.Error(),

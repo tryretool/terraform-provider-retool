@@ -1,4 +1,5 @@
-package source_control_settings
+// Package sourcecontrolsettings provides the implementation of the Source Control Settings resource.
+package sourcecontrolsettings
 
 import (
 	"context"
@@ -11,11 +12,12 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringdefault"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
+
 	"github.com/tryretool/terraform-provider-retool/internal/provider/utils"
 	"github.com/tryretool/terraform-provider-retool/internal/sdk/api"
 )
 
-// Ensure SCM settings implements the tfsdk.Resource interface
+// Ensure SCM settings implements the tfsdk.Resource interface.
 var (
 	_ resource.Resource              = &scmSettingsResource{}
 	_ resource.ResourceWithConfigure = &scmSettingsResource{}
@@ -54,12 +56,12 @@ func (r *scmSettingsResource) Configure(_ context.Context, req resource.Configur
 	r.client = providerData.Client
 }
 
-// Metadata associated with the Source Control Settings resource
+// Metadata associated with the Source Control Settings resource.
 func (r *scmSettingsResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_source_control_settings"
 }
 
-// Schema returns the schema for the Source Control resource
+// Schema returns the schema for the Source Control resource.
 func (r *scmSettingsResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{
@@ -109,7 +111,7 @@ func updateSourceControlSettings(ctx context.Context, client *api.APIClient, mod
 	}
 }
 
-// Updates Source Control settings and sets state
+// Updates Source Control settings and sets state.
 func (r *scmSettingsResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
 	var plan scmSettingsModel
 	diags := req.Plan.Get(ctx, &plan)
@@ -123,7 +125,7 @@ func (r *scmSettingsResource) Create(ctx context.Context, req resource.CreateReq
 		return
 	}
 
-	// Set state to fully populated data
+	// Set state to fully populated data.
 	diags = resp.State.Set(ctx, plan)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -134,7 +136,7 @@ func (r *scmSettingsResource) Create(ctx context.Context, req resource.CreateReq
 	tflog.Info(ctx, "Source Control settings updated")
 }
 
-// Read Source Control settings
+// Read Source Control settings.
 func (r *scmSettingsResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 	response, httpResponse, err := r.client.SourceControlAPI.SourceControlSettingsGet(context.Background()).Execute()
 	if err != nil {
@@ -166,7 +168,7 @@ func (r *scmSettingsResource) Read(ctx context.Context, req resource.ReadRequest
 	}
 }
 
-// Update Source Control settings
+// Update Source Control settings.
 func (r *scmSettingsResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 	var plan scmSettingsModel
 	diags := req.Plan.Get(ctx, &plan)
@@ -180,7 +182,7 @@ func (r *scmSettingsResource) Update(ctx context.Context, req resource.UpdateReq
 		return
 	}
 
-	// Set state to fully populated data
+	// Set state to fully populated data.
 	diags = resp.State.Set(ctx, plan)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -191,10 +193,10 @@ func (r *scmSettingsResource) Update(ctx context.Context, req resource.UpdateReq
 	tflog.Info(ctx, "Source Control settings updated")
 }
 
-// Delete Source Control settings
+// Delete Source Control settings.
 func (r *scmSettingsResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 	// There's no DELETE endpoint, so we'll just set everything to default values
-	// and call the update function
+	// and call the update function.
 	model := scmSettingsModel{
 		AutoBranchNamingEnabled:          types.BoolValue(true),
 		CustomPullRequestTemplateEnabled: types.BoolValue(false),

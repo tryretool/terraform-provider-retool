@@ -1,3 +1,4 @@
+// Package provider provides the implementation of the Retool Terraform provider.
 package provider
 
 import (
@@ -19,8 +20,8 @@ import (
 	"github.com/tryretool/terraform-provider-retool/internal/provider/folder"
 	"github.com/tryretool/terraform-provider-retool/internal/provider/group"
 	"github.com/tryretool/terraform-provider-retool/internal/provider/permissions"
-	"github.com/tryretool/terraform-provider-retool/internal/provider/source_control"
-	"github.com/tryretool/terraform-provider-retool/internal/provider/source_control_settings"
+	"github.com/tryretool/terraform-provider-retool/internal/provider/sourcecontrol"
+	"github.com/tryretool/terraform-provider-retool/internal/provider/sourcecontrolsettings"
 	"github.com/tryretool/terraform-provider-retool/internal/provider/space"
 	"github.com/tryretool/terraform-provider-retool/internal/provider/sso"
 	"github.com/tryretool/terraform-provider-retool/internal/provider/utils"
@@ -54,7 +55,7 @@ func NewWithHttpClient(version string, httpClient *http.Client) func() provider.
 
 // retoolProvider is the provider implementation.
 type retoolProvider struct {
-	// version is set to the provider version on release, "dev" when the
+	// Version is set to the provider version on release, "dev" when the
 	// provider is built and ran locally, and "test" when running acceptance
 	// testing.
 	version    string
@@ -99,7 +100,7 @@ type HealthCheckResponse struct {
 }
 
 func checkMinimalVersion(ctx context.Context, host string, scheme string) bool {
-	// Create HTTP client, make GET /api/checkHealth request, parse the version field out of the JSON response
+	// Create HTTP client, make GET /api/checkHealth request, parse the version field out of the JSON response.
 	httpResponse, err := http.Get(scheme + "://" + host + "/api/checkHealth")
 	if err != nil {
 		tflog.Error(ctx, "Failed to check Retool version", map[string]any{"error": err})
@@ -107,14 +108,14 @@ func checkMinimalVersion(ctx context.Context, host string, scheme string) bool {
 	}
 	defer httpResponse.Body.Close()
 
-	// Read the response body
+	// Read the response body.
 	body, err := io.ReadAll(httpResponse.Body)
 	if err != nil {
 		tflog.Error(ctx, "Failed to read response body", map[string]any{"error": err})
 		return false
 	}
 
-	// Parse the JSON response
+	// Parse the JSON response.
 	var healthCheck HealthCheckResponse
 	err = json.Unmarshal(body, &healthCheck)
 	if err != nil {
@@ -129,7 +130,7 @@ func checkMinimalVersion(ctx context.Context, host string, scheme string) bool {
 // Configure prepares a Retool API client for data sources and resources.
 func (p *retoolProvider) Configure(ctx context.Context, req provider.ConfigureRequest, resp *provider.ConfigureResponse) {
 	tflog.Info(ctx, "Configuring Retool API client")
-	// Retrieve provider data from configuration
+	// Retrieve provider data from configuration.
 	var config retoolProviderModel
 	diags := req.Config.Get(ctx, &config)
 	resp.Diagnostics.Append(diags...)
@@ -213,7 +214,7 @@ func (p *retoolProvider) Configure(ctx context.Context, req provider.ConfigureRe
 	}
 
 	// We only check the minimum version if there's no HTTP client override
-	// This is a hacky way to avoid doing the check when running acceptance tests in "record" or "replay" mode
+	// This is a hacky way to avoid doing the check when running acceptance tests in "record" or "replay" mode.
 	if p.httpClient == nil && !checkMinimalVersion(ctx, host, scheme) {
 		resp.Diagnostics.AddError("Incompatible Retool version", "The Retool instance version is not supported. Minimum version required is "+MINIMUM_RETOOL_VERSION)
 		return
@@ -227,7 +228,7 @@ func (p *retoolProvider) Configure(ctx context.Context, req provider.ConfigureRe
 			URL: "/api/v2",
 		},
 	}
-	// We need this to be able to record and replay HTTP interactions in the acceptance tests
+	// We need this to be able to record and replay HTTP interactions in the acceptance tests.
 	if p.httpClient != nil {
 		clientConfig.HTTPClient = p.httpClient
 	}
@@ -262,7 +263,7 @@ func (p *retoolProvider) Resources(_ context.Context) []func() resource.Resource
 		permissions.NewResource,
 		space.NewResource,
 		sso.NewResource,
-		source_control.NewResource,
-		source_control_settings.NewResource,
+		sourcecontrol.NewResource,
+		sourcecontrolsettings.NewResource,
 	}
 }

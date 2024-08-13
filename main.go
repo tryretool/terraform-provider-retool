@@ -1,3 +1,4 @@
+// Package main provides the entrypoint for the provider. It sets up the provider and starts the provider server.
 package main
 
 import (
@@ -6,10 +7,11 @@ import (
 	"log"
 
 	"github.com/hashicorp/terraform-plugin-framework/providerserver"
+
 	"github.com/tryretool/terraform-provider-retool/internal/provider"
 )
 
-// Run "go generate" to format example terraform files and generate the docs for the registry/website
+// Run "go generate" to format example terraform files and generate the docs for the registry/website.
 
 // If you do not have terraform installed, you can remove the formatting command, but its suggested to
 // ensure the documentation is formatted properly.
@@ -20,11 +22,11 @@ import (
 //go:generate go run github.com/hashicorp/terraform-plugin-docs/cmd/tfplugindocs generate -provider-name retool
 
 var (
-	// these will be set by the goreleaser configuration
+	// These will be set by the goreleaser configuration
 	// to appropriate values for the compiled binary.
 	version = "dev"
 
-	// goreleaser can pass other information to the main package, such as the specific commit
+	// Goreleaser can pass other information to the main package, such as the specific commit
 	// https://goreleaser.com/cookbooks/using-main.version/
 )
 

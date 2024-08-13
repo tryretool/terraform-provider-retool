@@ -1,4 +1,4 @@
-package source_control_settings_test
+package sourcecontrolsettings_test
 
 import (
 	"context"
@@ -7,6 +7,7 @@ import (
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
+
 	"github.com/tryretool/terraform-provider-retool/internal/acctest"
 	"github.com/tryretool/terraform-provider-retool/internal/sdk/api"
 )
@@ -41,7 +42,7 @@ func TestMain(m *testing.M) {
 func TestAccSourceControlSettings(t *testing.T) {
 	acctest.Test(t, resource.TestCase{
 		Steps: []resource.TestStep{
-			// Read and Create
+			// Read and Create.
 			{
 				Config: testSCMSettings,
 				Check: resource.ComposeTestCheckFunc(
@@ -51,7 +52,7 @@ func TestAccSourceControlSettings(t *testing.T) {
 					resource.TestCheckResourceAttr("retool_source_control_settings.scm_settings", "version_control_locked", "true"),
 				),
 			},
-			// Update and Read
+			// Update and Read.
 			{
 				Config: testSCMSettingsUpdated,
 				Check: resource.ComposeTestCheckFunc(
@@ -61,7 +62,7 @@ func TestAccSourceControlSettings(t *testing.T) {
 					resource.TestCheckResourceAttr("retool_source_control_settings.scm_settings", "version_control_locked", "false"),
 				),
 			},
-			// Use default values
+			// Use default values.
 			{
 				Config: testSCMSettingsDefaults,
 				Check: resource.ComposeTestCheckFunc(

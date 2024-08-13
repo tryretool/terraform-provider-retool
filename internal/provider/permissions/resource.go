@@ -1,3 +1,4 @@
+// Package permissions provides the implementation of the Permissions resource.
 package permissions
 
 import (
@@ -16,22 +17,23 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
+
 	"github.com/tryretool/terraform-provider-retool/internal/provider/utils"
 	"github.com/tryretool/terraform-provider-retool/internal/sdk/api"
 )
 
-// Ensure GroupResource implements the tfsdk.Resource interface
+// Ensure GroupResource implements the tfsdk.Resource interface.
 var (
 	_ resource.Resource              = &permissionResource{}
 	_ resource.ResourceWithConfigure = &permissionResource{}
-	// Note that unlike other resources, we don't implement ResourceWithImportState here, because there's not much to import for permission
+	// Note that unlike other resources, we don't implement ResourceWithImportState here, because there's not much to import for permission.
 )
 
 type permissionResource struct {
 	client *api.APIClient
 }
 
-// The key is a combination of subject type and id
+// The key is a combination of subject type and id.
 type permissionsResourceModel struct {
 	Subject     types.Object      `tfsdk:"subject"`
 	Permissions []permissionModel `tfsdk:"permissions"`
@@ -54,7 +56,7 @@ func (m permissionObjectModel) AttributeTypes() map[string]attr.Type {
 	}
 }
 
-// A model for a single permission for a given subject
+// A model for a single permission for a given subject.
 type permissionModel struct {
 	Object      types.Object `tfsdk:"object"`
 	AccessLevel types.String `tfsdk:"access_level"`
@@ -92,14 +94,14 @@ func (r *permissionResource) Schema(ctx context.Context, req resource.SchemaRequ
 						Required:    true,
 						Description: "The ID of the subject.",
 						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(), // Changing the subject of permission requires replacing it
+							stringplanmodifier.RequiresReplace(), // Changing the subject of permission requires replacing it.
 						},
 					},
 					"type": schema.StringAttribute{
 						Required:    true,
 						Description: "The type of the subject - user or group.",
 						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(), // Changing the subject of permission requires replacing it
+							stringplanmodifier.RequiresReplace(), // Changing the subject of permission requires replacing it.
 						},
 						Validators: []validator.String{
 							stringvalidator.OneOf("user", "group"),
@@ -151,7 +153,7 @@ func createNewApiPermissionsSubject(subjectModel permissionSubjectModel) api.Per
 		if err != nil {
 			return api.PermissionsListObjectsPostRequestSubject{}
 		}
-		floatGroupId := float32(groupId) // our client uses float32 to represent "number" ids
+		floatGroupId := float32(groupId) // Our client uses float32 to represent "number" ids.
 		subject.PermissionsListObjectsPostRequestSubjectOneOf = api.NewPermissionsListObjectsPostRequestSubjectOneOf("group", *api.NewNullableFloat32(&floatGroupId))
 	} else if subjectModel.Type.ValueString() == "user" {
 		subject.PermissionsListObjectsPostRequestSubjectOneOf1 = api.NewPermissionsListObjectsPostRequestSubjectOneOf1("user", subjectModel.Id.ValueString())
@@ -170,7 +172,7 @@ func getPermissionId(subject permissionSubjectModel, object permissionObjectMode
 	return subject.Type.ValueString() + "|" + subject.Id.ValueString() + "|" + object.Type.ValueString() + "|" + object.Id.ValueString()
 }
 
-// Make an API call to revoke a permission
+// Make an API call to revoke a permission.
 func (r *permissionResource) revokePermission(ctx context.Context, subject permissionSubjectModel, permission permissionModel) diag.Diagnostics {
 	var object permissionObjectModel
 
@@ -196,7 +198,7 @@ func (r *permissionResource) revokePermission(ctx context.Context, subject permi
 	return diags
 }
 
-// Make an API call to grant a permission
+// Make an API call to grant a permission.
 func (r *permissionResource) grantPermission(ctx context.Context, subject permissionSubjectModel, permission permissionModel) diag.Diagnostics {
 	var object permissionObjectModel
 
@@ -205,10 +207,10 @@ func (r *permissionResource) grantPermission(ctx context.Context, subject permis
 		return diags
 	}
 
-	// only used for logging
+	// Only used for logging.
 	permissionId := getPermissionId(subject, object)
 
-	// Generate API request body from plan
+	// Generate API request body from plan.
 	apiSubject := createNewApiPermissionsSubject(subject)
 	apiObject := createNewApiPermissionsObject(object)
 
@@ -216,7 +218,7 @@ func (r *permissionResource) grantPermission(ctx context.Context, subject permis
 
 	tflog.Info(ctx, "Creating a permission", map[string]interface{}{"id": permissionId, "access level": permission.AccessLevel.ValueString()})
 
-	// Grant the permission
+	// Grant the permission.
 	_, httpResponse, err := r.client.PermissionsAPI.PermissionsGrantPost(ctx).PermissionsGrantPostRequest(*grantRequest).Execute()
 	if err != nil {
 		diags.AddError(
@@ -231,7 +233,7 @@ func (r *permissionResource) grantPermission(ctx context.Context, subject permis
 }
 
 func (r *permissionResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	// Retrieve values from plan
+	// Retrieve values from plan.
 	var plan permissionsResourceModel
 	var planSubject permissionSubjectModel
 
@@ -256,7 +258,7 @@ func (r *permissionResource) Create(ctx context.Context, req resource.CreateRequ
 		}
 	}
 
-	// Set state to fully populated data
+	// Set state to fully populated data.
 	diags = resp.State.Set(ctx, plan)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -286,7 +288,7 @@ func (r *permissionResource) Read(ctx context.Context, req resource.ReadRequest,
 
 	subjectId := stateSubject.Id.ValueString() + "|" + stateSubject.Type.ValueString()
 
-	// We'll need to get all the permissions for the given subject
+	// We'll need to get all the permissions for the given subject.
 	for _, objectType := range []string{"app", "folder", "resource", "resource_configuration"} {
 		request := api.NewPermissionsListObjectsPostRequest(createNewApiPermissionsSubject(stateSubject), objectType)
 
@@ -302,7 +304,7 @@ func (r *permissionResource) Read(ctx context.Context, req resource.ReadRequest,
 			return
 		}
 
-		// Now let's populate the state with permissions based on our API response
+		// Now let's populate the state with permissions based on our API response.
 		for _, obj := range permissionsResponse.Data {
 			var objId string
 			var accessLevel string
@@ -340,7 +342,7 @@ type objectKey struct {
 	Type string
 }
 
-// Converts a list of permissions to a map of permissions by object, for quick lookup
+// Converts a list of permissions to a map of permissions by object, for quick lookup.
 func mapPermissionsByOjbect(ctx context.Context, permissions []permissionModel) (map[objectKey]permissionModel, diag.Diagnostics) {
 	permissionsByObject := make(map[objectKey]permissionModel)
 	var allDiags diag.Diagnostics
@@ -364,7 +366,7 @@ type permissionDiff struct {
 func computePermissionDiff(ctx context.Context, statePermissions []permissionModel, planPermissions []permissionModel) (permissionDiff, diag.Diagnostics) {
 	var diff permissionDiff
 
-	// Maps to hold the sets of permissions for quick lookup
+	// Maps to hold the sets of permissions for quick lookup.
 	stateMap, diags := mapPermissionsByOjbect(ctx, statePermissions)
 	if diags.HasError() {
 		return diff, diags
@@ -374,14 +376,14 @@ func computePermissionDiff(ctx context.Context, statePermissions []permissionMod
 		return diff, diags
 	}
 
-	// Find permissions to revoke (in state but not in plan)
+	// Find permissions to revoke (in state but not in plan).
 	for key, statePerm := range stateMap {
 		if _, found := planMap[key]; !found {
 			diff.Revoke = append(diff.Revoke, statePerm)
 		}
 	}
 
-	// Find permissions to grant (in plan but not in state)
+	// Find permissions to grant (in plan but not in state).
 	for key, planPerm := range planMap {
 		if statePerm, found := stateMap[key]; !found || statePerm.AccessLevel.ValueString() != planPerm.AccessLevel.ValueString() {
 			diff.Grant = append(diff.Grant, planPerm)
@@ -424,7 +426,7 @@ func (r *permissionResource) Update(ctx context.Context, req resource.UpdateRequ
 
 	subjectId := stateSubject.Id.ValueString() + "|" + stateSubject.Type.ValueString()
 	tflog.Info(ctx, "Revoking old permissions", map[string]any{"subject_id": subjectId})
-	// Revoke old permissions
+	// Revoke old permissions.
 	for _, perm := range diff.Revoke {
 		diags = r.revokePermission(ctx, stateSubject, perm)
 		resp.Diagnostics.Append(diags...)
@@ -434,7 +436,7 @@ func (r *permissionResource) Update(ctx context.Context, req resource.UpdateRequ
 	}
 
 	tflog.Info(ctx, "Granting new permissions", map[string]any{"subject_id": subjectId})
-	// Grant new permissions
+	// Grant new permissions.
 	for _, perm := range diff.Grant {
 		diags = r.grantPermission(ctx, stateSubject, perm)
 		resp.Diagnostics.Append(diags...)

@@ -1,3 +1,4 @@
+// Package space provides implementation of the Space resource.
 package space
 
 import (
@@ -27,7 +28,7 @@ type spaceResource struct {
 	client *api.APIClient
 }
 
-// Ensure SpaceResource implements the tfsdk.Resource interface
+// Ensure SpaceResource implements the tfsdk.Resource interface.
 var (
 	_ resource.Resource                = &spaceResource{}
 	_ resource.ResourceWithConfigure   = &spaceResource{}
@@ -311,8 +312,8 @@ func (r *spaceResource) Delete(ctx context.Context, req resource.DeleteRequest, 
 	}
 }
 
-// ImportState allows importing of a Space resource
+// ImportState allows importing of a Space resource.
 func (r *spaceResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
-	// Retrieve import ID and save to id attribute
+	// Retrieve import ID and save to id attribute.
 	resource.ImportStatePassthroughID(ctx, path.Root("id"), req, resp)
 }

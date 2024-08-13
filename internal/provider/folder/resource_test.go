@@ -9,6 +9,7 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
+
 	"github.com/tryretool/terraform-provider-retool/internal/acctest"
 	"github.com/tryretool/terraform-provider-retool/internal/sdk/api"
 )
@@ -86,7 +87,7 @@ func init() {
 func TestAccFolder(t *testing.T) {
 	acctest.Test(t, resource.TestCase{
 		Steps: []resource.TestStep{
-			// Read and Create
+			// Read and Create.
 			{
 				Config: testFolderConfig,
 				Check: resource.ComposeTestCheckFunc(
@@ -105,13 +106,13 @@ func TestAccFolder(t *testing.T) {
 					resource.TestCheckResourceAttrSet("retool_folder.child_folder", "legacy_id"),
 				),
 			},
-			// Import state
+			// Import state.
 			{
 				ResourceName:      "retool_folder.test_folder",
 				ImportState:       true,
 				ImportStateVerify: true,
 			},
-			// Update and Read
+			// Update and Read.
 			{
 				Config: testUpdatedFolderConfig,
 				Check: resource.ComposeTestCheckFunc(
