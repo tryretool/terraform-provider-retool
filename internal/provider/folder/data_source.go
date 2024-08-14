@@ -71,6 +71,7 @@ func (d *foldersDataSource) Metadata(_ context.Context, req datasource.MetadataR
 
 func (d *foldersDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
+		Description: "Folders data source allows you to retrieve a list of folders in Retool.",
 		Attributes: map[string]schema.Attribute{
 			"folders": schema.ListNestedAttribute{
 				Computed:    true,
@@ -79,7 +80,7 @@ func (d *foldersDataSource) Schema(_ context.Context, _ datasource.SchemaRequest
 					Attributes: map[string]schema.Attribute{
 						"id": schema.StringAttribute{
 							Computed:    true,
-							Description: "The id of the folder. Currently this is the same as legacy_id but will be different in the future.",
+							Description: "The id of the folder.",
 						},
 						"legacy_id": schema.StringAttribute{
 							Computed:    true,

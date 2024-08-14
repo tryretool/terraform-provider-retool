@@ -84,6 +84,7 @@ func (r *spaceResource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 	}
 
 	resp.Schema = schema.Schema{
+		Description: "Space resource allows you to create and manage Spaces in Retool. The provider must be configured using the hostname of the admin Space.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Computed:    true,

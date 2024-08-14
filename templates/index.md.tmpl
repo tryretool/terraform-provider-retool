@@ -1,0 +1,35 @@
+---
+page_title: "Provider: {{title .ProviderShortName}}"
+description: |-
+  The Retool provider can be used to interact with 
+  [Retool Platform API](https://docs.retool.com/org-users/quickstart#retool-api) to configure your Retool instance and Spaces.
+---
+
+# {{title .ProviderShortName}} Provider
+
+Retool Terraform provider helps you configure Spaces, SSO, Source Control, permissions and other settings on 
+self-hosted Retool instance or Retool Cloud organization using [Retool Platform API](https://docs.retool.com/org-users/quickstart#retool-api).
+
+## Prerequisites
+Your [Retool plan](https://retool.com/pricing) should support Platform APIs. You'll need to create an API token on **Settings > Retool API** .
+
+## Example Usage
+
+{{ tffile "examples/provider/provider.tf" }}
+
+~> Hard-coding credentials into any Terraform configuration is not recommended, and risks secret leakage should this
+file ever be committed to a public version control system. See [Environment Variables](#environment-variables) for a
+better alternative.
+
+{{ .SchemaMarkdown | trimspace }}
+
+## Environment Variables
+
+You can provide your credentials via the `RETOOL_HOST`, `RETOOL_SCHEME` and `RETOOL_ACCESS_TOKEN`
+environment variables, respectively.
+
+{{ tffile "examples/provider/provider_with_env_vars.tf" }}
+
+### Example Usage
+
+{{ codefile "shell" "examples/provider/usage_with_env_vars.sh" }}

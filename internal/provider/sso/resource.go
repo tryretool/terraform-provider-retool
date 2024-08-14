@@ -178,6 +178,7 @@ func (r *ssoResource) Metadata(_ context.Context, req resource.MetadataRequest, 
 // Schema returns the schema for the SSO resource.
 func (r *ssoResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
+		Description: "SSO settings resource allows you to configure Single Sign-On in Retool.",
 		Attributes: map[string]schema.Attribute{
 			"google": schema.SingleNestedAttribute{
 				Optional:    true,

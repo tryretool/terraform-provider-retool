@@ -86,6 +86,7 @@ func (r *permissionResource) Metadata(_ context.Context, req resource.MetadataRe
 
 func (r *permissionResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
+		Description: "Permissions resource can be used to grant a user or a permission group access to an object: app, folder, resource or resource configuration.",
 		Attributes: map[string]schema.Attribute{
 			"subject": schema.SingleNestedAttribute{
 				Required:    true,
@@ -134,7 +135,7 @@ func (r *permissionResource) Schema(_ context.Context, _ resource.SchemaRequest,
 						},
 						"access_level": schema.StringAttribute{
 							Required:    true,
-							Description: "The access level of the permission.",
+							Description: "The access level of the permission. Accepted values are 'own', 'edit', 'use'.",
 							Validators: []validator.String{
 								stringvalidator.OneOf("own", "edit", "use"),
 							},
