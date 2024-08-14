@@ -65,6 +65,7 @@ func (r *scmSettingsResource) Metadata(_ context.Context, req resource.MetadataR
 // Schema returns the schema for the Source Control resource.
 func (r *scmSettingsResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
+		Description: "Source Control settings resource allows you to fine-tune how Source Control works in Retool.",
 		Attributes: map[string]schema.Attribute{
 			"auto_branch_naming_enabled": schema.BoolAttribute{
 				Optional:    true,

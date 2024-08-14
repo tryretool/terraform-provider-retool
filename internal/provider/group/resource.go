@@ -81,6 +81,8 @@ func (r *groupResource) Metadata(_ context.Context, req resource.MetadataRequest
 // Schema returns the schema for the Group resource.
 func (r *groupResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
+		Description: `A group is a collection of users that can be granted access to folders, apps, resources, and workflows. 
+		Managing group membership via Terraform provider is currently not supported. You can assign users to groups using SSO.`,
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Computed:    true,
@@ -104,7 +106,7 @@ func (r *groupResource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 				Optional:    true,
 				Computed:    true,
 				Default:     stringdefault.StaticString("none"),
-				Description: "The universal app access level for the group. This denotes the access level that this group has for all apps.",
+				Description: "The universal app access level for the group. This denotes the access level that this group has for all apps. Accepted values: none|use|edit|own",
 				Validators: []validator.String{
 					stringvalidator.OneOf("none", "use", "edit", "own"),
 				},
@@ -113,7 +115,7 @@ func (r *groupResource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 				Optional:    true,
 				Computed:    true,
 				Default:     stringdefault.StaticString("none"),
-				Description: "The universal resource access level for the group. This denotes the access level that this group has for all resources.",
+				Description: "The universal resource access level for the group. This denotes the access level that this group has for all resources. Accepted values: none|use|edit|own",
 				Validators: []validator.String{
 					stringvalidator.OneOf("none", "use", "edit", "own"),
 				},
@@ -122,7 +124,7 @@ func (r *groupResource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 				Optional:    true,
 				Computed:    true,
 				Default:     stringdefault.StaticString("none"),
-				Description: "The universal workflow access level for the group. This denotes the access level that this group has for all workflows.",
+				Description: "The universal workflow access level for the group. This denotes the access level that this group has for all workflows. Accepted values: none|use|edit|own",
 				Validators: []validator.String{
 					stringvalidator.OneOf("none", "use", "edit", "own"),
 				},
@@ -131,7 +133,7 @@ func (r *groupResource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 				Optional:    true,
 				Computed:    true,
 				Default:     stringdefault.StaticString("none"),
-				Description: "Level of access that the group has to the Query Library.",
+				Description: "Level of access that the group has to the Query Library. Accepted values: none|use|edit",
 				Validators: []validator.String{
 					stringvalidator.OneOf("none", "use", "edit"),
 				},

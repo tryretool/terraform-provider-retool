@@ -171,6 +171,7 @@ func (r *sourceControlResource) Metadata(_ context.Context, req resource.Metadat
 // Schema returns the schema for the Source Control resource.
 func (r *sourceControlResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
+		Description: "Source Control resource allows you to connect Retool to a source control provider.",
 		Attributes: map[string]schema.Attribute{
 			"org": schema.StringAttribute{
 				Required:    true,
