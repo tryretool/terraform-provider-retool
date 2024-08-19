@@ -112,4 +112,11 @@ Required:
 - `project_id` (String) The numerical project ID for your GitLab project. Find this ID listed below the project's name on the project's homepage.
 - `url` (String) Your base GitLab URL. On GitLab Cloud, this is always https://gitlab.com. On GitLab self-managed, this is the URL where your instance is hosted.
 
+## Import
 
+Import is supported using the following syntax:
+
+```shell
+# Source Control configuration can be imported by specifying arbitrary string id
+terraform import retool_source_control.example dummy_id
+```

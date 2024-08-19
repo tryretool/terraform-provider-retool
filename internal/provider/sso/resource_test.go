@@ -295,6 +295,14 @@ func TestAccSSO(t *testing.T) {
 					resource.TestCheckResourceAttrSet("retool_sso.sso", "saml.ldap_config.encrypted_server_certificate"),
 				),
 			},
+			// Import state.
+			{
+				ResourceName:                         "retool_sso.sso",
+				ImportState:                          true,
+				ImportStateVerify:                    true,
+				ImportStateVerifyIdentifierAttribute: "google.client_id",
+				ImportStateVerifyIgnore:              []string{"google.client_secret", "saml.ldap_config.server_certificate", "saml.ldap_config.server_key"}, // These attributes are secret and are set to null on read.
+			},
 			// Update and Read.
 			{
 				Config: testUpdatedGoogleSamlConfig,

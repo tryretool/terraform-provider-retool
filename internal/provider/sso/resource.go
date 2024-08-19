@@ -25,8 +25,9 @@ import (
 
 // Ensure SSOResource implements the tfsdk.Resource interface.
 var (
-	_ resource.Resource              = &ssoResource{}
-	_ resource.ResourceWithConfigure = &ssoResource{}
+	_ resource.Resource                = &ssoResource{}
+	_ resource.ResourceWithConfigure   = &ssoResource{}
+	_ resource.ResourceWithImportState = &ssoResource{}
 )
 
 // ssoResource schema structure.
@@ -1034,4 +1035,15 @@ func (r *ssoResource) Delete(ctx context.Context, _ resource.DeleteRequest, resp
 		tflog.Error(ctx, "Error Deleting SSO config", utils.AddHTTPStatusCode(map[string]any{"error": err.Error()}, httpResponse))
 		return
 	}
+}
+
+// Import SSO config into the state.
+func (r *ssoResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
+	emptyState := ssoResourceModel{
+		Google: types.ObjectNull(googleConfigModel{}.attributeTypes()),
+		OIDC:   types.ObjectNull(oidcConfigModel{}.attributeTypes()),
+		SAML:   types.ObjectNull(samlConfigModel{}.attributeTypes()),
+	} // We just need to set the state to an empty object. The actual import will then happen in the Read method.
+	diags := resp.State.Set(ctx, emptyState)
+	resp.Diagnostics.Append(diags...)
 }

@@ -1,9 +1,11 @@
 package permissions_test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
+	"github.com/hashicorp/terraform-plugin-testing/terraform"
 
 	"github.com/tryretool/terraform-provider-retool/internal/acctest"
 )
@@ -79,6 +81,14 @@ func TestMain(m *testing.M) {
 	resource.TestMain(m)
 }
 
+func importStateIdFunc(state *terraform.State) (string, error) {
+	permissions, ok := state.RootModule().Resources["retool_permissions.test_permissions"]
+	if !ok {
+		return "", fmt.Errorf("Resource not found")
+	}
+	return "group|" + permissions.Primary.Attributes["subject.id"], nil
+}
+
 func TestAccPermissions(t *testing.T) {
 	acctest.Test(t, resource.TestCase{
 		Steps: []resource.TestStep{
@@ -93,6 +103,14 @@ func TestAccPermissions(t *testing.T) {
 					resource.TestCheckResourceAttrPair("retool_permissions.test_permissions", "permissions.0.object.id", "retool_folder.test_folder1", "id"),
 					resource.TestCheckResourceAttr("retool_permissions.test_permissions", "permissions.0.access_level", "use"),
 				),
+			},
+			// Import state.
+			{
+				ResourceName:                         "retool_permissions.test_permissions",
+				ImportStateIdFunc:                    importStateIdFunc,
+				ImportState:                          true,
+				ImportStateVerify:                    true,
+				ImportStateVerifyIdentifierAttribute: "subject.id",
 			},
 			// Update and Read.
 			{

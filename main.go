@@ -37,8 +37,7 @@ func main() {
 	flag.Parse()
 
 	opts := providerserver.ServeOpts{
-		// TODO(dzmitry.kishylau): Update this string with the published name of Retool provider.
-		Address: "registry.terraform.io/retool/retool",
+		Address: "registry.terraform.io/tryretool/retool",
 		Debug:   debug,
 	}
 

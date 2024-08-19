@@ -131,4 +131,11 @@ Read-Only:
 - `encrypted_server_certificate` (String, Sensitive) Encrypted Server Certificate
 - `encrypted_server_key` (String, Sensitive) Encrypted Server Key
 
+## Import
 
+Import is supported using the following syntax:
+
+```shell
+# SSO configuration can be imported by specifying arbitrary string id
+terraform import retool_source_control.example dummy_id
+```

@@ -36,7 +36,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 84.06ms
+        duration: 95.625125ms
     - id: 1
       request:
         proto: HTTP/1.1
@@ -69,7 +69,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 68.8835ms
+        duration: 70.675959ms
     - id: 2
       request:
         proto: HTTP/1.1
@@ -102,8 +102,41 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 63.643209ms
+        duration: 66.962167ms
     - id: 3
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/source_control/settings
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 196
+        uncompressed: false
+        body: '{"success":true,"data":{"auto_branch_naming_enabled":false,"custom_pull_request_template_enabled":true,"custom_pull_request_template":"custom-pull-request-template","version_control_locked":true}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 72.633458ms
+    - id: 4
       request:
         proto: HTTP/1.1
         proto_major: 1
@@ -138,40 +171,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 72.890375ms
-    - id: 4
-      request:
-        proto: HTTP/1.1
-        proto_major: 1
-        proto_minor: 1
-        content_length: 0
-        transfer_encoding: []
-        trailer: {}
-        host: recorded.retool.dev
-        remote_addr: ""
-        request_uri: ""
-        body: ""
-        form: {}
-        headers:
-            User-Agent:
-                - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/source_control/settings
-        method: GET
-      response:
-        proto: HTTP/1.1
-        proto_major: 1
-        proto_minor: 1
-        transfer_encoding: []
-        trailer: {}
-        content_length: 205
-        uncompressed: false
-        body: '{"success":true,"data":{"auto_branch_naming_enabled":true,"custom_pull_request_template_enabled":false,"custom_pull_request_template":"custom-pull-request-template-updated","version_control_locked":false}}'
-        headers:
-            Content-Type:
-                - application/json; charset=utf-8
-        status: 200 OK
-        code: 200
-        duration: 65.675833ms
+        duration: 75.057333ms
     - id: 5
       request:
         proto: HTTP/1.1
@@ -204,8 +204,41 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 67.390208ms
+        duration: 63.974959ms
     - id: 6
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/source_control/settings
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 205
+        uncompressed: false
+        body: '{"success":true,"data":{"auto_branch_naming_enabled":true,"custom_pull_request_template_enabled":false,"custom_pull_request_template":"custom-pull-request-template-updated","version_control_locked":false}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 72.435959ms
+    - id: 7
       request:
         proto: HTTP/1.1
         proto_major: 1
@@ -240,8 +273,8 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 72.727208ms
-    - id: 7
+        duration: 73.421834ms
+    - id: 8
       request:
         proto: HTTP/1.1
         proto_major: 1
@@ -273,8 +306,8 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 64.495209ms
-    - id: 8
+        duration: 73.144916ms
+    - id: 9
       request:
         proto: HTTP/1.1
         proto_major: 1
@@ -309,4 +342,4 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 76.379208ms
+        duration: 75.02075ms

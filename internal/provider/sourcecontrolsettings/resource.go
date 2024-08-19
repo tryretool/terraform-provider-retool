@@ -19,8 +19,9 @@ import (
 
 // Ensure SCM settings implements the tfsdk.Resource interface.
 var (
-	_ resource.Resource              = &scmSettingsResource{}
-	_ resource.ResourceWithConfigure = &scmSettingsResource{}
+	_ resource.Resource                = &scmSettingsResource{}
+	_ resource.ResourceWithConfigure   = &scmSettingsResource{}
+	_ resource.ResourceWithImportState = &scmSettingsResource{}
 )
 
 type scmSettingsResource struct {
@@ -209,4 +210,11 @@ func (r *scmSettingsResource) Delete(ctx context.Context, _ resource.DeleteReque
 	if resp.Diagnostics.HasError() {
 		return
 	}
+}
+
+// Import Source Control settings.
+func (r *scmSettingsResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
+	emptyState := scmSettingsModel{} // We just need to set the state to an empty object. The actual import will then happen in the Read method.
+	diags := resp.State.Set(ctx, emptyState)
+	resp.Diagnostics.Append(diags...)
 }
