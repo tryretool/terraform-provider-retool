@@ -213,7 +213,7 @@ func (r *scmSettingsResource) Delete(ctx context.Context, _ resource.DeleteReque
 }
 
 // Import Source Control settings.
-func (r *scmSettingsResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
+func (r *scmSettingsResource) ImportState(ctx context.Context, _ resource.ImportStateRequest, resp *resource.ImportStateResponse) {
 	emptyState := scmSettingsModel{} // We just need to set the state to an empty object. The actual import will then happen in the Read method.
 	diags := resp.State.Set(ctx, emptyState)
 	resp.Diagnostics.Append(diags...)

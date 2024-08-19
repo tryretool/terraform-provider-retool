@@ -81,7 +81,7 @@ func TestMain(m *testing.M) {
 	resource.TestMain(m)
 }
 
-func importStateIdFunc(state *terraform.State) (string, error) {
+func importStateIDFunc(state *terraform.State) (string, error) {
 	permissions, ok := state.RootModule().Resources["retool_permissions.test_permissions"]
 	if !ok {
 		return "", fmt.Errorf("Resource not found")
@@ -107,7 +107,7 @@ func TestAccPermissions(t *testing.T) {
 			// Import state.
 			{
 				ResourceName:                         "retool_permissions.test_permissions",
-				ImportStateIdFunc:                    importStateIdFunc,
+				ImportStateIdFunc:                    importStateIDFunc,
 				ImportState:                          true,
 				ImportStateVerify:                    true,
 				ImportStateVerifyIdentifierAttribute: "subject.id",

@@ -751,7 +751,7 @@ func (r *sourceControlResource) Delete(ctx context.Context, _ resource.DeleteReq
 }
 
 // Import Source Control config.
-func (r *sourceControlResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
+func (r *sourceControlResource) ImportState(ctx context.Context, _ resource.ImportStateRequest, resp *resource.ImportStateResponse) {
 	emptyModel := sourceControlModel{
 		GitHub:        types.ObjectNull(githubConfigModel{}.attributeTypes()),
 		GitLab:        types.ObjectNull(gitlabConfigModel{}.attributeTypes()),

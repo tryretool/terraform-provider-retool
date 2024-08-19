@@ -1038,7 +1038,7 @@ func (r *ssoResource) Delete(ctx context.Context, _ resource.DeleteRequest, resp
 }
 
 // Import SSO config into the state.
-func (r *ssoResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
+func (r *ssoResource) ImportState(ctx context.Context, _ resource.ImportStateRequest, resp *resource.ImportStateResponse) {
 	emptyState := ssoResourceModel{
 		Google: types.ObjectNull(googleConfigModel{}.attributeTypes()),
 		OIDC:   types.ObjectNull(oidcConfigModel{}.attributeTypes()),
