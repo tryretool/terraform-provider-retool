@@ -22,8 +22,9 @@ import (
 
 // Ensure sourceControlResource implements the tfsdk.Resource interface.
 var (
-	_ resource.Resource              = &sourceControlResource{}
-	_ resource.ResourceWithConfigure = &sourceControlResource{}
+	_ resource.Resource                = &sourceControlResource{}
+	_ resource.ResourceWithConfigure   = &sourceControlResource{}
+	_ resource.ResourceWithImportState = &sourceControlResource{}
 )
 
 type sourceControlResource struct {
@@ -747,4 +748,17 @@ func (r *sourceControlResource) Delete(ctx context.Context, _ resource.DeleteReq
 		tflog.Error(ctx, "Error Deleting Source Control Config", utils.AddHTTPStatusCode(map[string]any{"error": err.Error()}, httpResponse))
 		return
 	}
+}
+
+// Import Source Control config.
+func (r *sourceControlResource) ImportState(ctx context.Context, _ resource.ImportStateRequest, resp *resource.ImportStateResponse) {
+	emptyModel := sourceControlModel{
+		GitHub:        types.ObjectNull(githubConfigModel{}.attributeTypes()),
+		GitLab:        types.ObjectNull(gitlabConfigModel{}.attributeTypes()),
+		AWSCodeCommit: types.ObjectNull(awsCodeCommitConfigModel{}.attributeTypes()),
+		Bitbucket:     types.ObjectNull(bitbucketConfigModel{}.attributeTypes()),
+		AzureRepos:    types.ObjectNull(azureReposConfigModel{}.attributeTypes()),
+	}
+	diags := resp.State.Set(ctx, emptyModel)
+	resp.Diagnostics.Append(diags...)
 }

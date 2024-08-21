@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     retool = {
-      source = "registry.terraform.io/retool/retool"
+      source = "tryretool/retool"
     }
   }
 }

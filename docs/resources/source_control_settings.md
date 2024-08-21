@@ -29,4 +29,11 @@ resource "retool_source_control_settings" "scm_settings" {
 - `custom_pull_request_template_enabled` (Boolean) When enabled, Retool will use the template specified to create pull requests. Defaults to false.
 - `version_control_locked` (Boolean) When set to true, creates a read-only instance of Retool, where app editing is disabled. Defaults to false.
 
+## Import
 
+Import is supported using the following syntax:
+
+```shell
+# Source Control Settings can be imported by specifying arbitrary string id
+terraform import retool_source_control_settings.example dummy_id
+```

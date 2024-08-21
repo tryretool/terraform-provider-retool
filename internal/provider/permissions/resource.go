@@ -5,10 +5,12 @@ import (
 	"context"
 	"fmt"
 	"strconv"
+	"strings"
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
+	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
@@ -24,9 +26,9 @@ import (
 
 // Ensure GroupResource implements the tfsdk.Resource interface.
 var (
-	_ resource.Resource              = &permissionResource{}
-	_ resource.ResourceWithConfigure = &permissionResource{}
-	// Note that unlike other resources, we don't implement ResourceWithImportState here, because there's not much to import for permission.
+	_ resource.Resource                = &permissionResource{}
+	_ resource.ResourceWithConfigure   = &permissionResource{}
+	_ resource.ResourceWithImportState = &permissionResource{}
 )
 
 type permissionResource struct {
@@ -479,4 +481,20 @@ func (r *permissionResource) Delete(ctx context.Context, req resource.DeleteRequ
 			return
 		}
 	}
+}
+
+func (r *permissionResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
+	// We expect id to be in the format 'subjectType|subjectId'.
+	parts := strings.Split(req.ID, "|")
+	if len(parts) != 2 {
+		resp.Diagnostics.AddError("Invalid import ID", "Import ID must be in the format 'subjectType|id'.")
+		return
+	}
+	subjType := parts[0]
+	id := parts[1]
+	subject := permissionSubjectModel{
+		ID:   types.StringValue(id),
+		Type: types.StringValue(subjType),
+	}
+	resp.State.SetAttribute(ctx, path.Root("subject"), subject)
 }

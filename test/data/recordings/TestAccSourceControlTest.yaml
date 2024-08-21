@@ -36,7 +36,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 201 Created
         code: 201
-        duration: 85.687ms
+        duration: 143.993708ms
     - id: 1
       request:
         proto: HTTP/1.1
@@ -69,7 +69,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 61.137208ms
+        duration: 370.805916ms
     - id: 2
       request:
         proto: HTTP/1.1
@@ -102,7 +102,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 66.7385ms
+        duration: 319.899041ms
     - id: 3
       request:
         proto: HTTP/1.1
@@ -138,7 +138,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 71.157875ms
+        duration: 75.94375ms
     - id: 4
       request:
         proto: HTTP/1.1
@@ -171,7 +171,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 59.890291ms
+        duration: 65.163375ms
     - id: 5
       request:
         proto: HTTP/1.1
@@ -204,7 +204,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 66.875542ms
+        duration: 68.443833ms
     - id: 6
       request:
         proto: HTTP/1.1
@@ -240,7 +240,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 75.892667ms
+        duration: 79.486666ms
     - id: 7
       request:
         proto: HTTP/1.1
@@ -273,7 +273,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 82.638042ms
+        duration: 64.54075ms
     - id: 8
       request:
         proto: HTTP/1.1
@@ -306,7 +306,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 57.807208ms
+        duration: 67.293334ms
     - id: 9
       request:
         proto: HTTP/1.1
@@ -342,7 +342,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 73.462583ms
+        duration: 79.706209ms
     - id: 10
       request:
         proto: HTTP/1.1
@@ -375,7 +375,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 62.278042ms
+        duration: 81.806083ms
     - id: 11
       request:
         proto: HTTP/1.1
@@ -408,7 +408,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 61.009625ms
+        duration: 67.687458ms
     - id: 12
       request:
         proto: HTTP/1.1
@@ -444,7 +444,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 74.323292ms
+        duration: 78.268541ms
     - id: 13
       request:
         proto: HTTP/1.1
@@ -477,7 +477,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 63.040875ms
+        duration: 70.276333ms
     - id: 14
       request:
         proto: HTTP/1.1
@@ -510,7 +510,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 64.819708ms
+        duration: 73.63375ms
     - id: 15
       request:
         proto: HTTP/1.1
@@ -546,7 +546,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 74.518625ms
+        duration: 82.736125ms
     - id: 16
       request:
         proto: HTTP/1.1
@@ -579,7 +579,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 61.311458ms
+        duration: 66.537083ms
     - id: 17
       request:
         proto: HTTP/1.1
@@ -612,7 +612,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 59.920084ms
+        duration: 63.078084ms
     - id: 18
       request:
         proto: HTTP/1.1
@@ -648,7 +648,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 80.171292ms
+        duration: 78.482958ms
     - id: 19
       request:
         proto: HTTP/1.1
@@ -681,8 +681,41 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 61.546667ms
+        duration: 67.431416ms
     - id: 20
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/source_control/config
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 343
+        uncompressed: false
+        body: '{"success":true,"data":{"org":"my-org-updated","repo":"my-repo-updated","default_branch":"main-updated","repo_version":"2.0.0","provider":"Azure Repos","config":{"url":"https://dev.azure.com/organization-updated","project":"project-updated","user":"user-id-updated","personal_access_token":"---encrypted-on-server---","use_basic_auth":false}}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 64.626458ms
+    - id: 21
       request:
         proto: HTTP/1.1
         proto_major: 1
@@ -712,4 +745,4 @@ interactions:
         headers: {}
         status: 204 No Content
         code: 204
-        duration: 81.297541ms
+        duration: 83.579459ms

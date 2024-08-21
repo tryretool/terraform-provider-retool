@@ -62,4 +62,11 @@ Required:
 - `id` (String) The ID of the subject.
 - `type` (String) The type of the subject - user or group.
 
+## Import
 
+Import is supported using the following syntax:
+
+```shell
+# Permissions can be imported by specifying id in the format of subject_type|subject_id
+terraform import retool_permissions.example "group|123"
+```

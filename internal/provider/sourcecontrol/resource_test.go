@@ -125,7 +125,7 @@ func TestMain(m *testing.M) {
 	resource.TestMain(m)
 }
 
-func TestAccSourceControl(t *testing.T) {
+func TestAccSourceControlTest(t *testing.T) {
 	acctest.Test(t, resource.TestCase{
 		Steps: []resource.TestStep{
 			// Read and Create.
@@ -230,6 +230,14 @@ func TestAccSourceControl(t *testing.T) {
 					resource.TestCheckResourceAttr("retool_source_control.scm", "azure_repos.use_basic_auth", "false"),
 				),
 				ExpectNonEmptyPlan: true, // Because it'd want to refresh secret strings.
+			},
+			// Import state.
+			{
+				ResourceName:                         "retool_source_control.scm",
+				ImportState:                          true,
+				ImportStateVerify:                    true,
+				ImportStateVerifyIdentifierAttribute: "org",
+				ImportStateVerifyIgnore:              []string{"azure_repos.personal_access_token"}, // This attribute is secret and is set to null on read.
 			},
 		},
 	})

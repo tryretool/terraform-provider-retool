@@ -52,6 +52,13 @@ func TestAccSourceControlSettings(t *testing.T) {
 					resource.TestCheckResourceAttr("retool_source_control_settings.scm_settings", "version_control_locked", "true"),
 				),
 			},
+			// Import state.
+			{
+				ResourceName:                         "retool_source_control_settings.scm_settings",
+				ImportState:                          true,
+				ImportStateVerify:                    true,
+				ImportStateVerifyIdentifierAttribute: "version_control_locked",
+			},
 			// Update and Read.
 			{
 				Config: testSCMSettingsUpdated,
