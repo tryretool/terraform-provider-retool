@@ -1,2 +1,2 @@
 # SSO configuration can be imported by specifying arbitrary string id
-terraform import retool_source_control.example dummy_id
+terraform import retool_sso.example dummy_id
