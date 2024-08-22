@@ -24,7 +24,7 @@ func (c *ThrottledTransport) RoundTrip(r *http.Request) (*http.Response, error) 
 }
 
 // NewThrottledTransport wraps transportWrap with a rate limitter
-// examle usage:
+// example usage:
 // client := http.DefaultClient
 // client.Transport = NewThrottledTransport(10*time.Seconds, 60, http.DefaultTransport) allows 60 requests every 10 seconds.
 func NewThrottledTransport(limitPeriod time.Duration, requestCount int, transportWrap http.RoundTripper) http.RoundTripper {
