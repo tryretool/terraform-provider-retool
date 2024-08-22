@@ -33,3 +33,19 @@ environment variables, respectively.
 ### Example Usage
 
 {{ codefile "shell" "examples/provider/usage_with_env_vars.sh" }}
+
+## Rate limiting
+Retool API has rate limits. In order to avoid hitting the rate limits, Retool Terraform provider is configured to limit requests to the API to 45 requests per minute.
+This might be too slow for complex Retool configurations with a lot of folders and permission groups. To increase the rate limit, you can do the following:
+
+- Disable rate limiting on your self-hosted Retool instance by setting `DISABLE_RATE_LIMIT` environment variable to `true`.
+
+- Increase the rate limit on your self-hosted Retool instance by setting `API_CALLS_PER_MIN` environment variable higher than its default value of 300.
+
+Once you've increased the rate limit, you can increase the `requests_per_minute` parameter in the provider configuration.
+
+{{ tffile "examples/provider/provider_with_rate_limit.tf" }}
+
+Or you can disable rate limiting in the provider completely by setting `requests_per_minute` to `-1`.
+
+{{ tffile "examples/provider/provider_without_rate_limit.tf" }}

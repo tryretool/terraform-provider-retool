@@ -7,6 +7,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/path"
@@ -64,9 +65,10 @@ type retoolProvider struct {
 }
 
 type retoolProviderModel struct {
-	Host        types.String `tfsdk:"host"`
-	Scheme      types.String `tfsdk:"scheme"`
-	AccessToken types.String `tfsdk:"access_token"`
+	Host              types.String `tfsdk:"host"`
+	Scheme            types.String `tfsdk:"scheme"`
+	AccessToken       types.String `tfsdk:"access_token"`
+	RequestsPerMinute types.Int32  `tfsdk:"requests_per_minute"`
 }
 
 // Metadata returns the provider type name.
@@ -91,6 +93,10 @@ func (p *retoolProvider) Schema(_ context.Context, _ provider.SchemaRequest, res
 				Description: "The access token for the Retool API",
 				Optional:    true,
 				Sensitive:   true,
+			},
+			"requests_per_minute": schema.Int32Attribute{
+				Description: "The number of requests per minute to allow to the Retool API. Set to 45 by default. Set to -1 to disable rate limiting.",
+				Optional:    true,
 			},
 		},
 	}
@@ -191,6 +197,11 @@ func (p *retoolProvider) Configure(ctx context.Context, req provider.ConfigureRe
 		accessToken = config.AccessToken.ValueString()
 	}
 
+	requestsPerMinute := 45
+	if !config.RequestsPerMinute.IsNull() {
+		requestsPerMinute = int(config.RequestsPerMinute.ValueInt32())
+	}
+
 	// If any of the expected configurations are missing, return
 	// errors with provider-specific guidance.
 
@@ -237,6 +248,18 @@ func (p *retoolProvider) Configure(ctx context.Context, req provider.ConfigureRe
 	// We need this to be able to record and replay HTTP interactions in the acceptance tests.
 	if p.httpClient != nil {
 		clientConfig.HTTPClient = p.httpClient
+	} else {
+		clientConfig.HTTPClient = http.DefaultClient
+	}
+
+	if requestsPerMinute > 0 {
+		currentTransport := clientConfig.HTTPClient.Transport
+		if currentTransport == nil {
+			currentTransport = http.DefaultTransport
+		}
+		// Rate-limiter is using a token bucket algorithm to limit the number of requests per minute.
+		// The first parameter is the rate of token replenishment, the second is the capacity of the bucket.
+		clientConfig.HTTPClient.Transport = utils.NewThrottledTransport(time.Duration(60000/requestsPerMinute)*time.Millisecond, requestsPerMinute, currentTransport)
 	}
 
 	clientConfig.AddDefaultHeader("Authorization", "Bearer "+accessToken)

@@ -63,6 +63,7 @@ better alternative.
 
 - `access_token` (String, Sensitive) The access token for the Retool API
 - `host` (String) The host of the Retool instance, organization or Space, e.g. 'example.retool.com'
+- `requests_per_minute` (Number) The number of requests per minute to allow to the Retool API. Set to 45 by default. Set to -1 to disable rate limiting.
 - `scheme` (String) The scheme of the Retool instance, e.g. 'https'
 
 ## Environment Variables
@@ -111,4 +112,28 @@ RETOOL_HOST="your-retool-instance.com" \
 RETOOL_SCHEME="https" \
 RETOOL_ACCESS_TOKEN="your-access-token" \
 terraform plan
+```
+
+## Rate limiting
+Retool API has rate limits. In order to avoid hitting the rate limits, Retool Terraform provider is configured to limit requests to the API to 45 requests per minute.
+This might be too slow for complex Retool configurations with a lot of folders and permission groups. To increase the rate limit, you can do the following:
+
+- Disable rate limiting on your self-hosted Retool instance by setting `DISABLE_RATE_LIMIT` environment variable to `true`.
+
+- Increase the rate limit on your self-hosted Retool instance by setting `API_CALLS_PER_MIN` environment variable higher than its default value of 300.
+
+Once you've increased the rate limit, you can increase the `requests_per_minute` parameter in the provider configuration.
+
+```terraform
+provider "retool" {
+  requests_per_minute = 100
+}
+```
+
+Or you can disable rate limiting in the provider completely by setting `requests_per_minute` to `-1`.
+
+```terraform
+provider "retool" {
+  requests_per_minute = -1
+}
 ```
