@@ -4,6 +4,7 @@ package provider
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
 	"os"
@@ -106,12 +107,12 @@ type healthCheckResponse struct {
 	Version string `json:"version"`
 }
 
-func checkMinimalVersion(ctx context.Context, host string, scheme string) bool {
+func checkMinimalVersion(ctx context.Context, host string, scheme string) (bool, error) {
 	// Create HTTP client, make GET /api/checkHealth request, parse the version field out of the JSON response.
 	httpResponse, err := http.Get(scheme + "://" + host + "/api/checkHealth")
 	if err != nil {
-		tflog.Error(ctx, "Failed to check Retool version", map[string]any{"error": err})
-		return false
+		tflog.Error(ctx, "Request to /api/checkHealth failed", map[string]any{"error": err})
+		return false, fmt.Errorf("request to /api/checkHealth failed: %w", err)
 	}
 	defer func() {
 		err := httpResponse.Body.Close()
@@ -123,8 +124,8 @@ func checkMinimalVersion(ctx context.Context, host string, scheme string) bool {
 	// Read the response body.
 	body, err := io.ReadAll(httpResponse.Body)
 	if err != nil {
-		tflog.Error(ctx, "Failed to read response body", map[string]any{"error": err})
-		return false
+		tflog.Error(ctx, "Failed to read healthcheck response body", map[string]any{"error": err})
+		return false, fmt.Errorf("failed to read healthcheck response body: %w", err)
 	}
 
 	// Parse the JSON response.
@@ -132,11 +133,11 @@ func checkMinimalVersion(ctx context.Context, host string, scheme string) bool {
 	err = json.Unmarshal(body, &healthCheck)
 	if err != nil {
 		tflog.Error(ctx, "Failed to parse JSON response from healthcheck", map[string]any{"error": err, "body": string(body)})
-		return false
+		return false, fmt.Errorf("failed to parse JSON response from healthcheck: %w", err)
 	}
 	tflog.Info(ctx, "Retool version", map[string]any{"version": healthCheck.Version})
 
-	return semver.Compare("v"+healthCheck.Version, minimumRetoolVersion) >= 0
+	return semver.Compare("v"+healthCheck.Version, minimumRetoolVersion) >= 0, nil
 }
 
 // Configure prepares a Retool API client for data sources and resources.
@@ -152,7 +153,6 @@ func (p *retoolProvider) Configure(ctx context.Context, req provider.ConfigureRe
 
 	// If practitioner provided a configuration value for any of the
 	// attributes, it must be a known value.
-
 	if config.Host.IsUnknown() {
 		resp.Diagnostics.AddAttributeError(
 			path.Root("host"),
@@ -232,9 +232,16 @@ func (p *retoolProvider) Configure(ctx context.Context, req provider.ConfigureRe
 
 	// We only check the minimum version if there's no HTTP client override
 	// This is a hacky way to avoid doing the check when running acceptance tests in "record" or "replay" mode.
-	if p.httpClient == nil && !checkMinimalVersion(ctx, host, scheme) {
-		resp.Diagnostics.AddError("Incompatible Retool version", "The Retool instance version is not supported. Minimum version required is "+minimumRetoolVersion)
-		return
+	if p.httpClient == nil {
+		versionIsCompatible, err := checkMinimalVersion(ctx, host, scheme)
+		if err != nil {
+			resp.Diagnostics.AddError("Failed to check Retool version", err.Error())
+			return
+		}
+		if !versionIsCompatible {
+			resp.Diagnostics.AddError("Incompatible Retool version", "The Retool instance version is not supported. Minimum version required is "+minimumRetoolVersion)
+			return
+		}
 	}
 
 	clientConfig := api.NewConfiguration()
