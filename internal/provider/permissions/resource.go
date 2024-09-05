@@ -191,6 +191,11 @@ func (r *permissionResource) revokePermission(ctx context.Context, subject permi
 	request := api.NewPermissionsRevokePostRequest(createNewAPIPermissionsSubject(subject), createNewAPIPermissionsObject(object))
 	_, httpResponse, err := r.client.PermissionsAPI.PermissionsRevokePost(ctx).PermissionsRevokePostRequest(*request).Execute()
 	if err != nil {
+		if httpResponse != nil && httpResponse.StatusCode == 404 {
+			// If the permission does not exist, we can ignore the error.
+			tflog.Info(ctx, "Permission not found", map[string]any{"id": permissionID})
+			return diags
+		}
 		diags.AddError(
 			"Error deleting permission",
 			"Could not delete permission with ID "+permissionID+": "+err.Error(),
