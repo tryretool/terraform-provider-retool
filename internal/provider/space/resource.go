@@ -8,6 +8,7 @@ import (
 	"github.com/tryretool/terraform-provider-retool/internal/sdk/api"
 
 	"github.com/hashicorp/terraform-plugin-framework/attr"
+	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
@@ -49,6 +50,33 @@ type spaceCreateOptionsModel struct {
 	CreateAdminUser               types.Bool `tfsdk:"create_admin_user"`
 }
 
+func getDefaultCreateOptions(diags *diag.Diagnostics) *basetypes.ObjectValue {
+	emptyList, localDiags := types.ListValue(types.StringType, []attr.Value{})
+	diags.Append(localDiags...)
+	if diags.HasError() {
+		return nil
+	}
+
+	defaultCreateOptionsTypes := map[string]attr.Type{
+		"copy_sso_settings":                 types.BoolType,
+		"copy_branding_and_themes_settings": types.BoolType,
+		"users_to_copy_as_admins":           types.ListType{types.StringType},
+		"create_admin_user":                 types.BoolType,
+	}
+	defaultCreateOptionsValues := map[string]attr.Value{
+		"copy_sso_settings":                 types.BoolValue(false),
+		"copy_branding_and_themes_settings": types.BoolValue(false),
+		"users_to_copy_as_admins":           emptyList,
+		"create_admin_user":                 types.BoolValue(true),
+	}
+	defaultCreateOptions, localDiags := types.ObjectValue(defaultCreateOptionsTypes, defaultCreateOptionsValues)
+	diags.Append(localDiags...)
+	if diags.HasError() {
+		return nil
+	}
+	return &defaultCreateOptions
+}
+
 // Create new Space resource.
 func NewResource() resource.Resource {
 	return &spaceResource{}
@@ -65,21 +93,8 @@ func (r *spaceResource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 		return
 	}
 
-	defaultCreateOptionsTypes := map[string]attr.Type{
-		"copy_sso_settings":                 types.BoolType,
-		"copy_branding_and_themes_settings": types.BoolType,
-		"users_to_copy_as_admins":           types.ListType{types.StringType},
-		"create_admin_user":                 types.BoolType,
-	}
-	defaultCreateOptionsValues := map[string]attr.Value{
-		"copy_sso_settings":                 types.BoolValue(false),
-		"copy_branding_and_themes_settings": types.BoolValue(false),
-		"users_to_copy_as_admins":           emptyList,
-		"create_admin_user":                 types.BoolValue(true),
-	}
-	defaultCreateOptions, diags := types.ObjectValue(defaultCreateOptionsTypes, defaultCreateOptionsValues)
-	resp.Diagnostics.Append(diags...)
-	if resp.Diagnostics.HasError() {
+	defaultCreateOptions := getDefaultCreateOptions(&resp.Diagnostics)
+	if resp.Diagnostics.HasError() || defaultCreateOptions == nil {
 		return
 	}
 
@@ -144,7 +159,7 @@ func (r *spaceResource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 						},
 					},
 				},
-				Default: objectdefault.StaticValue(defaultCreateOptions),
+				Default: objectdefault.StaticValue(*defaultCreateOptions),
 				PlanModifiers: []planmodifier.Object{
 					objectplanmodifier.UseStateForUnknown(),
 					objectplanmodifier.RequiresReplace(),
@@ -318,4 +333,11 @@ func (r *spaceResource) Delete(ctx context.Context, req resource.DeleteRequest, 
 func (r *spaceResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
 	// Retrieve import ID and save to id attribute.
 	resource.ImportStatePassthroughID(ctx, path.Root("id"), req, resp)
+
+	// Need to set default create options so that TF doesn't attempt to re-create the space.
+	defaultCreateOptions := getDefaultCreateOptions(&resp.Diagnostics)
+	if resp.Diagnostics.HasError() || defaultCreateOptions == nil {
+		return
+	}
+	resp.State.SetAttribute(ctx, path.Root("create_options"), *defaultCreateOptions)
 }
