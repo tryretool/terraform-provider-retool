@@ -12,6 +12,13 @@ self-hosted Retool instance or Retool Cloud organization using [Retool Platform 
 
 ## Prerequisites
 Your [Retool plan](https://retool.com/pricing) should support Platform APIs. You'll need to create an API token on **Settings > Retool API** .
+The access token should have the following scopes:
+- source_control:read, source_control:write
+- groups:read, groups:write
+- spaces:read, spaces:write
+- folders:read, folders:write
+- permissions:all:read, permissions:all:write
+
 
 ## Example Usage
 
@@ -136,4 +143,14 @@ Or you can disable rate limiting in the provider completely by setting `requests
 provider "retool" {
   requests_per_minute = -1
 }
+```
+
+## Provisioning new Retool instance
+If you're using Retool Terraform provider to configure a new Retool instance, and you don't want to manually log in to the instance in order to create API token, you can use the following environment variables
+in your Retool instance configuration:
+```sh
+export CREATE_FIRST_ORG="true" # Will automatically create the first organization on the instance
+export ADMIN_USER_EMAIL="dzmitry+admin@retool.com" # Email of the admin user
+export ADMIN_API_ACCESS_TOKEN="retool_01j33n67seh459gds2n5xjyrfx" # You can use any random string here
+export ADMIN_API_ACCESS_TOKEN_SCOPES="source_control:read,source_control:write,groups:read,groups:write,spaces:read,spaces:write,folders:read,folders:write,permissions:all:read,permissions:all:write,"
 ```
