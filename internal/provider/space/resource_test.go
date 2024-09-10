@@ -8,6 +8,7 @@ import (
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
+	"github.com/hashicorp/terraform-plugin-testing/terraform"
 
 	"github.com/tryretool/terraform-provider-retool/internal/acctest"
 )
@@ -69,6 +70,31 @@ func TestAccSpace(t *testing.T) {
 			{
 				ResourceName: "retool_space.test_space",
 				ImportState:  true,
+				ImportStateCheck: func(state []*terraform.InstanceState) error {
+					if len(state) != 1 {
+						return fmt.Errorf("Unexpected number of objects in state %d", len(state))
+					}
+					stateObj := state[0]
+					if stateObj.Attributes["name"] != "tf-acc-test-space" {
+						return fmt.Errorf("Unexpected name %s", stateObj.Attributes["name"])
+					}
+					if stateObj.Attributes["domain"] != "tfspace.localhost" {
+						return fmt.Errorf("Unexpected domain %s", stateObj.Attributes["domain"])
+					}
+					if stateObj.Attributes["create_options.copy_sso_settings"] != "false" {
+						return fmt.Errorf("Unexpected copy_sso_settings %s", stateObj.Attributes["create_options.copy_sso_settings"])
+					}
+					if stateObj.Attributes["create_options.copy_branding_and_themes_settings"] != "false" {
+						return fmt.Errorf("Unexpected copy_branding_and_themes_settings %s", stateObj.Attributes["create_options.copy_branding_and_themes_settings"])
+					}
+					if stateObj.Attributes["create_options.create_admin_user"] != "true" {
+						return fmt.Errorf("Unexpected create_admin_user %s", stateObj.Attributes["create_options.create_admin_user"])
+					}
+					if stateObj.Attributes["create_options.users_to_copy_as_admins.#"] != "0" {
+						return fmt.Errorf("Unexpected users_to_copy_as_admins %s", stateObj.Attributes["create_options.users_to_copy_as_admins.#"])
+					}
+					return nil
+				},
 			},
 			// Update and Read.
 			{
