@@ -17,7 +17,7 @@ resource "retool_group" "production_apps_users" {
 resource "retool_permissions" "production_apps_users" {
   subject = {
     type = "group"
-    id   = retool_folder.production_apps_users.id
+    id   = retool_group.production_apps_users.id
   }
   permissions = [
     {
