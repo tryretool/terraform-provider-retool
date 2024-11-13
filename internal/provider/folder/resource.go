@@ -103,7 +103,7 @@ func (r *folderResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 			},
 			"folder_type": schema.StringAttribute{
 				Required:    true,
-				Description: "The type of the folder: (app|file|resource|workflow).",
+				Description: "The type of the folder: (app|resource|workflow).",
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.RequiresReplace(), // Changing the folder type requires replacing the resource.
 				},

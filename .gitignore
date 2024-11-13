@@ -26,5 +26,7 @@ go.work.sum
 
 .DS_Store
 
+.idea
+
 *.tfstate
 *.tfstate.backup
