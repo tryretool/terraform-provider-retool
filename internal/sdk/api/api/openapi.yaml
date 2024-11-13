@@ -2795,10 +2795,15 @@ components:
           description: "When set to true, creates a read-only instance of Retool,\
             \ where app editing is disabled. Defaults to false."
           type: boolean
+        force_uuid_mapping:
+          description: "When set to true, creates a uuid mapping for protected elements\
+            \ to be used in the source control repo. Defaults to false."
+          type: boolean
       required:
       - auto_branch_naming_enabled
       - custom_pull_request_template
       - custom_pull_request_template_enabled
+      - force_uuid_mapping
       - version_control_locked
       type: object
     app_theme:
@@ -6463,6 +6468,7 @@ components:
       example:
         custom_pull_request_template: custom_pull_request_template
         version_control_locked: true
+        force_uuid_mapping: true
         custom_pull_request_template_enabled: true
         auto_branch_naming_enabled: true
       properties:
@@ -6481,10 +6487,15 @@ components:
           description: "When set to true, creates a read-only instance of Retool,\
             \ where app editing is disabled. Defaults to false."
           type: boolean
+        force_uuid_mapping:
+          description: "When set to true, creates a uuid mapping for protected elements\
+            \ to be used in the source control repo. Defaults to false."
+          type: boolean
       required:
       - auto_branch_naming_enabled
       - custom_pull_request_template
       - custom_pull_request_template_enabled
+      - force_uuid_mapping
       - version_control_locked
       type: object
     _source_control_settings_get_200_response:
@@ -6492,6 +6503,7 @@ components:
         data:
           custom_pull_request_template: custom_pull_request_template
           version_control_locked: true
+          force_uuid_mapping: true
           custom_pull_request_template_enabled: true
           auto_branch_naming_enabled: true
         success: true
@@ -6523,6 +6535,10 @@ components:
           description: "When set to true, creates a read-only instance of Retool,\
             \ where app editing is disabled. Defaults to false."
           type: boolean
+        force_uuid_mapping:
+          description: "When set to true, creates a uuid mapping for protected elements\
+            \ to be used in the source control repo. Defaults to false."
+          type: boolean
       type: object
     _source_control_settings_put_request:
       additionalProperties: false
@@ -6538,6 +6554,7 @@ components:
       example:
         custom_pull_request_template: custom_pull_request_template
         version_control_locked: true
+        force_uuid_mapping: true
         custom_pull_request_template_enabled: true
         auto_branch_naming_enabled: true
       properties:
@@ -6556,10 +6573,15 @@ components:
           description: "When set to true, creates a read-only instance of Retool,\
             \ where app editing is disabled. Defaults to false."
           type: boolean
+        force_uuid_mapping:
+          description: "When set to true, creates a uuid mapping for protected elements\
+            \ to be used in the source control repo. Defaults to false."
+          type: boolean
       required:
       - auto_branch_naming_enabled
       - custom_pull_request_template
       - custom_pull_request_template_enabled
+      - force_uuid_mapping
       - version_control_locked
       type: object
     _source_control_settings_put_200_response:
@@ -6567,6 +6589,7 @@ components:
         data:
           custom_pull_request_template: custom_pull_request_template
           version_control_locked: true
+          force_uuid_mapping: true
           custom_pull_request_template_enabled: true
           auto_branch_naming_enabled: true
         success: true

@@ -618,13 +618,18 @@
           "version_control_locked": {
             "type": "boolean",
             "description": "When set to true, creates a read-only instance of Retool, where app editing is disabled. Defaults to false."
+          },
+          "force_uuid_mapping": {
+            "type": "boolean",
+            "description": "When set to true, creates a uuid mapping for protected elements to be used in the source control repo. Defaults to false."
           }
         },
         "required": [
           "auto_branch_naming_enabled",
           "custom_pull_request_template_enabled",
           "custom_pull_request_template",
-          "version_control_locked"
+          "version_control_locked",
+          "force_uuid_mapping"
         ]
       },
       "app_theme": {
@@ -9140,13 +9145,18 @@
                         "version_control_locked": {
                           "type": "boolean",
                           "description": "When set to true, creates a read-only instance of Retool, where app editing is disabled. Defaults to false."
+                        },
+                        "force_uuid_mapping": {
+                          "type": "boolean",
+                          "description": "When set to true, creates a uuid mapping for protected elements to be used in the source control repo. Defaults to false."
                         }
                       },
                       "required": [
                         "auto_branch_naming_enabled",
                         "custom_pull_request_template_enabled",
                         "custom_pull_request_template",
-                        "version_control_locked"
+                        "version_control_locked",
+                        "force_uuid_mapping"
                       ],
                       "description": "Source Control Settings"
                     }
@@ -9186,6 +9196,10 @@
                       "version_control_locked": {
                         "type": "boolean",
                         "description": "When set to true, creates a read-only instance of Retool, where app editing is disabled. Defaults to false."
+                      },
+                      "force_uuid_mapping": {
+                        "type": "boolean",
+                        "description": "When set to true, creates a uuid mapping for protected elements to be used in the source control repo. Defaults to false."
                       }
                     },
                     "additionalProperties": false
@@ -9229,13 +9243,18 @@
                         "version_control_locked": {
                           "type": "boolean",
                           "description": "When set to true, creates a read-only instance of Retool, where app editing is disabled. Defaults to false."
+                        },
+                        "force_uuid_mapping": {
+                          "type": "boolean",
+                          "description": "When set to true, creates a uuid mapping for protected elements to be used in the source control repo. Defaults to false."
                         }
                       },
                       "required": [
                         "auto_branch_naming_enabled",
                         "custom_pull_request_template_enabled",
                         "custom_pull_request_template",
-                        "version_control_locked"
+                        "version_control_locked",
+                        "force_uuid_mapping"
                       ],
                       "description": "Result of creating Source Control Settings"
                     }
@@ -9275,13 +9294,18 @@
                         "version_control_locked": {
                           "type": "boolean",
                           "description": "When set to true, creates a read-only instance of Retool, where app editing is disabled. Defaults to false."
+                        },
+                        "force_uuid_mapping": {
+                          "type": "boolean",
+                          "description": "When set to true, creates a uuid mapping for protected elements to be used in the source control repo. Defaults to false."
                         }
                       },
                       "required": [
                         "auto_branch_naming_enabled",
                         "custom_pull_request_template_enabled",
                         "custom_pull_request_template",
-                        "version_control_locked"
+                        "version_control_locked",
+                        "force_uuid_mapping"
                       ],
                       "description": "Result of creating Source Control Settings"
                     }
@@ -10511,7 +10535,7 @@
             }
           }
         }
-      }      
+      }
     },
     "/user_attributes": {
       "get": {

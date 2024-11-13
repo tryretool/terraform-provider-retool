@@ -8,12 +8,13 @@ Name | Type | Description | Notes
 **CustomPullRequestTemplateEnabled** | **bool** | When enabled, Retool will use the template specified to create pull requests. Defaults to false. | 
 **CustomPullRequestTemplate** | **string** | Pull requests created from Retool will use the template specified. | 
 **VersionControlLocked** | **bool** | When set to true, creates a read-only instance of Retool, where app editing is disabled. Defaults to false. | 
+**ForceUuidMapping** | **bool** | When set to true, creates a uuid mapping for protected elements to be used in the source control repo. Defaults to false. | 
 
 ## Methods
 
 ### NewSourceControlSettings
 
-`func NewSourceControlSettings(autoBranchNamingEnabled bool, customPullRequestTemplateEnabled bool, customPullRequestTemplate string, versionControlLocked bool, ) *SourceControlSettings`
+`func NewSourceControlSettings(autoBranchNamingEnabled bool, customPullRequestTemplateEnabled bool, customPullRequestTemplate string, versionControlLocked bool, forceUuidMapping bool, ) *SourceControlSettings`
 
 NewSourceControlSettings instantiates a new SourceControlSettings object
 This constructor will assign default values to properties that have it defined,
@@ -106,6 +107,26 @@ and a boolean to check if the value has been set.
 `func (o *SourceControlSettings) SetVersionControlLocked(v bool)`
 
 SetVersionControlLocked sets VersionControlLocked field to given value.
+
+
+### GetForceUuidMapping
+
+`func (o *SourceControlSettings) GetForceUuidMapping() bool`
+
+GetForceUuidMapping returns the ForceUuidMapping field if non-nil, zero value otherwise.
+
+### GetForceUuidMappingOk
+
+`func (o *SourceControlSettings) GetForceUuidMappingOk() (*bool, bool)`
+
+GetForceUuidMappingOk returns a tuple with the ForceUuidMapping field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetForceUuidMapping
+
+`func (o *SourceControlSettings) SetForceUuidMapping(v bool)`
+
+SetForceUuidMapping sets ForceUuidMapping field to given value.
 
 
 

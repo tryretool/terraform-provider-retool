@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **CustomPullRequestTemplateEnabled** | Pointer to **bool** | When enabled, Retool will use the template specified to create pull requests. Defaults to false. | [optional] 
 **CustomPullRequestTemplate** | Pointer to **string** | Pull requests created from Retool will use the template specified. | [optional] 
 **VersionControlLocked** | Pointer to **bool** | When set to true, creates a read-only instance of Retool, where app editing is disabled. Defaults to false. | [optional] 
+**ForceUuidMapping** | Pointer to **bool** | When set to true, creates a uuid mapping for protected elements to be used in the source control repo. Defaults to false. | [optional] 
 
 ## Methods
 
@@ -127,6 +128,31 @@ SetVersionControlLocked sets VersionControlLocked field to given value.
 `func (o *SourceControlSettingsPutRequestSettings) HasVersionControlLocked() bool`
 
 HasVersionControlLocked returns a boolean if a field has been set.
+
+### GetForceUuidMapping
+
+`func (o *SourceControlSettingsPutRequestSettings) GetForceUuidMapping() bool`
+
+GetForceUuidMapping returns the ForceUuidMapping field if non-nil, zero value otherwise.
+
+### GetForceUuidMappingOk
+
+`func (o *SourceControlSettingsPutRequestSettings) GetForceUuidMappingOk() (*bool, bool)`
+
+GetForceUuidMappingOk returns a tuple with the ForceUuidMapping field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetForceUuidMapping
+
+`func (o *SourceControlSettingsPutRequestSettings) SetForceUuidMapping(v bool)`
+
+SetForceUuidMapping sets ForceUuidMapping field to given value.
+
+### HasForceUuidMapping
+
+`func (o *SourceControlSettingsPutRequestSettings) HasForceUuidMapping() bool`
+
+HasForceUuidMapping returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

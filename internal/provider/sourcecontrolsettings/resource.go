@@ -33,6 +33,7 @@ type scmSettingsModel struct {
 	CustomPullRequestTemplateEnabled types.Bool   `tfsdk:"custom_pull_request_template_enabled"`
 	CustomPullRequestTemplate        types.String `tfsdk:"custom_pull_request_template"`
 	VersionControlLocked             types.Bool   `tfsdk:"version_control_locked"`
+	ForceUuidMapping                 types.Bool   `tfsdk:"force_uuid_mapping"`
 }
 
 // Create new Source Control settings resource.
@@ -92,6 +93,12 @@ func (r *scmSettingsResource) Schema(_ context.Context, _ resource.SchemaRequest
 				Description: "When set to true, creates a read-only instance of Retool, where app editing is disabled. Defaults to false.",
 				Default:     booldefault.StaticBool(false),
 			},
+			"force_uuid_mapping": schema.BoolAttribute{
+				Optional:    true,
+				Computed:    true,
+				Description: "When set to true, creates a uuid mapping for protected elements to be used in the source control repo. Defaults to false.",
+				Default:     booldefault.StaticBool(false),
+			},
 		},
 	}
 }
@@ -103,6 +110,7 @@ func updateSourceControlSettings(ctx context.Context, client *api.APIClient, mod
 			CustomPullRequestTemplateEnabled: model.CustomPullRequestTemplateEnabled.ValueBoolPointer(),
 			CustomPullRequestTemplate:        model.CustomPullRequestTemplate.ValueStringPointer(),
 			VersionControlLocked:             model.VersionControlLocked.ValueBoolPointer(),
+			ForceUuidMapping:                 model.ForceUuidMapping.ValueBoolPointer(),
 		},
 	}
 
@@ -162,6 +170,7 @@ func (r *scmSettingsResource) Read(ctx context.Context, _ resource.ReadRequest, 
 	state.CustomPullRequestTemplateEnabled = types.BoolValue(response.Data.CustomPullRequestTemplateEnabled)
 	state.CustomPullRequestTemplate = types.StringValue(response.Data.CustomPullRequestTemplate)
 	state.VersionControlLocked = types.BoolValue(response.Data.VersionControlLocked)
+	state.ForceUuidMapping = types.BoolValue(response.Data.ForceUuidMapping)
 
 	diags := resp.State.Set(ctx, state)
 	resp.Diagnostics.Append(diags...)
@@ -205,6 +214,7 @@ func (r *scmSettingsResource) Delete(ctx context.Context, _ resource.DeleteReque
 		CustomPullRequestTemplateEnabled: types.BoolValue(false),
 		CustomPullRequestTemplate:        types.StringValue(""),
 		VersionControlLocked:             types.BoolValue(false),
+		ForceUuidMapping:                 types.BoolValue(false),
 	}
 	updateSourceControlSettings(ctx, r.client, model, &resp.Diagnostics)
 	if resp.Diagnostics.HasError() {
