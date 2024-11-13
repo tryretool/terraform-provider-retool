@@ -33,7 +33,7 @@ resource "retool_folder" "resource_example" {
 
 ### Required
 
-- `folder_type` (String) The type of the folder: (app|file|resource|workflow).
+- `folder_type` (String) The type of the folder: (app|resource|workflow).
 - `name` (String) The name of the folder.
 
 ### Optional
