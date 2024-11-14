@@ -28,6 +28,8 @@ type SourceControlSettingsGet200ResponseData struct {
 	CustomPullRequestTemplate string `json:"custom_pull_request_template"`
 	// When set to true, creates a read-only instance of Retool, where app editing is disabled. Defaults to false.
 	VersionControlLocked bool `json:"version_control_locked"`
+	// When set to true, creates a uuid mapping for protected elements to be used in the source control repo. Defaults to false.
+	ForceUuidMapping bool `json:"force_uuid_mapping"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -37,12 +39,13 @@ type _SourceControlSettingsGet200ResponseData SourceControlSettingsGet200Respons
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSourceControlSettingsGet200ResponseData(autoBranchNamingEnabled bool, customPullRequestTemplateEnabled bool, customPullRequestTemplate string, versionControlLocked bool) *SourceControlSettingsGet200ResponseData {
+func NewSourceControlSettingsGet200ResponseData(autoBranchNamingEnabled bool, customPullRequestTemplateEnabled bool, customPullRequestTemplate string, versionControlLocked bool, forceUuidMapping bool) *SourceControlSettingsGet200ResponseData {
 	this := SourceControlSettingsGet200ResponseData{}
 	this.AutoBranchNamingEnabled = autoBranchNamingEnabled
 	this.CustomPullRequestTemplateEnabled = customPullRequestTemplateEnabled
 	this.CustomPullRequestTemplate = customPullRequestTemplate
 	this.VersionControlLocked = versionControlLocked
+	this.ForceUuidMapping = forceUuidMapping
 	return &this
 }
 
@@ -150,6 +153,30 @@ func (o *SourceControlSettingsGet200ResponseData) SetVersionControlLocked(v bool
 	o.VersionControlLocked = v
 }
 
+// GetForceUuidMapping returns the ForceUuidMapping field value
+func (o *SourceControlSettingsGet200ResponseData) GetForceUuidMapping() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.ForceUuidMapping
+}
+
+// GetForceUuidMappingOk returns a tuple with the ForceUuidMapping field value
+// and a boolean to check if the value has been set.
+func (o *SourceControlSettingsGet200ResponseData) GetForceUuidMappingOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ForceUuidMapping, true
+}
+
+// SetForceUuidMapping sets field value
+func (o *SourceControlSettingsGet200ResponseData) SetForceUuidMapping(v bool) {
+	o.ForceUuidMapping = v
+}
+
 func (o SourceControlSettingsGet200ResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -164,6 +191,7 @@ func (o SourceControlSettingsGet200ResponseData) ToMap() (map[string]interface{}
 	toSerialize["custom_pull_request_template_enabled"] = o.CustomPullRequestTemplateEnabled
 	toSerialize["custom_pull_request_template"] = o.CustomPullRequestTemplate
 	toSerialize["version_control_locked"] = o.VersionControlLocked
+	toSerialize["force_uuid_mapping"] = o.ForceUuidMapping
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -181,6 +209,7 @@ func (o *SourceControlSettingsGet200ResponseData) UnmarshalJSON(data []byte) (er
 		"custom_pull_request_template_enabled",
 		"custom_pull_request_template",
 		"version_control_locked",
+		"force_uuid_mapping",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -214,6 +243,7 @@ func (o *SourceControlSettingsGet200ResponseData) UnmarshalJSON(data []byte) (er
 		delete(additionalProperties, "custom_pull_request_template_enabled")
 		delete(additionalProperties, "custom_pull_request_template")
 		delete(additionalProperties, "version_control_locked")
+		delete(additionalProperties, "force_uuid_mapping")
 		o.AdditionalProperties = additionalProperties
 	}
 

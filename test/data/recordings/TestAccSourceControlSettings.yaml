@@ -6,14 +6,14 @@ interactions:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
-        content_length: 186
+        content_length: 212
         transfer_encoding: []
         trailer: {}
         host: recorded.retool.dev
         remote_addr: ""
         request_uri: ""
         body: |
-            {"settings":{"auto_branch_naming_enabled":false,"custom_pull_request_template":"custom-pull-request-template","custom_pull_request_template_enabled":true,"version_control_locked":true}}
+            {"settings":{"auto_branch_naming_enabled":false,"custom_pull_request_template":"custom-pull-request-template","custom_pull_request_template_enabled":true,"force_uuid_mapping":true,"version_control_locked":true}}
         form: {}
         headers:
             Content-Type:
@@ -28,15 +28,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 196
+        content_length: 222
         uncompressed: false
-        body: '{"success":true,"data":{"auto_branch_naming_enabled":false,"custom_pull_request_template_enabled":true,"custom_pull_request_template":"custom-pull-request-template","version_control_locked":true}}'
+        body: '{"success":true,"data":{"auto_branch_naming_enabled":false,"custom_pull_request_template_enabled":true,"custom_pull_request_template":"custom-pull-request-template","version_control_locked":true,"force_uuid_mapping":true}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 95.625125ms
+        duration: 98.346292ms
     - id: 1
       request:
         proto: HTTP/1.1
@@ -61,15 +61,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 196
+        content_length: 222
         uncompressed: false
-        body: '{"success":true,"data":{"auto_branch_naming_enabled":false,"custom_pull_request_template_enabled":true,"custom_pull_request_template":"custom-pull-request-template","version_control_locked":true}}'
+        body: '{"success":true,"data":{"auto_branch_naming_enabled":false,"custom_pull_request_template_enabled":true,"custom_pull_request_template":"custom-pull-request-template","version_control_locked":true,"force_uuid_mapping":true}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 70.675959ms
+        duration: 94.757625ms
     - id: 2
       request:
         proto: HTTP/1.1
@@ -94,15 +94,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 196
+        content_length: 222
         uncompressed: false
-        body: '{"success":true,"data":{"auto_branch_naming_enabled":false,"custom_pull_request_template_enabled":true,"custom_pull_request_template":"custom-pull-request-template","version_control_locked":true}}'
+        body: '{"success":true,"data":{"auto_branch_naming_enabled":false,"custom_pull_request_template_enabled":true,"custom_pull_request_template":"custom-pull-request-template","version_control_locked":true,"force_uuid_mapping":true}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 66.962167ms
+        duration: 83.300458ms
     - id: 3
       request:
         proto: HTTP/1.1
@@ -127,28 +127,28 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 196
+        content_length: 222
         uncompressed: false
-        body: '{"success":true,"data":{"auto_branch_naming_enabled":false,"custom_pull_request_template_enabled":true,"custom_pull_request_template":"custom-pull-request-template","version_control_locked":true}}'
+        body: '{"success":true,"data":{"auto_branch_naming_enabled":false,"custom_pull_request_template_enabled":true,"custom_pull_request_template":"custom-pull-request-template","version_control_locked":true,"force_uuid_mapping":true}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 72.633458ms
+        duration: 79.493708ms
     - id: 4
       request:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
-        content_length: 195
+        content_length: 222
         transfer_encoding: []
         trailer: {}
         host: recorded.retool.dev
         remote_addr: ""
         request_uri: ""
         body: |
-            {"settings":{"auto_branch_naming_enabled":true,"custom_pull_request_template":"custom-pull-request-template-updated","custom_pull_request_template_enabled":false,"version_control_locked":false}}
+            {"settings":{"auto_branch_naming_enabled":true,"custom_pull_request_template":"custom-pull-request-template-updated","custom_pull_request_template_enabled":false,"force_uuid_mapping":false,"version_control_locked":false}}
         form: {}
         headers:
             Content-Type:
@@ -163,15 +163,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 205
+        content_length: 232
         uncompressed: false
-        body: '{"success":true,"data":{"auto_branch_naming_enabled":true,"custom_pull_request_template_enabled":false,"custom_pull_request_template":"custom-pull-request-template-updated","version_control_locked":false}}'
+        body: '{"success":true,"data":{"auto_branch_naming_enabled":true,"custom_pull_request_template_enabled":false,"custom_pull_request_template":"custom-pull-request-template-updated","version_control_locked":false,"force_uuid_mapping":false}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 75.057333ms
+        duration: 98.3665ms
     - id: 5
       request:
         proto: HTTP/1.1
@@ -196,15 +196,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 205
+        content_length: 232
         uncompressed: false
-        body: '{"success":true,"data":{"auto_branch_naming_enabled":true,"custom_pull_request_template_enabled":false,"custom_pull_request_template":"custom-pull-request-template-updated","version_control_locked":false}}'
+        body: '{"success":true,"data":{"auto_branch_naming_enabled":true,"custom_pull_request_template_enabled":false,"custom_pull_request_template":"custom-pull-request-template-updated","version_control_locked":false,"force_uuid_mapping":false}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 63.974959ms
+        duration: 79.129667ms
     - id: 6
       request:
         proto: HTTP/1.1
@@ -229,28 +229,28 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 205
+        content_length: 232
         uncompressed: false
-        body: '{"success":true,"data":{"auto_branch_naming_enabled":true,"custom_pull_request_template_enabled":false,"custom_pull_request_template":"custom-pull-request-template-updated","version_control_locked":false}}'
+        body: '{"success":true,"data":{"auto_branch_naming_enabled":true,"custom_pull_request_template_enabled":false,"custom_pull_request_template":"custom-pull-request-template-updated","version_control_locked":false,"force_uuid_mapping":false}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 72.435959ms
+        duration: 92.023042ms
     - id: 7
       request:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
-        content_length: 159
+        content_length: 186
         transfer_encoding: []
         trailer: {}
         host: recorded.retool.dev
         remote_addr: ""
         request_uri: ""
         body: |
-            {"settings":{"auto_branch_naming_enabled":true,"custom_pull_request_template":"","custom_pull_request_template_enabled":false,"version_control_locked":false}}
+            {"settings":{"auto_branch_naming_enabled":true,"custom_pull_request_template":"","custom_pull_request_template_enabled":false,"force_uuid_mapping":false,"version_control_locked":false}}
         form: {}
         headers:
             Content-Type:
@@ -265,15 +265,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 169
+        content_length: 196
         uncompressed: false
-        body: '{"success":true,"data":{"auto_branch_naming_enabled":true,"custom_pull_request_template_enabled":false,"custom_pull_request_template":"","version_control_locked":false}}'
+        body: '{"success":true,"data":{"auto_branch_naming_enabled":true,"custom_pull_request_template_enabled":false,"custom_pull_request_template":"","version_control_locked":false,"force_uuid_mapping":false}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 73.421834ms
+        duration: 83.329833ms
     - id: 8
       request:
         proto: HTTP/1.1
@@ -298,28 +298,28 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 169
+        content_length: 196
         uncompressed: false
-        body: '{"success":true,"data":{"auto_branch_naming_enabled":true,"custom_pull_request_template_enabled":false,"custom_pull_request_template":"","version_control_locked":false}}'
+        body: '{"success":true,"data":{"auto_branch_naming_enabled":true,"custom_pull_request_template_enabled":false,"custom_pull_request_template":"","version_control_locked":false,"force_uuid_mapping":false}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 73.144916ms
+        duration: 87.097167ms
     - id: 9
       request:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
-        content_length: 159
+        content_length: 186
         transfer_encoding: []
         trailer: {}
         host: recorded.retool.dev
         remote_addr: ""
         request_uri: ""
         body: |
-            {"settings":{"auto_branch_naming_enabled":true,"custom_pull_request_template":"","custom_pull_request_template_enabled":false,"version_control_locked":false}}
+            {"settings":{"auto_branch_naming_enabled":true,"custom_pull_request_template":"","custom_pull_request_template_enabled":false,"force_uuid_mapping":false,"version_control_locked":false}}
         form: {}
         headers:
             Content-Type:
@@ -334,12 +334,12 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 169
+        content_length: 196
         uncompressed: false
-        body: '{"success":true,"data":{"auto_branch_naming_enabled":true,"custom_pull_request_template_enabled":false,"custom_pull_request_template":"","version_control_locked":false}}'
+        body: '{"success":true,"data":{"auto_branch_naming_enabled":true,"custom_pull_request_template_enabled":false,"custom_pull_request_template":"","version_control_locked":false,"force_uuid_mapping":false}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 75.02075ms
+        duration: 92.044042ms

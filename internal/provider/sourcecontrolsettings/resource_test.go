@@ -18,7 +18,8 @@ const testSCMSettings = `
 		custom_pull_request_template_enabled = true
 		custom_pull_request_template = "custom-pull-request-template"
 		version_control_locked = true
-	}	
+		force_uuid_mapping = true
+	}
 `
 
 const testSCMSettingsUpdated = `
@@ -27,7 +28,8 @@ const testSCMSettingsUpdated = `
 		custom_pull_request_template_enabled = false
 		custom_pull_request_template = "custom-pull-request-template-updated"
 		version_control_locked = false
-	}	
+		force_uuid_mapping = false
+	}
 `
 
 const testSCMSettingsDefaults = `
@@ -50,6 +52,7 @@ func TestAccSourceControlSettings(t *testing.T) {
 					resource.TestCheckResourceAttr("retool_source_control_settings.scm_settings", "custom_pull_request_template_enabled", "true"),
 					resource.TestCheckResourceAttr("retool_source_control_settings.scm_settings", "custom_pull_request_template", "custom-pull-request-template"),
 					resource.TestCheckResourceAttr("retool_source_control_settings.scm_settings", "version_control_locked", "true"),
+					resource.TestCheckResourceAttr("retool_source_control_settings.scm_settings", "force_uuid_mapping", "true"),
 				),
 			},
 			// Import state.
@@ -67,6 +70,7 @@ func TestAccSourceControlSettings(t *testing.T) {
 					resource.TestCheckResourceAttr("retool_source_control_settings.scm_settings", "custom_pull_request_template_enabled", "false"),
 					resource.TestCheckResourceAttr("retool_source_control_settings.scm_settings", "custom_pull_request_template", "custom-pull-request-template-updated"),
 					resource.TestCheckResourceAttr("retool_source_control_settings.scm_settings", "version_control_locked", "false"),
+					resource.TestCheckResourceAttr("retool_source_control_settings.scm_settings", "force_uuid_mapping", "false"),
 				),
 			},
 			// Use default values.
@@ -77,6 +81,7 @@ func TestAccSourceControlSettings(t *testing.T) {
 					resource.TestCheckResourceAttr("retool_source_control_settings.scm_settings", "custom_pull_request_template_enabled", "false"),
 					resource.TestCheckResourceAttr("retool_source_control_settings.scm_settings", "custom_pull_request_template", ""),
 					resource.TestCheckResourceAttr("retool_source_control_settings.scm_settings", "version_control_locked", "false"),
+					resource.TestCheckResourceAttr("retool_source_control_settings.scm_settings", "force_uuid_mapping", "false"),
 				),
 			},
 		},

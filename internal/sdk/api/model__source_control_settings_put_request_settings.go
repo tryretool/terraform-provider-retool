@@ -27,6 +27,8 @@ type SourceControlSettingsPutRequestSettings struct {
 	CustomPullRequestTemplate *string `json:"custom_pull_request_template,omitempty"`
 	// When set to true, creates a read-only instance of Retool, where app editing is disabled. Defaults to false.
 	VersionControlLocked *bool `json:"version_control_locked,omitempty"`
+	// When set to true, creates a uuid mapping for protected elements to be used in the source control repo. Defaults to false.
+	ForceUuidMapping *bool `json:"force_uuid_mapping,omitempty"`
 }
 
 // NewSourceControlSettingsPutRequestSettings instantiates a new SourceControlSettingsPutRequestSettings object
@@ -174,6 +176,38 @@ func (o *SourceControlSettingsPutRequestSettings) SetVersionControlLocked(v bool
 	o.VersionControlLocked = &v
 }
 
+// GetForceUuidMapping returns the ForceUuidMapping field value if set, zero value otherwise.
+func (o *SourceControlSettingsPutRequestSettings) GetForceUuidMapping() bool {
+	if o == nil || IsNil(o.ForceUuidMapping) {
+		var ret bool
+		return ret
+	}
+	return *o.ForceUuidMapping
+}
+
+// GetForceUuidMappingOk returns a tuple with the ForceUuidMapping field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SourceControlSettingsPutRequestSettings) GetForceUuidMappingOk() (*bool, bool) {
+	if o == nil || IsNil(o.ForceUuidMapping) {
+		return nil, false
+	}
+	return o.ForceUuidMapping, true
+}
+
+// HasForceUuidMapping returns a boolean if a field has been set.
+func (o *SourceControlSettingsPutRequestSettings) HasForceUuidMapping() bool {
+	if o != nil && !IsNil(o.ForceUuidMapping) {
+		return true
+	}
+
+	return false
+}
+
+// SetForceUuidMapping gets a reference to the given bool and assigns it to the ForceUuidMapping field.
+func (o *SourceControlSettingsPutRequestSettings) SetForceUuidMapping(v bool) {
+	o.ForceUuidMapping = &v
+}
+
 func (o SourceControlSettingsPutRequestSettings) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -195,6 +229,9 @@ func (o SourceControlSettingsPutRequestSettings) ToMap() (map[string]interface{}
 	}
 	if !IsNil(o.VersionControlLocked) {
 		toSerialize["version_control_locked"] = o.VersionControlLocked
+	}
+	if !IsNil(o.ForceUuidMapping) {
+		toSerialize["force_uuid_mapping"] = o.ForceUuidMapping
 	}
 	return toSerialize, nil
 }
