@@ -15,128 +15,73 @@ import (
 	"fmt"
 )
 
-// PermissionsRevokePost200ResponseDataInner - struct for PermissionsRevokePost200ResponseDataInner
+// PermissionsRevokePost200ResponseDataInner struct for PermissionsRevokePost200ResponseDataInner
 type PermissionsRevokePost200ResponseDataInner struct {
 	PermissionsListObjectsPost200ResponseDataInnerOneOf *PermissionsListObjectsPost200ResponseDataInnerOneOf
-	PermissionsRevokePost200ResponseDataInnerOneOf *PermissionsRevokePost200ResponseDataInnerOneOf
-	PermissionsRevokePost200ResponseDataInnerOneOf1 *PermissionsRevokePost200ResponseDataInnerOneOf1
+	PermissionsRevokePost200ResponseDataInnerAnyOf *PermissionsRevokePost200ResponseDataInnerAnyOf
+	PermissionsRevokePost200ResponseDataInnerAnyOf1 *PermissionsRevokePost200ResponseDataInnerAnyOf1
 }
 
-// PermissionsListObjectsPost200ResponseDataInnerOneOfAsPermissionsRevokePost200ResponseDataInner is a convenience function that returns PermissionsListObjectsPost200ResponseDataInnerOneOf wrapped in PermissionsRevokePost200ResponseDataInner
-func PermissionsListObjectsPost200ResponseDataInnerOneOfAsPermissionsRevokePost200ResponseDataInner(v *PermissionsListObjectsPost200ResponseDataInnerOneOf) PermissionsRevokePost200ResponseDataInner {
-	return PermissionsRevokePost200ResponseDataInner{
-		PermissionsListObjectsPost200ResponseDataInnerOneOf: v,
-	}
-}
-
-// PermissionsRevokePost200ResponseDataInnerOneOfAsPermissionsRevokePost200ResponseDataInner is a convenience function that returns PermissionsRevokePost200ResponseDataInnerOneOf wrapped in PermissionsRevokePost200ResponseDataInner
-func PermissionsRevokePost200ResponseDataInnerOneOfAsPermissionsRevokePost200ResponseDataInner(v *PermissionsRevokePost200ResponseDataInnerOneOf) PermissionsRevokePost200ResponseDataInner {
-	return PermissionsRevokePost200ResponseDataInner{
-		PermissionsRevokePost200ResponseDataInnerOneOf: v,
-	}
-}
-
-// PermissionsRevokePost200ResponseDataInnerOneOf1AsPermissionsRevokePost200ResponseDataInner is a convenience function that returns PermissionsRevokePost200ResponseDataInnerOneOf1 wrapped in PermissionsRevokePost200ResponseDataInner
-func PermissionsRevokePost200ResponseDataInnerOneOf1AsPermissionsRevokePost200ResponseDataInner(v *PermissionsRevokePost200ResponseDataInnerOneOf1) PermissionsRevokePost200ResponseDataInner {
-	return PermissionsRevokePost200ResponseDataInner{
-		PermissionsRevokePost200ResponseDataInnerOneOf1: v,
-	}
-}
-
-
-// Unmarshal JSON data into one of the pointers in the struct
+// Unmarshal JSON data into any of the pointers in the struct
 func (dst *PermissionsRevokePost200ResponseDataInner) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into PermissionsListObjectsPost200ResponseDataInnerOneOf
-	err = newStrictDecoder(data).Decode(&dst.PermissionsListObjectsPost200ResponseDataInnerOneOf)
+	// try to unmarshal JSON data into PermissionsListObjectsPost200ResponseDataInnerOneOf
+	err = json.Unmarshal(data, &dst.PermissionsListObjectsPost200ResponseDataInnerOneOf);
 	if err == nil {
 		jsonPermissionsListObjectsPost200ResponseDataInnerOneOf, _ := json.Marshal(dst.PermissionsListObjectsPost200ResponseDataInnerOneOf)
 		if string(jsonPermissionsListObjectsPost200ResponseDataInnerOneOf) == "{}" { // empty struct
 			dst.PermissionsListObjectsPost200ResponseDataInnerOneOf = nil
 		} else {
-			match++
+			return nil // data stored in dst.PermissionsListObjectsPost200ResponseDataInnerOneOf, return on the first match
 		}
 	} else {
 		dst.PermissionsListObjectsPost200ResponseDataInnerOneOf = nil
 	}
 
-	// try to unmarshal data into PermissionsRevokePost200ResponseDataInnerOneOf
-	err = newStrictDecoder(data).Decode(&dst.PermissionsRevokePost200ResponseDataInnerOneOf)
+	// try to unmarshal JSON data into PermissionsRevokePost200ResponseDataInnerAnyOf
+	err = json.Unmarshal(data, &dst.PermissionsRevokePost200ResponseDataInnerAnyOf);
 	if err == nil {
-		jsonPermissionsRevokePost200ResponseDataInnerOneOf, _ := json.Marshal(dst.PermissionsRevokePost200ResponseDataInnerOneOf)
-		if string(jsonPermissionsRevokePost200ResponseDataInnerOneOf) == "{}" { // empty struct
-			dst.PermissionsRevokePost200ResponseDataInnerOneOf = nil
+		jsonPermissionsRevokePost200ResponseDataInnerAnyOf, _ := json.Marshal(dst.PermissionsRevokePost200ResponseDataInnerAnyOf)
+		if string(jsonPermissionsRevokePost200ResponseDataInnerAnyOf) == "{}" { // empty struct
+			dst.PermissionsRevokePost200ResponseDataInnerAnyOf = nil
 		} else {
-			match++
+			return nil // data stored in dst.PermissionsRevokePost200ResponseDataInnerAnyOf, return on the first match
 		}
 	} else {
-		dst.PermissionsRevokePost200ResponseDataInnerOneOf = nil
+		dst.PermissionsRevokePost200ResponseDataInnerAnyOf = nil
 	}
 
-	// try to unmarshal data into PermissionsRevokePost200ResponseDataInnerOneOf1
-	err = newStrictDecoder(data).Decode(&dst.PermissionsRevokePost200ResponseDataInnerOneOf1)
+	// try to unmarshal JSON data into PermissionsRevokePost200ResponseDataInnerAnyOf1
+	err = json.Unmarshal(data, &dst.PermissionsRevokePost200ResponseDataInnerAnyOf1);
 	if err == nil {
-		jsonPermissionsRevokePost200ResponseDataInnerOneOf1, _ := json.Marshal(dst.PermissionsRevokePost200ResponseDataInnerOneOf1)
-		if string(jsonPermissionsRevokePost200ResponseDataInnerOneOf1) == "{}" { // empty struct
-			dst.PermissionsRevokePost200ResponseDataInnerOneOf1 = nil
+		jsonPermissionsRevokePost200ResponseDataInnerAnyOf1, _ := json.Marshal(dst.PermissionsRevokePost200ResponseDataInnerAnyOf1)
+		if string(jsonPermissionsRevokePost200ResponseDataInnerAnyOf1) == "{}" { // empty struct
+			dst.PermissionsRevokePost200ResponseDataInnerAnyOf1 = nil
 		} else {
-			match++
+			return nil // data stored in dst.PermissionsRevokePost200ResponseDataInnerAnyOf1, return on the first match
 		}
 	} else {
-		dst.PermissionsRevokePost200ResponseDataInnerOneOf1 = nil
+		dst.PermissionsRevokePost200ResponseDataInnerAnyOf1 = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.PermissionsListObjectsPost200ResponseDataInnerOneOf = nil
-		dst.PermissionsRevokePost200ResponseDataInnerOneOf = nil
-		dst.PermissionsRevokePost200ResponseDataInnerOneOf1 = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(PermissionsRevokePost200ResponseDataInner)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(PermissionsRevokePost200ResponseDataInner)")
-	}
+	return fmt.Errorf("data failed to match schemas in anyOf(PermissionsRevokePost200ResponseDataInner)")
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src PermissionsRevokePost200ResponseDataInner) MarshalJSON() ([]byte, error) {
+func (src *PermissionsRevokePost200ResponseDataInner) MarshalJSON() ([]byte, error) {
 	if src.PermissionsListObjectsPost200ResponseDataInnerOneOf != nil {
 		return json.Marshal(&src.PermissionsListObjectsPost200ResponseDataInnerOneOf)
 	}
 
-	if src.PermissionsRevokePost200ResponseDataInnerOneOf != nil {
-		return json.Marshal(&src.PermissionsRevokePost200ResponseDataInnerOneOf)
+	if src.PermissionsRevokePost200ResponseDataInnerAnyOf != nil {
+		return json.Marshal(&src.PermissionsRevokePost200ResponseDataInnerAnyOf)
 	}
 
-	if src.PermissionsRevokePost200ResponseDataInnerOneOf1 != nil {
-		return json.Marshal(&src.PermissionsRevokePost200ResponseDataInnerOneOf1)
+	if src.PermissionsRevokePost200ResponseDataInnerAnyOf1 != nil {
+		return json.Marshal(&src.PermissionsRevokePost200ResponseDataInnerAnyOf1)
 	}
 
-	return nil, nil // no data in oneOf schemas
-}
-
-// Get the actual instance
-func (obj *PermissionsRevokePost200ResponseDataInner) GetActualInstance() (interface{}) {
-	if obj == nil {
-		return nil
-	}
-	if obj.PermissionsListObjectsPost200ResponseDataInnerOneOf != nil {
-		return obj.PermissionsListObjectsPost200ResponseDataInnerOneOf
-	}
-
-	if obj.PermissionsRevokePost200ResponseDataInnerOneOf != nil {
-		return obj.PermissionsRevokePost200ResponseDataInnerOneOf
-	}
-
-	if obj.PermissionsRevokePost200ResponseDataInnerOneOf1 != nil {
-		return obj.PermissionsRevokePost200ResponseDataInnerOneOf1
-	}
-
-	// all schemas are nil
-	return nil
+	return nil, nil // no data in anyOf schemas
 }
 
 type NullablePermissionsRevokePost200ResponseDataInner struct {
