@@ -28,6 +28,8 @@ See https://github.com/OpenAPITools/openapi-generator/issues/741 for more detail
 
 NOTE: To make the client work with our API, I had to manually update `openAPISpec.json` in quite a few places. So, I'd recommend manually copying the fragment of the spec that you need into the file instead of trying to replace the file completely.
 
+One of these is for the imprecise conversion of zod discriminated unions (used internally) to openapi - instead of `oneOf` schemas, `anyOf` is more accurate for nested object types.
+
 ## Generate client library code
 Just run `go generate` in this folder. All generated code lives in the `api` folder.
 Command line parameters for `openapi-generator` invocation are controlled via `generate.go` file.
