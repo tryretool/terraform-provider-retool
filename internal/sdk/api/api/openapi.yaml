@@ -7613,7 +7613,7 @@ components:
       - object
       - subject
       type: object
-    _permissions_revoke_post_200_response_data_inner_oneOf:
+    _permissions_revoke_post_200_response_data_inner_anyOf:
       example:
         access_level: own
         id: id
@@ -7639,7 +7639,7 @@ components:
       - id
       - type
       type: object
-    _permissions_revoke_post_200_response_data_inner_oneOf_1:
+    _permissions_revoke_post_200_response_data_inner_anyOf_1:
       properties:
         type:
           enum:
@@ -7662,9 +7662,9 @@ components:
       - type
       type: object
     _permissions_revoke_post_200_response_data_inner:
-      oneOf:
-      - $ref: '#/components/schemas/_permissions_revoke_post_200_response_data_inner_oneOf'
-      - $ref: '#/components/schemas/_permissions_revoke_post_200_response_data_inner_oneOf_1'
+      anyOf:
+      - $ref: '#/components/schemas/_permissions_revoke_post_200_response_data_inner_anyOf'
+      - $ref: '#/components/schemas/_permissions_revoke_post_200_response_data_inner_anyOf_1'
       - $ref: '#/components/schemas/_permissions_listObjects_post_200_response_data_inner_oneOf'
     _permissions_revoke_post_200_response:
       example:
