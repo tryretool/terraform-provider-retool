@@ -285,7 +285,27 @@ func (r *permissionResource) Read(ctx context.Context, req resource.ReadRequest,
 		return
 	}
 
-	var stateSubject permissionSubjectModel
+	// we want to create an object mapping of all these keys
+	// we want to make sure the permissions received from the API are mapped to the correct keys
+	// so when we delete permissions, our state has only the permissions that are actually present in the mapping
+
+	var stateSubject permissionSubjectModel // {id, type}
+	var managedPermissionKeys := make(map[string]bool) // check if this is correct syntax
+
+	for _, permission := range state.Permissions {
+		var obj permissionObjectModel
+		diags := permission.Object.As(ctx, &obj, basetypes.ObjectAsOptions{})
+		if diags.HasError() {
+			return
+		}
+		key := obj.ID.ValueString() + "|" + obj.Type.ValueString()
+		managedPermissionKeys[key] = true
+	}
+	// var verifiedPermissions []permissionModel // {object, accessLevel} instead of making it a permissionmodel, it should be some sort of an array with names?
+	// we should do an interation through state.permissions and create a mapping of all keys in the object in an arbitrary format
+	// once we create this sort of array or whatever data structure
+	// we will go thrgouh the permissions repsonse data, if the key is present in our mapping, we let it continue
+
 
 	diags = state.Subject.As(ctx, &stateSubject, basetypes.ObjectAsOptions{})
 	resp.Diagnostics.Append(diags...)
@@ -293,7 +313,7 @@ func (r *permissionResource) Read(ctx context.Context, req resource.ReadRequest,
 		return
 	}
 
-	var permissions []permissionModel
+	var permissions []permissionModel // {object, accessLevel}
 
 	subjectID := stateSubject.ID.ValueString() + "|" + stateSubject.Type.ValueString()
 
@@ -320,6 +340,10 @@ func (r *permissionResource) Read(ctx context.Context, req resource.ReadRequest,
 			if obj.PermissionsListObjectsPost200ResponseDataInnerOneOf != nil {
 				objID = obj.PermissionsListObjectsPost200ResponseDataInnerOneOf.Id
 				accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerOneOf.AccessLevel
+			}
+			key := objID + "|" + objectType
+			if !managedPermissionKeys[key] {
+				continue
 			}
 			objValue := permissionObjectModel{
 				ID:   types.StringValue(objID),
