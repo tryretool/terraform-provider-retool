@@ -241,6 +241,54 @@ func (r *permissionResource) grantPermission(ctx context.Context, subject permis
 	return diags
 }
 
+func (r *permissionResource) fetchPermissionsForSubject(ctx context.Context, subject permissionSubjectModel) ([]permissionModel, diag.Diagnostics) {
+	var permissions []permissionModel
+	var allDiags diag.Diagnostics
+
+	subjectID := subject.ID.ValueString() + "|" + subject.Type.ValueString()
+
+	for _, objectType := range []string{"app", "folder", "resource", "resource_configuration"} {
+		request := api.NewPermissionsListObjectsPostRequest(createNewAPIPermissionsSubject(subject), objectType)
+
+	tflog.Info(ctx, "Fetching permissions", map[string]interface{}{"subjectId": subjectID, "objectType": objectType})
+
+		permissionsResponse, httpResponse, err := r.client.PermissionsAPI.PermissionsListObjectsPost(ctx).PermissionsListObjectsPostRequest(*request).Execute()
+		if err != nil {
+			allDiags.AddError(
+				"Error reading permission",
+		fmt.Sprintf("Could not read permissions for id: %s, object type: %s, error: %s", subjectID, objectType, err.Error()),
+			)
+		tflog.Error(ctx, "Error reading group", utils.AddHTTPStatusCode(map[string]any{"permissionId": subjectID, "objectType": objectType, "error": err.Error()}, httpResponse))
+			return nil, allDiags
+		}
+
+		// Now let's populate the state with permissions based on our API response.
+		for _, obj := range permissionsResponse.Data {
+			var objID string
+			var accessLevel string
+			if obj.PermissionsListObjectsPost200ResponseDataInnerOneOf != nil {
+				objID = obj.PermissionsListObjectsPost200ResponseDataInnerOneOf.Id
+				accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerOneOf.AccessLevel
+			}
+			objValue := permissionObjectModel{
+				ID:   types.StringValue(objID),
+				Type: types.StringValue(objectType),
+			}
+			object, diags := types.ObjectValueFrom(ctx, objValue.AttributeTypes(), objValue)
+			allDiags.Append(diags...)
+			if allDiags.HasError() {
+return nil, allDiags
+			}
+			permissions = append(permissions, permissionModel{
+				Object:      object,
+				AccessLevel: types.StringValue(accessLevel),
+			})
+		}
+	}
+	return permissions, allDiags
+
+}
+
 func (r *permissionResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
 	// Retrieve values from plan.
 	var plan permissionsResourceModel
@@ -285,12 +333,8 @@ func (r *permissionResource) Read(ctx context.Context, req resource.ReadRequest,
 		return
 	}
 
-	// we want to create an object mapping of all these keys
-	// we want to make sure the permissions received from the API are mapped to the correct keys
-	// so when we delete permissions, our state has only the permissions that are actually present in the mapping
-
-	var stateSubject permissionSubjectModel // {id, type}
-	var managedPermissionKeys = make(map[string]bool) // check if this is correct syntax
+	var stateSubject permissionSubjectModel
+	var managedPermissionKeys = make(map[string]bool)
 
 	for _, permission := range state.Permissions {
 		var obj permissionObjectModel
@@ -301,11 +345,6 @@ func (r *permissionResource) Read(ctx context.Context, req resource.ReadRequest,
 		key := obj.ID.ValueString() + "|" + obj.Type.ValueString()
 		managedPermissionKeys[key] = true
 	}
-	// var verifiedPermissions []permissionModel // {object, accessLevel} instead of making it a permissionmodel, it should be some sort of an array with names?
-	// we should do an interation through state.permissions and create a mapping of all keys in the object in an arbitrary format
-	// once we create this sort of array or whatever data structure
-	// we will go thrgouh the permissions repsonse data, if the key is present in our mapping, we let it continue
-
 
 	diags = state.Subject.As(ctx, &stateSubject, basetypes.ObjectAsOptions{})
 	resp.Diagnostics.Append(diags...)
@@ -313,55 +352,27 @@ func (r *permissionResource) Read(ctx context.Context, req resource.ReadRequest,
 		return
 	}
 
-	var permissions []permissionModel // {object, accessLevel}
+	allPermissions, diags := r.fetchPermissionsForSubject(ctx, stateSubject)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
 
-	subjectID := stateSubject.ID.ValueString() + "|" + stateSubject.Type.ValueString()
-
-	// We'll need to get all the permissions for the given subject.
-	for _, objectType := range []string{"app", "folder", "resource", "resource_configuration"} {
-		request := api.NewPermissionsListObjectsPostRequest(createNewAPIPermissionsSubject(stateSubject), objectType)
-
-		tflog.Info(ctx, "Reading permission", map[string]interface{}{"subjectId": subjectID})
-
-		permissionsResponse, httpResponse, err := r.client.PermissionsAPI.PermissionsListObjectsPost(ctx).PermissionsListObjectsPostRequest(*request).Execute()
-		if err != nil {
-			resp.Diagnostics.AddError(
-				"Error reading permission",
-				fmt.Sprintf("Could not read permissions for id: %s, object type: %s, error: %s", subjectID, objectType, err.Error()),
-			)
-			tflog.Error(ctx, "Error reading group", utils.AddHTTPStatusCode(map[string]any{"permissionId": subjectID, "objectType": objectType, "error": err.Error()}, httpResponse))
+	var filteredPermissions []permissionModel
+	for _, perm := range allPermissions {
+		var obj permissionObjectModel
+		diags := perm.Object.As(ctx, &obj, basetypes.ObjectAsOptions{})
+		if diags.HasError() {
+			resp.Diagnostics.Append(diags...)
 			return
 		}
-
-		// Now let's populate the state with permissions based on our API response.
-		for _, obj := range permissionsResponse.Data {
-			var objID string
-			var accessLevel string
-			if obj.PermissionsListObjectsPost200ResponseDataInnerOneOf != nil {
-				objID = obj.PermissionsListObjectsPost200ResponseDataInnerOneOf.Id
-				accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerOneOf.AccessLevel
-			}
-			key := objID + "|" + objectType
-			if !managedPermissionKeys[key] {
-				continue
-			}
-			objValue := permissionObjectModel{
-				ID:   types.StringValue(objID),
-				Type: types.StringValue(objectType),
-			}
-			object, diags := types.ObjectValueFrom(ctx, objValue.AttributeTypes(), objValue)
-			resp.Diagnostics.Append(diags...)
-			if resp.Diagnostics.HasError() {
-				return
-			}
-			permissions = append(permissions, permissionModel{
-				Object:      object,
-				AccessLevel: types.StringValue(accessLevel),
-			})
+		key := obj.ID.ValueString() + "|" + obj.Type.ValueString()
+		if managedPermissionKeys[key] {
+			filteredPermissions = append(filteredPermissions, perm)
 		}
 	}
 
-	state.Permissions = permissions
+	state.Permissions = filteredPermissions
 
 	diags = resp.State.Set(ctx, &state)
 	resp.Diagnostics.Append(diags...)
@@ -526,4 +537,11 @@ func (r *permissionResource) ImportState(ctx context.Context, req resource.Impor
 		Type: types.StringValue(subjType),
 	}
 	resp.State.SetAttribute(ctx, path.Root("subject"), subject)
+
+	allPermissions, diags := r.fetchPermissionsForSubject(ctx, subject)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+	resp.State.SetAttribute(ctx, path.Root("permissions"), allPermissions)
 }
