@@ -290,7 +290,7 @@ func (r *permissionResource) Read(ctx context.Context, req resource.ReadRequest,
 	// so when we delete permissions, our state has only the permissions that are actually present in the mapping
 
 	var stateSubject permissionSubjectModel // {id, type}
-	var managedPermissionKeys := make(map[string]bool) // check if this is correct syntax
+	var managedPermissionKeys = make(map[string]bool) // check if this is correct syntax
 
 	for _, permission := range state.Permissions {
 		var obj permissionObjectModel
