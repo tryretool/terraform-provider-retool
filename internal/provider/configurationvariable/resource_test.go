@@ -47,7 +47,7 @@ resource "retool_configuration_variable" "test_configuration_variable" {
 }
 `
 
-func testMain(m *testing.M) {
+func TestMain(m *testing.M) {
 	resource.TestMain(m)
 }
 
@@ -95,23 +95,24 @@ func TestAccConfigurationVariable(t *testing.T) {
 }
 
 func sweepConfigurationVariables(region string) error {
+	log.Printf("Sweeping configuration variables in region %s", region)
 	client, err := acctest.SweeperClient()
 	if err != nil {
 		return fmt.Errorf("could not create Retool API client: %w", err)
 	}
 
-	configuration_variables, _, err := client.ConfigurationVariablesAPI.ConfigurationVariablesGet(context.Background()).Execute()
+	configurationVariables, _, err := client.ConfigurationVariablesAPI.ConfigurationVariablesGet(context.Background()).Execute()
 	if err != nil {
 		return fmt.Errorf("error reading configuration variables: %s", err.Error())
 	}
 
-	for _, configuration_variable := range configuration_variables.Data {
-		if len(configuration_variable.Name) >= 16 && configuration_variable.Name[:16] == "tf-acc-test-" {
-			_, err := client.ConfigurationVariablesAPI.ConfigurationVariablesIdDelete(context.Background(), configuration_variable.Id).Execute()
+	for _, configurationVariable := range configurationVariables.Data {
+		if len(configurationVariable.Name) >= 16 && configurationVariable.Name[:16] == "tf-acc-test-" {
+			_, err := client.ConfigurationVariablesAPI.ConfigurationVariablesIdDelete(context.Background(), configurationVariable.Id).Execute()
 			if err != nil {
-				return fmt.Errorf("error deleting configuration variable %s: %s", configuration_variable.Id, err.Error())
+				return fmt.Errorf("error deleting configuration variable %s: %s", configurationVariable.Id, err.Error())
 			}
-			log.Printf("Deleted configuration variable %s\n", configuration_variable.Id)
+			log.Printf("Deleted configuration variable %s\n", configurationVariable.Id)
 		}
 	}
 	return nil
