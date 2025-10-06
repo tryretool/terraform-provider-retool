@@ -98,6 +98,7 @@ func (r *Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp *res
 			},
 			"secret": schema.BoolAttribute{
 				Optional:    true,
+				Computed:    true,
 				Description: "Whether the configuration variable is a secret. Secrets are encrypted and not exposed in the Retool UI.",
 				Default:     booldefault.StaticBool(false),
 			},
