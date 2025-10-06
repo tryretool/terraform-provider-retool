@@ -1,3 +1,4 @@
+// Package configurationvariable provides the implementation of the Configuration Variable resource.
 package configurationvariable
 
 import (
@@ -5,7 +6,6 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
-	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
@@ -22,41 +22,38 @@ import (
 
 // Ensure ConfigurationVariableResource implements the tfsdk.Resource interface.
 var (
-	_ resource.Resource                = &ConfigurationVariableResource{}
-	_ resource.ResourceWithConfigure   = &ConfigurationVariableResource{}
-	_ resource.ResourceWithImportState = &ConfigurationVariableResource{}
+	_ resource.Resource                = &Resource{}
+	_ resource.ResourceWithConfigure   = &Resource{}
+	_ resource.ResourceWithImportState = &Resource{}
 )
 
-type ConfigurationVariableResource struct {
+// ConfigurationVariable schema structure.
+type Resource struct {
 	client *api.APIClient
 }
 
+// configurationVariableValueModel maps the values attribute of the configuration variable resource.
 type configurationVariableValueModel struct {
 	EnvironmentID types.String `tfsdk:"environment_id"`
 	Value         types.String `tfsdk:"value"`
 }
 
-func (m configurationVariableValueModel) attributeTypes() map[string]attr.Type {
-	return map[string]attr.Type{
-		"environment_id": types.StringType,
-		"value":          types.StringType,
-	}
-}
-
+// configurationVariableResourceModel defines the data model for the configuration variable resource.
 type configurationVariableResourceModel struct {
-	ID          types.String `tfsdk:"id"`
-	Name        types.String `tfsdk:"name"`
-	Description types.String `tfsdk:"description"`
-	Secret      types.Bool   `tfsdk:"secret"`
-	Values      types.List   `tfsdk:"values"`
+	ID          types.String                      `tfsdk:"id"`
+	Name        types.String                      `tfsdk:"name"`
+	Description types.String                      `tfsdk:"description"`
+	Secret      types.Bool                        `tfsdk:"secret"`
+	Values      []configurationVariableValueModel `tfsdk:"values"`
 }
 
+// Create a new Configuration Variable resource.
 func NewResource() resource.Resource {
-	return &ConfigurationVariableResource{}
+	return &Resource{}
 }
 
 // Configure add the provider configured client to the resource.
-func (r *ConfigurationVariableResource) Configure(_ context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
+func (r *Resource) Configure(_ context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
 	}
@@ -74,12 +71,12 @@ func (r *ConfigurationVariableResource) Configure(_ context.Context, req resourc
 }
 
 // Metadata associated with the configuration variable resource.
-func (r *ConfigurationVariableResource) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (r *Resource) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_configuration_variable"
 }
 
 // Schema returnrs the schema for the Configuration Variable resource.
-func (r *ConfigurationVariableResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (r *Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		Description: "Manages a Retool configuration variable. Configuration variables are used to store environment-specific values that can be referenced throughout your Retool applications.",
 		Attributes: map[string]schema.Attribute{
@@ -126,10 +123,11 @@ func (r *ConfigurationVariableResource) Schema(_ context.Context, _ resource.Sch
 	}
 }
 
-func (r *ConfigurationVariableResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
+// Create creates a configuration variable.
+func (r *Resource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
 	var plan configurationVariableResourceModel
 
-	// Read Terraform plan data into the model
+	// Read Terraform plan data into the model.
 	diags := req.Plan.Get(ctx, &plan)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -143,11 +141,13 @@ func (r *ConfigurationVariableResource) Create(ctx context.Context, req resource
 	}
 	configuratonVariable.Secret = plan.Secret.ValueBool()
 
-	var valuesObjectsList = plan.Values
 	var values []api.ConfigurationVariablesGet200ResponseDataInnerValuesInner
-	diags = valuesObjectsList.ElementsAs(ctx, &values, false)
-	resp.Diagnostics.Append(diags...)
-
+	for _, v := range plan.Values {
+		values = append(values, api.ConfigurationVariablesGet200ResponseDataInnerValuesInner{
+			EnvironmentId: v.EnvironmentID.ValueString(),
+			Value:         v.Value.ValueString(),
+		})
+	}
 	configuratonVariable.Values = values
 
 	response, httpResponse, err := r.client.ConfigurationVariablesAPI.ConfigurationVariablesPost(ctx).ConfigurationVariablesPostRequest(configuratonVariable).Execute()
@@ -182,8 +182,8 @@ func (r *ConfigurationVariableResource) Create(ctx context.Context, req resource
 	tflog.Info(ctx, "Created configuration variable", map[string]interface{}{"id": plan.ID.ValueString()})
 }
 
-// Read a configuration variable
-func (r *ConfigurationVariableResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
+// Read a configuration variable.
+func (r *Resource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 	var state configurationVariableResourceModel
 	diags := req.State.Get(ctx, &state)
 	resp.Diagnostics.Append(diags...)
@@ -218,9 +218,8 @@ func (r *ConfigurationVariableResource) Read(ctx context.Context, req resource.R
 	}
 	state.Secret = types.BoolValue(response.Data.Secret)
 
-	values := make([]configurationVariableValueModel, 0, len(response.Data.Values))
 	for _, v := range response.Data.Values {
-		values = append(values, configurationVariableValueModel{
+		state.Values = append(state.Values, configurationVariableValueModel{
 			EnvironmentID: types.StringValue(v.EnvironmentId),
 			Value:         types.StringValue(v.Value),
 		})
@@ -236,10 +235,11 @@ func (r *ConfigurationVariableResource) Read(ctx context.Context, req resource.R
 	tflog.Info(ctx, "Read configuration variable", map[string]interface{}{"id": state.ID.ValueString()})
 }
 
-func (r *ConfigurationVariableResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
+// Update a configuration variable.
+func (r *Resource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 	var plan configurationVariableResourceModel
 
-	// Read Terraform plan data into the model
+	// Read Terraform plan data into the model.
 	diags := req.Plan.Get(ctx, &plan)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -248,11 +248,13 @@ func (r *ConfigurationVariableResource) Update(ctx context.Context, req resource
 
 	configurationVariableID := plan.ID.ValueString()
 
-	valuesObjectsList := plan.Values
-
 	var values []api.ConfigurationVariablesGet200ResponseDataInnerValuesInner
-	diags = valuesObjectsList.ElementsAs(ctx, &values, false)
-	resp.Diagnostics.Append(diags...)
+	for _, v := range plan.Values {
+		values = append(values, api.ConfigurationVariablesGet200ResponseDataInnerValuesInner{
+			EnvironmentId: v.EnvironmentID.ValueString(),
+			Value:         v.Value.ValueString(),
+		})
+	}
 
 	updatePayload := api.ConfigurationVariablesPostRequest{
 		Name:        plan.Name.ValueString(),
@@ -281,7 +283,8 @@ func (r *ConfigurationVariableResource) Update(ctx context.Context, req resource
 	tflog.Info(ctx, "Updated configuration variable", map[string]interface{}{"id": plan.ID.ValueString()})
 }
 
-func (r *ConfigurationVariableResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
+// Delete deletes a configuration variable.
+func (r *Resource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 	var state configurationVariableResourceModel
 	diags := req.State.Get(ctx, &state)
 	resp.Diagnostics.Append(diags...)
@@ -312,6 +315,7 @@ func (r *ConfigurationVariableResource) Delete(ctx context.Context, req resource
 	tflog.Info(ctx, "Deleted configuration variable", map[string]interface{}{"id": configurationVariableID})
 }
 
-func (r *ConfigurationVariableResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
+// ImportState imports a configuration variable resource.
+func (r *Resource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
 	resource.ImportStatePassthroughID(ctx, path.Root("id"), req, resp)
 }
