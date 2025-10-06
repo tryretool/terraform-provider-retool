@@ -90,7 +90,7 @@ func TestAccConfigurationVariable(t *testing.T) {
 				ImportState:       true,
 				ImportStateVerify: true,
 			},
-			// Update
+			// Update.
 			{
 				Config: testConfigrationVariableResourceUpdated,
 				Check: resource.ComposeTestCheckFunc(
@@ -107,7 +107,7 @@ func TestAccConfigurationVariable(t *testing.T) {
 					resource.TestCheckResourceAttr("retool_configuration_variable.test_configuration_variable", "values.1.value", "new_value2"),
 				),
 			},
-			// Invalid environment ID
+			// Invalid environment ID.
 			{
 				Config:      testConfigurationVariableWithInvalidEnvironmentID,
 				ExpectError: regexp.MustCompile(`400 Bad Request`),

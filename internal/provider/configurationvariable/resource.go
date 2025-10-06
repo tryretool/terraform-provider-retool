@@ -228,7 +228,6 @@ func (r *configurationVariableResource) Read(ctx context.Context, req resource.R
 	// Clear current values and repopulate from API response to handle deletions correctly.
 	state.Values = nil
 	for _, v := range response.Data.Values {
-
 		state.Values = append(state.Values, configurationVariableValueModel{
 			EnvironmentID: types.StringValue(v.EnvironmentId),
 			Value:         types.StringValue(v.Value),
