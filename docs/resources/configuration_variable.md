@@ -68,11 +68,11 @@ resource "retool_configuration_variable" "test_config_var_as_secret" {
 ### Optional
 
 - `description` (String) A brief description of the configuration variable's purpose.
-- `secret` (Boolean) Whether the configuration variable is a secret. Secrets are encrypted and not exposed in the Retool UI.
 
 ### Read-Only
 
 - `id` (String) The unique identifier for the configuration variable.
+- `secret` (Boolean) Whether the configuration variable is a secret. Secrets are encrypted and not exposed in the Retool UI. Secert is currently not supported as the values are encrypted and cannot be retrieved via the API.
 
 <a id="nestedatt--values"></a>
 ### Nested Schema for `values`
