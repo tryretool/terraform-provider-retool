@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"regexp"
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
@@ -15,14 +16,13 @@ const testConfigrationVariableResourceBasic = `
 resource "retool_configuration_variable" "test_configuration_variable" {
   name        = "tf-acc-test-configuration-variable"
   description = "Terraform acceptance test configuration variable"
-  secret      = false
   values = [
 	{
-	  environment_id = "env_123"
+	  environment_id = "ee07e7dd-9b48-414c-9d2b-212d148bd4ac"
 	  value          = "value1"
 	},
 	{
-	  environment_id = "env_456"
+	  environment_id = "3b553dd9-7d8f-41e5-9bf6-5510b38d0231"
 	  value          = "value2"
 	}
   ]
@@ -33,15 +33,27 @@ const testConfigrationVariableResourceUpdated = `
 resource "retool_configuration_variable" "test_configuration_variable" {
   name        = "tf-acc-test-configuration-variable-modified"
   description = "Terraform acceptance test configuration variable modified"
-  secret      = true
   values = [
 	{
-	  environment_id = "env_123"
+	  environment_id = "ee07e7dd-9b48-414c-9d2b-212d148bd4ac"
 	  value          = "new_value1"
 	},
 	{
-	  environment_id = "env_456"
+	  environment_id = "3b553dd9-7d8f-41e5-9bf6-5510b38d0231"
 	  value          = "new_value2"
+	}
+  ]
+}
+`
+
+const testConfigurationVariableWithInvalidEnvironmentID = `
+resource "retool_configuration_variable" "test_configuration_variable" {
+  name        = "tf-acc-test-configuration-variable-invalid-env-id"
+  description = "Terraform acceptance test configuration variable with invalid environment ID"
+  values = [
+	{
+	  environment_id = "invalid-environment-id"
+	  value          = "value1"
 	}
   ]
 }
@@ -63,9 +75,12 @@ func TestAccConfigurationVariable(t *testing.T) {
 					resource.TestCheckResourceAttr("retool_configuration_variable.test_configuration_variable", "secret", "false"),
 					resource.TestCheckResourceAttrSet("retool_configuration_variable.test_configuration_variable", "id"),
 					resource.TestCheckResourceAttr("retool_configuration_variable.test_configuration_variable", "values.#", "2"),
+					resource.TestCheckResourceAttr("retool_configuration_variable.test_configuration_variable", "values.#", "2"),
 					resource.TestCheckResourceAttrSet("retool_configuration_variable.test_configuration_variable", "values.0.environment_id"),
+					resource.TestCheckResourceAttrSet("retool_configuration_variable.test_configuration_variable", "values.0.value"),
 					resource.TestCheckResourceAttr("retool_configuration_variable.test_configuration_variable", "values.0.value", "value1"),
 					resource.TestCheckResourceAttrSet("retool_configuration_variable.test_configuration_variable", "values.1.environment_id"),
+					resource.TestCheckResourceAttrSet("retool_configuration_variable.test_configuration_variable", "values.1.value"),
 					resource.TestCheckResourceAttr("retool_configuration_variable.test_configuration_variable", "values.1.value", "value2"),
 				),
 			},
@@ -75,20 +90,27 @@ func TestAccConfigurationVariable(t *testing.T) {
 				ImportState:       true,
 				ImportStateVerify: true,
 			},
-			// Update and Read.
+			// Update
 			{
 				Config: testConfigrationVariableResourceUpdated,
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr("retool_configuration_variable.test_configuration_variable", "name", "tf-acc-test-configuration-variable-modified"),
 					resource.TestCheckResourceAttr("retool_configuration_variable.test_configuration_variable", "description", "Terraform acceptance test configuration variable modified"),
-					resource.TestCheckResourceAttr("retool_configuration_variable.test_configuration_variable", "secret", "true"),
+					resource.TestCheckResourceAttr("retool_configuration_variable.test_configuration_variable", "secret", "false"),
 					resource.TestCheckResourceAttrSet("retool_configuration_variable.test_configuration_variable", "id"),
 					resource.TestCheckResourceAttr("retool_configuration_variable.test_configuration_variable", "values.#", "2"),
 					resource.TestCheckResourceAttrSet("retool_configuration_variable.test_configuration_variable", "values.0.environment_id"),
+					resource.TestCheckResourceAttrSet("retool_configuration_variable.test_configuration_variable", "values.0.value"),
 					resource.TestCheckResourceAttr("retool_configuration_variable.test_configuration_variable", "values.0.value", "new_value1"),
 					resource.TestCheckResourceAttrSet("retool_configuration_variable.test_configuration_variable", "values.1.environment_id"),
+					resource.TestCheckResourceAttrSet("retool_configuration_variable.test_configuration_variable", "values.1.value"),
 					resource.TestCheckResourceAttr("retool_configuration_variable.test_configuration_variable", "values.1.value", "new_value2"),
 				),
+			},
+			// Invalid environment ID
+			{
+				Config:      testConfigurationVariableWithInvalidEnvironmentID,
+				ExpectError: regexp.MustCompile(`400 Bad Request`),
 			},
 		},
 	})
@@ -108,6 +130,7 @@ func sweepConfigurationVariables(region string) error {
 
 	for _, configurationVariable := range configurationVariables.Data {
 		if len(configurationVariable.Name) >= 16 && configurationVariable.Name[:16] == "tf-acc-test-" {
+			log.Printf("Deleting configuration variable %s (%s)\n", configurationVariable.Name, configurationVariable.Id)
 			_, err := client.ConfigurationVariablesAPI.ConfigurationVariablesIdDelete(context.Background(), configurationVariable.Id).Execute()
 			if err != nil {
 				return fmt.Errorf("error deleting configuration variable %s: %s", configurationVariable.Id, err.Error())
