@@ -288,6 +288,7 @@ func (p *retoolProvider) Configure(ctx context.Context, req provider.ConfigureRe
 func (p *retoolProvider) DataSources(_ context.Context) []func() datasource.DataSource {
 	return []func() datasource.DataSource{
 		folder.NewDataSource,
+		group.NewDataSource,
 	}
 }
 
