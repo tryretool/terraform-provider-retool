@@ -250,15 +250,15 @@ func (r *permissionResource) fetchPermissionsForSubject(ctx context.Context, sub
 	for _, objectType := range []string{"app", "folder", "resource", "resource_configuration"} {
 		request := api.NewPermissionsListObjectsPostRequest(createNewAPIPermissionsSubject(subject), objectType)
 
-	tflog.Info(ctx, "Fetching permissions", map[string]interface{}{"subjectId": subjectID, "objectType": objectType})
+		tflog.Info(ctx, "Fetching permissions", map[string]interface{}{"subjectId": subjectID, "objectType": objectType})
 
 		permissionsResponse, httpResponse, err := r.client.PermissionsAPI.PermissionsListObjectsPost(ctx).PermissionsListObjectsPostRequest(*request).Execute()
 		if err != nil {
 			allDiags.AddError(
 				"Error reading permission",
-		fmt.Sprintf("Could not read permissions for id: %s, object type: %s, error: %s", subjectID, objectType, err.Error()),
+				fmt.Sprintf("Could not read permissions for id: %s, object type: %s, error: %s", subjectID, objectType, err.Error()),
 			)
-		tflog.Error(ctx, "Error reading group", utils.AddHTTPStatusCode(map[string]any{"permissionId": subjectID, "objectType": objectType, "error": err.Error()}, httpResponse))
+			tflog.Error(ctx, "Error reading group", utils.AddHTTPStatusCode(map[string]any{"permissionId": subjectID, "objectType": objectType, "error": err.Error()}, httpResponse))
 			return nil, allDiags
 		}
 
@@ -277,7 +277,7 @@ func (r *permissionResource) fetchPermissionsForSubject(ctx context.Context, sub
 			object, diags := types.ObjectValueFrom(ctx, objValue.AttributeTypes(), objValue)
 			allDiags.Append(diags...)
 			if allDiags.HasError() {
-return nil, allDiags
+				return nil, allDiags
 			}
 			permissions = append(permissions, permissionModel{
 				Object:      object,
