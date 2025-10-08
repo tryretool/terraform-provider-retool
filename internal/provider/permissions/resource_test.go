@@ -130,7 +130,7 @@ func TestAccPermissions(t *testing.T) {
 	})
 }
 
-// // Helper function to get an API client for direct API calls in tests
+// // Helper function to get an API client for direct API calls in tests.
 // func getTestAPIClient(t *testing.T) *api.APIClient {
 // 	client, err := acctest.SweeperClient()
 // 	if err != nil {
@@ -160,7 +160,7 @@ func TestAccPermissions(t *testing.T) {
 
 // 	grantRequest := api.NewPermissionsGrantPostRequest(apiSubject, apiObject, accessLevel)
 
-// 	_, httpResponse, err := client.PermissionsAPI.PermissionsGrantPost(context.Background()).PermissionsGrantPostRequest(*grantRequest).Execute()
+// 	_, httpResponse, err := client.PermissionsAPI.PermissionsGrantPost(context.Background()).PermissionsGrantPostRequest(*grantRequest).Execute().
 // 	if err != nil {
 // 		t.Fatalf("Failed to create unmanaged permission: %s, HTTP Status: %d", err, httpResponse.StatusCode)
 // 	}
@@ -197,7 +197,7 @@ func TestAccPermissions(t *testing.T) {
 // 		}
 // 	}
 
-// 	return false
+// 	return false.
 // }
 
 // // Verify that removing a managed permission doesn't delete unmanaged permissions
@@ -242,12 +242,12 @@ func TestAccPermissions(t *testing.T) {
 // 	name = "tf-acc-test-group-managed-del"
 // }
 
-// resource "retool_folder" "test_folder1" {
+// Resource "retool_folder" "test_folder1" {
 // 	name = "tf-acc-test-folder-managed-1"
 // 	folder_type = "app"
 // }
 
-// resource "retool_folder" "test_folder3" {
+// Resource "retool_folder" "test_folder3" {
 // 	name = "tf-acc-test-folder-unmanaged-3"
 // 	folder_type = "app"
 // }
@@ -330,7 +330,7 @@ func TestAccPermissions(t *testing.T) {
 // 	name = "tf-acc-test-group-read"
 // }
 
-// resource "retool_folder" "test_folder2" {
+// Resource "retool_folder" "test_folder2" {
 // 	name = "tf-acc-test-folder-managed-2"
 // 	folder_type = "app"
 // }

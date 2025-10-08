@@ -286,7 +286,6 @@ func (r *permissionResource) fetchPermissionsForSubject(ctx context.Context, sub
 		}
 	}
 	return permissions, allDiags
-
 }
 
 func (r *permissionResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
