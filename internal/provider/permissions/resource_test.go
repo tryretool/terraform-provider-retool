@@ -1,16 +1,16 @@
 package permissions_test
 
 import (
-	// "context"
+	// "context".
 	"fmt"
-	// "strconv"
+	// "strconv".
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
 	"github.com/hashicorp/terraform-plugin-testing/terraform"
 
 	"github.com/tryretool/terraform-provider-retool/internal/acctest"
-	// "github.com/tryretool/terraform-provider-retool/internal/sdk/api"
+	// "github.com/tryretool/terraform-provider-retool/internal/sdk/api".
 )
 
 const testPermissionsConfig = `
@@ -46,8 +46,7 @@ resource "retool_permissions" "test_permissions" {
 }
 `
 
-const testUpdatedPermissionsConfig = `
-resource "retool_group" "test_group" {
+const testUpdatedPermissionsConfig = `resource "retool_group" "test_group" {
 	name = "tf-acc-test-group"
 }
 
@@ -211,17 +210,17 @@ func TestAccPermissions(t *testing.T) {
 // 	name = "tf-acc-test-group-managed-del"
 // }
 
-// resource "retool_folder" "test_folder1" {
+// Resource "retool_folder" "test_folder1" {
 // 	name = "tf-acc-test-folder-managed-1"
 // 	folder_type = "app"
 // }
 
-// resource "retool_folder" "test_folder3" {
+// Resource "retool_folder" "test_folder3" {
 // 	name = "tf-acc-test-folder-unmanaged-3"
 // 	folder_type = "app"
 // }
 
-// resource "retool_permissions" "test_permissions" {
+// Resource "retool_permissions" "test_permissions" {
 // 	subject = {
 // 		type = "group"
 // 		id = retool_group.test_group.id
