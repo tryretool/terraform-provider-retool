@@ -1,3 +1,4 @@
+// Package environments contains the data source implementation for Retool Environments.
 package environments
 
 import (
@@ -12,6 +13,7 @@ import (
 	"github.com/tryretool/terraform-provider-retool/internal/sdk/api"
 )
 
+// NewDataSource creates a new data source for environments.
 func NewDataSource() datasource.DataSource {
 	return &environmentsDataSource{}
 }
@@ -103,7 +105,7 @@ func (d *environmentsDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 	}
 }
 
-func (d *environmentsDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+func (d *environmentsDataSource) Read(ctx context.Context, _ datasource.ReadRequest, resp *datasource.ReadResponse) {
 	var state environmentsDataSourceModel
 
 	environments, _, err := d.client.EnvironmentAPI.EnvironmentsGet(ctx).Execute()
