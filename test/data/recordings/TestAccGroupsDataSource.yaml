@@ -1,0 +1,105 @@
+---
+version: 2
+interactions:
+    - id: 0
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/groups
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding:
+            - chunked
+        trailer: {}
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":[{"id":1,"legacy_id":1,"name":"admin","members":[{"id":"user_2ae6c5d3101b4e488c8b963f13d3807c","email":"ehud.blum@okta.com","is_group_admin":false}],"universal_app_access":"own","universal_resource_access":"own","universal_workflow_access":"own","universal_query_library_access":"edit","user_invites":[],"user_list_access":true,"audit_log_access":true,"unpublished_release_access":true,"usage_analytics_access":true,"theme_access":true,"account_details_access":true,"landing_page_app_id":null,"updated_at":"2025-10-06T11:40:56.593Z","created_at":"2025-10-06T11:40:56.593Z"},{"id":2,"legacy_id":2,"name":"editor","members":[],"universal_app_access":"edit","universal_resource_access":"own","universal_workflow_access":"edit","universal_query_library_access":"edit","user_invites":[],"user_list_access":true,"audit_log_access":false,"unpublished_release_access":true,"usage_analytics_access":false,"theme_access":false,"account_details_access":true,"landing_page_app_id":null,"updated_at":"2025-10-06T11:40:56.593Z","created_at":"2025-10-06T11:40:56.593Z"},{"id":3,"legacy_id":3,"name":"viewer","members":[],"universal_app_access":"use","universal_resource_access":"use","universal_workflow_access":"use","universal_query_library_access":"use","user_invites":[],"user_list_access":true,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"theme_access":false,"account_details_access":true,"landing_page_app_id":null,"updated_at":"2025-10-06T11:40:56.593Z","created_at":"2025-10-06T11:40:56.593Z"},{"id":4,"legacy_id":4,"name":"All Users","members":[{"id":"user_2ae6c5d3101b4e488c8b963f13d3807c","email":"ehud.blum@okta.com","is_group_admin":false}],"universal_app_access":"edit","universal_resource_access":"own","universal_workflow_access":"edit","universal_query_library_access":"edit","user_invites":[],"user_list_access":true,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"theme_access":false,"account_details_access":true,"landing_page_app_id":null,"updated_at":"2025-10-06T11:40:56.593Z","created_at":"2025-10-06T11:40:56.593Z"}],"total_count":4,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 45.997667ms
+    - id: 1
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/groups
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding:
+            - chunked
+        trailer: {}
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":[{"id":1,"legacy_id":1,"name":"admin","members":[{"id":"user_2ae6c5d3101b4e488c8b963f13d3807c","email":"ehud.blum@okta.com","is_group_admin":false}],"universal_app_access":"own","universal_resource_access":"own","universal_workflow_access":"own","universal_query_library_access":"edit","user_invites":[],"user_list_access":true,"audit_log_access":true,"unpublished_release_access":true,"usage_analytics_access":true,"theme_access":true,"account_details_access":true,"landing_page_app_id":null,"updated_at":"2025-10-06T11:40:56.593Z","created_at":"2025-10-06T11:40:56.593Z"},{"id":2,"legacy_id":2,"name":"editor","members":[],"universal_app_access":"edit","universal_resource_access":"own","universal_workflow_access":"edit","universal_query_library_access":"edit","user_invites":[],"user_list_access":true,"audit_log_access":false,"unpublished_release_access":true,"usage_analytics_access":false,"theme_access":false,"account_details_access":true,"landing_page_app_id":null,"updated_at":"2025-10-06T11:40:56.593Z","created_at":"2025-10-06T11:40:56.593Z"},{"id":3,"legacy_id":3,"name":"viewer","members":[],"universal_app_access":"use","universal_resource_access":"use","universal_workflow_access":"use","universal_query_library_access":"use","user_invites":[],"user_list_access":true,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"theme_access":false,"account_details_access":true,"landing_page_app_id":null,"updated_at":"2025-10-06T11:40:56.593Z","created_at":"2025-10-06T11:40:56.593Z"},{"id":4,"legacy_id":4,"name":"All Users","members":[{"id":"user_2ae6c5d3101b4e488c8b963f13d3807c","email":"ehud.blum@okta.com","is_group_admin":false}],"universal_app_access":"edit","universal_resource_access":"own","universal_workflow_access":"edit","universal_query_library_access":"edit","user_invites":[],"user_list_access":true,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"theme_access":false,"account_details_access":true,"landing_page_app_id":null,"updated_at":"2025-10-06T11:40:56.593Z","created_at":"2025-10-06T11:40:56.593Z"}],"total_count":4,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 37.252791ms
+    - id: 2
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/groups
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding:
+            - chunked
+        trailer: {}
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":[{"id":1,"legacy_id":1,"name":"admin","members":[{"id":"user_2ae6c5d3101b4e488c8b963f13d3807c","email":"ehud.blum@okta.com","is_group_admin":false}],"universal_app_access":"own","universal_resource_access":"own","universal_workflow_access":"own","universal_query_library_access":"edit","user_invites":[],"user_list_access":true,"audit_log_access":true,"unpublished_release_access":true,"usage_analytics_access":true,"theme_access":true,"account_details_access":true,"landing_page_app_id":null,"updated_at":"2025-10-06T11:40:56.593Z","created_at":"2025-10-06T11:40:56.593Z"},{"id":2,"legacy_id":2,"name":"editor","members":[],"universal_app_access":"edit","universal_resource_access":"own","universal_workflow_access":"edit","universal_query_library_access":"edit","user_invites":[],"user_list_access":true,"audit_log_access":false,"unpublished_release_access":true,"usage_analytics_access":false,"theme_access":false,"account_details_access":true,"landing_page_app_id":null,"updated_at":"2025-10-06T11:40:56.593Z","created_at":"2025-10-06T11:40:56.593Z"},{"id":3,"legacy_id":3,"name":"viewer","members":[],"universal_app_access":"use","universal_resource_access":"use","universal_workflow_access":"use","universal_query_library_access":"use","user_invites":[],"user_list_access":true,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"theme_access":false,"account_details_access":true,"landing_page_app_id":null,"updated_at":"2025-10-06T11:40:56.593Z","created_at":"2025-10-06T11:40:56.593Z"},{"id":4,"legacy_id":4,"name":"All Users","members":[{"id":"user_2ae6c5d3101b4e488c8b963f13d3807c","email":"ehud.blum@okta.com","is_group_admin":false}],"universal_app_access":"edit","universal_resource_access":"own","universal_workflow_access":"edit","universal_query_library_access":"edit","user_invites":[],"user_list_access":true,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"theme_access":false,"account_details_access":true,"landing_page_app_id":null,"updated_at":"2025-10-06T11:40:56.593Z","created_at":"2025-10-06T11:40:56.593Z"}],"total_count":4,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 38.237083ms
