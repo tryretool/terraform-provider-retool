@@ -1,0 +1,102 @@
+---
+version: 2
+interactions:
+    - id: 0
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/environments
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 605
+        uncompressed: false
+        body: '{"success":true,"data":[{"id":"ee07e7dd-9b48-414c-9d2b-212d148bd4ac","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-10-06T11:40:56.580Z","updated_at":"2025-10-06T11:40:56.580Z"},{"id":"3b553dd9-7d8f-41e5-9bf6-5510b38d0231","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-10-06T11:40:56.580Z","updated_at":"2025-10-06T11:40:56.580Z"}],"total_count":2,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 33.485792ms
+    - id: 1
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/environments
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 605
+        uncompressed: false
+        body: '{"success":true,"data":[{"id":"ee07e7dd-9b48-414c-9d2b-212d148bd4ac","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-10-06T11:40:56.580Z","updated_at":"2025-10-06T11:40:56.580Z"},{"id":"3b553dd9-7d8f-41e5-9bf6-5510b38d0231","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-10-06T11:40:56.580Z","updated_at":"2025-10-06T11:40:56.580Z"}],"total_count":2,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 26.369583ms
+    - id: 2
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/environments
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 605
+        uncompressed: false
+        body: '{"success":true,"data":[{"id":"ee07e7dd-9b48-414c-9d2b-212d148bd4ac","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-10-06T11:40:56.580Z","updated_at":"2025-10-06T11:40:56.580Z"},{"id":"3b553dd9-7d8f-41e5-9bf6-5510b38d0231","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-10-06T11:40:56.580Z","updated_at":"2025-10-06T11:40:56.580Z"}],"total_count":2,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 24.204041ms
