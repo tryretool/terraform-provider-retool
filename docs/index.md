@@ -18,6 +18,7 @@ The access token should have the following scopes:
 - spaces:read, spaces:write
 - folders:read, folders:write
 - permissions:all:read, permissions:all:write
+- environments:read, environments:write 
 
 
 ## Example Usage
@@ -152,5 +153,5 @@ in your Retool instance configuration:
 export CREATE_FIRST_ORG="true" # Will automatically create the first organization on the instance
 export ADMIN_USER_EMAIL="dzmitry+admin@retool.com" # Email of the admin user
 export ADMIN_API_ACCESS_TOKEN="retool_01j33n67seh459gds2n5xjyrfx" # You can use any random string here
-export ADMIN_API_ACCESS_TOKEN_SCOPES="source_control:read,source_control:write,groups:read,groups:write,spaces:read,spaces:write,folders:read,folders:write,permissions:all:read,permissions:all:write,"
+export ADMIN_API_ACCESS_TOKEN_SCOPES="source_control:read,source_control:write,groups:read,groups:write,spaces:read,spaces:write,folders:read,folders:write,permissions:all:read,permissions:all:write,environments:read,environments:write"
 ```
