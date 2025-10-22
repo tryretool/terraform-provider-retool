@@ -20,6 +20,7 @@ import (
 	"golang.org/x/mod/semver"
 
 	"github.com/tryretool/terraform-provider-retool/internal/provider/configurationvariable"
+	"github.com/tryretool/terraform-provider-retool/internal/provider/environments"
 	"github.com/tryretool/terraform-provider-retool/internal/provider/folder"
 	"github.com/tryretool/terraform-provider-retool/internal/provider/group"
 	"github.com/tryretool/terraform-provider-retool/internal/provider/permissions"
@@ -289,6 +290,8 @@ func (p *retoolProvider) Configure(ctx context.Context, req provider.ConfigureRe
 func (p *retoolProvider) DataSources(_ context.Context) []func() datasource.DataSource {
 	return []func() datasource.DataSource{
 		folder.NewDataSource,
+		group.NewDataSource,
+		environments.NewDataSource,
 	}
 }
 
