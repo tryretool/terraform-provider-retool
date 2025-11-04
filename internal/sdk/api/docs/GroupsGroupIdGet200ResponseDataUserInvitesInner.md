@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **UserType** | **NullableString** |  | 
 **Metadata** | **map[string]interface{}** |  | [default to {}]
 **CreatedAt** | **string** |  | 
-**InviteLink** | Pointer to **string** |  | [optional] 
+**InviteLink** | Pointer to **string** | User invite link expires 7 days after generation. | [optional] 
 
 ## Methods
 

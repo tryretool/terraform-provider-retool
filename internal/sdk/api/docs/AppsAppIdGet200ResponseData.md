@@ -13,12 +13,15 @@ Name | Type | Description | Notes
 **Shortlink** | **NullableString** | The shortlink of the App | 
 **IsModule** | **bool** | Whether the App is a module | 
 **IsMobileApp** | **bool** | Whether the App is a mobile app | 
+**CreatedAt** | **string** |  | 
+**UpdatedAt** | **string** |  | 
+**ReleaseVersion** | **string** | The live release version of the app. &#39;latest&#39; if releases are disabled or the app has no live release yet | 
 
 ## Methods
 
 ### NewAppsAppIdGet200ResponseData
 
-`func NewAppsAppIdGet200ResponseData(id string, name string, description NullableString, folderId string, protected bool, synced bool, shortlink NullableString, isModule bool, isMobileApp bool, ) *AppsAppIdGet200ResponseData`
+`func NewAppsAppIdGet200ResponseData(id string, name string, description NullableString, folderId string, protected bool, synced bool, shortlink NullableString, isModule bool, isMobileApp bool, createdAt string, updatedAt string, releaseVersion string, ) *AppsAppIdGet200ResponseData`
 
 NewAppsAppIdGet200ResponseData instantiates a new AppsAppIdGet200ResponseData object
 This constructor will assign default values to properties that have it defined,
@@ -231,6 +234,66 @@ and a boolean to check if the value has been set.
 `func (o *AppsAppIdGet200ResponseData) SetIsMobileApp(v bool)`
 
 SetIsMobileApp sets IsMobileApp field to given value.
+
+
+### GetCreatedAt
+
+`func (o *AppsAppIdGet200ResponseData) GetCreatedAt() string`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *AppsAppIdGet200ResponseData) GetCreatedAtOk() (*string, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *AppsAppIdGet200ResponseData) SetCreatedAt(v string)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+
+### GetUpdatedAt
+
+`func (o *AppsAppIdGet200ResponseData) GetUpdatedAt() string`
+
+GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+
+### GetUpdatedAtOk
+
+`func (o *AppsAppIdGet200ResponseData) GetUpdatedAtOk() (*string, bool)`
+
+GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedAt
+
+`func (o *AppsAppIdGet200ResponseData) SetUpdatedAt(v string)`
+
+SetUpdatedAt sets UpdatedAt field to given value.
+
+
+### GetReleaseVersion
+
+`func (o *AppsAppIdGet200ResponseData) GetReleaseVersion() string`
+
+GetReleaseVersion returns the ReleaseVersion field if non-nil, zero value otherwise.
+
+### GetReleaseVersionOk
+
+`func (o *AppsAppIdGet200ResponseData) GetReleaseVersionOk() (*string, bool)`
+
+GetReleaseVersionOk returns a tuple with the ReleaseVersion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReleaseVersion
+
+`func (o *AppsAppIdGet200ResponseData) SetReleaseVersion(v string)`
+
+SetReleaseVersion sets ReleaseVersion field to given value.
 
 
 

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | The name of the group. | [optional] 
-**Members** | Pointer to [**[]GroupsGroupIdPutRequestMembersInner**](GroupsGroupIdPutRequestMembersInner.md) | Users to add to the group. Pass in an empty list to create a group with no members. | [optional] 
+**Members** | Pointer to [**[]GroupsGroupIdPutRequestMembersInner**](GroupsGroupIdPutRequestMembersInner.md) | Users to add to the group. | [optional] 
 **UniversalAppAccess** | Pointer to **string** | The universal app access level for the group. This denotes the access level that this group has for all apps. | [optional] 
 **UniversalResourceAccess** | Pointer to **string** | The universal resource access level for the group. This denotes the access level that this group has for all resources. | [optional] 
 **UniversalWorkflowAccess** | Pointer to **string** | The universal workflow access level for the group. This denotes the access level that this group has for all workflows. | [optional] 
@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **AuditLogAccess** | Pointer to **bool** | Whether the group has access to the audit log | [optional] 
 **UnpublishedReleaseAccess** | Pointer to **bool** | Whether the group has access to unpublished releases | [optional] 
 **UsageAnalyticsAccess** | Pointer to **bool** | Whether the group has access to usage analytics | [optional] 
+**ThemeAccess** | Pointer to **bool** | Whether the group has access to edit themes | [optional] 
 **AccountDetailsAccess** | Pointer to **bool** | Whether the group has access to account details | [optional] 
 **LandingPageAppId** | Pointer to **NullableString** | The app ID of the landing page | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
@@ -313,6 +314,31 @@ SetUsageAnalyticsAccess sets UsageAnalyticsAccess field to given value.
 `func (o *GroupsGroupIdPutRequest) HasUsageAnalyticsAccess() bool`
 
 HasUsageAnalyticsAccess returns a boolean if a field has been set.
+
+### GetThemeAccess
+
+`func (o *GroupsGroupIdPutRequest) GetThemeAccess() bool`
+
+GetThemeAccess returns the ThemeAccess field if non-nil, zero value otherwise.
+
+### GetThemeAccessOk
+
+`func (o *GroupsGroupIdPutRequest) GetThemeAccessOk() (*bool, bool)`
+
+GetThemeAccessOk returns a tuple with the ThemeAccess field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetThemeAccess
+
+`func (o *GroupsGroupIdPutRequest) SetThemeAccess(v bool)`
+
+SetThemeAccess sets ThemeAccess field to given value.
+
+### HasThemeAccess
+
+`func (o *GroupsGroupIdPutRequest) HasThemeAccess() bool`
+
+HasThemeAccess returns a boolean if a field has been set.
 
 ### GetAccountDetailsAccess
 

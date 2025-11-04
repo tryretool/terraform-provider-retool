@@ -99,7 +99,7 @@ import (
 )
 
 func main() {
-	groupId := "groupId_example" // string | 
+	groupId := "groupId_example" // string | The group's ID number
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -117,7 +117,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**groupId** | **string** |  | 
+**groupId** | **string** | The group&#39;s ID number | 
 
 ### Other Parameters
 
@@ -167,7 +167,7 @@ import (
 )
 
 func main() {
-	groupId := "groupId_example" // string | 
+	groupId := "groupId_example" // string | The group's ID number
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -187,7 +187,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**groupId** | **string** |  | 
+**groupId** | **string** | The group&#39;s ID number | 
 
 ### Other Parameters
 
@@ -237,7 +237,7 @@ import (
 )
 
 func main() {
-	groupId := "groupId_example" // string | 
+	groupId := "groupId_example" // string | The group's ID number
 	groupsGroupIdMembersPostRequest := *openapiclient.NewGroupsGroupIdMembersPostRequest([]openapiclient.GroupsGroupIdPutRequestMembersInner{*openapiclient.NewGroupsGroupIdPutRequestMembersInner("Id_example", false)}) // GroupsGroupIdMembersPostRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -258,7 +258,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**groupId** | **string** |  | 
+**groupId** | **string** | The group&#39;s ID number | 
 
 ### Other Parameters
 
@@ -309,7 +309,7 @@ import (
 )
 
 func main() {
-	groupId := "groupId_example" // string | 
+	groupId := "groupId_example" // string | The group's ID number
 	userSid := "userSid_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -330,7 +330,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**groupId** | **string** |  | 
+**groupId** | **string** | The group&#39;s ID number | 
 **userSid** | **string** |  | 
 
 ### Other Parameters
@@ -382,8 +382,8 @@ import (
 )
 
 func main() {
-	groupId := "groupId_example" // string | 
-	groupsGroupIdPatchRequest := *openapiclient.NewGroupsGroupIdPatchRequest([]openapiclient.GroupsGroupIdPatchRequestOperationsInner{*openapiclient.NewGroupsGroupIdPatchRequestOperationsInner("Op_example", "Path_example")}) // GroupsGroupIdPatchRequest |  (optional)
+	groupId := "groupId_example" // string | The group's ID number
+	groupsGroupIdPatchRequest := *openapiclient.NewGroupsGroupIdPatchRequest([]openapiclient.UsersUserIdPatchRequestOperationsInner{*openapiclient.NewUsersUserIdPatchRequestOperationsInner("Op_example", "Path_example")}) // GroupsGroupIdPatchRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -403,7 +403,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**groupId** | **string** |  | 
+**groupId** | **string** | The group&#39;s ID number | 
 
 ### Other Parameters
 
@@ -454,7 +454,7 @@ import (
 )
 
 func main() {
-	groupId := "groupId_example" // string | 
+	groupId := "groupId_example" // string | The group's ID number
 	groupsGroupIdPutRequest := *openapiclient.NewGroupsGroupIdPutRequest() // GroupsGroupIdPutRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -475,7 +475,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**groupId** | **string** |  | 
+**groupId** | **string** | The group&#39;s ID number | 
 
 ### Other Parameters
 
@@ -526,7 +526,7 @@ import (
 )
 
 func main() {
-	groupId := "groupId_example" // string | 
+	groupId := "groupId_example" // string | The group's ID number
 	groupsGroupIdUserInvitesPostRequest := *openapiclient.NewGroupsGroupIdUserInvitesPostRequest([]float32{float32(123)}) // GroupsGroupIdUserInvitesPostRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -547,7 +547,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**groupId** | **string** |  | 
+**groupId** | **string** | The group&#39;s ID number | 
 
 ### Other Parameters
 
@@ -598,8 +598,8 @@ import (
 )
 
 func main() {
-	groupId := "groupId_example" // string | 
-	userInviteId := "userInviteId_example" // string | 
+	groupId := "groupId_example" // string | The group's ID number
+	userInviteId := "userInviteId_example" // string | The user invite's ID number
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -617,8 +617,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**groupId** | **string** |  | 
-**userInviteId** | **string** |  | 
+**groupId** | **string** | The group&#39;s ID number | 
+**userInviteId** | **string** | The user invite&#39;s ID number | 
 
 ### Other Parameters
 

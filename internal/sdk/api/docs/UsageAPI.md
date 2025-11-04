@@ -34,10 +34,10 @@ import (
 )
 
 func main() {
-	startDate := "2024-01-15" // string | 
-	appName := "appName_example" // string | 
-	orgIds := []string{"Inner_example"} // []string |  (optional)
-	endDate := "2024-01-30" // string |  (optional)
+	startDate := "2024-01-15" // string | The start date of the date range
+	appName := "appName_example" // string | The name of the app to retrieve usage data for
+	orgIds := "org_id1,org_id2" // string | A comma separated list of org ids to retrieve usage data for (optional)
+	endDate := "2024-01-30" // string | The end date of the date range. If not specified, then minimum(start_date + 30 days, today - 1) is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -62,10 +62,10 @@ Other parameters are passed through a pointer to a apiUsageAppDetailsGetRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **startDate** | **string** |  | 
- **appName** | **string** |  | 
- **orgIds** | **[]string** |  | 
- **endDate** | **string** |  | 
+ **startDate** | **string** | The start date of the date range | 
+ **appName** | **string** | The name of the app to retrieve usage data for | 
+ **orgIds** | **string** | A comma separated list of org ids to retrieve usage data for | 
+ **endDate** | **string** | The end date of the date range. If not specified, then minimum(start_date + 30 days, today - 1) is used. | 
 
 ### Return type
 
@@ -106,9 +106,9 @@ import (
 )
 
 func main() {
-	startDate := "2024-01-15" // string | 
-	orgIds := []string{"Inner_example"} // []string |  (optional)
-	endDate := "2024-01-30" // string |  (optional)
+	startDate := "2024-01-15" // string | The start date of the date range
+	orgIds := "org_id1,org_id2" // string | A comma separated list of org ids to retrieve usage data for (optional)
+	endDate := "2024-01-30" // string | The end date of the date range. If not specified, then minimum(start_date + 30 days, today - 1) is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -133,9 +133,9 @@ Other parameters are passed through a pointer to a apiUsageAppSummaryGetRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **startDate** | **string** |  | 
- **orgIds** | **[]string** |  | 
- **endDate** | **string** |  | 
+ **startDate** | **string** | The start date of the date range | 
+ **orgIds** | **string** | A comma separated list of org ids to retrieve usage data for | 
+ **endDate** | **string** | The end date of the date range. If not specified, then minimum(start_date + 30 days, today - 1) is used. | 
 
 ### Return type
 
@@ -176,9 +176,9 @@ import (
 )
 
 func main() {
-	startDate := "2024-01-15" // string | 
-	orgIds := []string{"Inner_example"} // []string |  (optional)
-	endDate := "2024-01-30" // string |  (optional)
+	startDate := "2024-01-15" // string | The start date of the date range
+	orgIds := "org_id1,org_id2" // string | A comma separated list of org ids to retrieve usage data for (optional)
+	endDate := "2024-01-30" // string | The end date of the date range. If not specified, then minimum(start_date + 30 days, today - 1) is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -203,9 +203,9 @@ Other parameters are passed through a pointer to a apiUsageGetRequest struct via
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **startDate** | **string** |  | 
- **orgIds** | **[]string** |  | 
- **endDate** | **string** |  | 
+ **startDate** | **string** | The start date of the date range | 
+ **orgIds** | **string** | A comma separated list of org ids to retrieve usage data for | 
+ **endDate** | **string** | The end date of the date range. If not specified, then minimum(start_date + 30 days, today - 1) is used. | 
 
 ### Return type
 
@@ -307,10 +307,10 @@ import (
 )
 
 func main() {
-	startDate := "2024-01-15" // string | 
-	email := "email_example" // string | 
-	orgIds := []string{"Inner_example"} // []string |  (optional)
-	endDate := "2024-01-30" // string |  (optional)
+	startDate := "2024-01-15" // string | The start date of the date range
+	email := "email_example" // string | The email of the user to retrieve usage data for
+	orgIds := "org_id1,org_id2" // string | A comma separated list of org ids to retrieve usage data for (optional)
+	endDate := "2024-01-30" // string | The end date of the date range. If not specified, then minimum(start_date + 30 days, today - 1) is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -335,10 +335,10 @@ Other parameters are passed through a pointer to a apiUsageUserDetailsGetRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **startDate** | **string** |  | 
- **email** | **string** |  | 
- **orgIds** | **[]string** |  | 
- **endDate** | **string** |  | 
+ **startDate** | **string** | The start date of the date range | 
+ **email** | **string** | The email of the user to retrieve usage data for | 
+ **orgIds** | **string** | A comma separated list of org ids to retrieve usage data for | 
+ **endDate** | **string** | The end date of the date range. If not specified, then minimum(start_date + 30 days, today - 1) is used. | 
 
 ### Return type
 
@@ -379,9 +379,9 @@ import (
 )
 
 func main() {
-	startDate := "2024-01-15" // string | 
-	orgIds := []string{"Inner_example"} // []string |  (optional)
-	endDate := "2024-01-30" // string |  (optional)
+	startDate := "2024-01-15" // string | The start date of the date range
+	orgIds := "org_id1,org_id2" // string | A comma separated list of org ids to retrieve usage data for (optional)
+	endDate := "2024-01-30" // string | The end date of the date range. If not specified, then minimum(start_date + 30 days, today - 1) is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -406,9 +406,9 @@ Other parameters are passed through a pointer to a apiUsageUserSummaryGetRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **startDate** | **string** |  | 
- **orgIds** | **[]string** |  | 
- **endDate** | **string** |  | 
+ **startDate** | **string** | The start date of the date range | 
+ **orgIds** | **string** | A comma separated list of org ids to retrieve usage data for | 
+ **endDate** | **string** | The end date of the date range. If not specified, then minimum(start_date + 30 days, today - 1) is used. | 
 
 ### Return type
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ResourceIds** | [**[]SpacesCopyElementsPostRequestResourceIdsInner**](SpacesCopyElementsPostRequestResourceIdsInner.md) | List of resource uuids to copy to the new space. | 
+**ResourceIds** | [**[]SpacesCopyElementsPostRequestResourceIdsInner**](SpacesCopyElementsPostRequestResourceIdsInner.md) | List of resource configuration uuids to copy to the new space. | 
 **QueryLibraryQueryIds** | **[]string** | List of query library query uuids to copy to the new space. | 
 **AppIds** | **[]string** | List of app or module uuids to copy to the new space. | 
 **WorkflowIds** | **[]string** | List of workflow ids to copy to the new space. | 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Config** | [**SourceControlConfigGet200ResponseDataOneOf4Config**](SourceControlConfigGet200ResponseDataOneOf4Config.md) |  | 
+**Config** | [**AzureReposConfig**](AzureReposConfig.md) |  | 
 **Provider** | **string** |  | 
 **Org** | **string** | The user or organization to which the repository belongs to. | 
 **Repo** | **string** | The name of the repository you created to use with Retool. | 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewSourceControlConfigPut200ResponseData
 
-`func NewSourceControlConfigPut200ResponseData(config SourceControlConfigGet200ResponseDataOneOf4Config, provider string, org string, repo string, defaultBranch string, ) *SourceControlConfigPut200ResponseData`
+`func NewSourceControlConfigPut200ResponseData(config AzureReposConfig, provider string, org string, repo string, defaultBranch string, ) *SourceControlConfigPut200ResponseData`
 
 NewSourceControlConfigPut200ResponseData instantiates a new SourceControlConfigPut200ResponseData object
 This constructor will assign default values to properties that have it defined,
@@ -32,20 +32,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetConfig
 
-`func (o *SourceControlConfigPut200ResponseData) GetConfig() SourceControlConfigGet200ResponseDataOneOf4Config`
+`func (o *SourceControlConfigPut200ResponseData) GetConfig() AzureReposConfig`
 
 GetConfig returns the Config field if non-nil, zero value otherwise.
 
 ### GetConfigOk
 
-`func (o *SourceControlConfigPut200ResponseData) GetConfigOk() (*SourceControlConfigGet200ResponseDataOneOf4Config, bool)`
+`func (o *SourceControlConfigPut200ResponseData) GetConfigOk() (*AzureReposConfig, bool)`
 
 GetConfigOk returns a tuple with the Config field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConfig
 
-`func (o *SourceControlConfigPut200ResponseData) SetConfig(v SourceControlConfigGet200ResponseDataOneOf4Config)`
+`func (o *SourceControlConfigPut200ResponseData) SetConfig(v AzureReposConfig)`
 
 SetConfig sets Config field to given value.
 

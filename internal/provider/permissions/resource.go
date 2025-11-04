@@ -158,18 +158,37 @@ func createNewAPIPermissionsSubject(subjectModel permissionSubjectModel) api.Per
 			return api.PermissionsListObjectsPostRequestSubject{}
 		}
 		floatGroupID := float32(groupID) // Our client uses float32 to represent "number" ids.
-		subject.PermissionsListObjectsPostRequestSubjectOneOf = api.NewPermissionsListObjectsPostRequestSubjectOneOf("group", *api.NewNullableFloat32(&floatGroupID))
+		groupSubject := api.NewGroup("group", *api.NewNullableFloat32(&floatGroupID))
+		subject = api.GroupAsPermissionsListObjectsPostRequestSubject(groupSubject)
 	} else if subjectModel.Type.ValueString() == "user" {
-		subject.PermissionsListObjectsPostRequestSubjectOneOf1 = api.NewPermissionsListObjectsPostRequestSubjectOneOf1("user", subjectModel.ID.ValueString())
+		userSubject := api.NewUser("user", subjectModel.ID.ValueString())
+		subject = api.UserAsPermissionsListObjectsPostRequestSubject(userSubject)
 	}
 	return subject
 }
 
 func createNewAPIPermissionsObject(objectModel permissionObjectModel) api.PermissionsGrantPostRequestObject {
-	object := api.PermissionsGrantPostRequestObject{
-		PermissionsGrantPostRequestObjectOneOf: api.NewPermissionsGrantPostRequestObjectOneOf(objectModel.Type.ValueString(), objectModel.ID.ValueString()),
+	objType := objectModel.Type.ValueString()
+	objID := objectModel.ID.ValueString()
+	
+	// Use the appropriate constructor and wrapper function based on object type
+	switch objType {
+	case "app":
+		app := api.NewApp(objType, objID)
+		return api.AppAsPermissionsGrantPostRequestObject(app)
+	case "folder":
+		folder := api.NewFolder(objType, objID)
+		return api.FolderAsPermissionsGrantPostRequestObject(folder)
+	case "resource":
+		resource := api.NewResource(objType, objID)
+		return api.ResourceAsPermissionsGrantPostRequestObject(resource)
+	case "resource_configuration":
+		resourceConfig := api.NewResourceConfiguration(objType, objID)
+		return api.ResourceConfigurationAsPermissionsGrantPostRequestObject(resourceConfig)
+	default:
+		// Fallback: return empty object if type is unknown
+		return api.PermissionsGrantPostRequestObject{}
 	}
-	return object
 }
 
 func getPermissionID(subject permissionSubjectModel, object permissionObjectModel) string {

@@ -250,18 +250,18 @@ func (r *folderResource) Update(ctx context.Context, req resource.UpdateRequest,
 	// Generate API request body.
 	patchReq := api.FoldersFolderIdPatchRequest{}
 	if !plan.Name.Equal(state.Name) {
-		op := api.NewUsersUserIdPatchRequestOperationsInnerAnyOf("replace", "/name")
+		op := api.NewReplaceOperation("replace", "/name")
 		op.Value = plan.Name.ValueString()
-		patchReq.Operations = append(patchReq.Operations, api.FoldersFolderIdPatchRequestOperationsInner{UsersUserIdPatchRequestOperationsInnerAnyOf: op})
+		patchReq.Operations = append(patchReq.Operations, api.FoldersFolderIdPatchRequestOperationsInner{ReplaceOperation: op})
 	}
 	if !plan.ParentFolderID.Equal(state.ParentFolderID) {
 		parentFolderID := r.getTrueParentFolderID(ctx, plan.FolderType.ValueString(), plan.ParentFolderID.ValueString(), &resp.Diagnostics)
 		if resp.Diagnostics.HasError() {
 			return
 		}
-		op := api.NewUsersUserIdPatchRequestOperationsInnerAnyOf("replace", "/parent_folder_id")
+		op := api.NewReplaceOperation("replace", "/parent_folder_id")
 		op.Value = parentFolderID
-		patchReq.Operations = append(patchReq.Operations, api.FoldersFolderIdPatchRequestOperationsInner{UsersUserIdPatchRequestOperationsInnerAnyOf: op})
+		patchReq.Operations = append(patchReq.Operations, api.FoldersFolderIdPatchRequestOperationsInner{ReplaceOperation: op})
 	}
 	_, httpResponse, err := r.client.FoldersAPI.FoldersFolderIdPatch(ctx, state.ID.ValueString()).FoldersFolderIdPatchRequest(patchReq).Execute()
 	if err != nil {
@@ -291,11 +291,7 @@ func (r *folderResource) Delete(ctx context.Context, req resource.DeleteRequest,
 	}
 
 	// Delete existing order.
-	recursive := true
-	deleteRequest := api.FoldersFolderIdDeleteRequest{}
-	deleteRequest.Recursive = &recursive
-
-	httpResponse, err := r.client.FoldersAPI.FoldersFolderIdDelete(ctx, state.ID.ValueString()).FoldersFolderIdDeleteRequest(deleteRequest).Execute()
+	httpResponse, err := r.client.FoldersAPI.FoldersFolderIdDelete(ctx, state.ID.ValueString()).Execute()
 	if err != nil && !(httpResponse != nil && httpResponse.StatusCode == 404) { // It's ok to not find the resource being deleted.
 		resp.Diagnostics.AddError(
 			"Error Deleting Folder",

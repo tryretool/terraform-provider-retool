@@ -6,12 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Provider** | **string** | This is an enumerated field that can only take the value \&quot;Datadog\&quot;. It identifies the provider of the observability configuration. | 
 **ApiKey** | **string** | This is a string field that represents the API key for Datadog. This key is used to authenticate with the Datadog API. | 
+**Site** | **string** | This is a enumerated field that represents the Datadog site which the organization wants to send logs to. The default value is US1 which corresponds to the default website datadoghq.com. | [default to "US1"]
 
 ## Methods
 
 ### NewObservabilityConfigGet200ResponseDataInnerConfigOneOf1
 
-`func NewObservabilityConfigGet200ResponseDataInnerConfigOneOf1(provider string, apiKey string, ) *ObservabilityConfigGet200ResponseDataInnerConfigOneOf1`
+`func NewObservabilityConfigGet200ResponseDataInnerConfigOneOf1(provider string, apiKey string, site string, ) *ObservabilityConfigGet200ResponseDataInnerConfigOneOf1`
 
 NewObservabilityConfigGet200ResponseDataInnerConfigOneOf1 instantiates a new ObservabilityConfigGet200ResponseDataInnerConfigOneOf1 object
 This constructor will assign default values to properties that have it defined,
@@ -64,6 +65,26 @@ and a boolean to check if the value has been set.
 `func (o *ObservabilityConfigGet200ResponseDataInnerConfigOneOf1) SetApiKey(v string)`
 
 SetApiKey sets ApiKey field to given value.
+
+
+### GetSite
+
+`func (o *ObservabilityConfigGet200ResponseDataInnerConfigOneOf1) GetSite() string`
+
+GetSite returns the Site field if non-nil, zero value otherwise.
+
+### GetSiteOk
+
+`func (o *ObservabilityConfigGet200ResponseDataInnerConfigOneOf1) GetSiteOk() (*string, bool)`
+
+GetSiteOk returns a tuple with the Site field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSite
+
+`func (o *ObservabilityConfigGet200ResponseDataInnerConfigOneOf1) SetSite(v string)`
+
+SetSite sets Site field to given value.
 
 
 

@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## FoldersFolderIdDelete
 
-> FoldersFolderIdDelete(ctx, folderId).FoldersFolderIdDeleteRequest(foldersFolderIdDeleteRequest).Execute()
+> FoldersFolderIdDelete(ctx, folderId).Recursive(recursive).Execute()
 
 Delete folder
 
@@ -33,12 +33,12 @@ import (
 )
 
 func main() {
-	folderId := "folderId_example" // string | 
-	foldersFolderIdDeleteRequest := *openapiclient.NewFoldersFolderIdDeleteRequest() // FoldersFolderIdDeleteRequest |  (optional)
+	folderId := "folderId_example" // string | The id of the folder
+	recursive := true // bool | Should the folder's contents also be deleted? (Only supported for app folders.) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FoldersAPI.FoldersFolderIdDelete(context.Background(), folderId).FoldersFolderIdDeleteRequest(foldersFolderIdDeleteRequest).Execute()
+	r, err := apiClient.FoldersAPI.FoldersFolderIdDelete(context.Background(), folderId).Recursive(recursive).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FoldersAPI.FoldersFolderIdDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -52,7 +52,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**folderId** | **string** |  | 
+**folderId** | **string** | The id of the folder | 
 
 ### Other Parameters
 
@@ -62,7 +62,7 @@ Other parameters are passed through a pointer to a apiFoldersFolderIdDeleteReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **foldersFolderIdDeleteRequest** | [**FoldersFolderIdDeleteRequest**](FoldersFolderIdDeleteRequest.md) |  | 
+ **recursive** | **bool** | Should the folder&#39;s contents also be deleted? (Only supported for app folders.) | 
 
 ### Return type
 
@@ -74,7 +74,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -103,7 +103,7 @@ import (
 )
 
 func main() {
-	folderId := "folderId_example" // string | 
+	folderId := "folderId_example" // string | The id of the folder
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -123,7 +123,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**folderId** | **string** |  | 
+**folderId** | **string** | The id of the folder | 
 
 ### Other Parameters
 
@@ -173,7 +173,7 @@ import (
 )
 
 func main() {
-	folderId := "folderId_example" // string | 
+	folderId := "folderId_example" // string | The id of the folder
 	foldersFolderIdPatchRequest := *openapiclient.NewFoldersFolderIdPatchRequest([]openapiclient.FoldersFolderIdPatchRequestOperationsInner{*openapiclient.NewFoldersFolderIdPatchRequestOperationsInner("Op_example", "Path_example", "From_example")}) // FoldersFolderIdPatchRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -194,7 +194,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**folderId** | **string** |  | 
+**folderId** | **string** | The id of the folder | 
 
 ### Other Parameters
 

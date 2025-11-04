@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BaseUrl** | **string** | Use the absolute URL (e.g https://example.com). | 
+**BaseUrl** | **string** | Use the absolute URL (e.g. https://example.com). | 
 **UrlParameters** | Pointer to **[][]string** |  | [optional] 
 **Headers** | Pointer to **[][]string** |  | [optional] 
 **ExtraBodyValues** | Pointer to **[][]string** | Extra body values are not passed for GET or HEAD requests. | [optional] 

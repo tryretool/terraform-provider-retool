@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | The id of the user | 
-**LegacyId** | **string** | The legacy id of the user | 
+**LegacyId** | **float32** | The legacy id of the user | 
 **Email** | **string** | The email of the user | 
 **Active** | **bool** | Whether the user is active or not | 
 **CreatedAt** | **time.Time** |  | 
@@ -13,12 +13,15 @@ Name | Type | Description | Notes
 **FirstName** | **NullableString** | The first name of the user | 
 **LastName** | **NullableString** | The last name of the user | 
 **Metadata** | **map[string]interface{}** |  | [default to {}]
+**IsAdmin** | **bool** | Whether the user is an admin or not | 
+**UserType** | **string** | The user type | 
+**TwoFactorAuthEnabled** | **bool** | Whether two factor authentication is enabled for this user | 
 
 ## Methods
 
 ### NewUsersPost200ResponseData
 
-`func NewUsersPost200ResponseData(id string, legacyId string, email string, active bool, createdAt time.Time, lastActive NullableTime, firstName NullableString, lastName NullableString, metadata map[string]interface{}, ) *UsersPost200ResponseData`
+`func NewUsersPost200ResponseData(id string, legacyId float32, email string, active bool, createdAt time.Time, lastActive NullableTime, firstName NullableString, lastName NullableString, metadata map[string]interface{}, isAdmin bool, userType string, twoFactorAuthEnabled bool, ) *UsersPost200ResponseData`
 
 NewUsersPost200ResponseData instantiates a new UsersPost200ResponseData object
 This constructor will assign default values to properties that have it defined,
@@ -55,20 +58,20 @@ SetId sets Id field to given value.
 
 ### GetLegacyId
 
-`func (o *UsersPost200ResponseData) GetLegacyId() string`
+`func (o *UsersPost200ResponseData) GetLegacyId() float32`
 
 GetLegacyId returns the LegacyId field if non-nil, zero value otherwise.
 
 ### GetLegacyIdOk
 
-`func (o *UsersPost200ResponseData) GetLegacyIdOk() (*string, bool)`
+`func (o *UsersPost200ResponseData) GetLegacyIdOk() (*float32, bool)`
 
 GetLegacyIdOk returns a tuple with the LegacyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLegacyId
 
-`func (o *UsersPost200ResponseData) SetLegacyId(v string)`
+`func (o *UsersPost200ResponseData) SetLegacyId(v float32)`
 
 SetLegacyId sets LegacyId field to given value.
 
@@ -241,6 +244,66 @@ and a boolean to check if the value has been set.
 `func (o *UsersPost200ResponseData) SetMetadata(v map[string]interface{})`
 
 SetMetadata sets Metadata field to given value.
+
+
+### GetIsAdmin
+
+`func (o *UsersPost200ResponseData) GetIsAdmin() bool`
+
+GetIsAdmin returns the IsAdmin field if non-nil, zero value otherwise.
+
+### GetIsAdminOk
+
+`func (o *UsersPost200ResponseData) GetIsAdminOk() (*bool, bool)`
+
+GetIsAdminOk returns a tuple with the IsAdmin field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsAdmin
+
+`func (o *UsersPost200ResponseData) SetIsAdmin(v bool)`
+
+SetIsAdmin sets IsAdmin field to given value.
+
+
+### GetUserType
+
+`func (o *UsersPost200ResponseData) GetUserType() string`
+
+GetUserType returns the UserType field if non-nil, zero value otherwise.
+
+### GetUserTypeOk
+
+`func (o *UsersPost200ResponseData) GetUserTypeOk() (*string, bool)`
+
+GetUserTypeOk returns a tuple with the UserType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUserType
+
+`func (o *UsersPost200ResponseData) SetUserType(v string)`
+
+SetUserType sets UserType field to given value.
+
+
+### GetTwoFactorAuthEnabled
+
+`func (o *UsersPost200ResponseData) GetTwoFactorAuthEnabled() bool`
+
+GetTwoFactorAuthEnabled returns the TwoFactorAuthEnabled field if non-nil, zero value otherwise.
+
+### GetTwoFactorAuthEnabledOk
+
+`func (o *UsersPost200ResponseData) GetTwoFactorAuthEnabledOk() (*bool, bool)`
+
+GetTwoFactorAuthEnabledOk returns a tuple with the TwoFactorAuthEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTwoFactorAuthEnabled
+
+`func (o *UsersPost200ResponseData) SetTwoFactorAuthEnabled(v bool)`
+
+SetTwoFactorAuthEnabled sets TwoFactorAuthEnabled field to given value.
 
 
 
