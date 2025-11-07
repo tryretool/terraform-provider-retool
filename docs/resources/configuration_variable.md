@@ -12,46 +12,46 @@ Manages a Retool configuration variable. Configuration variables are used to sto
 
 ```terraform
 resource "retool_configuration_variable" "test_config_var" {
-  name = "Test Space"
-  value = [
+  name = "Test Config Var"
+  values = [
     {
-      environment_id = "production"
+      environment_id = "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d" # prod
       value          = "value1"
     },
     {
-      environment_id = "staging"
+      environment_id = "b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e" # staging
       value          = "value2"
     }
   ]
 }
 
-resource "retool_configuration_variable" "test_config_var_with_descritpion" {
-  name        = "Test Space with creation options"
+resource "retool_configuration_variable" "test_config_var_with_description" {
+  name        = "Test Config Var with description"
   description = "This is a test configuration variable with a description"
-  value = [
+  values = [
     {
-      environment_id = "production"
+      environment_id = "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d" # prod
       value          = "value1"
     },
     {
-      environment_id = "staging"
+      environment_id = "b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e" # staging
       value          = "value2"
     }
   ]
 }
 
 resource "retool_configuration_variable" "test_config_var_as_secret" {
-  name        = "Test Space with creation options"
-  description = "This is a test configuration variable with a description"
+  name        = "Test Secret Config Var"
+  description = "This is a secret configuration variable"
   secret      = true
-  value = [
+  values = [
     {
-      environment_id = "production"
-      value          = "value1"
+      environment_id = "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d" # prod
+      value          = "secret_value1"
     },
     {
-      environment_id = "staging"
-      value          = "value2"
+      environment_id = "b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e" # staging
+      value          = "secret_value2"
     }
   ]
 }
@@ -68,11 +68,11 @@ resource "retool_configuration_variable" "test_config_var_as_secret" {
 ### Optional
 
 - `description` (String) A brief description of the configuration variable's purpose.
+- `secret` (Boolean) Whether the configuration variable is a secret. Secrets are encrypted and not exposed in the Retool UI.
 
 ### Read-Only
 
 - `id` (String) The unique identifier for the configuration variable.
-- `secret` (Boolean) Whether the configuration variable is a secret. Secrets are encrypted and not exposed in the Retool UI. Secert is currently not supported as the values are encrypted and cannot be retrieved via the API.
 
 <a id="nestedatt--values"></a>
 ### Nested Schema for `values`
@@ -80,6 +80,6 @@ resource "retool_configuration_variable" "test_config_var_as_secret" {
 Required:
 
 - `environment_id` (String) The ID of the environment this value is associated with.
-- `value` (String) The value of the configuration variable for the specified environment.
+- `value` (String, Sensitive) The value of the configuration variable for the specified environment.
 
 

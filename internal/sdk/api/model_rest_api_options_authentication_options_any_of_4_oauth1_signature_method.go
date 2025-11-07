@@ -40,9 +40,9 @@ func (dst *RestAPIOptionsAuthenticationOptionsAnyOf4Oauth1SignatureMethod) Unmar
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src *RestAPIOptionsAuthenticationOptionsAnyOf4Oauth1SignatureMethod) MarshalJSON() ([]byte, error) {
+func (src RestAPIOptionsAuthenticationOptionsAnyOf4Oauth1SignatureMethod) MarshalJSON() ([]byte, error) {
 	if src.string != nil {
-		return json.Marshal(&src.string)
+		return json.Marshal(src.string)
 	}
 
 	return nil, nil // no data in anyOf schemas

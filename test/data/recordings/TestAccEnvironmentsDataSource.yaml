@@ -27,13 +27,13 @@ interactions:
         trailer: {}
         content_length: 605
         uncompressed: false
-        body: '{"success":true,"data":[{"id":"ee07e7dd-9b48-414c-9d2b-212d148bd4ac","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-10-06T11:40:56.580Z","updated_at":"2025-10-06T11:40:56.580Z"},{"id":"3b553dd9-7d8f-41e5-9bf6-5510b38d0231","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-10-06T11:40:56.580Z","updated_at":"2025-10-06T11:40:56.580Z"}],"total_count":2,"next_token":null,"has_more":false}'
+        body: '{"success":true,"data":[{"id":"23ba02f3-12c2-456e-826f-13b616daa5ce","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"}],"total_count":2,"next_token":null,"has_more":false}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 33.485792ms
+        duration: 69.57075ms
     - id: 1
       request:
         proto: HTTP/1.1
@@ -60,13 +60,13 @@ interactions:
         trailer: {}
         content_length: 605
         uncompressed: false
-        body: '{"success":true,"data":[{"id":"ee07e7dd-9b48-414c-9d2b-212d148bd4ac","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-10-06T11:40:56.580Z","updated_at":"2025-10-06T11:40:56.580Z"},{"id":"3b553dd9-7d8f-41e5-9bf6-5510b38d0231","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-10-06T11:40:56.580Z","updated_at":"2025-10-06T11:40:56.580Z"}],"total_count":2,"next_token":null,"has_more":false}'
+        body: '{"success":true,"data":[{"id":"23ba02f3-12c2-456e-826f-13b616daa5ce","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"}],"total_count":2,"next_token":null,"has_more":false}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 26.369583ms
+        duration: 35.446709ms
     - id: 2
       request:
         proto: HTTP/1.1
@@ -93,10 +93,10 @@ interactions:
         trailer: {}
         content_length: 605
         uncompressed: false
-        body: '{"success":true,"data":[{"id":"ee07e7dd-9b48-414c-9d2b-212d148bd4ac","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-10-06T11:40:56.580Z","updated_at":"2025-10-06T11:40:56.580Z"},{"id":"3b553dd9-7d8f-41e5-9bf6-5510b38d0231","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-10-06T11:40:56.580Z","updated_at":"2025-10-06T11:40:56.580Z"}],"total_count":2,"next_token":null,"has_more":false}'
+        body: '{"success":true,"data":[{"id":"23ba02f3-12c2-456e-826f-13b616daa5ce","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"}],"total_count":2,"next_token":null,"has_more":false}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 24.204041ms
+        duration: 34.679042ms

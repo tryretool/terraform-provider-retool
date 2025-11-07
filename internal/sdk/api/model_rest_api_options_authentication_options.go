@@ -124,33 +124,33 @@ func (dst *RestAPIOptionsAuthenticationOptions) UnmarshalJSON(data []byte) error
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src *RestAPIOptionsAuthenticationOptions) MarshalJSON() ([]byte, error) {
+func (src RestAPIOptionsAuthenticationOptions) MarshalJSON() ([]byte, error) {
 	if src.RestAPIOptionsAuthenticationOptionsAnyOf != nil {
-		return json.Marshal(&src.RestAPIOptionsAuthenticationOptionsAnyOf)
+		return json.Marshal(src.RestAPIOptionsAuthenticationOptionsAnyOf)
 	}
 
 	if src.RestAPIOptionsAuthenticationOptionsAnyOf1 != nil {
-		return json.Marshal(&src.RestAPIOptionsAuthenticationOptionsAnyOf1)
+		return json.Marshal(src.RestAPIOptionsAuthenticationOptionsAnyOf1)
 	}
 
 	if src.RestAPIOptionsAuthenticationOptionsAnyOf2 != nil {
-		return json.Marshal(&src.RestAPIOptionsAuthenticationOptionsAnyOf2)
+		return json.Marshal(src.RestAPIOptionsAuthenticationOptionsAnyOf2)
 	}
 
 	if src.RestAPIOptionsAuthenticationOptionsAnyOf3 != nil {
-		return json.Marshal(&src.RestAPIOptionsAuthenticationOptionsAnyOf3)
+		return json.Marshal(src.RestAPIOptionsAuthenticationOptionsAnyOf3)
 	}
 
 	if src.RestAPIOptionsAuthenticationOptionsAnyOf4 != nil {
-		return json.Marshal(&src.RestAPIOptionsAuthenticationOptionsAnyOf4)
+		return json.Marshal(src.RestAPIOptionsAuthenticationOptionsAnyOf4)
 	}
 
 	if src.RestAPIOptionsAuthenticationOptionsAnyOf5 != nil {
-		return json.Marshal(&src.RestAPIOptionsAuthenticationOptionsAnyOf5)
+		return json.Marshal(src.RestAPIOptionsAuthenticationOptionsAnyOf5)
 	}
 
 	if src.RestAPIOptionsAuthenticationOptionsAnyOf6 != nil {
-		return json.Marshal(&src.RestAPIOptionsAuthenticationOptionsAnyOf6)
+		return json.Marshal(src.RestAPIOptionsAuthenticationOptionsAnyOf6)
 	}
 
 	return nil, nil // no data in anyOf schemas

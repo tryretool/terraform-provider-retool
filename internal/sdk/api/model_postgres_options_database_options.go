@@ -54,13 +54,13 @@ func (dst *PostgresOptionsDatabaseOptions) UnmarshalJSON(data []byte) error {
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src *PostgresOptionsDatabaseOptions) MarshalJSON() ([]byte, error) {
+func (src PostgresOptionsDatabaseOptions) MarshalJSON() ([]byte, error) {
 	if src.PostgresOptionsDatabaseOptionsAnyOf != nil {
-		return json.Marshal(&src.PostgresOptionsDatabaseOptionsAnyOf)
+		return json.Marshal(src.PostgresOptionsDatabaseOptionsAnyOf)
 	}
 
 	if src.PostgresOptionsDatabaseOptionsAnyOf1 != nil {
-		return json.Marshal(&src.PostgresOptionsDatabaseOptionsAnyOf1)
+		return json.Marshal(src.PostgresOptionsDatabaseOptionsAnyOf1)
 	}
 
 	return nil, nil // no data in anyOf schemas

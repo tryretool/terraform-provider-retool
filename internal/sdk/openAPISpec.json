@@ -689,7 +689,6 @@
                       }
                     },
                     "required": [
-                      "type",
                       "username",
                       "app_password"
                     ],
@@ -718,7 +717,6 @@
                       }
                     },
                     "required": [
-                      "type",
                       "token"
                     ],
                     "additionalProperties": false
@@ -9013,7 +9011,6 @@
                                     }
                                   },
                                   "required": [
-                                    "type",
                                     "username",
                                     "app_password"
                                   ],
@@ -9042,7 +9039,6 @@
                                     }
                                   },
                                   "required": [
-                                    "type",
                                     "token"
                                   ],
                                   "additionalProperties": false
@@ -9446,7 +9442,6 @@
                                   }
                                 },
                                 "required": [
-                                  "type",
                                   "username",
                                   "app_password"
                                 ],
@@ -9475,7 +9470,6 @@
                                   }
                                 },
                                 "required": [
-                                  "type",
                                   "token"
                                 ],
                                 "additionalProperties": false
@@ -9880,7 +9874,6 @@
                                     }
                                   },
                                   "required": [
-                                    "type",
                                     "username",
                                     "app_password"
                                   ],
@@ -9909,7 +9902,6 @@
                                     }
                                   },
                                   "required": [
-                                    "type",
                                     "token"
                                   ],
                                   "additionalProperties": false
@@ -10368,7 +10360,6 @@
                                   }
                                 },
                                 "required": [
-                                  "type",
                                   "username",
                                   "app_password"
                                 ],
@@ -10397,7 +10388,6 @@
                                   }
                                 },
                                 "required": [
-                                  "type",
                                   "token"
                                 ],
                                 "additionalProperties": false
@@ -10802,7 +10792,6 @@
                                     }
                                   },
                                   "required": [
-                                    "type",
                                     "username",
                                     "app_password"
                                   ],
@@ -10831,7 +10820,6 @@
                                     }
                                   },
                                   "required": [
-                                    "type",
                                     "token"
                                   ],
                                   "additionalProperties": false
@@ -11234,7 +11222,6 @@
                                     }
                                   },
                                   "required": [
-                                    "type",
                                     "username",
                                     "app_password"
                                   ],
@@ -11263,7 +11250,6 @@
                                     }
                                   },
                                   "required": [
-                                    "type",
                                     "token"
                                   ],
                                   "additionalProperties": false
@@ -16903,7 +16889,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "oneOf": [
+                        "anyOf": [
                           {
                             "type": "object",
                             "properties": {
@@ -17023,7 +17009,10 @@
                               "access_level"
                             ]
                           }
-                        ]
+                        ],
+                        "discriminator": {
+                          "propertyName": "type"
+                        }
                       },
                       "description": "An array of requested items"
                     },
@@ -17244,7 +17233,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "oneOf": [
+                        "anyOf": [
                           {
                             "type": "object",
                             "properties": {
@@ -17364,7 +17353,10 @@
                               "access_level"
                             ]
                           }
-                        ]
+                        ],
+                        "discriminator": {
+                          "propertyName": "type"
+                        }
                       },
                       "description": "An array of requested items"
                     },
@@ -17575,7 +17567,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "oneOf": [
+                        "anyOf": [
                           {
                             "type": "object",
                             "properties": {
@@ -17695,7 +17687,10 @@
                               "access_level"
                             ]
                           }
-                        ]
+                        ],
+                        "discriminator": {
+                          "propertyName": "type"
+                        }
                       },
                       "description": "An array of requested items"
                     },

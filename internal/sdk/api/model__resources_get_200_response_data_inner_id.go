@@ -40,9 +40,9 @@ func (dst *ResourcesGet200ResponseDataInnerId) UnmarshalJSON(data []byte) error 
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src *ResourcesGet200ResponseDataInnerId) MarshalJSON() ([]byte, error) {
+func (src ResourcesGet200ResponseDataInnerId) MarshalJSON() ([]byte, error) {
 	if src.string != nil {
-		return json.Marshal(&src.string)
+		return json.Marshal(src.string)
 	}
 
 	return nil, nil // no data in anyOf schemas

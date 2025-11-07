@@ -40,9 +40,9 @@ func (dst *SpacesCopyElementsPostRequestResourceIdsInner) UnmarshalJSON(data []b
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src *SpacesCopyElementsPostRequestResourceIdsInner) MarshalJSON() ([]byte, error) {
+func (src SpacesCopyElementsPostRequestResourceIdsInner) MarshalJSON() ([]byte, error) {
 	if src.string != nil {
-		return json.Marshal(&src.string)
+		return json.Marshal(src.string)
 	}
 
 	return nil, nil // no data in anyOf schemas

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
+**Type** | Pointer to **string** |  | [optional] 
 **Username** | **string** | Your Bitbucket username. | 
 **AppPassword** | **string** | Your Bitbucket app password. | 
 **Url** | Pointer to **string** | The domain used to access your self-hosted Bitbucket instance. Defaults to https://bitbucket.org/. | [optional] 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewBitbucketConfigAnyOf
 
-`func NewBitbucketConfigAnyOf(type_ string, username string, appPassword string, ) *BitbucketConfigAnyOf`
+`func NewBitbucketConfigAnyOf(username string, appPassword string, ) *BitbucketConfigAnyOf`
 
 NewBitbucketConfigAnyOf instantiates a new BitbucketConfigAnyOf object
 This constructor will assign default values to properties that have it defined,
@@ -48,6 +48,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *BitbucketConfigAnyOf) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetUsername
 

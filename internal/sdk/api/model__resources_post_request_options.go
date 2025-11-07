@@ -96,25 +96,25 @@ func (dst *ResourcesPostRequestOptions) UnmarshalJSON(data []byte) error {
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src *ResourcesPostRequestOptions) MarshalJSON() ([]byte, error) {
+func (src ResourcesPostRequestOptions) MarshalJSON() ([]byte, error) {
 	if src.MySQLOptions != nil {
-		return json.Marshal(&src.MySQLOptions)
+		return json.Marshal(src.MySQLOptions)
 	}
 
 	if src.PostgresOptions != nil {
-		return json.Marshal(&src.PostgresOptions)
+		return json.Marshal(src.PostgresOptions)
 	}
 
 	if src.RedshiftOptions != nil {
-		return json.Marshal(&src.RedshiftOptions)
+		return json.Marshal(src.RedshiftOptions)
 	}
 
 	if src.RestAPIOptions != nil {
-		return json.Marshal(&src.RestAPIOptions)
+		return json.Marshal(src.RestAPIOptions)
 	}
 
 	if src.SnowflakeOptions != nil {
-		return json.Marshal(&src.SnowflakeOptions)
+		return json.Marshal(src.SnowflakeOptions)
 	}
 
 	return nil, nil // no data in anyOf schemas

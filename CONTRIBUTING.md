@@ -66,3 +66,13 @@ New version should show up on Terraform Repository in 10-15 minutes.
 # Update Retool CLI
 Retool CLI has a `terraform` command that generates Terraform configuration from existing Retool org: https://github.com/tryretool/retool-cli/blob/master/src/commands/terraform.ts. 
 If you added a new resource or updated an existing one, you should update Retool CLI as well, so that your changes are reflected in auto-generated configuration.
+
+# Reviewing
+
+Reviewing PRs to this repo can be a challenge, particularly when they impact the OpenAPI generated code for the SDK. 
+
+As a general rule, code within `internal/provider/sdk` will be generated, and can largely be ignored during reviews. 
+
+Code _outside_ of this should be given close attention. `internal/provider` code is what drives the terraform behavior, and should be reviewed for correctness and backward compatibility. Tests should accompany new features, and reviewers should make a habit of checking out PR branches and running them against realisitic example retool deployments.
+
+Updates should always include documentation updates for new/changed behaviors.

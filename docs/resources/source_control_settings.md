@@ -16,6 +16,7 @@ resource "retool_source_control_settings" "scm_settings" {
   custom_pull_request_template_enabled = true
   custom_pull_request_template         = "custom-pull-request-template"
   version_control_locked               = true
+  auto_cleanup_branches_enabled        = false
   force_uuid_mapping                   = false
 }
 ```
@@ -26,6 +27,7 @@ resource "retool_source_control_settings" "scm_settings" {
 ### Optional
 
 - `auto_branch_naming_enabled` (Boolean) When enabled, Retool automatically suggests a branch name on branch creation. Defaults to true.
+- `auto_cleanup_branches_enabled` (Boolean) When enabled, Retool automatically cleans up branches after they are merged. Defaults to false.
 - `custom_pull_request_template` (String) Pull requests created from Retool will use the template specified.
 - `custom_pull_request_template_enabled` (Boolean) When enabled, Retool will use the template specified to create pull requests. Defaults to false.
 - `force_uuid_mapping` (Boolean) When set to true, creates a uuid mapping for protected elements to be used in the source control repo. Defaults to false.

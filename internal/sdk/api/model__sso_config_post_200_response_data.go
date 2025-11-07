@@ -148,23 +148,23 @@ func (dst *SsoConfigPost200ResponseData) UnmarshalJSON(data []byte) error {
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src SsoConfigPost200ResponseData) MarshalJSON() ([]byte, error) {
 	if src.Google != nil {
-		return json.Marshal(&src.Google)
+		return json.Marshal(src.Google)
 	}
 
 	if src.GoogleOIDC != nil {
-		return json.Marshal(&src.GoogleOIDC)
+		return json.Marshal(src.GoogleOIDC)
 	}
 
 	if src.GoogleSAML != nil {
-		return json.Marshal(&src.GoogleSAML)
+		return json.Marshal(src.GoogleSAML)
 	}
 
 	if src.OIDC != nil {
-		return json.Marshal(&src.OIDC)
+		return json.Marshal(src.OIDC)
 	}
 
 	if src.SAML != nil {
-		return json.Marshal(&src.SAML)
+		return json.Marshal(src.SAML)
 	}
 
 	return nil, nil // no data in oneOf schemas

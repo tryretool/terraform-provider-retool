@@ -8326,7 +8326,6 @@ components:
           type: string
       required:
       - app_password
-      - type
       - username
       type: object
     Bitbucket_config_anyOf_1:
@@ -8349,7 +8348,6 @@ components:
           type: string
       required:
       - token
-      - type
       type: object
     Bitbucket_config:
       anyOf:
@@ -10605,7 +10603,7 @@ components:
       - object_type
       - subject
       type: object
-    _permissions_listObjects_post_200_response_data_inner_oneOf:
+    _permissions_listObjects_post_200_response_data_inner_anyOf:
       example:
         access_level: own
         id: id
@@ -10631,7 +10629,7 @@ components:
       - id
       - type
       type: object
-    _permissions_listObjects_post_200_response_data_inner_oneOf_1:
+    _permissions_listObjects_post_200_response_data_inner_anyOf_1:
       properties:
         type:
           enum:
@@ -10653,7 +10651,7 @@ components:
       - id
       - type
       type: object
-    _permissions_listObjects_post_200_response_data_inner_oneOf_2:
+    _permissions_listObjects_post_200_response_data_inner_anyOf_2:
       properties:
         type:
           enum:
@@ -10674,7 +10672,7 @@ components:
       - id
       - type
       type: object
-    _permissions_listObjects_post_200_response_data_inner_oneOf_3:
+    _permissions_listObjects_post_200_response_data_inner_anyOf_3:
       properties:
         type:
           enum:
@@ -10700,11 +10698,13 @@ components:
       - type
       type: object
     _permissions_listObjects_post_200_response_data_inner:
-      oneOf:
-      - $ref: '#/components/schemas/_permissions_listObjects_post_200_response_data_inner_oneOf'
-      - $ref: '#/components/schemas/_permissions_listObjects_post_200_response_data_inner_oneOf_1'
-      - $ref: '#/components/schemas/_permissions_listObjects_post_200_response_data_inner_oneOf_2'
-      - $ref: '#/components/schemas/_permissions_listObjects_post_200_response_data_inner_oneOf_3'
+      anyOf:
+      - $ref: '#/components/schemas/_permissions_listObjects_post_200_response_data_inner_anyOf'
+      - $ref: '#/components/schemas/_permissions_listObjects_post_200_response_data_inner_anyOf_1'
+      - $ref: '#/components/schemas/_permissions_listObjects_post_200_response_data_inner_anyOf_2'
+      - $ref: '#/components/schemas/_permissions_listObjects_post_200_response_data_inner_anyOf_3'
+      discriminator:
+        propertyName: type
     _permissions_listObjects_post_200_response:
       example:
         data:

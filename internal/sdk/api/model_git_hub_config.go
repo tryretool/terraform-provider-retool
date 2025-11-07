@@ -54,13 +54,13 @@ func (dst *GitHubConfig) UnmarshalJSON(data []byte) error {
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src *GitHubConfig) MarshalJSON() ([]byte, error) {
+func (src GitHubConfig) MarshalJSON() ([]byte, error) {
 	if src.GitHubConfigAnyOf != nil {
-		return json.Marshal(&src.GitHubConfigAnyOf)
+		return json.Marshal(src.GitHubConfigAnyOf)
 	}
 
 	if src.GitHubConfigAnyOf1 != nil {
-		return json.Marshal(&src.GitHubConfigAnyOf1)
+		return json.Marshal(src.GitHubConfigAnyOf1)
 	}
 
 	return nil, nil // no data in anyOf schemas

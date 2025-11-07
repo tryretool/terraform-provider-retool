@@ -25,3 +25,8 @@
 .travis.yml
 git_push.sh
 test/**
+
+# Type aliases manually created for permissions endpoints
+# The generator doesn't create these for grant/revoke endpoints, only for listObjects
+model__permissions_grant_post_200_response_data_inner.go
+model__permissions_revoke_post_200_response_data_inner.go

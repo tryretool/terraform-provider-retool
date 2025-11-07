@@ -126,19 +126,19 @@ func (dst *PermissionsGrantPostRequestObject) UnmarshalJSON(data []byte) error {
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src PermissionsGrantPostRequestObject) MarshalJSON() ([]byte, error) {
 	if src.App != nil {
-		return json.Marshal(&src.App)
+		return json.Marshal(src.App)
 	}
 
 	if src.Folder != nil {
-		return json.Marshal(&src.Folder)
+		return json.Marshal(src.Folder)
 	}
 
 	if src.Resource != nil {
-		return json.Marshal(&src.Resource)
+		return json.Marshal(src.Resource)
 	}
 
 	if src.ResourceConfiguration != nil {
-		return json.Marshal(&src.ResourceConfiguration)
+		return json.Marshal(src.ResourceConfiguration)
 	}
 
 	return nil, nil // no data in oneOf schemas
