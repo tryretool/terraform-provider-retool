@@ -290,12 +290,15 @@ func (r *folderResource) Delete(ctx context.Context, req resource.DeleteRequest,
 		return
 	}
 
-	// Delete existing order.
+	// Delete existing folder.
+	// Note: We don't use recursive=true here because Terraform manages the deletion order
+	// through its dependency graph. Child folders will be deleted before parent folders.
 	httpResponse, err := r.client.FoldersAPI.FoldersFolderIdDelete(ctx, state.ID.ValueString()).Execute()
+
 	if err != nil && !(httpResponse != nil && httpResponse.StatusCode == 404) { // It's ok to not find the resource being deleted.
 		resp.Diagnostics.AddError(
 			"Error Deleting Folder",
-			"Could not delete folder"+state.ID.ValueString()+", unexpected error: "+err.Error(),
+			"Could not delete folder "+state.ID.ValueString()+", unexpected error: "+err.Error(),
 		)
 		tflog.Error(ctx, "Error Deleting Folder", utils.AddHTTPStatusCode(map[string]any{"error": err.Error()}, httpResponse))
 		return
