@@ -40,3 +40,17 @@ You can run it as follows:
 ```
 RETOOL_ACCESS_TOKEN=<your API token generated on localhost:3000> go run client/main.go
 ```
+
+
+## Notes from updating to 2.9.0
+
+LLMs have sped this up a fair bit. With Sonnet 4.5 in cursor I was able to add a copy of the original spec this was based on (2.4.0), point it at the modified spec in this repo, and add the spec we were targeting (2.9.0). The following propmt yielded really good results:
+```
+@openAPISpecv2.4.0.json was updated to @openAPISpec.json to support terraform client autogeneration as described in @README.md 
+
+Understand those changes, and attempt to update autogeneration to v2.9.0 as described in @openApiSpecv2.9.json 
+
+You can understand what commands to run to build the library, and get more context on how the original file was modified in the README file
+```
+
+Following that a cursor agent was able to make remarkable progress on updating the provider code to respect this, including tests.
