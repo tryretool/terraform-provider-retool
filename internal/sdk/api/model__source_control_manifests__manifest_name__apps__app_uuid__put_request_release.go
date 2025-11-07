@@ -40,9 +40,9 @@ func (dst *SourceControlManifestsManifestNameAppsAppUuidPutRequestRelease) Unmar
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src *SourceControlManifestsManifestNameAppsAppUuidPutRequestRelease) MarshalJSON() ([]byte, error) {
+func (src SourceControlManifestsManifestNameAppsAppUuidPutRequestRelease) MarshalJSON() ([]byte, error) {
 	if src.string != nil {
-		return json.Marshal(&src.string)
+		return json.Marshal(src.string)
 	}
 
 	return nil, nil // no data in anyOf schemas

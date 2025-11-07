@@ -1,6 +1,7 @@
 package acctest
 
 import (
+	"crypto/tls"
 	"net/http"
 	"os"
 	"path"
@@ -28,11 +29,21 @@ const (
 func newHTTPRecorder(t *testing.T) *recorder.Recorder {
 	t.Helper()
 
+	// Create an HTTP client with TLS verification disabled for recording
+	httpClient := &http.Client{
+		Transport: &http.Transport{
+			TLSClientConfig: &tls.Config{
+				InsecureSkipVerify: true,
+			},
+		},
+	}
+
 	recorderTransport, err := recorder.NewWithOptions(
 		&recorder.Options{
 			CassetteName:       cassetteName(t.Name()),
 			Mode:               recorder.ModeRecordOnce,
 			SkipRequestLatency: true,
+			RealTransport:      httpClient.Transport,
 		},
 	)
 	require.NoError(t, err)

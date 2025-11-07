@@ -82,11 +82,11 @@ func (dst *ObservabilityProviderProviderTestPost200ResponseData) UnmarshalJSON(d
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src ObservabilityProviderProviderTestPost200ResponseData) MarshalJSON() ([]byte, error) {
 	if src.ObservabilityProviderProviderTestPost200ResponseDataOneOf != nil {
-		return json.Marshal(&src.ObservabilityProviderProviderTestPost200ResponseDataOneOf)
+		return json.Marshal(src.ObservabilityProviderProviderTestPost200ResponseDataOneOf)
 	}
 
 	if src.ObservabilityProviderProviderTestPost200ResponseDataOneOf1 != nil {
-		return json.Marshal(&src.ObservabilityProviderProviderTestPost200ResponseDataOneOf1)
+		return json.Marshal(src.ObservabilityProviderProviderTestPost200ResponseDataOneOf1)
 	}
 
 	return nil, nil // no data in oneOf schemas

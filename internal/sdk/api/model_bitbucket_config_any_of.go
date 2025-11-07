@@ -21,7 +21,7 @@ var _ MappedNullable = &BitbucketConfigAnyOf{}
 
 // BitbucketConfigAnyOf struct for BitbucketConfigAnyOf
 type BitbucketConfigAnyOf struct {
-	Type string `json:"type"`
+	Type *string `json:"type,omitempty"`
 	// Your Bitbucket username.
 	Username string `json:"username"`
 	// Your Bitbucket app password.
@@ -38,9 +38,8 @@ type _BitbucketConfigAnyOf BitbucketConfigAnyOf
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBitbucketConfigAnyOf(type_ string, username string, appPassword string) *BitbucketConfigAnyOf {
+func NewBitbucketConfigAnyOf(username string, appPassword string) *BitbucketConfigAnyOf {
 	this := BitbucketConfigAnyOf{}
-	this.Type = type_
 	this.Username = username
 	this.AppPassword = appPassword
 	return &this
@@ -54,28 +53,36 @@ func NewBitbucketConfigAnyOfWithDefaults() *BitbucketConfigAnyOf {
 	return &this
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *BitbucketConfigAnyOf) GetType() string {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
-
-	return o.Type
+	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BitbucketConfigAnyOf) GetTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
-// SetType sets field value
+// HasType returns a boolean if a field has been set.
+func (o *BitbucketConfigAnyOf) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
 func (o *BitbucketConfigAnyOf) SetType(v string) {
-	o.Type = v
+	o.Type = &v
 }
 
 // GetUsername returns the Username field value
@@ -200,7 +207,9 @@ func (o BitbucketConfigAnyOf) MarshalJSON() ([]byte, error) {
 
 func (o BitbucketConfigAnyOf) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
 	toSerialize["username"] = o.Username
 	toSerialize["app_password"] = o.AppPassword
 	if !IsNil(o.Url) {
@@ -217,7 +226,6 @@ func (o *BitbucketConfigAnyOf) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"type",
 		"username",
 		"app_password",
 	}

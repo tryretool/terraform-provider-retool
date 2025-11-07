@@ -40,9 +40,9 @@ func (dst *ObservabilityProviderProviderTestPostProviderParameter) UnmarshalJSON
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src *ObservabilityProviderProviderTestPostProviderParameter) MarshalJSON() ([]byte, error) {
+func (src ObservabilityProviderProviderTestPostProviderParameter) MarshalJSON() ([]byte, error) {
 	if src.string != nil {
-		return json.Marshal(&src.string)
+		return json.Marshal(src.string)
 	}
 
 	return nil, nil // no data in anyOf schemas

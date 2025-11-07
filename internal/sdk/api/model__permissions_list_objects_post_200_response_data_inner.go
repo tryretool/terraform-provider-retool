@@ -15,138 +15,162 @@ import (
 	"fmt"
 )
 
-// PermissionsListObjectsPost200ResponseDataInner - struct for PermissionsListObjectsPost200ResponseDataInner
+// PermissionsListObjectsPost200ResponseDataInner struct for PermissionsListObjectsPost200ResponseDataInner
 type PermissionsListObjectsPost200ResponseDataInner struct {
-	PermissionsListObjectsPost200ResponseDataInnerOneOf *PermissionsListObjectsPost200ResponseDataInnerOneOf
-	PermissionsListObjectsPost200ResponseDataInnerOneOf1 *PermissionsListObjectsPost200ResponseDataInnerOneOf1
-	PermissionsListObjectsPost200ResponseDataInnerOneOf2 *PermissionsListObjectsPost200ResponseDataInnerOneOf2
-	PermissionsListObjectsPost200ResponseDataInnerOneOf3 *PermissionsListObjectsPost200ResponseDataInnerOneOf3
+	PermissionsListObjectsPost200ResponseDataInnerAnyOf *PermissionsListObjectsPost200ResponseDataInnerAnyOf
+	PermissionsListObjectsPost200ResponseDataInnerAnyOf1 *PermissionsListObjectsPost200ResponseDataInnerAnyOf1
+	PermissionsListObjectsPost200ResponseDataInnerAnyOf2 *PermissionsListObjectsPost200ResponseDataInnerAnyOf2
+	PermissionsListObjectsPost200ResponseDataInnerAnyOf3 *PermissionsListObjectsPost200ResponseDataInnerAnyOf3
 }
 
-// PermissionsListObjectsPost200ResponseDataInnerOneOfAsPermissionsListObjectsPost200ResponseDataInner is a convenience function that returns PermissionsListObjectsPost200ResponseDataInnerOneOf wrapped in PermissionsListObjectsPost200ResponseDataInner
-func PermissionsListObjectsPost200ResponseDataInnerOneOfAsPermissionsListObjectsPost200ResponseDataInner(v *PermissionsListObjectsPost200ResponseDataInnerOneOf) PermissionsListObjectsPost200ResponseDataInner {
-	return PermissionsListObjectsPost200ResponseDataInner{
-		PermissionsListObjectsPost200ResponseDataInnerOneOf: v,
-	}
-}
-
-// PermissionsListObjectsPost200ResponseDataInnerOneOf1AsPermissionsListObjectsPost200ResponseDataInner is a convenience function that returns PermissionsListObjectsPost200ResponseDataInnerOneOf1 wrapped in PermissionsListObjectsPost200ResponseDataInner
-func PermissionsListObjectsPost200ResponseDataInnerOneOf1AsPermissionsListObjectsPost200ResponseDataInner(v *PermissionsListObjectsPost200ResponseDataInnerOneOf1) PermissionsListObjectsPost200ResponseDataInner {
-	return PermissionsListObjectsPost200ResponseDataInner{
-		PermissionsListObjectsPost200ResponseDataInnerOneOf1: v,
-	}
-}
-
-// PermissionsListObjectsPost200ResponseDataInnerOneOf2AsPermissionsListObjectsPost200ResponseDataInner is a convenience function that returns PermissionsListObjectsPost200ResponseDataInnerOneOf2 wrapped in PermissionsListObjectsPost200ResponseDataInner
-func PermissionsListObjectsPost200ResponseDataInnerOneOf2AsPermissionsListObjectsPost200ResponseDataInner(v *PermissionsListObjectsPost200ResponseDataInnerOneOf2) PermissionsListObjectsPost200ResponseDataInner {
-	return PermissionsListObjectsPost200ResponseDataInner{
-		PermissionsListObjectsPost200ResponseDataInnerOneOf2: v,
-	}
-}
-
-// PermissionsListObjectsPost200ResponseDataInnerOneOf3AsPermissionsListObjectsPost200ResponseDataInner is a convenience function that returns PermissionsListObjectsPost200ResponseDataInnerOneOf3 wrapped in PermissionsListObjectsPost200ResponseDataInner
-func PermissionsListObjectsPost200ResponseDataInnerOneOf3AsPermissionsListObjectsPost200ResponseDataInner(v *PermissionsListObjectsPost200ResponseDataInnerOneOf3) PermissionsListObjectsPost200ResponseDataInner {
-	return PermissionsListObjectsPost200ResponseDataInner{
-		PermissionsListObjectsPost200ResponseDataInnerOneOf3: v,
-	}
-}
-
-
-// Unmarshal JSON data into one of the pointers in the struct
+// Unmarshal JSON data into any of the pointers in the struct
 func (dst *PermissionsListObjectsPost200ResponseDataInner) UnmarshalJSON(data []byte) error {
 	var err error
-	
-	// Use discriminator to determine which schema to unmarshal into
-	var discriminator struct {
-		Type string `json:"type"`
-	}
-	err = json.Unmarshal(data, &discriminator)
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = json.Unmarshal(data, &jsonDict)
 	if err != nil {
-		return fmt.Errorf("failed to unmarshal discriminator: %v", err)
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
 	}
 
-	switch discriminator.Type {
-	case "folder":
-		// Unmarshal into PermissionsListObjectsPost200ResponseDataInnerOneOf (folder)
-		dst.PermissionsListObjectsPost200ResponseDataInnerOneOf = &PermissionsListObjectsPost200ResponseDataInnerOneOf{}
-		err = newStrictDecoder(data).Decode(dst.PermissionsListObjectsPost200ResponseDataInnerOneOf)
-		if err != nil {
-			return fmt.Errorf("failed to unmarshal as folder: %v", err)
+	// check if the discriminator value is '_permissions_listObjects_post_200_response_data_inner_anyOf'
+	if jsonDict["type"] == "_permissions_listObjects_post_200_response_data_inner_anyOf" {
+		// try to unmarshal JSON data into PermissionsListObjectsPost200ResponseDataInnerAnyOf
+		err = json.Unmarshal(data, &dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf);
+		if err == nil {
+			jsonPermissionsListObjectsPost200ResponseDataInnerAnyOf, _ := json.Marshal(dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf)
+			if string(jsonPermissionsListObjectsPost200ResponseDataInnerAnyOf) == "{}" { // empty struct
+				dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf = nil
+			} else {
+				return nil // data stored in dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf, return on the first match
+			}
+		} else {
+			dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf = nil
 		}
-		return nil
-	case "app":
-		// Unmarshal into PermissionsListObjectsPost200ResponseDataInnerOneOf1 (app)
-		dst.PermissionsListObjectsPost200ResponseDataInnerOneOf1 = &PermissionsListObjectsPost200ResponseDataInnerOneOf1{}
-		err = newStrictDecoder(data).Decode(dst.PermissionsListObjectsPost200ResponseDataInnerOneOf1)
-		if err != nil {
-			return fmt.Errorf("failed to unmarshal as app: %v", err)
-		}
-		return nil
-	case "resource":
-		// Unmarshal into PermissionsListObjectsPost200ResponseDataInnerOneOf2 (resource)
-		dst.PermissionsListObjectsPost200ResponseDataInnerOneOf2 = &PermissionsListObjectsPost200ResponseDataInnerOneOf2{}
-		err = newStrictDecoder(data).Decode(dst.PermissionsListObjectsPost200ResponseDataInnerOneOf2)
-		if err != nil {
-			return fmt.Errorf("failed to unmarshal as resource: %v", err)
-		}
-		return nil
-	case "resource_configuration":
-		// Unmarshal into PermissionsListObjectsPost200ResponseDataInnerOneOf3 (resource_configuration)
-		dst.PermissionsListObjectsPost200ResponseDataInnerOneOf3 = &PermissionsListObjectsPost200ResponseDataInnerOneOf3{}
-		err = newStrictDecoder(data).Decode(dst.PermissionsListObjectsPost200ResponseDataInnerOneOf3)
-		if err != nil {
-			return fmt.Errorf("failed to unmarshal as resource_configuration: %v", err)
-		}
-		return nil
-	default:
-		return fmt.Errorf("unknown discriminator value '%s' for oneOf(PermissionsListObjectsPost200ResponseDataInner)", discriminator.Type)
 	}
+
+	// check if the discriminator value is '_permissions_listObjects_post_200_response_data_inner_anyOf_1'
+	if jsonDict["type"] == "_permissions_listObjects_post_200_response_data_inner_anyOf_1" {
+		// try to unmarshal JSON data into PermissionsListObjectsPost200ResponseDataInnerAnyOf1
+		err = json.Unmarshal(data, &dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf1);
+		if err == nil {
+			jsonPermissionsListObjectsPost200ResponseDataInnerAnyOf1, _ := json.Marshal(dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf1)
+			if string(jsonPermissionsListObjectsPost200ResponseDataInnerAnyOf1) == "{}" { // empty struct
+				dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf1 = nil
+			} else {
+				return nil // data stored in dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf1, return on the first match
+			}
+		} else {
+			dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf1 = nil
+		}
+	}
+
+	// check if the discriminator value is '_permissions_listObjects_post_200_response_data_inner_anyOf_2'
+	if jsonDict["type"] == "_permissions_listObjects_post_200_response_data_inner_anyOf_2" {
+		// try to unmarshal JSON data into PermissionsListObjectsPost200ResponseDataInnerAnyOf2
+		err = json.Unmarshal(data, &dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf2);
+		if err == nil {
+			jsonPermissionsListObjectsPost200ResponseDataInnerAnyOf2, _ := json.Marshal(dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf2)
+			if string(jsonPermissionsListObjectsPost200ResponseDataInnerAnyOf2) == "{}" { // empty struct
+				dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf2 = nil
+			} else {
+				return nil // data stored in dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf2, return on the first match
+			}
+		} else {
+			dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf2 = nil
+		}
+	}
+
+	// check if the discriminator value is '_permissions_listObjects_post_200_response_data_inner_anyOf_3'
+	if jsonDict["type"] == "_permissions_listObjects_post_200_response_data_inner_anyOf_3" {
+		// try to unmarshal JSON data into PermissionsListObjectsPost200ResponseDataInnerAnyOf3
+		err = json.Unmarshal(data, &dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf3);
+		if err == nil {
+			jsonPermissionsListObjectsPost200ResponseDataInnerAnyOf3, _ := json.Marshal(dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf3)
+			if string(jsonPermissionsListObjectsPost200ResponseDataInnerAnyOf3) == "{}" { // empty struct
+				dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf3 = nil
+			} else {
+				return nil // data stored in dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf3, return on the first match
+			}
+		} else {
+			dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf3 = nil
+		}
+	}
+
+	// try to unmarshal JSON data into PermissionsListObjectsPost200ResponseDataInnerAnyOf
+	err = json.Unmarshal(data, &dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf);
+	if err == nil {
+		jsonPermissionsListObjectsPost200ResponseDataInnerAnyOf, _ := json.Marshal(dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf)
+		if string(jsonPermissionsListObjectsPost200ResponseDataInnerAnyOf) == "{}" { // empty struct
+			dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf = nil
+		} else {
+			return nil // data stored in dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf, return on the first match
+		}
+	} else {
+		dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf = nil
+	}
+
+	// try to unmarshal JSON data into PermissionsListObjectsPost200ResponseDataInnerAnyOf1
+	err = json.Unmarshal(data, &dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf1);
+	if err == nil {
+		jsonPermissionsListObjectsPost200ResponseDataInnerAnyOf1, _ := json.Marshal(dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf1)
+		if string(jsonPermissionsListObjectsPost200ResponseDataInnerAnyOf1) == "{}" { // empty struct
+			dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf1 = nil
+		} else {
+			return nil // data stored in dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf1, return on the first match
+		}
+	} else {
+		dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf1 = nil
+	}
+
+	// try to unmarshal JSON data into PermissionsListObjectsPost200ResponseDataInnerAnyOf2
+	err = json.Unmarshal(data, &dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf2);
+	if err == nil {
+		jsonPermissionsListObjectsPost200ResponseDataInnerAnyOf2, _ := json.Marshal(dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf2)
+		if string(jsonPermissionsListObjectsPost200ResponseDataInnerAnyOf2) == "{}" { // empty struct
+			dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf2 = nil
+		} else {
+			return nil // data stored in dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf2, return on the first match
+		}
+	} else {
+		dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf2 = nil
+	}
+
+	// try to unmarshal JSON data into PermissionsListObjectsPost200ResponseDataInnerAnyOf3
+	err = json.Unmarshal(data, &dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf3);
+	if err == nil {
+		jsonPermissionsListObjectsPost200ResponseDataInnerAnyOf3, _ := json.Marshal(dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf3)
+		if string(jsonPermissionsListObjectsPost200ResponseDataInnerAnyOf3) == "{}" { // empty struct
+			dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf3 = nil
+		} else {
+			return nil // data stored in dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf3, return on the first match
+		}
+	} else {
+		dst.PermissionsListObjectsPost200ResponseDataInnerAnyOf3 = nil
+	}
+
+	return fmt.Errorf("data failed to match schemas in anyOf(PermissionsListObjectsPost200ResponseDataInner)")
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src PermissionsListObjectsPost200ResponseDataInner) MarshalJSON() ([]byte, error) {
-	if src.PermissionsListObjectsPost200ResponseDataInnerOneOf != nil {
-		return json.Marshal(&src.PermissionsListObjectsPost200ResponseDataInnerOneOf)
+	if src.PermissionsListObjectsPost200ResponseDataInnerAnyOf != nil {
+		return json.Marshal(src.PermissionsListObjectsPost200ResponseDataInnerAnyOf)
 	}
 
-	if src.PermissionsListObjectsPost200ResponseDataInnerOneOf1 != nil {
-		return json.Marshal(&src.PermissionsListObjectsPost200ResponseDataInnerOneOf1)
+	if src.PermissionsListObjectsPost200ResponseDataInnerAnyOf1 != nil {
+		return json.Marshal(src.PermissionsListObjectsPost200ResponseDataInnerAnyOf1)
 	}
 
-	if src.PermissionsListObjectsPost200ResponseDataInnerOneOf2 != nil {
-		return json.Marshal(&src.PermissionsListObjectsPost200ResponseDataInnerOneOf2)
+	if src.PermissionsListObjectsPost200ResponseDataInnerAnyOf2 != nil {
+		return json.Marshal(src.PermissionsListObjectsPost200ResponseDataInnerAnyOf2)
 	}
 
-	if src.PermissionsListObjectsPost200ResponseDataInnerOneOf3 != nil {
-		return json.Marshal(&src.PermissionsListObjectsPost200ResponseDataInnerOneOf3)
+	if src.PermissionsListObjectsPost200ResponseDataInnerAnyOf3 != nil {
+		return json.Marshal(src.PermissionsListObjectsPost200ResponseDataInnerAnyOf3)
 	}
 
-	return nil, nil // no data in oneOf schemas
-}
-
-// Get the actual instance
-func (obj *PermissionsListObjectsPost200ResponseDataInner) GetActualInstance() (interface{}) {
-	if obj == nil {
-		return nil
-	}
-	if obj.PermissionsListObjectsPost200ResponseDataInnerOneOf != nil {
-		return obj.PermissionsListObjectsPost200ResponseDataInnerOneOf
-	}
-
-	if obj.PermissionsListObjectsPost200ResponseDataInnerOneOf1 != nil {
-		return obj.PermissionsListObjectsPost200ResponseDataInnerOneOf1
-	}
-
-	if obj.PermissionsListObjectsPost200ResponseDataInnerOneOf2 != nil {
-		return obj.PermissionsListObjectsPost200ResponseDataInnerOneOf2
-	}
-
-	if obj.PermissionsListObjectsPost200ResponseDataInnerOneOf3 != nil {
-		return obj.PermissionsListObjectsPost200ResponseDataInnerOneOf3
-	}
-
-	// all schemas are nil
-	return nil
+	return nil, nil // no data in anyOf schemas
 }
 
 type NullablePermissionsListObjectsPost200ResponseDataInner struct {

@@ -464,7 +464,7 @@ func updateSourceControlConfig(ctx context.Context, client *api.APIClient, model
 		if globalDiags.HasError() {
 			return
 		}
-		bitbucketConfigInner := api.NewBitbucketConfigAnyOf("AppPassword", bitbucketConfig.Username.ValueString(), bitbucketConfig.AppPassword.ValueString())
+		bitbucketConfigInner := api.NewBitbucketConfigAnyOf(bitbucketConfig.Username.ValueString(), bitbucketConfig.AppPassword.ValueString())
 		bitbucketConfigInner.Url = bitbucketConfig.URL.ValueStringPointer()
 		bitbucketConfigInner.EnterpriseApiUrl = bitbucketConfig.EnterpriseAPIURL.ValueStringPointer()
 		bitbucketConfigWrapped := api.BitbucketConfig{

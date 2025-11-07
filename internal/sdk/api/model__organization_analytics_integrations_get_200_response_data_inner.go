@@ -104,15 +104,15 @@ func (dst *OrganizationAnalyticsIntegrationsGet200ResponseDataInner) UnmarshalJS
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src OrganizationAnalyticsIntegrationsGet200ResponseDataInner) MarshalJSON() ([]byte, error) {
 	if src.OrganizationAnalyticsIntegrationsGet200ResponseDataInnerOneOf != nil {
-		return json.Marshal(&src.OrganizationAnalyticsIntegrationsGet200ResponseDataInnerOneOf)
+		return json.Marshal(src.OrganizationAnalyticsIntegrationsGet200ResponseDataInnerOneOf)
 	}
 
 	if src.OrganizationAnalyticsIntegrationsGet200ResponseDataInnerOneOf1 != nil {
-		return json.Marshal(&src.OrganizationAnalyticsIntegrationsGet200ResponseDataInnerOneOf1)
+		return json.Marshal(src.OrganizationAnalyticsIntegrationsGet200ResponseDataInnerOneOf1)
 	}
 
 	if src.OrganizationAnalyticsIntegrationsGet200ResponseDataInnerOneOf2 != nil {
-		return json.Marshal(&src.OrganizationAnalyticsIntegrationsGet200ResponseDataInnerOneOf2)
+		return json.Marshal(src.OrganizationAnalyticsIntegrationsGet200ResponseDataInnerOneOf2)
 	}
 
 	return nil, nil // no data in oneOf schemas

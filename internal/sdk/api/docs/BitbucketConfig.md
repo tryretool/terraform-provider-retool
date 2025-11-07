@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
+**Type** | Pointer to **string** |  | [optional] 
 **Username** | **string** | Your Bitbucket username. | 
 **AppPassword** | **string** | Your Bitbucket app password. | 
 **Url** | Pointer to **string** | The domain used to access your self-hosted Bitbucket instance. Defaults to https://bitbucket.org/. | [optional] 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewBitbucketConfig
 
-`func NewBitbucketConfig(type_ string, username string, appPassword string, token string, ) *BitbucketConfig`
+`func NewBitbucketConfig(username string, appPassword string, token string, ) *BitbucketConfig`
 
 NewBitbucketConfig instantiates a new BitbucketConfig object
 This constructor will assign default values to properties that have it defined,
@@ -49,6 +49,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *BitbucketConfig) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetUsername
 

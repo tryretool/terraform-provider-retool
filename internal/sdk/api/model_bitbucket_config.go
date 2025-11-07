@@ -24,42 +24,43 @@ type BitbucketConfig struct {
 // Unmarshal JSON data into any of the pointers in the struct
 func (dst *BitbucketConfig) UnmarshalJSON(data []byte) error {
 	var err error
-	
-	// Use discriminator to determine which schema to unmarshal into
-	var discriminator struct {
-		Type string `json:"type"`
-	}
-	err = json.Unmarshal(data, &discriminator)
-	if err != nil {
-		return fmt.Errorf("failed to unmarshal discriminator: %v", err)
+	// try to unmarshal JSON data into BitbucketConfigAnyOf
+	err = json.Unmarshal(data, &dst.BitbucketConfigAnyOf);
+	if err == nil {
+		jsonBitbucketConfigAnyOf, _ := json.Marshal(dst.BitbucketConfigAnyOf)
+		if string(jsonBitbucketConfigAnyOf) == "{}" { // empty struct
+			dst.BitbucketConfigAnyOf = nil
+		} else {
+			return nil // data stored in dst.BitbucketConfigAnyOf, return on the first match
+		}
+	} else {
+		dst.BitbucketConfigAnyOf = nil
 	}
 
-	switch discriminator.Type {
-	case "AppPassword":
-		err = json.Unmarshal(data, &dst.BitbucketConfigAnyOf)
-		if err != nil {
-			return fmt.Errorf("failed to unmarshal as AppPassword: %v", err)
+	// try to unmarshal JSON data into BitbucketConfigAnyOf1
+	err = json.Unmarshal(data, &dst.BitbucketConfigAnyOf1);
+	if err == nil {
+		jsonBitbucketConfigAnyOf1, _ := json.Marshal(dst.BitbucketConfigAnyOf1)
+		if string(jsonBitbucketConfigAnyOf1) == "{}" { // empty struct
+			dst.BitbucketConfigAnyOf1 = nil
+		} else {
+			return nil // data stored in dst.BitbucketConfigAnyOf1, return on the first match
 		}
-		return nil
-	case "Token":
-		err = json.Unmarshal(data, &dst.BitbucketConfigAnyOf1)
-		if err != nil {
-			return fmt.Errorf("failed to unmarshal as Token: %v", err)
-		}
-		return nil
-	default:
-		return fmt.Errorf("unknown discriminator value '%s' for anyOf(BitbucketConfig)", discriminator.Type)
+	} else {
+		dst.BitbucketConfigAnyOf1 = nil
 	}
+
+	return fmt.Errorf("data failed to match schemas in anyOf(BitbucketConfig)")
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src *BitbucketConfig) MarshalJSON() ([]byte, error) {
+func (src BitbucketConfig) MarshalJSON() ([]byte, error) {
 	if src.BitbucketConfigAnyOf != nil {
-		return json.Marshal(&src.BitbucketConfigAnyOf)
+		return json.Marshal(src.BitbucketConfigAnyOf)
 	}
 
 	if src.BitbucketConfigAnyOf1 != nil {
-		return json.Marshal(&src.BitbucketConfigAnyOf1)
+		return json.Marshal(src.BitbucketConfigAnyOf1)
 	}
 
 	return nil, nil // no data in anyOf schemas

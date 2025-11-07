@@ -11,8 +11,8 @@ API version: 2.9.0
 package api
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -78,16 +78,7 @@ func (o SourceControlConfigPutRequest) MarshalJSON() ([]byte, error) {
 
 func (o SourceControlConfigPutRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// Marshal the config using its custom MarshalJSON to flatten the oneOf structure
-	configBytes, err := o.Config.MarshalJSON()
-	if err != nil {
-		return nil, err
-	}
-	var configMap map[string]interface{}
-	if err := json.Unmarshal(configBytes, &configMap); err != nil {
-		return nil, err
-	}
-	toSerialize["config"] = configMap
+	toSerialize["config"] = o.Config
 	return toSerialize, nil
 }
 

@@ -110,29 +110,29 @@ func (dst *FoldersFolderIdPatchRequestOperationsInner) UnmarshalJSON(data []byte
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src *FoldersFolderIdPatchRequestOperationsInner) MarshalJSON() ([]byte, error) {
+func (src FoldersFolderIdPatchRequestOperationsInner) MarshalJSON() ([]byte, error) {
 	if src.AddOperation != nil {
-		return json.Marshal(&src.AddOperation)
+		return json.Marshal(src.AddOperation)
 	}
 
 	if src.CopyOperation != nil {
-		return json.Marshal(&src.CopyOperation)
+		return json.Marshal(src.CopyOperation)
 	}
 
 	if src.MoveOperation != nil {
-		return json.Marshal(&src.MoveOperation)
+		return json.Marshal(src.MoveOperation)
 	}
 
 	if src.RemoveOperation != nil {
-		return json.Marshal(&src.RemoveOperation)
+		return json.Marshal(src.RemoveOperation)
 	}
 
 	if src.ReplaceOperation != nil {
-		return json.Marshal(&src.ReplaceOperation)
+		return json.Marshal(src.ReplaceOperation)
 	}
 
 	if src.TestOperation != nil {
-		return json.Marshal(&src.TestOperation)
+		return json.Marshal(src.TestOperation)
 	}
 
 	return nil, nil // no data in anyOf schemas

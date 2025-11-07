@@ -68,17 +68,17 @@ func (dst *SnowflakeOptionsAuthenticationOptions) UnmarshalJSON(data []byte) err
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src *SnowflakeOptionsAuthenticationOptions) MarshalJSON() ([]byte, error) {
+func (src SnowflakeOptionsAuthenticationOptions) MarshalJSON() ([]byte, error) {
 	if src.SnowflakeOptionsAuthenticationOptionsAnyOf != nil {
-		return json.Marshal(&src.SnowflakeOptionsAuthenticationOptionsAnyOf)
+		return json.Marshal(src.SnowflakeOptionsAuthenticationOptionsAnyOf)
 	}
 
 	if src.SnowflakeOptionsAuthenticationOptionsAnyOf1 != nil {
-		return json.Marshal(&src.SnowflakeOptionsAuthenticationOptionsAnyOf1)
+		return json.Marshal(src.SnowflakeOptionsAuthenticationOptionsAnyOf1)
 	}
 
 	if src.SnowflakeOptionsAuthenticationOptionsAnyOf2 != nil {
-		return json.Marshal(&src.SnowflakeOptionsAuthenticationOptionsAnyOf2)
+		return json.Marshal(src.SnowflakeOptionsAuthenticationOptionsAnyOf2)
 	}
 
 	return nil, nil // no data in anyOf schemas

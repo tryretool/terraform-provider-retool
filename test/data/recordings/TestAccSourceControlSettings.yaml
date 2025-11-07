@@ -6,14 +6,14 @@ interactions:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
-        content_length: 212
+        content_length: 250
         transfer_encoding: []
         trailer: {}
         host: recorded.retool.dev
         remote_addr: ""
         request_uri: ""
         body: |
-            {"settings":{"auto_branch_naming_enabled":false,"custom_pull_request_template":"custom-pull-request-template","custom_pull_request_template_enabled":true,"force_uuid_mapping":true,"version_control_locked":true,"auto_cleanup_branches_enabled":false}}
+            {"settings":{"auto_branch_naming_enabled":false,"auto_cleanup_branches_enabled":false,"custom_pull_request_template":"custom-pull-request-template","custom_pull_request_template_enabled":true,"force_uuid_mapping":true,"version_control_locked":true}}
         form: {}
         headers:
             Content-Type:
@@ -28,15 +28,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 222
+        content_length: 260
         uncompressed: false
-        body: '{"success":true,"data":{"auto_branch_naming_enabled":false,"custom_pull_request_template_enabled":true,"custom_pull_request_template":"custom-pull-request-template","version_control_locked":true,"auto_cleanup_branches_enabled":false,"force_uuid_mapping":true}}'
+        body: '{"success":true,"data":{"auto_branch_naming_enabled":false,"custom_pull_request_template_enabled":true,"custom_pull_request_template":"custom-pull-request-template","version_control_locked":true,"force_uuid_mapping":true,"auto_cleanup_branches_enabled":false}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 98.346292ms
+        duration: 80.003292ms
     - id: 1
       request:
         proto: HTTP/1.1
@@ -61,15 +61,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 222
+        content_length: 260
         uncompressed: false
-        body: '{"success":true,"data":{"auto_branch_naming_enabled":false,"custom_pull_request_template_enabled":true,"custom_pull_request_template":"custom-pull-request-template","version_control_locked":true,"auto_cleanup_branches_enabled":false,"force_uuid_mapping":true}}'
+        body: '{"success":true,"data":{"auto_branch_naming_enabled":false,"custom_pull_request_template_enabled":true,"custom_pull_request_template":"custom-pull-request-template","version_control_locked":true,"force_uuid_mapping":true,"auto_cleanup_branches_enabled":false}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 94.757625ms
+        duration: 39.299833ms
     - id: 2
       request:
         proto: HTTP/1.1
@@ -94,15 +94,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 222
+        content_length: 260
         uncompressed: false
-        body: '{"success":true,"data":{"auto_branch_naming_enabled":false,"custom_pull_request_template_enabled":true,"custom_pull_request_template":"custom-pull-request-template","version_control_locked":true,"auto_cleanup_branches_enabled":false,"force_uuid_mapping":true}}'
+        body: '{"success":true,"data":{"auto_branch_naming_enabled":false,"custom_pull_request_template_enabled":true,"custom_pull_request_template":"custom-pull-request-template","version_control_locked":true,"force_uuid_mapping":true,"auto_cleanup_branches_enabled":false}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 83.300458ms
+        duration: 34.270333ms
     - id: 3
       request:
         proto: HTTP/1.1
@@ -127,28 +127,28 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 222
+        content_length: 260
         uncompressed: false
-        body: '{"success":true,"data":{"auto_branch_naming_enabled":false,"custom_pull_request_template_enabled":true,"custom_pull_request_template":"custom-pull-request-template","version_control_locked":true,"auto_cleanup_branches_enabled":false,"force_uuid_mapping":true}}'
+        body: '{"success":true,"data":{"auto_branch_naming_enabled":false,"custom_pull_request_template_enabled":true,"custom_pull_request_template":"custom-pull-request-template","version_control_locked":true,"force_uuid_mapping":true,"auto_cleanup_branches_enabled":false}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 79.493708ms
+        duration: 35.76725ms
     - id: 4
       request:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
-        content_length: 222
+        content_length: 260
         transfer_encoding: []
         trailer: {}
         host: recorded.retool.dev
         remote_addr: ""
         request_uri: ""
         body: |
-            {"settings":{"auto_branch_naming_enabled":true,"custom_pull_request_template":"custom-pull-request-template-updated","custom_pull_request_template_enabled":false,"force_uuid_mapping":false,"version_control_locked":false,"auto_cleanup_branches_enabled":false}}
+            {"settings":{"auto_branch_naming_enabled":true,"auto_cleanup_branches_enabled":false,"custom_pull_request_template":"custom-pull-request-template-updated","custom_pull_request_template_enabled":false,"force_uuid_mapping":false,"version_control_locked":false}}
         form: {}
         headers:
             Content-Type:
@@ -163,15 +163,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 232
+        content_length: 270
         uncompressed: false
-        body: '{"success":true,"data":{"auto_branch_naming_enabled":true,"custom_pull_request_template_enabled":false,"custom_pull_request_template":"custom-pull-request-template-updated","version_control_locked":false,"auto_cleanup_branches_enabled":false,"force_uuid_mapping":false}}'
+        body: '{"success":true,"data":{"auto_branch_naming_enabled":true,"custom_pull_request_template_enabled":false,"custom_pull_request_template":"custom-pull-request-template-updated","version_control_locked":false,"force_uuid_mapping":false,"auto_cleanup_branches_enabled":false}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 98.3665ms
+        duration: 40.695917ms
     - id: 5
       request:
         proto: HTTP/1.1
@@ -196,15 +196,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 232
+        content_length: 270
         uncompressed: false
-        body: '{"success":true,"data":{"auto_branch_naming_enabled":true,"custom_pull_request_template_enabled":false,"custom_pull_request_template":"custom-pull-request-template-updated","version_control_locked":false,"auto_cleanup_branches_enabled":false,"force_uuid_mapping":false}}'
+        body: '{"success":true,"data":{"auto_branch_naming_enabled":true,"custom_pull_request_template_enabled":false,"custom_pull_request_template":"custom-pull-request-template-updated","version_control_locked":false,"force_uuid_mapping":false,"auto_cleanup_branches_enabled":false}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 79.129667ms
+        duration: 41.831083ms
     - id: 6
       request:
         proto: HTTP/1.1
@@ -229,28 +229,28 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 232
+        content_length: 270
         uncompressed: false
-        body: '{"success":true,"data":{"auto_branch_naming_enabled":true,"custom_pull_request_template_enabled":false,"custom_pull_request_template":"custom-pull-request-template-updated","version_control_locked":false,"auto_cleanup_branches_enabled":false,"force_uuid_mapping":false}}'
+        body: '{"success":true,"data":{"auto_branch_naming_enabled":true,"custom_pull_request_template_enabled":false,"custom_pull_request_template":"custom-pull-request-template-updated","version_control_locked":false,"force_uuid_mapping":false,"auto_cleanup_branches_enabled":false}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 92.023042ms
+        duration: 38.128125ms
     - id: 7
       request:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
-        content_length: 186
+        content_length: 224
         transfer_encoding: []
         trailer: {}
         host: recorded.retool.dev
         remote_addr: ""
         request_uri: ""
         body: |
-            {"settings":{"auto_branch_naming_enabled":true,"custom_pull_request_template":"","custom_pull_request_template_enabled":false,"force_uuid_mapping":false,"version_control_locked":false,"auto_cleanup_branches_enabled":false}}
+            {"settings":{"auto_branch_naming_enabled":true,"auto_cleanup_branches_enabled":false,"custom_pull_request_template":"","custom_pull_request_template_enabled":false,"force_uuid_mapping":false,"version_control_locked":false}}
         form: {}
         headers:
             Content-Type:
@@ -265,15 +265,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 196
+        content_length: 234
         uncompressed: false
-        body: '{"success":true,"data":{"auto_branch_naming_enabled":true,"custom_pull_request_template_enabled":false,"custom_pull_request_template":"","version_control_locked":false,"auto_cleanup_branches_enabled":false,"force_uuid_mapping":false}}'
+        body: '{"success":true,"data":{"auto_branch_naming_enabled":true,"custom_pull_request_template_enabled":false,"custom_pull_request_template":"","version_control_locked":false,"force_uuid_mapping":false,"auto_cleanup_branches_enabled":false}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 83.329833ms
+        duration: 49.727458ms
     - id: 8
       request:
         proto: HTTP/1.1
@@ -298,15 +298,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 196
+        content_length: 234
         uncompressed: false
-        body: '{"success":true,"data":{"auto_branch_naming_enabled":true,"custom_pull_request_template_enabled":false,"custom_pull_request_template":"","version_control_locked":false,"auto_cleanup_branches_enabled":false,"force_uuid_mapping":false}}'
+        body: '{"success":true,"data":{"auto_branch_naming_enabled":true,"custom_pull_request_template_enabled":false,"custom_pull_request_template":"","version_control_locked":false,"force_uuid_mapping":false,"auto_cleanup_branches_enabled":false}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 87.097167ms
+        duration: 43.674625ms
     - id: 9
       request:
         proto: HTTP/1.1
@@ -319,7 +319,7 @@ interactions:
         remote_addr: ""
         request_uri: ""
         body: |
-            {"settings":{"auto_branch_naming_enabled":true,"custom_pull_request_template":"","custom_pull_request_template_enabled":false,"force_uuid_mapping":false,"version_control_locked":false,"auto_cleanup_branches_enabled":false}}
+            {"settings":{"auto_branch_naming_enabled":true,"custom_pull_request_template":"","custom_pull_request_template_enabled":false,"force_uuid_mapping":false,"version_control_locked":false}}
         form: {}
         headers:
             Content-Type:
@@ -334,12 +334,12 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 196
+        content_length: 234
         uncompressed: false
-        body: '{"success":true,"data":{"auto_branch_naming_enabled":true,"custom_pull_request_template_enabled":false,"custom_pull_request_template":"","version_control_locked":false,"auto_cleanup_branches_enabled":false,"force_uuid_mapping":false}}'
+        body: '{"success":true,"data":{"auto_branch_naming_enabled":true,"custom_pull_request_template_enabled":false,"custom_pull_request_template":"","version_control_locked":false,"force_uuid_mapping":false,"auto_cleanup_branches_enabled":false}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 92.044042ms
+        duration: 73.9215ms

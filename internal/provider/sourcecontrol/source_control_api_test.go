@@ -91,7 +91,7 @@ func testCodeCommitConfig(t *testing.T, client *api.APIClient) {
 }
 
 func testBitbucketConfig(t *testing.T, client *api.APIClient) {
-	bitbucketConfigInner := api.NewBitbucketConfigAnyOf("bitbucket", "username", "app_password")
+	bitbucketConfigInner := api.NewBitbucketConfigAnyOf("username", "app_password")
 	bitbucketConfig := api.BitbucketConfig{
 		BitbucketConfigAnyOf: bitbucketConfigInner,
 	}

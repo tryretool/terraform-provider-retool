@@ -96,25 +96,25 @@ func (dst *SourceControlConfigPutRequestConfig) UnmarshalJSON(data []byte) error
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src *SourceControlConfigPutRequestConfig) MarshalJSON() ([]byte, error) {
+func (src SourceControlConfigPutRequestConfig) MarshalJSON() ([]byte, error) {
 	if src.AWSCodeCommit != nil {
-		return json.Marshal(&src.AWSCodeCommit)
+		return json.Marshal(src.AWSCodeCommit)
 	}
 
 	if src.AzureRepos != nil {
-		return json.Marshal(&src.AzureRepos)
+		return json.Marshal(src.AzureRepos)
 	}
 
 	if src.Bitbucket != nil {
-		return json.Marshal(&src.Bitbucket)
+		return json.Marshal(src.Bitbucket)
 	}
 
 	if src.GitHub != nil {
-		return json.Marshal(&src.GitHub)
+		return json.Marshal(src.GitHub)
 	}
 
 	if src.GitLab != nil {
-		return json.Marshal(&src.GitLab)
+		return json.Marshal(src.GitLab)
 	}
 
 	return nil, nil // no data in anyOf schemas

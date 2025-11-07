@@ -30,9 +30,32 @@ NOTE: To make the client work with our API, I had to manually update `openAPISpe
 
 One of these is for the imprecise conversion of zod discriminated unions (used internally) to openapi - instead of `oneOf` schemas, `anyOf` is more accurate for nested object types.
 
+### Known OpenAPI Spec Corrections
+
+#### Bitbucket Source Control Configuration
+The OpenAPI spec incorrectly marks the `type` field as required for Bitbucket configurations (both `AppPassword` and `Token` variants). In practice, the Retool API does not accept this field for Bitbucket configs and returns a 400 error if it's included. The `type` field has been removed from the `required` arrays for all Bitbucket configuration schemas (12 locations across GET/POST/PUT endpoints for both request and response schemas).
+
+#### Permissions OneOf → AnyOf (Fixed)
+The permissions API endpoints (`/permissions/listObjects`, `/permissions/grant`, `/permissions/revoke`) return schemas where all variants have identical structure (type, id, access_level) but different enum values for the `type` field (folder, app, resource, resource_configuration). 
+
+**The Problem**: Using `oneOf` causes the OpenAPI Generator to create unmarshaling code that requires exactly one schema to match. Since all variants have the same fields, multiple schemas match, causing "data matches more than one schema in oneOf" errors.
+
+**The Solution**: Changed from `oneOf` to `anyOf` in the OpenAPI spec (lines 16892, 17236, 17570). With `anyOf`, the generator allows multiple matches, which resolves the unmarshaling issue. The spec change includes discriminators on the `type` field, though the generator doesn't fully utilize them for Go - it falls back to trying all variants, which works fine with `anyOf`.
+
+**Additional Fix**: The OpenAPI Generator failed to create separate type files for the grant and revoke endpoint array items (`PermissionsGrantPost200ResponseDataInner` and `PermissionsRevokePost200ResponseDataInner`). Type aliases were manually created to point these to `PermissionsListObjectsPost200ResponseDataInner` since all three endpoints use identical structures.
+
 ## Generate client library code
 Just run `go generate` in this folder. All generated code lives in the `api` folder.
 Command line parameters for `openapi-generator` invocation are controlled via `generate.go` file.
+
+### Post-Generation Fixes
+The OpenAPI Generator has some bugs that affect the generated Go code. We automatically fix these issues after generation using `fix_generated_code.sh`, which is run automatically by the `go generate` command.
+
+#### Bug 1: Pointer-to-Pointer Marshaling
+The generator creates `json.Marshal(&src.Field)` where `Field` is already a pointer type (e.g., `*GitHub`). This causes Go's JSON marshaler to use reflection and expose internal struct field names instead of calling the custom `MarshalJSON` method. The fix changes these to `json.Marshal(src.Field)`.
+
+#### Bug 2: Value Receiver for MarshalJSON
+The generator creates `MarshalJSON` methods with pointer receivers (`func (src *Type) MarshalJSON()`), but when these structs are used as value types in parent structs (e.g., `Config SourceControlConfigPutRequestConfig` in `SourceControlConfigPutRequest`), Go won't call the pointer receiver method. The fix changes all `MarshalJSON` methods to use value receivers (`func (src Type) MarshalJSON()`).
 
 ## Test client library
 There's a simple executable in `client` folder that makes an API request to localhost:3000 and prints out the response.

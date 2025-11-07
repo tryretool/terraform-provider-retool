@@ -82,11 +82,11 @@ func (dst *PermissionsListObjectsPostRequestSubject) UnmarshalJSON(data []byte) 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src PermissionsListObjectsPostRequestSubject) MarshalJSON() ([]byte, error) {
 	if src.Group != nil {
-		return json.Marshal(&src.Group)
+		return json.Marshal(src.Group)
 	}
 
 	if src.User != nil {
-		return json.Marshal(&src.User)
+		return json.Marshal(src.User)
 	}
 
 	return nil, nil // no data in oneOf schemas

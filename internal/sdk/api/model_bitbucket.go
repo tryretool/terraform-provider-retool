@@ -219,16 +219,7 @@ func (o Bitbucket) MarshalJSON() ([]byte, error) {
 
 func (o Bitbucket) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// Marshal the config using its custom MarshalJSON to flatten the anyOf structure
-	configBytes, err := o.Config.MarshalJSON()
-	if err != nil {
-		return nil, err
-	}
-	var configMap map[string]interface{}
-	if err := json.Unmarshal(configBytes, &configMap); err != nil {
-		return nil, err
-	}
-	toSerialize["config"] = configMap
+	toSerialize["config"] = o.Config
 	toSerialize["provider"] = o.Provider
 	toSerialize["org"] = o.Org
 	toSerialize["repo"] = o.Repo

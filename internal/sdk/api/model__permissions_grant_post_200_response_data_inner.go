@@ -10,8 +10,8 @@ API version: 2.4.0
 
 package api
 
-// PermissionsRevokePost200ResponseDataInner - Type alias for permission object
+// PermissionsGrantPost200ResponseDataInner - Type alias for permission object
 // The OpenAPI Generator doesn't always create separate types for identical anyOf structures in different endpoints.
 // Since grant, revoke, and listObjects all return the same permission object structure, we alias to the generated type.
-type PermissionsRevokePost200ResponseDataInner = PermissionsListObjectsPost200ResponseDataInner
+type PermissionsGrantPost200ResponseDataInner = PermissionsListObjectsPost200ResponseDataInner
 

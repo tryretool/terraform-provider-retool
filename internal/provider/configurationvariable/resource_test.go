@@ -18,11 +18,11 @@ resource "retool_configuration_variable" "test_configuration_variable" {
   description = "Terraform acceptance test configuration variable"
   values = [
 	{
-	  environment_id = "ee07e7dd-9b48-414c-9d2b-212d148bd4ac"
+	  environment_id = "23ba02f3-12c2-456e-826f-13b616daa5ce"
 	  value          = "value1"
 	},
 	{
-	  environment_id = "3b553dd9-7d8f-41e5-9bf6-5510b38d0231"
+	  environment_id = "fc4a3c5b-6328-4990-b368-6879a1f38855"
 	  value          = "value2"
 	}
   ]
@@ -35,11 +35,11 @@ resource "retool_configuration_variable" "test_configuration_variable" {
   description = "Terraform acceptance test configuration variable modified"
   values = [
 	{
-	  environment_id = "ee07e7dd-9b48-414c-9d2b-212d148bd4ac"
+	  environment_id = "23ba02f3-12c2-456e-826f-13b616daa5ce"
 	  value          = "new_value1"
 	},
 	{
-	  environment_id = "3b553dd9-7d8f-41e5-9bf6-5510b38d0231"
+	  environment_id = "fc4a3c5b-6328-4990-b368-6879a1f38855"
 	  value          = "new_value2"
 	}
   ]

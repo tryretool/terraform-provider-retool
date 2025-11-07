@@ -54,13 +54,13 @@ func (dst *UserTasksTaskIdReassignPatchRequestAssigneesInner) UnmarshalJSON(data
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src *UserTasksTaskIdReassignPatchRequestAssigneesInner) MarshalJSON() ([]byte, error) {
+func (src UserTasksTaskIdReassignPatchRequestAssigneesInner) MarshalJSON() ([]byte, error) {
 	if src.UserTasksTaskIdReassignPatchRequestAssigneesInnerAnyOf != nil {
-		return json.Marshal(&src.UserTasksTaskIdReassignPatchRequestAssigneesInnerAnyOf)
+		return json.Marshal(src.UserTasksTaskIdReassignPatchRequestAssigneesInnerAnyOf)
 	}
 
 	if src.UserTasksTaskIdReassignPatchRequestAssigneesInnerAnyOf1 != nil {
-		return json.Marshal(&src.UserTasksTaskIdReassignPatchRequestAssigneesInnerAnyOf1)
+		return json.Marshal(src.UserTasksTaskIdReassignPatchRequestAssigneesInnerAnyOf1)
 	}
 
 	return nil, nil // no data in anyOf schemas
