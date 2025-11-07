@@ -29,11 +29,11 @@ const (
 func newHTTPRecorder(t *testing.T) *recorder.Recorder {
 	t.Helper()
 
-	// Create an HTTP client with TLS verification disabled for recording
+	// Create an HTTP client with TLS verification disabled for recording.
 	httpClient := &http.Client{
 		Transport: &http.Transport{
 			TLSClientConfig: &tls.Config{
-				InsecureSkipVerify: true,
+				InsecureSkipVerify: true, // #nosec G402 -- This is for test recording only
 			},
 		},
 	}

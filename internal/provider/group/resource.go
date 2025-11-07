@@ -157,24 +157,24 @@ func (r *groupResource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 				Default:     booldefault.StaticBool(false),
 				Description: "Whether the group has access to unpublished releases.",
 			},
-		"usage_analytics_access": schema.BoolAttribute{
-			Optional:    true,
-			Computed:    true,
-			Default:     booldefault.StaticBool(false),
-			Description: "Whether the group has access to usage analytics.",
-		},
-		"theme_access": schema.BoolAttribute{
-			Optional:    true,
-			Computed:    true,
-			Default:     booldefault.StaticBool(false),
-			Description: "Whether the group has access to edit themes.",
-		},
-		"account_details_access": schema.BoolAttribute{
-			Optional:    true,
-			Computed:    true,
-			Default:     booldefault.StaticBool(false),
-			Description: "Whether the group has access to account details.",
-		},
+			"usage_analytics_access": schema.BoolAttribute{
+				Optional:    true,
+				Computed:    true,
+				Default:     booldefault.StaticBool(false),
+				Description: "Whether the group has access to usage analytics.",
+			},
+			"theme_access": schema.BoolAttribute{
+				Optional:    true,
+				Computed:    true,
+				Default:     booldefault.StaticBool(false),
+				Description: "Whether the group has access to edit themes.",
+			},
+			"account_details_access": schema.BoolAttribute{
+				Optional:    true,
+				Computed:    true,
+				Default:     booldefault.StaticBool(false),
+				Description: "Whether the group has access to account details.",
+			},
 			"landing_page_app_id": schema.StringAttribute{
 				Optional:    true,
 				Description: "The app ID of the landing page.",

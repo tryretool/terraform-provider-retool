@@ -96,12 +96,12 @@ func (r *configurationVariableResource) Schema(_ context.Context, _ resource.Sch
 				Validators:    []validator.String{stringvalidator.LengthBetween(0, 1024)},
 				PlanModifiers: []planmodifier.String{stringplanmodifier.UseStateForUnknown()},
 			},
-		"secret": schema.BoolAttribute{
-			Optional:    true,
-			Computed:    true,
-			Description: "Whether the configuration variable is a secret. Secrets are encrypted and not exposed in the Retool UI.",
-			Default:     booldefault.StaticBool(false),
-		},
+			"secret": schema.BoolAttribute{
+				Optional:    true,
+				Computed:    true,
+				Description: "Whether the configuration variable is a secret. Secrets are encrypted and not exposed in the Retool UI.",
+				Default:     booldefault.StaticBool(false),
+			},
 			"values": schema.ListNestedAttribute{
 				Description: "A list of environment-specific values for the configuration variable.",
 				Required:    true,
@@ -223,8 +223,8 @@ func (r *configurationVariableResource) Read(ctx context.Context, req resource.R
 	// For secrets, the API returns encrypted values that we cannot use.
 	// We need to preserve the values from the current state.
 	if response.Data.Secret {
-		// Keep the values from the current state since API returns encrypted values
-		// The state.Values already contains the values from the previous read
+		// Keep the values from the current state since API returns encrypted values.
+		// The state.Values already contains the values from the previous read.
 		tflog.Info(ctx, "Configuration variable is a secret, preserving values from state", map[string]interface{}{"id": configurationVariableID})
 	} else {
 		// Clear current values and repopulate from API response to handle deletions correctly.

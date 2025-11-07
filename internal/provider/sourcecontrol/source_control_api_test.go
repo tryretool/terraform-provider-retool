@@ -13,10 +13,10 @@ import (
 func testAppGitHubConfig(t *testing.T, client *api.APIClient) {
 	githubConfig := api.GitHubConfig{
 		GitHubConfigAnyOf: &api.GitHubConfigAnyOf{
-		Type:           "App",
-		AppId:          "app_id",
-		InstallationId: "installation_id",
-		PrivateKey:     "private_key",
+			Type:           "App",
+			AppId:          "app_id",
+			InstallationId: "installation_id",
+			PrivateKey:     "private_key",
 		},
 	}
 	github := api.NewGitHub(githubConfig, "GitHub", "org", "repo", "default_branch")
@@ -37,8 +37,8 @@ func testAppGitHubConfig(t *testing.T, client *api.APIClient) {
 func testPersonalGitHubConfig(t *testing.T, client *api.APIClient) {
 	githubConfig := api.GitHubConfig{
 		GitHubConfigAnyOf1: &api.GitHubConfigAnyOf1{
-		Type:                "Personal",
-		PersonalAccessToken: "personal_access_token",
+			Type:                "Personal",
+			PersonalAccessToken: "personal_access_token",
 		},
 	}
 	github := api.NewGitHub(githubConfig, "GitHub", "org", "repo", "default_branch")

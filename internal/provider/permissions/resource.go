@@ -170,8 +170,8 @@ func createNewAPIPermissionsSubject(subjectModel permissionSubjectModel) api.Per
 func createNewAPIPermissionsObject(objectModel permissionObjectModel) api.PermissionsGrantPostRequestObject {
 	objType := objectModel.Type.ValueString()
 	objID := objectModel.ID.ValueString()
-	
-	// Use the appropriate constructor and wrapper function based on object type
+
+	// Use the appropriate constructor and wrapper function based on object type.
 	switch objType {
 	case "app":
 		app := api.NewApp(objType, objID)
@@ -186,7 +186,7 @@ func createNewAPIPermissionsObject(objectModel permissionObjectModel) api.Permis
 		resourceConfig := api.NewResourceConfiguration(objType, objID)
 		return api.ResourceConfigurationAsPermissionsGrantPostRequestObject(resourceConfig)
 	default:
-		// Fallback: return empty object if type is unknown
+		// Fallback: return empty object if type is unknown.
 		return api.PermissionsGrantPostRequestObject{}
 	}
 }
@@ -336,36 +336,37 @@ func (r *permissionResource) Read(ctx context.Context, req resource.ReadRequest,
 		for _, obj := range permissionsResponse.Data {
 			var objID string
 			var accessLevel string
-			
-		// Check which variant is populated (folder, app, resource, or resource_configuration)
-		if obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf != nil {
-			// Folder
-			objID = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf.Id
-			accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf.AccessLevel
-		} else if obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf1 != nil {
-			// App
-			objID = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf1.Id
-			accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf1.AccessLevel
-		} else if obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf2 != nil {
-			// Resource
-			objID = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf2.Id
-			accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf2.AccessLevel
-		} else if obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf3 != nil {
-			// Resource Configuration
-			objID = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf3.Id
-			accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf3.AccessLevel
-		} else {
-			// None of the variants matched - log and skip this permission
-			tflog.Warn(ctx, "Permission object did not match any known type variant, skipping", map[string]interface{}{"objectType": objectType})
-			continue
-		}
-			
-			// Skip if objID or accessLevel are empty
+
+			// Check which variant is populated (folder, app, resource, or resource_configuration).
+			switch {
+			case obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf != nil:
+				// Folder.
+				objID = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf.Id
+				accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf.AccessLevel
+			case obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf1 != nil:
+				// App.
+				objID = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf1.Id
+				accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf1.AccessLevel
+			case obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf2 != nil:
+				// Resource.
+				objID = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf2.Id
+				accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf2.AccessLevel
+			case obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf3 != nil:
+				// Resource Configuration.
+				objID = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf3.Id
+				accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf3.AccessLevel
+			default:
+				// None of the variants matched - log and skip this permission.
+				tflog.Warn(ctx, "Permission object did not match any known type variant, skipping", map[string]interface{}{"objectType": objectType})
+				continue
+			}
+
+			// Skip if objID or accessLevel are empty.
 			if objID == "" || accessLevel == "" {
 				tflog.Warn(ctx, "Permission object has empty ID or access level, skipping", map[string]interface{}{"objectType": objectType, "objID": objID, "accessLevel": accessLevel})
 				continue
 			}
-			
+
 			objValue := permissionObjectModel{
 				ID:   types.StringValue(objID),
 				Type: types.StringValue(objectType),

@@ -215,22 +215,22 @@ func (d *groupsDataSource) Schema(_ context.Context, _ datasource.SchemaRequest,
 							Computed:    true,
 							Description: "Whether the group has unpublished release access.",
 						},
-					"usage_analytics_access": schema.BoolAttribute{
-						Computed:    true,
-						Description: "Whether the group has usage analytics access.",
-					},
-					"theme_access": schema.BoolAttribute{
-						Computed:    true,
-						Description: "Whether the group has access to edit themes.",
-					},
-					"account_details_access": schema.BoolAttribute{
-						Computed:    true,
-						Description: "Whether the group has access to account details.",
-					},
-					"landing_page_app_id": schema.StringAttribute{
-						Computed:    true,
-						Description: "The id of the landing page app for the group.",
-					},
+						"usage_analytics_access": schema.BoolAttribute{
+							Computed:    true,
+							Description: "Whether the group has usage analytics access.",
+						},
+						"theme_access": schema.BoolAttribute{
+							Computed:    true,
+							Description: "Whether the group has access to edit themes.",
+						},
+						"account_details_access": schema.BoolAttribute{
+							Computed:    true,
+							Description: "Whether the group has access to account details.",
+						},
+						"landing_page_app_id": schema.StringAttribute{
+							Computed:    true,
+							Description: "The id of the landing page app for the group.",
+						},
 						"created_at": schema.StringAttribute{
 							Computed:    true,
 							Description: "The date the group was created.",

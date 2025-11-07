@@ -88,24 +88,24 @@ func (r *scmSettingsResource) Schema(_ context.Context, _ resource.SchemaRequest
 				Description: "Pull requests created from Retool will use the template specified.",
 				Default:     stringdefault.StaticString(""),
 			},
-		"version_control_locked": schema.BoolAttribute{
-			Optional:    true,
-			Computed:    true,
-			Description: "When set to true, creates a read-only instance of Retool, where app editing is disabled. Defaults to false.",
-			Default:     booldefault.StaticBool(false),
-		},
-		"auto_cleanup_branches_enabled": schema.BoolAttribute{
-			Optional:    true,
-			Computed:    true,
-			Description: "When enabled, Retool automatically cleans up branches after they are merged. Defaults to false.",
-			Default:     booldefault.StaticBool(false),
-		},
-		"force_uuid_mapping": schema.BoolAttribute{
-			Optional:    true,
-			Computed:    true,
-			Description: "When set to true, creates a uuid mapping for protected elements to be used in the source control repo. Defaults to false.",
-			Default:     booldefault.StaticBool(false),
-		},
+			"version_control_locked": schema.BoolAttribute{
+				Optional:    true,
+				Computed:    true,
+				Description: "When set to true, creates a read-only instance of Retool, where app editing is disabled. Defaults to false.",
+				Default:     booldefault.StaticBool(false),
+			},
+			"auto_cleanup_branches_enabled": schema.BoolAttribute{
+				Optional:    true,
+				Computed:    true,
+				Description: "When enabled, Retool automatically cleans up branches after they are merged. Defaults to false.",
+				Default:     booldefault.StaticBool(false),
+			},
+			"force_uuid_mapping": schema.BoolAttribute{
+				Optional:    true,
+				Computed:    true,
+				Description: "When set to true, creates a uuid mapping for protected elements to be used in the source control repo. Defaults to false.",
+				Default:     booldefault.StaticBool(false),
+			},
 		},
 	}
 }
