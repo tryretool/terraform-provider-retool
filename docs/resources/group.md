@@ -22,6 +22,7 @@ resource "retool_group" "example" {
   audit_log_access           = true
   unpublished_release_access = false
   usage_analytics_access     = true
+  theme_access               = false
   account_details_access     = true
   landing_page_app_id        = "c37676ba-116f-11ea-b17d-d7734e1526f2"
 }
@@ -39,6 +40,7 @@ resource "retool_group" "example" {
 - `account_details_access` (Boolean) Whether the group has access to account details.
 - `audit_log_access` (Boolean) Whether the group has access to the audit log.
 - `landing_page_app_id` (String) The app ID of the landing page.
+- `theme_access` (Boolean) Whether the group has access to edit themes.
 - `universal_app_access` (String) The universal app access level for the group. This denotes the access level that this group has for all apps. Accepted values: none|use|edit|own
 - `universal_query_library_access` (String) Level of access that the group has to the Query Library. Accepted values: none|use|edit
 - `universal_resource_access` (String) The universal resource access level for the group. This denotes the access level that this group has for all resources. Accepted values: none|use|edit|own
