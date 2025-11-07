@@ -96,11 +96,12 @@ func (r *configurationVariableResource) Schema(_ context.Context, _ resource.Sch
 				Validators:    []validator.String{stringvalidator.LengthBetween(0, 1024)},
 				PlanModifiers: []planmodifier.String{stringplanmodifier.UseStateForUnknown()},
 			},
-			"secret": schema.BoolAttribute{
-				Computed:    true,
-				Description: "Whether the configuration variable is a secret. Secrets are encrypted and not exposed in the Retool UI. Secert is currently not supported as the values are encrypted and cannot be retrieved via the API.",
-				Default:     booldefault.StaticBool(false),
-			},
+		"secret": schema.BoolAttribute{
+			Optional:    true,
+			Computed:    true,
+			Description: "Whether the configuration variable is a secret. Secrets are encrypted and not exposed in the Retool UI.",
+			Default:     booldefault.StaticBool(false),
+		},
 			"values": schema.ListNestedAttribute{
 				Description: "A list of environment-specific values for the configuration variable.",
 				Required:    true,
@@ -139,7 +140,7 @@ func (r *configurationVariableResource) Create(ctx context.Context, req resource
 	if !plan.Description.IsNull() {
 		configuratonVariable.Description = plan.Description.ValueStringPointer()
 	}
-	configuratonVariable.Secret = false
+	configuratonVariable.Secret = plan.Secret.ValueBool()
 
 	var values []api.ConfigurationVariablesGet200ResponseDataInnerValuesInner
 	for _, v := range plan.Values {
@@ -216,22 +217,24 @@ func (r *configurationVariableResource) Read(ctx context.Context, req resource.R
 	} else {
 		state.Description = types.StringNull()
 	}
-	if response.Data.Secret {
-		resp.Diagnostics.AddError(
-			"Could not read configuration variable that is a secret",
-			fmt.Sprintf("Could not read configuration variable with ID %s", configurationVariableID),
-		)
-	}
 
 	state.Secret = types.BoolValue(response.Data.Secret)
 
-	// Clear current values and repopulate from API response to handle deletions correctly.
-	state.Values = nil
-	for _, v := range response.Data.Values {
-		state.Values = append(state.Values, configurationVariableValueModel{
-			EnvironmentID: types.StringValue(v.EnvironmentId),
-			Value:         types.StringValue(v.Value),
-		})
+	// For secrets, the API returns encrypted values that we cannot use.
+	// We need to preserve the values from the current state.
+	if response.Data.Secret {
+		// Keep the values from the current state since API returns encrypted values
+		// The state.Values already contains the values from the previous read
+		tflog.Info(ctx, "Configuration variable is a secret, preserving values from state", map[string]interface{}{"id": configurationVariableID})
+	} else {
+		// Clear current values and repopulate from API response to handle deletions correctly.
+		state.Values = nil
+		for _, v := range response.Data.Values {
+			state.Values = append(state.Values, configurationVariableValueModel{
+				EnvironmentID: types.StringValue(v.EnvironmentId),
+				Value:         types.StringValue(v.Value),
+			})
+		}
 	}
 
 	diags = resp.State.Set(ctx, &state)
@@ -269,7 +272,7 @@ func (r *configurationVariableResource) Update(ctx context.Context, req resource
 	updatePayload := api.ConfigurationVariablesPostRequest{
 		Name:        plan.Name.ValueString(),
 		Description: plan.Description.ValueStringPointer(),
-		Secret:      false,
+		Secret:      plan.Secret.ValueBool(),
 		Values:      values,
 	}
 

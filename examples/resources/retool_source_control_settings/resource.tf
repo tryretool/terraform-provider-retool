@@ -3,5 +3,6 @@ resource "retool_source_control_settings" "scm_settings" {
   custom_pull_request_template_enabled = true
   custom_pull_request_template         = "custom-pull-request-template"
   version_control_locked               = true
+  auto_cleanup_branches_enabled        = false
   force_uuid_mapping                   = false
 }

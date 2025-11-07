@@ -27,72 +27,50 @@ type SourceControlConfigPut200ResponseData struct {
 // Unmarshal JSON data into any of the pointers in the struct
 func (dst *SourceControlConfigPut200ResponseData) UnmarshalJSON(data []byte) error {
 	var err error
-	// try to unmarshal JSON data into AWSCodeCommit
-	err = json.Unmarshal(data, &dst.AWSCodeCommit);
-	if err == nil {
-		jsonAWSCodeCommit, _ := json.Marshal(dst.AWSCodeCommit)
-		if string(jsonAWSCodeCommit) == "{}" { // empty struct
-			dst.AWSCodeCommit = nil
-		} else {
-			return nil // data stored in dst.AWSCodeCommit, return on the first match
-		}
-	} else {
-		dst.AWSCodeCommit = nil
+	
+	// Use discriminator to determine which schema to unmarshal into
+	var discriminator struct {
+		Provider string `json:"provider"`
+	}
+	err = json.Unmarshal(data, &discriminator)
+	if err != nil {
+		return fmt.Errorf("failed to unmarshal discriminator: %v", err)
 	}
 
-	// try to unmarshal JSON data into AzureRepos
-	err = json.Unmarshal(data, &dst.AzureRepos);
-	if err == nil {
-		jsonAzureRepos, _ := json.Marshal(dst.AzureRepos)
-		if string(jsonAzureRepos) == "{}" { // empty struct
-			dst.AzureRepos = nil
-		} else {
-			return nil // data stored in dst.AzureRepos, return on the first match
+	switch discriminator.Provider {
+	case "GitHub":
+		err = json.Unmarshal(data, &dst.GitHub)
+		if err != nil {
+			return fmt.Errorf("failed to unmarshal as GitHub: %v", err)
 		}
-	} else {
-		dst.AzureRepos = nil
-	}
-
-	// try to unmarshal JSON data into Bitbucket
-	err = json.Unmarshal(data, &dst.Bitbucket);
-	if err == nil {
-		jsonBitbucket, _ := json.Marshal(dst.Bitbucket)
-		if string(jsonBitbucket) == "{}" { // empty struct
-			dst.Bitbucket = nil
-		} else {
-			return nil // data stored in dst.Bitbucket, return on the first match
+		return nil
+	case "GitLab":
+		err = json.Unmarshal(data, &dst.GitLab)
+		if err != nil {
+			return fmt.Errorf("failed to unmarshal as GitLab: %v", err)
 		}
-	} else {
-		dst.Bitbucket = nil
-	}
-
-	// try to unmarshal JSON data into GitHub
-	err = json.Unmarshal(data, &dst.GitHub);
-	if err == nil {
-		jsonGitHub, _ := json.Marshal(dst.GitHub)
-		if string(jsonGitHub) == "{}" { // empty struct
-			dst.GitHub = nil
-		} else {
-			return nil // data stored in dst.GitHub, return on the first match
+		return nil
+	case "AWS CodeCommit":
+		err = json.Unmarshal(data, &dst.AWSCodeCommit)
+		if err != nil {
+			return fmt.Errorf("failed to unmarshal as AWS CodeCommit: %v", err)
 		}
-	} else {
-		dst.GitHub = nil
-	}
-
-	// try to unmarshal JSON data into GitLab
-	err = json.Unmarshal(data, &dst.GitLab);
-	if err == nil {
-		jsonGitLab, _ := json.Marshal(dst.GitLab)
-		if string(jsonGitLab) == "{}" { // empty struct
-			dst.GitLab = nil
-		} else {
-			return nil // data stored in dst.GitLab, return on the first match
+		return nil
+	case "Bitbucket":
+		err = json.Unmarshal(data, &dst.Bitbucket)
+		if err != nil {
+			return fmt.Errorf("failed to unmarshal as Bitbucket: %v", err)
 		}
-	} else {
-		dst.GitLab = nil
+		return nil
+	case "Azure Repos":
+		err = json.Unmarshal(data, &dst.AzureRepos)
+		if err != nil {
+			return fmt.Errorf("failed to unmarshal as Azure Repos: %v", err)
+		}
+		return nil
+	default:
+		return fmt.Errorf("unknown discriminator value '%s' for anyOf(SourceControlConfigPut200ResponseData)", discriminator.Provider)
 	}
-
-	return fmt.Errorf("data failed to match schemas in anyOf(SourceControlConfigPut200ResponseData)")
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

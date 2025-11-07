@@ -438,7 +438,7 @@ interactions:
         trailer: {}
         content_length: 295
         uncompressed: false
-        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"Bitbucket","config":{"username":"username","url":"https://bitbucket.org","enterprise_api_url":"https://bitbucket.mycompany.com/api/v3","app_password":"---encrypted-on-server---"}}}'
+        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"Bitbucket","config":{"type":"AppPassword","username":"username","url":"https://bitbucket.org","enterprise_api_url":"https://bitbucket.mycompany.com/api/v3","app_password":"---encrypted-on-server---"}}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
@@ -471,7 +471,7 @@ interactions:
         trailer: {}
         content_length: 295
         uncompressed: false
-        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"Bitbucket","config":{"username":"username","url":"https://bitbucket.org","enterprise_api_url":"https://bitbucket.mycompany.com/api/v3","app_password":"---encrypted-on-server---"}}}'
+        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"Bitbucket","config":{"type":"AppPassword","username":"username","url":"https://bitbucket.org","enterprise_api_url":"https://bitbucket.mycompany.com/api/v3","app_password":"---encrypted-on-server---"}}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
@@ -504,7 +504,7 @@ interactions:
         trailer: {}
         content_length: 295
         uncompressed: false
-        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"Bitbucket","config":{"username":"username","url":"https://bitbucket.org","enterprise_api_url":"https://bitbucket.mycompany.com/api/v3","app_password":"---encrypted-on-server---"}}}'
+        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"Bitbucket","config":{"type":"AppPassword","username":"username","url":"https://bitbucket.org","enterprise_api_url":"https://bitbucket.mycompany.com/api/v3","app_password":"---encrypted-on-server---"}}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8

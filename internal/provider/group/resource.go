@@ -46,6 +46,7 @@ type groupResourceModel struct {
 	AuditLogAccess              types.Bool   `tfsdk:"audit_log_access"`
 	UnpublishedReleaseAccess    types.Bool   `tfsdk:"unpublished_release_access"`
 	UsageAnalyticsAccess        types.Bool   `tfsdk:"usage_analytics_access"`
+	ThemeAccess                 types.Bool   `tfsdk:"theme_access"`
 	AccountDetailsAccess        types.Bool   `tfsdk:"account_details_access"`
 	LandingPageAppID            types.String `tfsdk:"landing_page_app_id"`
 }
@@ -156,18 +157,24 @@ func (r *groupResource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 				Default:     booldefault.StaticBool(false),
 				Description: "Whether the group has access to unpublished releases.",
 			},
-			"usage_analytics_access": schema.BoolAttribute{
-				Optional:    true,
-				Computed:    true,
-				Default:     booldefault.StaticBool(false),
-				Description: "Whether the group has access to usage analytics.",
-			},
-			"account_details_access": schema.BoolAttribute{
-				Optional:    true,
-				Computed:    true,
-				Default:     booldefault.StaticBool(false),
-				Description: "Whether the group has access to account details.",
-			},
+		"usage_analytics_access": schema.BoolAttribute{
+			Optional:    true,
+			Computed:    true,
+			Default:     booldefault.StaticBool(false),
+			Description: "Whether the group has access to usage analytics.",
+		},
+		"theme_access": schema.BoolAttribute{
+			Optional:    true,
+			Computed:    true,
+			Default:     booldefault.StaticBool(false),
+			Description: "Whether the group has access to edit themes.",
+		},
+		"account_details_access": schema.BoolAttribute{
+			Optional:    true,
+			Computed:    true,
+			Default:     booldefault.StaticBool(false),
+			Description: "Whether the group has access to account details.",
+		},
 			"landing_page_app_id": schema.StringAttribute{
 				Optional:    true,
 				Description: "The app ID of the landing page.",
@@ -197,6 +204,7 @@ func (r *groupResource) Create(ctx context.Context, req resource.CreateRequest, 
 	group.AuditLogAccess = plan.AuditLogAccess.ValueBoolPointer()
 	group.UnpublishedReleaseAccess = plan.UnpublishedReleaseAccess.ValueBoolPointer()
 	group.UsageAnalyticsAccess = plan.UsageAnalyticsAccess.ValueBoolPointer()
+	group.ThemeAccess = plan.ThemeAccess.ValueBoolPointer()
 	group.AccountDetailsAccess = plan.AccountDetailsAccess.ValueBoolPointer()
 	if !plan.LandingPageAppID.IsNull() && !plan.LandingPageAppID.IsUnknown() {
 		group.LandingPageAppId.Set(plan.LandingPageAppID.ValueStringPointer())
@@ -277,6 +285,7 @@ func (r *groupResource) Read(ctx context.Context, req resource.ReadRequest, resp
 	state.AuditLogAccess = types.BoolValue(group.Data.AuditLogAccess)
 	state.UnpublishedReleaseAccess = types.BoolValue(group.Data.UnpublishedReleaseAccess)
 	state.UsageAnalyticsAccess = types.BoolValue(group.Data.UsageAnalyticsAccess)
+	state.ThemeAccess = types.BoolValue(group.Data.ThemeAccess)
 	state.AccountDetailsAccess = types.BoolValue(group.Data.AccountDetailsAccess)
 	state.LandingPageAppID = types.StringPointerValue(group.Data.LandingPageAppId.Get())
 
@@ -326,6 +335,7 @@ func (r *groupResource) Update(ctx context.Context, req resource.UpdateRequest, 
 		AuditLogAccess:              plan.AuditLogAccess.ValueBoolPointer(),
 		UnpublishedReleaseAccess:    plan.UnpublishedReleaseAccess.ValueBoolPointer(),
 		UsageAnalyticsAccess:        plan.UsageAnalyticsAccess.ValueBoolPointer(),
+		ThemeAccess:                 plan.ThemeAccess.ValueBoolPointer(),
 		AccountDetailsAccess:        plan.AccountDetailsAccess.ValueBoolPointer(),
 		Members:                     convertGroupMembersToPutRequestType(group.Data.Members),
 		UserInvites:                 group.Data.UserInvites,

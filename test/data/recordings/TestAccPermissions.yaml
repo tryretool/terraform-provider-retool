@@ -64,7 +64,7 @@ interactions:
         trailer: {}
         content_length: 500
         uncompressed: false
-        body: '{"success":true,"data":{"id":61,"legacy_id":61,"name":"tf-acc-test-group","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","universal_query_library_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-08-19T22:56:52.609Z","created_at":"2024-08-19T22:56:52.609Z"}}'
+        body: '{"success":true,"data":{"id":61,"legacy_id":61,"name":"tf-acc-test-group","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","universal_query_library_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"theme_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-08-19T22:56:52.609Z","created_at":"2024-08-19T22:56:52.609Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
@@ -238,7 +238,7 @@ interactions:
         trailer: {}
         content_length: 500
         uncompressed: false
-        body: '{"success":true,"data":{"id":61,"legacy_id":61,"name":"tf-acc-test-group","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","universal_query_library_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-08-19T22:56:52.609Z","created_at":"2024-08-19T22:56:52.609Z"}}'
+        body: '{"success":true,"data":{"id":61,"legacy_id":61,"name":"tf-acc-test-group","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","universal_query_library_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"theme_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-08-19T22:56:52.609Z","created_at":"2024-08-19T22:56:52.609Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
@@ -659,7 +659,7 @@ interactions:
         trailer: {}
         content_length: 500
         uncompressed: false
-        body: '{"success":true,"data":{"id":61,"legacy_id":61,"name":"tf-acc-test-group","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","universal_query_library_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-08-19T22:56:52.609Z","created_at":"2024-08-19T22:56:52.609Z"}}'
+        body: '{"success":true,"data":{"id":61,"legacy_id":61,"name":"tf-acc-test-group","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","universal_query_library_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"theme_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-08-19T22:56:52.609Z","created_at":"2024-08-19T22:56:52.609Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
@@ -975,7 +975,7 @@ interactions:
         trailer: {}
         content_length: 500
         uncompressed: false
-        body: '{"success":true,"data":{"id":61,"legacy_id":61,"name":"tf-acc-test-group","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","universal_query_library_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-08-19T22:56:52.609Z","created_at":"2024-08-19T22:56:52.609Z"}}'
+        body: '{"success":true,"data":{"id":61,"legacy_id":61,"name":"tf-acc-test-group","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","universal_query_library_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"theme_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-08-19T22:56:52.609Z","created_at":"2024-08-19T22:56:52.609Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8

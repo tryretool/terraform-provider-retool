@@ -101,16 +101,16 @@ func (r *folderResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 					boolplanmodifier.UseStateForUnknown(),
 				},
 			},
-			"folder_type": schema.StringAttribute{
-				Required:    true,
-				Description: "The type of the folder: (app|resource|workflow).",
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(), // Changing the folder type requires replacing the resource.
-				},
-				Validators: []validator.String{
-					stringvalidator.OneOf("app", "file", "resource", "workflow"),
-				},
+		"folder_type": schema.StringAttribute{
+			Required:    true,
+			Description: "The type of the folder: (app|resource|workflow|agent).",
+			PlanModifiers: []planmodifier.String{
+				stringplanmodifier.RequiresReplace(), // Changing the folder type requires replacing the resource.
 			},
+			Validators: []validator.String{
+				stringvalidator.OneOf("app", "file", "resource", "workflow", "agent"),
+			},
+		},
 		},
 	}
 }

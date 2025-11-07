@@ -219,7 +219,16 @@ func (o GitHub) MarshalJSON() ([]byte, error) {
 
 func (o GitHub) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["config"] = o.Config
+	// Marshal the config using its custom MarshalJSON to flatten the anyOf structure
+	configBytes, err := o.Config.MarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	var configMap map[string]interface{}
+	if err := json.Unmarshal(configBytes, &configMap); err != nil {
+		return nil, err
+	}
+	toSerialize["config"] = configMap
 	toSerialize["provider"] = o.Provider
 	toSerialize["org"] = o.Org
 	toSerialize["repo"] = o.Repo

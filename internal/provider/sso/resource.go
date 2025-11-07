@@ -522,23 +522,23 @@ func (r *ssoResource) updateSSOConfig(ctx context.Context, plan ssoResourceModel
 		ssoConfig.LdapSyncGroupClaims = samlConfig.LDAPSyncGroupClaims.ValueBoolPointer()
 		ssoConfig.LdapRoleMapping = getLdapRolesMapping(ctx, samlConfig, globalDiags)
 		ssoConfig.RestrictedDomain = getRestrictedDomains(ctx, samlConfig.RestrictedDomains, globalDiags)
-		// Add ldap config if present.
-		if !utils.IsEmptyObject(samlConfig.LDAPConfig) {
-			var ldapConfig ldapConfigModel
-			diags = samlConfig.LDAPConfig.As(ctx, &ldapConfig, basetypes.ObjectAsOptions{})
-			globalDiags.Append(diags...)
+			// Add ldap config if present.
+			if !utils.IsEmptyObject(samlConfig.LDAPConfig) {
+				var ldapConfig ldapConfigModel
+				diags = samlConfig.LDAPConfig.As(ctx, &ldapConfig, basetypes.ObjectAsOptions{})
+				globalDiags.Append(diags...)
+				if globalDiags.HasError() {
+					return nil
+				}
+				ssoConfig.LdapServerUrl = ldapConfig.ServerURL.ValueStringPointer()
+				ssoConfig.LdapBaseDomainComponents = ldapConfig.BaseDomainComponents.ValueStringPointer()
+				ssoConfig.LdapServerName = ldapConfig.ServerName.ValueStringPointer()
+				ssoConfig.LdapServerKey = ldapConfig.ServerKey.ValueStringPointer()
+				ssoConfig.LdapServerCertificate = ldapConfig.ServerCertificate.ValueStringPointer()
+			}
 			if globalDiags.HasError() {
 				return nil
 			}
-			ssoConfig.LdapServerUrl = ldapConfig.ServerURL.ValueStringPointer()
-			ssoConfig.LdapBaseDomainComponents = ldapConfig.BaseDomainComponents.ValueStringPointer()
-			ssoConfig.LdapServerName = ldapConfig.ServerName.ValueStringPointer()
-			ssoConfig.LdapServerKey = ldapConfig.ServerKey.ValueStringPointer()
-			ssoConfig.LdapServerCertificate = ldapConfig.ServerCertificate.ValueStringPointer()
-		}
-		if globalDiags.HasError() {
-			return nil
-		}
 		apiRequest.Data = api.GoogleSAMLAsSsoConfigPostRequestData(ssoConfig)
 		case !utils.IsEmptyObject(plan.OIDC):
 			// SSO type is "google & oidc"

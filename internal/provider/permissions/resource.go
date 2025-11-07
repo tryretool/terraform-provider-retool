@@ -336,10 +336,36 @@ func (r *permissionResource) Read(ctx context.Context, req resource.ReadRequest,
 		for _, obj := range permissionsResponse.Data {
 			var objID string
 			var accessLevel string
+			
+			// Check which variant is populated (folder, app, resource, or resource_configuration)
 			if obj.PermissionsListObjectsPost200ResponseDataInnerOneOf != nil {
+				// Folder
 				objID = obj.PermissionsListObjectsPost200ResponseDataInnerOneOf.Id
 				accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerOneOf.AccessLevel
+			} else if obj.PermissionsListObjectsPost200ResponseDataInnerOneOf1 != nil {
+				// App
+				objID = obj.PermissionsListObjectsPost200ResponseDataInnerOneOf1.Id
+				accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerOneOf1.AccessLevel
+			} else if obj.PermissionsListObjectsPost200ResponseDataInnerOneOf2 != nil {
+				// Resource
+				objID = obj.PermissionsListObjectsPost200ResponseDataInnerOneOf2.Id
+				accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerOneOf2.AccessLevel
+			} else if obj.PermissionsListObjectsPost200ResponseDataInnerOneOf3 != nil {
+				// Resource Configuration
+				objID = obj.PermissionsListObjectsPost200ResponseDataInnerOneOf3.Id
+				accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerOneOf3.AccessLevel
+			} else {
+				// None of the variants matched - log and skip this permission
+				tflog.Warn(ctx, "Permission object did not match any known type variant, skipping", map[string]interface{}{"objectType": objectType})
+				continue
 			}
+			
+			// Skip if objID or accessLevel are empty
+			if objID == "" || accessLevel == "" {
+				tflog.Warn(ctx, "Permission object has empty ID or access level, skipping", map[string]interface{}{"objectType": objectType, "objID": objID, "accessLevel": accessLevel})
+				continue
+			}
+			
 			objValue := permissionObjectModel{
 				ID:   types.StringValue(objID),
 				Type: types.StringValue(objectType),

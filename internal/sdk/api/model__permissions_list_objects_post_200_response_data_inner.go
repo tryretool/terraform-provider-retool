@@ -55,71 +55,51 @@ func PermissionsListObjectsPost200ResponseDataInnerOneOf3AsPermissionsListObject
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *PermissionsListObjectsPost200ResponseDataInner) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into PermissionsListObjectsPost200ResponseDataInnerOneOf
-	err = newStrictDecoder(data).Decode(&dst.PermissionsListObjectsPost200ResponseDataInnerOneOf)
-	if err == nil {
-		jsonPermissionsListObjectsPost200ResponseDataInnerOneOf, _ := json.Marshal(dst.PermissionsListObjectsPost200ResponseDataInnerOneOf)
-		if string(jsonPermissionsListObjectsPost200ResponseDataInnerOneOf) == "{}" { // empty struct
-			dst.PermissionsListObjectsPost200ResponseDataInnerOneOf = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.PermissionsListObjectsPost200ResponseDataInnerOneOf = nil
+	
+	// Use discriminator to determine which schema to unmarshal into
+	var discriminator struct {
+		Type string `json:"type"`
+	}
+	err = json.Unmarshal(data, &discriminator)
+	if err != nil {
+		return fmt.Errorf("failed to unmarshal discriminator: %v", err)
 	}
 
-	// try to unmarshal data into PermissionsListObjectsPost200ResponseDataInnerOneOf1
-	err = newStrictDecoder(data).Decode(&dst.PermissionsListObjectsPost200ResponseDataInnerOneOf1)
-	if err == nil {
-		jsonPermissionsListObjectsPost200ResponseDataInnerOneOf1, _ := json.Marshal(dst.PermissionsListObjectsPost200ResponseDataInnerOneOf1)
-		if string(jsonPermissionsListObjectsPost200ResponseDataInnerOneOf1) == "{}" { // empty struct
-			dst.PermissionsListObjectsPost200ResponseDataInnerOneOf1 = nil
-		} else {
-			match++
+	switch discriminator.Type {
+	case "folder":
+		// Unmarshal into PermissionsListObjectsPost200ResponseDataInnerOneOf (folder)
+		dst.PermissionsListObjectsPost200ResponseDataInnerOneOf = &PermissionsListObjectsPost200ResponseDataInnerOneOf{}
+		err = newStrictDecoder(data).Decode(dst.PermissionsListObjectsPost200ResponseDataInnerOneOf)
+		if err != nil {
+			return fmt.Errorf("failed to unmarshal as folder: %v", err)
 		}
-	} else {
-		dst.PermissionsListObjectsPost200ResponseDataInnerOneOf1 = nil
-	}
-
-	// try to unmarshal data into PermissionsListObjectsPost200ResponseDataInnerOneOf2
-	err = newStrictDecoder(data).Decode(&dst.PermissionsListObjectsPost200ResponseDataInnerOneOf2)
-	if err == nil {
-		jsonPermissionsListObjectsPost200ResponseDataInnerOneOf2, _ := json.Marshal(dst.PermissionsListObjectsPost200ResponseDataInnerOneOf2)
-		if string(jsonPermissionsListObjectsPost200ResponseDataInnerOneOf2) == "{}" { // empty struct
-			dst.PermissionsListObjectsPost200ResponseDataInnerOneOf2 = nil
-		} else {
-			match++
+		return nil
+	case "app":
+		// Unmarshal into PermissionsListObjectsPost200ResponseDataInnerOneOf1 (app)
+		dst.PermissionsListObjectsPost200ResponseDataInnerOneOf1 = &PermissionsListObjectsPost200ResponseDataInnerOneOf1{}
+		err = newStrictDecoder(data).Decode(dst.PermissionsListObjectsPost200ResponseDataInnerOneOf1)
+		if err != nil {
+			return fmt.Errorf("failed to unmarshal as app: %v", err)
 		}
-	} else {
-		dst.PermissionsListObjectsPost200ResponseDataInnerOneOf2 = nil
-	}
-
-	// try to unmarshal data into PermissionsListObjectsPost200ResponseDataInnerOneOf3
-	err = newStrictDecoder(data).Decode(&dst.PermissionsListObjectsPost200ResponseDataInnerOneOf3)
-	if err == nil {
-		jsonPermissionsListObjectsPost200ResponseDataInnerOneOf3, _ := json.Marshal(dst.PermissionsListObjectsPost200ResponseDataInnerOneOf3)
-		if string(jsonPermissionsListObjectsPost200ResponseDataInnerOneOf3) == "{}" { // empty struct
-			dst.PermissionsListObjectsPost200ResponseDataInnerOneOf3 = nil
-		} else {
-			match++
+		return nil
+	case "resource":
+		// Unmarshal into PermissionsListObjectsPost200ResponseDataInnerOneOf2 (resource)
+		dst.PermissionsListObjectsPost200ResponseDataInnerOneOf2 = &PermissionsListObjectsPost200ResponseDataInnerOneOf2{}
+		err = newStrictDecoder(data).Decode(dst.PermissionsListObjectsPost200ResponseDataInnerOneOf2)
+		if err != nil {
+			return fmt.Errorf("failed to unmarshal as resource: %v", err)
 		}
-	} else {
-		dst.PermissionsListObjectsPost200ResponseDataInnerOneOf3 = nil
-	}
-
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.PermissionsListObjectsPost200ResponseDataInnerOneOf = nil
-		dst.PermissionsListObjectsPost200ResponseDataInnerOneOf1 = nil
-		dst.PermissionsListObjectsPost200ResponseDataInnerOneOf2 = nil
-		dst.PermissionsListObjectsPost200ResponseDataInnerOneOf3 = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(PermissionsListObjectsPost200ResponseDataInner)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(PermissionsListObjectsPost200ResponseDataInner)")
+		return nil
+	case "resource_configuration":
+		// Unmarshal into PermissionsListObjectsPost200ResponseDataInnerOneOf3 (resource_configuration)
+		dst.PermissionsListObjectsPost200ResponseDataInnerOneOf3 = &PermissionsListObjectsPost200ResponseDataInnerOneOf3{}
+		err = newStrictDecoder(data).Decode(dst.PermissionsListObjectsPost200ResponseDataInnerOneOf3)
+		if err != nil {
+			return fmt.Errorf("failed to unmarshal as resource_configuration: %v", err)
+		}
+		return nil
+	default:
+		return fmt.Errorf("unknown discriminator value '%s' for oneOf(PermissionsListObjectsPost200ResponseDataInner)", discriminator.Type)
 	}
 }
 

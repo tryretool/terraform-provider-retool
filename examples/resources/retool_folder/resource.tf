@@ -13,3 +13,13 @@ resource "retool_folder" "resource_example" {
   name        = "Terraform Example Folder"
   folder_type = "resource"
 }
+
+resource "retool_folder" "workflow_example" {
+  name        = "Terraform Workflow Folder"
+  folder_type = "workflow"
+}
+
+resource "retool_folder" "agent_example" {
+  name        = "Terraform Agent Folder"
+  folder_type = "agent"
+}

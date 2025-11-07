@@ -100,7 +100,7 @@ func (d *foldersDataSource) Schema(_ context.Context, _ datasource.SchemaRequest
 						},
 						"folder_type": schema.StringAttribute{
 							Computed:    true,
-							Description: "The type of the folder: (app|file|resource|workflow).",
+							Description: "The type of the folder: (app|file|resource|workflow|agent).",
 						},
 					},
 				},
