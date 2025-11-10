@@ -178,7 +178,7 @@ func TestAccConfigurationVariableSecret(t *testing.T) {
 				ResourceName:            "retool_configuration_variable.test_secret_configuration_variable",
 				ImportState:             true,
 				ImportStateVerify:       true,
-				ImportStateVerifyIgnore: []string{"values.0.value", "values.1.value"}, // Secret values are set to null on read
+				ImportStateVerifyIgnore: []string{"values.0.value", "values.1.value"}, // Secret values are set to null on read.
 			},
 		},
 	})
