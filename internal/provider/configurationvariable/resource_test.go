@@ -59,6 +59,24 @@ resource "retool_configuration_variable" "test_configuration_variable" {
 }
 `
 
+const testConfigurationVariableSecret = `
+resource "retool_configuration_variable" "test_secret_configuration_variable" {
+  name        = "tf-acc-test-secret-configuration-variable"
+  description = "Terraform acceptance test secret configuration variable"
+  secret      = true
+  values = [
+	{
+	  environment_id = "23ba02f3-12c2-456e-826f-13b616daa5ce"
+	  value          = "secret_value1"
+	},
+	{
+	  environment_id = "fc4a3c5b-6328-4990-b368-6879a1f38855"
+	  value          = "secret_value2"
+	}
+  ]
+}
+`
+
 func TestMain(m *testing.M) {
 	resource.TestMain(m)
 }
@@ -139,6 +157,31 @@ func sweepConfigurationVariables(region string) error {
 		}
 	}
 	return nil
+}
+
+func TestAccConfigurationVariableSecret(t *testing.T) {
+	acctest.Test(t, resource.TestCase{
+		Steps: []resource.TestStep{
+			// Create a secret configuration variable.
+			{
+				Config: testConfigurationVariableSecret,
+				Check: resource.ComposeTestCheckFunc(
+					resource.TestCheckResourceAttr("retool_configuration_variable.test_secret_configuration_variable", "name", "tf-acc-test-secret-configuration-variable"),
+					resource.TestCheckResourceAttr("retool_configuration_variable.test_secret_configuration_variable", "description", "Terraform acceptance test secret configuration variable"),
+					resource.TestCheckResourceAttr("retool_configuration_variable.test_secret_configuration_variable", "secret", "true"),
+					resource.TestCheckResourceAttrSet("retool_configuration_variable.test_secret_configuration_variable", "id"),
+					resource.TestCheckResourceAttr("retool_configuration_variable.test_secret_configuration_variable", "values.#", "2"),
+				),
+			},
+			// Import state - secret values are set to null on read, so we ignore them in verification.
+			{
+				ResourceName:            "retool_configuration_variable.test_secret_configuration_variable",
+				ImportState:             true,
+				ImportStateVerify:       true,
+				ImportStateVerifyIgnore: []string{"values.0.value", "values.1.value"}, // Secret values are set to null on read
+			},
+		},
+	})
 }
 
 func init() {

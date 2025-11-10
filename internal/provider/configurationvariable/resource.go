@@ -112,11 +112,12 @@ func (r *configurationVariableResource) Schema(_ context.Context, _ resource.Sch
 							Required:    true,
 							Validators:  []validator.String{stringvalidator.LengthBetween(1, 255)},
 						},
-						"value": schema.StringAttribute{
-							Description: "The value of the configuration variable for the specified environment.",
-							Required:    true,
-							Validators:  []validator.String{stringvalidator.LengthBetween(1, 4096)},
-						},
+					"value": schema.StringAttribute{
+						Description: "The value of the configuration variable for the specified environment.",
+						Required:    true,
+						Sensitive:   true,
+						Validators:  []validator.String{stringvalidator.LengthBetween(1, 4096)},
+					},
 					},
 				},
 			},
@@ -221,11 +222,35 @@ func (r *configurationVariableResource) Read(ctx context.Context, req resource.R
 	state.Secret = types.BoolValue(response.Data.Secret)
 
 	// For secrets, the API returns encrypted values that we cannot use.
-	// We need to preserve the values from the current state.
+	// We preserve values from the existing state (which come from the config).
+	// During import, state values will be empty/null, which signals to the user they must provide them.
 	if response.Data.Secret {
-		// Keep the values from the current state since API returns encrypted values.
-		// The state.Values already contains the values from the previous read.
-		tflog.Info(ctx, "Configuration variable is a secret, preserving values from state", map[string]interface{}{"id": configurationVariableID})
+		// Preserve existing state values for secrets since API returns encrypted placeholders.
+		// We need to update the environment IDs from the API response, but keep the values from state.
+		existingValues := make(map[string]types.String)
+		for _, v := range state.Values {
+			existingValues[v.EnvironmentID.ValueString()] = v.Value
+		}
+		
+		state.Values = nil
+		for _, v := range response.Data.Values {
+			envID := v.EnvironmentId
+			existingValue, hasExisting := existingValues[envID]
+			
+			// Use existing value if present (normal refresh), otherwise null (import scenario)
+			if hasExisting && !existingValue.IsNull() {
+				state.Values = append(state.Values, configurationVariableValueModel{
+					EnvironmentID: types.StringValue(envID),
+					Value:         existingValue,
+				})
+			} else {
+				state.Values = append(state.Values, configurationVariableValueModel{
+					EnvironmentID: types.StringValue(envID),
+					Value:         types.StringNull(), // API sends placeholder, set to null for import
+				})
+				tflog.Warn(ctx, "Configuration variable is a secret with no value in state. Value must be provided in your Terraform configuration.", map[string]interface{}{"id": configurationVariableID, "environment_id": envID})
+			}
+		}
 	} else {
 		// Clear current values and repopulate from API response to handle deletions correctly.
 		state.Values = nil
