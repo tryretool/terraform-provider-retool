@@ -112,12 +112,12 @@ func (r *configurationVariableResource) Schema(_ context.Context, _ resource.Sch
 							Required:    true,
 							Validators:  []validator.String{stringvalidator.LengthBetween(1, 255)},
 						},
-					"value": schema.StringAttribute{
-						Description: "The value of the configuration variable for the specified environment.",
-						Required:    true,
-						Sensitive:   true,
-						Validators:  []validator.String{stringvalidator.LengthBetween(1, 4096)},
-					},
+						"value": schema.StringAttribute{
+							Description: "The value of the configuration variable for the specified environment.",
+							Required:    true,
+							Sensitive:   true,
+							Validators:  []validator.String{stringvalidator.LengthBetween(1, 4096)},
+						},
 					},
 				},
 			},
@@ -231,13 +231,13 @@ func (r *configurationVariableResource) Read(ctx context.Context, req resource.R
 		for _, v := range state.Values {
 			existingValues[v.EnvironmentID.ValueString()] = v.Value
 		}
-		
+
 		state.Values = nil
 		for _, v := range response.Data.Values {
 			envID := v.EnvironmentId
 			existingValue, hasExisting := existingValues[envID]
-			
-			// Use existing value if present (normal refresh), otherwise null (import scenario)
+
+			// Use existing value if present (normal refresh), otherwise null (import scenario).
 			if hasExisting && !existingValue.IsNull() {
 				state.Values = append(state.Values, configurationVariableValueModel{
 					EnvironmentID: types.StringValue(envID),
@@ -246,7 +246,7 @@ func (r *configurationVariableResource) Read(ctx context.Context, req resource.R
 			} else {
 				state.Values = append(state.Values, configurationVariableValueModel{
 					EnvironmentID: types.StringValue(envID),
-					Value:         types.StringNull(), // API sends placeholder, set to null for import
+					Value:         types.StringNull(), // API sends placeholder, set to null for import.
 				})
 				tflog.Warn(ctx, "Configuration variable is a secret with no value in state. Value must be provided in your Terraform configuration.", map[string]interface{}{"id": configurationVariableID, "environment_id": envID})
 			}
