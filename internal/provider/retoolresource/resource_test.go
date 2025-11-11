@@ -13,7 +13,7 @@ import (
 )
 
 // Note: These tests use a REST API resource as it's the simplest to configure.
-// Options are write-only, so we can't verify them after creation
+// Options are write-only, so we can't verify them after creation.
 
 const testRetoolResourceConfig = `
 	resource "retool_resource" "test_resource" {
@@ -57,7 +57,7 @@ func TestAccRetoolResource(t *testing.T) {
 				ImportStateVerify:       true,
 				ImportStateVerifyIgnore: []string{"options"}, // Options cannot be read back.
 			},
-			// Update and Read
+			// Update and Read.
 			{
 				Config: testRetoolResourceUpdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
@@ -67,7 +67,7 @@ func TestAccRetoolResource(t *testing.T) {
 				),
 			},
 		},
-		// Note: The test framework will automatically call Delete on all resources after the last step
+		// Note: The test framework will automatically call Delete on all resources after the last step.
 	})
 }
 
