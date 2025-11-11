@@ -12,7 +12,7 @@ import (
 	"github.com/tryretool/terraform-provider-retool/internal/acctest"
 )
 
-// Note: These tests use a REST API resource as it's the simplest to configure
+// Note: These tests use a REST API resource as it's the simplest to configure.
 // Options are write-only, so we can't verify them after creation
 
 const testRetoolResourceConfig = `
@@ -38,7 +38,7 @@ const testRetoolResourceUpdatedConfig = `
 func TestAccRetoolResource(t *testing.T) {
 	acctest.Test(t, resource.TestCase{
 		Steps: []resource.TestStep{
-			// Create and Read
+			// Create and Read.
 			{
 				Config: testRetoolResourceConfig,
 				Check: resource.ComposeTestCheckFunc(
@@ -50,12 +50,12 @@ func TestAccRetoolResource(t *testing.T) {
 					resource.TestCheckResourceAttrSet("retool_resource.test_resource", "protected"),
 				),
 			},
-			// Import state
+			// Import state.
 			{
 				ResourceName:            "retool_resource.test_resource",
 				ImportState:             true,
 				ImportStateVerify:       true,
-				ImportStateVerifyIgnore: []string{"options"}, // options cannot be read back
+				ImportStateVerifyIgnore: []string{"options"}, // Options cannot be read back.
 			},
 			// Update and Read
 			{
