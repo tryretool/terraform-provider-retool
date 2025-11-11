@@ -4,7 +4,6 @@ description: |-
   A Retool resource represents a connection to an external service such as a database, API, or other data source.
   Important Note: Due to API security design, the options field (which contains connection credentials and configuration) is write-only and cannot be read back after creation. This means:
   Changes to options will not be detected by Terraform after the resource is createdThe options value will not be stored in Terraform state after initial creationTo update resource options, you must use the Retool UI or recreate the resource
-  This resource is best used for managing the resource metadata (display_name, type) while the actual connection configuration is managed through other means.
 ---
 
 # Resource: retool_resource
@@ -15,8 +14,6 @@ A Retool resource represents a connection to an external service such as a datab
 - Changes to options will not be detected by Terraform after the resource is created
 - The options value will not be stored in Terraform state after initial creation
 - To update resource options, you must use the Retool UI or recreate the resource
-
-This resource is best used for managing the resource metadata (display_name, type) while the actual connection configuration is managed through other means.
 
 ## Example Usage
 
