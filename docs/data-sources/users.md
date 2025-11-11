@@ -53,3 +53,4 @@ Read-Only:
 - `two_factor_auth_enabled` (Boolean) Whether two-factor authentication is enabled for this user.
 - `user_type` (String) The user type.
 
+
