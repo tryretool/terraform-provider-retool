@@ -132,7 +132,7 @@ func (r *retoolResourceResource) Create(ctx context.Context, req resource.Create
 		return
 	}
 
-	// Parse options JSON string to map
+	// Parse options JSON string to map.
 	var optionsMap map[string]interface{}
 	if err := json.Unmarshal([]byte(plan.Options.ValueString()), &optionsMap); err != nil {
 		resp.Diagnostics.AddError(
@@ -142,7 +142,7 @@ func (r *retoolResourceResource) Create(ctx context.Context, req resource.Create
 		return
 	}
 
-	// Create the request body manually to avoid sending empty fields
+	// Create the request body manually to avoid sending empty fields.
 	requestBody := map[string]interface{}{
 		"type":         plan.Type.ValueString(),
 		"display_name": plan.DisplayName.ValueString(),
@@ -172,7 +172,7 @@ func (r *retoolResourceResource) Create(ctx context.Context, req resource.Create
 		"display_name": plan.DisplayName.ValueString(),
 	})
 
-	// Create new resource
+	// Create new resource.
 	response, httpResponse, err := r.client.ResourcesAPI.ResourcesPost(ctx).ResourcesPostRequest(resourceRequest).Execute()
 	if err != nil {
 		resp.Diagnostics.AddError(
@@ -183,16 +183,16 @@ func (r *retoolResourceResource) Create(ctx context.Context, req resource.Create
 		return
 	}
 
-	// Map response body to schema and populate Computed attribute values
+	// Map response body to schema and populate Computed attribute values.
 	plan.ID = types.StringValue(response.Data.Id)
 	plan.Type = types.StringValue(response.Data.Type)
 	plan.DisplayName = types.StringValue(response.Data.DisplayName)
 	plan.Protected = types.BoolValue(response.Data.Protected)
 	plan.CreatedAt = types.StringValue(response.Data.CreatedAt)
 	plan.UpdatedAt = types.StringValue(response.Data.UpdatedAt)
-	// Note: We keep the options in state after creation, but it won't be refreshed on read
+	// Note: We keep the options in state after creation, but it won't be refreshed on read.
 
-	// Set state to fully populated data
+	// Set state to fully populated data.
 	diags = resp.State.Set(ctx, plan)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -230,14 +230,14 @@ func (r *retoolResourceResource) Read(ctx context.Context, req resource.ReadRequ
 		return
 	}
 
-	// Map the API response to the Terraform state
+	// Map the API response to the Terraform state.
 	state.ID = types.StringValue(resource.Data.Id)
 	state.Type = types.StringValue(resource.Data.Type)
 	state.DisplayName = types.StringValue(resource.Data.DisplayName)
 	state.Protected = types.BoolValue(resource.Data.Protected)
 	state.CreatedAt = types.StringValue(resource.Data.CreatedAt)
 	state.UpdatedAt = types.StringValue(resource.Data.UpdatedAt)
-	// Note: options are not returned by the API, so we keep the existing state value
+	// Note: options are not returned by the API, so we keep the existing state value.
 
 	diags = resp.State.Set(ctx, &state)
 	resp.Diagnostics.Append(diags...)
@@ -264,10 +264,10 @@ func (r *retoolResourceResource) Update(ctx context.Context, req resource.Update
 
 	resourceID := state.ID.ValueString()
 
-	// Build patch operations based on changes
+	// Build patch operations based on changes.
 	operations := []api.ReplaceOperation{}
 
-	// Only display_name can be updated (type requires replacement, options cannot be updated via API)
+	// Only display_name can be updated (type requires replacement, options cannot be updated via API).
 	if !plan.DisplayName.Equal(state.DisplayName) {
 		replaceOp := api.NewReplaceOperation("replace", "/display_name")
 		replaceOp.SetValue(plan.DisplayName.ValueString())
@@ -276,16 +276,16 @@ func (r *retoolResourceResource) Update(ctx context.Context, req resource.Update
 
 	if len(operations) == 0 {
 		tflog.Info(ctx, "No changes detected for Retool resource", map[string]any{"resourceID": resourceID})
-		// No changes, just return current state
+		// No changes, just return current state.
 		diags = resp.State.Set(ctx, plan)
 		resp.Diagnostics.Append(diags...)
 		return
 	}
 
-	// Prepare the update payload
+	// Prepare the update payload.
 	patchRequest := api.NewResourcesResourceIdPatchRequest(operations)
 
-	// Perform the update operation
+	// Perform the update operation.
 	updateResponse, httpResponse, err := r.client.ResourcesAPI.ResourcesResourceIdPatch(ctx, resourceID).ResourcesResourceIdPatchRequest(*patchRequest).Execute()
 	if err != nil {
 		resp.Diagnostics.AddError(
@@ -296,14 +296,14 @@ func (r *retoolResourceResource) Update(ctx context.Context, req resource.Update
 		return
 	}
 
-	// Update the state with response data
+	// Update the state with response data.
 	plan.ID = types.StringValue(updateResponse.Data.Id)
 	plan.Type = types.StringValue(updateResponse.Data.Type)
 	plan.DisplayName = types.StringValue(updateResponse.Data.DisplayName)
 	plan.Protected = types.BoolValue(updateResponse.Data.Protected)
 	plan.CreatedAt = types.StringValue(updateResponse.Data.CreatedAt)
 	plan.UpdatedAt = types.StringValue(updateResponse.Data.UpdatedAt)
-	// Note: options are not returned by the API, so we keep the existing state value
+	// Note: options are not returned by the API, so we keep the existing state value.
 
 	diags = resp.State.Set(ctx, plan)
 	resp.Diagnostics.Append(diags...)
@@ -325,11 +325,11 @@ func (r *retoolResourceResource) Delete(ctx context.Context, req resource.Delete
 
 	resourceID := state.ID.ValueString()
 
-	// Delete the resource
+	// Delete the resource.
 	httpResponse, err := r.client.ResourcesAPI.ResourcesResourceIdDelete(ctx, resourceID).Execute()
 	if err != nil {
 		if httpResponse != nil && httpResponse.StatusCode == 404 {
-			// Resource already doesn't exist, nothing to do
+			// Resource already doesn't exist, nothing to do.
 			tflog.Info(ctx, "Retool resource not found during delete, treating as already deleted", map[string]any{"resourceID": resourceID})
 			return
 		}
@@ -346,10 +346,10 @@ func (r *retoolResourceResource) Delete(ctx context.Context, req resource.Delete
 
 // ImportState allows importing of a Retool Resource.
 func (r *retoolResourceResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
-	// Retrieve import ID and save to id attribute
+	// Retrieve import ID and save to id attribute.
 	resource.ImportStatePassthroughID(ctx, path.Root("id"), req, resp)
 
-	// Add a warning about options not being imported
+	// Add a warning about options not being imported.
 	resp.Diagnostics.AddWarning(
 		"Options Not Imported",
 		"The options field cannot be imported as it is not returned by the API for security reasons. "+
@@ -357,4 +357,3 @@ func (r *retoolResourceResource) ImportState(ctx context.Context, req resource.I
 			"Consider using lifecycle { ignore_changes = [options] } if you don't need Terraform to manage the connection details.",
 	)
 }
-
