@@ -1,31 +1,34 @@
-package retoolresource_test
+package retoolresource
 
 import (
+	"context"
 	"testing"
 
-	"github.com/hashicorp/terraform-plugin-framework/providerserver"
-	"github.com/hashicorp/terraform-plugin-go/tfprotov6"
-	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
-
-	"github.com/tryretool/terraform-provider-retool/internal/provider"
+	// The fwresource import alias is so there is no collision
+	// with the more typical acceptance testing import:
+	// "github.com/hashicorp/terraform-plugin-testing/helper/resource".
+	fwresource "github.com/hashicorp/terraform-plugin-framework/resource"
 )
 
 func TestRetoolResourceSchema(t *testing.T) {
 	t.Parallel()
 
-	resource.UnitTest(t, resource.TestCase{
-		ProtoV6ProviderFactories: map[string]func() (tfprotov6.ProviderServer, error){
-			"retool": providerserver.NewProtocol6WithError(provider.New("test")()),
-		},
-		Steps: []resource.TestStep{
-			{
-				Config: `resource "retool_resource" "test" {
-					display_name = "test"
-					type = "restapi"
-					options = jsonencode({})
-				}`,
-			},
-		},
-	})
+	ctx := context.Background()
+	schemaRequest := fwresource.SchemaRequest{}
+	schemaResponse := &fwresource.SchemaResponse{}
+
+	// Instantiate the resource.Resource and call its Schema method.
+	NewResource().Schema(ctx, schemaRequest, schemaResponse)
+
+	if schemaResponse.Diagnostics.HasError() {
+		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)
+	}
+
+	// Validate the schema.
+	diagnostics := schemaResponse.Schema.ValidateImplementation(ctx)
+
+	if diagnostics.HasError() {
+		t.Fatalf("Schema validation diagnostics: %+v", diagnostics)
+	}
 }
 
