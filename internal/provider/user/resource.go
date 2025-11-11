@@ -228,13 +228,13 @@ func (r *userResource) Create(ctx context.Context, req resource.CreateRequest, r
 	}
 
 	plan.CreatedAt = types.StringValue(response.Data.CreatedAt.String())
-	
+
 	if response.Data.LastActive.Get() != nil {
 		plan.LastActive = types.StringValue(response.Data.LastActive.Get().String())
 	} else {
 		plan.LastActive = types.StringNull()
 	}
-	
+
 	plan.IsAdmin = types.BoolValue(response.Data.IsAdmin)
 	plan.UserType = types.StringValue(response.Data.UserType)
 	plan.TwoFactorAuthEnabled = types.BoolValue(response.Data.TwoFactorAuthEnabled)
@@ -369,9 +369,9 @@ func (r *userResource) Update(ctx context.Context, req resource.UpdateRequest, r
 	// Build patch operations based on changes.
 	operations := []api.UsersUserIdPatchRequestOperationsInner{}
 
-	// Check for changes and build patch operations
-	// Note: Email cannot be changed via PATCH according to API restrictions
-	
+	// Check for changes and build patch operations.
+	// Note: Email cannot be changed via PATCH according to API restrictions.
+
 	if !plan.FirstName.Equal(state.FirstName) {
 		replaceOp := api.NewReplaceOperation("replace", "/first_name")
 		replaceOp.SetValue(plan.FirstName.ValueString())
@@ -431,13 +431,13 @@ func (r *userResource) Update(ctx context.Context, req resource.UpdateRequest, r
 
 	if len(operations) == 0 {
 		tflog.Info(ctx, "No changes detected for user", map[string]any{"userID": userID})
-		// No changes, just return current state
+		// No changes, just return current state.
 		diags = resp.State.Set(ctx, plan)
 		resp.Diagnostics.Append(diags...)
 		return
 	}
 
-	// Prepare the update payload
+	// Prepare the update payload.
 	patchRequest := api.NewUsersUserIdPatchRequest(operations)
 
 	// Perform the update operation
