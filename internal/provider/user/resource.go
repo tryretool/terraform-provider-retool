@@ -40,7 +40,7 @@ type userResourceModel struct {
 	Active    types.Bool   `tfsdk:"active"`
 	Metadata  types.String `tfsdk:"metadata"`
 	UserType  types.String `tfsdk:"user_type"`
-	// Read-only computed fields
+	// Read-only computed fields.
 	CreatedAt            types.String `tfsdk:"created_at"`
 	LastActive           types.String `tfsdk:"last_active"`
 	IsAdmin              types.Bool   `tfsdk:"is_admin"`
@@ -218,8 +218,8 @@ func (r *userResource) Create(ctx context.Context, req resource.CreateRequest, r
 	plan.LegacyID = types.StringValue(fmt.Sprintf("%.0f", response.Data.LegacyId))
 	plan.Email = types.StringValue(response.Data.Email)
 	plan.Active = types.BoolValue(response.Data.Active)
-	
-	// first_name and last_name are required, so they should always be in the response
+
+	// First_name and last_name are required, so they should always be in the response.
 	if response.Data.FirstName.Get() != nil {
 		plan.FirstName = types.StringValue(*response.Data.FirstName.Get())
 	}
@@ -238,9 +238,10 @@ func (r *userResource) Create(ctx context.Context, req resource.CreateRequest, r
 	plan.IsAdmin = types.BoolValue(response.Data.IsAdmin)
 	plan.UserType = types.StringValue(response.Data.UserType)
 	plan.TwoFactorAuthEnabled = types.BoolValue(response.Data.TwoFactorAuthEnabled)
-	
-	// Handle metadata
-	if len(response.Data.Metadata) > 0 {
+
+	// Handle metadata.
+	switch {
+	case len(response.Data.Metadata) > 0:
 		metadataStr, err := utils.MapToJSONString(response.Data.Metadata)
 		if err != nil {
 			resp.Diagnostics.AddError(
@@ -250,11 +251,11 @@ func (r *userResource) Create(ctx context.Context, req resource.CreateRequest, r
 			return
 		}
 		plan.Metadata = types.StringValue(metadataStr)
-	} else if plan.Metadata.IsNull() {
-		// Only set to null if it was null in the plan
+	case plan.Metadata.IsNull():
+		// Only set to null if it was null in the plan.
 		plan.Metadata = types.StringNull()
-	} else {
-		// If plan had metadata but response doesn't, set to empty JSON object
+	default:
+		// If plan had metadata but response doesn't, set to empty JSON object.
 		plan.Metadata = types.StringValue("{}")
 	}
 

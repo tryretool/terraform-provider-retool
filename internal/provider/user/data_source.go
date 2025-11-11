@@ -162,7 +162,7 @@ func (d *usersDataSource) Read(ctx context.Context, _ datasource.ReadRequest, re
 			CreatedAt:            types.StringValue(user.CreatedAt.String()),
 		}
 
-		// Handle nullable fields
+		// Handle nullable fields.
 		if user.FirstName.Get() != nil {
 			userModel.FirstName = types.StringValue(*user.FirstName.Get())
 		} else {
@@ -181,7 +181,7 @@ func (d *usersDataSource) Read(ctx context.Context, _ datasource.ReadRequest, re
 			userModel.LastActive = types.StringNull()
 		}
 
-		// Handle metadata
+		// Handle metadata.
 		if len(user.Metadata) > 0 {
 			metadataStr, err := utils.MapToJSONString(user.Metadata)
 			if err != nil {
@@ -206,4 +206,3 @@ func (d *usersDataSource) Read(ctx context.Context, _ datasource.ReadRequest, re
 		return
 	}
 }
-

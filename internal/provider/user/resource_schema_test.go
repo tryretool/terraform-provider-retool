@@ -31,4 +31,3 @@ func TestUserResourceSchema(t *testing.T) {
 		t.Fatalf("Schema validation diagnostics: %+v", diagnostics)
 	}
 }
-
