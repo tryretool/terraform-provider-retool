@@ -514,7 +514,7 @@ func (r *userResource) Delete(ctx context.Context, req resource.DeleteRequest, r
 	httpResponse, err := r.client.UsersAPI.UsersUserIdDelete(ctx, userID).Execute()
 	if err != nil {
 		if httpResponse != nil && httpResponse.StatusCode == 404 {
-			// User already doesn't exist, nothing to do
+			// User already doesn't exist, nothing to do.
 			tflog.Info(ctx, "User not found during delete, treating as already deleted", map[string]any{"userID": userID})
 			return
 		}
