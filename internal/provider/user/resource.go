@@ -172,7 +172,7 @@ func (r *userResource) Create(ctx context.Context, req resource.CreateRequest, r
 	}
 
 	if !plan.Metadata.IsNull() && !plan.Metadata.IsUnknown() {
-		// Parse metadata JSON string to map[string]interface{}
+		// Parse metadata JSON string to map[string]interface{}.
 		var metadata map[string]interface{}
 		metadataStr := plan.Metadata.ValueString()
 		if metadataStr != "" {
@@ -226,7 +226,7 @@ func (r *userResource) Create(ctx context.Context, req resource.CreateRequest, r
 	if response.Data.LastName.Get() != nil {
 		plan.LastName = types.StringValue(*response.Data.LastName.Get())
 	}
-	
+
 	plan.CreatedAt = types.StringValue(response.Data.CreatedAt.String())
 	
 	if response.Data.LastActive.Get() != nil {
@@ -325,8 +325,8 @@ func (r *userResource) Read(ctx context.Context, req resource.ReadRequest, resp 
 	state.IsAdmin = types.BoolValue(user.Data.IsAdmin)
 	state.UserType = types.StringValue(user.Data.UserType)
 	state.TwoFactorAuthEnabled = types.BoolValue(user.Data.TwoFactorAuthEnabled)
-	
-	// Handle metadata
+
+	// Handle metadata.
 	if len(user.Data.Metadata) > 0 {
 		metadataStr, err := utils.MapToJSONString(user.Data.Metadata)
 		if err != nil {
@@ -366,7 +366,7 @@ func (r *userResource) Update(ctx context.Context, req resource.UpdateRequest, r
 
 	userID := state.ID.ValueString()
 
-	// Build patch operations based on changes
+	// Build patch operations based on changes.
 	operations := []api.UsersUserIdPatchRequestOperationsInner{}
 
 	// Check for changes and build patch operations

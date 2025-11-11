@@ -144,4 +144,3 @@ func init() {
 		F:    sweepUsers,
 	})
 }
-

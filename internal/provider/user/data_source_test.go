@@ -51,4 +51,3 @@ func TestAccUsersDataSource(t *testing.T) {
 		},
 	})
 }
-
