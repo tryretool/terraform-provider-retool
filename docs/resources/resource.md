@@ -1,96 +1,58 @@
 ---
 page_title: "Resource: retool_resource"
 description: |-
-  Manages a Retool resource (database connection, API, etc.)
+  A Retool resource represents a connection to an external service such as a database, API, or other data source.
+  Important Note: Due to API security design, the options field (which contains connection credentials and configuration) is write-only and cannot be read back after creation. This means:
+  Changes to options will not be detected by Terraform after the resource is createdThe options value will not be stored in Terraform state after initial creationTo update resource options, you must use the Retool UI or recreate the resource
+  This resource is best used for managing the resource metadata (display_name, type) while the actual connection configuration is managed through other means.
 ---
 
 # Resource: retool_resource
 
 A Retool resource represents a connection to an external service such as a database, API, or other data source.
 
-## Important Limitations
+**Important Note:** Due to API security design, the options field (which contains connection credentials and configuration) is write-only and cannot be read back after creation. This means:
+- Changes to options will not be detected by Terraform after the resource is created
+- The options value will not be stored in Terraform state after initial creation
+- To update resource options, you must use the Retool UI or recreate the resource
 
-**⚠️ Read This Before Using:**
-
-Due to the Retool API's security design, the `options` field (which contains connection credentials and configuration) is **write-only** and cannot be read back after creation. This means:
-
-- **Changes to `options` will not be detected** by Terraform after the resource is created
-- The `options` value will not be stored in Terraform state after initial creation  
-- To update resource options, you must either:
-  - Use the Retool UI to update the connection
-  - Recreate the resource in Terraform
-  - Use `lifecycle { ignore_changes = [options] }` if you manage options outside Terraform
-
-This resource is best used for:
-- Creating initial resource configurations that are then managed in the Retool UI
-- Managing resource metadata (`display_name`, `type`) while options are managed separately  
-- Infrastructure-as-code scenarios where resources are immutable after creation
+This resource is best used for managing the resource metadata (display_name, type) while the actual connection configuration is managed through other means.
 
 ## Example Usage
-
-### REST API Resource
 
 ```terraform
 resource "retool_resource" "api" {
   display_name = "My REST API"
   type         = "restapi"
-  
+
   options = jsonencode({
     base_url = "https://api.example.com"
     authentication_options = {
       authentication_type = "None"
     }
   })
-  
+
   lifecycle {
-    # Ignore changes to options since they can't be read back
+    # Ignore changes to options since they can't be read back from the API
     ignore_changes = [options]
   }
 }
-```
 
-###  PostgreSQL Database
-
-```terraform
 resource "retool_resource" "database" {
   display_name = "Production Database"
   type         = "postgresql"
-  
+
   options = jsonencode({
-    host                    = "db.example.com"
-    port                    = 5432
-    database_name           = "myapp"
-    database_username       = var.db_username
-    database_password       = var.db_password
+    host              = "db.example.com"
+    port              = 5432
+    database_name     = "myapp"
+    database_username = var.db_username
+    database_password = var.db_password
     ssl_settings = {
       ssl_enabled = true
     }
   })
-  
-  lifecycle {
-    ignore_changes = [options]
-  }
-}
-```
 
-### REST API with Bearer Auth
-
-```terraform
-resource "retool_resource" "authenticated_api" {
-  display_name = "Authenticated API"
-  type         = "restapi"
-  
-  options = jsonencode({
-    base_url = "https://api.example.com"
-    authentication_options = {
-      authentication_type = "bearer"
-      bearer_token        = var.api_token
-    }
-    headers = [
-      ["Content-Type", "application/json"]
-    ]
-  })
-  
   lifecycle {
     ignore_changes = [options]
   }
@@ -115,11 +77,11 @@ resource "retool_resource" "authenticated_api" {
 
 ## Import
 
-Resources can be imported using their ID. Note that the `options` field will not be imported and must be set in your configuration.
+Import is supported using the following syntax:
 
 ```shell
+#!/bin/bash
+# Import a Retool resource using its UUID
+# Note: The options field will not be imported and must be set in your configuration
 terraform import retool_resource.example "resource_uuid_here"
 ```
-
-After import, you should add `lifecycle { ignore_changes = [options] }` to prevent Terraform from trying to update the options field.
-
