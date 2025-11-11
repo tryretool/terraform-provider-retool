@@ -301,27 +301,27 @@ func (r *userResource) Read(ctx context.Context, req resource.ReadRequest, resp 
 	state.LegacyID = types.StringValue(fmt.Sprintf("%.0f", user.Data.LegacyId))
 	state.Email = types.StringValue(user.Data.Email)
 	state.Active = types.BoolValue(user.Data.Active)
-	
+
 	if user.Data.FirstName.Get() != nil {
 		state.FirstName = types.StringValue(*user.Data.FirstName.Get())
 	} else {
 		state.FirstName = types.StringNull()
 	}
-	
+
 	if user.Data.LastName.Get() != nil {
 		state.LastName = types.StringValue(*user.Data.LastName.Get())
 	} else {
 		state.LastName = types.StringNull()
 	}
-	
+
 	state.CreatedAt = types.StringValue(user.Data.CreatedAt.String())
-	
+
 	if user.Data.LastActive.Get() != nil {
 		state.LastActive = types.StringValue(user.Data.LastActive.Get().String())
 	} else {
 		state.LastActive = types.StringNull()
 	}
-	
+
 	state.IsAdmin = types.BoolValue(user.Data.IsAdmin)
 	state.UserType = types.StringValue(user.Data.UserType)
 	state.TwoFactorAuthEnabled = types.BoolValue(user.Data.TwoFactorAuthEnabled)
@@ -440,7 +440,7 @@ func (r *userResource) Update(ctx context.Context, req resource.UpdateRequest, r
 	// Prepare the update payload.
 	patchRequest := api.NewUsersUserIdPatchRequest(operations)
 
-	// Perform the update operation
+	// Perform the update operation.
 	updateResponse, httpResponse, err := r.client.UsersAPI.UsersUserIdPatch(ctx, userID).UsersUserIdPatchRequest(*patchRequest).Execute()
 	if err != nil {
 		resp.Diagnostics.AddError(
@@ -451,32 +451,32 @@ func (r *userResource) Update(ctx context.Context, req resource.UpdateRequest, r
 		return
 	}
 
-	// Update the state with response data
+	// Update the state with response data.
 	plan.ID = types.StringValue(updateResponse.Data.Id)
 	plan.LegacyID = types.StringValue(fmt.Sprintf("%.0f", updateResponse.Data.LegacyId))
 	plan.Email = types.StringValue(updateResponse.Data.Email)
 	plan.Active = types.BoolValue(updateResponse.Data.Active)
-	
+
 	if updateResponse.Data.FirstName.Get() != nil {
 		plan.FirstName = types.StringValue(*updateResponse.Data.FirstName.Get())
 	}
 	if updateResponse.Data.LastName.Get() != nil {
 		plan.LastName = types.StringValue(*updateResponse.Data.LastName.Get())
 	}
-	
+
 	plan.CreatedAt = types.StringValue(updateResponse.Data.CreatedAt.String())
-	
+
 	if updateResponse.Data.LastActive.Get() != nil {
 		plan.LastActive = types.StringValue(updateResponse.Data.LastActive.Get().String())
 	} else {
 		plan.LastActive = types.StringNull()
 	}
-	
+
 	plan.IsAdmin = types.BoolValue(updateResponse.Data.IsAdmin)
 	plan.UserType = types.StringValue(updateResponse.Data.UserType)
 	plan.TwoFactorAuthEnabled = types.BoolValue(updateResponse.Data.TwoFactorAuthEnabled)
-	
-	// Handle metadata
+
+	// Handle metadata.
 	if len(updateResponse.Data.Metadata) > 0 {
 		metadataStr, err := utils.MapToJSONString(updateResponse.Data.Metadata)
 		if err != nil {
@@ -510,7 +510,7 @@ func (r *userResource) Delete(ctx context.Context, req resource.DeleteRequest, r
 
 	userID := state.ID.ValueString()
 
-	// Delete (disable) the user
+	// Delete (disable) the user.
 	httpResponse, err := r.client.UsersAPI.UsersUserIdDelete(ctx, userID).Execute()
 	if err != nil {
 		if httpResponse != nil && httpResponse.StatusCode == 404 {
@@ -534,4 +534,3 @@ func (r *userResource) ImportState(ctx context.Context, req resource.ImportState
 	// Retrieve import ID and save to id attribute.
 	resource.ImportStatePassthroughID(ctx, path.Root("id"), req, resp)
 }
-
