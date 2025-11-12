@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Config** | [**SourceControlConfigGet200ResponseDataOneOf4Config**](SourceControlConfigGet200ResponseDataOneOf4Config.md) |  | 
+**Config** | [**AzureReposConfig**](AzureReposConfig.md) |  | 
 **Provider** | **string** |  | 
 **Org** | **string** | The user or organization to which the repository belongs to. | 
 **Repo** | **string** | The name of the repository you created to use with Retool. | 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewSourceControlConfiguration
 
-`func NewSourceControlConfiguration(config SourceControlConfigGet200ResponseDataOneOf4Config, provider string, org string, repo string, defaultBranch string, ) *SourceControlConfiguration`
+`func NewSourceControlConfiguration(config AzureReposConfig, provider string, org string, repo string, defaultBranch string, ) *SourceControlConfiguration`
 
 NewSourceControlConfiguration instantiates a new SourceControlConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -32,20 +32,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetConfig
 
-`func (o *SourceControlConfiguration) GetConfig() SourceControlConfigGet200ResponseDataOneOf4Config`
+`func (o *SourceControlConfiguration) GetConfig() AzureReposConfig`
 
 GetConfig returns the Config field if non-nil, zero value otherwise.
 
 ### GetConfigOk
 
-`func (o *SourceControlConfiguration) GetConfigOk() (*SourceControlConfigGet200ResponseDataOneOf4Config, bool)`
+`func (o *SourceControlConfiguration) GetConfigOk() (*AzureReposConfig, bool)`
 
 GetConfigOk returns a tuple with the Config field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConfig
 
-`func (o *SourceControlConfiguration) SetConfig(v SourceControlConfigGet200ResponseDataOneOf4Config)`
+`func (o *SourceControlConfiguration) SetConfig(v AzureReposConfig)`
 
 SetConfig sets Config field to given value.
 

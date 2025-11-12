@@ -6,17 +6,18 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**UsersGet**](UsersAPI.md#UsersGet) | **Get** /users | List users
 [**UsersPost**](UsersAPI.md#UsersPost) | **Post** /users | Create user
+[**UsersReset2faUserIdPut**](UsersAPI.md#UsersReset2faUserIdPut) | **Put** /users/reset2fa/{userId} | Resets a user&#39;s existing two factor authentication setting
 [**UsersUserIdDelete**](UsersAPI.md#UsersUserIdDelete) | **Delete** /users/{userId} | Delete a user
-[**UsersUserIdGet**](UsersAPI.md#UsersUserIdGet) | **Get** /users/{userId} | Get user
+[**UsersUserIdGet**](UsersAPI.md#UsersUserIdGet) | **Get** /users/{userId} | Get a user
 [**UsersUserIdPatch**](UsersAPI.md#UsersUserIdPatch) | **Patch** /users/{userId} | Update a user
-[**UsersUserIdUserAttributesAttributeNameDelete**](UsersAPI.md#UsersUserIdUserAttributesAttributeNameDelete) | **Delete** /users/{userId}/user_attributes/{attributeName} | Delete a user attribute.
+[**UsersUserIdUserAttributesAttributeNameDelete**](UsersAPI.md#UsersUserIdUserAttributesAttributeNameDelete) | **Delete** /users/{userId}/user_attributes/{attributeName} | Delete a user attribute
 [**UsersUserIdUserAttributesPost**](UsersAPI.md#UsersUserIdUserAttributesPost) | **Post** /users/{userId}/user_attributes | Add or update a user attribute
 
 
 
 ## UsersGet
 
-> UsersGet200Response UsersGet(ctx).Execute()
+> UsersGet200Response UsersGet(ctx).Email(email).FirstName(firstName).LastName(lastName).Execute()
 
 List users
 
@@ -35,10 +36,13 @@ import (
 )
 
 func main() {
+	email := "email_example" // string | Email address of user (optional)
+	firstName := "firstName_example" // string | First name of user (optional)
+	lastName := "lastName_example" // string | Last name of user (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersAPI.UsersGet(context.Background()).Execute()
+	resp, r, err := apiClient.UsersAPI.UsersGet(context.Background()).Email(email).FirstName(firstName).LastName(lastName).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.UsersGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -50,12 +54,18 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiUsersGetRequest struct via the builder pattern
 
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **email** | **string** | Email address of user | 
+ **firstName** | **string** | First name of user | 
+ **lastName** | **string** | Last name of user | 
 
 ### Return type
 
@@ -141,6 +151,74 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## UsersReset2faUserIdPut
+
+> UsersReset2faUserIdPut(ctx, userId).Execute()
+
+Resets a user's existing two factor authentication setting
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	userId := "userId_example" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.UsersAPI.UsersReset2faUserIdPut(context.Background(), userId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.UsersReset2faUserIdPut``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUsersReset2faUserIdPutRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UsersUserIdDelete
 
 > UsersUserIdDelete(ctx, userId).Execute()
@@ -213,7 +291,7 @@ Name | Type | Description  | Notes
 
 > UsersUserIdGet200Response UsersUserIdGet(ctx, userId).Execute()
 
-Get user
+Get a user
 
 
 
@@ -355,7 +433,7 @@ Name | Type | Description  | Notes
 
 > UsersUserIdUserAttributesAttributeNameDelete200Response UsersUserIdUserAttributesAttributeNameDelete(ctx, userId, attributeName).Execute()
 
-Delete a user attribute.
+Delete a user attribute
 
 
 
@@ -373,7 +451,7 @@ import (
 
 func main() {
 	userId := "userId_example" // string | 
-	attributeName := "attributeName_example" // string | 
+	attributeName := "attributeName_example" // string | The name of the user attribute to delete
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -394,7 +472,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **userId** | **string** |  | 
-**attributeName** | **string** |  | 
+**attributeName** | **string** | The name of the user attribute to delete | 
 
 ### Other Parameters
 

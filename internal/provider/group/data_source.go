@@ -66,6 +66,8 @@ type groupModel struct {
 	AuditLogAccess              types.Bool              `tfsdk:"audit_log_access"`
 	UnpublishedReleaseAccess    types.Bool              `tfsdk:"unpublished_release_access"`
 	UsageAnalyticsAccess        types.Bool              `tfsdk:"usage_analytics_access"`
+	ThemeAccess                 types.Bool              `tfsdk:"theme_access"`
+	AccountDetailsAccess        types.Bool              `tfsdk:"account_details_access"`
 	LandingPageAppID            types.String            `tfsdk:"landing_page_app_id"`
 	CreatedAt                   types.String            `tfsdk:"created_at"`
 	UpdatedAt                   types.String            `tfsdk:"updated_at"`
@@ -217,6 +219,14 @@ func (d *groupsDataSource) Schema(_ context.Context, _ datasource.SchemaRequest,
 							Computed:    true,
 							Description: "Whether the group has usage analytics access.",
 						},
+						"theme_access": schema.BoolAttribute{
+							Computed:    true,
+							Description: "Whether the group has access to edit themes.",
+						},
+						"account_details_access": schema.BoolAttribute{
+							Computed:    true,
+							Description: "Whether the group has access to account details.",
+						},
 						"landing_page_app_id": schema.StringAttribute{
 							Computed:    true,
 							Description: "The id of the landing page app for the group.",
@@ -266,6 +276,8 @@ func (d *groupsDataSource) Read(ctx context.Context, _ datasource.ReadRequest, r
 			AuditLogAccess:              types.BoolValue(group.AuditLogAccess),
 			UnpublishedReleaseAccess:    types.BoolValue(group.UnpublishedReleaseAccess),
 			UsageAnalyticsAccess:        types.BoolValue(group.UsageAnalyticsAccess),
+			ThemeAccess:                 types.BoolValue(group.ThemeAccess),
+			AccountDetailsAccess:        types.BoolValue(group.AccountDetailsAccess),
 			LandingPageAppID:            types.StringPointerValue(group.LandingPageAppId.Get()),
 			CreatedAt:                   types.StringValue(group.CreatedAt),
 			UpdatedAt:                   types.StringValue(group.UpdatedAt),

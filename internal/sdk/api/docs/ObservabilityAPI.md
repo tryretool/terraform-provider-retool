@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-	configId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	configId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The id of the observability configuration to delete.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -51,7 +51,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**configId** | **string** |  | 
+**configId** | **string** | The id of the observability configuration to delete. | 
 
 ### Other Parameters
 
@@ -101,7 +101,7 @@ import (
 )
 
 func main() {
-	configId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	configId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The id of the observability configuration to update.
 	observabilityConfigConfigIdPutRequest := *openapiclient.NewObservabilityConfigConfigIdPutRequest() // ObservabilityConfigConfigIdPutRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -122,7 +122,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**configId** | **string** |  | 
+**configId** | **string** | The id of the observability configuration to update. | 
 
 ### Other Parameters
 
@@ -300,7 +300,7 @@ import (
 )
 
 func main() {
-	provider := *openapiclient.NewObservabilityProviderProviderTestPostProviderParameter() // ObservabilityProviderProviderTestPostProviderParameter | 
+	provider := *openapiclient.NewObservabilityProviderProviderTestPostProviderParameter() // ObservabilityProviderProviderTestPostProviderParameter | The observability provider name, either \"Sentry\" or \"Datadog\"
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -320,7 +320,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**provider** | [**ObservabilityProviderProviderTestPostProviderParameter**](.md) |  | 
+**provider** | [**ObservabilityProviderProviderTestPostProviderParameter**](.md) | The observability provider name, either \&quot;Sentry\&quot; or \&quot;Datadog\&quot; | 
 
 ### Other Parameters
 

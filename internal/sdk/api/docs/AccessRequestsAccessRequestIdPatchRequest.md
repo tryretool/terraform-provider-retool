@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Operations** | [**[]UsersUserIdPatchRequestOperationsInnerAnyOf2**](UsersUserIdPatchRequestOperationsInnerAnyOf2.md) | A list of operations to apply to the access request. See the [JSON PATCH specification](https://tools.ietf.org/html/rfc6902) for more details. | 
+**Operations** | [**[]ReplaceOperation**](ReplaceOperation.md) | A list of operations to apply to the access request. See the [JSON PATCH specification](https://tools.ietf.org/html/rfc6902) for more details. | 
 
 ## Methods
 
 ### NewAccessRequestsAccessRequestIdPatchRequest
 
-`func NewAccessRequestsAccessRequestIdPatchRequest(operations []UsersUserIdPatchRequestOperationsInnerAnyOf2, ) *AccessRequestsAccessRequestIdPatchRequest`
+`func NewAccessRequestsAccessRequestIdPatchRequest(operations []ReplaceOperation, ) *AccessRequestsAccessRequestIdPatchRequest`
 
 NewAccessRequestsAccessRequestIdPatchRequest instantiates a new AccessRequestsAccessRequestIdPatchRequest object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetOperations
 
-`func (o *AccessRequestsAccessRequestIdPatchRequest) GetOperations() []UsersUserIdPatchRequestOperationsInnerAnyOf2`
+`func (o *AccessRequestsAccessRequestIdPatchRequest) GetOperations() []ReplaceOperation`
 
 GetOperations returns the Operations field if non-nil, zero value otherwise.
 
 ### GetOperationsOk
 
-`func (o *AccessRequestsAccessRequestIdPatchRequest) GetOperationsOk() (*[]UsersUserIdPatchRequestOperationsInnerAnyOf2, bool)`
+`func (o *AccessRequestsAccessRequestIdPatchRequest) GetOperationsOk() (*[]ReplaceOperation, bool)`
 
 GetOperationsOk returns a tuple with the Operations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOperations
 
-`func (o *AccessRequestsAccessRequestIdPatchRequest) SetOperations(v []UsersUserIdPatchRequestOperationsInnerAnyOf2)`
+`func (o *AccessRequestsAccessRequestIdPatchRequest) SetOperations(v []ReplaceOperation)`
 
 SetOperations sets Operations field to given value.
 

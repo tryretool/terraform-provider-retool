@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**ResourcesPost**](ResourcesAPI.md#ResourcesPost) | **Post** /resources | Create a resource
 [**ResourcesResourceIdDelete**](ResourcesAPI.md#ResourcesResourceIdDelete) | **Delete** /resources/{resourceId} | Delete resource
 [**ResourcesResourceIdGet**](ResourcesAPI.md#ResourcesResourceIdGet) | **Get** /resources/{resourceId} | Get resource by id
+[**ResourcesResourceIdPatch**](ResourcesAPI.md#ResourcesResourceIdPatch) | **Patch** /resources/{resourceId} | Update a resource
 
 
 
@@ -32,8 +33,8 @@ import (
 )
 
 func main() {
-	nextToken := "nextToken_example" // string |  (optional)
-	resourceType := "resourceType_example" // string |  (optional)
+	nextToken := "nextToken_example" // string | The token of the current page (optional)
+	resourceType := "resourceType_example" // string | The type of resource. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -58,8 +59,8 @@ Other parameters are passed through a pointer to a apiResourcesGetRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **nextToken** | **string** |  | 
- **resourceType** | **string** |  | 
+ **nextToken** | **string** | The token of the current page | 
+ **resourceType** | **string** | The type of resource. | 
 
 ### Return type
 
@@ -147,7 +148,7 @@ Name | Type | Description  | Notes
 
 ## ResourcesResourceIdDelete
 
-> ResourcesResourceIdDelete(ctx, resourceId).Execute()
+> ResourcesResourceIdDelete(ctx, resourceId).DeleteUnderlyingDB(deleteUnderlyingDB).Execute()
 
 Delete resource
 
@@ -166,11 +167,12 @@ import (
 )
 
 func main() {
-	resourceId := *openapiclient.NewResourcesGet200ResponseDataInnerId() // ResourcesGet200ResponseDataInnerId | 
+	resourceId := "resourceId_example" // string | The uuid or name for the resource.
+	deleteUnderlyingDB := true // bool | Whether to delete the underlying retool database when deleting the resource. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ResourcesAPI.ResourcesResourceIdDelete(context.Background(), resourceId).Execute()
+	r, err := apiClient.ResourcesAPI.ResourcesResourceIdDelete(context.Background(), resourceId).DeleteUnderlyingDB(deleteUnderlyingDB).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ResourcesAPI.ResourcesResourceIdDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -184,7 +186,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourceId** | [**ResourcesGet200ResponseDataInnerId**](.md) |  | 
+**resourceId** | **string** | The uuid or name for the resource. | 
 
 ### Other Parameters
 
@@ -194,6 +196,7 @@ Other parameters are passed through a pointer to a apiResourcesResourceIdDeleteR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **deleteUnderlyingDB** | **bool** | Whether to delete the underlying retool database when deleting the resource. | 
 
 ### Return type
 
@@ -234,7 +237,7 @@ import (
 )
 
 func main() {
-	resourceId := *openapiclient.NewResourcesGet200ResponseDataInnerId() // ResourcesGet200ResponseDataInnerId | 
+	resourceId := "resourceId_example" // string | The uuid or name for the resource.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -254,7 +257,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourceId** | [**ResourcesGet200ResponseDataInnerId**](.md) |  | 
+**resourceId** | **string** | The uuid or name for the resource. | 
 
 ### Other Parameters
 
@@ -276,6 +279,78 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ResourcesResourceIdPatch
+
+> ResourcesResourceIdPatch200Response ResourcesResourceIdPatch(ctx, resourceId).ResourcesResourceIdPatchRequest(resourcesResourceIdPatchRequest).Execute()
+
+Update a resource
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	resourceId := "resourceId_example" // string | The uuid or name for the resource.
+	resourcesResourceIdPatchRequest := *openapiclient.NewResourcesResourceIdPatchRequest([]openapiclient.ReplaceOperation{*openapiclient.NewReplaceOperation("Op_example", "Path_example")}) // ResourcesResourceIdPatchRequest |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ResourcesAPI.ResourcesResourceIdPatch(context.Background(), resourceId).ResourcesResourceIdPatchRequest(resourcesResourceIdPatchRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ResourcesAPI.ResourcesResourceIdPatch``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ResourcesResourceIdPatch`: ResourcesResourceIdPatch200Response
+	fmt.Fprintf(os.Stdout, "Response from `ResourcesAPI.ResourcesResourceIdPatch`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**resourceId** | **string** | The uuid or name for the resource. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiResourcesResourceIdPatchRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **resourcesResourceIdPatchRequest** | [**ResourcesResourceIdPatchRequest**](ResourcesResourceIdPatchRequest.md) |  | 
+
+### Return type
+
+[**ResourcesResourceIdPatch200Response**](ResourcesResourceIdPatch200Response.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

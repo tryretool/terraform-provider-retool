@@ -30,6 +30,7 @@ output "all_groups" {
 
 Read-Only:
 
+- `account_details_access` (Boolean) Whether the group has access to account details.
 - `audit_log_access` (Boolean) Whether the group has audit log access.
 - `created_at` (String) The date the group was created.
 - `id` (String) The id of the group.
@@ -37,6 +38,7 @@ Read-Only:
 - `legacy_id` (String) The legacy id of the group.
 - `members` (Attributes List) The members of the group. (see [below for nested schema](#nestedatt--groups--members))
 - `name` (String) The name of the group.
+- `theme_access` (Boolean) Whether the group has access to edit themes.
 - `universal_app_access` (String) The universal app access level of the group.
 - `universal_query_library_access` (String) The universal query library access level of the group.
 - `universal_resource_access` (String) The universal resource access level of the group.

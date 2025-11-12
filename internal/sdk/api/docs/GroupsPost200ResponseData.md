@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **AuditLogAccess** | **bool** | Whether the group has access to the audit log | 
 **UnpublishedReleaseAccess** | **bool** | Whether the group has access to unpublished releases | 
 **UsageAnalyticsAccess** | **bool** | Whether the group has access to usage analytics | 
+**ThemeAccess** | **bool** | Whether the group has access to edit themes | 
 **AccountDetailsAccess** | **bool** | Whether the group has access to account details | 
 **LandingPageAppId** | **NullableString** | The app ID of the landing page | 
 **CreatedAt** | **string** |  | 
@@ -26,7 +27,7 @@ Name | Type | Description | Notes
 
 ### NewGroupsPost200ResponseData
 
-`func NewGroupsPost200ResponseData(id NullableFloat32, legacyId NullableFloat32, name string, members []GroupsGroupIdGet200ResponseDataMembersInner, universalAppAccess string, universalResourceAccess string, universalWorkflowAccess string, universalQueryLibraryAccess string, userInvites []GroupsGroupIdGet200ResponseDataUserInvitesInner, userListAccess bool, auditLogAccess bool, unpublishedReleaseAccess bool, usageAnalyticsAccess bool, accountDetailsAccess bool, landingPageAppId NullableString, createdAt string, updatedAt string, ) *GroupsPost200ResponseData`
+`func NewGroupsPost200ResponseData(id NullableFloat32, legacyId NullableFloat32, name string, members []GroupsGroupIdGet200ResponseDataMembersInner, universalAppAccess string, universalResourceAccess string, universalWorkflowAccess string, universalQueryLibraryAccess string, userInvites []GroupsGroupIdGet200ResponseDataUserInvitesInner, userListAccess bool, auditLogAccess bool, unpublishedReleaseAccess bool, usageAnalyticsAccess bool, themeAccess bool, accountDetailsAccess bool, landingPageAppId NullableString, createdAt string, updatedAt string, ) *GroupsPost200ResponseData`
 
 NewGroupsPost200ResponseData instantiates a new GroupsPost200ResponseData object
 This constructor will assign default values to properties that have it defined,
@@ -319,6 +320,26 @@ and a boolean to check if the value has been set.
 `func (o *GroupsPost200ResponseData) SetUsageAnalyticsAccess(v bool)`
 
 SetUsageAnalyticsAccess sets UsageAnalyticsAccess field to given value.
+
+
+### GetThemeAccess
+
+`func (o *GroupsPost200ResponseData) GetThemeAccess() bool`
+
+GetThemeAccess returns the ThemeAccess field if non-nil, zero value otherwise.
+
+### GetThemeAccessOk
+
+`func (o *GroupsPost200ResponseData) GetThemeAccessOk() (*bool, bool)`
+
+GetThemeAccessOk returns a tuple with the ThemeAccess field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetThemeAccess
+
+`func (o *GroupsPost200ResponseData) SetThemeAccess(v bool)`
+
+SetThemeAccess sets ThemeAccess field to given value.
 
 
 ### GetAccountDetailsAccess

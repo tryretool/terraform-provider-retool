@@ -8,12 +8,14 @@ Name | Type | Description | Notes
 **LegacyId** | **float32** |  | 
 **Name** | **string** | The name of the app theme. | 
 **Theme** | **map[string]interface{}** | The theme object. | 
+**CreatedAt** | **time.Time** | Date and time when the app theme was created. | 
+**UpdatedAt** | **time.Time** | Date and time when the app theme was last updated. | 
 
 ## Methods
 
 ### NewAppTheme
 
-`func NewAppTheme(id float32, legacyId float32, name string, theme map[string]interface{}, ) *AppTheme`
+`func NewAppTheme(id float32, legacyId float32, name string, theme map[string]interface{}, createdAt time.Time, updatedAt time.Time, ) *AppTheme`
 
 NewAppTheme instantiates a new AppTheme object
 This constructor will assign default values to properties that have it defined,
@@ -106,6 +108,46 @@ and a boolean to check if the value has been set.
 `func (o *AppTheme) SetTheme(v map[string]interface{})`
 
 SetTheme sets Theme field to given value.
+
+
+### GetCreatedAt
+
+`func (o *AppTheme) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *AppTheme) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *AppTheme) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+
+### GetUpdatedAt
+
+`func (o *AppTheme) GetUpdatedAt() time.Time`
+
+GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+
+### GetUpdatedAtOk
+
+`func (o *AppTheme) GetUpdatedAtOk() (*time.Time, bool)`
+
+GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedAt
+
+`func (o *AppTheme) SetUpdatedAt(v time.Time)`
+
+SetUpdatedAt sets UpdatedAt field to given value.
 
 
 

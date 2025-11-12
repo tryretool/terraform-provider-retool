@@ -103,12 +103,12 @@ func (r *folderResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 			},
 			"folder_type": schema.StringAttribute{
 				Required:    true,
-				Description: "The type of the folder: (app|resource|workflow).",
+				Description: "The type of the folder: (app|resource|workflow|agent).",
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.RequiresReplace(), // Changing the folder type requires replacing the resource.
 				},
 				Validators: []validator.String{
-					stringvalidator.OneOf("app", "file", "resource", "workflow"),
+					stringvalidator.OneOf("app", "file", "resource", "workflow", "agent"),
 				},
 			},
 		},
@@ -250,18 +250,18 @@ func (r *folderResource) Update(ctx context.Context, req resource.UpdateRequest,
 	// Generate API request body.
 	patchReq := api.FoldersFolderIdPatchRequest{}
 	if !plan.Name.Equal(state.Name) {
-		op := api.NewUsersUserIdPatchRequestOperationsInnerAnyOf("replace", "/name")
+		op := api.NewReplaceOperation("replace", "/name")
 		op.Value = plan.Name.ValueString()
-		patchReq.Operations = append(patchReq.Operations, api.FoldersFolderIdPatchRequestOperationsInner{UsersUserIdPatchRequestOperationsInnerAnyOf: op})
+		patchReq.Operations = append(patchReq.Operations, api.FoldersFolderIdPatchRequestOperationsInner{ReplaceOperation: op})
 	}
 	if !plan.ParentFolderID.Equal(state.ParentFolderID) {
 		parentFolderID := r.getTrueParentFolderID(ctx, plan.FolderType.ValueString(), plan.ParentFolderID.ValueString(), &resp.Diagnostics)
 		if resp.Diagnostics.HasError() {
 			return
 		}
-		op := api.NewUsersUserIdPatchRequestOperationsInnerAnyOf("replace", "/parent_folder_id")
+		op := api.NewReplaceOperation("replace", "/parent_folder_id")
 		op.Value = parentFolderID
-		patchReq.Operations = append(patchReq.Operations, api.FoldersFolderIdPatchRequestOperationsInner{UsersUserIdPatchRequestOperationsInnerAnyOf: op})
+		patchReq.Operations = append(patchReq.Operations, api.FoldersFolderIdPatchRequestOperationsInner{ReplaceOperation: op})
 	}
 	_, httpResponse, err := r.client.FoldersAPI.FoldersFolderIdPatch(ctx, state.ID.ValueString()).FoldersFolderIdPatchRequest(patchReq).Execute()
 	if err != nil {
@@ -290,16 +290,15 @@ func (r *folderResource) Delete(ctx context.Context, req resource.DeleteRequest,
 		return
 	}
 
-	// Delete existing order.
-	recursive := true
-	deleteRequest := api.FoldersFolderIdDeleteRequest{}
-	deleteRequest.Recursive = &recursive
+	// Delete existing folder.
+	// Note: We don't use recursive=true here because Terraform manages the deletion order
+	// through its dependency graph. Child folders will be deleted before parent folders.
+	httpResponse, err := r.client.FoldersAPI.FoldersFolderIdDelete(ctx, state.ID.ValueString()).Execute()
 
-	httpResponse, err := r.client.FoldersAPI.FoldersFolderIdDelete(ctx, state.ID.ValueString()).FoldersFolderIdDeleteRequest(deleteRequest).Execute()
 	if err != nil && !(httpResponse != nil && httpResponse.StatusCode == 404) { // It's ok to not find the resource being deleted.
 		resp.Diagnostics.AddError(
 			"Error Deleting Folder",
-			"Could not delete folder"+state.ID.ValueString()+", unexpected error: "+err.Error(),
+			"Could not delete folder "+state.ID.ValueString()+", unexpected error: "+err.Error(),
 		)
 		tflog.Error(ctx, "Error Deleting Folder", utils.AddHTTPStatusCode(map[string]any{"error": err.Error()}, httpResponse))
 		return

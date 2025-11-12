@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AppsAppIdDelete**](AppsAPI.md#AppsAppIdDelete) | **Delete** /apps/{appId} | Delete app
 [**AppsAppIdGet**](AppsAPI.md#AppsAppIdGet) | **Get** /apps/{appId} | Get app
+[**AppsCloneAppPost**](AppsAPI.md#AppsCloneAppPost) | **Post** /apps/cloneApp | Clone app
 [**AppsGet**](AppsAPI.md#AppsGet) | **Get** /apps | List apps
 
 
@@ -31,7 +32,7 @@ import (
 )
 
 func main() {
-	appId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	appId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The app ID.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -49,7 +50,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appId** | **string** |  | 
+**appId** | **string** | The app ID. | 
 
 ### Other Parameters
 
@@ -99,7 +100,7 @@ import (
 )
 
 func main() {
-	appId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	appId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The app ID.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -119,7 +120,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appId** | **string** |  | 
+**appId** | **string** | The app ID. | 
 
 ### Other Parameters
 
@@ -141,6 +142,72 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsCloneAppPost
+
+> AppsAppIdGet200Response AppsCloneAppPost(ctx).AppsCloneAppPostRequest(appsCloneAppPostRequest).Execute()
+
+Clone app
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	appsCloneAppPostRequest := *openapiclient.NewAppsCloneAppPostRequest("AppId_example", "NewAppName_example") // AppsCloneAppPostRequest |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AppsAPI.AppsCloneAppPost(context.Background()).AppsCloneAppPostRequest(appsCloneAppPostRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AppsAPI.AppsCloneAppPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsCloneAppPost`: AppsAppIdGet200Response
+	fmt.Fprintf(os.Stdout, "Response from `AppsAPI.AppsCloneAppPost`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsCloneAppPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **appsCloneAppPostRequest** | [**AppsCloneAppPostRequest**](AppsCloneAppPostRequest.md) |  | 
+
+### Return type
+
+[**AppsAppIdGet200Response**](AppsAppIdGet200Response.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

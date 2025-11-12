@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** |  | 
-**Id** | [**PermissionsListObjectsPost200ResponseDataInnerOneOf2Id**](PermissionsListObjectsPost200ResponseDataInnerOneOf2Id.md) |  | 
+**Id** | **string** | The uuid or name for the resource. | 
 **AccessLevel** | **string** | The access level of the resource | 
 
 ## Methods
 
 ### NewPermissionsListObjectsPost200ResponseDataInnerOneOf2
 
-`func NewPermissionsListObjectsPost200ResponseDataInnerOneOf2(type_ string, id PermissionsListObjectsPost200ResponseDataInnerOneOf2Id, accessLevel string, ) *PermissionsListObjectsPost200ResponseDataInnerOneOf2`
+`func NewPermissionsListObjectsPost200ResponseDataInnerOneOf2(type_ string, id string, accessLevel string, ) *PermissionsListObjectsPost200ResponseDataInnerOneOf2`
 
 NewPermissionsListObjectsPost200ResponseDataInnerOneOf2 instantiates a new PermissionsListObjectsPost200ResponseDataInnerOneOf2 object
 This constructor will assign default values to properties that have it defined,
@@ -49,20 +49,20 @@ SetType sets Type field to given value.
 
 ### GetId
 
-`func (o *PermissionsListObjectsPost200ResponseDataInnerOneOf2) GetId() PermissionsListObjectsPost200ResponseDataInnerOneOf2Id`
+`func (o *PermissionsListObjectsPost200ResponseDataInnerOneOf2) GetId() string`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *PermissionsListObjectsPost200ResponseDataInnerOneOf2) GetIdOk() (*PermissionsListObjectsPost200ResponseDataInnerOneOf2Id, bool)`
+`func (o *PermissionsListObjectsPost200ResponseDataInnerOneOf2) GetIdOk() (*string, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *PermissionsListObjectsPost200ResponseDataInnerOneOf2) SetId(v PermissionsListObjectsPost200ResponseDataInnerOneOf2Id)`
+`func (o *PermissionsListObjectsPost200ResponseDataInnerOneOf2) SetId(v string)`
 
 SetId sets Id field to given value.
 

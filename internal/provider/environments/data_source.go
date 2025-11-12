@@ -108,7 +108,7 @@ func (d *environmentsDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 func (d *environmentsDataSource) Read(ctx context.Context, _ datasource.ReadRequest, resp *datasource.ReadResponse) {
 	var state environmentsDataSourceModel
 
-	environments, _, err := d.client.EnvironmentAPI.EnvironmentsGet(ctx).Execute()
+	environments, _, err := d.client.EnvironmentsAPI.EnvironmentsGet(ctx).Execute()
 	if err != nil {
 		resp.Diagnostics.AddError(
 			"Unable to Read Retool Environments",

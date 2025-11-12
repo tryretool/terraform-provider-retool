@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Subject** | [**PermissionsListObjectsPostRequestSubject**](PermissionsListObjectsPostRequestSubject.md) |  | 
 **ObjectType** | **string** |  | 
+**IncludeInheritedAccess** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -65,6 +66,31 @@ and a boolean to check if the value has been set.
 
 SetObjectType sets ObjectType field to given value.
 
+
+### GetIncludeInheritedAccess
+
+`func (o *PermissionsListObjectsPostRequest) GetIncludeInheritedAccess() bool`
+
+GetIncludeInheritedAccess returns the IncludeInheritedAccess field if non-nil, zero value otherwise.
+
+### GetIncludeInheritedAccessOk
+
+`func (o *PermissionsListObjectsPostRequest) GetIncludeInheritedAccessOk() (*bool, bool)`
+
+GetIncludeInheritedAccessOk returns a tuple with the IncludeInheritedAccess field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIncludeInheritedAccess
+
+`func (o *PermissionsListObjectsPostRequest) SetIncludeInheritedAccess(v bool)`
+
+SetIncludeInheritedAccess sets IncludeInheritedAccess field to given value.
+
+### HasIncludeInheritedAccess
+
+`func (o *PermissionsListObjectsPostRequest) HasIncludeInheritedAccess() bool`
+
+HasIncludeInheritedAccess returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

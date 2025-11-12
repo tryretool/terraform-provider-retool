@@ -33,6 +33,7 @@ type scmSettingsModel struct {
 	CustomPullRequestTemplateEnabled types.Bool   `tfsdk:"custom_pull_request_template_enabled"`
 	CustomPullRequestTemplate        types.String `tfsdk:"custom_pull_request_template"`
 	VersionControlLocked             types.Bool   `tfsdk:"version_control_locked"`
+	AutoCleanupBranchesEnabled       types.Bool   `tfsdk:"auto_cleanup_branches_enabled"`
 	ForceUUIDMapping                 types.Bool   `tfsdk:"force_uuid_mapping"`
 }
 
@@ -93,6 +94,12 @@ func (r *scmSettingsResource) Schema(_ context.Context, _ resource.SchemaRequest
 				Description: "When set to true, creates a read-only instance of Retool, where app editing is disabled. Defaults to false.",
 				Default:     booldefault.StaticBool(false),
 			},
+			"auto_cleanup_branches_enabled": schema.BoolAttribute{
+				Optional:    true,
+				Computed:    true,
+				Description: "When enabled, Retool automatically cleans up branches after they are merged. Defaults to false.",
+				Default:     booldefault.StaticBool(false),
+			},
 			"force_uuid_mapping": schema.BoolAttribute{
 				Optional:    true,
 				Computed:    true,
@@ -110,6 +117,7 @@ func updateSourceControlSettings(ctx context.Context, client *api.APIClient, mod
 			CustomPullRequestTemplateEnabled: model.CustomPullRequestTemplateEnabled.ValueBoolPointer(),
 			CustomPullRequestTemplate:        model.CustomPullRequestTemplate.ValueStringPointer(),
 			VersionControlLocked:             model.VersionControlLocked.ValueBoolPointer(),
+			AutoCleanupBranchesEnabled:       model.AutoCleanupBranchesEnabled.ValueBoolPointer(),
 			ForceUuidMapping:                 model.ForceUUIDMapping.ValueBoolPointer(),
 		},
 	}
@@ -170,6 +178,7 @@ func (r *scmSettingsResource) Read(ctx context.Context, _ resource.ReadRequest, 
 	state.CustomPullRequestTemplateEnabled = types.BoolValue(response.Data.CustomPullRequestTemplateEnabled)
 	state.CustomPullRequestTemplate = types.StringValue(response.Data.CustomPullRequestTemplate)
 	state.VersionControlLocked = types.BoolValue(response.Data.VersionControlLocked)
+	state.AutoCleanupBranchesEnabled = types.BoolValue(response.Data.AutoCleanupBranchesEnabled)
 	state.ForceUUIDMapping = types.BoolValue(response.Data.ForceUuidMapping)
 
 	diags := resp.State.Set(ctx, state)

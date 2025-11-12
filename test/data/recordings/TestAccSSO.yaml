@@ -28,15 +28,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 195
+        content_length: 384
         uncompressed: false
-        body: '{"success":true,"data":{"config_type":"google","google_client_id":"client_id","google_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)","disable_email_password_login":true}}'
+        body: '{"success":true,"data":{"config_type":"google","google_client_id":"client_id","google_client_secret":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"40caec09e05a06443c666f42a7126327\",\"iv\":null,\"authTag\":null}","disable_email_password_login":true}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 75.633833ms
+        duration: 118.834167ms
     - id: 1
       request:
         proto: HTTP/1.1
@@ -61,15 +61,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 195
+        content_length: 384
         uncompressed: false
-        body: '{"success":true,"data":{"config_type":"google","google_client_id":"client_id","google_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)","disable_email_password_login":true}}'
+        body: '{"success":true,"data":{"config_type":"google","google_client_id":"client_id","google_client_secret":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"40caec09e05a06443c666f42a7126327\",\"iv\":null,\"authTag\":null}","disable_email_password_login":true}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 67.791ms
+        duration: 37.651166ms
     - id: 2
       request:
         proto: HTTP/1.1
@@ -94,15 +94,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 195
+        content_length: 384
         uncompressed: false
-        body: '{"success":true,"data":{"config_type":"google","google_client_id":"client_id","google_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)","disable_email_password_login":true}}'
+        body: '{"success":true,"data":{"config_type":"google","google_client_id":"client_id","google_client_secret":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"40caec09e05a06443c666f42a7126327\",\"iv\":null,\"authTag\":null}","disable_email_password_login":true}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 69.680667ms
+        duration: 38.014917ms
     - id: 3
       request:
         proto: HTTP/1.1
@@ -115,7 +115,7 @@ interactions:
         remote_addr: ""
         request_uri: ""
         body: |
-            {"data":{"config_type":"oidc","disable_email_password_login":true,"jit_enabled":true,"jwt_email_key":"idToken.email","jwt_first_name_key":"idToken.given_name","jwt_last_name_key":"idToken.family_name","jwt_roles_key":"idToken.roles","oidc_auth_url":"https://example.com/auth","oidc_client_id":"client_id","oidc_client_secret":"client_secret","oidc_scopes":"openid email profile","oidc_token_url":"https://example.com/token","restricted_domain":"example.com,example.org","roles_mapping":"user-\u003euser_group,admin-\u003eadmin_group","trigger_login_automatically":true}}
+            {"data":{"config_type":"oidc","disable_email_password_login":true,"jit_enabled":true,"jwt_email_key":"idToken.email","jwt_first_name_key":"idToken.given_name","jwt_last_name_key":"idToken.family_name","jwt_roles_key":"idToken.roles","oidc_auth_url":"https://example.com/auth","oidc_client_id":"client_id","oidc_client_secret":"client_secret","oidc_scopes":"openid email profile","oidc_token_url":"https://example.com/token","restricted_domain":"example.com,example.org","roles_mapping":"admin-\u003eadmin_group,user-\u003euser_group","trigger_login_automatically":true}}
         form: {}
         headers:
             Content-Type:
@@ -130,15 +130,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 616
+        content_length: 805
         uncompressed: false
-        body: '{"success":true,"data":{"config_type":"oidc","oidc_client_id":"client_id","oidc_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)","oidc_scopes":"openid email profile","oidc_auth_url":"https://example.com/auth","oidc_token_url":"https://example.com/token","jwt_email_key":"idToken.email","jwt_roles_key":"idToken.roles","jwt_first_name_key":"idToken.given_name","jwt_last_name_key":"idToken.family_name","roles_mapping":"user->user_group,admin->admin_group","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"jit_enabled":true,"disable_email_password_login":true}}'
+        body: '{"success":true,"data":{"config_type":"oidc","oidc_client_id":"client_id","oidc_client_secret":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"40caec09e05a06443c666f42a7126327\",\"iv\":null,\"authTag\":null}","oidc_scopes":"openid email profile","oidc_auth_url":"https://example.com/auth","oidc_token_url":"https://example.com/token","jwt_email_key":"idToken.email","jwt_roles_key":"idToken.roles","jwt_first_name_key":"idToken.given_name","jwt_last_name_key":"idToken.family_name","roles_mapping":"admin->admin_group,user->user_group","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"jit_enabled":true,"disable_email_password_login":true}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 73.200417ms
+        duration: 38.92225ms
     - id: 4
       request:
         proto: HTTP/1.1
@@ -163,15 +163,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 616
+        content_length: 805
         uncompressed: false
-        body: '{"success":true,"data":{"config_type":"oidc","oidc_client_id":"client_id","oidc_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)","oidc_scopes":"openid email profile","oidc_auth_url":"https://example.com/auth","oidc_token_url":"https://example.com/token","jwt_email_key":"idToken.email","jwt_roles_key":"idToken.roles","jwt_first_name_key":"idToken.given_name","jwt_last_name_key":"idToken.family_name","roles_mapping":"user->user_group,admin->admin_group","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"jit_enabled":true,"disable_email_password_login":true}}'
+        body: '{"success":true,"data":{"config_type":"oidc","oidc_client_id":"client_id","oidc_client_secret":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"40caec09e05a06443c666f42a7126327\",\"iv\":null,\"authTag\":null}","oidc_scopes":"openid email profile","oidc_auth_url":"https://example.com/auth","oidc_token_url":"https://example.com/token","jwt_email_key":"idToken.email","jwt_roles_key":"idToken.roles","jwt_first_name_key":"idToken.given_name","jwt_last_name_key":"idToken.family_name","roles_mapping":"admin->admin_group,user->user_group","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"jit_enabled":true,"disable_email_password_login":true}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 77.578583ms
+        duration: 36.309416ms
     - id: 5
       request:
         proto: HTTP/1.1
@@ -196,15 +196,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 616
+        content_length: 805
         uncompressed: false
-        body: '{"success":true,"data":{"config_type":"oidc","oidc_client_id":"client_id","oidc_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)","oidc_scopes":"openid email profile","oidc_auth_url":"https://example.com/auth","oidc_token_url":"https://example.com/token","jwt_email_key":"idToken.email","jwt_roles_key":"idToken.roles","jwt_first_name_key":"idToken.given_name","jwt_last_name_key":"idToken.family_name","roles_mapping":"user->user_group,admin->admin_group","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"jit_enabled":true,"disable_email_password_login":true}}'
+        body: '{"success":true,"data":{"config_type":"oidc","oidc_client_id":"client_id","oidc_client_secret":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"40caec09e05a06443c666f42a7126327\",\"iv\":null,\"authTag\":null}","oidc_scopes":"openid email profile","oidc_auth_url":"https://example.com/auth","oidc_token_url":"https://example.com/token","jwt_email_key":"idToken.email","jwt_roles_key":"idToken.roles","jwt_first_name_key":"idToken.given_name","jwt_last_name_key":"idToken.family_name","roles_mapping":"admin->admin_group,user->user_group","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"jit_enabled":true,"disable_email_password_login":true}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 71.298333ms
+        duration: 35.278041ms
     - id: 6
       request:
         proto: HTTP/1.1
@@ -217,7 +217,7 @@ interactions:
         remote_addr: ""
         request_uri: ""
         body: |
-            {"data":{"config_type":"google \u0026 oidc","disable_email_password_login":true,"google_client_id":"client_id","google_client_secret":"client_secret","jit_enabled":true,"jwt_email_key":"idToken.email","jwt_first_name_key":"idToken.given_name","jwt_last_name_key":"idToken.family_name","jwt_roles_key":"idToken.roles","oidc_auth_url":"https://example.com/auth","oidc_client_id":"client_id","oidc_client_secret":"client_secret","oidc_scopes":"openid email profile","oidc_token_url":"https://example.com/token","restricted_domain":"example.com,example.org","roles_mapping":"user-\u003euser_group,admin-\u003eadmin_group","trigger_login_automatically":true}}
+            {"data":{"config_type":"google \u0026 oidc","disable_email_password_login":true,"google_client_id":"client_id","google_client_secret":"client_secret","jit_enabled":true,"jwt_email_key":"idToken.email","jwt_first_name_key":"idToken.given_name","jwt_last_name_key":"idToken.family_name","jwt_roles_key":"idToken.roles","oidc_auth_url":"https://example.com/auth","oidc_client_id":"client_id","oidc_client_secret":"client_secret","oidc_scopes":"openid email profile","oidc_token_url":"https://example.com/token","restricted_domain":"example.com,example.org","roles_mapping":"admin-\u003eadmin_group,user-\u003euser_group","trigger_login_automatically":true}}
         form: {}
         headers:
             Content-Type:
@@ -230,17 +230,18 @@ interactions:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
-        transfer_encoding: []
+        transfer_encoding:
+            - chunked
         trailer: {}
-        content_length: 736
-        uncompressed: false
-        body: '{"success":true,"data":{"config_type":"google & oidc","oidc_client_id":"client_id","oidc_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)","oidc_scopes":"openid email profile","oidc_auth_url":"https://example.com/auth","oidc_token_url":"https://example.com/token","jwt_email_key":"idToken.email","jwt_roles_key":"idToken.roles","jwt_first_name_key":"idToken.given_name","jwt_last_name_key":"idToken.family_name","roles_mapping":"user->user_group,admin->admin_group","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"jit_enabled":true,"disable_email_password_login":true,"google_client_id":"client_id","google_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)"}}'
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":{"config_type":"google & oidc","oidc_client_id":"client_id","oidc_client_secret":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"40caec09e05a06443c666f42a7126327\",\"iv\":null,\"authTag\":null}","oidc_scopes":"openid email profile","oidc_auth_url":"https://example.com/auth","oidc_token_url":"https://example.com/token","jwt_email_key":"idToken.email","jwt_roles_key":"idToken.roles","jwt_first_name_key":"idToken.given_name","jwt_last_name_key":"idToken.family_name","roles_mapping":"admin->admin_group,user->user_group","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"jit_enabled":true,"disable_email_password_login":true,"google_client_id":"client_id","google_client_secret":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"40caec09e05a06443c666f42a7126327\",\"iv\":null,\"authTag\":null}"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 70.839583ms
+        duration: 38.693042ms
     - id: 7
       request:
         proto: HTTP/1.1
@@ -263,17 +264,18 @@ interactions:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
-        transfer_encoding: []
+        transfer_encoding:
+            - chunked
         trailer: {}
-        content_length: 736
-        uncompressed: false
-        body: '{"success":true,"data":{"config_type":"google & oidc","oidc_client_id":"client_id","oidc_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)","oidc_scopes":"openid email profile","oidc_auth_url":"https://example.com/auth","oidc_token_url":"https://example.com/token","jwt_email_key":"idToken.email","jwt_roles_key":"idToken.roles","jwt_first_name_key":"idToken.given_name","jwt_last_name_key":"idToken.family_name","roles_mapping":"user->user_group,admin->admin_group","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"jit_enabled":true,"disable_email_password_login":true,"google_client_id":"client_id","google_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)"}}'
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":{"config_type":"google & oidc","oidc_client_id":"client_id","oidc_client_secret":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"40caec09e05a06443c666f42a7126327\",\"iv\":null,\"authTag\":null}","oidc_scopes":"openid email profile","oidc_auth_url":"https://example.com/auth","oidc_token_url":"https://example.com/token","jwt_email_key":"idToken.email","jwt_roles_key":"idToken.roles","jwt_first_name_key":"idToken.given_name","jwt_last_name_key":"idToken.family_name","roles_mapping":"admin->admin_group,user->user_group","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"jit_enabled":true,"disable_email_password_login":true,"google_client_id":"client_id","google_client_secret":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"40caec09e05a06443c666f42a7126327\",\"iv\":null,\"authTag\":null}"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 70.233542ms
+        duration: 33.702416ms
     - id: 8
       request:
         proto: HTTP/1.1
@@ -296,17 +298,18 @@ interactions:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
-        transfer_encoding: []
+        transfer_encoding:
+            - chunked
         trailer: {}
-        content_length: 736
-        uncompressed: false
-        body: '{"success":true,"data":{"config_type":"google & oidc","oidc_client_id":"client_id","oidc_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)","oidc_scopes":"openid email profile","oidc_auth_url":"https://example.com/auth","oidc_token_url":"https://example.com/token","jwt_email_key":"idToken.email","jwt_roles_key":"idToken.roles","jwt_first_name_key":"idToken.given_name","jwt_last_name_key":"idToken.family_name","roles_mapping":"user->user_group,admin->admin_group","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"jit_enabled":true,"disable_email_password_login":true,"google_client_id":"client_id","google_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)"}}'
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":{"config_type":"google & oidc","oidc_client_id":"client_id","oidc_client_secret":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"40caec09e05a06443c666f42a7126327\",\"iv\":null,\"authTag\":null}","oidc_scopes":"openid email profile","oidc_auth_url":"https://example.com/auth","oidc_token_url":"https://example.com/token","jwt_email_key":"idToken.email","jwt_roles_key":"idToken.roles","jwt_first_name_key":"idToken.given_name","jwt_last_name_key":"idToken.family_name","roles_mapping":"admin->admin_group,user->user_group","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"jit_enabled":true,"disable_email_password_login":true,"google_client_id":"client_id","google_client_secret":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"40caec09e05a06443c666f42a7126327\",\"iv\":null,\"authTag\":null}"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 65.245917ms
+        duration: 45.299584ms
     - id: 9
       request:
         proto: HTTP/1.1
@@ -332,17 +335,18 @@ interactions:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
-        transfer_encoding: []
+        transfer_encoding:
+            - chunked
         trailer: {}
-        content_length: 757
-        uncompressed: false
-        body: '{"success":true,"data":{"config_type":"saml","saml_first_name_attribute":"first_name","saml_last_name_attribute":"last_name","saml_groups_attribute":"groups","saml_sync_group_claims":true,"ldap_sync_group_claims":true,"ldap_role_mapping":"user->user_group,user->another_user_group,admin->admin_group","ldap_server_url":"ldap://example.com","ldap_base_domain_components":"dc=example,dc=com","ldap_server_name":"ldap.example.com","ldap_server_key":"__RETOOL_ENCRYPTED__(7a08f5924114b5646723610a16e7710d)","ldap_server_certificate":"__RETOOL_ENCRYPTED__(28d15d7f8ebcb352f48f3295057cfb22)","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"idp_metadata_xml":"metadata_xml","jit_enabled":true,"disable_email_password_login":true}}'
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":{"config_type":"saml","saml_first_name_attribute":"first_name","saml_last_name_attribute":"last_name","saml_groups_attribute":"groups","saml_sync_group_claims":true,"ldap_sync_group_claims":true,"ldap_role_mapping":"user->user_group,user->another_user_group,admin->admin_group","ldap_server_url":"ldap://example.com","ldap_base_domain_components":"dc=example,dc=com","ldap_server_name":"ldap.example.com","ldap_server_key":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"77e2f9b0220b20acd47ec58265dad9d9\",\"iv\":null,\"authTag\":null}","ldap_server_certificate":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"3c3c3ff6b02d46d8dd17a8416a433c2c\",\"iv\":null,\"authTag\":null}","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"idp_metadata_xml":"metadata_xml","jit_enabled":true,"disable_email_password_login":true}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 67.210708ms
+        duration: 42.759292ms
     - id: 10
       request:
         proto: HTTP/1.1
@@ -365,17 +369,18 @@ interactions:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
-        transfer_encoding: []
+        transfer_encoding:
+            - chunked
         trailer: {}
-        content_length: 757
-        uncompressed: false
-        body: '{"success":true,"data":{"config_type":"saml","saml_first_name_attribute":"first_name","saml_last_name_attribute":"last_name","saml_groups_attribute":"groups","saml_sync_group_claims":true,"ldap_sync_group_claims":true,"ldap_role_mapping":"user->user_group,user->another_user_group,admin->admin_group","ldap_server_url":"ldap://example.com","ldap_base_domain_components":"dc=example,dc=com","ldap_server_name":"ldap.example.com","ldap_server_key":"__RETOOL_ENCRYPTED__(7a08f5924114b5646723610a16e7710d)","ldap_server_certificate":"__RETOOL_ENCRYPTED__(28d15d7f8ebcb352f48f3295057cfb22)","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"idp_metadata_xml":"metadata_xml","jit_enabled":true,"disable_email_password_login":true}}'
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":{"config_type":"saml","saml_first_name_attribute":"first_name","saml_last_name_attribute":"last_name","saml_groups_attribute":"groups","saml_sync_group_claims":true,"ldap_sync_group_claims":true,"ldap_role_mapping":"user->user_group,user->another_user_group,admin->admin_group","ldap_server_url":"ldap://example.com","ldap_base_domain_components":"dc=example,dc=com","ldap_server_name":"ldap.example.com","ldap_server_key":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"77e2f9b0220b20acd47ec58265dad9d9\",\"iv\":null,\"authTag\":null}","ldap_server_certificate":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"3c3c3ff6b02d46d8dd17a8416a433c2c\",\"iv\":null,\"authTag\":null}","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"idp_metadata_xml":"metadata_xml","jit_enabled":true,"disable_email_password_login":true}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 65.757625ms
+        duration: 32.091833ms
     - id: 11
       request:
         proto: HTTP/1.1
@@ -398,17 +403,18 @@ interactions:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
-        transfer_encoding: []
+        transfer_encoding:
+            - chunked
         trailer: {}
-        content_length: 757
-        uncompressed: false
-        body: '{"success":true,"data":{"config_type":"saml","saml_first_name_attribute":"first_name","saml_last_name_attribute":"last_name","saml_groups_attribute":"groups","saml_sync_group_claims":true,"ldap_sync_group_claims":true,"ldap_role_mapping":"user->user_group,user->another_user_group,admin->admin_group","ldap_server_url":"ldap://example.com","ldap_base_domain_components":"dc=example,dc=com","ldap_server_name":"ldap.example.com","ldap_server_key":"__RETOOL_ENCRYPTED__(7a08f5924114b5646723610a16e7710d)","ldap_server_certificate":"__RETOOL_ENCRYPTED__(28d15d7f8ebcb352f48f3295057cfb22)","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"idp_metadata_xml":"metadata_xml","jit_enabled":true,"disable_email_password_login":true}}'
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":{"config_type":"saml","saml_first_name_attribute":"first_name","saml_last_name_attribute":"last_name","saml_groups_attribute":"groups","saml_sync_group_claims":true,"ldap_sync_group_claims":true,"ldap_role_mapping":"user->user_group,user->another_user_group,admin->admin_group","ldap_server_url":"ldap://example.com","ldap_base_domain_components":"dc=example,dc=com","ldap_server_name":"ldap.example.com","ldap_server_key":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"77e2f9b0220b20acd47ec58265dad9d9\",\"iv\":null,\"authTag\":null}","ldap_server_certificate":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"3c3c3ff6b02d46d8dd17a8416a433c2c\",\"iv\":null,\"authTag\":null}","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"idp_metadata_xml":"metadata_xml","jit_enabled":true,"disable_email_password_login":true}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 75.377375ms
+        duration: 42.706208ms
     - id: 12
       request:
         proto: HTTP/1.1
@@ -434,17 +440,18 @@ interactions:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
-        transfer_encoding: []
+        transfer_encoding:
+            - chunked
         trailer: {}
-        content_length: 877
-        uncompressed: false
-        body: '{"success":true,"data":{"config_type":"google & saml","saml_first_name_attribute":"first_name","saml_last_name_attribute":"last_name","saml_groups_attribute":"groups","saml_sync_group_claims":true,"ldap_sync_group_claims":true,"ldap_role_mapping":"admin->admin_group,user->user_group,user->another_user_group","ldap_server_url":"ldap://example.com","ldap_base_domain_components":"dc=example,dc=com","ldap_server_name":"ldap.example.com","ldap_server_key":"__RETOOL_ENCRYPTED__(7a08f5924114b5646723610a16e7710d)","ldap_server_certificate":"__RETOOL_ENCRYPTED__(28d15d7f8ebcb352f48f3295057cfb22)","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"idp_metadata_xml":"metadata_xml","jit_enabled":true,"disable_email_password_login":true,"google_client_id":"client_id","google_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)"}}'
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":{"config_type":"google & saml","saml_first_name_attribute":"first_name","saml_last_name_attribute":"last_name","saml_groups_attribute":"groups","saml_sync_group_claims":true,"ldap_sync_group_claims":true,"ldap_role_mapping":"admin->admin_group,user->user_group,user->another_user_group","ldap_server_url":"ldap://example.com","ldap_base_domain_components":"dc=example,dc=com","ldap_server_name":"ldap.example.com","ldap_server_key":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"77e2f9b0220b20acd47ec58265dad9d9\",\"iv\":null,\"authTag\":null}","ldap_server_certificate":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"3c3c3ff6b02d46d8dd17a8416a433c2c\",\"iv\":null,\"authTag\":null}","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"idp_metadata_xml":"metadata_xml","jit_enabled":true,"disable_email_password_login":true,"google_client_id":"client_id","google_client_secret":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"40caec09e05a06443c666f42a7126327\",\"iv\":null,\"authTag\":null}"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 70.263292ms
+        duration: 43.130875ms
     - id: 13
       request:
         proto: HTTP/1.1
@@ -467,17 +474,18 @@ interactions:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
-        transfer_encoding: []
+        transfer_encoding:
+            - chunked
         trailer: {}
-        content_length: 877
-        uncompressed: false
-        body: '{"success":true,"data":{"config_type":"google & saml","saml_first_name_attribute":"first_name","saml_last_name_attribute":"last_name","saml_groups_attribute":"groups","saml_sync_group_claims":true,"ldap_sync_group_claims":true,"ldap_role_mapping":"admin->admin_group,user->user_group,user->another_user_group","ldap_server_url":"ldap://example.com","ldap_base_domain_components":"dc=example,dc=com","ldap_server_name":"ldap.example.com","ldap_server_key":"__RETOOL_ENCRYPTED__(7a08f5924114b5646723610a16e7710d)","ldap_server_certificate":"__RETOOL_ENCRYPTED__(28d15d7f8ebcb352f48f3295057cfb22)","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"idp_metadata_xml":"metadata_xml","jit_enabled":true,"disable_email_password_login":true,"google_client_id":"client_id","google_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)"}}'
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":{"config_type":"google & saml","saml_first_name_attribute":"first_name","saml_last_name_attribute":"last_name","saml_groups_attribute":"groups","saml_sync_group_claims":true,"ldap_sync_group_claims":true,"ldap_role_mapping":"admin->admin_group,user->user_group,user->another_user_group","ldap_server_url":"ldap://example.com","ldap_base_domain_components":"dc=example,dc=com","ldap_server_name":"ldap.example.com","ldap_server_key":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"77e2f9b0220b20acd47ec58265dad9d9\",\"iv\":null,\"authTag\":null}","ldap_server_certificate":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"3c3c3ff6b02d46d8dd17a8416a433c2c\",\"iv\":null,\"authTag\":null}","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"idp_metadata_xml":"metadata_xml","jit_enabled":true,"disable_email_password_login":true,"google_client_id":"client_id","google_client_secret":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"40caec09e05a06443c666f42a7126327\",\"iv\":null,\"authTag\":null}"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 64.7885ms
+        duration: 36.6665ms
     - id: 14
       request:
         proto: HTTP/1.1
@@ -500,17 +508,18 @@ interactions:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
-        transfer_encoding: []
+        transfer_encoding:
+            - chunked
         trailer: {}
-        content_length: 877
-        uncompressed: false
-        body: '{"success":true,"data":{"config_type":"google & saml","saml_first_name_attribute":"first_name","saml_last_name_attribute":"last_name","saml_groups_attribute":"groups","saml_sync_group_claims":true,"ldap_sync_group_claims":true,"ldap_role_mapping":"admin->admin_group,user->user_group,user->another_user_group","ldap_server_url":"ldap://example.com","ldap_base_domain_components":"dc=example,dc=com","ldap_server_name":"ldap.example.com","ldap_server_key":"__RETOOL_ENCRYPTED__(7a08f5924114b5646723610a16e7710d)","ldap_server_certificate":"__RETOOL_ENCRYPTED__(28d15d7f8ebcb352f48f3295057cfb22)","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"idp_metadata_xml":"metadata_xml","jit_enabled":true,"disable_email_password_login":true,"google_client_id":"client_id","google_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)"}}'
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":{"config_type":"google & saml","saml_first_name_attribute":"first_name","saml_last_name_attribute":"last_name","saml_groups_attribute":"groups","saml_sync_group_claims":true,"ldap_sync_group_claims":true,"ldap_role_mapping":"admin->admin_group,user->user_group,user->another_user_group","ldap_server_url":"ldap://example.com","ldap_base_domain_components":"dc=example,dc=com","ldap_server_name":"ldap.example.com","ldap_server_key":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"77e2f9b0220b20acd47ec58265dad9d9\",\"iv\":null,\"authTag\":null}","ldap_server_certificate":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"3c3c3ff6b02d46d8dd17a8416a433c2c\",\"iv\":null,\"authTag\":null}","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"idp_metadata_xml":"metadata_xml","jit_enabled":true,"disable_email_password_login":true,"google_client_id":"client_id","google_client_secret":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"40caec09e05a06443c666f42a7126327\",\"iv\":null,\"authTag\":null}"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 69.073625ms
+        duration: 41.015167ms
     - id: 15
       request:
         proto: HTTP/1.1
@@ -533,17 +542,18 @@ interactions:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
-        transfer_encoding: []
+        transfer_encoding:
+            - chunked
         trailer: {}
-        content_length: 877
-        uncompressed: false
-        body: '{"success":true,"data":{"config_type":"google & saml","saml_first_name_attribute":"first_name","saml_last_name_attribute":"last_name","saml_groups_attribute":"groups","saml_sync_group_claims":true,"ldap_sync_group_claims":true,"ldap_role_mapping":"admin->admin_group,user->user_group,user->another_user_group","ldap_server_url":"ldap://example.com","ldap_base_domain_components":"dc=example,dc=com","ldap_server_name":"ldap.example.com","ldap_server_key":"__RETOOL_ENCRYPTED__(7a08f5924114b5646723610a16e7710d)","ldap_server_certificate":"__RETOOL_ENCRYPTED__(28d15d7f8ebcb352f48f3295057cfb22)","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"idp_metadata_xml":"metadata_xml","jit_enabled":true,"disable_email_password_login":true,"google_client_id":"client_id","google_client_secret":"__RETOOL_ENCRYPTED__(d2c542b01b439eb4552f7925bf8fd4e1)"}}'
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":{"config_type":"google & saml","saml_first_name_attribute":"first_name","saml_last_name_attribute":"last_name","saml_groups_attribute":"groups","saml_sync_group_claims":true,"ldap_sync_group_claims":true,"ldap_role_mapping":"admin->admin_group,user->user_group,user->another_user_group","ldap_server_url":"ldap://example.com","ldap_base_domain_components":"dc=example,dc=com","ldap_server_name":"ldap.example.com","ldap_server_key":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"77e2f9b0220b20acd47ec58265dad9d9\",\"iv\":null,\"authTag\":null}","ldap_server_certificate":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"3c3c3ff6b02d46d8dd17a8416a433c2c\",\"iv\":null,\"authTag\":null}","restricted_domain":"example.com,example.org","trigger_login_automatically":true,"idp_metadata_xml":"metadata_xml","jit_enabled":true,"disable_email_password_login":true,"google_client_id":"client_id","google_client_secret":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"40caec09e05a06443c666f42a7126327\",\"iv\":null,\"authTag\":null}"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 63.560167ms
+        duration: 42.177417ms
     - id: 16
       request:
         proto: HTTP/1.1
@@ -556,7 +566,7 @@ interactions:
         remote_addr: ""
         request_uri: ""
         body: |
-            {"data":{"config_type":"google \u0026 saml","disable_email_password_login":false,"google_client_id":"new_client_id","google_client_secret":"new_client_secret","idp_metadata_xml":"new_metadata_xml","jit_enabled":false,"ldap_base_domain_components":"dc=newexample,dc=com","ldap_role_mapping":"guest-\u003eguest_group,user-\u003enew_user_group,user-\u003eanother_user_group,admin-\u003enew_admin_group","ldap_server_certificate":"new_server_cert","ldap_server_key":"new_server_key","ldap_server_name":"ldap.newexample.com","ldap_server_url":"ldap://newexample.com","ldap_sync_group_claims":true,"restricted_domain":"example.com,newexample.org","saml_first_name_attribute":"new_first_name","saml_groups_attribute":"new_groups","saml_last_name_attribute":"new_last_name","saml_sync_group_claims":false,"trigger_login_automatically":false}}
+            {"data":{"config_type":"google \u0026 saml","disable_email_password_login":false,"google_client_id":"new_client_id","google_client_secret":"new_client_secret","idp_metadata_xml":"new_metadata_xml","jit_enabled":false,"ldap_base_domain_components":"dc=newexample,dc=com","ldap_role_mapping":"admin-\u003enew_admin_group,guest-\u003eguest_group,user-\u003enew_user_group,user-\u003eanother_user_group","ldap_server_certificate":"new_server_cert","ldap_server_key":"new_server_key","ldap_server_name":"ldap.newexample.com","ldap_server_url":"ldap://newexample.com","ldap_sync_group_claims":true,"restricted_domain":"example.com,newexample.org","saml_first_name_attribute":"new_first_name","saml_groups_attribute":"new_groups","saml_last_name_attribute":"new_last_name","saml_sync_group_claims":false,"trigger_login_automatically":false}}
         form: {}
         headers:
             Content-Type:
@@ -569,17 +579,18 @@ interactions:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
-        transfer_encoding: []
+        transfer_encoding:
+            - chunked
         trailer: {}
-        content_length: 972
-        uncompressed: false
-        body: '{"success":true,"data":{"config_type":"google & saml","saml_first_name_attribute":"new_first_name","saml_last_name_attribute":"new_last_name","saml_groups_attribute":"new_groups","saml_sync_group_claims":false,"ldap_sync_group_claims":true,"ldap_role_mapping":"guest->guest_group,user->new_user_group,user->another_user_group,admin->new_admin_group","ldap_server_url":"ldap://newexample.com","ldap_base_domain_components":"dc=newexample,dc=com","ldap_server_name":"ldap.newexample.com","ldap_server_key":"__RETOOL_ENCRYPTED__(584912862e8fa80ebe82df90d7b2b647)","ldap_server_certificate":"__RETOOL_ENCRYPTED__(c0caca8d3a97da3dab7777ea87901be2)","restricted_domain":"example.com,newexample.org","trigger_login_automatically":false,"idp_metadata_xml":"new_metadata_xml","jit_enabled":false,"disable_email_password_login":false,"google_client_id":"new_client_id","google_client_secret":"__RETOOL_ENCRYPTED__(f7ce585aa5033c7a69bcdc5c18803f21d7bfedc7b3ed484ad9909cf188b999ad)"}}'
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":{"config_type":"google & saml","saml_first_name_attribute":"new_first_name","saml_last_name_attribute":"new_last_name","saml_groups_attribute":"new_groups","saml_sync_group_claims":false,"ldap_sync_group_claims":true,"ldap_role_mapping":"admin->new_admin_group,guest->guest_group,user->new_user_group,user->another_user_group","ldap_server_url":"ldap://newexample.com","ldap_base_domain_components":"dc=newexample,dc=com","ldap_server_name":"ldap.newexample.com","ldap_server_key":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"0776dcf996d21f496d31ad862f5364a2\",\"iv\":null,\"authTag\":null}","ldap_server_certificate":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"ff9007e6973755ea3df2ddfed61acef9\",\"iv\":null,\"authTag\":null}","restricted_domain":"example.com,newexample.org","trigger_login_automatically":false,"idp_metadata_xml":"new_metadata_xml","jit_enabled":false,"disable_email_password_login":false,"google_client_id":"new_client_id","google_client_secret":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"1be3e45fe61fedbaa2bf286d62c8f512e63562e8a1e058f26cc9b23bbd902c14\",\"iv\":null,\"authTag\":null}"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 74.97125ms
+        duration: 56.075667ms
     - id: 17
       request:
         proto: HTTP/1.1
@@ -602,17 +613,18 @@ interactions:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
-        transfer_encoding: []
+        transfer_encoding:
+            - chunked
         trailer: {}
-        content_length: 972
-        uncompressed: false
-        body: '{"success":true,"data":{"config_type":"google & saml","saml_first_name_attribute":"new_first_name","saml_last_name_attribute":"new_last_name","saml_groups_attribute":"new_groups","saml_sync_group_claims":false,"ldap_sync_group_claims":true,"ldap_role_mapping":"guest->guest_group,user->new_user_group,user->another_user_group,admin->new_admin_group","ldap_server_url":"ldap://newexample.com","ldap_base_domain_components":"dc=newexample,dc=com","ldap_server_name":"ldap.newexample.com","ldap_server_key":"__RETOOL_ENCRYPTED__(584912862e8fa80ebe82df90d7b2b647)","ldap_server_certificate":"__RETOOL_ENCRYPTED__(c0caca8d3a97da3dab7777ea87901be2)","restricted_domain":"example.com,newexample.org","trigger_login_automatically":false,"idp_metadata_xml":"new_metadata_xml","jit_enabled":false,"disable_email_password_login":false,"google_client_id":"new_client_id","google_client_secret":"__RETOOL_ENCRYPTED__(f7ce585aa5033c7a69bcdc5c18803f21d7bfedc7b3ed484ad9909cf188b999ad)"}}'
+        content_length: -1
+        uncompressed: true
+        body: '{"success":true,"data":{"config_type":"google & saml","saml_first_name_attribute":"new_first_name","saml_last_name_attribute":"new_last_name","saml_groups_attribute":"new_groups","saml_sync_group_claims":false,"ldap_sync_group_claims":true,"ldap_role_mapping":"admin->new_admin_group,guest->guest_group,user->new_user_group,user->another_user_group","ldap_server_url":"ldap://newexample.com","ldap_base_domain_components":"dc=newexample,dc=com","ldap_server_name":"ldap.newexample.com","ldap_server_key":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"0776dcf996d21f496d31ad862f5364a2\",\"iv\":null,\"authTag\":null}","ldap_server_certificate":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"ff9007e6973755ea3df2ddfed61acef9\",\"iv\":null,\"authTag\":null}","restricted_domain":"example.com,newexample.org","trigger_login_automatically":false,"idp_metadata_xml":"new_metadata_xml","jit_enabled":false,"disable_email_password_login":false,"google_client_id":"new_client_id","google_client_secret":"{\"canaryValue\":\"__RETOOL_ENCRYPTED_JSON__\",\"methodVersion\":2,\"encryptionKeyHash\":\"a7b580d711ef2807c7f11d881a1e7ff8a68c7e7d4e7c14e217bc9c522e3678ba\",\"encryptedValue\":\"1be3e45fe61fedbaa2bf286d62c8f512e63562e8a1e058f26cc9b23bbd902c14\",\"iv\":null,\"authTag\":null}"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 64.471125ms
+        duration: 42.447875ms
     - id: 18
       request:
         proto: HTTP/1.1
@@ -643,4 +655,4 @@ interactions:
         headers: {}
         status: 204 No Content
         code: 204
-        duration: 65.188208ms
+        duration: 44.924541ms

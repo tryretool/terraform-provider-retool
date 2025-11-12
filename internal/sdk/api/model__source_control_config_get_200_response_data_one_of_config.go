@@ -82,11 +82,11 @@ func (dst *SourceControlConfigGet200ResponseDataOneOfConfig) UnmarshalJSON(data 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src SourceControlConfigGet200ResponseDataOneOfConfig) MarshalJSON() ([]byte, error) {
 	if src.SourceControlConfigGet200ResponseDataOneOfConfigOneOf != nil {
-		return json.Marshal(&src.SourceControlConfigGet200ResponseDataOneOfConfigOneOf)
+		return json.Marshal(src.SourceControlConfigGet200ResponseDataOneOfConfigOneOf)
 	}
 
 	if src.SourceControlConfigGet200ResponseDataOneOfConfigOneOf1 != nil {
-		return json.Marshal(&src.SourceControlConfigGet200ResponseDataOneOfConfigOneOf1)
+		return json.Marshal(src.SourceControlConfigGet200ResponseDataOneOfConfigOneOf1)
 	}
 
 	return nil, nil // no data in oneOf schemas

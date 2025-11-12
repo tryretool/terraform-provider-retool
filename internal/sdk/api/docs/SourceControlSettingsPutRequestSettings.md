@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **CustomPullRequestTemplate** | Pointer to **string** | Pull requests created from Retool will use the template specified. | [optional] 
 **VersionControlLocked** | Pointer to **bool** | When set to true, creates a read-only instance of Retool, where app editing is disabled. Defaults to false. | [optional] 
 **ForceUuidMapping** | Pointer to **bool** | When set to true, creates a uuid mapping for protected elements to be used in the source control repo. Defaults to false. | [optional] 
+**AutoCleanupBranchesEnabled** | Pointer to **bool** | When set to true, Retool will automatically delete branches after changes are merged if the remote branch no longer exists and there are no uncommitted changes. Defaults to true. | [optional] 
 
 ## Methods
 
@@ -153,6 +154,31 @@ SetForceUuidMapping sets ForceUuidMapping field to given value.
 `func (o *SourceControlSettingsPutRequestSettings) HasForceUuidMapping() bool`
 
 HasForceUuidMapping returns a boolean if a field has been set.
+
+### GetAutoCleanupBranchesEnabled
+
+`func (o *SourceControlSettingsPutRequestSettings) GetAutoCleanupBranchesEnabled() bool`
+
+GetAutoCleanupBranchesEnabled returns the AutoCleanupBranchesEnabled field if non-nil, zero value otherwise.
+
+### GetAutoCleanupBranchesEnabledOk
+
+`func (o *SourceControlSettingsPutRequestSettings) GetAutoCleanupBranchesEnabledOk() (*bool, bool)`
+
+GetAutoCleanupBranchesEnabledOk returns a tuple with the AutoCleanupBranchesEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoCleanupBranchesEnabled
+
+`func (o *SourceControlSettingsPutRequestSettings) SetAutoCleanupBranchesEnabled(v bool)`
+
+SetAutoCleanupBranchesEnabled sets AutoCleanupBranchesEnabled field to given value.
+
+### HasAutoCleanupBranchesEnabled
+
+`func (o *SourceControlSettingsPutRequestSettings) HasAutoCleanupBranchesEnabled() bool`
+
+HasAutoCleanupBranchesEnabled returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

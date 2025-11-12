@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Id** | **string** | The id of the user attribute | 
 **Name** | **string** | The name of the user attribute | 
 **Label** | **string** | The label of the user attribute | 
-**DataType** | **string** | The data type of the user attribute. One of types &#x60;string&#x60;, &#x60;number&#x60;, or &#x60;json&#x60; | 
+**DataType** | **string** | The data type of the user attribute. Valid types are &#x60;string&#x60;, &#x60;number&#x60;, or &#x60;json&#x60; | 
 **DefaultValue** | **NullableString** | The default value of the user attribute, assigned to all users without the attribute set | 
 **IntercomAttributeName** | **NullableString** | The name of the Intercom user attribute that this attribute should be mapped to | 
 

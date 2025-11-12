@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CommitSha** | **string** | The commit SHA to dry deploy | 
+**CommitSha** | **string** | The full commit SHA to dry deploy | 
 **IsFullSync** | Pointer to **bool** |  | [optional] 
 
 ## Methods

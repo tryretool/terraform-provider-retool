@@ -5,29 +5,29 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ConfigType** | **string** |  | 
-**GoogleClientId** | Pointer to **string** |  | [optional] 
-**GoogleClientSecret** | Pointer to **string** |  | [optional] 
+**GoogleClientId** | **string** |  | 
+**GoogleClientSecret** | **string** |  | 
 **DisableEmailPasswordLogin** | **bool** |  | 
-**OidcClientId** | Pointer to **string** |  | [optional] 
-**OidcClientSecret** | Pointer to **string** |  | [optional] 
-**OidcScopes** | Pointer to **string** |  | [optional] 
-**OidcAuthUrl** | Pointer to **string** |  | [optional] 
-**OidcTokenUrl** | Pointer to **string** |  | [optional] 
+**OidcClientId** | **string** |  | 
+**OidcClientSecret** | **string** |  | 
+**OidcScopes** | **string** |  | 
+**OidcAuthUrl** | **string** |  | 
+**OidcTokenUrl** | **string** |  | 
 **OidcUserinfoUrl** | Pointer to **string** |  | [optional] 
 **OidcAudience** | Pointer to **string** |  | [optional] 
-**JwtEmailKey** | Pointer to **string** |  | [optional] 
+**JwtEmailKey** | **string** |  | 
 **JwtRolesKey** | Pointer to **string** |  | [optional] 
-**JwtFirstNameKey** | Pointer to **string** |  | [optional] 
-**JwtLastNameKey** | Pointer to **string** |  | [optional] 
+**JwtFirstNameKey** | **string** |  | 
+**JwtLastNameKey** | **string** |  | 
 **RolesMapping** | Pointer to **string** |  | [optional] 
-**JitEnabled** | Pointer to **bool** |  | [optional] 
+**JitEnabled** | **bool** |  | 
 **RestrictedDomain** | Pointer to **string** |  | [optional] 
-**TriggerLoginAutomatically** | Pointer to **bool** |  | [optional] 
-**IdpMetadataXml** | Pointer to **string** |  | [optional] 
-**SamlFirstNameAttribute** | Pointer to **string** |  | [optional] 
-**SamlLastNameAttribute** | Pointer to **string** |  | [optional] 
+**TriggerLoginAutomatically** | **bool** |  | 
+**IdpMetadataXml** | **string** |  | 
+**SamlFirstNameAttribute** | **string** |  | 
+**SamlLastNameAttribute** | **string** |  | 
 **SamlGroupsAttribute** | Pointer to **string** |  | [optional] 
-**SamlSyncGroupClaims** | Pointer to **bool** |  | [optional] 
+**SamlSyncGroupClaims** | **bool** |  | 
 **LdapSyncGroupClaims** | Pointer to **bool** |  | [optional] 
 **LdapRoleMapping** | Pointer to **string** |  | [optional] 
 **LdapServerUrl** | Pointer to **string** |  | [optional] 
@@ -40,7 +40,7 @@ Name | Type | Description | Notes
 
 ### NewSsoConfigGet200ResponseData
 
-`func NewSsoConfigGet200ResponseData(configType string, disableEmailPasswordLogin bool, ) *SsoConfigGet200ResponseData`
+`func NewSsoConfigGet200ResponseData(configType string, googleClientId string, googleClientSecret string, disableEmailPasswordLogin bool, oidcClientId string, oidcClientSecret string, oidcScopes string, oidcAuthUrl string, oidcTokenUrl string, jwtEmailKey string, jwtFirstNameKey string, jwtLastNameKey string, jitEnabled bool, triggerLoginAutomatically bool, idpMetadataXml string, samlFirstNameAttribute string, samlLastNameAttribute string, samlSyncGroupClaims bool, ) *SsoConfigGet200ResponseData`
 
 NewSsoConfigGet200ResponseData instantiates a new SsoConfigGet200ResponseData object
 This constructor will assign default values to properties that have it defined,
@@ -94,11 +94,6 @@ and a boolean to check if the value has been set.
 
 SetGoogleClientId sets GoogleClientId field to given value.
 
-### HasGoogleClientId
-
-`func (o *SsoConfigGet200ResponseData) HasGoogleClientId() bool`
-
-HasGoogleClientId returns a boolean if a field has been set.
 
 ### GetGoogleClientSecret
 
@@ -119,11 +114,6 @@ and a boolean to check if the value has been set.
 
 SetGoogleClientSecret sets GoogleClientSecret field to given value.
 
-### HasGoogleClientSecret
-
-`func (o *SsoConfigGet200ResponseData) HasGoogleClientSecret() bool`
-
-HasGoogleClientSecret returns a boolean if a field has been set.
 
 ### GetDisableEmailPasswordLogin
 
@@ -164,11 +154,6 @@ and a boolean to check if the value has been set.
 
 SetOidcClientId sets OidcClientId field to given value.
 
-### HasOidcClientId
-
-`func (o *SsoConfigGet200ResponseData) HasOidcClientId() bool`
-
-HasOidcClientId returns a boolean if a field has been set.
 
 ### GetOidcClientSecret
 
@@ -189,11 +174,6 @@ and a boolean to check if the value has been set.
 
 SetOidcClientSecret sets OidcClientSecret field to given value.
 
-### HasOidcClientSecret
-
-`func (o *SsoConfigGet200ResponseData) HasOidcClientSecret() bool`
-
-HasOidcClientSecret returns a boolean if a field has been set.
 
 ### GetOidcScopes
 
@@ -214,11 +194,6 @@ and a boolean to check if the value has been set.
 
 SetOidcScopes sets OidcScopes field to given value.
 
-### HasOidcScopes
-
-`func (o *SsoConfigGet200ResponseData) HasOidcScopes() bool`
-
-HasOidcScopes returns a boolean if a field has been set.
 
 ### GetOidcAuthUrl
 
@@ -239,11 +214,6 @@ and a boolean to check if the value has been set.
 
 SetOidcAuthUrl sets OidcAuthUrl field to given value.
 
-### HasOidcAuthUrl
-
-`func (o *SsoConfigGet200ResponseData) HasOidcAuthUrl() bool`
-
-HasOidcAuthUrl returns a boolean if a field has been set.
 
 ### GetOidcTokenUrl
 
@@ -264,11 +234,6 @@ and a boolean to check if the value has been set.
 
 SetOidcTokenUrl sets OidcTokenUrl field to given value.
 
-### HasOidcTokenUrl
-
-`func (o *SsoConfigGet200ResponseData) HasOidcTokenUrl() bool`
-
-HasOidcTokenUrl returns a boolean if a field has been set.
 
 ### GetOidcUserinfoUrl
 
@@ -339,11 +304,6 @@ and a boolean to check if the value has been set.
 
 SetJwtEmailKey sets JwtEmailKey field to given value.
 
-### HasJwtEmailKey
-
-`func (o *SsoConfigGet200ResponseData) HasJwtEmailKey() bool`
-
-HasJwtEmailKey returns a boolean if a field has been set.
 
 ### GetJwtRolesKey
 
@@ -389,11 +349,6 @@ and a boolean to check if the value has been set.
 
 SetJwtFirstNameKey sets JwtFirstNameKey field to given value.
 
-### HasJwtFirstNameKey
-
-`func (o *SsoConfigGet200ResponseData) HasJwtFirstNameKey() bool`
-
-HasJwtFirstNameKey returns a boolean if a field has been set.
 
 ### GetJwtLastNameKey
 
@@ -414,11 +369,6 @@ and a boolean to check if the value has been set.
 
 SetJwtLastNameKey sets JwtLastNameKey field to given value.
 
-### HasJwtLastNameKey
-
-`func (o *SsoConfigGet200ResponseData) HasJwtLastNameKey() bool`
-
-HasJwtLastNameKey returns a boolean if a field has been set.
 
 ### GetRolesMapping
 
@@ -464,11 +414,6 @@ and a boolean to check if the value has been set.
 
 SetJitEnabled sets JitEnabled field to given value.
 
-### HasJitEnabled
-
-`func (o *SsoConfigGet200ResponseData) HasJitEnabled() bool`
-
-HasJitEnabled returns a boolean if a field has been set.
 
 ### GetRestrictedDomain
 
@@ -514,11 +459,6 @@ and a boolean to check if the value has been set.
 
 SetTriggerLoginAutomatically sets TriggerLoginAutomatically field to given value.
 
-### HasTriggerLoginAutomatically
-
-`func (o *SsoConfigGet200ResponseData) HasTriggerLoginAutomatically() bool`
-
-HasTriggerLoginAutomatically returns a boolean if a field has been set.
 
 ### GetIdpMetadataXml
 
@@ -539,11 +479,6 @@ and a boolean to check if the value has been set.
 
 SetIdpMetadataXml sets IdpMetadataXml field to given value.
 
-### HasIdpMetadataXml
-
-`func (o *SsoConfigGet200ResponseData) HasIdpMetadataXml() bool`
-
-HasIdpMetadataXml returns a boolean if a field has been set.
 
 ### GetSamlFirstNameAttribute
 
@@ -564,11 +499,6 @@ and a boolean to check if the value has been set.
 
 SetSamlFirstNameAttribute sets SamlFirstNameAttribute field to given value.
 
-### HasSamlFirstNameAttribute
-
-`func (o *SsoConfigGet200ResponseData) HasSamlFirstNameAttribute() bool`
-
-HasSamlFirstNameAttribute returns a boolean if a field has been set.
 
 ### GetSamlLastNameAttribute
 
@@ -589,11 +519,6 @@ and a boolean to check if the value has been set.
 
 SetSamlLastNameAttribute sets SamlLastNameAttribute field to given value.
 
-### HasSamlLastNameAttribute
-
-`func (o *SsoConfigGet200ResponseData) HasSamlLastNameAttribute() bool`
-
-HasSamlLastNameAttribute returns a boolean if a field has been set.
 
 ### GetSamlGroupsAttribute
 
@@ -639,11 +564,6 @@ and a boolean to check if the value has been set.
 
 SetSamlSyncGroupClaims sets SamlSyncGroupClaims field to given value.
 
-### HasSamlSyncGroupClaims
-
-`func (o *SsoConfigGet200ResponseData) HasSamlSyncGroupClaims() bool`
-
-HasSamlSyncGroupClaims returns a boolean if a field has been set.
 
 ### GetLdapSyncGroupClaims
 

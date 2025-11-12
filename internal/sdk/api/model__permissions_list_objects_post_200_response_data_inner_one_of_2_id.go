@@ -40,9 +40,9 @@ func (dst *PermissionsListObjectsPost200ResponseDataInnerOneOf2Id) UnmarshalJSON
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src *PermissionsListObjectsPost200ResponseDataInnerOneOf2Id) MarshalJSON() ([]byte, error) {
+func (src PermissionsListObjectsPost200ResponseDataInnerOneOf2Id) MarshalJSON() ([]byte, error) {
 	if src.string != nil {
-		return json.Marshal(&src.string)
+		return json.Marshal(src.string)
 	}
 
 	return nil, nil // no data in anyOf schemas

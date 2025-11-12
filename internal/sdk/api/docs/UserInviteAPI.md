@@ -161,7 +161,7 @@ import (
 )
 
 func main() {
-	userInviteId := "userInviteId_example" // string | 
+	userInviteId := "userInviteId_example" // string | The user invite's ID
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -179,7 +179,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userInviteId** | **string** |  | 
+**userInviteId** | **string** | The user invite&#39;s ID | 
 
 ### Other Parameters
 
@@ -229,7 +229,7 @@ import (
 )
 
 func main() {
-	userInviteId := "userInviteId_example" // string | 
+	userInviteId := "userInviteId_example" // string | The user invite's ID
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -249,7 +249,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userInviteId** | **string** |  | 
+**userInviteId** | **string** | The user invite&#39;s ID | 
 
 ### Other Parameters
 
@@ -299,7 +299,7 @@ import (
 )
 
 func main() {
-	userInviteId := "userInviteId_example" // string | 
+	userInviteId := "userInviteId_example" // string | The user invite's ID
 	attributeName := "attributeName_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -320,7 +320,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userInviteId** | **string** |  | 
+**userInviteId** | **string** | The user invite&#39;s ID | 
 **attributeName** | **string** |  | 
 
 ### Other Parameters
@@ -372,7 +372,7 @@ import (
 )
 
 func main() {
-	userInviteId := "userInviteId_example" // string | 
+	userInviteId := "userInviteId_example" // string | The user invite's ID
 	userInvitesUserInviteIdUserAttributesPostRequest := *openapiclient.NewUserInvitesUserInviteIdUserAttributesPostRequest("Name_example", "Value_example") // UserInvitesUserInviteIdUserAttributesPostRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -393,7 +393,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userInviteId** | **string** |  | 
+**userInviteId** | **string** | The user invite&#39;s ID | 
 
 ### Other Parameters
 
