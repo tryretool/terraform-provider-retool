@@ -24,8 +24,24 @@ resource "retool_resource" "api" {
 
   options = jsonencode({
     base_url = "https://api.example.com"
+  })
+
+  lifecycle {
+    # Ignore changes to options since they can't be read back from the API
+    ignore_changes = [options]
+  }
+}
+
+resource "retool_resource" "api" {
+  display_name = "My REST API"
+  type         = "restapi"
+
+  options = jsonencode({
+    base_url = "https://api.example.com"
     authentication_options = {
-      authentication_type = "None"
+      authentication_type = "basic"
+      basic_username      = "admin"
+      basic_password      = "password"
     }
   })
 
