@@ -1,0 +1,307 @@
+---
+version: 2
+interactions:
+    - id: 0
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 287
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"description":"Terraform acceptance test configuration variable","name":"tf-acc-test-configuration-variable","secret":false,"values":[{"environment_id":"23ba02f3-12c2-456e-826f-13b616daa5ce","value":"value1"},{"environment_id":"fc4a3c5b-6328-4990-b368-6879a1f38855","value":"value2"}]}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/configuration_variables
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 354
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"18368cb2-21f6-40c4-9d54-5fc0a724219f","name":"tf-acc-test-configuration-variable","description":"Terraform acceptance test configuration variable","secret":false,"values":[{"environment_id":"23ba02f3-12c2-456e-826f-13b616daa5ce","value":"value1"},{"environment_id":"fc4a3c5b-6328-4990-b368-6879a1f38855","value":"value2"}]}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 103.438875ms
+    - id: 1
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/configuration_variables/18368cb2-21f6-40c4-9d54-5fc0a724219f
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 354
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"18368cb2-21f6-40c4-9d54-5fc0a724219f","name":"tf-acc-test-configuration-variable","description":"Terraform acceptance test configuration variable","secret":false,"values":[{"environment_id":"23ba02f3-12c2-456e-826f-13b616daa5ce","value":"value1"},{"environment_id":"fc4a3c5b-6328-4990-b368-6879a1f38855","value":"value2"}]}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 43.669583ms
+    - id: 2
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/configuration_variables/18368cb2-21f6-40c4-9d54-5fc0a724219f
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 354
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"18368cb2-21f6-40c4-9d54-5fc0a724219f","name":"tf-acc-test-configuration-variable","description":"Terraform acceptance test configuration variable","secret":false,"values":[{"environment_id":"23ba02f3-12c2-456e-826f-13b616daa5ce","value":"value1"},{"environment_id":"fc4a3c5b-6328-4990-b368-6879a1f38855","value":"value2"}]}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 37.443292ms
+    - id: 3
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/configuration_variables/18368cb2-21f6-40c4-9d54-5fc0a724219f
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 354
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"18368cb2-21f6-40c4-9d54-5fc0a724219f","name":"tf-acc-test-configuration-variable","description":"Terraform acceptance test configuration variable","secret":false,"values":[{"environment_id":"23ba02f3-12c2-456e-826f-13b616daa5ce","value":"value1"},{"environment_id":"fc4a3c5b-6328-4990-b368-6879a1f38855","value":"value2"}]}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 38.119083ms
+    - id: 4
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 313
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"description":"Terraform acceptance test configuration variable modified","name":"tf-acc-test-configuration-variable-modified","secret":false,"values":[{"environment_id":"23ba02f3-12c2-456e-826f-13b616daa5ce","value":"new_value1"},{"environment_id":"fc4a3c5b-6328-4990-b368-6879a1f38855","value":"new_value2"}]}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/configuration_variables/18368cb2-21f6-40c4-9d54-5fc0a724219f
+        method: PUT
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 380
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"18368cb2-21f6-40c4-9d54-5fc0a724219f","name":"tf-acc-test-configuration-variable-modified","description":"Terraform acceptance test configuration variable modified","secret":false,"values":[{"environment_id":"23ba02f3-12c2-456e-826f-13b616daa5ce","value":"new_value1"},{"environment_id":"fc4a3c5b-6328-4990-b368-6879a1f38855","value":"new_value2"}]}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 48.6035ms
+    - id: 5
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/configuration_variables/18368cb2-21f6-40c4-9d54-5fc0a724219f
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 380
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"18368cb2-21f6-40c4-9d54-5fc0a724219f","name":"tf-acc-test-configuration-variable-modified","description":"Terraform acceptance test configuration variable modified","secret":false,"values":[{"environment_id":"23ba02f3-12c2-456e-826f-13b616daa5ce","value":"new_value1"},{"environment_id":"fc4a3c5b-6328-4990-b368-6879a1f38855","value":"new_value2"}]}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 39.122625ms
+    - id: 6
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/configuration_variables/18368cb2-21f6-40c4-9d54-5fc0a724219f
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 380
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"18368cb2-21f6-40c4-9d54-5fc0a724219f","name":"tf-acc-test-configuration-variable-modified","description":"Terraform acceptance test configuration variable modified","secret":false,"values":[{"environment_id":"23ba02f3-12c2-456e-826f-13b616daa5ce","value":"new_value1"},{"environment_id":"fc4a3c5b-6328-4990-b368-6879a1f38855","value":"new_value2"}]}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 35.198042ms
+    - id: 7
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 241
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"description":"Terraform acceptance test configuration variable with invalid environment ID","name":"tf-acc-test-configuration-variable-invalid-env-id","secret":false,"values":[{"environment_id":"invalid-environment-id","value":"value1"}]}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/configuration_variables/18368cb2-21f6-40c4-9d54-5fc0a724219f
+        method: PUT
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 91
+        uncompressed: false
+        body: '{"success":false,"message":"Environment with id \"invalid-environment-id\" does not exist"}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 400 Bad Request
+        code: 400
+        duration: 37.519ms
+    - id: 8
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/configuration_variables/18368cb2-21f6-40c4-9d54-5fc0a724219f
+        method: DELETE
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: ""
+        headers: {}
+        status: 204 No Content
+        code: 204
+        duration: 37.187292ms

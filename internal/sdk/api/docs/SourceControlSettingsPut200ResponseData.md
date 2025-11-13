@@ -9,12 +9,13 @@ Name | Type | Description | Notes
 **CustomPullRequestTemplate** | **string** | Pull requests created from Retool will use the template specified. | 
 **VersionControlLocked** | **bool** | When set to true, creates a read-only instance of Retool, where app editing is disabled. Defaults to false. | 
 **ForceUuidMapping** | **bool** | When set to true, creates a uuid mapping for protected elements to be used in the source control repo. Defaults to false. | 
+**AutoCleanupBranchesEnabled** | **bool** | When set to true, Retool will automatically delete branches after changes are merged if the remote branch no longer exists and there are no uncommitted changes. Defaults to true. | 
 
 ## Methods
 
 ### NewSourceControlSettingsPut200ResponseData
 
-`func NewSourceControlSettingsPut200ResponseData(autoBranchNamingEnabled bool, customPullRequestTemplateEnabled bool, customPullRequestTemplate string, versionControlLocked bool, forceUuidMapping bool, ) *SourceControlSettingsPut200ResponseData`
+`func NewSourceControlSettingsPut200ResponseData(autoBranchNamingEnabled bool, customPullRequestTemplateEnabled bool, customPullRequestTemplate string, versionControlLocked bool, forceUuidMapping bool, autoCleanupBranchesEnabled bool, ) *SourceControlSettingsPut200ResponseData`
 
 NewSourceControlSettingsPut200ResponseData instantiates a new SourceControlSettingsPut200ResponseData object
 This constructor will assign default values to properties that have it defined,
@@ -127,6 +128,26 @@ and a boolean to check if the value has been set.
 `func (o *SourceControlSettingsPut200ResponseData) SetForceUuidMapping(v bool)`
 
 SetForceUuidMapping sets ForceUuidMapping field to given value.
+
+
+### GetAutoCleanupBranchesEnabled
+
+`func (o *SourceControlSettingsPut200ResponseData) GetAutoCleanupBranchesEnabled() bool`
+
+GetAutoCleanupBranchesEnabled returns the AutoCleanupBranchesEnabled field if non-nil, zero value otherwise.
+
+### GetAutoCleanupBranchesEnabledOk
+
+`func (o *SourceControlSettingsPut200ResponseData) GetAutoCleanupBranchesEnabledOk() (*bool, bool)`
+
+GetAutoCleanupBranchesEnabledOk returns a tuple with the AutoCleanupBranchesEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoCleanupBranchesEnabled
+
+`func (o *SourceControlSettingsPut200ResponseData) SetAutoCleanupBranchesEnabled(v bool)`
+
+SetAutoCleanupBranchesEnabled sets AutoCleanupBranchesEnabled field to given value.
 
 
 

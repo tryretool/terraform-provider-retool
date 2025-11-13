@@ -9,12 +9,14 @@ Name | Type | Description | Notes
 **LegacyId** | **float32** |  | 
 **RequestingEmail** | **string** |  | 
 **UpdatedById** | **NullableString** |  | 
+**CreatedAt** | **time.Time** |  | 
+**UpdatedAt** | **time.Time** |  | 
 
 ## Methods
 
 ### NewAccessRequestsGet200ResponseDataInner
 
-`func NewAccessRequestsGet200ResponseDataInner(id float32, status string, legacyId float32, requestingEmail string, updatedById NullableString, ) *AccessRequestsGet200ResponseDataInner`
+`func NewAccessRequestsGet200ResponseDataInner(id float32, status string, legacyId float32, requestingEmail string, updatedById NullableString, createdAt time.Time, updatedAt time.Time, ) *AccessRequestsGet200ResponseDataInner`
 
 NewAccessRequestsGet200ResponseDataInner instantiates a new AccessRequestsGet200ResponseDataInner object
 This constructor will assign default values to properties that have it defined,
@@ -139,6 +141,46 @@ SetUpdatedById sets UpdatedById field to given value.
 `func (o *AccessRequestsGet200ResponseDataInner) UnsetUpdatedById()`
 
 UnsetUpdatedById ensures that no value is present for UpdatedById, not even an explicit nil
+### GetCreatedAt
+
+`func (o *AccessRequestsGet200ResponseDataInner) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *AccessRequestsGet200ResponseDataInner) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *AccessRequestsGet200ResponseDataInner) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+
+### GetUpdatedAt
+
+`func (o *AccessRequestsGet200ResponseDataInner) GetUpdatedAt() time.Time`
+
+GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+
+### GetUpdatedAtOk
+
+`func (o *AccessRequestsGet200ResponseDataInner) GetUpdatedAtOk() (*time.Time, bool)`
+
+GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedAt
+
+`func (o *AccessRequestsGet200ResponseDataInner) SetUpdatedAt(v time.Time)`
+
+SetUpdatedAt sets UpdatedAt field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

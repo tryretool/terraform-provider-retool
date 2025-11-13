@@ -6,14 +6,14 @@ interactions:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
-        content_length: 311
+        content_length: 332
         transfer_encoding: []
         trailer: {}
         host: recorded.retool.dev
         remote_addr: ""
         request_uri: ""
         body: |
-            {"account_details_access":true,"audit_log_access":true,"name":"tf-acc-test-group","universal_app_access":"use","universal_query_library_access":"edit","universal_resource_access":"own","universal_workflow_access":"none","unpublished_release_access":false,"usage_analytics_access":true,"user_list_access":false}
+            {"account_details_access":true,"audit_log_access":true,"name":"tf-acc-test-group","theme_access":false,"universal_app_access":"use","universal_query_library_access":"edit","universal_resource_access":"own","universal_workflow_access":"none","unpublished_release_access":false,"usage_analytics_access":true,"user_list_access":false}
         form: {}
         headers:
             Content-Type:
@@ -28,15 +28,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 495
+        content_length: 516
         uncompressed: false
-        body: '{"success":true,"data":{"id":52,"legacy_id":52,"name":"tf-acc-test-group","members":[],"universal_app_access":"use","universal_resource_access":"own","universal_workflow_access":"none","universal_query_library_access":"edit","user_invites":[],"user_list_access":false,"audit_log_access":true,"unpublished_release_access":false,"usage_analytics_access":true,"account_details_access":true,"landing_page_app_id":null,"updated_at":"2024-07-26T17:05:59.001Z","created_at":"2024-07-26T17:05:59.001Z"}}'
+        body: '{"success":true,"data":{"id":65,"legacy_id":65,"name":"tf-acc-test-group","members":[],"universal_app_access":"use","universal_resource_access":"own","universal_workflow_access":"none","universal_query_library_access":"edit","user_invites":[],"user_list_access":false,"audit_log_access":true,"unpublished_release_access":false,"usage_analytics_access":true,"theme_access":false,"account_details_access":true,"landing_page_app_id":null,"updated_at":"2025-11-07T04:21:56.567Z","created_at":"2025-11-07T04:21:56.567Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 102.278542ms
+        duration: 93.946708ms
     - id: 1
       request:
         proto: HTTP/1.1
@@ -53,7 +53,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/groups/52
+        url: https://recorded.retool.dev/api/v2/groups/65
         method: GET
       response:
         proto: HTTP/1.1
@@ -61,15 +61,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 495
+        content_length: 516
         uncompressed: false
-        body: '{"success":true,"data":{"id":52,"legacy_id":52,"name":"tf-acc-test-group","members":[],"universal_app_access":"use","universal_resource_access":"own","universal_workflow_access":"none","universal_query_library_access":"edit","user_invites":[],"user_list_access":false,"audit_log_access":true,"unpublished_release_access":false,"usage_analytics_access":true,"account_details_access":true,"landing_page_app_id":null,"updated_at":"2024-07-26T17:05:59.001Z","created_at":"2024-07-26T17:05:59.001Z"}}'
+        body: '{"success":true,"data":{"id":65,"legacy_id":65,"name":"tf-acc-test-group","members":[],"universal_app_access":"use","universal_resource_access":"own","universal_workflow_access":"none","universal_query_library_access":"edit","user_invites":[],"user_list_access":false,"audit_log_access":true,"unpublished_release_access":false,"usage_analytics_access":true,"theme_access":false,"account_details_access":true,"landing_page_app_id":null,"updated_at":"2025-11-07T04:21:56.567Z","created_at":"2025-11-07T04:21:56.567Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 78.673625ms
+        duration: 37.419417ms
     - id: 2
       request:
         proto: HTTP/1.1
@@ -86,7 +86,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/groups/52
+        url: https://recorded.retool.dev/api/v2/groups/65
         method: GET
       response:
         proto: HTTP/1.1
@@ -94,15 +94,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 495
+        content_length: 516
         uncompressed: false
-        body: '{"success":true,"data":{"id":52,"legacy_id":52,"name":"tf-acc-test-group","members":[],"universal_app_access":"use","universal_resource_access":"own","universal_workflow_access":"none","universal_query_library_access":"edit","user_invites":[],"user_list_access":false,"audit_log_access":true,"unpublished_release_access":false,"usage_analytics_access":true,"account_details_access":true,"landing_page_app_id":null,"updated_at":"2024-07-26T17:05:59.001Z","created_at":"2024-07-26T17:05:59.001Z"}}'
+        body: '{"success":true,"data":{"id":65,"legacy_id":65,"name":"tf-acc-test-group","members":[],"universal_app_access":"use","universal_resource_access":"own","universal_workflow_access":"none","universal_query_library_access":"edit","user_invites":[],"user_list_access":false,"audit_log_access":true,"unpublished_release_access":false,"usage_analytics_access":true,"theme_access":false,"account_details_access":true,"landing_page_app_id":null,"updated_at":"2025-11-07T04:21:56.567Z","created_at":"2025-11-07T04:21:56.567Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 75.307ms
+        duration: 36.05ms
     - id: 3
       request:
         proto: HTTP/1.1
@@ -119,7 +119,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/groups/52
+        url: https://recorded.retool.dev/api/v2/groups/65
         method: GET
       response:
         proto: HTTP/1.1
@@ -127,15 +127,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 495
+        content_length: 516
         uncompressed: false
-        body: '{"success":true,"data":{"id":52,"legacy_id":52,"name":"tf-acc-test-group","members":[],"universal_app_access":"use","universal_resource_access":"own","universal_workflow_access":"none","universal_query_library_access":"edit","user_invites":[],"user_list_access":false,"audit_log_access":true,"unpublished_release_access":false,"usage_analytics_access":true,"account_details_access":true,"landing_page_app_id":null,"updated_at":"2024-07-26T17:05:59.001Z","created_at":"2024-07-26T17:05:59.001Z"}}'
+        body: '{"success":true,"data":{"id":65,"legacy_id":65,"name":"tf-acc-test-group","members":[],"universal_app_access":"use","universal_resource_access":"own","universal_workflow_access":"none","universal_query_library_access":"edit","user_invites":[],"user_list_access":false,"audit_log_access":true,"unpublished_release_access":false,"usage_analytics_access":true,"theme_access":false,"account_details_access":true,"landing_page_app_id":null,"updated_at":"2025-11-07T04:21:56.567Z","created_at":"2025-11-07T04:21:56.567Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 80.698917ms
+        duration: 37.139875ms
     - id: 4
       request:
         proto: HTTP/1.1
@@ -152,7 +152,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/groups/52
+        url: https://recorded.retool.dev/api/v2/groups/65
         method: GET
       response:
         proto: HTTP/1.1
@@ -160,35 +160,35 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 495
+        content_length: 516
         uncompressed: false
-        body: '{"success":true,"data":{"id":52,"legacy_id":52,"name":"tf-acc-test-group","members":[],"universal_app_access":"use","universal_resource_access":"own","universal_workflow_access":"none","universal_query_library_access":"edit","user_invites":[],"user_list_access":false,"audit_log_access":true,"unpublished_release_access":false,"usage_analytics_access":true,"account_details_access":true,"landing_page_app_id":null,"updated_at":"2024-07-26T17:05:59.001Z","created_at":"2024-07-26T17:05:59.001Z"}}'
+        body: '{"success":true,"data":{"id":65,"legacy_id":65,"name":"tf-acc-test-group","members":[],"universal_app_access":"use","universal_resource_access":"own","universal_workflow_access":"none","universal_query_library_access":"edit","user_invites":[],"user_list_access":false,"audit_log_access":true,"unpublished_release_access":false,"usage_analytics_access":true,"theme_access":false,"account_details_access":true,"landing_page_app_id":null,"updated_at":"2025-11-07T04:21:56.567Z","created_at":"2025-11-07T04:21:56.567Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 93.10725ms
+        duration: 36.004125ms
     - id: 5
       request:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
-        content_length: 380
+        content_length: 401
         transfer_encoding: []
         trailer: {}
         host: recorded.retool.dev
         remote_addr: ""
         request_uri: ""
         body: |
-            {"account_details_access":false,"audit_log_access":false,"landing_page_app_id":null,"members":[],"name":"tf-acc-test-group-modified","universal_app_access":"own","universal_query_library_access":"none","universal_resource_access":"none","universal_workflow_access":"edit","unpublished_release_access":true,"usage_analytics_access":false,"user_invites":[],"user_list_access":true}
+            {"account_details_access":false,"audit_log_access":false,"landing_page_app_id":null,"members":[],"name":"tf-acc-test-group-modified","theme_access":false,"universal_app_access":"own","universal_query_library_access":"none","universal_resource_access":"none","universal_workflow_access":"edit","unpublished_release_access":true,"usage_analytics_access":false,"user_invites":[],"user_list_access":true}
         form: {}
         headers:
             Content-Type:
                 - application/json
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/groups/52
+        url: https://recorded.retool.dev/api/v2/groups/65
         method: PUT
       response:
         proto: HTTP/1.1
@@ -196,15 +196,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 506
+        content_length: 527
         uncompressed: false
-        body: '{"success":true,"data":{"id":52,"legacy_id":52,"name":"tf-acc-test-group-modified","members":[],"universal_app_access":"own","universal_resource_access":"none","universal_workflow_access":"edit","universal_query_library_access":"none","user_invites":[],"user_list_access":true,"audit_log_access":false,"unpublished_release_access":true,"usage_analytics_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-07-26T17:05:59.910Z","created_at":"2024-07-26T17:05:59.001Z"}}'
+        body: '{"success":true,"data":{"id":65,"legacy_id":65,"name":"tf-acc-test-group-modified","members":[],"universal_app_access":"own","universal_resource_access":"none","universal_workflow_access":"edit","universal_query_library_access":"none","user_invites":[],"user_list_access":true,"audit_log_access":false,"unpublished_release_access":true,"usage_analytics_access":false,"theme_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2025-11-07T04:21:57.422Z","created_at":"2025-11-07T04:21:56.567Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 143.697542ms
+        duration: 53.600958ms
     - id: 6
       request:
         proto: HTTP/1.1
@@ -221,7 +221,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/groups/52
+        url: https://recorded.retool.dev/api/v2/groups/65
         method: GET
       response:
         proto: HTTP/1.1
@@ -229,15 +229,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 506
+        content_length: 527
         uncompressed: false
-        body: '{"success":true,"data":{"id":52,"legacy_id":52,"name":"tf-acc-test-group-modified","members":[],"universal_app_access":"own","universal_resource_access":"none","universal_workflow_access":"edit","universal_query_library_access":"none","user_invites":[],"user_list_access":true,"audit_log_access":false,"unpublished_release_access":true,"usage_analytics_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-07-26T17:05:59.910Z","created_at":"2024-07-26T17:05:59.001Z"}}'
+        body: '{"success":true,"data":{"id":65,"legacy_id":65,"name":"tf-acc-test-group-modified","members":[],"universal_app_access":"own","universal_resource_access":"none","universal_workflow_access":"edit","universal_query_library_access":"none","user_invites":[],"user_list_access":true,"audit_log_access":false,"unpublished_release_access":true,"usage_analytics_access":false,"theme_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2025-11-07T04:21:57.422Z","created_at":"2025-11-07T04:21:56.567Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 97.087166ms
+        duration: 38.839125ms
     - id: 7
       request:
         proto: HTTP/1.1
@@ -254,7 +254,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/groups/52
+        url: https://recorded.retool.dev/api/v2/groups/65
         method: GET
       response:
         proto: HTTP/1.1
@@ -262,15 +262,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 506
+        content_length: 527
         uncompressed: false
-        body: '{"success":true,"data":{"id":52,"legacy_id":52,"name":"tf-acc-test-group-modified","members":[],"universal_app_access":"own","universal_resource_access":"none","universal_workflow_access":"edit","universal_query_library_access":"none","user_invites":[],"user_list_access":true,"audit_log_access":false,"unpublished_release_access":true,"usage_analytics_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-07-26T17:05:59.910Z","created_at":"2024-07-26T17:05:59.001Z"}}'
+        body: '{"success":true,"data":{"id":65,"legacy_id":65,"name":"tf-acc-test-group-modified","members":[],"universal_app_access":"own","universal_resource_access":"none","universal_workflow_access":"edit","universal_query_library_access":"none","user_invites":[],"user_list_access":true,"audit_log_access":false,"unpublished_release_access":true,"usage_analytics_access":false,"theme_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2025-11-07T04:21:57.422Z","created_at":"2025-11-07T04:21:56.567Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 82.70175ms
+        duration: 35.222541ms
     - id: 8
       request:
         proto: HTTP/1.1
@@ -287,7 +287,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/groups/52
+        url: https://recorded.retool.dev/api/v2/groups/65
         method: DELETE
       response:
         proto: HTTP/1.1
@@ -301,20 +301,20 @@ interactions:
         headers: {}
         status: 204 No Content
         code: 204
-        duration: 113.679208ms
+        duration: 46.413583ms
     - id: 9
       request:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
-        content_length: 330
+        content_length: 351
         transfer_encoding: []
         trailer: {}
         host: recorded.retool.dev
         remote_addr: ""
         request_uri: ""
         body: |
-            {"account_details_access":false,"audit_log_access":false,"name":"tf-acc-test-group-with-defaults","universal_app_access":"none","universal_query_library_access":"none","universal_resource_access":"none","universal_workflow_access":"none","unpublished_release_access":false,"usage_analytics_access":false,"user_list_access":false}
+            {"account_details_access":false,"audit_log_access":false,"name":"tf-acc-test-group-with-defaults","theme_access":false,"universal_app_access":"none","universal_query_library_access":"none","universal_resource_access":"none","universal_workflow_access":"none","unpublished_release_access":false,"usage_analytics_access":false,"user_list_access":false}
         form: {}
         headers:
             Content-Type:
@@ -329,15 +329,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 514
+        content_length: 535
         uncompressed: false
-        body: '{"success":true,"data":{"id":53,"legacy_id":53,"name":"tf-acc-test-group-with-defaults","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","universal_query_library_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-07-26T17:06:00.553Z","created_at":"2024-07-26T17:06:00.553Z"}}'
+        body: '{"success":true,"data":{"id":66,"legacy_id":66,"name":"tf-acc-test-group-with-defaults","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","universal_query_library_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"theme_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2025-11-07T04:21:57.938Z","created_at":"2025-11-07T04:21:57.938Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 134.091209ms
+        duration: 130.991375ms
     - id: 10
       request:
         proto: HTTP/1.1
@@ -354,7 +354,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/groups/53
+        url: https://recorded.retool.dev/api/v2/groups/66
         method: GET
       response:
         proto: HTTP/1.1
@@ -362,15 +362,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 514
+        content_length: 535
         uncompressed: false
-        body: '{"success":true,"data":{"id":53,"legacy_id":53,"name":"tf-acc-test-group-with-defaults","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","universal_query_library_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2024-07-26T17:06:00.553Z","created_at":"2024-07-26T17:06:00.553Z"}}'
+        body: '{"success":true,"data":{"id":66,"legacy_id":66,"name":"tf-acc-test-group-with-defaults","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","universal_query_library_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"theme_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2025-11-07T04:21:57.938Z","created_at":"2025-11-07T04:21:57.938Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 88.640542ms
+        duration: 36.932875ms
     - id: 11
       request:
         proto: HTTP/1.1
@@ -387,7 +387,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/groups/53
+        url: https://recorded.retool.dev/api/v2/groups/66
         method: DELETE
       response:
         proto: HTTP/1.1
@@ -401,4 +401,4 @@ interactions:
         headers: {}
         status: 204 No Content
         code: 204
-        duration: 97.650625ms
+        duration: 37.566083ms

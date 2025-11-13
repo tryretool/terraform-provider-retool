@@ -68,17 +68,17 @@ func (dst *GroupsGroupIdPatchRequestOperationsInner) UnmarshalJSON(data []byte) 
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src *GroupsGroupIdPatchRequestOperationsInner) MarshalJSON() ([]byte, error) {
+func (src GroupsGroupIdPatchRequestOperationsInner) MarshalJSON() ([]byte, error) {
 	if src.AddOperation != nil {
-		return json.Marshal(&src.AddOperation)
+		return json.Marshal(src.AddOperation)
 	}
 
 	if src.RemoveOperation != nil {
-		return json.Marshal(&src.RemoveOperation)
+		return json.Marshal(src.RemoveOperation)
 	}
 
 	if src.ReplaceOperation != nil {
-		return json.Marshal(&src.ReplaceOperation)
+		return json.Marshal(src.ReplaceOperation)
 	}
 
 	return nil, nil // no data in anyOf schemas

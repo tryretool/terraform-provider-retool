@@ -7,6 +7,7 @@ resource "retool_group" "example" {
   audit_log_access           = true
   unpublished_release_access = false
   usage_analytics_access     = true
+  theme_access               = false
   account_details_access     = true
   landing_page_app_id        = "c37676ba-116f-11ea-b17d-d7734e1526f2"
 }

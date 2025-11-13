@@ -36,7 +36,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 201 Created
         code: 201
-        duration: 143.993708ms
+        duration: 89.081709ms
     - id: 1
       request:
         proto: HTTP/1.1
@@ -69,7 +69,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 370.805916ms
+        duration: 45.44625ms
     - id: 2
       request:
         proto: HTTP/1.1
@@ -102,7 +102,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 319.899041ms
+        duration: 31.074792ms
     - id: 3
       request:
         proto: HTTP/1.1
@@ -138,7 +138,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 75.94375ms
+        duration: 37.122667ms
     - id: 4
       request:
         proto: HTTP/1.1
@@ -171,7 +171,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 65.163375ms
+        duration: 38.767542ms
     - id: 5
       request:
         proto: HTTP/1.1
@@ -204,7 +204,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 68.443833ms
+        duration: 43.242ms
     - id: 6
       request:
         proto: HTTP/1.1
@@ -240,7 +240,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 79.486666ms
+        duration: 41.623ms
     - id: 7
       request:
         proto: HTTP/1.1
@@ -273,7 +273,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 64.54075ms
+        duration: 30.6925ms
     - id: 8
       request:
         proto: HTTP/1.1
@@ -306,7 +306,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 67.293334ms
+        duration: 30.642625ms
     - id: 9
       request:
         proto: HTTP/1.1
@@ -342,7 +342,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 79.706209ms
+        duration: 43.874709ms
     - id: 10
       request:
         proto: HTTP/1.1
@@ -375,7 +375,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 81.806083ms
+        duration: 42.312792ms
     - id: 11
       request:
         proto: HTTP/1.1
@@ -408,7 +408,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 67.687458ms
+        duration: 37.5965ms
     - id: 12
       request:
         proto: HTTP/1.1
@@ -444,7 +444,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 78.268541ms
+        duration: 69.94125ms
     - id: 13
       request:
         proto: HTTP/1.1
@@ -477,7 +477,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 70.276333ms
+        duration: 85.797208ms
     - id: 14
       request:
         proto: HTTP/1.1
@@ -510,7 +510,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 73.63375ms
+        duration: 78.595167ms
     - id: 15
       request:
         proto: HTTP/1.1
@@ -546,7 +546,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 82.736125ms
+        duration: 89.045959ms
     - id: 16
       request:
         proto: HTTP/1.1
@@ -579,7 +579,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 66.537083ms
+        duration: 47.022541ms
     - id: 17
       request:
         proto: HTTP/1.1
@@ -612,7 +612,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 63.078084ms
+        duration: 52.35325ms
     - id: 18
       request:
         proto: HTTP/1.1
@@ -648,7 +648,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 78.482958ms
+        duration: 52.471834ms
     - id: 19
       request:
         proto: HTTP/1.1
@@ -681,7 +681,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 67.431416ms
+        duration: 49.701458ms
     - id: 20
       request:
         proto: HTTP/1.1
@@ -714,7 +714,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 64.626458ms
+        duration: 48.586292ms
     - id: 21
       request:
         proto: HTTP/1.1
@@ -745,4 +745,4 @@ interactions:
         headers: {}
         status: 204 No Content
         code: 204
-        duration: 83.579459ms
+        duration: 83.430583ms

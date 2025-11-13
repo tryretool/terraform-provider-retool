@@ -30,7 +30,7 @@ output "all_folders" {
 
 Read-Only:
 
-- `folder_type` (String) The type of the folder: (app|file|resource|workflow).
+- `folder_type` (String) The type of the folder: (app|file|resource|workflow|agent).
 - `id` (String) The id of the folder.
 - `is_system_folder` (Boolean) Whether the folder is a system folder.
 - `legacy_id` (String) The legacy id of the folder.

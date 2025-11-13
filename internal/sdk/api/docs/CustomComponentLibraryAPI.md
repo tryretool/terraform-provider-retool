@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	nextToken := "nextToken_example" // string |  (optional)
+	nextToken := "nextToken_example" // string | The token of the current page (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -59,7 +59,7 @@ Other parameters are passed through a pointer to a apiCustomComponentLibrariesGe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **nextToken** | **string** |  | 
+ **nextToken** | **string** | The token of the current page | 
 
 ### Return type
 

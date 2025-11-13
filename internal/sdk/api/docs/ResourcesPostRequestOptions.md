@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **AccountIdentifier** | **string** |  | 
 **UserRole** | Pointer to **string** |  | [optional] 
 **AuthenticationOptions** | [**RestAPIOptionsAuthenticationOptions**](RestAPIOptionsAuthenticationOptions.md) |  | 
-**BaseUrl** | **string** | Use the absolute URL (e.g https://example.com). | 
+**BaseUrl** | **string** | Use the absolute URL (e.g. https://example.com). | 
 **UrlParameters** | Pointer to **[][]string** |  | [optional] 
 **Headers** | Pointer to **[][]string** |  | [optional] 
 **ExtraBodyValues** | Pointer to **[][]string** | Extra body values are not passed for GET or HEAD requests. | [optional] 

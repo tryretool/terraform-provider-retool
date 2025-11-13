@@ -4,7 +4,7 @@ All URIs are relative to *http://.*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**SpacesCopyElementsPost**](SpacesAPI.md#SpacesCopyElementsPost) | **Post** /spaces/copyElements | Copies apps, queries, resources, and workflows from one space to another
+[**SpacesCopyElementsPost**](SpacesAPI.md#SpacesCopyElementsPost) | **Post** /spaces/copyElements | Copy elements to another space
 [**SpacesGet**](SpacesAPI.md#SpacesGet) | **Get** /spaces | List spaces
 [**SpacesPost**](SpacesAPI.md#SpacesPost) | **Post** /spaces | Create a space
 [**SpacesSpaceIdDelete**](SpacesAPI.md#SpacesSpaceIdDelete) | **Delete** /spaces/{spaceId} | Delete a space
@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 > SpacesCopyElementsPost201Response SpacesCopyElementsPost(ctx).SpacesCopyElementsPostRequest(spacesCopyElementsPostRequest).Execute()
 
-Copies apps, queries, resources, and workflows from one space to another
+Copy elements to another space
 
 
 
@@ -227,7 +227,7 @@ import (
 )
 
 func main() {
-	spaceId := "spaceId_example" // string | 
+	spaceId := "spaceId_example" // string | The id of the space to delete.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -245,7 +245,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**spaceId** | **string** |  | 
+**spaceId** | **string** | The id of the space to delete. | 
 
 ### Other Parameters
 

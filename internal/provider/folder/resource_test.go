@@ -11,7 +11,6 @@ import (
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
 
 	"github.com/tryretool/terraform-provider-retool/internal/acctest"
-	"github.com/tryretool/terraform-provider-retool/internal/sdk/api"
 )
 
 const testFolderConfig = `
@@ -65,10 +64,7 @@ func sweepFolders(region string) error {
 		if strings.HasPrefix(folder.Name, "tf-acc") {
 			log.Printf("Deleting folder %s", folder.Name)
 			tflog.Info(context.Background(), "Deleting folder", map[string]interface{}{"folder": folder.Name})
-			recursive := true
-			deleteRequest := api.FoldersFolderIdDeleteRequest{}
-			deleteRequest.Recursive = &recursive
-			_, err := client.FoldersAPI.FoldersFolderIdDelete(context.Background(), folder.Id).FoldersFolderIdDeleteRequest(deleteRequest).Execute()
+			_, err := client.FoldersAPI.FoldersFolderIdDelete(context.Background(), folder.Id).Recursive(true).Execute()
 			if err != nil {
 				return fmt.Errorf("Error deleting folder %s: %s", folder.Name, err.Error())
 			}

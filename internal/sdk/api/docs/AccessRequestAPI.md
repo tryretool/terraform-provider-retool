@@ -31,7 +31,7 @@ import (
 )
 
 func main() {
-	accessRequestId := "accessRequestId_example" // string | 
+	accessRequestId := "accessRequestId_example" // string | The access request's ID number
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -51,7 +51,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**accessRequestId** | **string** |  | 
+**accessRequestId** | **string** | The access request&#39;s ID number | 
 
 ### Other Parameters
 
@@ -101,8 +101,8 @@ import (
 )
 
 func main() {
-	accessRequestId := "accessRequestId_example" // string | 
-	accessRequestsAccessRequestIdPatchRequest := *openapiclient.NewAccessRequestsAccessRequestIdPatchRequest([]openapiclient.UsersUserIdPatchRequestOperationsInnerAnyOf2{*openapiclient.NewUsersUserIdPatchRequestOperationsInnerAnyOf2("Op_example", "Path_example")}) // AccessRequestsAccessRequestIdPatchRequest |  (optional)
+	accessRequestId := "accessRequestId_example" // string | The ID of the access request
+	accessRequestsAccessRequestIdPatchRequest := *openapiclient.NewAccessRequestsAccessRequestIdPatchRequest([]openapiclient.ReplaceOperation{*openapiclient.NewReplaceOperation("Op_example", "Path_example")}) // AccessRequestsAccessRequestIdPatchRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -122,7 +122,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**accessRequestId** | **string** |  | 
+**accessRequestId** | **string** | The ID of the access request | 
 
 ### Other Parameters
 
@@ -173,7 +173,7 @@ import (
 )
 
 func main() {
-	status := "status_example" // string |  (optional)
+	status := "status_example" // string | The status of the access request (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -198,7 +198,7 @@ Other parameters are passed through a pointer to a apiAccessRequestsGetRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **status** | **string** |  | 
+ **status** | **string** | The status of the access request | 
 
 ### Return type
 

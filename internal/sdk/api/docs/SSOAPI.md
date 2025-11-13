@@ -151,7 +151,7 @@ import (
 )
 
 func main() {
-	ssoConfigPostRequest := *openapiclient.NewSsoConfigPostRequest(openapiclient._sso_config_post_request_data{SsoConfigPostRequestDataOneOf: openapiclient.NewSsoConfigPostRequestDataOneOf("ConfigType_example", "GoogleClientId_example", "GoogleClientSecret_example", false)}) // SsoConfigPostRequest |  (optional)
+	ssoConfigPostRequest := *openapiclient.NewSsoConfigPostRequest(openapiclient._sso_config_post_request_data{Google: openapiclient.NewGoogle("ConfigType_example", "GoogleClientId_example", "GoogleClientSecret_example", false)}) // SsoConfigPostRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
