@@ -1,0 +1,238 @@
+---
+version: 2
+interactions:
+    - id: 0
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 100
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"color":"#FF5733","description":"Test environment for acceptance tests","name":"test-environment"}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/environments
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 263
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"6e2ae8ea-49e8-44d2-aee0-c63be29b108b","name":"test-environment","description":"Test environment for acceptance tests","color":"#FF5733","default":false,"created_at":"2025-11-13T01:09:11.652Z","updated_at":"2025-11-13T01:09:11.652Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 3.390111666s
+    - id: 1
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/environments/6e2ae8ea-49e8-44d2-aee0-c63be29b108b
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 263
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"6e2ae8ea-49e8-44d2-aee0-c63be29b108b","name":"test-environment","description":"Test environment for acceptance tests","color":"#FF5733","default":false,"created_at":"2025-11-13T01:09:11.652Z","updated_at":"2025-11-13T01:09:11.652Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 32.338459ms
+    - id: 2
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/environments/6e2ae8ea-49e8-44d2-aee0-c63be29b108b
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 263
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"6e2ae8ea-49e8-44d2-aee0-c63be29b108b","name":"test-environment","description":"Test environment for acceptance tests","color":"#FF5733","default":false,"created_at":"2025-11-13T01:09:11.652Z","updated_at":"2025-11-13T01:09:11.652Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 31.19525ms
+    - id: 3
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 209
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"operations":[{"op":"replace","path":"/name","value":"test-environment-updated"},{"op":"replace","path":"/description","value":"Updated test environment"},{"op":"replace","path":"/color","value":"#00FF00"}]}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/environments/6e2ae8ea-49e8-44d2-aee0-c63be29b108b
+        method: PATCH
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 258
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"6e2ae8ea-49e8-44d2-aee0-c63be29b108b","name":"test-environment-updated","description":"Updated test environment","color":"#00FF00","default":false,"created_at":"2025-11-13T01:09:11.652Z","updated_at":"2025-11-13T01:09:15.337Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 35.445166ms
+    - id: 4
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/environments/6e2ae8ea-49e8-44d2-aee0-c63be29b108b
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 258
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"6e2ae8ea-49e8-44d2-aee0-c63be29b108b","name":"test-environment-updated","description":"Updated test environment","color":"#00FF00","default":false,"created_at":"2025-11-13T01:09:11.652Z","updated_at":"2025-11-13T01:09:15.337Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 31.434958ms
+    - id: 5
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/environments/6e2ae8ea-49e8-44d2-aee0-c63be29b108b
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 258
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"6e2ae8ea-49e8-44d2-aee0-c63be29b108b","name":"test-environment-updated","description":"Updated test environment","color":"#00FF00","default":false,"created_at":"2025-11-13T01:09:11.652Z","updated_at":"2025-11-13T01:09:15.337Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 34.7465ms
+    - id: 6
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/environments/6e2ae8ea-49e8-44d2-aee0-c63be29b108b
+        method: DELETE
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: ""
+        headers: {}
+        status: 204 No Content
+        code: 204
+        duration: 37.480959ms
