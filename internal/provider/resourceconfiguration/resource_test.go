@@ -75,7 +75,7 @@ func TestAccResourceConfiguration(t *testing.T) {
 					resource.TestCheckResourceAttrSet("retool_resource_configuration.test_config", "created_at"),
 					resource.TestCheckResourceAttrSet("retool_resource_configuration.test_config", "updated_at"),
 				),
-				// The API adds default values to options, which may cause a refresh plan
+				// The API adds default values to options, which may cause a refresh plan.
 				ExpectNonEmptyPlan: true,
 			},
 			// Import state.
@@ -83,7 +83,7 @@ func TestAccResourceConfiguration(t *testing.T) {
 				ResourceName:      "retool_resource_configuration.test_config",
 				ImportState:       true,
 				ImportStateVerify: true,
-				// The API adds default values to options, so we can't verify exact match
+				// The API adds default values to options, so we can't verify exact match.
 				ImportStateVerifyIgnore: []string{"options"},
 			},
 			// Update and Read.
@@ -94,7 +94,7 @@ func TestAccResourceConfiguration(t *testing.T) {
 					resource.TestCheckResourceAttrSet("retool_resource_configuration.test_config", "resource_id"),
 					resource.TestCheckResourceAttrSet("retool_resource_configuration.test_config", "environment_id"),
 				),
-				// The API adds default values to options, which may cause a refresh plan
+				// The API adds default values to options, which may cause a refresh plan.
 				ExpectNonEmptyPlan: true,
 			},
 		},
@@ -115,7 +115,7 @@ func sweepResourceConfigurations(region string) error {
 	}
 
 	for _, config := range configurations.Data {
-		// Check if the resource associated with this config is a test resource
+		// Check if the resource associated with this config is a test resource.
 		if strings.Contains(config.Resource.DisplayName, "Test ") || strings.Contains(config.Resource.DisplayName, "test") {
 			log.Printf("Deleting resource configuration %s (resource: %s)", config.Id, config.Resource.DisplayName)
 			_, err := client.ResourceConfigurationsAPI.ResourceConfigurationsConfigurationIdDelete(context.Background(), config.Id).Execute()
@@ -132,7 +132,7 @@ func init() {
 		Name: "retool_resource_configuration",
 		F:    sweepResourceConfigurations,
 		Dependencies: []string{
-			"retool_resource", // Clean up configurations before resources
+			"retool_resource", // Clean up configurations before resources.
 		},
 	})
 }
