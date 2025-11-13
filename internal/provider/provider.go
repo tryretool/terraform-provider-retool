@@ -20,6 +20,7 @@ import (
 	"golang.org/x/mod/semver"
 
 	"github.com/tryretool/terraform-provider-retool/internal/provider/configurationvariable"
+	"github.com/tryretool/terraform-provider-retool/internal/provider/environment"
 	"github.com/tryretool/terraform-provider-retool/internal/provider/environments"
 	"github.com/tryretool/terraform-provider-retool/internal/provider/folder"
 	"github.com/tryretool/terraform-provider-retool/internal/provider/group"
@@ -178,7 +179,7 @@ func (p *retoolProvider) Configure(ctx context.Context, req provider.ConfigureRe
 		return
 	}
 
-	// Default values to environment variables, but override
+	// Default values to environment variables, but override.
 	// with Terraform configuration value if set.
 
 	host := os.Getenv("RETOOL_HOST")
@@ -308,5 +309,6 @@ func (p *retoolProvider) Resources(_ context.Context) []func() resource.Resource
 		sourcecontrol.NewResource,
 		sourcecontrolsettings.NewResource,
 		configurationvariable.NewResource,
+		environment.NewResource,
 	}
 }
