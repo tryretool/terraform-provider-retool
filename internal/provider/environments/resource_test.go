@@ -5,7 +5,6 @@ import (
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
-	"github.com/hashicorp/terraform-plugin-testing/terraform"
 
 	"github.com/tryretool/terraform-provider-retool/internal/acctest"
 )
@@ -81,17 +80,4 @@ resource "retool_environment" "test" {
   color = "%s"
 }
 `, name, color)
-}
-
-func checkEnvironmentDestroy(s *terraform.State) error {
-	for _, rs := range s.RootModule().Resources {
-		if rs.Type != "retool_environment" {
-			continue
-		}
-
-		// If we reach here, it means the resource still exists after destroy, which is not expected
-		// However, since we don't have access to the client in this context, we can't verify
-		// We'll rely on the API returning a 404 error in the Read method.
-	}
-	return nil
 }

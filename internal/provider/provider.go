@@ -178,7 +178,7 @@ func (p *retoolProvider) Configure(ctx context.Context, req provider.ConfigureRe
 		return
 	}
 
-	// Default values to environment variables, but override.
+	// Default values to environment variables, but override
 	// with Terraform configuration value if set.
 
 	host := os.Getenv("RETOOL_HOST")
