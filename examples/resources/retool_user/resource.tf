@@ -4,6 +4,5 @@ resource "retool_user" "example" {
   last_name  = "Doe"
   active     = true
   metadata   = "{\"department\":\"engineering\",\"team\":\"platform\"}"
-  user_type  = "standard"
 }
 
