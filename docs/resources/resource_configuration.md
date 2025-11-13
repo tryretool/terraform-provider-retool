@@ -42,6 +42,11 @@ resource "retool_resource_configuration" "postgres_production" {
     password = "prod_password"
     ssl      = true
   })
+
+  lifecycle {
+    # Ignore changes to options since the API adds default values
+    ignore_changes = [options]
+  }
 }
 
 # Create a staging-specific configuration
@@ -57,6 +62,10 @@ resource "retool_resource_configuration" "postgres_staging" {
     password = "staging_password"
     ssl      = true
   })
+
+  lifecycle {
+    ignore_changes = [options]
+  }
 }
 ```
 
