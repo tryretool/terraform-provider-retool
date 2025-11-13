@@ -30,13 +30,13 @@ interactions:
         trailer: {}
         content_length: 236
         uncompressed: false
-        body: '{"success":true,"data":{"id":"6e88f310-eea9-4e7b-b8ab-6d3b521f73ac","name":"test-environment-no-desc","description":null,"color":"#0000FF","default":false,"created_at":"2025-11-13T01:09:11.611Z","updated_at":"2025-11-13T01:09:11.611Z"}}'
+        body: '{"success":true,"data":{"id":"72fd47f5-6315-4cce-bf7e-082eb6c7be96","name":"test-environment-no-desc","description":null,"color":"#0000FF","default":false,"created_at":"2025-11-13T01:18:10.996Z","updated_at":"2025-11-13T01:18:10.996Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 3.137612458s
+        duration: 3.456174125s
     - id: 1
       request:
         proto: HTTP/1.1
@@ -53,7 +53,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/environments/6e88f310-eea9-4e7b-b8ab-6d3b521f73ac
+        url: https://recorded.retool.dev/api/v2/environments/72fd47f5-6315-4cce-bf7e-082eb6c7be96
         method: GET
       response:
         proto: HTTP/1.1
@@ -63,13 +63,13 @@ interactions:
         trailer: {}
         content_length: 236
         uncompressed: false
-        body: '{"success":true,"data":{"id":"6e88f310-eea9-4e7b-b8ab-6d3b521f73ac","name":"test-environment-no-desc","description":null,"color":"#0000FF","default":false,"created_at":"2025-11-13T01:09:11.611Z","updated_at":"2025-11-13T01:09:11.611Z"}}'
+        body: '{"success":true,"data":{"id":"72fd47f5-6315-4cce-bf7e-082eb6c7be96","name":"test-environment-no-desc","description":null,"color":"#0000FF","default":false,"created_at":"2025-11-13T01:18:10.996Z","updated_at":"2025-11-13T01:18:10.996Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 33.512375ms
+        duration: 51.932084ms
     - id: 2
       request:
         proto: HTTP/1.1
@@ -86,7 +86,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/environments/6e88f310-eea9-4e7b-b8ab-6d3b521f73ac
+        url: https://recorded.retool.dev/api/v2/environments/72fd47f5-6315-4cce-bf7e-082eb6c7be96
         method: DELETE
       response:
         proto: HTTP/1.1
@@ -100,4 +100,4 @@ interactions:
         headers: {}
         status: 204 No Content
         code: 204
-        duration: 37.141958ms
+        duration: 38.388291ms
