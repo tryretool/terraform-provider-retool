@@ -1,0 +1,627 @@
+---
+version: 2
+interactions:
+    - id: 0
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/environments
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 605
+        uncompressed: false
+        body: '{"success":true,"data":[{"id":"23ba02f3-12c2-456e-826f-13b616daa5ce","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"}],"total_count":2,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 92.048959ms
+    - id: 1
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 110
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"display_name":"Test REST API for Config","options":{"base_url":"https://api.example.com"},"type":"restapi"}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/resources
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 226
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"d7dfe353-1c51-4fdf-ad60-93aad5fe54ca","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2025-11-12T23:23:46.910Z","updated_at":"2025-11-12T23:23:46.910Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 55.418458ms
+    - id: 2
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 171
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"environment_id":"fc4a3c5b-6328-4990-b368-6879a1f38855","options":{"base_url":"https://api.production.example.com"},"resource_id":"d7dfe353-1c51-4fdf-ad60-93aad5fe54ca"}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/resource_configurations
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 755
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"c93f307b-6e67-455d-bb27-eb80663ae22c","resource":{"id":"d7dfe353-1c51-4fdf-ad60-93aad5fe54ca","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2025-11-12T23:23:46.910Z","updated_at":"2025-11-12T23:23:46.910Z"},"environment":{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},"options":{"base_url":"https://api.production.example.com","authentication_options":{"authentication_type":"none"}},"created_at":"2025-11-12T23:23:46.980Z","updated_at":"2025-11-12T23:23:46.980Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 55.738583ms
+    - id: 3
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/environments
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 605
+        uncompressed: false
+        body: '{"success":true,"data":[{"id":"23ba02f3-12c2-456e-826f-13b616daa5ce","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"}],"total_count":2,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 36.88475ms
+    - id: 4
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/environments
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 605
+        uncompressed: false
+        body: '{"success":true,"data":[{"id":"23ba02f3-12c2-456e-826f-13b616daa5ce","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"}],"total_count":2,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 34.091917ms
+    - id: 5
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/resources/d7dfe353-1c51-4fdf-ad60-93aad5fe54ca
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 226
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"d7dfe353-1c51-4fdf-ad60-93aad5fe54ca","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2025-11-12T23:23:46.910Z","updated_at":"2025-11-12T23:23:46.910Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 79.96125ms
+    - id: 6
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers: {}
+        url: https://recorded.retool.dev/api/v2/resource_configurations/c93f307b-6e67-455d-bb27-eb80663ae22c
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 755
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"c93f307b-6e67-455d-bb27-eb80663ae22c","resource":{"id":"d7dfe353-1c51-4fdf-ad60-93aad5fe54ca","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2025-11-12T23:23:46.910Z","updated_at":"2025-11-12T23:23:46.910Z"},"environment":{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},"options":{"base_url":"https://api.production.example.com","authentication_options":{"authentication_type":"none"}},"created_at":"2025-11-12T23:23:46.980Z","updated_at":"2025-11-12T23:23:46.980Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 40.618625ms
+    - id: 7
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/environments
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 605
+        uncompressed: false
+        body: '{"success":true,"data":[{"id":"23ba02f3-12c2-456e-826f-13b616daa5ce","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"}],"total_count":2,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 39.735459ms
+    - id: 8
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers: {}
+        url: https://recorded.retool.dev/api/v2/resource_configurations/c93f307b-6e67-455d-bb27-eb80663ae22c
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 755
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"c93f307b-6e67-455d-bb27-eb80663ae22c","resource":{"id":"d7dfe353-1c51-4fdf-ad60-93aad5fe54ca","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2025-11-12T23:23:46.910Z","updated_at":"2025-11-12T23:23:46.910Z"},"environment":{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},"options":{"base_url":"https://api.production.example.com","authentication_options":{"authentication_type":"none"}},"created_at":"2025-11-12T23:23:46.980Z","updated_at":"2025-11-12T23:23:46.980Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 40.535167ms
+    - id: 9
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/environments
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 605
+        uncompressed: false
+        body: '{"success":true,"data":[{"id":"23ba02f3-12c2-456e-826f-13b616daa5ce","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"}],"total_count":2,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 37.637875ms
+    - id: 10
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/resources/d7dfe353-1c51-4fdf-ad60-93aad5fe54ca
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 226
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"d7dfe353-1c51-4fdf-ad60-93aad5fe54ca","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2025-11-12T23:23:46.910Z","updated_at":"2025-11-12T23:23:46.910Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 40.475459ms
+    - id: 11
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers: {}
+        url: https://recorded.retool.dev/api/v2/resource_configurations/c93f307b-6e67-455d-bb27-eb80663ae22c
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 755
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"c93f307b-6e67-455d-bb27-eb80663ae22c","resource":{"id":"d7dfe353-1c51-4fdf-ad60-93aad5fe54ca","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2025-11-12T23:23:46.910Z","updated_at":"2025-11-12T23:23:46.910Z"},"environment":{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},"options":{"base_url":"https://api.production.example.com","authentication_options":{"authentication_type":"none"}},"created_at":"2025-11-12T23:23:46.980Z","updated_at":"2025-11-12T23:23:46.980Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 38.678917ms
+    - id: 12
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 113
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"operations":[{"op":"replace","path":"/options","value":{"base_url":"https://api.production-v2.example.com"}}]}
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/resource_configurations/c93f307b-6e67-455d-bb27-eb80663ae22c
+        method: PATCH
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 758
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"c93f307b-6e67-455d-bb27-eb80663ae22c","resource":{"id":"d7dfe353-1c51-4fdf-ad60-93aad5fe54ca","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2025-11-12T23:23:46.910Z","updated_at":"2025-11-12T23:23:46.910Z"},"environment":{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},"options":{"base_url":"https://api.production-v2.example.com","authentication_options":{"authentication_type":"none"}},"created_at":"2025-11-12T23:23:46.980Z","updated_at":"2025-11-12T23:23:48.027Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 68.671167ms
+    - id: 13
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/environments
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 605
+        uncompressed: false
+        body: '{"success":true,"data":[{"id":"23ba02f3-12c2-456e-826f-13b616daa5ce","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"}],"total_count":2,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 39.048375ms
+    - id: 14
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/environments
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 605
+        uncompressed: false
+        body: '{"success":true,"data":[{"id":"23ba02f3-12c2-456e-826f-13b616daa5ce","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"}],"total_count":2,"next_token":null,"has_more":false}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 35.3ms
+    - id: 15
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/resources/d7dfe353-1c51-4fdf-ad60-93aad5fe54ca
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 226
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"d7dfe353-1c51-4fdf-ad60-93aad5fe54ca","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2025-11-12T23:23:46.910Z","updated_at":"2025-11-12T23:23:48.029Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 38.154333ms
+    - id: 16
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers: {}
+        url: https://recorded.retool.dev/api/v2/resource_configurations/c93f307b-6e67-455d-bb27-eb80663ae22c
+        method: GET
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 758
+        uncompressed: false
+        body: '{"success":true,"data":{"id":"c93f307b-6e67-455d-bb27-eb80663ae22c","resource":{"id":"d7dfe353-1c51-4fdf-ad60-93aad5fe54ca","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2025-11-12T23:23:46.910Z","updated_at":"2025-11-12T23:23:48.029Z"},"environment":{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},"options":{"base_url":"https://api.production-v2.example.com","authentication_options":{"authentication_type":"none"}},"created_at":"2025-11-12T23:23:46.980Z","updated_at":"2025-11-12T23:23:48.027Z"}}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+        status: 200 OK
+        code: 200
+        duration: 39.988417ms
+    - id: 17
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/resource_configurations/c93f307b-6e67-455d-bb27-eb80663ae22c
+        method: DELETE
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: ""
+        headers: {}
+        status: 204 No Content
+        code: 204
+        duration: 48.245375ms
+    - id: 18
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: recorded.retool.dev
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - OpenAPI-Generator/1.0.0/go
+        url: https://recorded.retool.dev/api/v2/resources/d7dfe353-1c51-4fdf-ad60-93aad5fe54ca
+        method: DELETE
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: ""
+        headers: {}
+        status: 204 No Content
+        code: 204
+        duration: 52.360792ms
