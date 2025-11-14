@@ -3,6 +3,7 @@ package utils
 
 import (
 	"context"
+	"encoding/json"
 	"math"
 	"net/http"
 	"strconv"
@@ -61,4 +62,18 @@ func IsEmptyMap(value types.Map) bool {
 // Returns true if the list value is null, unknown, or empty.
 func IsEmptyList(value types.List) bool {
 	return value.IsNull() || value.IsUnknown() || len(value.Elements()) == 0
+}
+
+// JSONStringToMap converts a JSON string to a map[string]interface{}.
+func JSONStringToMap(jsonStr string, result *map[string]interface{}) error {
+	return json.Unmarshal([]byte(jsonStr), result)
+}
+
+// MapToJSONString converts a map[string]interface{} to a JSON string.
+func MapToJSONString(m map[string]interface{}) (string, error) {
+	bytes, err := json.Marshal(m)
+	if err != nil {
+		return "", err
+	}
+	return string(bytes), nil
 }
