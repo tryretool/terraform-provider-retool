@@ -312,6 +312,7 @@ func (p *retoolProvider) Resources(_ context.Context) []func() resource.Resource
 		sourcecontrol.NewResource,
 		sourcecontrolsettings.NewResource,
 		configurationvariable.NewResource,
+		environments.NewResource,
 		user.NewResource,
 	}
 }
