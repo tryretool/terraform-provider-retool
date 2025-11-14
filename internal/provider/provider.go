@@ -29,6 +29,7 @@ import (
 	"github.com/tryretool/terraform-provider-retool/internal/provider/sourcecontrolsettings"
 	"github.com/tryretool/terraform-provider-retool/internal/provider/space"
 	"github.com/tryretool/terraform-provider-retool/internal/provider/sso"
+	"github.com/tryretool/terraform-provider-retool/internal/provider/user"
 	"github.com/tryretool/terraform-provider-retool/internal/provider/utils"
 	"github.com/tryretool/terraform-provider-retool/internal/sdk/api"
 )
@@ -293,6 +294,7 @@ func (p *retoolProvider) DataSources(_ context.Context) []func() datasource.Data
 		folder.NewDataSource,
 		group.NewDataSource,
 		environments.NewDataSource,
+		user.NewDataSource,
 	}
 }
 
@@ -308,5 +310,6 @@ func (p *retoolProvider) Resources(_ context.Context) []func() resource.Resource
 		sourcecontrol.NewResource,
 		sourcecontrolsettings.NewResource,
 		configurationvariable.NewResource,
+		user.NewResource,
 	}
 }
