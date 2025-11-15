@@ -20,6 +20,9 @@ The access token should have the following scopes:
 - permissions:all:read, permissions:all:write
 - configuration_variables:read, configuration_variables:write
 - environments:read, environments:write 
+- users:read, users:write
+- resources:read, resources:write
+- resource_configurations:read, resource_configurations:write
 
 
 ## Example Usage
