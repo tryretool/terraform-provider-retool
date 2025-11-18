@@ -260,6 +260,80 @@ func (r *permissionResource) grantPermission(ctx context.Context, subject permis
 	return diags
 }
 
+func (r *permissionResource) fetchPermissionsForSubject(ctx context.Context, subject permissionSubjectModel) ([]permissionModel, diag.Diagnostics) {
+	var permissions []permissionModel
+	var allDiags diag.Diagnostics
+
+	subjectID := subject.ID.ValueString() + "|" + subject.Type.ValueString()
+
+	for _, objectType := range []string{"app", "folder", "resource", "resource_configuration"} {
+		request := api.NewPermissionsListObjectsPostRequest(createNewAPIPermissionsSubject(subject), objectType)
+
+		tflog.Info(ctx, "Fetching permissions", map[string]interface{}{"subjectId": subjectID, "objectType": objectType})
+
+		permissionsResponse, httpResponse, err := r.client.PermissionsAPI.PermissionsListObjectsPost(ctx).PermissionsListObjectsPostRequest(*request).Execute()
+		if err != nil {
+			allDiags.AddError(
+				"Error reading permission",
+				fmt.Sprintf("Could not read permissions for id: %s, object type: %s, error: %s", subjectID, objectType, err.Error()),
+			)
+			tflog.Error(ctx, "Error reading group", utils.AddHTTPStatusCode(map[string]any{"permissionId": subjectID, "objectType": objectType, "error": err.Error()}, httpResponse))
+			return nil, allDiags
+		}
+
+		// Now let's populate the state with permissions based on our API response.
+		for _, obj := range permissionsResponse.Data {
+			var objID string
+			var accessLevel string
+
+			// Check which variant is populated (folder, app, resource, or resource_configuration).
+			switch {
+			case obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf != nil:
+				// Folder.
+				objID = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf.Id
+				accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf.AccessLevel
+			case obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf1 != nil:
+				// App.
+				objID = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf1.Id
+				accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf1.AccessLevel
+			case obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf2 != nil:
+				// Resource.
+				objID = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf2.Id
+				accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf2.AccessLevel
+			case obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf3 != nil:
+				// Resource Configuration.
+				objID = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf3.Id
+				accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf3.AccessLevel
+			default:
+				// None of the variants matched - log and skip this permission.
+				tflog.Warn(ctx, "Permission object did not match any known type variant, skipping", map[string]interface{}{"objectType": objectType})
+				continue
+			}
+
+			// Skip if objID or accessLevel are empty.
+			if objID == "" || accessLevel == "" {
+				tflog.Warn(ctx, "Permission object has empty ID or access level, skipping", map[string]interface{}{"objectType": objectType, "objID": objID, "accessLevel": accessLevel})
+				continue
+			}
+
+			objValue := permissionObjectModel{
+				ID:   types.StringValue(objID),
+				Type: types.StringValue(objectType),
+			}
+			object, diags := types.ObjectValueFrom(ctx, objValue.AttributeTypes(), objValue)
+			allDiags.Append(diags...)
+			if allDiags.HasError() {
+				return nil, allDiags
+			}
+			permissions = append(permissions, permissionModel{
+				Object:      object,
+				AccessLevel: types.StringValue(accessLevel),
+			})
+		}
+	}
+	return permissions, allDiags
+}
+
 func (r *permissionResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
 	// Retrieve values from plan.
 	var plan permissionsResourceModel
@@ -305,6 +379,17 @@ func (r *permissionResource) Read(ctx context.Context, req resource.ReadRequest,
 	}
 
 	var stateSubject permissionSubjectModel
+	var managedPermissionKeys = make(map[string]bool)
+
+	for _, permission := range state.Permissions {
+		var obj permissionObjectModel
+		diags := permission.Object.As(ctx, &obj, basetypes.ObjectAsOptions{})
+		if diags.HasError() {
+			return
+		}
+		key := obj.ID.ValueString() + "|" + obj.Type.ValueString()
+		managedPermissionKeys[key] = true
+	}
 
 	diags = state.Subject.As(ctx, &stateSubject, basetypes.ObjectAsOptions{})
 	resp.Diagnostics.Append(diags...)
@@ -312,78 +397,27 @@ func (r *permissionResource) Read(ctx context.Context, req resource.ReadRequest,
 		return
 	}
 
-	var permissions []permissionModel
+	allPermissions, diags := r.fetchPermissionsForSubject(ctx, stateSubject)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
 
-	subjectID := stateSubject.ID.ValueString() + "|" + stateSubject.Type.ValueString()
-
-	// We'll need to get all the permissions for the given subject.
-	for _, objectType := range []string{"app", "folder", "resource", "resource_configuration"} {
-		request := api.NewPermissionsListObjectsPostRequest(createNewAPIPermissionsSubject(stateSubject), objectType)
-
-		tflog.Info(ctx, "Reading permission", map[string]interface{}{"subjectId": subjectID})
-
-		permissionsResponse, httpResponse, err := r.client.PermissionsAPI.PermissionsListObjectsPost(ctx).PermissionsListObjectsPostRequest(*request).Execute()
-		if err != nil {
-			resp.Diagnostics.AddError(
-				"Error reading permission",
-				fmt.Sprintf("Could not read permissions for id: %s, object type: %s, error: %s", subjectID, objectType, err.Error()),
-			)
-			tflog.Error(ctx, "Error reading group", utils.AddHTTPStatusCode(map[string]any{"permissionId": subjectID, "objectType": objectType, "error": err.Error()}, httpResponse))
+	var filteredPermissions []permissionModel
+	for _, perm := range allPermissions {
+		var obj permissionObjectModel
+		diags := perm.Object.As(ctx, &obj, basetypes.ObjectAsOptions{})
+		if diags.HasError() {
+			resp.Diagnostics.Append(diags...)
 			return
 		}
-
-		// Now let's populate the state with permissions based on our API response.
-		for _, obj := range permissionsResponse.Data {
-			var objID string
-			var accessLevel string
-
-			// Check which variant is populated (folder, app, resource, or resource_configuration).
-			switch {
-			case obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf != nil:
-				// Folder.
-				objID = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf.Id
-				accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf.AccessLevel
-			case obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf1 != nil:
-				// App.
-				objID = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf1.Id
-				accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf1.AccessLevel
-			case obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf2 != nil:
-				// Resource.
-				objID = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf2.Id
-				accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf2.AccessLevel
-			case obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf3 != nil:
-				// Resource Configuration.
-				objID = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf3.Id
-				accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf3.AccessLevel
-			default:
-				// None of the variants matched - log and skip this permission.
-				tflog.Warn(ctx, "Permission object did not match any known type variant, skipping", map[string]interface{}{"objectType": objectType})
-				continue
-			}
-
-			// Skip if objID or accessLevel are empty.
-			if objID == "" || accessLevel == "" {
-				tflog.Warn(ctx, "Permission object has empty ID or access level, skipping", map[string]interface{}{"objectType": objectType, "objID": objID, "accessLevel": accessLevel})
-				continue
-			}
-
-			objValue := permissionObjectModel{
-				ID:   types.StringValue(objID),
-				Type: types.StringValue(objectType),
-			}
-			object, diags := types.ObjectValueFrom(ctx, objValue.AttributeTypes(), objValue)
-			resp.Diagnostics.Append(diags...)
-			if resp.Diagnostics.HasError() {
-				return
-			}
-			permissions = append(permissions, permissionModel{
-				Object:      object,
-				AccessLevel: types.StringValue(accessLevel),
-			})
+		key := obj.ID.ValueString() + "|" + obj.Type.ValueString()
+		if managedPermissionKeys[key] {
+			filteredPermissions = append(filteredPermissions, perm)
 		}
 	}
 
-	state.Permissions = permissions
+	state.Permissions = filteredPermissions
 
 	diags = resp.State.Set(ctx, &state)
 	resp.Diagnostics.Append(diags...)
@@ -548,4 +582,11 @@ func (r *permissionResource) ImportState(ctx context.Context, req resource.Impor
 		Type: types.StringValue(subjType),
 	}
 	resp.State.SetAttribute(ctx, path.Root("subject"), subject)
+
+	allPermissions, diags := r.fetchPermissionsForSubject(ctx, subject)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+	resp.State.SetAttribute(ctx, path.Root("permissions"), allPermissions)
 }
