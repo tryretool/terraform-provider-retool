@@ -127,8 +127,6 @@ func TestAccPermissions(t *testing.T) {
 		},
 	})
 }
-<<<<<<< Updated upstream
-=======
 
 // TestAccPermissions_ImportAndRead verifies that importing permissions and subsequent
 // reads correctly maintain the imported permissions in state.
@@ -195,4 +193,3 @@ resource "retool_permissions" "test_permissions_import" {
 		},
 	})
 }
->>>>>>> Stashed changes
