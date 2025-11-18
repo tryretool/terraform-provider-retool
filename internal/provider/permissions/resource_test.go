@@ -127,3 +127,72 @@ func TestAccPermissions(t *testing.T) {
 		},
 	})
 }
+<<<<<<< Updated upstream
+=======
+
+// TestAccPermissions_ImportAndRead verifies that importing permissions and subsequent
+// reads correctly maintain the imported permissions in state.
+func TestAccPermissions_ImportAndRead(t *testing.T) {
+	config := `
+resource "retool_group" "test_group_import" {
+	name = "tf-acc-test-group-import"
+}
+
+resource "retool_folder" "test_folder_import" {
+	name = "tf-acc-test-folder-import"
+	folder_type = "app"
+}
+
+resource "retool_permissions" "test_permissions_import" {
+	subject = {
+		type = "group"
+		id = retool_group.test_group_import.id
+	}
+	permissions = [
+		{
+			object = {
+				type = "folder"
+				id = retool_folder.test_folder_import.id
+			}
+			access_level = "own"
+		},
+	]
+}
+`
+
+	acctest.Test(t, resource.TestCase{
+		Steps: []resource.TestStep{
+			// Create the permissions.
+			{
+				Config: config,
+				Check: resource.ComposeAggregateTestCheckFunc(
+					resource.TestCheckResourceAttr("retool_permissions.test_permissions_import", "permissions.#", "1"),
+					resource.TestCheckResourceAttr("retool_permissions.test_permissions_import", "permissions.0.access_level", "own"),
+				),
+			},
+			// Import the permissions.
+			{
+				ResourceName: "retool_permissions.test_permissions_import",
+				ImportState:  true,
+				ImportStateIdFunc: func(state *terraform.State) (string, error) {
+					permissions, ok := state.RootModule().Resources["retool_permissions.test_permissions_import"]
+					if !ok {
+						return "", fmt.Errorf("Resource not found")
+					}
+					return "group|" + permissions.Primary.Attributes["subject.id"], nil
+				},
+				ImportStateVerify:                    true,
+				ImportStateVerifyIdentifierAttribute: "subject.id",
+			},
+			// Re-apply config to trigger Read() and verify state is maintained.
+			{
+				Config: config,
+				Check: resource.ComposeAggregateTestCheckFunc(
+					resource.TestCheckResourceAttr("retool_permissions.test_permissions_import", "permissions.#", "1"),
+					resource.TestCheckResourceAttr("retool_permissions.test_permissions_import", "permissions.0.access_level", "own"),
+				),
+			},
+		},
+	})
+}
+>>>>>>> Stashed changes
