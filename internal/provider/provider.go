@@ -251,20 +251,18 @@ func (p *retoolProvider) Configure(ctx context.Context, req provider.ConfigureRe
 	// We need this to be able to record and replay HTTP interactions in the acceptance tests.
 	if p.httpClient != nil {
 		httpClient = p.httpClient
-	} else {
+	} else if unixSocketPath != "" {
 		// Create HTTP client with unix socket support if specified.
-		if unixSocketPath != "" {
-			tflog.Info(ctx, "Configuring HTTP client with Unix socket", map[string]any{"socket_path": unixSocketPath})
-			httpClient = &http.Client{
-				Transport: &http.Transport{
-					DialContext: func(_ context.Context, _, _ string) (net.Conn, error) {
-						return net.Dial("unix", unixSocketPath)
-					},
+		tflog.Info(ctx, "Configuring HTTP client with Unix socket", map[string]any{"socket_path": unixSocketPath})
+		httpClient = &http.Client{
+			Transport: &http.Transport{
+				DialContext: func(_ context.Context, _, _ string) (net.Conn, error) {
+					return net.Dial("unix", unixSocketPath)
 				},
-			}
-		} else {
-			httpClient = http.DefaultClient
+			},
 		}
+	} else {
+		httpClient = http.DefaultClient
 	}
 
 	// We only check the minimum version if there's no HTTP client override
