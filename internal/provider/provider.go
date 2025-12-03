@@ -249,9 +249,10 @@ func (p *retoolProvider) Configure(ctx context.Context, req provider.ConfigureRe
 	// Create HTTP client first, before version check.
 	var httpClient *http.Client
 	// We need this to be able to record and replay HTTP interactions in the acceptance tests.
-	if p.httpClient != nil {
+	switch {
+	case p.httpClient != nil:
 		httpClient = p.httpClient
-	} else if unixSocketPath != "" {
+	case unixSocketPath != "":
 		// Create HTTP client with unix socket support if specified.
 		tflog.Info(ctx, "Configuring HTTP client with Unix socket", map[string]any{"socket_path": unixSocketPath})
 		httpClient = &http.Client{
@@ -261,7 +262,7 @@ func (p *retoolProvider) Configure(ctx context.Context, req provider.ConfigureRe
 				},
 			},
 		}
-	} else {
+	default:
 		httpClient = http.DefaultClient
 	}
 
