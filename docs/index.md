@@ -77,6 +77,7 @@ better alternative.
 - `host` (String) The host of the Retool instance, organization or Space, e.g. 'example.retool.com'
 - `requests_per_minute` (Number) The number of requests per minute to allow to the Retool API. Set to 45 by default. Set to -1 to disable rate limiting.
 - `scheme` (String) The scheme of the Retool instance, e.g. 'https'
+- `unix_socket_path` (String) Path to a Unix socket to use for HTTP connections instead of TCP. If specified, the provider will connect to the Retool API via the Unix socket.
 
 ## Environment Variables
 

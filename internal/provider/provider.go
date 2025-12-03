@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"net"
 	"net/http"
 	"os"
 	"time"
@@ -75,6 +76,7 @@ type retoolProviderModel struct {
 	Scheme            types.String `tfsdk:"scheme"`
 	AccessToken       types.String `tfsdk:"access_token"`
 	RequestsPerMinute types.Int32  `tfsdk:"requests_per_minute"`
+	UnixSocketPath    types.String `tfsdk:"unix_socket_path"`
 }
 
 // Metadata returns the provider type name.
@@ -104,6 +106,10 @@ func (p *retoolProvider) Schema(_ context.Context, _ provider.SchemaRequest, res
 				Description: "The number of requests per minute to allow to the Retool API. Set to 45 by default. Set to -1 to disable rate limiting.",
 				Optional:    true,
 			},
+			"unix_socket_path": schema.StringAttribute{
+				Description: "Path to a Unix socket to use for HTTP connections instead of TCP. If specified, the provider will connect to the Retool API via the Unix socket.",
+				Optional:    true,
+			},
 		},
 	}
 }
@@ -112,9 +118,9 @@ type healthCheckResponse struct {
 	Version string `json:"version"`
 }
 
-func checkMinimalVersion(ctx context.Context, host string, scheme string) (bool, error) {
+func checkMinimalVersion(ctx context.Context, host string, scheme string, httpClient *http.Client) (bool, error) {
 	// Create HTTP client, make GET /api/checkHealth request, parse the version field out of the JSON response.
-	httpResponse, err := http.Get(scheme + "://" + host + "/api/checkHealth")
+	httpResponse, err := httpClient.Get(scheme + "://" + host + "/api/checkHealth")
 	if err != nil {
 		tflog.Error(ctx, "Request to /api/checkHealth failed", map[string]any{"error": err})
 		return false, fmt.Errorf("request to /api/checkHealth failed: %w", err)
@@ -189,6 +195,7 @@ func (p *retoolProvider) Configure(ctx context.Context, req provider.ConfigureRe
 		scheme = "https"
 	}
 	accessToken := os.Getenv("RETOOL_ACCESS_TOKEN")
+	unixSocketPath := os.Getenv("RETOOL_UNIX_SOCKET_PATH")
 
 	if !config.Host.IsNull() {
 		host = config.Host.ValueString()
@@ -200,6 +207,10 @@ func (p *retoolProvider) Configure(ctx context.Context, req provider.ConfigureRe
 
 	if !config.AccessToken.IsNull() {
 		accessToken = config.AccessToken.ValueString()
+	}
+
+	if !config.UnixSocketPath.IsNull() {
+		unixSocketPath = config.UnixSocketPath.ValueString()
 	}
 
 	requestsPerMinute := 45
@@ -235,10 +246,30 @@ func (p *retoolProvider) Configure(ctx context.Context, req provider.ConfigureRe
 		return
 	}
 
+	// Create HTTP client first, before version check.
+	var httpClient *http.Client
+	// We need this to be able to record and replay HTTP interactions in the acceptance tests.
+	switch {
+	case p.httpClient != nil:
+		httpClient = p.httpClient
+	case unixSocketPath != "":
+		// Create HTTP client with unix socket support if specified.
+		tflog.Info(ctx, "Configuring HTTP client with Unix socket", map[string]any{"socket_path": unixSocketPath})
+		httpClient = &http.Client{
+			Transport: &http.Transport{
+				DialContext: func(_ context.Context, _, _ string) (net.Conn, error) {
+					return net.Dial("unix", unixSocketPath)
+				},
+			},
+		}
+	default:
+		httpClient = http.DefaultClient
+	}
+
 	// We only check the minimum version if there's no HTTP client override
 	// This is a hacky way to avoid doing the check when running acceptance tests in "record" or "replay" mode.
 	if p.httpClient == nil {
-		versionIsCompatible, err := checkMinimalVersion(ctx, host, scheme)
+		versionIsCompatible, err := checkMinimalVersion(ctx, host, scheme, httpClient)
 		if err != nil {
 			resp.Diagnostics.AddError("Failed to check Retool version", err.Error())
 			return
@@ -257,12 +288,7 @@ func (p *retoolProvider) Configure(ctx context.Context, req provider.ConfigureRe
 			URL: "/api/v2",
 		},
 	}
-	// We need this to be able to record and replay HTTP interactions in the acceptance tests.
-	if p.httpClient != nil {
-		clientConfig.HTTPClient = p.httpClient
-	} else {
-		clientConfig.HTTPClient = http.DefaultClient
-	}
+	clientConfig.HTTPClient = httpClient
 
 	if requestsPerMinute > 0 {
 		currentTransport := clientConfig.HTTPClient.Transport
