@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to **string** |  | [optional] 
 **Username** | **string** | Your Bitbucket username. | 
 **AppPassword** | **string** | Your Bitbucket app password. | 
 **Url** | Pointer to **string** | The domain used to access your self-hosted Bitbucket instance. Defaults to https://bitbucket.org/. | [optional] 
 **EnterpriseApiUrl** | Pointer to **string** | The REST API route for your self-hosted Bitbucket instance. Defaults to https://api.bitbucket.org/2.0.  | [optional] 
+**Type** | **string** |  | 
 **Token** | **string** | Your Bitbucket API token. | 
 
 ## Methods
 
 ### NewBitbucketConfig
 
-`func NewBitbucketConfig(username string, appPassword string, token string, ) *BitbucketConfig`
+`func NewBitbucketConfig(username string, appPassword string, type_ string, token string, ) *BitbucketConfig`
 
 NewBitbucketConfig instantiates a new BitbucketConfig object
 This constructor will assign default values to properties that have it defined,
@@ -29,31 +29,6 @@ will change when the set of required properties is changed
 NewBitbucketConfigWithDefaults instantiates a new BitbucketConfig object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetType
-
-`func (o *BitbucketConfig) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *BitbucketConfig) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *BitbucketConfig) SetType(v string)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *BitbucketConfig) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetUsername
 
@@ -144,6 +119,26 @@ SetEnterpriseApiUrl sets EnterpriseApiUrl field to given value.
 `func (o *BitbucketConfig) HasEnterpriseApiUrl() bool`
 
 HasEnterpriseApiUrl returns a boolean if a field has been set.
+
+### GetType
+
+`func (o *BitbucketConfig) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *BitbucketConfig) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *BitbucketConfig) SetType(v string)`
+
+SetType sets Type field to given value.
+
 
 ### GetToken
 

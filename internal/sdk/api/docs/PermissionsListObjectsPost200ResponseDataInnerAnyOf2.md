@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** |  | 
-**Id** | **string** | The uuid or name for the resource. | 
-**AccessLevel** | **string** | The access level of the resource | 
+**Id** | **string** | The screen UUID. | 
+**AccessLevel** | **string** | The access level of the screen | 
 
 ## Methods
 

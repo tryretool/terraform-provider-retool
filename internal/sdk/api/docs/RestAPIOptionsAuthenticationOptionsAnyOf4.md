@@ -5,18 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AuthenticationType** | **string** |  | 
-**Oauth1SignatureMethod** | [**RestAPIOptionsAuthenticationOptionsAnyOf4Oauth1SignatureMethod**](RestAPIOptionsAuthenticationOptionsAnyOf4Oauth1SignatureMethod.md) |  | 
-**Oauth1ConsumerKey** | **string** |  | 
-**Oauth1ConsumerSecret** | **string** |  | 
-**Oauth1TokenKey** | **string** |  | 
-**Oauth1TokenSecret** | **string** |  | 
-**Oauth1RealmParameter** | **string** |  | 
+**DigestUsername** | **string** |  | 
+**DigestPassword** | **string** |  | 
 
 ## Methods
 
 ### NewRestAPIOptionsAuthenticationOptionsAnyOf4
 
-`func NewRestAPIOptionsAuthenticationOptionsAnyOf4(authenticationType string, oauth1SignatureMethod RestAPIOptionsAuthenticationOptionsAnyOf4Oauth1SignatureMethod, oauth1ConsumerKey string, oauth1ConsumerSecret string, oauth1TokenKey string, oauth1TokenSecret string, oauth1RealmParameter string, ) *RestAPIOptionsAuthenticationOptionsAnyOf4`
+`func NewRestAPIOptionsAuthenticationOptionsAnyOf4(authenticationType string, digestUsername string, digestPassword string, ) *RestAPIOptionsAuthenticationOptionsAnyOf4`
 
 NewRestAPIOptionsAuthenticationOptionsAnyOf4 instantiates a new RestAPIOptionsAuthenticationOptionsAnyOf4 object
 This constructor will assign default values to properties that have it defined,
@@ -51,124 +47,44 @@ and a boolean to check if the value has been set.
 SetAuthenticationType sets AuthenticationType field to given value.
 
 
-### GetOauth1SignatureMethod
+### GetDigestUsername
 
-`func (o *RestAPIOptionsAuthenticationOptionsAnyOf4) GetOauth1SignatureMethod() RestAPIOptionsAuthenticationOptionsAnyOf4Oauth1SignatureMethod`
+`func (o *RestAPIOptionsAuthenticationOptionsAnyOf4) GetDigestUsername() string`
 
-GetOauth1SignatureMethod returns the Oauth1SignatureMethod field if non-nil, zero value otherwise.
+GetDigestUsername returns the DigestUsername field if non-nil, zero value otherwise.
 
-### GetOauth1SignatureMethodOk
+### GetDigestUsernameOk
 
-`func (o *RestAPIOptionsAuthenticationOptionsAnyOf4) GetOauth1SignatureMethodOk() (*RestAPIOptionsAuthenticationOptionsAnyOf4Oauth1SignatureMethod, bool)`
+`func (o *RestAPIOptionsAuthenticationOptionsAnyOf4) GetDigestUsernameOk() (*string, bool)`
 
-GetOauth1SignatureMethodOk returns a tuple with the Oauth1SignatureMethod field if it's non-nil, zero value otherwise
+GetDigestUsernameOk returns a tuple with the DigestUsername field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOauth1SignatureMethod
+### SetDigestUsername
 
-`func (o *RestAPIOptionsAuthenticationOptionsAnyOf4) SetOauth1SignatureMethod(v RestAPIOptionsAuthenticationOptionsAnyOf4Oauth1SignatureMethod)`
+`func (o *RestAPIOptionsAuthenticationOptionsAnyOf4) SetDigestUsername(v string)`
 
-SetOauth1SignatureMethod sets Oauth1SignatureMethod field to given value.
+SetDigestUsername sets DigestUsername field to given value.
 
 
-### GetOauth1ConsumerKey
+### GetDigestPassword
 
-`func (o *RestAPIOptionsAuthenticationOptionsAnyOf4) GetOauth1ConsumerKey() string`
+`func (o *RestAPIOptionsAuthenticationOptionsAnyOf4) GetDigestPassword() string`
 
-GetOauth1ConsumerKey returns the Oauth1ConsumerKey field if non-nil, zero value otherwise.
+GetDigestPassword returns the DigestPassword field if non-nil, zero value otherwise.
 
-### GetOauth1ConsumerKeyOk
+### GetDigestPasswordOk
 
-`func (o *RestAPIOptionsAuthenticationOptionsAnyOf4) GetOauth1ConsumerKeyOk() (*string, bool)`
+`func (o *RestAPIOptionsAuthenticationOptionsAnyOf4) GetDigestPasswordOk() (*string, bool)`
 
-GetOauth1ConsumerKeyOk returns a tuple with the Oauth1ConsumerKey field if it's non-nil, zero value otherwise
+GetDigestPasswordOk returns a tuple with the DigestPassword field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOauth1ConsumerKey
+### SetDigestPassword
 
-`func (o *RestAPIOptionsAuthenticationOptionsAnyOf4) SetOauth1ConsumerKey(v string)`
+`func (o *RestAPIOptionsAuthenticationOptionsAnyOf4) SetDigestPassword(v string)`
 
-SetOauth1ConsumerKey sets Oauth1ConsumerKey field to given value.
-
-
-### GetOauth1ConsumerSecret
-
-`func (o *RestAPIOptionsAuthenticationOptionsAnyOf4) GetOauth1ConsumerSecret() string`
-
-GetOauth1ConsumerSecret returns the Oauth1ConsumerSecret field if non-nil, zero value otherwise.
-
-### GetOauth1ConsumerSecretOk
-
-`func (o *RestAPIOptionsAuthenticationOptionsAnyOf4) GetOauth1ConsumerSecretOk() (*string, bool)`
-
-GetOauth1ConsumerSecretOk returns a tuple with the Oauth1ConsumerSecret field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOauth1ConsumerSecret
-
-`func (o *RestAPIOptionsAuthenticationOptionsAnyOf4) SetOauth1ConsumerSecret(v string)`
-
-SetOauth1ConsumerSecret sets Oauth1ConsumerSecret field to given value.
-
-
-### GetOauth1TokenKey
-
-`func (o *RestAPIOptionsAuthenticationOptionsAnyOf4) GetOauth1TokenKey() string`
-
-GetOauth1TokenKey returns the Oauth1TokenKey field if non-nil, zero value otherwise.
-
-### GetOauth1TokenKeyOk
-
-`func (o *RestAPIOptionsAuthenticationOptionsAnyOf4) GetOauth1TokenKeyOk() (*string, bool)`
-
-GetOauth1TokenKeyOk returns a tuple with the Oauth1TokenKey field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOauth1TokenKey
-
-`func (o *RestAPIOptionsAuthenticationOptionsAnyOf4) SetOauth1TokenKey(v string)`
-
-SetOauth1TokenKey sets Oauth1TokenKey field to given value.
-
-
-### GetOauth1TokenSecret
-
-`func (o *RestAPIOptionsAuthenticationOptionsAnyOf4) GetOauth1TokenSecret() string`
-
-GetOauth1TokenSecret returns the Oauth1TokenSecret field if non-nil, zero value otherwise.
-
-### GetOauth1TokenSecretOk
-
-`func (o *RestAPIOptionsAuthenticationOptionsAnyOf4) GetOauth1TokenSecretOk() (*string, bool)`
-
-GetOauth1TokenSecretOk returns a tuple with the Oauth1TokenSecret field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOauth1TokenSecret
-
-`func (o *RestAPIOptionsAuthenticationOptionsAnyOf4) SetOauth1TokenSecret(v string)`
-
-SetOauth1TokenSecret sets Oauth1TokenSecret field to given value.
-
-
-### GetOauth1RealmParameter
-
-`func (o *RestAPIOptionsAuthenticationOptionsAnyOf4) GetOauth1RealmParameter() string`
-
-GetOauth1RealmParameter returns the Oauth1RealmParameter field if non-nil, zero value otherwise.
-
-### GetOauth1RealmParameterOk
-
-`func (o *RestAPIOptionsAuthenticationOptionsAnyOf4) GetOauth1RealmParameterOk() (*string, bool)`
-
-GetOauth1RealmParameterOk returns a tuple with the Oauth1RealmParameter field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOauth1RealmParameter
-
-`func (o *RestAPIOptionsAuthenticationOptionsAnyOf4) SetOauth1RealmParameter(v string)`
-
-SetOauth1RealmParameter sets Oauth1RealmParameter field to given value.
+SetDigestPassword sets DigestPassword field to given value.
 
 
 

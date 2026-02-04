@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | The uuid for the resource configuration. | 
-**Resource** | [**ResourcesGet200ResponseDataInner**](ResourcesGet200ResponseDataInner.md) |  | 
+**Resource** | [**ResourceConfigurationsGet200ResponseDataInnerResource**](ResourceConfigurationsGet200ResponseDataInnerResource.md) |  | 
 **Environment** | [**ResourceConfigurationsGet200ResponseDataInnerEnvironment**](ResourceConfigurationsGet200ResponseDataInnerEnvironment.md) |  | 
 **Options** | [**ResourcesPostRequestOptions**](ResourcesPostRequestOptions.md) |  | 
 **CreatedAt** | **string** |  | 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewResourceConfigurationsGet200ResponseDataInner
 
-`func NewResourceConfigurationsGet200ResponseDataInner(id string, resource ResourcesGet200ResponseDataInner, environment ResourceConfigurationsGet200ResponseDataInnerEnvironment, options ResourcesPostRequestOptions, createdAt string, updatedAt string, ) *ResourceConfigurationsGet200ResponseDataInner`
+`func NewResourceConfigurationsGet200ResponseDataInner(id string, resource ResourceConfigurationsGet200ResponseDataInnerResource, environment ResourceConfigurationsGet200ResponseDataInnerEnvironment, options ResourcesPostRequestOptions, createdAt string, updatedAt string, ) *ResourceConfigurationsGet200ResponseDataInner`
 
 NewResourceConfigurationsGet200ResponseDataInner instantiates a new ResourceConfigurationsGet200ResponseDataInner object
 This constructor will assign default values to properties that have it defined,
@@ -52,20 +52,20 @@ SetId sets Id field to given value.
 
 ### GetResource
 
-`func (o *ResourceConfigurationsGet200ResponseDataInner) GetResource() ResourcesGet200ResponseDataInner`
+`func (o *ResourceConfigurationsGet200ResponseDataInner) GetResource() ResourceConfigurationsGet200ResponseDataInnerResource`
 
 GetResource returns the Resource field if non-nil, zero value otherwise.
 
 ### GetResourceOk
 
-`func (o *ResourceConfigurationsGet200ResponseDataInner) GetResourceOk() (*ResourcesGet200ResponseDataInner, bool)`
+`func (o *ResourceConfigurationsGet200ResponseDataInner) GetResourceOk() (*ResourceConfigurationsGet200ResponseDataInnerResource, bool)`
 
 GetResourceOk returns a tuple with the Resource field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetResource
 
-`func (o *ResourceConfigurationsGet200ResponseDataInner) SetResource(v ResourcesGet200ResponseDataInner)`
+`func (o *ResourceConfigurationsGet200ResponseDataInner) SetResource(v ResourceConfigurationsGet200ResponseDataInnerResource)`
 
 SetResource sets Resource field to given value.
 

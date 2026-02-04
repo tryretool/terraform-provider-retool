@@ -14,7 +14,7 @@ import (
 
 const testUserConfig = `
 	resource "retool_user" "test_user" {
-		email = "tf-acc-user-v3@example.retool.com"
+		email = "tf-acc-user-v4@example.retool.com"
 		first_name = "Test"
 		last_name = "User"
 		active = true
@@ -24,7 +24,7 @@ const testUserConfig = `
 
 const testUpdatedUserConfig = `
 	resource "retool_user" "test_user" {
-		email = "tf-acc-user-v3@example.retool.com"
+		email = "tf-acc-user-v4@example.retool.com"
 		first_name = "Updated"
 		last_name = "TestUser"
 		active = true
@@ -34,7 +34,7 @@ const testUpdatedUserConfig = `
 
 const testDefaultValuesConfig = `
 	resource "retool_user" "test_user_with_defaults" {
-		email = "tf-acc-defaults-v3@example.retool.com"
+		email = "tf-acc-defaults-v4@example.retool.com"
 		first_name = "Default"
 		last_name = "User"
 	}
@@ -51,7 +51,7 @@ func TestAccUser(t *testing.T) {
 			{
 				Config: testUserConfig,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("retool_user.test_user", "email", "tf-acc-user-v3@example.retool.com"),
+					resource.TestCheckResourceAttr("retool_user.test_user", "email", "tf-acc-user-v4@example.retool.com"),
 					resource.TestCheckResourceAttr("retool_user.test_user", "first_name", "Test"),
 					resource.TestCheckResourceAttr("retool_user.test_user", "last_name", "User"),
 					resource.TestCheckResourceAttr("retool_user.test_user", "active", "true"),
@@ -73,7 +73,7 @@ func TestAccUser(t *testing.T) {
 			{
 				Config: testUpdatedUserConfig,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("retool_user.test_user", "email", "tf-acc-user-v3@example.retool.com"),
+					resource.TestCheckResourceAttr("retool_user.test_user", "email", "tf-acc-user-v4@example.retool.com"),
 					resource.TestCheckResourceAttr("retool_user.test_user", "first_name", "Updated"),
 					resource.TestCheckResourceAttr("retool_user.test_user", "last_name", "TestUser"),
 					resource.TestCheckResourceAttr("retool_user.test_user", "active", "true"),
@@ -98,7 +98,7 @@ func TestAccUserWithDefaults(t *testing.T) {
 			{
 				Config: testDefaultValuesConfig,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("retool_user.test_user_with_defaults", "email", "tf-acc-defaults-v3@example.retool.com"),
+					resource.TestCheckResourceAttr("retool_user.test_user_with_defaults", "email", "tf-acc-defaults-v4@example.retool.com"),
 					resource.TestCheckResourceAttr("retool_user.test_user_with_defaults", "first_name", "Default"),
 					resource.TestCheckResourceAttr("retool_user.test_user_with_defaults", "last_name", "User"),
 					resource.TestCheckResourceAttr("retool_user.test_user_with_defaults", "active", "true"),

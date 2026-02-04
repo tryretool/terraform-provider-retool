@@ -16,12 +16,13 @@ Name | Type | Description | Notes
 **IsAdmin** | **bool** | Whether the user is an admin or not | 
 **UserType** | **string** | The user type | 
 **TwoFactorAuthEnabled** | **bool** | Whether two factor authentication is enabled for this user | 
+**Groups** | [**[]UsersUserIdGet200ResponseDataAnyOf1GroupsInner**](UsersUserIdGet200ResponseDataAnyOf1GroupsInner.md) | The groups that the user is part of | 
 
 ## Methods
 
 ### NewUsersUserIdGet200ResponseData
 
-`func NewUsersUserIdGet200ResponseData(id string, legacyId float32, email string, active bool, createdAt time.Time, lastActive NullableTime, firstName NullableString, lastName NullableString, metadata map[string]interface{}, isAdmin bool, userType string, twoFactorAuthEnabled bool, ) *UsersUserIdGet200ResponseData`
+`func NewUsersUserIdGet200ResponseData(id string, legacyId float32, email string, active bool, createdAt time.Time, lastActive NullableTime, firstName NullableString, lastName NullableString, metadata map[string]interface{}, isAdmin bool, userType string, twoFactorAuthEnabled bool, groups []UsersUserIdGet200ResponseDataAnyOf1GroupsInner, ) *UsersUserIdGet200ResponseData`
 
 NewUsersUserIdGet200ResponseData instantiates a new UsersUserIdGet200ResponseData object
 This constructor will assign default values to properties that have it defined,
@@ -304,6 +305,26 @@ and a boolean to check if the value has been set.
 `func (o *UsersUserIdGet200ResponseData) SetTwoFactorAuthEnabled(v bool)`
 
 SetTwoFactorAuthEnabled sets TwoFactorAuthEnabled field to given value.
+
+
+### GetGroups
+
+`func (o *UsersUserIdGet200ResponseData) GetGroups() []UsersUserIdGet200ResponseDataAnyOf1GroupsInner`
+
+GetGroups returns the Groups field if non-nil, zero value otherwise.
+
+### GetGroupsOk
+
+`func (o *UsersUserIdGet200ResponseData) GetGroupsOk() (*[]UsersUserIdGet200ResponseDataAnyOf1GroupsInner, bool)`
+
+GetGroupsOk returns a tuple with the Groups field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGroups
+
+`func (o *UsersUserIdGet200ResponseData) SetGroups(v []UsersUserIdGet200ResponseDataAnyOf1GroupsInner)`
+
+SetGroups sets Groups field to given value.
 
 
 

@@ -17,7 +17,7 @@ import (
 
 const testRetoolResourceConfig = `
 	resource "retool_resource" "test_resource" {
-		display_name = "Test REST API"
+		display_name = "Test REST API v3"
 		type         = "restapi"
 		options      = jsonencode({
 			base_url = "https://api.example.com"
@@ -27,7 +27,7 @@ const testRetoolResourceConfig = `
 
 const testRetoolResourceUpdatedConfig = `
 	resource "retool_resource" "test_resource" {
-		display_name = "Updated REST API"
+		display_name = "Updated REST API v3"
 		type         = "restapi"
 		options      = jsonencode({
 			base_url = "https://api.example.com"
@@ -42,7 +42,7 @@ func TestAccRetoolResource(t *testing.T) {
 			{
 				Config: testRetoolResourceConfig,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("retool_resource.test_resource", "display_name", "Test REST API"),
+					resource.TestCheckResourceAttr("retool_resource.test_resource", "display_name", "Test REST API v3"),
 					resource.TestCheckResourceAttr("retool_resource.test_resource", "type", "restapi"),
 					resource.TestCheckResourceAttrSet("retool_resource.test_resource", "id"),
 					resource.TestCheckResourceAttrSet("retool_resource.test_resource", "created_at"),
@@ -61,7 +61,7 @@ func TestAccRetoolResource(t *testing.T) {
 			{
 				Config: testRetoolResourceUpdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("retool_resource.test_resource", "display_name", "Updated REST API"),
+					resource.TestCheckResourceAttr("retool_resource.test_resource", "display_name", "Updated REST API v3"),
 					resource.TestCheckResourceAttr("retool_resource.test_resource", "type", "restapi"),
 					resource.TestCheckResourceAttrSet("retool_resource.test_resource", "id"),
 				),

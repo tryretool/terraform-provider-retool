@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**PermissionsGrantPost**](PermissionsAPI.md#PermissionsGrantPost) | **Post** /permissions/grant | Grant permissions
 [**PermissionsListObjectsPost**](PermissionsAPI.md#PermissionsListObjectsPost) | **Post** /permissions/listObjects | List objects a group can access
 [**PermissionsRevokePost**](PermissionsAPI.md#PermissionsRevokePost) | **Post** /permissions/revoke | Revoke permissions
+[**RolePermissionsRemoveRoleGrantsForSubjectPost**](PermissionsAPI.md#RolePermissionsRemoveRoleGrantsForSubjectPost) | **Post** /role_permissions/remove_role_grants_for_subject/ | Delete a role grant for a subject
 [**RolePermissionsRoleGrantsGet**](PermissionsAPI.md#RolePermissionsRoleGrantsGet) | **Get** /role_permissions/role_grants | Get role grants
 [**RolePermissionsRoleGrantsPost**](PermissionsAPI.md#RolePermissionsRoleGrantsPost) | **Post** /role_permissions/role_grants | Create a role grant
 [**RolePermissionsRoleGrantsRoleGrantIdDelete**](PermissionsAPI.md#RolePermissionsRoleGrantsRoleGrantIdDelete) | **Delete** /role_permissions/role_grants/{roleGrantId} | Delete a role grant
@@ -94,7 +95,7 @@ Name | Type | Description  | Notes
 
 ## PermissionsGrantPost
 
-> PermissionsListObjectsPost200Response PermissionsGrantPost(ctx).PermissionsGrantPostRequest(permissionsGrantPostRequest).Execute()
+> PermissionsGrantPost200Response PermissionsGrantPost(ctx).PermissionsGrantPostRequest(permissionsGrantPostRequest).Execute()
 
 Grant permissions
 
@@ -122,7 +123,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PermissionsAPI.PermissionsGrantPost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PermissionsGrantPost`: PermissionsListObjectsPost200Response
+	// response from `PermissionsGrantPost`: PermissionsGrantPost200Response
 	fmt.Fprintf(os.Stdout, "Response from `PermissionsAPI.PermissionsGrantPost`: %v\n", resp)
 }
 ```
@@ -142,7 +143,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PermissionsListObjectsPost200Response**](PermissionsListObjectsPost200Response.md)
+[**PermissionsGrantPost200Response**](PermissionsGrantPost200Response.md)
 
 ### Authorization
 
@@ -226,7 +227,7 @@ Name | Type | Description  | Notes
 
 ## PermissionsRevokePost
 
-> PermissionsListObjectsPost200Response PermissionsRevokePost(ctx).PermissionsRevokePostRequest(permissionsRevokePostRequest).Execute()
+> PermissionsGrantPost200Response PermissionsRevokePost(ctx).PermissionsRevokePostRequest(permissionsRevokePostRequest).Execute()
 
 Revoke permissions
 
@@ -254,7 +255,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PermissionsAPI.PermissionsRevokePost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PermissionsRevokePost`: PermissionsListObjectsPost200Response
+	// response from `PermissionsRevokePost`: PermissionsGrantPost200Response
 	fmt.Fprintf(os.Stdout, "Response from `PermissionsAPI.PermissionsRevokePost`: %v\n", resp)
 }
 ```
@@ -274,7 +275,71 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PermissionsListObjectsPost200Response**](PermissionsListObjectsPost200Response.md)
+[**PermissionsGrantPost200Response**](PermissionsGrantPost200Response.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RolePermissionsRemoveRoleGrantsForSubjectPost
+
+> RolePermissionsRemoveRoleGrantsForSubjectPost(ctx).RolePermissionsRoleGrantsPostRequest(rolePermissionsRoleGrantsPostRequest).Execute()
+
+Delete a role grant for a subject
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	rolePermissionsRoleGrantsPostRequest := *openapiclient.NewRolePermissionsRoleGrantsPostRequest("RoleId_example", "SubjectType_example", "SubjectId_example") // RolePermissionsRoleGrantsPostRequest |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.PermissionsAPI.RolePermissionsRemoveRoleGrantsForSubjectPost(context.Background()).RolePermissionsRoleGrantsPostRequest(rolePermissionsRoleGrantsPostRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PermissionsAPI.RolePermissionsRemoveRoleGrantsForSubjectPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRolePermissionsRemoveRoleGrantsForSubjectPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **rolePermissionsRoleGrantsPostRequest** | [**RolePermissionsRoleGrantsPostRequest**](RolePermissionsRoleGrantsPostRequest.md) |  | 
+
+### Return type
+
+ (empty response body)
 
 ### Authorization
 

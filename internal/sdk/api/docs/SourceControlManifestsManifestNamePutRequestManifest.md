@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Apps** | Pointer to [**[]SourceControlManifestsGet200ResponseDataManifestsInnerAppsInner**](SourceControlManifestsGet200ResponseDataManifestsInnerAppsInner.md) |  | [optional] 
+**Workflows** | Pointer to [**[]SourceControlManifestsGet200ResponseDataManifestsInnerAppsInner**](SourceControlManifestsGet200ResponseDataManifestsInnerAppsInner.md) |  | [optional] 
 
 ## Methods
 
@@ -49,6 +50,31 @@ SetApps sets Apps field to given value.
 `func (o *SourceControlManifestsManifestNamePutRequestManifest) HasApps() bool`
 
 HasApps returns a boolean if a field has been set.
+
+### GetWorkflows
+
+`func (o *SourceControlManifestsManifestNamePutRequestManifest) GetWorkflows() []SourceControlManifestsGet200ResponseDataManifestsInnerAppsInner`
+
+GetWorkflows returns the Workflows field if non-nil, zero value otherwise.
+
+### GetWorkflowsOk
+
+`func (o *SourceControlManifestsManifestNamePutRequestManifest) GetWorkflowsOk() (*[]SourceControlManifestsGet200ResponseDataManifestsInnerAppsInner, bool)`
+
+GetWorkflowsOk returns a tuple with the Workflows field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkflows
+
+`func (o *SourceControlManifestsManifestNamePutRequestManifest) SetWorkflows(v []SourceControlManifestsGet200ResponseDataManifestsInnerAppsInner)`
+
+SetWorkflows sets Workflows field to given value.
+
+### HasWorkflows
+
+`func (o *SourceControlManifestsManifestNamePutRequestManifest) HasWorkflows() bool`
+
+HasWorkflows returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

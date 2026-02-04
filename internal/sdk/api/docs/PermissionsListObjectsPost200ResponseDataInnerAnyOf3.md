@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** |  | 
-**Id** | **string** | The resource configuration id. | 
-**AccessLevel** | **string** | The access level of the resource configuration. Note that the access level in practice of this resource configuration could be different dependent on what the access level of the resource with the same id as the \&quot;name\&quot; of this resource_configuration.  | 
+**Id** | **string** | The uuid or name for the resource. | 
+**AccessLevel** | **string** | The access level of the resource | 
 
 ## Methods
 

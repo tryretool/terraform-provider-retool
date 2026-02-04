@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Success** | **bool** | API request succeeded | 
-**Data** | [**[]UsersUserIdGet200ResponseData**](UsersUserIdGet200ResponseData.md) | An array of requested items | 
+**Data** | [**[]UsersUserIdGet200ResponseDataAnyOf**](UsersUserIdGet200ResponseDataAnyOf.md) | An array of requested items | 
 **TotalCount** | **float32** | Total number of items in the response | 
 **NextToken** | **NullableString** | A token to retrieve the next page of items in the collection | 
 **HasMore** | **bool** | Whether there are more items in the collection | 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewUsersGet200Response
 
-`func NewUsersGet200Response(success bool, data []UsersUserIdGet200ResponseData, totalCount float32, nextToken NullableString, hasMore bool, ) *UsersGet200Response`
+`func NewUsersGet200Response(success bool, data []UsersUserIdGet200ResponseDataAnyOf, totalCount float32, nextToken NullableString, hasMore bool, ) *UsersGet200Response`
 
 NewUsersGet200Response instantiates a new UsersGet200Response object
 This constructor will assign default values to properties that have it defined,
@@ -51,20 +51,20 @@ SetSuccess sets Success field to given value.
 
 ### GetData
 
-`func (o *UsersGet200Response) GetData() []UsersUserIdGet200ResponseData`
+`func (o *UsersGet200Response) GetData() []UsersUserIdGet200ResponseDataAnyOf`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *UsersGet200Response) GetDataOk() (*[]UsersUserIdGet200ResponseData, bool)`
+`func (o *UsersGet200Response) GetDataOk() (*[]UsersUserIdGet200ResponseDataAnyOf, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *UsersGet200Response) SetData(v []UsersUserIdGet200ResponseData)`
+`func (o *UsersGet200Response) SetData(v []UsersUserIdGet200ResponseDataAnyOf)`
 
 SetData sets Data field to given value.
 

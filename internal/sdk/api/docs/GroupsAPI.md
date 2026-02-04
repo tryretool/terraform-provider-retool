@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 ## GroupsGroupIdGet
 
-> GroupsGroupIdGet200Response GroupsGroupIdGet(ctx, groupId).Execute()
+> GroupsGroupIdGet200Response GroupsGroupIdGet(ctx, groupId).ExcludeDisabledUsers(excludeDisabledUsers).Execute()
 
 Get group
 
@@ -168,10 +168,11 @@ import (
 
 func main() {
 	groupId := "groupId_example" // string | The group's ID number
+	excludeDisabledUsers := true // bool | If true, excludes disabled users from the members list in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.GroupsAPI.GroupsGroupIdGet(context.Background(), groupId).Execute()
+	resp, r, err := apiClient.GroupsAPI.GroupsGroupIdGet(context.Background(), groupId).ExcludeDisabledUsers(excludeDisabledUsers).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GroupsAPI.GroupsGroupIdGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -197,6 +198,7 @@ Other parameters are passed through a pointer to a apiGroupsGroupIdGetRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **excludeDisabledUsers** | **bool** | If true, excludes disabled users from the members list in the response. | 
 
 ### Return type
 

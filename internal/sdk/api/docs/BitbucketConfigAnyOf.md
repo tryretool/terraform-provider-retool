@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to **string** |  | [optional] 
 **Username** | **string** | Your Bitbucket username. | 
 **AppPassword** | **string** | Your Bitbucket app password. | 
 **Url** | Pointer to **string** | The domain used to access your self-hosted Bitbucket instance. Defaults to https://bitbucket.org/. | [optional] 
@@ -28,31 +27,6 @@ will change when the set of required properties is changed
 NewBitbucketConfigAnyOfWithDefaults instantiates a new BitbucketConfigAnyOf object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetType
-
-`func (o *BitbucketConfigAnyOf) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *BitbucketConfigAnyOf) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *BitbucketConfigAnyOf) SetType(v string)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *BitbucketConfigAnyOf) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetUsername
 

@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ## AccessRequestsGet
 
-> AccessRequestsGet200Response AccessRequestsGet(ctx).Status(status).Execute()
+> AccessRequestsGet200Response AccessRequestsGet(ctx).Status(status).Limit(limit).NextToken(nextToken).Execute()
 
 Get organization access requests
 
@@ -174,10 +174,12 @@ import (
 
 func main() {
 	status := "status_example" // string | The status of the access request (optional)
+	limit := int32(50) // int32 | Maximum number of items to return per page. If not provided, all items are returned. When provided, enables pagination and the response will include next_token for retrieving subsequent pages. Valid range: 1-100. (optional)
+	nextToken := "eyJsYXN0SWQiOjEyM30..." // string | Cursor token for retrieving the next page of results. Obtained from the next_token field of a previous paginated response. Only valid when the limit parameter is also provided. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AccessRequestAPI.AccessRequestsGet(context.Background()).Status(status).Execute()
+	resp, r, err := apiClient.AccessRequestAPI.AccessRequestsGet(context.Background()).Status(status).Limit(limit).NextToken(nextToken).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AccessRequestAPI.AccessRequestsGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -199,6 +201,8 @@ Other parameters are passed through a pointer to a apiAccessRequestsGetRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **status** | **string** | The status of the access request | 
+ **limit** | **int32** | Maximum number of items to return per page. If not provided, all items are returned. When provided, enables pagination and the response will include next_token for retrieving subsequent pages. Valid range: 1-100. | 
+ **nextToken** | **string** | Cursor token for retrieving the next page of results. Obtained from the next_token field of a previous paginated response. Only valid when the limit parameter is also provided. | 
 
 ### Return type
 

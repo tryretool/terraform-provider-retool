@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to **string** |  | [optional] 
+**Type** | **string** |  | 
 **Token** | **string** | Your Bitbucket API token. | 
 **Url** | Pointer to **string** | The domain used to access your self-hosted Bitbucket instance. Defaults to https://bitbucket.org/. | [optional] 
 **EnterpriseApiUrl** | Pointer to **string** | The REST API route for your self-hosted Bitbucket instance. Defaults to https://api.bitbucket.org/2.0.  | [optional] 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewBitbucketConfigAnyOf1
 
-`func NewBitbucketConfigAnyOf1(token string, ) *BitbucketConfigAnyOf1`
+`func NewBitbucketConfigAnyOf1(type_ string, token string, ) *BitbucketConfigAnyOf1`
 
 NewBitbucketConfigAnyOf1 instantiates a new BitbucketConfigAnyOf1 object
 This constructor will assign default values to properties that have it defined,
@@ -47,11 +47,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *BitbucketConfigAnyOf1) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetToken
 

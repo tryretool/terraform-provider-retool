@@ -13,7 +13,7 @@ interactions:
         remote_addr: ""
         request_uri: ""
         body: |
-            {"active":true,"email":"tf-acc-defaults-v3@example.retool.com","first_name":"Default","last_name":"User"}
+            {"active":true,"email":"tf-acc-defaults-v4@example.retool.com","first_name":"Default","last_name":"User"}
         form: {}
         headers:
             Content-Type:
@@ -30,13 +30,13 @@ interactions:
         trailer: {}
         content_length: 333
         uncompressed: false
-        body: '{"success":true,"data":{"id":"user_c75404d0c49342f795bc71d6d4f997a5","legacy_id":29,"first_name":"Default","last_name":"User","created_at":"2025-11-11T00:58:58.722Z","last_active":null,"email":"tf-acc-defaults-v3@example.retool.com","active":true,"metadata":{},"is_admin":false,"two_factor_auth_enabled":false,"user_type":"default"}}'
+        body: '{"success":true,"data":{"id":"user_aaac95a97a5d4dd3a978f241035c5ae5","legacy_id":33,"first_name":"Default","last_name":"User","created_at":"2026-02-04T22:09:34.228Z","last_active":null,"email":"tf-acc-defaults-v4@example.retool.com","active":true,"metadata":{},"is_admin":false,"two_factor_auth_enabled":false,"user_type":"default"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 112.135542ms
+        duration: 131.243083ms
     - id: 1
       request:
         proto: HTTP/1.1
@@ -53,7 +53,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/users/user_c75404d0c49342f795bc71d6d4f997a5
+        url: https://recorded.retool.dev/api/v2/users/user_aaac95a97a5d4dd3a978f241035c5ae5
         method: GET
       response:
         proto: HTTP/1.1
@@ -63,13 +63,13 @@ interactions:
         trailer: {}
         content_length: 333
         uncompressed: false
-        body: '{"success":true,"data":{"id":"user_c75404d0c49342f795bc71d6d4f997a5","legacy_id":29,"first_name":"Default","last_name":"User","created_at":"2025-11-11T00:58:58.722Z","last_active":null,"email":"tf-acc-defaults-v3@example.retool.com","active":true,"metadata":{},"is_admin":false,"two_factor_auth_enabled":false,"user_type":"default"}}'
+        body: '{"success":true,"data":{"id":"user_aaac95a97a5d4dd3a978f241035c5ae5","legacy_id":33,"first_name":"Default","last_name":"User","created_at":"2026-02-04T22:09:34.228Z","last_active":null,"email":"tf-acc-defaults-v4@example.retool.com","active":true,"metadata":{},"is_admin":false,"two_factor_auth_enabled":false,"user_type":"default"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 126.883625ms
+        duration: 49.070917ms
     - id: 2
       request:
         proto: HTTP/1.1
@@ -86,7 +86,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/users/user_c75404d0c49342f795bc71d6d4f997a5
+        url: https://recorded.retool.dev/api/v2/users/user_aaac95a97a5d4dd3a978f241035c5ae5
         method: DELETE
       response:
         proto: HTTP/1.1
@@ -100,4 +100,4 @@ interactions:
         headers: {}
         status: 204 No Content
         code: 204
-        duration: 49.257542ms
+        duration: 50.223583ms

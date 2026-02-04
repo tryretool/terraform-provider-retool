@@ -77,3 +77,30 @@ You can understand what commands to run to build the library, and get more conte
 ```
 
 Following that a cursor agent was able to make remarkable progress on updating the provider code to respect this, including tests.
+
+## Notes from updating to 2.12.0
+
+Updated from 2.9.0 to 2.12.0 using automated transformation script. Key changes:
+
+### API Changes
+- **User data structure**: The `/users/{userId}` endpoint now returns data wrapped in an anyOf structure (`UsersUserIdGet200ResponseDataAnyOf` and `UsersUserIdGet200ResponseDataAnyOf1`). Provider code updated to unwrap this structure.
+- **Bitbucket configuration**: The `type` field was incorrectly marked as required in the spec but API rejects it. Fixed by removing from spec entirely.
+- **Resource `folder_id` field**: Incorrectly marked as required in response schemas but API doesn't always return it. Fixed by creating `fix_folder_id_response.py` script to remove from required arrays. Field is now optional for backwards/forwards compatibility.
+
+### Generator Fixes
+Added automatic fixes in `fix_generated_code.sh` for OpenAPI Generator bugs in version 2.12.0:
+- **Invalid field names**: Generator creates invalid Go field names using keywords/types (e.g., `[]string *[]string`, `map[string]interface{} *map[string]interface{}`). Script now automatically renames these to valid identifiers (`ArrayOfString`, `AdditionalProperties`).
+- **Pointer-to-pointer marshaling**: Fixed `json.Marshal(&src.Field)` → `json.Marshal(src.Field)` for anyOf types
+- Files affected: `model__user_tasks_get_assigned_to_users_parameter.go`, `model__resources_post_request_options.go`
+
+### Spec Transformation Scripts
+- **`fix_folder_id_response.py`**: Removes `folder_id` from required arrays in all resource and resource_configuration response schemas
+- **`fix_bitbucket_type.py`**: Removed `type` from Bitbucket configuration schemas (deprecated)
+
+### Testing Results
+- **Unit tests**: All passing ✓ (100%)
+- **Acceptance tests** (replay mode): All passing ✓ (13/13 test suites)
+  - ✅ provider, configurationvariable, environments, folder, group, permissions
+  - ✅ resourceconfiguration, retoolresource (fixed!)
+  - ✅ sourcecontrol, sourcecontrolsettings, space, sso, user
+

@@ -141,10 +141,12 @@ func (r *retoolResourceResource) Create(ctx context.Context, req resource.Create
 	}
 
 	// Create the request body manually to avoid sending empty fields.
+	// Note: folder_id must be explicitly set to null for backwards compatibility with existing configurations
 	requestBody := map[string]interface{}{
 		"type":         plan.Type.ValueString(),
 		"display_name": plan.DisplayName.ValueString(),
 		"options":      optionsMap,
+		"folder_id":    nil,
 	}
 
 	requestJSON, err := json.Marshal(requestBody)

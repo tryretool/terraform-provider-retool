@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Id** | **string** | The uuid or name for the resource. | 
 **Type** | **string** | The type of resource. | 
 **DisplayName** | **string** |  | 
+**FolderId** | Pointer to **NullableString** | The id of the folder this resource belongs to | [optional] 
 **Protected** | **bool** | Whether the resource is protected in source control | 
 **CreatedAt** | **string** |  | 
 **UpdatedAt** | **string** |  | 
@@ -90,6 +91,41 @@ and a boolean to check if the value has been set.
 SetDisplayName sets DisplayName field to given value.
 
 
+### GetFolderId
+
+`func (o *ResourcesGet200ResponseDataInner) GetFolderId() string`
+
+GetFolderId returns the FolderId field if non-nil, zero value otherwise.
+
+### GetFolderIdOk
+
+`func (o *ResourcesGet200ResponseDataInner) GetFolderIdOk() (*string, bool)`
+
+GetFolderIdOk returns a tuple with the FolderId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFolderId
+
+`func (o *ResourcesGet200ResponseDataInner) SetFolderId(v string)`
+
+SetFolderId sets FolderId field to given value.
+
+### HasFolderId
+
+`func (o *ResourcesGet200ResponseDataInner) HasFolderId() bool`
+
+HasFolderId returns a boolean if a field has been set.
+
+### SetFolderIdNil
+
+`func (o *ResourcesGet200ResponseDataInner) SetFolderIdNil(b bool)`
+
+ SetFolderIdNil sets the value for FolderId to be an explicit nil
+
+### UnsetFolderId
+`func (o *ResourcesGet200ResponseDataInner) UnsetFolderId()`
+
+UnsetFolderId ensures that no value is present for FolderId, not even an explicit nil
 ### GetProtected
 
 `func (o *ResourcesGet200ResponseDataInner) GetProtected() bool`

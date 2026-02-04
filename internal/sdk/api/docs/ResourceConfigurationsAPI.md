@@ -224,7 +224,7 @@ Name | Type | Description  | Notes
 
 ## ResourceConfigurationsGet
 
-> ResourceConfigurationsGet200Response ResourceConfigurationsGet(ctx).NextToken(nextToken).ResourceType(resourceType).ResourceId(resourceId).EnvironmentId(environmentId).Execute()
+> ResourceConfigurationsGet200Response ResourceConfigurationsGet(ctx).ResourceType(resourceType).ResourceId(resourceId).EnvironmentId(environmentId).Limit(limit).NextToken(nextToken).Execute()
 
 Get resource configurations
 
@@ -243,14 +243,15 @@ import (
 )
 
 func main() {
-	nextToken := "nextToken_example" // string | The token of the current page (optional)
 	resourceType := "resourceType_example" // string | The type of resource. (optional)
 	resourceId := "resourceId_example" // string | The uuid or name for the resource. (optional)
 	environmentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string |  (optional)
+	limit := int32(50) // int32 | Maximum number of items to return per page. If not provided, all items are returned. When provided, enables pagination and the response will include next_token for retrieving subsequent pages. Valid range: 1-100. (optional)
+	nextToken := "eyJsYXN0SWQiOjEyM30..." // string | Cursor token for retrieving the next page of results. Obtained from the next_token field of a previous paginated response. Only valid when the limit parameter is also provided. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ResourceConfigurationsAPI.ResourceConfigurationsGet(context.Background()).NextToken(nextToken).ResourceType(resourceType).ResourceId(resourceId).EnvironmentId(environmentId).Execute()
+	resp, r, err := apiClient.ResourceConfigurationsAPI.ResourceConfigurationsGet(context.Background()).ResourceType(resourceType).ResourceId(resourceId).EnvironmentId(environmentId).Limit(limit).NextToken(nextToken).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ResourceConfigurationsAPI.ResourceConfigurationsGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -271,10 +272,11 @@ Other parameters are passed through a pointer to a apiResourceConfigurationsGetR
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **nextToken** | **string** | The token of the current page | 
  **resourceType** | **string** | The type of resource. | 
  **resourceId** | **string** | The uuid or name for the resource. | 
  **environmentId** | **string** |  | 
+ **limit** | **int32** | Maximum number of items to return per page. If not provided, all items are returned. When provided, enables pagination and the response will include next_token for retrieving subsequent pages. Valid range: 1-100. | 
+ **nextToken** | **string** | Cursor token for retrieving the next page of results. Obtained from the next_token field of a previous paginated response. Only valid when the limit parameter is also provided. | 
 
 ### Return type
 
@@ -315,7 +317,7 @@ import (
 )
 
 func main() {
-	resourceConfigurationsPostRequest := *openapiclient.NewResourceConfigurationsPostRequest("ResourceId_example", "EnvironmentId_example", *openapiclient.NewResourcesPostRequestOptions(*openapiclient.NewSnowflakeOptionsDatabaseOptions("Name_example"), "AccountIdentifier_example", *openapiclient.NewRestAPIOptionsAuthenticationOptions("AuthenticationType_example", "Auth0Domain_example", "Auth0ClientId_example", "Auth0ClientSecret_example", "Auth0CustomAudience_example", "AmazonAwsRegion_example", "AmazonServiceName_example", "AmazonAccessKeyId_example", "AmazonSecretAccessKey_example", "BasicUsername_example", "DigestUsername_example", "DigestPassword_example", *openapiclient.NewRestAPIOptionsAuthenticationOptionsAnyOf4Oauth1SignatureMethod(), "Oauth1ConsumerKey_example", "Oauth1ConsumerSecret_example", "Oauth1TokenKey_example", "Oauth1TokenSecret_example", "Oauth1RealmParameter_example", "Oauth2ClientId_example", "Oauth2ClientSecret_example", "Oauth2AuthUrl_example", "Oauth2AccessTokenUrl_example"), "BaseUrl_example")) // ResourceConfigurationsPostRequest |  (optional)
+	resourceConfigurationsPostRequest := *openapiclient.NewResourceConfigurationsPostRequest("ResourceId_example", "EnvironmentId_example", *openapiclient.NewResourcesPostRequestOptions(*openapiclient.NewSnowflakeOptionsDatabaseOptions("Name_example"), "AccountIdentifier_example", *openapiclient.NewGRPCOptionsAuthenticationOptions("AuthenticationType_example", "Auth0Domain_example", "Auth0ClientId_example", "Auth0ClientSecret_example", "Auth0CustomAudience_example", "Oauth2AccessTokenUrl_example", "Oauth2AuthUrl_example", "Oauth2ClientId_example", "Oauth2ClientSecret_example"), "BaseUrl_example")) // ResourceConfigurationsPostRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

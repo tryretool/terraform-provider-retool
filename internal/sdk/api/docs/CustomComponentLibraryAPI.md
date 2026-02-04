@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CustomComponentLibrariesGet
 
-> CustomComponentLibrariesGet200Response CustomComponentLibrariesGet(ctx).NextToken(nextToken).Execute()
+> CustomComponentLibrariesGet200Response CustomComponentLibrariesGet(ctx).LibraryId(libraryId).Execute()
 
 Get a list of all custom component libraries
 
@@ -34,11 +34,11 @@ import (
 )
 
 func main() {
-	nextToken := "nextToken_example" // string | The token of the current page (optional)
+	libraryId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CustomComponentLibraryAPI.CustomComponentLibrariesGet(context.Background()).NextToken(nextToken).Execute()
+	resp, r, err := apiClient.CustomComponentLibraryAPI.CustomComponentLibrariesGet(context.Background()).LibraryId(libraryId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CustomComponentLibraryAPI.CustomComponentLibrariesGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -59,7 +59,7 @@ Other parameters are passed through a pointer to a apiCustomComponentLibrariesGe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **nextToken** | **string** | The token of the current page | 
+ **libraryId** | **string** |  | 
 
 ### Return type
 
