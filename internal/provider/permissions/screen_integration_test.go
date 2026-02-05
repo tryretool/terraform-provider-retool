@@ -6,6 +6,7 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
+
 	"github.com/tryretool/terraform-provider-retool/internal/sdk/api"
 )
 
@@ -16,7 +17,7 @@ func TestScreenPermissionObjectCreation(t *testing.T) {
 	testCases := []struct {
 		name     string
 		model    permissionObjectModel
-		expected string // expected type
+		expected string // Expected type.
 	}{
 		{
 			name: "folder object",
@@ -67,11 +68,11 @@ func TestScreenPermissionObjectCreation(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			obj := createNewAPIPermissionsObject(tc.model)
+		obj := createNewAPIPermissionsObject(tc.model)
 
-			// Verify the object was created (not empty)
-			// We can't easily inspect the oneOf structure, but we can verify it's not nil
-			// by checking if it has any populated fields
+		// Verify the object was created (not empty).
+		// We can't easily inspect the oneOf structure, but we can verify it's not nil
+		// by checking if it has any populated fields
 			hasValue := false
 
 			if obj.Folder != nil {
@@ -123,7 +124,7 @@ func TestScreenSubjectCreation(t *testing.T) {
 	testCases := []struct {
 		name     string
 		model    permissionSubjectModel
-		expected string // expected type
+		expected string // Expected type.
 	}{
 		{
 			name: "user subject",

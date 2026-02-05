@@ -312,9 +312,9 @@ func (r *permissionResource) fetchPermissionsForSubject(ctx context.Context, sub
 				accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf1.AccessLevel
 			case obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf2 != nil:
 				// Screen.
-				objID = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf2.Id
-				accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf2.AccessLevel
-				// Note: Screen responses don't include appId, so we can't populate it here
+			objID = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf2.Id
+			accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf2.AccessLevel
+			// Note: Screen responses don't include appId, so we can't populate it here.
 			case obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf3 != nil:
 				// Resource.
 				objID = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf3.Id
@@ -337,10 +337,10 @@ func (r *permissionResource) fetchPermissionsForSubject(ctx context.Context, sub
 
 			objValue := permissionObjectModel{
 				ID:   types.StringValue(objID),
-				Type: types.StringValue(objectType),
-			}
-			// Set appID if available (only for screens in request, but not returned in response)
-			if appID != "" {
+			Type: types.StringValue(objectType),
+		}
+		// Set appID if available (only for screens in request, but not returned in response).
+		if appID != "" {
 				objValue.AppID = types.StringValue(appID)
 			} else {
 				objValue.AppID = types.StringNull()
