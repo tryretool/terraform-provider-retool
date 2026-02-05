@@ -71,7 +71,7 @@ func TestScreenPermissionObjectCreation(t *testing.T) {
 		obj := createNewAPIPermissionsObject(tc.model)
 
 		// Verify the object was created (not empty).
-		// We can't easily inspect the oneOf structure, but we can verify it's not nil.
+		// We can't easily inspect the oneOf structure, but we can verify it's not nil
 		// by checking if it has any populated fields.
 		hasValue := false
 
@@ -292,7 +292,7 @@ func TestPermissionObjectModelWithContext(t *testing.T) {
 
 	ctx := context.Background()
 
-	// Test screen object with app_id
+	// Test screen object with app_id.
 	screenObj := permissionObjectModel{
 		ID:    types.StringValue("screen-123"),
 		Type:  types.StringValue("screen"),
@@ -304,7 +304,7 @@ func TestPermissionObjectModelWithContext(t *testing.T) {
 		t.Fatalf("Failed to create object value: %v", diags)
 	}
 
-	// Convert back
+	// Convert back.
 	var retrieved permissionObjectModel
 	diags = objValue.As(ctx, &retrieved, basetypes.ObjectAsOptions{})
 	if diags.HasError() {

@@ -224,7 +224,7 @@ resource "retool_permissions" "test_screen_permissions" {
 
 	acctest.Test(t, resource.TestCase{
 		Steps: []resource.TestStep{
-			// Create screen permissions
+			// Create screen permissions.
 			{
 				Config: testConfig,
 				Check: resource.ComposeAggregateTestCheckFunc(
