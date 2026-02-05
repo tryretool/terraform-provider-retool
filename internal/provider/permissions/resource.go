@@ -310,8 +310,9 @@ func (r *permissionResource) fetchPermissionsForSubject(ctx context.Context, sub
 				// App.
 				objID = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf1.Id
 				accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf1.AccessLevel
-			case obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf2 != nil:
-				// Screen.
+		case obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf2 != nil:
+			// Screen.
+			objectType = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf2.Type
 			objID = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf2.Id
 			accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf2.AccessLevel
 			// Note: Screen responses don't include appId, so we can't populate it here.

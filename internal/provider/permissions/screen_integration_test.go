@@ -67,13 +67,13 @@ func TestScreenPermissionObjectCreation(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		t.Run(tc.name, func(t *testing.T) {
+	t.Run(tc.name, func(t *testing.T) {
 		obj := createNewAPIPermissionsObject(tc.model)
 
 		// Verify the object was created (not empty).
-		// We can't easily inspect the oneOf structure, but we can verify it's not nil
-		// by checking if it has any populated fields
-			hasValue := false
+		// We can't easily inspect the oneOf structure, but we can verify it's not nil.
+		// by checking if it has any populated fields.
+		hasValue := false
 
 			if obj.Folder != nil {
 				hasValue = true
@@ -101,11 +101,11 @@ func TestScreenPermissionObjectCreation(t *testing.T) {
 			}
 			if obj.Screen != nil {
 				hasValue = true
-				if tc.expected != "screen" {
-					t.Errorf("Expected type %s but got screen", tc.expected)
-				}
-				// Verify screen has the app_id set
-				if obj.Screen.GetAppId() != tc.model.AppID.ValueString() {
+			if tc.expected != "screen" {
+				t.Errorf("Expected type %s but got screen", tc.expected)
+			}
+			// Verify screen has the app_id set.
+			if obj.Screen.GetAppId() != tc.model.AppID.ValueString() {
 					t.Errorf("Expected app_id %s but got %s", tc.model.AppID.ValueString(), obj.Screen.GetAppId())
 				}
 			}
@@ -145,11 +145,11 @@ func TestScreenSubjectCreation(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		t.Run(tc.name, func(t *testing.T) {
-			subject := createNewAPIPermissionsSubject(tc.model)
+	t.Run(tc.name, func(t *testing.T) {
+		subject := createNewAPIPermissionsSubject(tc.model)
 
-			// Verify the subject was created
-			hasValue := false
+		// Verify the subject was created.
+		hasValue := false
 
 			if subject.User != nil {
 				hasValue = true
