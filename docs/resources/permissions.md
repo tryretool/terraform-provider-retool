@@ -10,9 +10,8 @@ Permissions resource can be used to grant a user or a permission group access to
 
 ## Example Usage
 
-### Folder Permissions
-
 ```terraform
+# Folder permissions example
 resource "retool_permissions" "folder_permissions" {
   subject = {
     type = "group"
@@ -28,11 +27,8 @@ resource "retool_permissions" "folder_permissions" {
     },
   ]
 }
-```
 
-### Screen Permissions
-
-```terraform
+# Screen permissions example
 resource "retool_permissions" "screen_permissions" {
   subject = {
     type = "user"
