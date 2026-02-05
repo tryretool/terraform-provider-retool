@@ -47,14 +47,16 @@ type permissionSubjectModel struct {
 }
 
 type permissionObjectModel struct {
-	ID   types.String `tfsdk:"id"`
-	Type types.String `tfsdk:"type"`
+	ID    types.String `tfsdk:"id"`
+	Type  types.String `tfsdk:"type"`
+	AppID types.String `tfsdk:"app_id"`
 }
 
 func (m permissionObjectModel) AttributeTypes() map[string]attr.Type {
 	return map[string]attr.Type{
-		"id":   types.StringType,
-		"type": types.StringType,
+		"id":     types.StringType,
+		"type":   types.StringType,
+		"app_id": types.StringType,
 	}
 }
 
@@ -88,7 +90,7 @@ func (r *permissionResource) Metadata(_ context.Context, req resource.MetadataRe
 
 func (r *permissionResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
-		Description: "Permissions resource can be used to grant a user or a permission group access to an object: app, folder, resource or resource configuration.",
+		Description: "Permissions resource can be used to grant a user or a permission group access to an object: app, folder, resource, resource configuration, or screen.",
 		Attributes: map[string]schema.Attribute{
 			"subject": schema.SingleNestedAttribute{
 				Required:    true,
@@ -128,10 +130,14 @@ func (r *permissionResource) Schema(_ context.Context, _ resource.SchemaRequest,
 								},
 								"type": schema.StringAttribute{
 									Required:    true,
-									Description: "The type of the object - app, folder, resource, or resource_configuration.",
+									Description: "The type of the object - app, folder, resource, resource_configuration, or screen.",
 									Validators: []validator.String{
-										stringvalidator.OneOf("app", "folder", "resource", "resource_configuration"),
+										stringvalidator.OneOf("app", "folder", "resource", "resource_configuration", "screen"),
 									},
+								},
+								"app_id": schema.StringAttribute{
+									Optional:    true,
+									Description: "The app ID (required when type is 'screen').",
 								},
 							},
 						},
@@ -185,6 +191,10 @@ func createNewAPIPermissionsObject(objectModel permissionObjectModel) api.Permis
 	case "resource_configuration":
 		resourceConfig := api.NewResourceConfiguration(objType, objID)
 		return api.ResourceConfigurationAsPermissionsGrantPostRequestObject(resourceConfig)
+	case "screen":
+		appID := objectModel.AppID.ValueString()
+		screen := api.NewScreen(objType, objID, appID)
+		return api.ScreenAsPermissionsGrantPostRequestObject(screen)
 	default:
 		// Fallback: return empty object if type is unknown.
 		return api.PermissionsGrantPostRequestObject{}
@@ -266,6 +276,9 @@ func (r *permissionResource) fetchPermissionsForSubject(ctx context.Context, sub
 
 	subjectID := subject.ID.ValueString() + "|" + subject.Type.ValueString()
 
+	// Note: "screen" is omitted from this list because while the grant API supports screens,
+	// the listObjects API does not yet support them (as of API v3.323.0).
+	// Screen permissions are tracked in state but not refreshed from the API.
 	for _, objectType := range []string{"app", "folder", "resource", "resource_configuration"} {
 		request := api.NewPermissionsListObjectsPostRequest(createNewAPIPermissionsSubject(subject), objectType)
 
@@ -285,8 +298,9 @@ func (r *permissionResource) fetchPermissionsForSubject(ctx context.Context, sub
 		for _, obj := range permissionsResponse.Data {
 			var objID string
 			var accessLevel string
+			var appID string
 
-			// Check which variant is populated (folder, app, resource, or resource_configuration).
+			// Check which variant is populated (folder, app, screen, resource, or resource_configuration).
 			switch {
 			case obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf != nil:
 				// Folder.
@@ -297,13 +311,18 @@ func (r *permissionResource) fetchPermissionsForSubject(ctx context.Context, sub
 				objID = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf1.Id
 				accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf1.AccessLevel
 			case obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf2 != nil:
-				// Resource.
+				// Screen.
 				objID = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf2.Id
 				accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf2.AccessLevel
+				// Note: Screen responses don't include appId, so we can't populate it here
 			case obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf3 != nil:
-				// Resource Configuration.
+				// Resource.
 				objID = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf3.Id
 				accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf3.AccessLevel
+			case obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf4 != nil:
+				// Resource Configuration.
+				objID = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf4.Id
+				accessLevel = obj.PermissionsListObjectsPost200ResponseDataInnerAnyOf4.AccessLevel
 			default:
 				// None of the variants matched - log and skip this permission.
 				tflog.Warn(ctx, "Permission object did not match any known type variant, skipping", map[string]interface{}{"objectType": objectType})
@@ -319,6 +338,12 @@ func (r *permissionResource) fetchPermissionsForSubject(ctx context.Context, sub
 			objValue := permissionObjectModel{
 				ID:   types.StringValue(objID),
 				Type: types.StringValue(objectType),
+			}
+			// Set appID if available (only for screens in request, but not returned in response)
+			if appID != "" {
+				objValue.AppID = types.StringValue(appID)
+			} else {
+				objValue.AppID = types.StringNull()
 			}
 			object, diags := types.ObjectValueFrom(ctx, objValue.AttributeTypes(), objValue)
 			allDiags.Append(diags...)
@@ -414,6 +439,20 @@ func (r *permissionResource) Read(ctx context.Context, req resource.ReadRequest,
 		key := obj.ID.ValueString() + "|" + obj.Type.ValueString()
 		if managedPermissionKeys[key] {
 			filteredPermissions = append(filteredPermissions, perm)
+		}
+	}
+
+	// Add screen permissions from state since the listObjects API doesn't support screens yet.
+	// Screen permissions can be granted but not listed, so we preserve them from state.
+	for _, statePerm := range state.Permissions {
+		var obj permissionObjectModel
+		diags := statePerm.Object.As(ctx, &obj, basetypes.ObjectAsOptions{})
+		if diags.HasError() {
+			resp.Diagnostics.Append(diags...)
+			return
+		}
+		if obj.Type.ValueString() == "screen" {
+			filteredPermissions = append(filteredPermissions, statePerm)
 		}
 	}
 
