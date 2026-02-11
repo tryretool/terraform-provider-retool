@@ -3,7 +3,7 @@ info:
   description: "Go to Settings > API to get started. Once you generate an API token,\
     \ use bearer token authentication to make requests."
   title: Retool API
-  version: 2.9.0
+  version: 2.12.0
 externalDocs:
   description: Retool API Documentation
   url: https://docs.retool.com/reference/api-ref
@@ -43,6 +43,17 @@ paths:
           pattern: "user_([a-z0-9]+)"
           type: string
         style: simple
+      - description: Whether to include the groups array in the response.
+        explode: true
+        in: query
+        name: includeGroups
+        required: false
+        schema:
+          default: false
+          description: Whether to include the groups array in the response.
+          nullable: true
+          type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -75,7 +86,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/_users__userId__get_200_response'
+                $ref: '#/components/schemas/_users__userId__patch_200_response'
           description: Returns the updated user.
       summary: Update a user
       tags:
@@ -110,6 +121,38 @@ paths:
         required: false
         schema:
           description: Last name of user
+          type: string
+        style: form
+      - description: "Maximum number of items to return per page. If not provided,\
+          \ all items are returned. When provided, enables pagination and the response\
+          \ will include next_token for retrieving subsequent pages. Valid range:\
+          \ 1-100."
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          description: "Maximum number of items to return per page. If not provided,\
+            \ all items are returned. When provided, enables pagination and the response\
+            \ will include next_token for retrieving subsequent pages. Valid range:\
+            \ 1-100."
+          example: 50
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: Cursor token for retrieving the next page of results. Obtained
+          from the next_token field of a previous paginated response. Only valid when
+          the limit parameter is also provided.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          description: Cursor token for retrieving the next page of results. Obtained
+            from the next_token field of a previous paginated response. Only valid
+            when the limit parameter is also provided.
+          example: eyJsYXN0SWQiOjEyM30...
           type: string
         style: form
       responses:
@@ -258,6 +301,18 @@ paths:
           pattern: ^\d+$
           type: string
         style: simple
+      - description: "If true, excludes disabled users from the members list in the\
+          \ response."
+        explode: true
+        in: query
+        name: excludeDisabledUsers
+        required: false
+        schema:
+          description: "If true, excludes disabled users from the members list in\
+            \ the response."
+          nullable: true
+          type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -544,7 +599,7 @@ paths:
         required: true
         schema:
           description: The id of the folder
-          pattern: "^(app|workflow|resource|agent)_([0-9]\\d*)$"
+          pattern: "^(app|workflow|resource|agent|library)_([0-9]\\d*)$"
           type: string
         style: simple
       - description: Should the folder's contents also be deleted? (Only supported
@@ -582,7 +637,7 @@ paths:
         required: true
         schema:
           description: The id of the folder
-          pattern: "^(app|workflow|resource|agent)_([0-9]\\d*)$"
+          pattern: "^(app|workflow|resource|agent|library)_([0-9]\\d*)$"
           type: string
         style: simple
       responses:
@@ -612,7 +667,7 @@ paths:
         required: true
         schema:
           description: The id of the folder
-          pattern: "^(app|workflow|resource|agent)_([0-9]\\d*)$"
+          pattern: "^(app|workflow|resource|agent|library)_([0-9]\\d*)$"
           type: string
         style: simple
       requestBody:
@@ -917,7 +972,8 @@ paths:
   /source_control/test_deploy:
     post:
       description: Attempts a test deployment (no permanent changes) using the provided
-        commit SHA in order to determine whether the commit is valid.
+        commit SHA in order to determine whether the commit is valid. The API token
+        must have the "Source Control > Test Deploy" scope.
       requestBody:
         content:
           application/json:
@@ -937,7 +993,8 @@ paths:
     post:
       description: "Deploys the latest changes from the source control provider to\
         \ the instance. You can use the GET /deployment/{id} endpoint to check the\
-        \ status of the deployment."
+        \ status of the deployment. The API token must have the \"Source Control >\
+        \ Deploy\" scope."
       responses:
         "200":
           content:
@@ -950,7 +1007,8 @@ paths:
       - Source Control
   /source_control/deployment/{id}:
     get:
-      description: Get the status of a deployment.
+      description: Get the status of a deployment. The API token must have the "Source
+        Control > Deploy" scope.
       parameters:
       - description: The deployment ID
         explode: false
@@ -976,6 +1034,27 @@ paths:
                 $ref: '#/components/schemas/_folders_post_409_response'
           description: Deployment not found
       summary: Get a deployment
+      tags:
+      - Source Control
+  /source_control/deployments:
+    get:
+      description: Returns a list of source control deployments in reverse chronological
+        order. This returns the same data as shown in the deploy dashboard. The API
+        token must have the "Source Control > Deploy" scope.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_source_control_deployments_get_200_response'
+          description: List of source control deployments
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_folders_post_409_response'
+          description: Source control settings not found
+      summary: List source control deployments
       tags:
       - Source Control
   /source_control/settings:
@@ -1025,10 +1104,9 @@ paths:
       - Source Control
   /source_control/manifests:
     get:
-      description: |-
-        Returns a list of all release manifests available in the source control repository. The API token must have the "Source control > Releases (Read)" scope.
-
-        This feature is in beta. Reach out to support if you’d like to join the beta.
+      description: Returns a list of all release manifests available in the source
+        control repository. The API token must have the "Source control > Releases
+        (Read)" scope.
       responses:
         "200":
           content:
@@ -1044,13 +1122,12 @@ paths:
           description: Error message.
       summary: Lists all release manifests
       tags:
-      - Source Control
+      - Release Management
   /source_control/manifests/{manifestName}:
     get:
-      description: |-
-        Returns the release manifest with the specified name from the source control repository if it exists. The API token must have the "Source control > Releases (Read)" scope.
-
-        This feature is in beta. Reach out to support if you’d like to join the beta.
+      description: Returns the release manifest with the specified name from the source
+        control repository if it exists. The API token must have the "Source control
+        > Releases (Read)" scope.
       parameters:
       - description: Identifier for the manifest of interest
         explode: false
@@ -1076,12 +1153,12 @@ paths:
           description: Error message.
       summary: Get a specific release manifest
       tags:
-      - Source Control
+      - Release Management
     put:
-      description: |-
-        Push a branch to the source control repository that creates or updates the named release manifest. If the manifest exists, it will be overwritten in the branch. The API token must have the "Source control > Releases (Write)" scope.
-
-        This feature is in beta. Reach out to support if you’d like to join the beta.
+      description: "Push a branch to the source control repository that creates or\
+        \ updates the named release manifest. If the manifest exists, it will be overwritten\
+        \ in the branch. The API token must have the \"Source control > Releases (Write)\"\
+        \ scope."
       parameters:
       - description: Identifier for the manifest of interest
         explode: false
@@ -1112,13 +1189,12 @@ paths:
           description: Error message.
       summary: Set release manifest
       tags:
-      - Source Control
+      - Release Management
   /source_control/manifests/{manifestName}/delete:
     post:
-      description: |-
-        Push a branch to the source control repository that deletes the named release manifest. The API token must have the "Source control > Releases (Write)" scope.
-
-        This feature is in beta. Reach out to support if you’d like to join the beta.
+      description: Push a branch to the source control repository that deletes the
+        named release manifest. The API token must have the "Source control > Releases
+        (Write)" scope.
       parameters:
       - description: Identifier for the manifest of interest
         explode: false
@@ -1149,7 +1225,7 @@ paths:
           description: Error message.
       summary: Delete a release manifest
       tags:
-      - Source Control
+      - Release Management
   /source_control/manifests/{manifestName}/apps/{appUuid}:
     put:
       deprecated: true
@@ -1157,9 +1233,7 @@ paths:
         \ endpoint instead. \n\nPush a branch to the source control repository that\
         \ updates the release version of the specified app in the named release manifest.\
         \ If the manifest does not already exist, it will be created in the branch.\
-        \ The API token must have the \"Source control > Releases (Write)\" scope.\n\
-        \nThis feature is in beta. Reach out to support if you’d like to join the\
-        \ beta."
+        \ The API token must have the \"Source control > Releases (Write)\" scope."
       parameters:
       - description: "The uuid to specify an app of interest within the release manifest.\
           \ This should be the uuid found in the source control repository, which\
@@ -1203,15 +1277,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/_folders_post_409_response'
           description: Error message.
-      summary: Set release manifest
+      summary: Set release configuration for app in manifest
       tags:
-      - Source Control
+      - Release Management
   /source_control/manifests/{manifestName}/{elementUuid}:
     put:
-      description: |-
-        Push a branch to the source control repository that updates the release version of the specified element in the named release manifest. If the manifest does not already exist, it will be created in the branch. The API token must have the "Source control > Releases (Write)" scope.
-
-        This feature is in beta. Reach out to support if you’d like to join the beta.
+      description: "Push a branch to the source control repository that updates the\
+        \ release version of the specified element in the named release manifest.\
+        \ If the manifest does not already exist, it will be created in the branch.\
+        \ The API token must have the \"Source control > Releases (Write)\" scope."
       parameters:
       - description: The uuid to specify an element of interest within the release
           manifest.
@@ -1265,18 +1339,16 @@ paths:
               schema:
                 $ref: '#/components/schemas/_folders_post_409_response'
           description: Error message.
-      summary: Set release manifest
+      summary: Set release version for element in manifest
       tags:
-      - Source Control
+      - Release Management
   /source_control/manifests/{manifestName}/apps/{appUuid}/delete:
     post:
       deprecated: true
       description: "NOTE: This endpoint is deprecated. Use the DELETE /manifests/{manifestName}/{elementUuid}\
         \ endpoint instead. \n\nPush a branch to the source control repository that\
         \ deletes the entry for the specified app from the named release manifest.\
-        \ The API token must have the \"Source control > Releases (Write)\" scope.\n\
-        \nThis feature is in beta. Reach out to support if you’d like to join the\
-        \ beta."
+        \ The API token must have the \"Source control > Releases (Write)\" scope."
       parameters:
       - description: "The uuid to specify an app of interest within the release manifest.\
           \ This should be the uuid found in the source control repository, which\
@@ -1322,13 +1394,12 @@ paths:
           description: Error message.
       summary: Delete the entry for an app from a release manifest
       tags:
-      - Source Control
+      - Release Management
   /source_control/manifests/{manifestName}/{elementUuid}/delete:
     post:
-      description: |-
-        Push a branch to the source control repository that deletes the entry for the specified element from the named release manifest. The API token must have the "Source control > Releases (Write)" scope.
-
-        This feature is in beta. Reach out to support if you’d like to join the beta.
+      description: Push a branch to the source control repository that deletes the
+        entry for the specified element from the named release manifest. The API token
+        must have the "Source control > Releases (Write)" scope.
       parameters:
       - description: The uuid to specify an element of interest within the release
           manifest.
@@ -1382,17 +1453,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/_folders_post_409_response'
           description: Error message.
-      summary: Delete the entry for an app from a release manifest
+      summary: Delete element from release manifest
       tags:
-      - Source Control
+      - Release Management
   /source_control/releases/apps/{appUuid}:
     get:
       deprecated: true
       description: "NOTE: This endpoint is deprecated. Use the GET /releases/{elementUuid}\
         \ endpoint instead. \n\nReturns a list of the available releases for the app.\
-        \ The API token must have the \"Source control > Releases (Read)\" scope.\n\
-        \nThis feature is in beta. Reach out to support if you’d like to join the\
-        \ beta."
+        \ The API token must have the \"Source control > Releases (Read)\" scope."
       parameters:
       - description: The uuid of the app.
         explode: false
@@ -1418,15 +1487,14 @@ paths:
           description: Error message.
       summary: Lists all available releases for the given app.
       tags:
-      - Source Control
+      - Release Management
     post:
       deprecated: true
       description: "NOTE: This endpoint is deprecated. Use the POST /releases/{elementUuid}\
         \ endpoint instead. \n\nPush a branch to the source control repository that\
         \ creates a new release artifact with the provided version for the app based\
         \ on the latest version. The API token must have the \"Source control > Releases\
-        \ (Write)\" scope.\n\nThis feature is in beta. Reach out to support if you’\
-        d like to join the beta."
+        \ (Write)\" scope."
       parameters:
       - description: The uuid of the app.
         explode: false
@@ -1457,13 +1525,11 @@ paths:
           description: Error message.
       summary: Create a release artifact
       tags:
-      - Source Control
+      - Release Management
   /source_control/releases/{elementUuid}:
     get:
-      description: |-
-        Returns a list of the available releases for the element. The API token must have the "Source control > Releases (Read)" scope.
-
-        This feature is in beta. Reach out to support if you’d like to join the beta.
+      description: Returns a list of the available releases for the element. The API
+        token must have the "Source control > Releases (Read)" scope.
       parameters:
       - description: The uuid of the element.
         explode: false
@@ -1501,12 +1567,11 @@ paths:
           description: Error message.
       summary: Lists all available releases for the given element.
       tags:
-      - Source Control
+      - Release Management
     post:
-      description: |-
-        Push a branch to the source control repository that creates a new release artifact with the provided version for the element based on the latest version. The API token must have the "Source control > Releases (Write)" scope.
-
-        This feature is in beta. Reach out to support if you’d like to join the beta.
+      description: Push a branch to the source control repository that creates a new
+        release artifact with the provided version for the element based on the latest
+        version. The API token must have the "Source control > Releases (Write)" scope.
       parameters:
       - description: The uuid of the element.
         explode: false
@@ -1549,7 +1614,7 @@ paths:
           description: Error message.
       summary: Create a release artifact
       tags:
-      - Source Control
+      - Release Management
   /app_themes/{id}:
     delete:
       description: Deletes specified app theme for organization or space. The API
@@ -2005,7 +2070,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/_permissions_listObjects_post_200_response'
+                $ref: '#/components/schemas/_permissions_grant_post_200_response'
           description: A list of folders with corresponding access levels
       summary: Grant permissions
       tags:
@@ -2032,7 +2097,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/_permissions_listObjects_post_200_response'
+                $ref: '#/components/schemas/_permissions_grant_post_200_response'
           description: A list of folders with corresponding access levels
       summary: Revoke permissions
       tags:
@@ -2343,6 +2408,40 @@ paths:
       summary: Get role grants for a subject
       tags:
       - Permissions
+  /role_permissions/remove_role_grants_for_subject/:
+    post:
+      description: Available from API version 2.9.0+. Deletes a role grant for a subject.
+        It can also delete role grants for a subject with objects if object info is
+        provided. The API token must have the "Permissions > Write" scope.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/_role_permissions_role_grants_post_request'
+      responses:
+        "204":
+          description: Role grant deleted successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_folders_post_409_response'
+          description: 'Missing required body parameter:'
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_folders_post_409_response'
+          description: Authentication failure
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_folders_post_409_response'
+          description: "Forbidden: API token is missing scope"
+      summary: Delete a role grant for a subject
+      tags:
+      - Permissions
   /access_requests:
     get:
       description: Available from API version 2.3.0+ and onprem version 3.26.0+. Gets
@@ -2359,6 +2458,38 @@ paths:
           - PENDING
           - APPROVED
           - DENIED
+          type: string
+        style: form
+      - description: "Maximum number of items to return per page. If not provided,\
+          \ all items are returned. When provided, enables pagination and the response\
+          \ will include next_token for retrieving subsequent pages. Valid range:\
+          \ 1-100."
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          description: "Maximum number of items to return per page. If not provided,\
+            \ all items are returned. When provided, enables pagination and the response\
+            \ will include next_token for retrieving subsequent pages. Valid range:\
+            \ 1-100."
+          example: 50
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: Cursor token for retrieving the next page of results. Obtained
+          from the next_token field of a previous paginated response. Only valid when
+          the limit parameter is also provided.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          description: Cursor token for retrieving the next page of results. Obtained
+            from the next_token field of a previous paginated response. Only valid
+            when the limit parameter is also provided.
+          example: eyJsYXN0SWQiOjEyM30...
           type: string
         style: form
       responses:
@@ -2619,15 +2750,6 @@ paths:
         a paginated list of resources. The API token must have the "Resources > Read"
         scope.
       parameters:
-      - description: The token of the current page
-        explode: true
-        in: query
-        name: next_token
-        required: false
-        schema:
-          description: The token of the current page
-          type: string
-        style: form
       - description: The type of resource.
         explode: true
         in: query
@@ -2704,7 +2826,38 @@ paths:
           - stripe
           - twilio
           - vertica
-          - aiProvider
+          type: string
+        style: form
+      - description: "Maximum number of items to return per page. If not provided,\
+          \ all items are returned. When provided, enables pagination and the response\
+          \ will include next_token for retrieving subsequent pages. Valid range:\
+          \ 1-100."
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          description: "Maximum number of items to return per page. If not provided,\
+            \ all items are returned. When provided, enables pagination and the response\
+            \ will include next_token for retrieving subsequent pages. Valid range:\
+            \ 1-100."
+          example: 50
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: Cursor token for retrieving the next page of results. Obtained
+          from the next_token field of a previous paginated response. Only valid when
+          the limit parameter is also provided.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          description: Cursor token for retrieving the next page of results. Obtained
+            from the next_token field of a previous paginated response. Only valid
+            when the limit parameter is also provided.
+          example: eyJsYXN0SWQiOjEyM30...
           type: string
         style: form
       responses:
@@ -2824,15 +2977,6 @@ paths:
         Gets a paginated list of resource configurations. The API token must have
         the "Resources > Read" scope.
       parameters:
-      - description: The token of the current page
-        explode: true
-        in: query
-        name: next_token
-        required: false
-        schema:
-          description: The token of the current page
-          type: string
-        style: form
       - description: The type of resource.
         explode: true
         in: query
@@ -2909,7 +3053,6 @@ paths:
           - stripe
           - twilio
           - vertica
-          - aiProvider
           type: string
         style: form
       - description: The uuid or name for the resource.
@@ -2927,6 +3070,38 @@ paths:
         required: false
         schema:
           format: uuid
+          type: string
+        style: form
+      - description: "Maximum number of items to return per page. If not provided,\
+          \ all items are returned. When provided, enables pagination and the response\
+          \ will include next_token for retrieving subsequent pages. Valid range:\
+          \ 1-100."
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          description: "Maximum number of items to return per page. If not provided,\
+            \ all items are returned. When provided, enables pagination and the response\
+            \ will include next_token for retrieving subsequent pages. Valid range:\
+            \ 1-100."
+          example: 50
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: Cursor token for retrieving the next page of results. Obtained
+          from the next_token field of a previous paginated response. Only valid when
+          the limit parameter is also provided.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          description: Cursor token for retrieving the next page of results. Obtained
+            from the next_token field of a previous paginated response. Only valid
+            when the limit parameter is also provided.
+          example: eyJsYXN0SWQiOjEyM30...
           type: string
         style: form
       responses:
@@ -3181,13 +3356,12 @@ paths:
         Gets a paginated list of all custom component libraries. The API token must
         have the "CustomComponent > Read" scope.
       parameters:
-      - description: The token of the current page
-        explode: true
+      - explode: true
         in: query
-        name: next_token
-        required: false
+        name: libraryId
+        required: true
         schema:
-          description: The token of the current page
+          format: uuid
           type: string
         style: form
       responses:
@@ -3606,7 +3780,9 @@ paths:
         \ The API token must have the 'usage' scope. 'usage:organization' scope returns\
         \ just the organization, 'usage:spaces' returns all the spaces under the admin\
         \ organization, 'usage:license' returns all the organizations that use that\
-        \ license key."
+        \ license key. If you self-host Retool, you must set the `USAGE_API_TOKEN`\
+        \ environment variable to use this endpoint.  Follow [our guide on enabling\
+        \ usage analytics for self-hosted Retool](https://docs.retool.com/org-users/guides/monitoring/usage-analytics#enable-usage-analytics-for-self-hosted-retool)."
       responses:
         "200":
           content:
@@ -3622,7 +3798,9 @@ paths:
       description: "The usage summary for the selected organizations. Contains information\
         \ about usage like page saves, page views, active users, and the growth in\
         \ those fields in the specified time range. The API token must have the 'usage'\
-        \ scope. "
+        \ scope. If you self-host Retool, you must set the `USAGE_API_TOKEN` environment\
+        \ variable to use this endpoint.  Follow [our guide on enabling usage analytics\
+        \ for self-hosted Retool](https://docs.retool.com/org-users/guides/monitoring/usage-analytics#enable-usage-analytics-for-self-hosted-retool)."
       parameters:
       - description: A comma separated list of org ids to retrieve usage data for
         explode: true
@@ -3670,7 +3848,10 @@ paths:
     get:
       description: "The app summaries for the selected organizations. Contains information\
         \ about the app like saves, views, unique editors and viewers in the specified\
-        \ time range. The API token must have the 'usage' scope. "
+        \ time range. The API token must have the 'usage' scope. If you self-host\
+        \ Retool, you must set the `USAGE_API_TOKEN` environment variable to use this\
+        \ endpoint.  Follow [our guide on enabling usage analytics for self-hosted\
+        \ Retool](https://docs.retool.com/org-users/guides/monitoring/usage-analytics#enable-usage-analytics-for-self-hosted-retool)."
       parameters:
       - description: A comma separated list of org ids to retrieve usage data for
         explode: true
@@ -3718,7 +3899,10 @@ paths:
     get:
       description: "The detailed app usage for the selected organizations. Contains\
         \ information about the app, including the breakdown of saves and views in\
-        \ the specified time range. The API token must have the 'usage' scope."
+        \ the specified time range. The API token must have the 'usage' scope. If\
+        \ you self-host Retool, you must set the `USAGE_API_TOKEN` environment variable\
+        \ to use this endpoint.  Follow [our guide on enabling usage analytics for\
+        \ self-hosted Retool](https://docs.retool.com/org-users/guides/monitoring/usage-analytics#enable-usage-analytics-for-self-hosted-retool)."
       parameters:
       - description: A comma separated list of org ids to retrieve usage data for
         explode: true
@@ -3775,7 +3959,10 @@ paths:
     get:
       description: "The summaries of the user including email, last active time, the\
         \ number of apps viewed and edited, for the selected organizations in the\
-        \ specified time range. The API token must have the 'usage' scope."
+        \ specified time range. The API token must have the 'usage' scope. If you\
+        \ self-host Retool, you must set the `USAGE_API_TOKEN` environment variable\
+        \ to use this endpoint.  Follow [our guide on enabling usage analytics for\
+        \ self-hosted Retool](https://docs.retool.com/org-users/guides/monitoring/usage-analytics#enable-usage-analytics-for-self-hosted-retool)."
       parameters:
       - description: A comma separated list of org ids to retrieve usage data for
         explode: true
@@ -3823,7 +4010,10 @@ paths:
     get:
       description: "Detailed usage by user for the selected organizations. Contains\
         \ information about the user, including the breakdown of saves and views for\
-        \ apps in the specified time range. The API token must have the 'usage' scope."
+        \ apps in the specified time range. The API token must have the 'usage' scope.\
+        \ If you self-host Retool, you must set the `USAGE_API_TOKEN` environment\
+        \ variable to use this endpoint.  Follow [our guide on enabling usage analytics\
+        \ for self-hosted Retool](https://docs.retool.com/org-users/guides/monitoring/usage-analytics#enable-usage-analytics-for-self-hosted-retool)."
       parameters:
       - description: A comma separated list of org ids to retrieve usage data for
         explode: true
@@ -3878,7 +4068,7 @@ paths:
       - Usage
   /user_tasks:
     get:
-      description: Requires the User Tasks feature which is currently in private beta.
+      description: Requires the User Tasks feature which is currently in closed beta.
         Fill out the form at https://workflowstools.retool.com/form/0d8c9ebb-fba1-4c80-8d07-af75bdbf034e
         to request access. Available on Retool version 3.114+. Returns a list of user
         tasks for a particular user. The API token must have the "User Tasks > Read"
@@ -3970,7 +4160,7 @@ paths:
       - User Tasks
   /user_tasks/{taskId}/submit:
     patch:
-      description: Requires the User Tasks feature which is currently in private beta.
+      description: Requires the User Tasks feature which is currently in closed beta.
         Fill out the form at https://workflowstools.retool.com/form/0d8c9ebb-fba1-4c80-8d07-af75bdbf034e
         to request access. Available on Retool version 3.114+. Submits a user task
         with a provided output payload. The API token must have the "User Tasks >
@@ -4003,7 +4193,7 @@ paths:
       - User Tasks
   /user_tasks/{taskId}/cancel:
     patch:
-      description: Requires the User Tasks feature which is currently in private beta.
+      description: Requires the User Tasks feature which is currently in closed beta.
         Fill out the form at https://workflowstools.retool.com/form/0d8c9ebb-fba1-4c80-8d07-af75bdbf034e
         to request access. Available on Retool version 3.114+. Cancel a user task
         with a provided reason. The API token must have the "User Tasks > Write" scope.
@@ -4035,7 +4225,7 @@ paths:
       - User Tasks
   /user_tasks/{taskId}/reassign:
     patch:
-      description: Requires the User Tasks feature which is currently in private beta.
+      description: Requires the User Tasks feature which is currently in closed beta.
         Fill out the form at https://workflowstools.retool.com/form/0d8c9ebb-fba1-4c80-8d07-af75bdbf034e
         to request access. Available on Retool version 3.114+. Reassigns a user task
         to a group or user based on the group or user id. The API token must have
@@ -4068,7 +4258,7 @@ paths:
       - User Tasks
   /workflow_run/{id}:
     get:
-      description: Requires the Workflow Runs API feature which is currently in private
+      description: Requires the Workflow Runs API feature which is currently in closed
         beta. Fill out the form at https://workflowstools.retool.com/form/0d8c9ebb-fba1-4c80-8d07-af75bdbf034e
         to request access. Available on Retool version 3.122+. Returns data for a
         workflow run. The API token must have the "Workflows > Read" scope.
@@ -4464,11 +4654,11 @@ components:
         id:
           description: The id of the folder. Currently this is the same as legacy_id
             but will be different in the future.
-          pattern: "^(app|workflow|resource|agent)_([0-9]\\d*)$"
+          pattern: "^(app|workflow|resource|agent|library)_([0-9]\\d*)$"
           type: string
         legacy_id:
           description: The legacy id of the folder.
-          pattern: "^(app|workflow|resource|agent)_([0-9]\\d*)$"
+          pattern: "^(app|workflow|resource|agent|library)_([0-9]\\d*)$"
           type: string
         name:
           description: The name of the folder
@@ -4476,7 +4666,7 @@ components:
         parent_folder_id:
           description: The id of the parent folder
           nullable: true
-          pattern: "^(app|workflow|resource|agent)_([0-9]\\d*)$"
+          pattern: "^(app|workflow|resource|agent|library)_([0-9]\\d*)$"
           type: string
         is_system_folder:
           description: Whether the folder is a system folder
@@ -4488,6 +4678,7 @@ components:
           - workflow
           - resource
           - agent
+          - library
           type: string
         created_at:
           example: 2019-02-08T11:45:48.899Z
@@ -4627,7 +4818,7 @@ components:
           type: string
         folder_id:
           description: The id of the folder
-          pattern: "^(app|workflow|resource|agent)_([0-9]\\d*)$"
+          pattern: "^(app|workflow|resource|agent|library)_([0-9]\\d*)$"
           type: string
         protected:
           description: Whether the App is protected
@@ -4754,6 +4945,11 @@ components:
           items:
             type: string
           type: array
+        added_dependent_scopes:
+          description: The dependent scopes that were automatically added to the role
+          items:
+            type: string
+          type: array
         created_at:
           example: 2019-02-08T11:45:48.899Z
           type: string
@@ -4761,6 +4957,7 @@ components:
           example: 2019-02-24T18:28:18.790Z
           type: string
       required:
+      - added_dependent_scopes
       - created_at
       - description
       - id
@@ -4888,6 +5085,11 @@ components:
           description: User invite link expires 7 days after generation.
           format: uri
           type: string
+        groups:
+          description: The groups that the user is invited to
+          items:
+            $ref: '#/components/schemas/_groups__groupId__get_200_response_data_user_invites_inner_groups_inner'
+          type: array
       required:
       - claimed_at
       - claimed_by
@@ -4978,10 +5180,13 @@ components:
           - stripe
           - twilio
           - vertica
-          - aiProvider
           type: string
         display_name:
           minLength: 1
+          type: string
+        folder_id:
+          description: The id of the folder this resource belongs to
+          nullable: true
           type: string
         protected:
           description: Whether the resource is protected in source control
@@ -4995,6 +5200,7 @@ components:
       required:
       - created_at
       - display_name
+      - folder_id
       - id
       - protected
       - type
@@ -5009,7 +5215,7 @@ components:
           format: uuid
           type: string
         resource:
-          $ref: '#/components/schemas/_resources_get_200_response_data_inner'
+          $ref: '#/components/schemas/_resource_configurations_get_200_response_data_inner_resource'
         environment:
           $ref: '#/components/schemas/_resource_configurations_get_200_response_data_inner_environment'
         options:
@@ -5533,7 +5739,7 @@ components:
       required:
       - ipAddresses
       type: object
-    _users__userId__get_200_response_data:
+    _users__userId__get_200_response_data_anyOf:
       additionalProperties: false
       description: This object represents a user.
       example:
@@ -5618,8 +5824,109 @@ components:
       - two_factor_auth_enabled
       - user_type
       type: object
+    _users__userId__get_200_response_data_anyOf_1_groups_inner:
+      properties:
+        legacy_id:
+          description: The legacy ID of the group.
+          nullable: true
+          type: number
+        id:
+          description: The ID of the group. Currently this is the same legacy_id but
+            will change in the future.
+          nullable: true
+          type: number
+        name:
+          description: The name of the group.
+          type: string
+      required:
+      - id
+      - legacy_id
+      - name
+      type: object
+    _users__userId__get_200_response_data_anyOf_1:
+      additionalProperties: false
+      description: This object represents a user with groups.
+      properties:
+        id:
+          description: The id of the user
+          pattern: "user_([a-z0-9]+)"
+          type: string
+        legacy_id:
+          description: The legacy id of the user
+          type: number
+        email:
+          description: The email of the user
+          format: email
+          type: string
+        active:
+          description: Whether the user is active or not
+          type: boolean
+        created_at:
+          example: 2019-02-08T11:45:48.899Z
+          format: date-time
+          type: string
+        last_active:
+          example: 2019-02-08T11:45:48.899Z
+          format: date-time
+          nullable: true
+          type: string
+        first_name:
+          description: The first name of the user
+          maxLength: 36
+          minLength: 1
+          nullable: true
+          type: string
+        last_name:
+          description: The last name of the user
+          maxLength: 36
+          minLength: 1
+          nullable: true
+          type: string
+        metadata:
+          additionalProperties:
+            nullable: true
+          default: {}
+          type: object
+        is_admin:
+          description: Whether the user is an admin or not
+          type: boolean
+        user_type:
+          description: The user type
+          enum:
+          - default
+          - mobile
+          - embed
+          type: string
+        two_factor_auth_enabled:
+          description: Whether two factor authentication is enabled for this user
+          type: boolean
+        groups:
+          description: The groups that the user is part of
+          items:
+            $ref: '#/components/schemas/_users__userId__get_200_response_data_anyOf_1_groups_inner'
+          type: array
+      required:
+      - active
+      - created_at
+      - email
+      - first_name
+      - groups
+      - id
+      - is_admin
+      - last_active
+      - last_name
+      - legacy_id
+      - metadata
+      - two_factor_auth_enabled
+      - user_type
+      type: object
+    _users__userId__get_200_response_data:
+      anyOf:
+      - $ref: '#/components/schemas/_users__userId__get_200_response_data_anyOf'
+      - $ref: '#/components/schemas/_users__userId__get_200_response_data_anyOf_1'
     _users__userId__get_200_response:
-      description: A single user
+      description: A single user. Includes groups array when includeGroups query parameter
+        is true.
       example:
         data:
           is_admin: true
@@ -5709,6 +6016,118 @@ components:
       required:
       - operations
       type: object
+    _users__userId__patch_200_response_data:
+      additionalProperties: false
+      description: The updated user
+      example:
+        is_admin: true
+        two_factor_auth_enabled: true
+        metadata:
+          key: ""
+        user_type: default
+        legacy_id: 0.8008281904610115
+        active: true
+        created_at: 2019-02-08T11:45:48.899Z
+        last_name: last_name
+        id: id
+        last_active: 2019-02-08T11:45:48.899Z
+        first_name: first_name
+        email: email
+      properties:
+        id:
+          description: The id of the user
+          pattern: "user_([a-z0-9]+)"
+          type: string
+        legacy_id:
+          description: The legacy id of the user
+          type: number
+        email:
+          description: The email of the user
+          format: email
+          type: string
+        active:
+          description: Whether the user is active or not
+          type: boolean
+        created_at:
+          example: 2019-02-08T11:45:48.899Z
+          format: date-time
+          type: string
+        last_active:
+          example: 2019-02-08T11:45:48.899Z
+          format: date-time
+          nullable: true
+          type: string
+        first_name:
+          description: The first name of the user
+          maxLength: 36
+          minLength: 1
+          nullable: true
+          type: string
+        last_name:
+          description: The last name of the user
+          maxLength: 36
+          minLength: 1
+          nullable: true
+          type: string
+        metadata:
+          additionalProperties:
+            nullable: true
+          default: {}
+          type: object
+        is_admin:
+          description: Whether the user is an admin or not
+          type: boolean
+        user_type:
+          description: The user type
+          enum:
+          - default
+          - mobile
+          - embed
+          type: string
+        two_factor_auth_enabled:
+          description: Whether two factor authentication is enabled for this user
+          type: boolean
+      required:
+      - active
+      - created_at
+      - email
+      - first_name
+      - id
+      - is_admin
+      - last_active
+      - last_name
+      - legacy_id
+      - metadata
+      - two_factor_auth_enabled
+      - user_type
+      type: object
+    _users__userId__patch_200_response:
+      example:
+        data:
+          is_admin: true
+          two_factor_auth_enabled: true
+          metadata:
+            key: ""
+          user_type: default
+          legacy_id: 0.8008281904610115
+          active: true
+          created_at: 2019-02-08T11:45:48.899Z
+          last_name: last_name
+          id: id
+          last_active: 2019-02-08T11:45:48.899Z
+          first_name: first_name
+          email: email
+        success: true
+      properties:
+        success:
+          description: API request succeeded
+          type: boolean
+        data:
+          $ref: '#/components/schemas/_users__userId__patch_200_response_data'
+      required:
+      - data
+      - success
+      type: object
     _users_get_200_response:
       description: A paginated list of users.
       example:
@@ -5750,7 +6169,7 @@ components:
         data:
           description: An array of requested items
           items:
-            $ref: '#/components/schemas/_users__userId__get_200_response_data'
+            $ref: '#/components/schemas/_users__userId__get_200_response_data_anyOf'
           type: array
         total_count:
           description: Total number of items in the response
@@ -6017,6 +6436,23 @@ components:
       - id
       - is_group_admin
       type: object
+    _groups__groupId__get_200_response_data_user_invites_inner_groups_inner:
+      example:
+        name: name
+        legacy_id: 5.637376656633329
+        id: 2.3021358869347655
+      properties:
+        legacy_id:
+          type: number
+        id:
+          type: number
+        name:
+          type: string
+      required:
+      - id
+      - legacy_id
+      - name
+      type: object
     _groups__groupId__get_200_response_data_user_invites_inner:
       description: User Invite
       example:
@@ -6027,6 +6463,13 @@ components:
         user_type: default
         legacy_id: 5.962133916683182
         created_at: created_at
+        groups:
+        - name: name
+          legacy_id: 5.637376656633329
+          id: 2.3021358869347655
+        - name: name
+          legacy_id: 5.637376656633329
+          id: 2.3021358869347655
         id: 1.4658129805029452
         invited_by: invited_by
         invited_email: invited_email
@@ -6069,6 +6512,11 @@ components:
           description: User invite link expires 7 days after generation.
           format: uri
           type: string
+        groups:
+          description: The groups that the user is invited to
+          items:
+            $ref: '#/components/schemas/_groups__groupId__get_200_response_data_user_invites_inner_groups_inner'
+          type: array
       required:
       - claimed_at
       - claimed_by
@@ -6102,6 +6550,13 @@ components:
           user_type: default
           legacy_id: 5.962133916683182
           created_at: created_at
+          groups:
+          - name: name
+            legacy_id: 5.637376656633329
+            id: 2.3021358869347655
+          - name: name
+            legacy_id: 5.637376656633329
+            id: 2.3021358869347655
           id: 1.4658129805029452
           invited_by: invited_by
           invited_email: invited_email
@@ -6114,6 +6569,13 @@ components:
           user_type: default
           legacy_id: 5.962133916683182
           created_at: created_at
+          groups:
+          - name: name
+            legacy_id: 5.637376656633329
+            id: 2.3021358869347655
+          - name: name
+            legacy_id: 5.637376656633329
+            id: 2.3021358869347655
           id: 1.4658129805029452
           invited_by: invited_by
           invited_email: invited_email
@@ -6259,6 +6721,13 @@ components:
             user_type: default
             legacy_id: 5.962133916683182
             created_at: created_at
+            groups:
+            - name: name
+              legacy_id: 5.637376656633329
+              id: 2.3021358869347655
+            - name: name
+              legacy_id: 5.637376656633329
+              id: 2.3021358869347655
             id: 1.4658129805029452
             invited_by: invited_by
             invited_email: invited_email
@@ -6271,6 +6740,13 @@ components:
             user_type: default
             legacy_id: 5.962133916683182
             created_at: created_at
+            groups:
+            - name: name
+              legacy_id: 5.637376656633329
+              id: 2.3021358869347655
+            - name: name
+              legacy_id: 5.637376656633329
+              id: 2.3021358869347655
             id: 1.4658129805029452
             invited_by: invited_by
             invited_email: invited_email
@@ -6414,6 +6890,13 @@ components:
           user_type: default
           legacy_id: 5.962133916683182
           created_at: created_at
+          groups:
+          - name: name
+            legacy_id: 5.637376656633329
+            id: 2.3021358869347655
+          - name: name
+            legacy_id: 5.637376656633329
+            id: 2.3021358869347655
           id: 1.4658129805029452
           invited_by: invited_by
           invited_email: invited_email
@@ -6426,6 +6909,13 @@ components:
           user_type: default
           legacy_id: 5.962133916683182
           created_at: created_at
+          groups:
+          - name: name
+            legacy_id: 5.637376656633329
+            id: 2.3021358869347655
+          - name: name
+            legacy_id: 5.637376656633329
+            id: 2.3021358869347655
           id: 1.4658129805029452
           invited_by: invited_by
           invited_email: invited_email
@@ -6571,6 +7061,13 @@ components:
             user_type: default
             legacy_id: 5.962133916683182
             created_at: created_at
+            groups:
+            - name: name
+              legacy_id: 5.637376656633329
+              id: 2.3021358869347655
+            - name: name
+              legacy_id: 5.637376656633329
+              id: 2.3021358869347655
             id: 1.4658129805029452
             invited_by: invited_by
             invited_email: invited_email
@@ -6583,6 +7080,13 @@ components:
             user_type: default
             legacy_id: 5.962133916683182
             created_at: created_at
+            groups:
+            - name: name
+              legacy_id: 5.637376656633329
+              id: 2.3021358869347655
+            - name: name
+              legacy_id: 5.637376656633329
+              id: 2.3021358869347655
             id: 1.4658129805029452
             invited_by: invited_by
             invited_email: invited_email
@@ -6650,6 +7154,13 @@ components:
           user_type: default
           legacy_id: 5.962133916683182
           created_at: created_at
+          groups:
+          - name: name
+            legacy_id: 5.637376656633329
+            id: 2.3021358869347655
+          - name: name
+            legacy_id: 5.637376656633329
+            id: 2.3021358869347655
           id: 1.4658129805029452
           invited_by: invited_by
           invited_email: invited_email
@@ -6662,6 +7173,13 @@ components:
           user_type: default
           legacy_id: 5.962133916683182
           created_at: created_at
+          groups:
+          - name: name
+            legacy_id: 5.637376656633329
+            id: 2.3021358869347655
+          - name: name
+            legacy_id: 5.637376656633329
+            id: 2.3021358869347655
           id: 1.4658129805029452
           invited_by: invited_by
           invited_email: invited_email
@@ -6808,6 +7326,13 @@ components:
             user_type: default
             legacy_id: 5.962133916683182
             created_at: created_at
+            groups:
+            - name: name
+              legacy_id: 5.637376656633329
+              id: 2.3021358869347655
+            - name: name
+              legacy_id: 5.637376656633329
+              id: 2.3021358869347655
             id: 1.4658129805029452
             invited_by: invited_by
             invited_email: invited_email
@@ -6820,6 +7345,13 @@ components:
             user_type: default
             legacy_id: 5.962133916683182
             created_at: created_at
+            groups:
+            - name: name
+              legacy_id: 5.637376656633329
+              id: 2.3021358869347655
+            - name: name
+              legacy_id: 5.637376656633329
+              id: 2.3021358869347655
             id: 1.4658129805029452
             invited_by: invited_by
             invited_email: invited_email
@@ -6856,6 +7388,13 @@ components:
             user_type: default
             legacy_id: 5.962133916683182
             created_at: created_at
+            groups:
+            - name: name
+              legacy_id: 5.637376656633329
+              id: 2.3021358869347655
+            - name: name
+              legacy_id: 5.637376656633329
+              id: 2.3021358869347655
             id: 1.4658129805029452
             invited_by: invited_by
             invited_email: invited_email
@@ -6868,6 +7407,13 @@ components:
             user_type: default
             legacy_id: 5.962133916683182
             created_at: created_at
+            groups:
+            - name: name
+              legacy_id: 5.637376656633329
+              id: 2.3021358869347655
+            - name: name
+              legacy_id: 5.637376656633329
+              id: 2.3021358869347655
             id: 1.4658129805029452
             invited_by: invited_by
             invited_email: invited_email
@@ -7019,6 +7565,13 @@ components:
           user_type: default
           legacy_id: 5.962133916683182
           created_at: created_at
+          groups:
+          - name: name
+            legacy_id: 5.637376656633329
+            id: 2.3021358869347655
+          - name: name
+            legacy_id: 5.637376656633329
+            id: 2.3021358869347655
           id: 1.4658129805029452
           invited_by: invited_by
           invited_email: invited_email
@@ -7031,6 +7584,13 @@ components:
           user_type: default
           legacy_id: 5.962133916683182
           created_at: created_at
+          groups:
+          - name: name
+            legacy_id: 5.637376656633329
+            id: 2.3021358869347655
+          - name: name
+            legacy_id: 5.637376656633329
+            id: 2.3021358869347655
           id: 1.4658129805029452
           invited_by: invited_by
           invited_email: invited_email
@@ -7176,6 +7736,13 @@ components:
             user_type: default
             legacy_id: 5.962133916683182
             created_at: created_at
+            groups:
+            - name: name
+              legacy_id: 5.637376656633329
+              id: 2.3021358869347655
+            - name: name
+              legacy_id: 5.637376656633329
+              id: 2.3021358869347655
             id: 1.4658129805029452
             invited_by: invited_by
             invited_email: invited_email
@@ -7188,6 +7755,13 @@ components:
             user_type: default
             legacy_id: 5.962133916683182
             created_at: created_at
+            groups:
+            - name: name
+              legacy_id: 5.637376656633329
+              id: 2.3021358869347655
+            - name: name
+              legacy_id: 5.637376656633329
+              id: 2.3021358869347655
             id: 1.4658129805029452
             invited_by: invited_by
             invited_email: invited_email
@@ -7252,11 +7826,11 @@ components:
         id:
           description: The id of the folder. Currently this is the same as legacy_id
             but will be different in the future.
-          pattern: "^(app|workflow|resource|agent)_([0-9]\\d*)$"
+          pattern: "^(app|workflow|resource|agent|library)_([0-9]\\d*)$"
           type: string
         legacy_id:
           description: The legacy id of the folder.
-          pattern: "^(app|workflow|resource|agent)_([0-9]\\d*)$"
+          pattern: "^(app|workflow|resource|agent|library)_([0-9]\\d*)$"
           type: string
         name:
           description: The name of the folder
@@ -7264,7 +7838,7 @@ components:
         parent_folder_id:
           description: The id of the parent folder
           nullable: true
-          pattern: "^(app|workflow|resource|agent)_([0-9]\\d*)$"
+          pattern: "^(app|workflow|resource|agent|library)_([0-9]\\d*)$"
           type: string
         is_system_folder:
           description: Whether the folder is a system folder
@@ -7276,6 +7850,7 @@ components:
           - workflow
           - resource
           - agent
+          - library
           type: string
         created_at:
           example: 2019-02-08T11:45:48.899Z
@@ -7350,7 +7925,7 @@ components:
         parent_folder_id:
           description: The ID of the parent folder.
           nullable: true
-          pattern: "^(app|workflow|resource|agent)_([0-9]\\d*)$"
+          pattern: "^(app|workflow|resource|agent|library)_([0-9]\\d*)$"
           type: string
         folder_type:
           description: The type of the folder.
@@ -7359,6 +7934,7 @@ components:
           - workflow
           - resource
           - agent
+          - library
           type: string
       required:
       - folder_type
@@ -7379,11 +7955,11 @@ components:
         id:
           description: The id of the folder. Currently this is the same as legacy_id
             but will be different in the future.
-          pattern: "^(app|workflow|resource|agent)_([0-9]\\d*)$"
+          pattern: "^(app|workflow|resource|agent|library)_([0-9]\\d*)$"
           type: string
         legacy_id:
           description: The legacy id of the folder.
-          pattern: "^(app|workflow|resource|agent)_([0-9]\\d*)$"
+          pattern: "^(app|workflow|resource|agent|library)_([0-9]\\d*)$"
           type: string
         name:
           description: The name of the folder
@@ -7391,7 +7967,7 @@ components:
         parent_folder_id:
           description: The id of the parent folder
           nullable: true
-          pattern: "^(app|workflow|resource|agent)_([0-9]\\d*)$"
+          pattern: "^(app|workflow|resource|agent|library)_([0-9]\\d*)$"
           type: string
         is_system_folder:
           description: Whether the folder is a system folder
@@ -7403,6 +7979,7 @@ components:
           - workflow
           - resource
           - agent
+          - library
           type: string
         created_at:
           example: 2019-02-08T11:45:48.899Z
@@ -7472,11 +8049,11 @@ components:
         id:
           description: The id of the folder. Currently this is the same as legacy_id
             but will be different in the future.
-          pattern: "^(app|workflow|resource|agent)_([0-9]\\d*)$"
+          pattern: "^(app|workflow|resource|agent|library)_([0-9]\\d*)$"
           type: string
         legacy_id:
           description: The legacy id of the folder.
-          pattern: "^(app|workflow|resource|agent)_([0-9]\\d*)$"
+          pattern: "^(app|workflow|resource|agent|library)_([0-9]\\d*)$"
           type: string
         name:
           description: The name of the folder
@@ -7484,7 +8061,7 @@ components:
         parent_folder_id:
           description: The id of the parent folder
           nullable: true
-          pattern: "^(app|workflow|resource|agent)_([0-9]\\d*)$"
+          pattern: "^(app|workflow|resource|agent|library)_([0-9]\\d*)$"
           type: string
         is_system_folder:
           description: Whether the folder is a system folder
@@ -7496,6 +8073,7 @@ components:
           - workflow
           - resource
           - agent
+          - library
           type: string
         created_at:
           example: 2019-02-08T11:45:48.899Z
@@ -7617,11 +8195,11 @@ components:
         id:
           description: The id of the folder. Currently this is the same as legacy_id
             but will be different in the future.
-          pattern: "^(app|workflow|resource|agent)_([0-9]\\d*)$"
+          pattern: "^(app|workflow|resource|agent|library)_([0-9]\\d*)$"
           type: string
         legacy_id:
           description: The legacy id of the folder.
-          pattern: "^(app|workflow|resource|agent)_([0-9]\\d*)$"
+          pattern: "^(app|workflow|resource|agent|library)_([0-9]\\d*)$"
           type: string
         name:
           description: The name of the folder
@@ -7629,7 +8207,7 @@ components:
         parent_folder_id:
           description: The id of the parent folder
           nullable: true
-          pattern: "^(app|workflow|resource|agent)_([0-9]\\d*)$"
+          pattern: "^(app|workflow|resource|agent|library)_([0-9]\\d*)$"
           type: string
         is_system_folder:
           description: Whether the folder is a system folder
@@ -7641,6 +8219,7 @@ components:
           - workflow
           - resource
           - agent
+          - library
           type: string
         created_at:
           example: 2019-02-08T11:45:48.899Z
@@ -8306,10 +8885,6 @@ components:
     Bitbucket_config_anyOf:
       additionalProperties: false
       properties:
-        type:
-          enum:
-          - AppPassword
-          type: string
         username:
           description: Your Bitbucket username.
           type: string
@@ -8348,6 +8923,7 @@ components:
           type: string
       required:
       - token
+      - type
       type: object
     Bitbucket_config:
       anyOf:
@@ -8670,7 +9246,11 @@ components:
     _source_control_deploy_post_200_response_data:
       description: Source control deploy response
       example:
+        completed_at: completed_at
+        commit_sha: commit_sha
+        created_at: created_at
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        triggered_by: triggered_by
         status: PENDING_START
       properties:
         id:
@@ -8678,20 +9258,48 @@ components:
           format: uuid
           type: string
         status:
+          description: The deployment status
           enum:
           - PENDING_START
           - RUNNING
           - SUCCESS
           - ERROR
           type: string
+        commit_sha:
+          description: The commit SHA that was deployed. Will be null while the deployment
+            is in PENDING_START status.
+          nullable: true
+          type: string
+        triggered_by:
+          description: "The user ID who triggered the deployment, or null if triggered\
+            \ automatically"
+          nullable: true
+          pattern: "user_([a-z0-9]+)"
+          type: string
+        created_at:
+          description: ISO 8601 timestamp when the deployment was created
+          type: string
+        completed_at:
+          description: "ISO 8601 timestamp when the deployment completed, or null\
+            \ if still in progress"
+          nullable: true
+          type: string
       required:
+      - commit_sha
+      - completed_at
+      - created_at
       - id
       - status
+      - triggered_by
       type: object
     _source_control_deploy_post_200_response:
       example:
         data:
+          completed_at: completed_at
+          commit_sha: commit_sha
+          created_at: created_at
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          triggered_by: triggered_by
           status: PENDING_START
         success: true
       properties:
@@ -8700,6 +9308,107 @@ components:
           type: boolean
         data:
           $ref: '#/components/schemas/_source_control_deploy_post_200_response_data'
+      required:
+      - data
+      - success
+      type: object
+    _source_control_deployments_get_200_response_data_deployments_inner:
+      example:
+        completed_at: completed_at
+        commit_sha: commit_sha
+        created_at: created_at
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        triggered_by: triggered_by
+        status: PENDING_START
+      properties:
+        id:
+          description: The deployment ID
+          format: uuid
+          type: string
+        status:
+          description: The deployment status
+          enum:
+          - PENDING_START
+          - RUNNING
+          - SUCCESS
+          - ERROR
+          type: string
+        commit_sha:
+          description: The commit SHA that was deployed. Will be null while the deployment
+            is in PENDING_START status.
+          nullable: true
+          type: string
+        triggered_by:
+          description: "The user ID who triggered the deployment, or null if triggered\
+            \ automatically"
+          nullable: true
+          pattern: "user_([a-z0-9]+)"
+          type: string
+        created_at:
+          description: ISO 8601 timestamp when the deployment was created
+          type: string
+        completed_at:
+          description: "ISO 8601 timestamp when the deployment completed, or null\
+            \ if still in progress"
+          nullable: true
+          type: string
+      required:
+      - commit_sha
+      - completed_at
+      - created_at
+      - id
+      - status
+      - triggered_by
+      type: object
+    _source_control_deployments_get_200_response_data:
+      description: List of source control deployments
+      example:
+        deployments:
+        - completed_at: completed_at
+          commit_sha: commit_sha
+          created_at: created_at
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          triggered_by: triggered_by
+          status: PENDING_START
+        - completed_at: completed_at
+          commit_sha: commit_sha
+          created_at: created_at
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          triggered_by: triggered_by
+          status: PENDING_START
+      properties:
+        deployments:
+          description: "List of deployments, ordered by creation time (most recent\
+            \ first)"
+          items:
+            $ref: '#/components/schemas/_source_control_deployments_get_200_response_data_deployments_inner'
+          type: array
+      required:
+      - deployments
+      type: object
+    _source_control_deployments_get_200_response:
+      example:
+        data:
+          deployments:
+          - completed_at: completed_at
+            commit_sha: commit_sha
+            created_at: created_at
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            triggered_by: triggered_by
+            status: PENDING_START
+          - completed_at: completed_at
+            commit_sha: commit_sha
+            created_at: created_at
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            triggered_by: triggered_by
+            status: PENDING_START
+        success: true
+      properties:
+        success:
+          description: API request succeeded
+          type: boolean
+        data:
+          $ref: '#/components/schemas/_source_control_deployments_get_200_response_data'
       required:
       - data
       - success
@@ -9069,8 +9778,15 @@ components:
           release: 1.0.1
         - uuid: 200be837-2558-4f88-bb3b-07bea668c23e
           release: 27.18.0
+        workflows:
+        - uuid: 8079edae-d5c2-46de-b5bb-153249e8463f
+          release: 1.0.5
       properties:
         apps:
+          items:
+            $ref: '#/components/schemas/_source_control_manifests_get_200_response_data_manifests_inner_apps_inner'
+          type: array
+        workflows:
           items:
             $ref: '#/components/schemas/_source_control_manifests_get_200_response_data_manifests_inner_apps_inner'
           type: array
@@ -9137,8 +9853,8 @@ components:
       - enum:
         - latest
         type: string
-      description: The release version to set for the specified app in the named release
-        manifest
+      description: The release version to set for the specified element in the named
+        release manifest
       example: 27.18.0
     _source_control_manifests__manifestName__apps__appUuid__put_request:
       properties:
@@ -9331,9 +10047,6 @@ components:
             key: ""
           id: 0.8008281904610115
         success: true
-        total_count: 1.4658129805029452
-        has_more: true
-        next_token: next_token
       properties:
         success:
           description: API request succeeded
@@ -9343,22 +10056,9 @@ components:
           items:
             $ref: '#/components/schemas/_app_themes_get_200_response_data_inner'
           type: array
-        total_count:
-          description: Total number of items in the response
-          type: number
-        next_token:
-          description: A token to retrieve the next page of items in the collection
-          nullable: true
-          type: string
-        has_more:
-          description: Whether there are more items in the collection
-          type: boolean
       required:
       - data
-      - has_more
-      - next_token
       - success
-      - total_count
       type: object
     _app_themes_put_200_response_data:
       description: The updated app theme.
@@ -9449,7 +10149,7 @@ components:
           type: string
         folder_id:
           description: The id of the folder
-          pattern: "^(app|workflow|resource|agent)_([0-9]\\d*)$"
+          pattern: "^(app|workflow|resource|agent|library)_([0-9]\\d*)$"
           type: string
         protected:
           description: Whether the App is protected
@@ -9589,7 +10289,7 @@ components:
           type: string
         folder_id:
           description: The id of the folder
-          pattern: "^(app|workflow|resource|agent)_([0-9]\\d*)$"
+          pattern: "^(app|workflow|resource|agent|library)_([0-9]\\d*)$"
           type: string
       required:
       - app_id
@@ -10005,9 +10705,6 @@ components:
           label: label
           intercom_attribute_name: intercom_attribute_name
         success: true
-        total_count: 0.8008281904610115
-        has_more: true
-        next_token: next_token
       properties:
         success:
           description: API request succeeded
@@ -10017,22 +10714,9 @@ components:
           items:
             $ref: '#/components/schemas/_user_attributes_get_200_response_data_inner'
           type: array
-        total_count:
-          description: Total number of items in the response
-          type: number
-        next_token:
-          description: A token to retrieve the next page of items in the collection
-          nullable: true
-          type: string
-        has_more:
-          description: Whether there are more items in the collection
-          type: boolean
       required:
       - data
-      - has_more
-      - next_token
       - success
-      - total_count
       type: object
     _user_attributes_post_request:
       properties:
@@ -10615,7 +11299,7 @@ components:
           type: string
         id:
           description: The id of the folder
-          pattern: "^(app|workflow|resource|agent)_([0-9]\\d*)$"
+          pattern: "^(app|workflow|resource|agent|library)_([0-9]\\d*)$"
           type: string
         access_level:
           description: The access level of the folder
@@ -10655,6 +11339,28 @@ components:
       properties:
         type:
           enum:
+          - screen
+          type: string
+        id:
+          description: The screen UUID.
+          format: uuid
+          type: string
+        access_level:
+          description: The access level of the screen
+          enum:
+          - own
+          - edit
+          - use
+          type: string
+      required:
+      - access_level
+      - id
+      - type
+      type: object
+    _permissions_listObjects_post_200_response_data_inner_anyOf_3:
+      properties:
+        type:
+          enum:
           - resource
           type: string
         id:
@@ -10672,7 +11378,7 @@ components:
       - id
       - type
       type: object
-    _permissions_listObjects_post_200_response_data_inner_anyOf_3:
+    _permissions_listObjects_post_200_response_data_inner_anyOf_4:
       properties:
         type:
           enum:
@@ -10703,8 +11409,7 @@ components:
       - $ref: '#/components/schemas/_permissions_listObjects_post_200_response_data_inner_anyOf_1'
       - $ref: '#/components/schemas/_permissions_listObjects_post_200_response_data_inner_anyOf_2'
       - $ref: '#/components/schemas/_permissions_listObjects_post_200_response_data_inner_anyOf_3'
-      discriminator:
-        propertyName: type
+      - $ref: '#/components/schemas/_permissions_listObjects_post_200_response_data_inner_anyOf_4'
     _permissions_listObjects_post_200_response:
       example:
         data:
@@ -10753,7 +11458,7 @@ components:
           type: string
         id:
           description: The id of the folder
-          pattern: "^(app|workflow|resource|agent)_([0-9]\\d*)$"
+          pattern: "^(app|workflow|resource|agent|library)_([0-9]\\d*)$"
           type: string
       required:
       - id
@@ -10775,6 +11480,27 @@ components:
       - id
       - type
       title: App
+      type: object
+    Screen:
+      additionalProperties: false
+      properties:
+        type:
+          enum:
+          - screen
+          type: string
+        id:
+          description: The screen UUID.
+          format: uuid
+          type: string
+        appId:
+          description: The app ID.
+          format: uuid
+          type: string
+      required:
+      - appId
+      - id
+      - type
+      title: Screen
       type: object
     Resource:
       additionalProperties: false
@@ -10811,6 +11537,7 @@ components:
       oneOf:
       - $ref: '#/components/schemas/Folder'
       - $ref: '#/components/schemas/App'
+      - $ref: '#/components/schemas/Screen'
       - $ref: '#/components/schemas/Resource'
       - $ref: '#/components/schemas/Resource_Configuration'
     _permissions_grant_post_request:
@@ -10831,6 +11558,29 @@ components:
       - access_level
       - object
       - subject
+      type: object
+    _permissions_grant_post_200_response:
+      example:
+        data:
+        - access_level: own
+          id: id
+          type: folder
+        - access_level: own
+          id: id
+          type: folder
+        success: true
+      properties:
+        success:
+          description: API request succeeded
+          type: boolean
+        data:
+          description: An array of requested items
+          items:
+            $ref: '#/components/schemas/_permissions_listObjects_post_200_response_data_inner'
+          type: array
+      required:
+      - data
+      - success
       type: object
     _permissions_revoke_post_request:
       additionalProperties: false
@@ -10857,6 +11607,9 @@ components:
         organization_scopes:
         - organization_scopes
         - organization_scopes
+        added_dependent_scopes:
+        - added_dependent_scopes
+        - added_dependent_scopes
         object_scopes:
         - object_scopes
         - object_scopes
@@ -10890,6 +11643,11 @@ components:
           items:
             type: string
           type: array
+        added_dependent_scopes:
+          description: The dependent scopes that were automatically added to the role
+          items:
+            type: string
+          type: array
         created_at:
           example: 2019-02-08T11:45:48.899Z
           type: string
@@ -10897,6 +11655,7 @@ components:
           example: 2019-02-24T18:28:18.790Z
           type: string
       required:
+      - added_dependent_scopes
       - created_at
       - description
       - id
@@ -10922,6 +11681,9 @@ components:
           organization_scopes:
           - organization_scopes
           - organization_scopes
+          added_dependent_scopes:
+          - added_dependent_scopes
+          - added_dependent_scopes
           object_scopes:
           - object_scopes
           - object_scopes
@@ -10936,13 +11698,13 @@ components:
           organization_scopes:
           - organization_scopes
           - organization_scopes
+          added_dependent_scopes:
+          - added_dependent_scopes
+          - added_dependent_scopes
           object_scopes:
           - object_scopes
           - object_scopes
         success: true
-        total_count: 0.8008281904610115
-        has_more: true
-        next_token: next_token
       properties:
         success:
           description: API request succeeded
@@ -10952,22 +11714,9 @@ components:
           items:
             $ref: '#/components/schemas/_role_permissions_roles_get_200_response_data_inner'
           type: array
-        total_count:
-          description: Total number of items in the response
-          type: number
-        next_token:
-          description: A token to retrieve the next page of items in the collection
-          nullable: true
-          type: string
-        has_more:
-          description: Whether there are more items in the collection
-          type: boolean
       required:
       - data
-      - has_more
-      - next_token
       - success
-      - total_count
       type: object
     _role_permissions_roles_post_request:
       properties:
@@ -11006,6 +11755,9 @@ components:
         organization_scopes:
         - organization_scopes
         - organization_scopes
+        added_dependent_scopes:
+        - added_dependent_scopes
+        - added_dependent_scopes
         object_scopes:
         - object_scopes
         - object_scopes
@@ -11039,6 +11791,11 @@ components:
           items:
             type: string
           type: array
+        added_dependent_scopes:
+          description: The dependent scopes that were automatically added to the role
+          items:
+            type: string
+          type: array
         created_at:
           example: 2019-02-08T11:45:48.899Z
           type: string
@@ -11046,6 +11803,7 @@ components:
           example: 2019-02-24T18:28:18.790Z
           type: string
       required:
+      - added_dependent_scopes
       - created_at
       - description
       - id
@@ -11551,6 +12309,13 @@ components:
           user_type: default
           legacy_id: 5.962133916683182
           created_at: created_at
+          groups:
+          - name: name
+            legacy_id: 5.637376656633329
+            id: 2.3021358869347655
+          - name: name
+            legacy_id: 5.637376656633329
+            id: 2.3021358869347655
           id: 1.4658129805029452
           invited_by: invited_by
           invited_email: invited_email
@@ -11563,6 +12328,13 @@ components:
           user_type: default
           legacy_id: 5.962133916683182
           created_at: created_at
+          groups:
+          - name: name
+            legacy_id: 5.637376656633329
+            id: 2.3021358869347655
+          - name: name
+            legacy_id: 5.637376656633329
+            id: 2.3021358869347655
           id: 1.4658129805029452
           invited_by: invited_by
           invited_email: invited_email
@@ -11628,6 +12400,13 @@ components:
         user_type: default
         legacy_id: 6.027456183070403
         created_at: created_at
+        groups:
+        - name: name
+          legacy_id: 5.637376656633329
+          id: 2.3021358869347655
+        - name: name
+          legacy_id: 5.637376656633329
+          id: 2.3021358869347655
         id: 0.8008281904610115
         invited_by: invited_by
         invited_email: invited_email
@@ -11670,6 +12449,11 @@ components:
           description: User invite link expires 7 days after generation.
           format: uri
           type: string
+        groups:
+          description: The groups that the user is invited to
+          items:
+            $ref: '#/components/schemas/_groups__groupId__get_200_response_data_user_invites_inner_groups_inner'
+          type: array
       required:
       - claimed_at
       - claimed_by
@@ -11692,6 +12476,13 @@ components:
           user_type: default
           legacy_id: 6.027456183070403
           created_at: created_at
+          groups:
+          - name: name
+            legacy_id: 5.637376656633329
+            id: 2.3021358869347655
+          - name: name
+            legacy_id: 5.637376656633329
+            id: 2.3021358869347655
           id: 0.8008281904610115
           invited_by: invited_by
           invited_email: invited_email
@@ -11719,6 +12510,13 @@ components:
           user_type: default
           legacy_id: 5.962133916683182
           created_at: created_at
+          groups:
+          - name: name
+            legacy_id: 5.637376656633329
+            id: 2.3021358869347655
+          - name: name
+            legacy_id: 5.637376656633329
+            id: 2.3021358869347655
           id: 1.4658129805029452
           invited_by: invited_by
           invited_email: invited_email
@@ -11822,6 +12620,7 @@ components:
         id: id
         type: airflow
         display_name: display_name
+        folder_id: folder_id
       properties:
         id:
           description: The uuid or name for the resource.
@@ -11897,10 +12696,13 @@ components:
           - stripe
           - twilio
           - vertica
-          - aiProvider
           type: string
         display_name:
           minLength: 1
+          type: string
+        folder_id:
+          description: The id of the folder this resource belongs to
+          nullable: true
           type: string
         protected:
           description: Whether the resource is protected in source control
@@ -11929,12 +12731,14 @@ components:
           id: id
           type: airflow
           display_name: display_name
+          folder_id: folder_id
         - protected: true
           updated_at: 2019-02-24T18:28:18.790Z
           created_at: 2019-02-08T11:45:48.899Z
           id: id
           type: airflow
           display_name: display_name
+          folder_id: folder_id
         success: true
         total_count: 0.8008281904610115
         has_more: true
@@ -12362,6 +13166,17 @@ components:
       - basic_username
       type: object
     Rest_API_Options_authentication_options_anyOf_3:
+      properties:
+        bearer_token:
+          type: string
+        authentication_type:
+          enum:
+          - bearer
+          type: string
+      required:
+      - authentication_type
+      type: object
+    Rest_API_Options_authentication_options_anyOf_4:
       additionalProperties: false
       properties:
         authentication_type:
@@ -12377,7 +13192,7 @@ components:
       - digest_password
       - digest_username
       type: object
-    Rest_API_Options_authentication_options_anyOf_4_oauth1_signature_method:
+    Rest_API_Options_authentication_options_anyOf_5_oauth1_signature_method:
       anyOf:
       - enum:
         - HMAC-SHA1
@@ -12388,7 +13203,7 @@ components:
       - enum:
         - PLAINTEXT
         type: string
-    Rest_API_Options_authentication_options_anyOf_4:
+    Rest_API_Options_authentication_options_anyOf_5:
       additionalProperties: false
       properties:
         authentication_type:
@@ -12396,7 +13211,7 @@ components:
           - oauth1
           type: string
         oauth1_signature_method:
-          $ref: '#/components/schemas/Rest_API_Options_authentication_options_anyOf_4_oauth1_signature_method'
+          $ref: '#/components/schemas/Rest_API_Options_authentication_options_anyOf_5_oauth1_signature_method'
         oauth1_consumer_key:
           type: string
         oauth1_consumer_secret:
@@ -12416,12 +13231,23 @@ components:
       - oauth1_token_key
       - oauth1_token_secret
       type: object
-    Rest_API_Options_authentication_options_anyOf_5:
+    Rest_API_Options_authentication_options_anyOf_6:
       additionalProperties: false
       properties:
         authentication_type:
           enum:
           - oauth2
+          type: string
+        oauth2_audience:
+          type: string
+        oauth2_access_token:
+          type: string
+        oauth2_access_token_url:
+          type: string
+        oauth2_access_token_lifespan_seconds:
+          nullable: true
+          type: number
+        oauth2_auth_url:
           type: string
         oauth2_client_id:
           type: string
@@ -12429,27 +13255,16 @@ components:
           type: string
         oauth2_callback_url:
           type: string
-        oauth2_auth_url:
+        oauth2_id_token:
           type: string
-        oauth2_access_token_url:
+        oauth2_refresh_token:
           type: string
         oauth2_scope:
-          type: string
-        oauth2_audience:
           type: string
         oauth2_share_user_credentials:
           type: boolean
         verify_session_url:
           type: string
-        oauth2_access_token:
-          type: string
-        oauth2_refresh_token:
-          type: string
-        oauth2_id_token:
-          type: string
-        oauth2_access_token_lifespan_seconds:
-          nullable: true
-          type: number
       required:
       - authentication_type
       - oauth2_access_token_url
@@ -12457,7 +13272,7 @@ components:
       - oauth2_client_id
       - oauth2_client_secret
       type: object
-    Rest_API_Options_authentication_options_anyOf_6:
+    Rest_API_Options_authentication_options_anyOf_7:
       additionalProperties: false
       properties:
         authentication_type:
@@ -12476,6 +13291,7 @@ components:
       - $ref: '#/components/schemas/Rest_API_Options_authentication_options_anyOf_4'
       - $ref: '#/components/schemas/Rest_API_Options_authentication_options_anyOf_5'
       - $ref: '#/components/schemas/Rest_API_Options_authentication_options_anyOf_6'
+      - $ref: '#/components/schemas/Rest_API_Options_authentication_options_anyOf_7'
       description: Note that custom auth is not yet supported.
     Rest_API_Options:
       additionalProperties: false
@@ -12517,6 +13333,54 @@ components:
       - base_url
       title: Rest API Options
       type: object
+    gRPC_Options_authentication_options:
+      anyOf:
+      - $ref: '#/components/schemas/Rest_API_Options_authentication_options_anyOf'
+      - $ref: '#/components/schemas/Rest_API_Options_authentication_options_anyOf_3'
+      - $ref: '#/components/schemas/Rest_API_Options_authentication_options_anyOf_6'
+      - $ref: '#/components/schemas/Rest_API_Options_authentication_options_anyOf_7'
+    gRPC_Options:
+      additionalProperties: false
+      properties:
+        authentication_options:
+          $ref: '#/components/schemas/gRPC_Options_authentication_options'
+        max_receive_message_length:
+          type: string
+        max_send_message_length:
+          type: string
+        metadata:
+          items:
+            items:
+              type: string
+            type: array
+          type: array
+        options:
+          nullable: true
+        proto_file_url:
+          type: string
+        proto_file_url_headers:
+          items:
+            items:
+              type: string
+            type: array
+          nullable: true
+          type: array
+        proto_source:
+          enum:
+          - url
+          - file_system
+          - reflection
+          type: string
+        service_name:
+          type: string
+        service_names:
+          items:
+            type: string
+          type: array
+        verify_session_action_enabled:
+          type: boolean
+      title: gRPC Options
+      type: object
     _resources_post_request_options:
       anyOf:
       - $ref: '#/components/schemas/Postgres_Options'
@@ -12524,6 +13388,10 @@ components:
       - $ref: '#/components/schemas/Redshift_Options'
       - $ref: '#/components/schemas/Snowflake_Options'
       - $ref: '#/components/schemas/Rest_API_Options'
+      - $ref: '#/components/schemas/gRPC_Options'
+      - additionalProperties: false
+        properties: {}
+        type: object
     _resources_post_request:
       properties:
         type:
@@ -12556,6 +13424,7 @@ components:
         id: id
         type: airflow
         display_name: display_name
+        folder_id: folder_id
       properties:
         id:
           description: The uuid or name for the resource.
@@ -12631,10 +13500,13 @@ components:
           - stripe
           - twilio
           - vertica
-          - aiProvider
           type: string
         display_name:
           minLength: 1
+          type: string
+        folder_id:
+          description: The id of the folder this resource belongs to
+          nullable: true
           type: string
         protected:
           description: Whether the resource is protected in source control
@@ -12662,6 +13534,7 @@ components:
           id: id
           type: airflow
           display_name: display_name
+          folder_id: folder_id
         success: true
       properties:
         success:
@@ -12683,6 +13556,7 @@ components:
           id: id
           type: airflow
           display_name: display_name
+          folder_id: folder_id
         success: true
       properties:
         success:
@@ -12717,6 +13591,7 @@ components:
         id: id
         type: airflow
         display_name: display_name
+        folder_id: folder_id
       properties:
         id:
           description: The uuid or name for the resource.
@@ -12792,10 +13667,13 @@ components:
           - stripe
           - twilio
           - vertica
-          - aiProvider
           type: string
         display_name:
           minLength: 1
+          type: string
+        folder_id:
+          description: The id of the folder this resource belongs to
+          nullable: true
           type: string
         protected:
           description: Whether the resource is protected in source control
@@ -12823,6 +13701,7 @@ components:
           id: id
           type: airflow
           display_name: display_name
+          folder_id: folder_id
         success: true
       properties:
         success:
@@ -12833,6 +13712,118 @@ components:
       required:
       - data
       - success
+      type: object
+    _resource_configurations_get_200_response_data_inner_resource:
+      additionalProperties: false
+      description: Resource
+      example:
+        protected: true
+        updated_at: 2019-02-24T18:28:18.790Z
+        created_at: 2019-02-08T11:45:48.899Z
+        id: id
+        type: airflow
+        display_name: display_name
+        folder_id: folder_id
+      properties:
+        id:
+          description: The uuid or name for the resource.
+          type: string
+        type:
+          description: The type of resource.
+          enum:
+          - airflow
+          - alloydb
+          - asana
+          - athena
+          - basecamp
+          - bigid
+          - bigquery
+          - cassandra
+          - circleci
+          - closeio
+          - cosmosdb
+          - couchdb
+          - databricks
+          - databricksLakebase
+          - datadog
+          - datastore
+          - dbServer
+          - denodo
+          - dynamodb
+          - elasticsearch
+          - firebase
+          - front
+          - gcs
+          - github
+          - googleAnalytics
+          - googleCalendar
+          - googleDocs
+          - googleMaps
+          - googleSearchConsole
+          - googlesheets
+          - graphql
+          - grpc
+          - hubspot
+          - jdbc
+          - jira
+          - lambda
+          - launchdarkly
+          - microsoftTeams
+          - mongodb
+          - mssql
+          - mysql
+          - notion
+          - onesignal
+          - openAI
+          - openapi
+          - oracledb
+          - postgresql
+          - presto
+          - redis
+          - redshift
+          - restapi
+          - rethinkdb
+          - retoolEmail
+          - retoolAI
+          - retoolDb
+          - retoolStorage
+          - s3
+          - salesforce
+          - saphana
+          - sendgrid
+          - shell
+          - slack
+          - slackopenapi
+          - smtp
+          - snowflake
+          - stripe
+          - twilio
+          - vertica
+          type: string
+        display_name:
+          minLength: 1
+          type: string
+        folder_id:
+          description: The id of the folder this resource belongs to
+          nullable: true
+          type: string
+        protected:
+          description: Whether the resource is protected in source control
+          type: boolean
+        created_at:
+          example: 2019-02-08T11:45:48.899Z
+          type: string
+        updated_at:
+          example: 2019-02-24T18:28:18.790Z
+          type: string
+      required:
+      - created_at
+      - display_name
+      - folder_id
+      - id
+      - protected
+      - type
+      - updated_at
       type: object
     _resource_configurations_get_200_response_data_inner_environment:
       description: Environment
@@ -12892,6 +13883,7 @@ components:
           id: id
           type: airflow
           display_name: display_name
+          folder_id: folder_id
         options:
           database_options:
             ssh_tunnel_options:
@@ -12921,7 +13913,7 @@ components:
           format: uuid
           type: string
         resource:
-          $ref: '#/components/schemas/_resources_get_200_response_data_inner'
+          $ref: '#/components/schemas/_resource_configurations_get_200_response_data_inner_resource'
         environment:
           $ref: '#/components/schemas/_resource_configurations_get_200_response_data_inner_environment'
         options:
@@ -12959,6 +13951,7 @@ components:
             id: id
             type: airflow
             display_name: display_name
+            folder_id: folder_id
           options:
             database_options:
               ssh_tunnel_options:
@@ -12998,6 +13991,7 @@ components:
             id: id
             type: airflow
             display_name: display_name
+            folder_id: folder_id
           options:
             database_options:
               ssh_tunnel_options:
@@ -13089,6 +14083,7 @@ components:
           id: id
           type: airflow
           display_name: display_name
+          folder_id: folder_id
         options:
           database_options:
             ssh_tunnel_options:
@@ -13156,6 +14151,7 @@ components:
             id: id
             type: airflow
             display_name: display_name
+            folder_id: folder_id
           options:
             database_options:
               ssh_tunnel_options:
@@ -13210,6 +14206,7 @@ components:
           id: id
           type: airflow
           display_name: display_name
+          folder_id: folder_id
         options:
           database_options:
             ssh_tunnel_options:
@@ -13292,6 +14289,7 @@ components:
           id: id
           type: airflow
           display_name: display_name
+          folder_id: folder_id
         options:
           database_options:
             ssh_tunnel_options:
@@ -13359,6 +14357,7 @@ components:
             id: id
             type: airflow
             display_name: display_name
+            folder_id: folder_id
           options:
             database_options:
               ssh_tunnel_options:
@@ -13709,7 +14708,7 @@ components:
       - success
       type: object
     _custom_component_libraries_get_200_response:
-      description: A paginated list of custom component libraries.
+      description: A list of custom component libraries.
       example:
         data:
         - updated_at: 2000-01-23T04:56:07.000+00:00
@@ -13725,9 +14724,6 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           label: label
         success: true
-        total_count: 0.8008281904610115
-        has_more: true
-        next_token: next_token
       properties:
         success:
           description: API request succeeded
@@ -13737,22 +14733,9 @@ components:
           items:
             $ref: '#/components/schemas/_custom_component_libraries__libraryId__get_200_response_data'
           type: array
-        total_count:
-          description: Total number of items in the response
-          type: number
-        next_token:
-          description: A token to retrieve the next page of items in the collection
-          nullable: true
-          type: string
-        has_more:
-          description: Whether there are more items in the collection
-          type: boolean
       required:
       - data
-      - has_more
-      - next_token
       - success
-      - total_count
       type: object
     _custom_component_libraries_post_request:
       properties:
@@ -13841,9 +14824,6 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           version: version
         success: true
-        total_count: 0.8008281904610115
-        has_more: true
-        next_token: next_token
       properties:
         success:
           description: API request succeeded
@@ -13853,22 +14833,9 @@ components:
           items:
             $ref: '#/components/schemas/_custom_component_libraries__libraryId__revisions_get_200_response_data_inner'
           type: array
-        total_count:
-          description: Total number of items in the response
-          type: number
-        next_token:
-          description: A token to retrieve the next page of items in the collection
-          nullable: true
-          type: string
-        has_more:
-          description: Whether there are more items in the collection
-          type: boolean
       required:
       - data
-      - has_more
-      - next_token
       - success
-      - total_count
       type: object
     _custom_component_libraries__libraryId__revisions_post_request:
       properties:
@@ -13951,9 +14918,6 @@ components:
           file_contents: file_contents
           created_at: 2000-01-23T04:56:07.000+00:00
         success: true
-        total_count: 0.8008281904610115
-        has_more: true
-        next_token: next_token
       properties:
         success:
           description: API request succeeded
@@ -13963,22 +14927,9 @@ components:
           items:
             $ref: '#/components/schemas/_custom_component_libraries__libraryId__revisions__revisionId__files_get_200_response_data_inner'
           type: array
-        total_count:
-          description: Total number of items in the response
-          type: number
-        next_token:
-          description: A token to retrieve the next page of items in the collection
-          nullable: true
-          type: string
-        has_more:
-          description: Whether there are more items in the collection
-          type: boolean
       required:
       - data
-      - has_more
-      - next_token
       - success
-      - total_count
       type: object
     _configuration_variables_get_200_response_data_inner_values_inner:
       example:
@@ -14052,9 +15003,6 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           secret: true
         success: true
-        total_count: 0.8008281904610115
-        has_more: true
-        next_token: next_token
       properties:
         success:
           description: API request succeeded
@@ -14064,22 +15012,9 @@ components:
           items:
             $ref: '#/components/schemas/_configuration_variables_get_200_response_data_inner'
           type: array
-        total_count:
-          description: Total number of items in the response
-          type: number
-        next_token:
-          description: A token to retrieve the next page of items in the collection
-          nullable: true
-          type: string
-        has_more:
-          description: Whether there are more items in the collection
-          type: boolean
       required:
       - data
-      - has_more
-      - next_token
       - success
-      - total_count
       type: object
     _configuration_variables_post_request:
       properties:
@@ -14456,9 +15391,6 @@ components:
           host: host
           last_active: 2019-02-08T11:45:48.899Z
         success: true
-        total_count: 0.8008281904610115
-        has_more: true
-        next_token: next_token
       properties:
         success:
           description: API request succeeded
@@ -14468,22 +15400,9 @@ components:
           items:
             $ref: '#/components/schemas/_usage_organizations_get_200_response_data_inner'
           type: array
-        total_count:
-          description: Total number of items in the response
-          type: number
-        next_token:
-          description: A token to retrieve the next page of items in the collection
-          nullable: true
-          type: string
-        has_more:
-          description: Whether there are more items in the collection
-          type: boolean
       required:
       - data
-      - has_more
-      - next_token
       - success
-      - total_count
       type: object
     _usage_get_200_response_data_daily_T30_usage_inner:
       example:
@@ -14655,9 +15574,6 @@ components:
           count_viewers: 1.4658129805029452
           count_app_saves: 6.027456183070403
         success: true
-        total_count: 5.637376656633329
-        has_more: true
-        next_token: next_token
       properties:
         success:
           description: API request succeeded
@@ -14667,22 +15583,9 @@ components:
           items:
             $ref: '#/components/schemas/_usage_app_summary_get_200_response_data_inner'
           type: array
-        total_count:
-          description: Total number of items in the response
-          type: number
-        next_token:
-          description: A token to retrieve the next page of items in the collection
-          nullable: true
-          type: string
-        has_more:
-          description: Whether there are more items in the collection
-          type: boolean
       required:
       - data
-      - has_more
-      - next_token
       - success
-      - total_count
       type: object
     _usage_app_details_get_200_response_data_overall_summary_inner:
       additionalProperties: false
@@ -14987,9 +15890,6 @@ components:
           email: email
           count_app_saves: 6.027456183070403
         success: true
-        total_count: 5.962133916683182
-        has_more: true
-        next_token: next_token
       properties:
         success:
           description: API request succeeded
@@ -14999,22 +15899,9 @@ components:
           items:
             $ref: '#/components/schemas/_usage_user_summary_get_200_response_data_inner'
           type: array
-        total_count:
-          description: Total number of items in the response
-          type: number
-        next_token:
-          description: A token to retrieve the next page of items in the collection
-          nullable: true
-          type: string
-        has_more:
-          description: Whether there are more items in the collection
-          type: boolean
       required:
       - data
-      - has_more
-      - next_token
       - success
-      - total_count
       type: object
     _usage_user_details_get_200_response_data_overall_summary_inner:
       additionalProperties: false

@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **Metadata** | **map[string]interface{}** |  | [default to {}]
 **CreatedAt** | **string** |  | 
 **InviteLink** | Pointer to **string** | User invite link expires 7 days after generation. | [optional] 
+**Groups** | Pointer to [**[]GroupsGroupIdGet200ResponseDataUserInvitesInnerGroupsInner**](GroupsGroupIdGet200ResponseDataUserInvitesInnerGroupsInner.md) | The groups that the user is invited to | [optional] 
 
 ## Methods
 
@@ -299,6 +300,31 @@ SetInviteLink sets InviteLink field to given value.
 `func (o *GroupsGroupIdGet200ResponseDataUserInvitesInner) HasInviteLink() bool`
 
 HasInviteLink returns a boolean if a field has been set.
+
+### GetGroups
+
+`func (o *GroupsGroupIdGet200ResponseDataUserInvitesInner) GetGroups() []GroupsGroupIdGet200ResponseDataUserInvitesInnerGroupsInner`
+
+GetGroups returns the Groups field if non-nil, zero value otherwise.
+
+### GetGroupsOk
+
+`func (o *GroupsGroupIdGet200ResponseDataUserInvitesInner) GetGroupsOk() (*[]GroupsGroupIdGet200ResponseDataUserInvitesInnerGroupsInner, bool)`
+
+GetGroupsOk returns a tuple with the Groups field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGroups
+
+`func (o *GroupsGroupIdGet200ResponseDataUserInvitesInner) SetGroups(v []GroupsGroupIdGet200ResponseDataUserInvitesInnerGroupsInner)`
+
+SetGroups sets Groups field to given value.
+
+### HasGroups
+
+`func (o *GroupsGroupIdGet200ResponseDataUserInvitesInner) HasGroups() bool`
+
+HasGroups returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

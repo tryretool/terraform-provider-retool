@@ -6,12 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** |  | 
 **Id** | **string** | The resource configuration id. | 
+**AppId** | **string** | The app ID. | 
 
 ## Methods
 
 ### NewPermissionsGrantPostRequestObject
 
-`func NewPermissionsGrantPostRequestObject(type_ string, id string, ) *PermissionsGrantPostRequestObject`
+`func NewPermissionsGrantPostRequestObject(type_ string, id string, appId string, ) *PermissionsGrantPostRequestObject`
 
 NewPermissionsGrantPostRequestObject instantiates a new PermissionsGrantPostRequestObject object
 This constructor will assign default values to properties that have it defined,
@@ -64,6 +65,26 @@ and a boolean to check if the value has been set.
 `func (o *PermissionsGrantPostRequestObject) SetId(v string)`
 
 SetId sets Id field to given value.
+
+
+### GetAppId
+
+`func (o *PermissionsGrantPostRequestObject) GetAppId() string`
+
+GetAppId returns the AppId field if non-nil, zero value otherwise.
+
+### GetAppIdOk
+
+`func (o *PermissionsGrantPostRequestObject) GetAppIdOk() (*string, bool)`
+
+GetAppIdOk returns a tuple with the AppId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAppId
+
+`func (o *PermissionsGrantPostRequestObject) SetAppId(v string)`
+
+SetAppId sets AppId field to given value.
 
 
 

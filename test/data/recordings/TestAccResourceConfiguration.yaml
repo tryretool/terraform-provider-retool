@@ -25,28 +25,28 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 605
+        content_length: 810
         uncompressed: false
-        body: '{"success":true,"data":[{"id":"23ba02f3-12c2-456e-826f-13b616daa5ce","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"}],"total_count":2,"next_token":null,"has_more":false}'
+        body: '{"success":true,"data":[{"id":"23ba02f3-12c2-456e-826f-13b616daa5ce","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"0545f36c-1421-4c46-8fa5-9b9574cbaf8b","name":"Dev","description":"Dev environment","color":"#000000","default":false,"created_at":"2025-11-13T01:26:36.405Z","updated_at":"2025-11-13T01:26:36.405Z"}],"total_count":3,"next_token":null,"has_more":false}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 92.048959ms
+        duration: 172.336084ms
     - id: 1
       request:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
-        content_length: 110
+        content_length: 127
         transfer_encoding: []
         trailer: {}
         host: recorded.retool.dev
         remote_addr: ""
         request_uri: ""
         body: |
-            {"display_name":"Test REST API for Config","options":{"base_url":"https://api.example.com"},"type":"restapi"}
+            {"display_name":"Test REST API for Config","folder_id":null,"options":{"base_url":"https://api.example.com"},"type":"restapi"}
         form: {}
         headers:
             Content-Type:
@@ -63,13 +63,13 @@ interactions:
         trailer: {}
         content_length: 226
         uncompressed: false
-        body: '{"success":true,"data":{"id":"d7dfe353-1c51-4fdf-ad60-93aad5fe54ca","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2025-11-12T23:23:46.910Z","updated_at":"2025-11-12T23:23:46.910Z"}}'
+        body: '{"success":true,"data":{"id":"f95ea27b-5af9-4996-8750-a32430bc0134","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2026-02-04T22:55:43.694Z","updated_at":"2026-02-04T22:55:43.694Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 55.418458ms
+        duration: 61.018625ms
     - id: 2
       request:
         proto: HTTP/1.1
@@ -82,7 +82,7 @@ interactions:
         remote_addr: ""
         request_uri: ""
         body: |
-            {"environment_id":"fc4a3c5b-6328-4990-b368-6879a1f38855","options":{"base_url":"https://api.production.example.com"},"resource_id":"d7dfe353-1c51-4fdf-ad60-93aad5fe54ca"}
+            {"environment_id":"fc4a3c5b-6328-4990-b368-6879a1f38855","options":{"base_url":"https://api.production.example.com"},"resource_id":"f95ea27b-5af9-4996-8750-a32430bc0134"}
         form: {}
         headers:
             Content-Type:
@@ -99,13 +99,13 @@ interactions:
         trailer: {}
         content_length: 755
         uncompressed: false
-        body: '{"success":true,"data":{"id":"c93f307b-6e67-455d-bb27-eb80663ae22c","resource":{"id":"d7dfe353-1c51-4fdf-ad60-93aad5fe54ca","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2025-11-12T23:23:46.910Z","updated_at":"2025-11-12T23:23:46.910Z"},"environment":{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},"options":{"base_url":"https://api.production.example.com","authentication_options":{"authentication_type":"none"}},"created_at":"2025-11-12T23:23:46.980Z","updated_at":"2025-11-12T23:23:46.980Z"}}'
+        body: '{"success":true,"data":{"id":"55ec87b4-6fa7-42df-8654-5580a011b460","resource":{"id":"f95ea27b-5af9-4996-8750-a32430bc0134","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2026-02-04T22:55:43.694Z","updated_at":"2026-02-04T22:55:43.694Z"},"environment":{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},"options":{"base_url":"https://api.production.example.com","authentication_options":{"authentication_type":"none"}},"created_at":"2026-02-04T22:55:43.786Z","updated_at":"2026-02-04T22:55:43.786Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 55.738583ms
+        duration: 78.12875ms
     - id: 3
       request:
         proto: HTTP/1.1
@@ -130,15 +130,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 605
+        content_length: 810
         uncompressed: false
-        body: '{"success":true,"data":[{"id":"23ba02f3-12c2-456e-826f-13b616daa5ce","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"}],"total_count":2,"next_token":null,"has_more":false}'
+        body: '{"success":true,"data":[{"id":"23ba02f3-12c2-456e-826f-13b616daa5ce","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"0545f36c-1421-4c46-8fa5-9b9574cbaf8b","name":"Dev","description":"Dev environment","color":"#000000","default":false,"created_at":"2025-11-13T01:26:36.405Z","updated_at":"2025-11-13T01:26:36.405Z"}],"total_count":3,"next_token":null,"has_more":false}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 36.88475ms
+        duration: 46.832625ms
     - id: 4
       request:
         proto: HTTP/1.1
@@ -163,15 +163,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 605
+        content_length: 810
         uncompressed: false
-        body: '{"success":true,"data":[{"id":"23ba02f3-12c2-456e-826f-13b616daa5ce","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"}],"total_count":2,"next_token":null,"has_more":false}'
+        body: '{"success":true,"data":[{"id":"23ba02f3-12c2-456e-826f-13b616daa5ce","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"0545f36c-1421-4c46-8fa5-9b9574cbaf8b","name":"Dev","description":"Dev environment","color":"#000000","default":false,"created_at":"2025-11-13T01:26:36.405Z","updated_at":"2025-11-13T01:26:36.405Z"}],"total_count":3,"next_token":null,"has_more":false}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 34.091917ms
+        duration: 35.753583ms
     - id: 5
       request:
         proto: HTTP/1.1
@@ -188,7 +188,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/resources/d7dfe353-1c51-4fdf-ad60-93aad5fe54ca
+        url: https://recorded.retool.dev/api/v2/resources/f95ea27b-5af9-4996-8750-a32430bc0134
         method: GET
       response:
         proto: HTTP/1.1
@@ -198,13 +198,13 @@ interactions:
         trailer: {}
         content_length: 226
         uncompressed: false
-        body: '{"success":true,"data":{"id":"d7dfe353-1c51-4fdf-ad60-93aad5fe54ca","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2025-11-12T23:23:46.910Z","updated_at":"2025-11-12T23:23:46.910Z"}}'
+        body: '{"success":true,"data":{"id":"f95ea27b-5af9-4996-8750-a32430bc0134","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2026-02-04T22:55:43.694Z","updated_at":"2026-02-04T22:55:43.694Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 79.96125ms
+        duration: 78.42125ms
     - id: 6
       request:
         proto: HTTP/1.1
@@ -219,7 +219,7 @@ interactions:
         body: ""
         form: {}
         headers: {}
-        url: https://recorded.retool.dev/api/v2/resource_configurations/c93f307b-6e67-455d-bb27-eb80663ae22c
+        url: https://recorded.retool.dev/api/v2/resource_configurations/55ec87b4-6fa7-42df-8654-5580a011b460
         method: GET
       response:
         proto: HTTP/1.1
@@ -229,13 +229,13 @@ interactions:
         trailer: {}
         content_length: 755
         uncompressed: false
-        body: '{"success":true,"data":{"id":"c93f307b-6e67-455d-bb27-eb80663ae22c","resource":{"id":"d7dfe353-1c51-4fdf-ad60-93aad5fe54ca","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2025-11-12T23:23:46.910Z","updated_at":"2025-11-12T23:23:46.910Z"},"environment":{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},"options":{"base_url":"https://api.production.example.com","authentication_options":{"authentication_type":"none"}},"created_at":"2025-11-12T23:23:46.980Z","updated_at":"2025-11-12T23:23:46.980Z"}}'
+        body: '{"success":true,"data":{"id":"55ec87b4-6fa7-42df-8654-5580a011b460","resource":{"id":"f95ea27b-5af9-4996-8750-a32430bc0134","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2026-02-04T22:55:43.694Z","updated_at":"2026-02-04T22:55:43.694Z"},"environment":{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},"options":{"base_url":"https://api.production.example.com","authentication_options":{"authentication_type":"none"}},"created_at":"2026-02-04T22:55:43.786Z","updated_at":"2026-02-04T22:55:43.786Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 40.618625ms
+        duration: 44.909875ms
     - id: 7
       request:
         proto: HTTP/1.1
@@ -260,15 +260,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 605
+        content_length: 810
         uncompressed: false
-        body: '{"success":true,"data":[{"id":"23ba02f3-12c2-456e-826f-13b616daa5ce","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"}],"total_count":2,"next_token":null,"has_more":false}'
+        body: '{"success":true,"data":[{"id":"23ba02f3-12c2-456e-826f-13b616daa5ce","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"0545f36c-1421-4c46-8fa5-9b9574cbaf8b","name":"Dev","description":"Dev environment","color":"#000000","default":false,"created_at":"2025-11-13T01:26:36.405Z","updated_at":"2025-11-13T01:26:36.405Z"}],"total_count":3,"next_token":null,"has_more":false}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 39.735459ms
+        duration: 42.179166ms
     - id: 8
       request:
         proto: HTTP/1.1
@@ -283,7 +283,7 @@ interactions:
         body: ""
         form: {}
         headers: {}
-        url: https://recorded.retool.dev/api/v2/resource_configurations/c93f307b-6e67-455d-bb27-eb80663ae22c
+        url: https://recorded.retool.dev/api/v2/resource_configurations/55ec87b4-6fa7-42df-8654-5580a011b460
         method: GET
       response:
         proto: HTTP/1.1
@@ -293,13 +293,13 @@ interactions:
         trailer: {}
         content_length: 755
         uncompressed: false
-        body: '{"success":true,"data":{"id":"c93f307b-6e67-455d-bb27-eb80663ae22c","resource":{"id":"d7dfe353-1c51-4fdf-ad60-93aad5fe54ca","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2025-11-12T23:23:46.910Z","updated_at":"2025-11-12T23:23:46.910Z"},"environment":{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},"options":{"base_url":"https://api.production.example.com","authentication_options":{"authentication_type":"none"}},"created_at":"2025-11-12T23:23:46.980Z","updated_at":"2025-11-12T23:23:46.980Z"}}'
+        body: '{"success":true,"data":{"id":"55ec87b4-6fa7-42df-8654-5580a011b460","resource":{"id":"f95ea27b-5af9-4996-8750-a32430bc0134","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2026-02-04T22:55:43.694Z","updated_at":"2026-02-04T22:55:43.694Z"},"environment":{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},"options":{"base_url":"https://api.production.example.com","authentication_options":{"authentication_type":"none"}},"created_at":"2026-02-04T22:55:43.786Z","updated_at":"2026-02-04T22:55:43.786Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 40.535167ms
+        duration: 44.79525ms
     - id: 9
       request:
         proto: HTTP/1.1
@@ -324,15 +324,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 605
+        content_length: 810
         uncompressed: false
-        body: '{"success":true,"data":[{"id":"23ba02f3-12c2-456e-826f-13b616daa5ce","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"}],"total_count":2,"next_token":null,"has_more":false}'
+        body: '{"success":true,"data":[{"id":"23ba02f3-12c2-456e-826f-13b616daa5ce","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"0545f36c-1421-4c46-8fa5-9b9574cbaf8b","name":"Dev","description":"Dev environment","color":"#000000","default":false,"created_at":"2025-11-13T01:26:36.405Z","updated_at":"2025-11-13T01:26:36.405Z"}],"total_count":3,"next_token":null,"has_more":false}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 37.637875ms
+        duration: 37.224ms
     - id: 10
       request:
         proto: HTTP/1.1
@@ -349,7 +349,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/resources/d7dfe353-1c51-4fdf-ad60-93aad5fe54ca
+        url: https://recorded.retool.dev/api/v2/resources/f95ea27b-5af9-4996-8750-a32430bc0134
         method: GET
       response:
         proto: HTTP/1.1
@@ -359,13 +359,13 @@ interactions:
         trailer: {}
         content_length: 226
         uncompressed: false
-        body: '{"success":true,"data":{"id":"d7dfe353-1c51-4fdf-ad60-93aad5fe54ca","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2025-11-12T23:23:46.910Z","updated_at":"2025-11-12T23:23:46.910Z"}}'
+        body: '{"success":true,"data":{"id":"f95ea27b-5af9-4996-8750-a32430bc0134","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2026-02-04T22:55:43.694Z","updated_at":"2026-02-04T22:55:43.694Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 40.475459ms
+        duration: 41.759667ms
     - id: 11
       request:
         proto: HTTP/1.1
@@ -380,7 +380,7 @@ interactions:
         body: ""
         form: {}
         headers: {}
-        url: https://recorded.retool.dev/api/v2/resource_configurations/c93f307b-6e67-455d-bb27-eb80663ae22c
+        url: https://recorded.retool.dev/api/v2/resource_configurations/55ec87b4-6fa7-42df-8654-5580a011b460
         method: GET
       response:
         proto: HTTP/1.1
@@ -390,13 +390,13 @@ interactions:
         trailer: {}
         content_length: 755
         uncompressed: false
-        body: '{"success":true,"data":{"id":"c93f307b-6e67-455d-bb27-eb80663ae22c","resource":{"id":"d7dfe353-1c51-4fdf-ad60-93aad5fe54ca","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2025-11-12T23:23:46.910Z","updated_at":"2025-11-12T23:23:46.910Z"},"environment":{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},"options":{"base_url":"https://api.production.example.com","authentication_options":{"authentication_type":"none"}},"created_at":"2025-11-12T23:23:46.980Z","updated_at":"2025-11-12T23:23:46.980Z"}}'
+        body: '{"success":true,"data":{"id":"55ec87b4-6fa7-42df-8654-5580a011b460","resource":{"id":"f95ea27b-5af9-4996-8750-a32430bc0134","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2026-02-04T22:55:43.694Z","updated_at":"2026-02-04T22:55:43.694Z"},"environment":{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},"options":{"base_url":"https://api.production.example.com","authentication_options":{"authentication_type":"none"}},"created_at":"2026-02-04T22:55:43.786Z","updated_at":"2026-02-04T22:55:43.786Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 38.678917ms
+        duration: 51.325916ms
     - id: 12
       request:
         proto: HTTP/1.1
@@ -416,7 +416,7 @@ interactions:
                 - application/json
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/resource_configurations/c93f307b-6e67-455d-bb27-eb80663ae22c
+        url: https://recorded.retool.dev/api/v2/resource_configurations/55ec87b4-6fa7-42df-8654-5580a011b460
         method: PATCH
       response:
         proto: HTTP/1.1
@@ -426,13 +426,13 @@ interactions:
         trailer: {}
         content_length: 758
         uncompressed: false
-        body: '{"success":true,"data":{"id":"c93f307b-6e67-455d-bb27-eb80663ae22c","resource":{"id":"d7dfe353-1c51-4fdf-ad60-93aad5fe54ca","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2025-11-12T23:23:46.910Z","updated_at":"2025-11-12T23:23:46.910Z"},"environment":{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},"options":{"base_url":"https://api.production-v2.example.com","authentication_options":{"authentication_type":"none"}},"created_at":"2025-11-12T23:23:46.980Z","updated_at":"2025-11-12T23:23:48.027Z"}}'
+        body: '{"success":true,"data":{"id":"55ec87b4-6fa7-42df-8654-5580a011b460","resource":{"id":"f95ea27b-5af9-4996-8750-a32430bc0134","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2026-02-04T22:55:43.694Z","updated_at":"2026-02-04T22:55:43.694Z"},"environment":{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},"options":{"base_url":"https://api.production-v2.example.com","authentication_options":{"authentication_type":"none"}},"created_at":"2026-02-04T22:55:43.786Z","updated_at":"2026-02-04T22:55:44.738Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 68.671167ms
+        duration: 62.130417ms
     - id: 13
       request:
         proto: HTTP/1.1
@@ -457,15 +457,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 605
+        content_length: 810
         uncompressed: false
-        body: '{"success":true,"data":[{"id":"23ba02f3-12c2-456e-826f-13b616daa5ce","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"}],"total_count":2,"next_token":null,"has_more":false}'
+        body: '{"success":true,"data":[{"id":"23ba02f3-12c2-456e-826f-13b616daa5ce","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"0545f36c-1421-4c46-8fa5-9b9574cbaf8b","name":"Dev","description":"Dev environment","color":"#000000","default":false,"created_at":"2025-11-13T01:26:36.405Z","updated_at":"2025-11-13T01:26:36.405Z"}],"total_count":3,"next_token":null,"has_more":false}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 39.048375ms
+        duration: 36.766333ms
     - id: 14
       request:
         proto: HTTP/1.1
@@ -490,15 +490,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 605
+        content_length: 810
         uncompressed: false
-        body: '{"success":true,"data":[{"id":"23ba02f3-12c2-456e-826f-13b616daa5ce","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"}],"total_count":2,"next_token":null,"has_more":false}'
+        body: '{"success":true,"data":[{"id":"23ba02f3-12c2-456e-826f-13b616daa5ce","name":"production","description":"An environment to define the production configuration of your resources","color":"#3C92DC","default":true,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},{"id":"0545f36c-1421-4c46-8fa5-9b9574cbaf8b","name":"Dev","description":"Dev environment","color":"#000000","default":false,"created_at":"2025-11-13T01:26:36.405Z","updated_at":"2025-11-13T01:26:36.405Z"}],"total_count":3,"next_token":null,"has_more":false}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 35.3ms
+        duration: 36.167458ms
     - id: 15
       request:
         proto: HTTP/1.1
@@ -515,7 +515,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/resources/d7dfe353-1c51-4fdf-ad60-93aad5fe54ca
+        url: https://recorded.retool.dev/api/v2/resources/f95ea27b-5af9-4996-8750-a32430bc0134
         method: GET
       response:
         proto: HTTP/1.1
@@ -525,13 +525,13 @@ interactions:
         trailer: {}
         content_length: 226
         uncompressed: false
-        body: '{"success":true,"data":{"id":"d7dfe353-1c51-4fdf-ad60-93aad5fe54ca","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2025-11-12T23:23:46.910Z","updated_at":"2025-11-12T23:23:48.029Z"}}'
+        body: '{"success":true,"data":{"id":"f95ea27b-5af9-4996-8750-a32430bc0134","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2026-02-04T22:55:43.694Z","updated_at":"2026-02-04T22:55:44.739Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 38.154333ms
+        duration: 38.462291ms
     - id: 16
       request:
         proto: HTTP/1.1
@@ -546,7 +546,7 @@ interactions:
         body: ""
         form: {}
         headers: {}
-        url: https://recorded.retool.dev/api/v2/resource_configurations/c93f307b-6e67-455d-bb27-eb80663ae22c
+        url: https://recorded.retool.dev/api/v2/resource_configurations/55ec87b4-6fa7-42df-8654-5580a011b460
         method: GET
       response:
         proto: HTTP/1.1
@@ -556,13 +556,13 @@ interactions:
         trailer: {}
         content_length: 758
         uncompressed: false
-        body: '{"success":true,"data":{"id":"c93f307b-6e67-455d-bb27-eb80663ae22c","resource":{"id":"d7dfe353-1c51-4fdf-ad60-93aad5fe54ca","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2025-11-12T23:23:46.910Z","updated_at":"2025-11-12T23:23:48.029Z"},"environment":{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},"options":{"base_url":"https://api.production-v2.example.com","authentication_options":{"authentication_type":"none"}},"created_at":"2025-11-12T23:23:46.980Z","updated_at":"2025-11-12T23:23:48.027Z"}}'
+        body: '{"success":true,"data":{"id":"55ec87b4-6fa7-42df-8654-5580a011b460","resource":{"id":"f95ea27b-5af9-4996-8750-a32430bc0134","type":"restapi","display_name":"Test REST API for Config","protected":false,"created_at":"2026-02-04T22:55:43.694Z","updated_at":"2026-02-04T22:55:44.739Z"},"environment":{"id":"fc4a3c5b-6328-4990-b368-6879a1f38855","name":"staging","description":"An environment to define the staging configuration of your resources","color":"#E9AB11","default":false,"created_at":"2025-11-06T17:00:11.456Z","updated_at":"2025-11-06T17:00:11.456Z"},"options":{"base_url":"https://api.production-v2.example.com","authentication_options":{"authentication_type":"none"}},"created_at":"2026-02-04T22:55:43.786Z","updated_at":"2026-02-04T22:55:44.738Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 39.988417ms
+        duration: 41.671042ms
     - id: 17
       request:
         proto: HTTP/1.1
@@ -579,7 +579,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/resource_configurations/c93f307b-6e67-455d-bb27-eb80663ae22c
+        url: https://recorded.retool.dev/api/v2/resource_configurations/55ec87b4-6fa7-42df-8654-5580a011b460
         method: DELETE
       response:
         proto: HTTP/1.1
@@ -593,7 +593,7 @@ interactions:
         headers: {}
         status: 204 No Content
         code: 204
-        duration: 48.245375ms
+        duration: 55.4095ms
     - id: 18
       request:
         proto: HTTP/1.1
@@ -610,7 +610,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/resources/d7dfe353-1c51-4fdf-ad60-93aad5fe54ca
+        url: https://recorded.retool.dev/api/v2/resources/f95ea27b-5af9-4996-8750-a32430bc0134
         method: DELETE
       response:
         proto: HTTP/1.1
@@ -624,4 +624,4 @@ interactions:
         headers: {}
         status: 204 No Content
         code: 204
-        duration: 52.360792ms
+        duration: 45.564209ms

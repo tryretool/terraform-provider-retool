@@ -297,38 +297,52 @@ func (r *userResource) Read(ctx context.Context, req resource.ReadRequest, resp 
 	}
 
 	// Map the API response to the Terraform state.
-	state.ID = types.StringValue(user.Data.Id)
-	state.LegacyID = types.StringValue(fmt.Sprintf("%.0f", user.Data.LegacyId))
-	state.Email = types.StringValue(user.Data.Email)
-	state.Active = types.BoolValue(user.Data.Active)
+	// In API 2.12.0, the user data is wrapped in an anyOf structure.
+	var userData *api.UsersUserIdGet200ResponseDataAnyOf
+	switch {
+	case user.Data.UsersUserIdGet200ResponseDataAnyOf != nil:
+		userData = user.Data.UsersUserIdGet200ResponseDataAnyOf
+	case user.Data.UsersUserIdGet200ResponseDataAnyOf1 != nil:
+		// Handle the alternative variant if needed.
+		tflog.Error(ctx, "Unexpected user data variant (anyOf1)")
+		return
+	default:
+		tflog.Error(ctx, "No user data in response")
+		return
+	}
 
-	if user.Data.FirstName.Get() != nil {
-		state.FirstName = types.StringValue(*user.Data.FirstName.Get())
+	state.ID = types.StringValue(userData.Id)
+	state.LegacyID = types.StringValue(fmt.Sprintf("%.0f", userData.LegacyId))
+	state.Email = types.StringValue(userData.Email)
+	state.Active = types.BoolValue(userData.Active)
+
+	if userData.FirstName.Get() != nil {
+		state.FirstName = types.StringValue(*userData.FirstName.Get())
 	} else {
 		state.FirstName = types.StringNull()
 	}
 
-	if user.Data.LastName.Get() != nil {
-		state.LastName = types.StringValue(*user.Data.LastName.Get())
+	if userData.LastName.Get() != nil {
+		state.LastName = types.StringValue(*userData.LastName.Get())
 	} else {
 		state.LastName = types.StringNull()
 	}
 
-	state.CreatedAt = types.StringValue(user.Data.CreatedAt.String())
+	state.CreatedAt = types.StringValue(userData.CreatedAt.String())
 
-	if user.Data.LastActive.Get() != nil {
-		state.LastActive = types.StringValue(user.Data.LastActive.Get().String())
+	if userData.LastActive.Get() != nil {
+		state.LastActive = types.StringValue(userData.LastActive.Get().String())
 	} else {
 		state.LastActive = types.StringNull()
 	}
 
-	state.IsAdmin = types.BoolValue(user.Data.IsAdmin)
-	state.UserType = types.StringValue(user.Data.UserType)
-	state.TwoFactorAuthEnabled = types.BoolValue(user.Data.TwoFactorAuthEnabled)
+	state.IsAdmin = types.BoolValue(userData.IsAdmin)
+	state.UserType = types.StringValue(userData.UserType)
+	state.TwoFactorAuthEnabled = types.BoolValue(userData.TwoFactorAuthEnabled)
 
 	// Handle metadata.
-	if len(user.Data.Metadata) > 0 {
-		metadataStr, err := utils.MapToJSONString(user.Data.Metadata)
+	if len(userData.Metadata) > 0 {
+		metadataStr, err := utils.MapToJSONString(userData.Metadata)
 		if err != nil {
 			resp.Diagnostics.AddError(
 				"Error serializing metadata",

@@ -12,15 +12,25 @@ import (
 
 func main() {
 	apiKey := os.Getenv("RETOOL_ACCESS_TOKEN")
+	host := os.Getenv("RETOOL_HOST")
+	scheme := os.Getenv("RETOOL_SCHEME")
 
 	if apiKey == "" {
 		fmt.Println("Please set the RETOOL_ACCESS_TOKEN environment variable")
 		return
 	}
 
+	if host == "" {
+		host = "localhost:3000"
+	}
+
+	if scheme == "" {
+		scheme = "http"
+	}
+
 	config := api.NewConfiguration()
-	config.Host = "localhost:3000"
-	config.Scheme = "http"
+	config.Host = host
+	config.Scheme = scheme
 	config.Servers = api.ServerConfigurations{api.ServerConfiguration{
 		URL: "/api/v2",
 	},

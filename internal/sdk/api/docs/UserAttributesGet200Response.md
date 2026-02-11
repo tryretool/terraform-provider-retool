@@ -6,15 +6,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Success** | **bool** | API request succeeded | 
 **Data** | [**[]UserAttributesGet200ResponseDataInner**](UserAttributesGet200ResponseDataInner.md) | An array of requested items | 
-**TotalCount** | **float32** | Total number of items in the response | 
-**NextToken** | **NullableString** | A token to retrieve the next page of items in the collection | 
-**HasMore** | **bool** | Whether there are more items in the collection | 
 
 ## Methods
 
 ### NewUserAttributesGet200Response
 
-`func NewUserAttributesGet200Response(success bool, data []UserAttributesGet200ResponseDataInner, totalCount float32, nextToken NullableString, hasMore bool, ) *UserAttributesGet200Response`
+`func NewUserAttributesGet200Response(success bool, data []UserAttributesGet200ResponseDataInner, ) *UserAttributesGet200Response`
 
 NewUserAttributesGet200Response instantiates a new UserAttributesGet200Response object
 This constructor will assign default values to properties that have it defined,
@@ -67,76 +64,6 @@ and a boolean to check if the value has been set.
 `func (o *UserAttributesGet200Response) SetData(v []UserAttributesGet200ResponseDataInner)`
 
 SetData sets Data field to given value.
-
-
-### GetTotalCount
-
-`func (o *UserAttributesGet200Response) GetTotalCount() float32`
-
-GetTotalCount returns the TotalCount field if non-nil, zero value otherwise.
-
-### GetTotalCountOk
-
-`func (o *UserAttributesGet200Response) GetTotalCountOk() (*float32, bool)`
-
-GetTotalCountOk returns a tuple with the TotalCount field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTotalCount
-
-`func (o *UserAttributesGet200Response) SetTotalCount(v float32)`
-
-SetTotalCount sets TotalCount field to given value.
-
-
-### GetNextToken
-
-`func (o *UserAttributesGet200Response) GetNextToken() string`
-
-GetNextToken returns the NextToken field if non-nil, zero value otherwise.
-
-### GetNextTokenOk
-
-`func (o *UserAttributesGet200Response) GetNextTokenOk() (*string, bool)`
-
-GetNextTokenOk returns a tuple with the NextToken field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNextToken
-
-`func (o *UserAttributesGet200Response) SetNextToken(v string)`
-
-SetNextToken sets NextToken field to given value.
-
-
-### SetNextTokenNil
-
-`func (o *UserAttributesGet200Response) SetNextTokenNil(b bool)`
-
- SetNextTokenNil sets the value for NextToken to be an explicit nil
-
-### UnsetNextToken
-`func (o *UserAttributesGet200Response) UnsetNextToken()`
-
-UnsetNextToken ensures that no value is present for NextToken, not even an explicit nil
-### GetHasMore
-
-`func (o *UserAttributesGet200Response) GetHasMore() bool`
-
-GetHasMore returns the HasMore field if non-nil, zero value otherwise.
-
-### GetHasMoreOk
-
-`func (o *UserAttributesGet200Response) GetHasMoreOk() (*bool, bool)`
-
-GetHasMoreOk returns a tuple with the HasMore field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHasMore
-
-`func (o *UserAttributesGet200Response) SetHasMore(v bool)`
-
-SetHasMore sets HasMore field to given value.
 
 
 

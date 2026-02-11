@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## ResourcesGet
 
-> ResourcesGet200Response ResourcesGet(ctx).NextToken(nextToken).ResourceType(resourceType).Execute()
+> ResourcesGet200Response ResourcesGet(ctx).ResourceType(resourceType).Limit(limit).NextToken(nextToken).Execute()
 
 Get resources
 
@@ -33,12 +33,13 @@ import (
 )
 
 func main() {
-	nextToken := "nextToken_example" // string | The token of the current page (optional)
 	resourceType := "resourceType_example" // string | The type of resource. (optional)
+	limit := int32(50) // int32 | Maximum number of items to return per page. If not provided, all items are returned. When provided, enables pagination and the response will include next_token for retrieving subsequent pages. Valid range: 1-100. (optional)
+	nextToken := "eyJsYXN0SWQiOjEyM30..." // string | Cursor token for retrieving the next page of results. Obtained from the next_token field of a previous paginated response. Only valid when the limit parameter is also provided. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ResourcesAPI.ResourcesGet(context.Background()).NextToken(nextToken).ResourceType(resourceType).Execute()
+	resp, r, err := apiClient.ResourcesAPI.ResourcesGet(context.Background()).ResourceType(resourceType).Limit(limit).NextToken(nextToken).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ResourcesAPI.ResourcesGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -59,8 +60,9 @@ Other parameters are passed through a pointer to a apiResourcesGetRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **nextToken** | **string** | The token of the current page | 
  **resourceType** | **string** | The type of resource. | 
+ **limit** | **int32** | Maximum number of items to return per page. If not provided, all items are returned. When provided, enables pagination and the response will include next_token for retrieving subsequent pages. Valid range: 1-100. | 
+ **nextToken** | **string** | Cursor token for retrieving the next page of results. Obtained from the next_token field of a previous paginated response. Only valid when the limit parameter is also provided. | 
 
 ### Return type
 
@@ -101,7 +103,7 @@ import (
 )
 
 func main() {
-	resourcesPostRequest := *openapiclient.NewResourcesPostRequest("Type_example", "DisplayName_example", *openapiclient.NewResourcesPostRequestOptions(*openapiclient.NewSnowflakeOptionsDatabaseOptions("Name_example"), "AccountIdentifier_example", *openapiclient.NewRestAPIOptionsAuthenticationOptions("AuthenticationType_example", "Auth0Domain_example", "Auth0ClientId_example", "Auth0ClientSecret_example", "Auth0CustomAudience_example", "AmazonAwsRegion_example", "AmazonServiceName_example", "AmazonAccessKeyId_example", "AmazonSecretAccessKey_example", "BasicUsername_example", "DigestUsername_example", "DigestPassword_example", *openapiclient.NewRestAPIOptionsAuthenticationOptionsAnyOf4Oauth1SignatureMethod(), "Oauth1ConsumerKey_example", "Oauth1ConsumerSecret_example", "Oauth1TokenKey_example", "Oauth1TokenSecret_example", "Oauth1RealmParameter_example", "Oauth2ClientId_example", "Oauth2ClientSecret_example", "Oauth2AuthUrl_example", "Oauth2AccessTokenUrl_example"), "BaseUrl_example")) // ResourcesPostRequest |  (optional)
+	resourcesPostRequest := *openapiclient.NewResourcesPostRequest("Type_example", "DisplayName_example", *openapiclient.NewResourcesPostRequestOptions(*openapiclient.NewSnowflakeOptionsDatabaseOptions("Name_example"), "AccountIdentifier_example", *openapiclient.NewGRPCOptionsAuthenticationOptions("AuthenticationType_example", "Auth0Domain_example", "Auth0ClientId_example", "Auth0ClientSecret_example", "Auth0CustomAudience_example", "Oauth2AccessTokenUrl_example", "Oauth2AuthUrl_example", "Oauth2ClientId_example", "Oauth2ClientSecret_example"), "BaseUrl_example")) // ResourcesPostRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

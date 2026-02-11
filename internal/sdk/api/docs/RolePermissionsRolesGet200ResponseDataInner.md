@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **IsLegacyRole** | **bool** | Whether the role is a migrated legacy role | 
 **ObjectScopes** | **[]string** | The object scopes of the role | 
 **OrganizationScopes** | **[]string** | The organization scopes of the role | 
+**AddedDependentScopes** | **[]string** | The dependent scopes that were automatically added to the role | 
 **CreatedAt** | **string** |  | 
 **UpdatedAt** | **string** |  | 
 
@@ -19,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewRolePermissionsRolesGet200ResponseDataInner
 
-`func NewRolePermissionsRolesGet200ResponseDataInner(id string, organizationId string, name string, description string, isDefaultRole bool, isLegacyRole bool, objectScopes []string, organizationScopes []string, createdAt string, updatedAt string, ) *RolePermissionsRolesGet200ResponseDataInner`
+`func NewRolePermissionsRolesGet200ResponseDataInner(id string, organizationId string, name string, description string, isDefaultRole bool, isLegacyRole bool, objectScopes []string, organizationScopes []string, addedDependentScopes []string, createdAt string, updatedAt string, ) *RolePermissionsRolesGet200ResponseDataInner`
 
 NewRolePermissionsRolesGet200ResponseDataInner instantiates a new RolePermissionsRolesGet200ResponseDataInner object
 This constructor will assign default values to properties that have it defined,
@@ -192,6 +193,26 @@ and a boolean to check if the value has been set.
 `func (o *RolePermissionsRolesGet200ResponseDataInner) SetOrganizationScopes(v []string)`
 
 SetOrganizationScopes sets OrganizationScopes field to given value.
+
+
+### GetAddedDependentScopes
+
+`func (o *RolePermissionsRolesGet200ResponseDataInner) GetAddedDependentScopes() []string`
+
+GetAddedDependentScopes returns the AddedDependentScopes field if non-nil, zero value otherwise.
+
+### GetAddedDependentScopesOk
+
+`func (o *RolePermissionsRolesGet200ResponseDataInner) GetAddedDependentScopesOk() (*[]string, bool)`
+
+GetAddedDependentScopesOk returns a tuple with the AddedDependentScopes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAddedDependentScopes
+
+`func (o *RolePermissionsRolesGet200ResponseDataInner) SetAddedDependentScopes(v []string)`
+
+SetAddedDependentScopes sets AddedDependentScopes field to given value.
 
 
 ### GetCreatedAt

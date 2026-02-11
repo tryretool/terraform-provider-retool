@@ -6,15 +6,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Success** | **bool** | API request succeeded | 
 **Data** | [**[]CustomComponentLibrariesLibraryIdGet200ResponseData**](CustomComponentLibrariesLibraryIdGet200ResponseData.md) | An array of requested items | 
-**TotalCount** | **float32** | Total number of items in the response | 
-**NextToken** | **NullableString** | A token to retrieve the next page of items in the collection | 
-**HasMore** | **bool** | Whether there are more items in the collection | 
 
 ## Methods
 
 ### NewCustomComponentLibrariesGet200Response
 
-`func NewCustomComponentLibrariesGet200Response(success bool, data []CustomComponentLibrariesLibraryIdGet200ResponseData, totalCount float32, nextToken NullableString, hasMore bool, ) *CustomComponentLibrariesGet200Response`
+`func NewCustomComponentLibrariesGet200Response(success bool, data []CustomComponentLibrariesLibraryIdGet200ResponseData, ) *CustomComponentLibrariesGet200Response`
 
 NewCustomComponentLibrariesGet200Response instantiates a new CustomComponentLibrariesGet200Response object
 This constructor will assign default values to properties that have it defined,
@@ -67,76 +64,6 @@ and a boolean to check if the value has been set.
 `func (o *CustomComponentLibrariesGet200Response) SetData(v []CustomComponentLibrariesLibraryIdGet200ResponseData)`
 
 SetData sets Data field to given value.
-
-
-### GetTotalCount
-
-`func (o *CustomComponentLibrariesGet200Response) GetTotalCount() float32`
-
-GetTotalCount returns the TotalCount field if non-nil, zero value otherwise.
-
-### GetTotalCountOk
-
-`func (o *CustomComponentLibrariesGet200Response) GetTotalCountOk() (*float32, bool)`
-
-GetTotalCountOk returns a tuple with the TotalCount field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTotalCount
-
-`func (o *CustomComponentLibrariesGet200Response) SetTotalCount(v float32)`
-
-SetTotalCount sets TotalCount field to given value.
-
-
-### GetNextToken
-
-`func (o *CustomComponentLibrariesGet200Response) GetNextToken() string`
-
-GetNextToken returns the NextToken field if non-nil, zero value otherwise.
-
-### GetNextTokenOk
-
-`func (o *CustomComponentLibrariesGet200Response) GetNextTokenOk() (*string, bool)`
-
-GetNextTokenOk returns a tuple with the NextToken field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNextToken
-
-`func (o *CustomComponentLibrariesGet200Response) SetNextToken(v string)`
-
-SetNextToken sets NextToken field to given value.
-
-
-### SetNextTokenNil
-
-`func (o *CustomComponentLibrariesGet200Response) SetNextTokenNil(b bool)`
-
- SetNextTokenNil sets the value for NextToken to be an explicit nil
-
-### UnsetNextToken
-`func (o *CustomComponentLibrariesGet200Response) UnsetNextToken()`
-
-UnsetNextToken ensures that no value is present for NextToken, not even an explicit nil
-### GetHasMore
-
-`func (o *CustomComponentLibrariesGet200Response) GetHasMore() bool`
-
-GetHasMore returns the HasMore field if non-nil, zero value otherwise.
-
-### GetHasMoreOk
-
-`func (o *CustomComponentLibrariesGet200Response) GetHasMoreOk() (*bool, bool)`
-
-GetHasMoreOk returns a tuple with the HasMore field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHasMore
-
-`func (o *CustomComponentLibrariesGet200Response) SetHasMore(v bool)`
-
-SetHasMore sets HasMore field to given value.
 
 
 

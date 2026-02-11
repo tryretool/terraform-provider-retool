@@ -17,33 +17,34 @@ Name | Type | Description | Notes
 **EnableAwsv4AuthenticationViaHeaders** | Pointer to **bool** |  | [optional] 
 **BasicUsername** | **string** |  | 
 **BasicPassword** | Pointer to **string** |  | [optional] 
+**BearerToken** | Pointer to **string** |  | [optional] 
 **DigestUsername** | **string** |  | 
 **DigestPassword** | **string** |  | 
-**Oauth1SignatureMethod** | [**RestAPIOptionsAuthenticationOptionsAnyOf4Oauth1SignatureMethod**](RestAPIOptionsAuthenticationOptionsAnyOf4Oauth1SignatureMethod.md) |  | 
+**Oauth1SignatureMethod** | [**RestAPIOptionsAuthenticationOptionsAnyOf5Oauth1SignatureMethod**](RestAPIOptionsAuthenticationOptionsAnyOf5Oauth1SignatureMethod.md) |  | 
 **Oauth1ConsumerKey** | **string** |  | 
 **Oauth1ConsumerSecret** | **string** |  | 
 **Oauth1TokenKey** | **string** |  | 
 **Oauth1TokenSecret** | **string** |  | 
 **Oauth1RealmParameter** | **string** |  | 
+**Oauth2Audience** | Pointer to **string** |  | [optional] 
+**Oauth2AccessToken** | Pointer to **string** |  | [optional] 
+**Oauth2AccessTokenUrl** | **string** |  | 
+**Oauth2AccessTokenLifespanSeconds** | Pointer to **NullableFloat32** |  | [optional] 
+**Oauth2AuthUrl** | **string** |  | 
 **Oauth2ClientId** | **string** |  | 
 **Oauth2ClientSecret** | **string** |  | 
 **Oauth2CallbackUrl** | Pointer to **string** |  | [optional] 
-**Oauth2AuthUrl** | **string** |  | 
-**Oauth2AccessTokenUrl** | **string** |  | 
+**Oauth2IdToken** | Pointer to **string** |  | [optional] 
+**Oauth2RefreshToken** | Pointer to **string** |  | [optional] 
 **Oauth2Scope** | Pointer to **string** |  | [optional] 
-**Oauth2Audience** | Pointer to **string** |  | [optional] 
 **Oauth2ShareUserCredentials** | Pointer to **bool** |  | [optional] 
 **VerifySessionUrl** | Pointer to **string** |  | [optional] 
-**Oauth2AccessToken** | Pointer to **string** |  | [optional] 
-**Oauth2RefreshToken** | Pointer to **string** |  | [optional] 
-**Oauth2IdToken** | Pointer to **string** |  | [optional] 
-**Oauth2AccessTokenLifespanSeconds** | Pointer to **NullableFloat32** |  | [optional] 
 
 ## Methods
 
 ### NewRestAPIOptionsAuthenticationOptions
 
-`func NewRestAPIOptionsAuthenticationOptions(authenticationType string, auth0Domain string, auth0ClientId string, auth0ClientSecret string, auth0CustomAudience string, amazonAwsRegion string, amazonServiceName string, amazonAccessKeyId string, amazonSecretAccessKey string, basicUsername string, digestUsername string, digestPassword string, oauth1SignatureMethod RestAPIOptionsAuthenticationOptionsAnyOf4Oauth1SignatureMethod, oauth1ConsumerKey string, oauth1ConsumerSecret string, oauth1TokenKey string, oauth1TokenSecret string, oauth1RealmParameter string, oauth2ClientId string, oauth2ClientSecret string, oauth2AuthUrl string, oauth2AccessTokenUrl string, ) *RestAPIOptionsAuthenticationOptions`
+`func NewRestAPIOptionsAuthenticationOptions(authenticationType string, auth0Domain string, auth0ClientId string, auth0ClientSecret string, auth0CustomAudience string, amazonAwsRegion string, amazonServiceName string, amazonAccessKeyId string, amazonSecretAccessKey string, basicUsername string, digestUsername string, digestPassword string, oauth1SignatureMethod RestAPIOptionsAuthenticationOptionsAnyOf5Oauth1SignatureMethod, oauth1ConsumerKey string, oauth1ConsumerSecret string, oauth1TokenKey string, oauth1TokenSecret string, oauth1RealmParameter string, oauth2AccessTokenUrl string, oauth2AuthUrl string, oauth2ClientId string, oauth2ClientSecret string, ) *RestAPIOptionsAuthenticationOptions`
 
 NewRestAPIOptionsAuthenticationOptions instantiates a new RestAPIOptionsAuthenticationOptions object
 This constructor will assign default values to properties that have it defined,
@@ -333,6 +334,31 @@ SetBasicPassword sets BasicPassword field to given value.
 
 HasBasicPassword returns a boolean if a field has been set.
 
+### GetBearerToken
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetBearerToken() string`
+
+GetBearerToken returns the BearerToken field if non-nil, zero value otherwise.
+
+### GetBearerTokenOk
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetBearerTokenOk() (*string, bool)`
+
+GetBearerTokenOk returns a tuple with the BearerToken field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBearerToken
+
+`func (o *RestAPIOptionsAuthenticationOptions) SetBearerToken(v string)`
+
+SetBearerToken sets BearerToken field to given value.
+
+### HasBearerToken
+
+`func (o *RestAPIOptionsAuthenticationOptions) HasBearerToken() bool`
+
+HasBearerToken returns a boolean if a field has been set.
+
 ### GetDigestUsername
 
 `func (o *RestAPIOptionsAuthenticationOptions) GetDigestUsername() string`
@@ -375,20 +401,20 @@ SetDigestPassword sets DigestPassword field to given value.
 
 ### GetOauth1SignatureMethod
 
-`func (o *RestAPIOptionsAuthenticationOptions) GetOauth1SignatureMethod() RestAPIOptionsAuthenticationOptionsAnyOf4Oauth1SignatureMethod`
+`func (o *RestAPIOptionsAuthenticationOptions) GetOauth1SignatureMethod() RestAPIOptionsAuthenticationOptionsAnyOf5Oauth1SignatureMethod`
 
 GetOauth1SignatureMethod returns the Oauth1SignatureMethod field if non-nil, zero value otherwise.
 
 ### GetOauth1SignatureMethodOk
 
-`func (o *RestAPIOptionsAuthenticationOptions) GetOauth1SignatureMethodOk() (*RestAPIOptionsAuthenticationOptionsAnyOf4Oauth1SignatureMethod, bool)`
+`func (o *RestAPIOptionsAuthenticationOptions) GetOauth1SignatureMethodOk() (*RestAPIOptionsAuthenticationOptionsAnyOf5Oauth1SignatureMethod, bool)`
 
 GetOauth1SignatureMethodOk returns a tuple with the Oauth1SignatureMethod field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOauth1SignatureMethod
 
-`func (o *RestAPIOptionsAuthenticationOptions) SetOauth1SignatureMethod(v RestAPIOptionsAuthenticationOptionsAnyOf4Oauth1SignatureMethod)`
+`func (o *RestAPIOptionsAuthenticationOptions) SetOauth1SignatureMethod(v RestAPIOptionsAuthenticationOptionsAnyOf5Oauth1SignatureMethod)`
 
 SetOauth1SignatureMethod sets Oauth1SignatureMethod field to given value.
 
@@ -493,6 +519,131 @@ and a boolean to check if the value has been set.
 SetOauth1RealmParameter sets Oauth1RealmParameter field to given value.
 
 
+### GetOauth2Audience
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2Audience() string`
+
+GetOauth2Audience returns the Oauth2Audience field if non-nil, zero value otherwise.
+
+### GetOauth2AudienceOk
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2AudienceOk() (*string, bool)`
+
+GetOauth2AudienceOk returns a tuple with the Oauth2Audience field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOauth2Audience
+
+`func (o *RestAPIOptionsAuthenticationOptions) SetOauth2Audience(v string)`
+
+SetOauth2Audience sets Oauth2Audience field to given value.
+
+### HasOauth2Audience
+
+`func (o *RestAPIOptionsAuthenticationOptions) HasOauth2Audience() bool`
+
+HasOauth2Audience returns a boolean if a field has been set.
+
+### GetOauth2AccessToken
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2AccessToken() string`
+
+GetOauth2AccessToken returns the Oauth2AccessToken field if non-nil, zero value otherwise.
+
+### GetOauth2AccessTokenOk
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2AccessTokenOk() (*string, bool)`
+
+GetOauth2AccessTokenOk returns a tuple with the Oauth2AccessToken field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOauth2AccessToken
+
+`func (o *RestAPIOptionsAuthenticationOptions) SetOauth2AccessToken(v string)`
+
+SetOauth2AccessToken sets Oauth2AccessToken field to given value.
+
+### HasOauth2AccessToken
+
+`func (o *RestAPIOptionsAuthenticationOptions) HasOauth2AccessToken() bool`
+
+HasOauth2AccessToken returns a boolean if a field has been set.
+
+### GetOauth2AccessTokenUrl
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2AccessTokenUrl() string`
+
+GetOauth2AccessTokenUrl returns the Oauth2AccessTokenUrl field if non-nil, zero value otherwise.
+
+### GetOauth2AccessTokenUrlOk
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2AccessTokenUrlOk() (*string, bool)`
+
+GetOauth2AccessTokenUrlOk returns a tuple with the Oauth2AccessTokenUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOauth2AccessTokenUrl
+
+`func (o *RestAPIOptionsAuthenticationOptions) SetOauth2AccessTokenUrl(v string)`
+
+SetOauth2AccessTokenUrl sets Oauth2AccessTokenUrl field to given value.
+
+
+### GetOauth2AccessTokenLifespanSeconds
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2AccessTokenLifespanSeconds() float32`
+
+GetOauth2AccessTokenLifespanSeconds returns the Oauth2AccessTokenLifespanSeconds field if non-nil, zero value otherwise.
+
+### GetOauth2AccessTokenLifespanSecondsOk
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2AccessTokenLifespanSecondsOk() (*float32, bool)`
+
+GetOauth2AccessTokenLifespanSecondsOk returns a tuple with the Oauth2AccessTokenLifespanSeconds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOauth2AccessTokenLifespanSeconds
+
+`func (o *RestAPIOptionsAuthenticationOptions) SetOauth2AccessTokenLifespanSeconds(v float32)`
+
+SetOauth2AccessTokenLifespanSeconds sets Oauth2AccessTokenLifespanSeconds field to given value.
+
+### HasOauth2AccessTokenLifespanSeconds
+
+`func (o *RestAPIOptionsAuthenticationOptions) HasOauth2AccessTokenLifespanSeconds() bool`
+
+HasOauth2AccessTokenLifespanSeconds returns a boolean if a field has been set.
+
+### SetOauth2AccessTokenLifespanSecondsNil
+
+`func (o *RestAPIOptionsAuthenticationOptions) SetOauth2AccessTokenLifespanSecondsNil(b bool)`
+
+ SetOauth2AccessTokenLifespanSecondsNil sets the value for Oauth2AccessTokenLifespanSeconds to be an explicit nil
+
+### UnsetOauth2AccessTokenLifespanSeconds
+`func (o *RestAPIOptionsAuthenticationOptions) UnsetOauth2AccessTokenLifespanSeconds()`
+
+UnsetOauth2AccessTokenLifespanSeconds ensures that no value is present for Oauth2AccessTokenLifespanSeconds, not even an explicit nil
+### GetOauth2AuthUrl
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2AuthUrl() string`
+
+GetOauth2AuthUrl returns the Oauth2AuthUrl field if non-nil, zero value otherwise.
+
+### GetOauth2AuthUrlOk
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2AuthUrlOk() (*string, bool)`
+
+GetOauth2AuthUrlOk returns a tuple with the Oauth2AuthUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOauth2AuthUrl
+
+`func (o *RestAPIOptionsAuthenticationOptions) SetOauth2AuthUrl(v string)`
+
+SetOauth2AuthUrl sets Oauth2AuthUrl field to given value.
+
+
 ### GetOauth2ClientId
 
 `func (o *RestAPIOptionsAuthenticationOptions) GetOauth2ClientId() string`
@@ -558,45 +709,55 @@ SetOauth2CallbackUrl sets Oauth2CallbackUrl field to given value.
 
 HasOauth2CallbackUrl returns a boolean if a field has been set.
 
-### GetOauth2AuthUrl
+### GetOauth2IdToken
 
-`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2AuthUrl() string`
+`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2IdToken() string`
 
-GetOauth2AuthUrl returns the Oauth2AuthUrl field if non-nil, zero value otherwise.
+GetOauth2IdToken returns the Oauth2IdToken field if non-nil, zero value otherwise.
 
-### GetOauth2AuthUrlOk
+### GetOauth2IdTokenOk
 
-`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2AuthUrlOk() (*string, bool)`
+`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2IdTokenOk() (*string, bool)`
 
-GetOauth2AuthUrlOk returns a tuple with the Oauth2AuthUrl field if it's non-nil, zero value otherwise
+GetOauth2IdTokenOk returns a tuple with the Oauth2IdToken field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOauth2AuthUrl
+### SetOauth2IdToken
 
-`func (o *RestAPIOptionsAuthenticationOptions) SetOauth2AuthUrl(v string)`
+`func (o *RestAPIOptionsAuthenticationOptions) SetOauth2IdToken(v string)`
 
-SetOauth2AuthUrl sets Oauth2AuthUrl field to given value.
+SetOauth2IdToken sets Oauth2IdToken field to given value.
 
+### HasOauth2IdToken
 
-### GetOauth2AccessTokenUrl
+`func (o *RestAPIOptionsAuthenticationOptions) HasOauth2IdToken() bool`
 
-`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2AccessTokenUrl() string`
+HasOauth2IdToken returns a boolean if a field has been set.
 
-GetOauth2AccessTokenUrl returns the Oauth2AccessTokenUrl field if non-nil, zero value otherwise.
+### GetOauth2RefreshToken
 
-### GetOauth2AccessTokenUrlOk
+`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2RefreshToken() string`
 
-`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2AccessTokenUrlOk() (*string, bool)`
+GetOauth2RefreshToken returns the Oauth2RefreshToken field if non-nil, zero value otherwise.
 
-GetOauth2AccessTokenUrlOk returns a tuple with the Oauth2AccessTokenUrl field if it's non-nil, zero value otherwise
+### GetOauth2RefreshTokenOk
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2RefreshTokenOk() (*string, bool)`
+
+GetOauth2RefreshTokenOk returns a tuple with the Oauth2RefreshToken field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOauth2AccessTokenUrl
+### SetOauth2RefreshToken
 
-`func (o *RestAPIOptionsAuthenticationOptions) SetOauth2AccessTokenUrl(v string)`
+`func (o *RestAPIOptionsAuthenticationOptions) SetOauth2RefreshToken(v string)`
 
-SetOauth2AccessTokenUrl sets Oauth2AccessTokenUrl field to given value.
+SetOauth2RefreshToken sets Oauth2RefreshToken field to given value.
 
+### HasOauth2RefreshToken
+
+`func (o *RestAPIOptionsAuthenticationOptions) HasOauth2RefreshToken() bool`
+
+HasOauth2RefreshToken returns a boolean if a field has been set.
 
 ### GetOauth2Scope
 
@@ -622,31 +783,6 @@ SetOauth2Scope sets Oauth2Scope field to given value.
 `func (o *RestAPIOptionsAuthenticationOptions) HasOauth2Scope() bool`
 
 HasOauth2Scope returns a boolean if a field has been set.
-
-### GetOauth2Audience
-
-`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2Audience() string`
-
-GetOauth2Audience returns the Oauth2Audience field if non-nil, zero value otherwise.
-
-### GetOauth2AudienceOk
-
-`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2AudienceOk() (*string, bool)`
-
-GetOauth2AudienceOk returns a tuple with the Oauth2Audience field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOauth2Audience
-
-`func (o *RestAPIOptionsAuthenticationOptions) SetOauth2Audience(v string)`
-
-SetOauth2Audience sets Oauth2Audience field to given value.
-
-### HasOauth2Audience
-
-`func (o *RestAPIOptionsAuthenticationOptions) HasOauth2Audience() bool`
-
-HasOauth2Audience returns a boolean if a field has been set.
 
 ### GetOauth2ShareUserCredentials
 
@@ -698,116 +834,6 @@ SetVerifySessionUrl sets VerifySessionUrl field to given value.
 
 HasVerifySessionUrl returns a boolean if a field has been set.
 
-### GetOauth2AccessToken
-
-`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2AccessToken() string`
-
-GetOauth2AccessToken returns the Oauth2AccessToken field if non-nil, zero value otherwise.
-
-### GetOauth2AccessTokenOk
-
-`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2AccessTokenOk() (*string, bool)`
-
-GetOauth2AccessTokenOk returns a tuple with the Oauth2AccessToken field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOauth2AccessToken
-
-`func (o *RestAPIOptionsAuthenticationOptions) SetOauth2AccessToken(v string)`
-
-SetOauth2AccessToken sets Oauth2AccessToken field to given value.
-
-### HasOauth2AccessToken
-
-`func (o *RestAPIOptionsAuthenticationOptions) HasOauth2AccessToken() bool`
-
-HasOauth2AccessToken returns a boolean if a field has been set.
-
-### GetOauth2RefreshToken
-
-`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2RefreshToken() string`
-
-GetOauth2RefreshToken returns the Oauth2RefreshToken field if non-nil, zero value otherwise.
-
-### GetOauth2RefreshTokenOk
-
-`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2RefreshTokenOk() (*string, bool)`
-
-GetOauth2RefreshTokenOk returns a tuple with the Oauth2RefreshToken field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOauth2RefreshToken
-
-`func (o *RestAPIOptionsAuthenticationOptions) SetOauth2RefreshToken(v string)`
-
-SetOauth2RefreshToken sets Oauth2RefreshToken field to given value.
-
-### HasOauth2RefreshToken
-
-`func (o *RestAPIOptionsAuthenticationOptions) HasOauth2RefreshToken() bool`
-
-HasOauth2RefreshToken returns a boolean if a field has been set.
-
-### GetOauth2IdToken
-
-`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2IdToken() string`
-
-GetOauth2IdToken returns the Oauth2IdToken field if non-nil, zero value otherwise.
-
-### GetOauth2IdTokenOk
-
-`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2IdTokenOk() (*string, bool)`
-
-GetOauth2IdTokenOk returns a tuple with the Oauth2IdToken field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOauth2IdToken
-
-`func (o *RestAPIOptionsAuthenticationOptions) SetOauth2IdToken(v string)`
-
-SetOauth2IdToken sets Oauth2IdToken field to given value.
-
-### HasOauth2IdToken
-
-`func (o *RestAPIOptionsAuthenticationOptions) HasOauth2IdToken() bool`
-
-HasOauth2IdToken returns a boolean if a field has been set.
-
-### GetOauth2AccessTokenLifespanSeconds
-
-`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2AccessTokenLifespanSeconds() float32`
-
-GetOauth2AccessTokenLifespanSeconds returns the Oauth2AccessTokenLifespanSeconds field if non-nil, zero value otherwise.
-
-### GetOauth2AccessTokenLifespanSecondsOk
-
-`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2AccessTokenLifespanSecondsOk() (*float32, bool)`
-
-GetOauth2AccessTokenLifespanSecondsOk returns a tuple with the Oauth2AccessTokenLifespanSeconds field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOauth2AccessTokenLifespanSeconds
-
-`func (o *RestAPIOptionsAuthenticationOptions) SetOauth2AccessTokenLifespanSeconds(v float32)`
-
-SetOauth2AccessTokenLifespanSeconds sets Oauth2AccessTokenLifespanSeconds field to given value.
-
-### HasOauth2AccessTokenLifespanSeconds
-
-`func (o *RestAPIOptionsAuthenticationOptions) HasOauth2AccessTokenLifespanSeconds() bool`
-
-HasOauth2AccessTokenLifespanSeconds returns a boolean if a field has been set.
-
-### SetOauth2AccessTokenLifespanSecondsNil
-
-`func (o *RestAPIOptionsAuthenticationOptions) SetOauth2AccessTokenLifespanSecondsNil(b bool)`
-
- SetOauth2AccessTokenLifespanSecondsNil sets the value for Oauth2AccessTokenLifespanSeconds to be an explicit nil
-
-### UnsetOauth2AccessTokenLifespanSeconds
-`func (o *RestAPIOptionsAuthenticationOptions) UnsetOauth2AccessTokenLifespanSeconds()`
-
-UnsetOauth2AccessTokenLifespanSeconds ensures that no value is present for Oauth2AccessTokenLifespanSeconds, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

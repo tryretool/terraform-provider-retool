@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 ## UsersGet
 
-> UsersGet200Response UsersGet(ctx).Email(email).FirstName(firstName).LastName(lastName).Execute()
+> UsersGet200Response UsersGet(ctx).Email(email).FirstName(firstName).LastName(lastName).Limit(limit).NextToken(nextToken).Execute()
 
 List users
 
@@ -39,10 +39,12 @@ func main() {
 	email := "email_example" // string | Email address of user (optional)
 	firstName := "firstName_example" // string | First name of user (optional)
 	lastName := "lastName_example" // string | Last name of user (optional)
+	limit := int32(50) // int32 | Maximum number of items to return per page. If not provided, all items are returned. When provided, enables pagination and the response will include next_token for retrieving subsequent pages. Valid range: 1-100. (optional)
+	nextToken := "eyJsYXN0SWQiOjEyM30..." // string | Cursor token for retrieving the next page of results. Obtained from the next_token field of a previous paginated response. Only valid when the limit parameter is also provided. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersAPI.UsersGet(context.Background()).Email(email).FirstName(firstName).LastName(lastName).Execute()
+	resp, r, err := apiClient.UsersAPI.UsersGet(context.Background()).Email(email).FirstName(firstName).LastName(lastName).Limit(limit).NextToken(nextToken).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.UsersGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -66,6 +68,8 @@ Name | Type | Description  | Notes
  **email** | **string** | Email address of user | 
  **firstName** | **string** | First name of user | 
  **lastName** | **string** | Last name of user | 
+ **limit** | **int32** | Maximum number of items to return per page. If not provided, all items are returned. When provided, enables pagination and the response will include next_token for retrieving subsequent pages. Valid range: 1-100. | 
+ **nextToken** | **string** | Cursor token for retrieving the next page of results. Obtained from the next_token field of a previous paginated response. Only valid when the limit parameter is also provided. | 
 
 ### Return type
 
@@ -289,7 +293,7 @@ Name | Type | Description  | Notes
 
 ## UsersUserIdGet
 
-> UsersUserIdGet200Response UsersUserIdGet(ctx, userId).Execute()
+> UsersUserIdGet200Response UsersUserIdGet(ctx, userId).IncludeGroups(includeGroups).Execute()
 
 Get a user
 
@@ -309,10 +313,11 @@ import (
 
 func main() {
 	userId := "userId_example" // string | 
+	includeGroups := true // bool | Whether to include the groups array in the response. (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersAPI.UsersUserIdGet(context.Background(), userId).Execute()
+	resp, r, err := apiClient.UsersAPI.UsersUserIdGet(context.Background(), userId).IncludeGroups(includeGroups).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.UsersUserIdGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -338,6 +343,7 @@ Other parameters are passed through a pointer to a apiUsersUserIdGetRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **includeGroups** | **bool** | Whether to include the groups array in the response. | [default to false]
 
 ### Return type
 
@@ -359,7 +365,7 @@ Name | Type | Description  | Notes
 
 ## UsersUserIdPatch
 
-> UsersUserIdGet200Response UsersUserIdPatch(ctx, userId).UsersUserIdPatchRequest(usersUserIdPatchRequest).Execute()
+> UsersUserIdPatch200Response UsersUserIdPatch(ctx, userId).UsersUserIdPatchRequest(usersUserIdPatchRequest).Execute()
 
 Update a user
 
@@ -388,7 +394,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.UsersUserIdPatch``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UsersUserIdPatch`: UsersUserIdGet200Response
+	// response from `UsersUserIdPatch`: UsersUserIdPatch200Response
 	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.UsersUserIdPatch`: %v\n", resp)
 }
 ```
@@ -413,7 +419,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UsersUserIdGet200Response**](UsersUserIdGet200Response.md)
+[**UsersUserIdPatch200Response**](UsersUserIdPatch200Response.md)
 
 ### Authorization
 
