@@ -62,6 +62,7 @@ Go to https://github.com/tryretool/terraform-provider-retool/releases, click "Dr
 Minor version increments should be tied to Retool on-prem stable releases, since they are likely to rely on new API functionality not available in the previous versions. Major version increment should be reserved for major backward-incompatible changes.
 Fill out release description and publish it. That'll kick off Github workflow defined [here](https://github.com/tryretool/terraform-provider-retool/blob/d8832910a0cb3cc719387b07caa788d573f6a24c/.github/workflows/release.yaml).
 New version should show up on Terraform Repository in 10-15 minutes.
+If signing keys need to be updated, sign in to `registry.terraform.io` using **Legacy auth via GitHub** (use the small link at the bottom of the auth page). Manage keys at https://registry.terraform.io/settings/gpg-keys. You must be an admin of the `tryretool` organization to update these keys. More information [here](https://developer.hashicorp.com/terraform/registry/providers/publishing#preparing-and-adding-a-signing-key)
 
 # Update Retool CLI
 Retool CLI has a `terraform` command that generates Terraform configuration from existing Retool org: https://github.com/tryretool/retool-cli/blob/master/src/commands/terraform.ts. 
