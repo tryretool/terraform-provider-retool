@@ -1,17 +1,18 @@
 ---
 page_title: "Resource: retool_permissions"
 description: |-
-  Permissions resource can be used to grant a user or a permission group access to an object: app, folder, resource or resource configuration.
+  Permissions resource can be used to grant a user or a permission group access to an object: app, folder, resource, resource configuration, or screen.
 ---
 
 # Resource: retool_permissions
 
-Permissions resource can be used to grant a user or a permission group access to an object: app, folder, resource or resource configuration.
+Permissions resource can be used to grant a user or a permission group access to an object: app, folder, resource, resource configuration, or screen.
 
 ## Example Usage
 
 ```terraform
-resource "retool_permissions" "test_permissions" {
+# Folder permissions example
+resource "retool_permissions" "folder_permissions" {
   subject = {
     type = "group"
     id   = retool_group.test_group.id
@@ -20,9 +21,27 @@ resource "retool_permissions" "test_permissions" {
     {
       object = {
         type = "folder"
-        id   = retool_folder.test_folder2.id
+        id   = retool_folder.test_folder.id
       }
       access_level = "own"
+    },
+  ]
+}
+
+# Screen permissions example
+resource "retool_permissions" "screen_permissions" {
+  subject = {
+    type = "user"
+    id   = retool_user.test_user.id
+  }
+  permissions = [
+    {
+      object = {
+        type   = "screen"
+        id     = "12345678-1234-1234-1234-123456789012"
+        app_id = "87654321-4321-4321-4321-210987654321"
+      }
+      access_level = "use"
     },
   ]
 }
@@ -50,7 +69,11 @@ Required:
 Required:
 
 - `id` (String) The ID of the object.
-- `type` (String) The type of the object - app, folder, resource, or resource_configuration.
+- `type` (String) The type of the object - app, folder, resource, resource_configuration, or screen.
+
+Optional:
+
+- `app_id` (String) The app ID (required when type is 'screen').
 
 
 

@@ -195,3 +195,48 @@ resource "retool_permissions" "test_permissions_import" {
 		},
 	})
 }
+
+// TestAccPermissions_Screen tests screen permissions functionality.
+// Note: Screen permissions currently work with group subjects but not user subjects.
+func TestAccPermissions_Screen(t *testing.T) {
+	testConfig := `
+resource "retool_group" "test_group_screen" {
+	name = "tf-acc-test-group-screen"
+}
+
+resource "retool_permissions" "test_screen_permissions" {
+	subject = {
+		type = "group"
+		id = retool_group.test_group_screen.id
+	}
+	permissions = [
+		{
+			object = {
+				type = "screen"
+				id = "4d0f13b1-b919-4d52-ad19-d0b51f6dbcf7"
+				app_id = "2cc01bea-0222-11f1-a079-afa417c1dd75"
+			}
+			access_level = "use"
+		},
+	]
+}
+`
+
+	acctest.Test(t, resource.TestCase{
+		Steps: []resource.TestStep{
+			// Create screen permissions.
+			{
+				Config: testConfig,
+				Check: resource.ComposeAggregateTestCheckFunc(
+					resource.TestCheckResourceAttr("retool_permissions.test_screen_permissions", "subject.type", "group"),
+					resource.TestCheckResourceAttrPair("retool_permissions.test_screen_permissions", "subject.id", "retool_group.test_group_screen", "id"),
+					resource.TestCheckResourceAttr("retool_permissions.test_screen_permissions", "permissions.#", "1"),
+					resource.TestCheckResourceAttr("retool_permissions.test_screen_permissions", "permissions.0.object.type", "screen"),
+					resource.TestCheckResourceAttr("retool_permissions.test_screen_permissions", "permissions.0.object.id", "4d0f13b1-b919-4d52-ad19-d0b51f6dbcf7"),
+					resource.TestCheckResourceAttr("retool_permissions.test_screen_permissions", "permissions.0.object.app_id", "2cc01bea-0222-11f1-a079-afa417c1dd75"),
+					resource.TestCheckResourceAttr("retool_permissions.test_screen_permissions", "permissions.0.access_level", "use"),
+				),
+			},
+		},
+	})
+}
