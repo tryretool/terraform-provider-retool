@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Success** | **bool** | API request succeeded | 
-**Data** | [**[]RolePermissionsRolesGet200ResponseDataInner**](RolePermissionsRolesGet200ResponseDataInner.md) | An array of requested items | 
+**Success** | **bool** | Whether the API request was successful. | 
+**Data** | [**[]RolePermissionsRolesGet200ResponseDataInner**](RolePermissionsRolesGet200ResponseDataInner.md) | An array of requested items. | 
 
 ## Methods
 

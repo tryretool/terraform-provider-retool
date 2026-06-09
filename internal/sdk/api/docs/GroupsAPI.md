@@ -1,19 +1,19 @@
 # \GroupsAPI
 
-All URIs are relative to *http://.*
+All URIs are relative to *https://stable-4-0.retool.dev/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GroupsGet**](GroupsAPI.md#GroupsGet) | **Get** /groups | List groups
-[**GroupsGroupIdDelete**](GroupsAPI.md#GroupsGroupIdDelete) | **Delete** /groups/{groupId} | Delete group
-[**GroupsGroupIdGet**](GroupsAPI.md#GroupsGroupIdGet) | **Get** /groups/{groupId} | Get group
-[**GroupsGroupIdMembersPost**](GroupsAPI.md#GroupsGroupIdMembersPost) | **Post** /groups/{groupId}/members | Add users to group
-[**GroupsGroupIdMembersUserSidDelete**](GroupsAPI.md#GroupsGroupIdMembersUserSidDelete) | **Delete** /groups/{groupId}/members/{userSid} | Remove user from group
-[**GroupsGroupIdPatch**](GroupsAPI.md#GroupsGroupIdPatch) | **Patch** /groups/{groupId} | Update group
-[**GroupsGroupIdPut**](GroupsAPI.md#GroupsGroupIdPut) | **Put** /groups/{groupId} | Update group
-[**GroupsGroupIdUserInvitesPost**](GroupsAPI.md#GroupsGroupIdUserInvitesPost) | **Post** /groups/{groupId}/user_invites | Add user invites to group
-[**GroupsGroupIdUserInvitesUserInviteIdDelete**](GroupsAPI.md#GroupsGroupIdUserInvitesUserInviteIdDelete) | **Delete** /groups/{groupId}/user_invites/{userInviteId} | Remove user invite from group
-[**GroupsPost**](GroupsAPI.md#GroupsPost) | **Post** /groups | Create group
+[**GroupsGroupIdDelete**](GroupsAPI.md#GroupsGroupIdDelete) | **Delete** /groups/{groupId} | Delete a group
+[**GroupsGroupIdGet**](GroupsAPI.md#GroupsGroupIdGet) | **Get** /groups/{groupId} | Get a group
+[**GroupsGroupIdMembersPost**](GroupsAPI.md#GroupsGroupIdMembersPost) | **Post** /groups/{groupId}/members | Add users to a group
+[**GroupsGroupIdMembersUserIdDelete**](GroupsAPI.md#GroupsGroupIdMembersUserIdDelete) | **Delete** /groups/{groupId}/members/{userId} | Remove a user from a group
+[**GroupsGroupIdPatch**](GroupsAPI.md#GroupsGroupIdPatch) | **Patch** /groups/{groupId} | Update a group
+[**GroupsGroupIdPut**](GroupsAPI.md#GroupsGroupIdPut) | **Put** /groups/{groupId} | Replace a group
+[**GroupsGroupIdUserInvitesPost**](GroupsAPI.md#GroupsGroupIdUserInvitesPost) | **Post** /groups/{groupId}/user_invites | Add user invites to a group
+[**GroupsGroupIdUserInvitesUserInviteIdDelete**](GroupsAPI.md#GroupsGroupIdUserInvitesUserInviteIdDelete) | **Delete** /groups/{groupId}/user_invites/{userInviteId} | Remove a user invite from a group
+[**GroupsPost**](GroupsAPI.md#GroupsPost) | **Post** /groups | Create a group
 
 
 
@@ -82,7 +82,7 @@ Other parameters are passed through a pointer to a apiGroupsGetRequest struct vi
 
 > GroupsGroupIdDelete(ctx, groupId).Execute()
 
-Delete group
+Delete a group
 
 
 
@@ -99,7 +99,7 @@ import (
 )
 
 func main() {
-	groupId := "groupId_example" // string | The group's ID number
+	groupId := "groupId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -117,7 +117,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**groupId** | **string** | The group&#39;s ID number | 
+**groupId** | **string** |  | 
 
 ### Other Parameters
 
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 > GroupsGroupIdGet200Response GroupsGroupIdGet(ctx, groupId).ExcludeDisabledUsers(excludeDisabledUsers).Execute()
 
-Get group
+Get a group
 
 
 
@@ -167,8 +167,8 @@ import (
 )
 
 func main() {
-	groupId := "groupId_example" // string | The group's ID number
-	excludeDisabledUsers := true // bool | If true, excludes disabled users from the members list in the response. (optional)
+	groupId := "groupId_example" // string | 
+	excludeDisabledUsers := true // bool |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -188,7 +188,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**groupId** | **string** | The group&#39;s ID number | 
+**groupId** | **string** |  | 
 
 ### Other Parameters
 
@@ -198,7 +198,7 @@ Other parameters are passed through a pointer to a apiGroupsGroupIdGetRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **excludeDisabledUsers** | **bool** | If true, excludes disabled users from the members list in the response. | 
+ **excludeDisabledUsers** | **bool** |  | 
 
 ### Return type
 
@@ -222,7 +222,7 @@ Name | Type | Description  | Notes
 
 > GroupsGroupIdPut200Response GroupsGroupIdMembersPost(ctx, groupId).GroupsGroupIdMembersPostRequest(groupsGroupIdMembersPostRequest).Execute()
 
-Add users to group
+Add users to a group
 
 
 
@@ -239,8 +239,8 @@ import (
 )
 
 func main() {
-	groupId := "groupId_example" // string | The group's ID number
-	groupsGroupIdMembersPostRequest := *openapiclient.NewGroupsGroupIdMembersPostRequest([]openapiclient.GroupsGroupIdPutRequestMembersInner{*openapiclient.NewGroupsGroupIdPutRequestMembersInner("Id_example", false)}) // GroupsGroupIdMembersPostRequest |  (optional)
+	groupId := "groupId_example" // string | 
+	groupsGroupIdMembersPostRequest := *openapiclient.NewGroupsGroupIdMembersPostRequest([]openapiclient.GroupsGroupIdPutRequestMembersInner{*openapiclient.NewGroupsGroupIdPutRequestMembersInner("user_1234", false)}) // GroupsGroupIdMembersPostRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -260,7 +260,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**groupId** | **string** | The group&#39;s ID number | 
+**groupId** | **string** |  | 
 
 ### Other Parameters
 
@@ -290,11 +290,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GroupsGroupIdMembersUserSidDelete
+## GroupsGroupIdMembersUserIdDelete
 
-> GroupsGroupIdPut200Response GroupsGroupIdMembersUserSidDelete(ctx, groupId, userSid).Execute()
+> GroupsGroupIdPut200Response GroupsGroupIdMembersUserIdDelete(ctx, groupId, userId).Execute()
 
-Remove user from group
+Remove a user from a group
 
 
 
@@ -311,18 +311,18 @@ import (
 )
 
 func main() {
-	groupId := "groupId_example" // string | The group's ID number
-	userSid := "userSid_example" // string | 
+	groupId := "groupId_example" // string | 
+	userId := "user_1234" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.GroupsAPI.GroupsGroupIdMembersUserSidDelete(context.Background(), groupId, userSid).Execute()
+	resp, r, err := apiClient.GroupsAPI.GroupsGroupIdMembersUserIdDelete(context.Background(), groupId, userId).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `GroupsAPI.GroupsGroupIdMembersUserSidDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `GroupsAPI.GroupsGroupIdMembersUserIdDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GroupsGroupIdMembersUserSidDelete`: GroupsGroupIdPut200Response
-	fmt.Fprintf(os.Stdout, "Response from `GroupsAPI.GroupsGroupIdMembersUserSidDelete`: %v\n", resp)
+	// response from `GroupsGroupIdMembersUserIdDelete`: GroupsGroupIdPut200Response
+	fmt.Fprintf(os.Stdout, "Response from `GroupsAPI.GroupsGroupIdMembersUserIdDelete`: %v\n", resp)
 }
 ```
 
@@ -332,12 +332,12 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**groupId** | **string** | The group&#39;s ID number | 
-**userSid** | **string** |  | 
+**groupId** | **string** |  | 
+**userId** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGroupsGroupIdMembersUserSidDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGroupsGroupIdMembersUserIdDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -367,7 +367,7 @@ Name | Type | Description  | Notes
 
 > GroupsGroupIdPut200Response GroupsGroupIdPatch(ctx, groupId).GroupsGroupIdPatchRequest(groupsGroupIdPatchRequest).Execute()
 
-Update group
+Update a group
 
 
 
@@ -384,7 +384,7 @@ import (
 )
 
 func main() {
-	groupId := "groupId_example" // string | The group's ID number
+	groupId := "groupId_example" // string | 
 	groupsGroupIdPatchRequest := *openapiclient.NewGroupsGroupIdPatchRequest([]openapiclient.UsersUserIdPatchRequestOperationsInner{*openapiclient.NewUsersUserIdPatchRequestOperationsInner("Op_example", "Path_example")}) // GroupsGroupIdPatchRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -405,7 +405,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**groupId** | **string** | The group&#39;s ID number | 
+**groupId** | **string** |  | 
 
 ### Other Parameters
 
@@ -439,7 +439,7 @@ Name | Type | Description  | Notes
 
 > GroupsGroupIdPut200Response GroupsGroupIdPut(ctx, groupId).GroupsGroupIdPutRequest(groupsGroupIdPutRequest).Execute()
 
-Update group
+Replace a group
 
 
 
@@ -456,7 +456,7 @@ import (
 )
 
 func main() {
-	groupId := "groupId_example" // string | The group's ID number
+	groupId := "groupId_example" // string | 
 	groupsGroupIdPutRequest := *openapiclient.NewGroupsGroupIdPutRequest() // GroupsGroupIdPutRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -477,7 +477,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**groupId** | **string** | The group&#39;s ID number | 
+**groupId** | **string** |  | 
 
 ### Other Parameters
 
@@ -511,7 +511,7 @@ Name | Type | Description  | Notes
 
 > GroupsGroupIdPut200Response GroupsGroupIdUserInvitesPost(ctx, groupId).GroupsGroupIdUserInvitesPostRequest(groupsGroupIdUserInvitesPostRequest).Execute()
 
-Add user invites to group
+Add user invites to a group
 
 
 
@@ -528,7 +528,7 @@ import (
 )
 
 func main() {
-	groupId := "groupId_example" // string | The group's ID number
+	groupId := "groupId_example" // string | 
 	groupsGroupIdUserInvitesPostRequest := *openapiclient.NewGroupsGroupIdUserInvitesPostRequest([]float32{float32(123)}) // GroupsGroupIdUserInvitesPostRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -549,7 +549,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**groupId** | **string** | The group&#39;s ID number | 
+**groupId** | **string** |  | 
 
 ### Other Parameters
 
@@ -583,7 +583,7 @@ Name | Type | Description  | Notes
 
 > GroupsGroupIdUserInvitesUserInviteIdDelete(ctx, groupId, userInviteId).Execute()
 
-Remove user invite from group
+Remove a user invite from a group
 
 
 
@@ -600,8 +600,8 @@ import (
 )
 
 func main() {
-	groupId := "groupId_example" // string | The group's ID number
-	userInviteId := "userInviteId_example" // string | The user invite's ID number
+	groupId := "groupId_example" // string | 
+	userInviteId := "userInviteId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -619,8 +619,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**groupId** | **string** | The group&#39;s ID number | 
-**userInviteId** | **string** | The user invite&#39;s ID number | 
+**groupId** | **string** |  | 
+**userInviteId** | **string** |  | 
 
 ### Other Parameters
 
@@ -654,7 +654,7 @@ Name | Type | Description  | Notes
 
 > GroupsPost200Response GroupsPost(ctx).GroupsPostRequest(groupsPostRequest).Execute()
 
-Create group
+Create a group
 
 
 

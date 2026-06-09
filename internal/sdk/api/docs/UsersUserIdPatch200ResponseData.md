@@ -4,18 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** | The id of the user | 
-**LegacyId** | **float32** | The legacy id of the user | 
-**Email** | **string** | The email of the user | 
-**Active** | **bool** | Whether the user is active or not | 
-**CreatedAt** | **time.Time** |  | 
-**LastActive** | **NullableTime** |  | 
-**FirstName** | **NullableString** | The first name of the user | 
-**LastName** | **NullableString** | The last name of the user | 
-**Metadata** | **map[string]interface{}** |  | [default to {}]
-**IsAdmin** | **bool** | Whether the user is an admin or not | 
-**UserType** | **string** | The user type | 
-**TwoFactorAuthEnabled** | **bool** | Whether two factor authentication is enabled for this user | 
+**Id** | **string** | The ID of the user. | 
+**LegacyId** | **float32** | The legacy ID of the user. | 
+**Email** | **string** | The email of the user. | 
+**Active** | **bool** | Whether the user is active or not. | 
+**CreatedAt** | **time.Time** | The timestamp when the user was created. | 
+**LastActive** | **NullableTime** | The timestamp when the user was last active. | 
+**FirstName** | **NullableString** | The first name of the user. | 
+**LastName** | **NullableString** | The last name of the user. | 
+**Metadata** | **map[string]interface{}** | Custom metadata associated with the user. | [default to {}]
+**IsAdmin** | **bool** | Whether the user is an admin or not. | 
+**UserType** | **string** | The user type. | 
+**SeatType** | Pointer to **NullableString** | The user&#39;s seat type. Only meaningful on plans that have the Named Seats feature; on other plans the value is informational. Setting this field via API requires the Named Seats feature. | [optional] 
+**TwoFactorAuthEnabled** | **bool** | Whether two-factor authentication is enabled for this user. | 
 
 ## Methods
 
@@ -286,6 +287,41 @@ and a boolean to check if the value has been set.
 SetUserType sets UserType field to given value.
 
 
+### GetSeatType
+
+`func (o *UsersUserIdPatch200ResponseData) GetSeatType() string`
+
+GetSeatType returns the SeatType field if non-nil, zero value otherwise.
+
+### GetSeatTypeOk
+
+`func (o *UsersUserIdPatch200ResponseData) GetSeatTypeOk() (*string, bool)`
+
+GetSeatTypeOk returns a tuple with the SeatType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSeatType
+
+`func (o *UsersUserIdPatch200ResponseData) SetSeatType(v string)`
+
+SetSeatType sets SeatType field to given value.
+
+### HasSeatType
+
+`func (o *UsersUserIdPatch200ResponseData) HasSeatType() bool`
+
+HasSeatType returns a boolean if a field has been set.
+
+### SetSeatTypeNil
+
+`func (o *UsersUserIdPatch200ResponseData) SetSeatTypeNil(b bool)`
+
+ SetSeatTypeNil sets the value for SeatType to be an explicit nil
+
+### UnsetSeatType
+`func (o *UsersUserIdPatch200ResponseData) UnsetSeatType()`
+
+UnsetSeatType ensures that no value is present for SeatType, not even an explicit nil
 ### GetTwoFactorAuthEnabled
 
 `func (o *UsersUserIdPatch200ResponseData) GetTwoFactorAuthEnabled() bool`

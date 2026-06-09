@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Success** | **bool** | API request succeeded | 
-**Data** | [**[]UserAttributesGet200ResponseDataInner**](UserAttributesGet200ResponseDataInner.md) | An array of requested items | 
+**Success** | **bool** | Whether the API request was successful. | 
+**Data** | [**[]UserAttributesGet200ResponseDataInner**](UserAttributesGet200ResponseDataInner.md) | An array of requested items. | 
 
 ## Methods
 

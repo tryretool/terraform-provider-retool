@@ -1,17 +1,16 @@
 # \UsersAPI
 
-All URIs are relative to *http://.*
+All URIs are relative to *https://stable-4-0.retool.dev/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**UsersGet**](UsersAPI.md#UsersGet) | **Get** /users | List users
-[**UsersPost**](UsersAPI.md#UsersPost) | **Post** /users | Create user
-[**UsersReset2faUserIdPut**](UsersAPI.md#UsersReset2faUserIdPut) | **Put** /users/reset2fa/{userId} | Resets a user&#39;s existing two factor authentication setting
+[**UsersPost**](UsersAPI.md#UsersPost) | **Post** /users | Create a user
+[**UsersReset2faUserIdPut**](UsersAPI.md#UsersReset2faUserIdPut) | **Put** /users/reset2fa/{userId} | Reset a user&#39;s two-factor authentication
 [**UsersUserIdDelete**](UsersAPI.md#UsersUserIdDelete) | **Delete** /users/{userId} | Delete a user
 [**UsersUserIdGet**](UsersAPI.md#UsersUserIdGet) | **Get** /users/{userId} | Get a user
+[**UsersUserIdLogoutPost**](UsersAPI.md#UsersUserIdLogoutPost) | **Post** /users/{userId}/logout | Log out a user
 [**UsersUserIdPatch**](UsersAPI.md#UsersUserIdPatch) | **Patch** /users/{userId} | Update a user
-[**UsersUserIdUserAttributesAttributeNameDelete**](UsersAPI.md#UsersUserIdUserAttributesAttributeNameDelete) | **Delete** /users/{userId}/user_attributes/{attributeName} | Delete a user attribute
-[**UsersUserIdUserAttributesPost**](UsersAPI.md#UsersUserIdUserAttributesPost) | **Post** /users/{userId}/user_attributes | Add or update a user attribute
 
 
 
@@ -36,11 +35,11 @@ import (
 )
 
 func main() {
-	email := "email_example" // string | Email address of user (optional)
-	firstName := "firstName_example" // string | First name of user (optional)
-	lastName := "lastName_example" // string | Last name of user (optional)
-	limit := int32(50) // int32 | Maximum number of items to return per page. If not provided, all items are returned. When provided, enables pagination and the response will include next_token for retrieving subsequent pages. Valid range: 1-100. (optional)
-	nextToken := "eyJsYXN0SWQiOjEyM30..." // string | Cursor token for retrieving the next page of results. Obtained from the next_token field of a previous paginated response. Only valid when the limit parameter is also provided. (optional)
+	email := "email_example" // string |  (optional)
+	firstName := "firstName_example" // string |  (optional)
+	lastName := "lastName_example" // string |  (optional)
+	limit := int32(50) // int32 |  (optional)
+	nextToken := "eyJsYXN0SWQiOjEyM30..." // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -65,11 +64,11 @@ Other parameters are passed through a pointer to a apiUsersGetRequest struct via
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **string** | Email address of user | 
- **firstName** | **string** | First name of user | 
- **lastName** | **string** | Last name of user | 
- **limit** | **int32** | Maximum number of items to return per page. If not provided, all items are returned. When provided, enables pagination and the response will include next_token for retrieving subsequent pages. Valid range: 1-100. | 
- **nextToken** | **string** | Cursor token for retrieving the next page of results. Obtained from the next_token field of a previous paginated response. Only valid when the limit parameter is also provided. | 
+ **email** | **string** |  | 
+ **firstName** | **string** |  | 
+ **lastName** | **string** |  | 
+ **limit** | **int32** |  | 
+ **nextToken** | **string** |  | 
 
 ### Return type
 
@@ -93,7 +92,7 @@ Name | Type | Description  | Notes
 
 > UsersPost200Response UsersPost(ctx).UsersPostRequest(usersPostRequest).Execute()
 
-Create user
+Create a user
 
 
 
@@ -159,7 +158,7 @@ Name | Type | Description  | Notes
 
 > UsersReset2faUserIdPut(ctx, userId).Execute()
 
-Resets a user's existing two factor authentication setting
+Reset a user's two-factor authentication
 
 
 
@@ -176,7 +175,7 @@ import (
 )
 
 func main() {
-	userId := "userId_example" // string | 
+	userId := "user_1234" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -244,7 +243,7 @@ import (
 )
 
 func main() {
-	userId := "userId_example" // string | 
+	userId := "user_1234" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -312,8 +311,8 @@ import (
 )
 
 func main() {
-	userId := "userId_example" // string | 
-	includeGroups := true // bool | Whether to include the groups array in the response. (optional) (default to false)
+	userId := "user_1234" // string | 
+	includeGroups := true // bool |  (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -343,7 +342,7 @@ Other parameters are passed through a pointer to a apiUsersUserIdGetRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **includeGroups** | **bool** | Whether to include the groups array in the response. | [default to false]
+ **includeGroups** | **bool** |  | [default to false]
 
 ### Return type
 
@@ -356,6 +355,78 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UsersUserIdLogoutPost
+
+> UsersUserIdLogoutPost200Response UsersUserIdLogoutPost(ctx, userId).UsersUserIdLogoutPostRequest(usersUserIdLogoutPostRequest).Execute()
+
+Log out a user
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	userId := "user_1234" // string | 
+	usersUserIdLogoutPostRequest := *openapiclient.NewUsersUserIdLogoutPostRequest() // UsersUserIdLogoutPostRequest |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UsersAPI.UsersUserIdLogoutPost(context.Background(), userId).UsersUserIdLogoutPostRequest(usersUserIdLogoutPostRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.UsersUserIdLogoutPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UsersUserIdLogoutPost`: UsersUserIdLogoutPost200Response
+	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.UsersUserIdLogoutPost`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUsersUserIdLogoutPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **usersUserIdLogoutPostRequest** | [**UsersUserIdLogoutPostRequest**](UsersUserIdLogoutPostRequest.md) |  | 
+
+### Return type
+
+[**UsersUserIdLogoutPost200Response**](UsersUserIdLogoutPost200Response.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -384,7 +455,7 @@ import (
 )
 
 func main() {
-	userId := "userId_example" // string | 
+	userId := "user_1234" // string | 
 	usersUserIdPatchRequest := *openapiclient.NewUsersUserIdPatchRequest([]openapiclient.UsersUserIdPatchRequestOperationsInner{*openapiclient.NewUsersUserIdPatchRequestOperationsInner("Op_example", "Path_example")}) // UsersUserIdPatchRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -420,151 +491,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**UsersUserIdPatch200Response**](UsersUserIdPatch200Response.md)
-
-### Authorization
-
-[BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## UsersUserIdUserAttributesAttributeNameDelete
-
-> UsersUserIdUserAttributesAttributeNameDelete200Response UsersUserIdUserAttributesAttributeNameDelete(ctx, userId, attributeName).Execute()
-
-Delete a user attribute
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	userId := "userId_example" // string | 
-	attributeName := "attributeName_example" // string | The name of the user attribute to delete
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersAPI.UsersUserIdUserAttributesAttributeNameDelete(context.Background(), userId, attributeName).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.UsersUserIdUserAttributesAttributeNameDelete``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UsersUserIdUserAttributesAttributeNameDelete`: UsersUserIdUserAttributesAttributeNameDelete200Response
-	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.UsersUserIdUserAttributesAttributeNameDelete`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  | 
-**attributeName** | **string** | The name of the user attribute to delete | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUsersUserIdUserAttributesAttributeNameDeleteRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-
-### Return type
-
-[**UsersUserIdUserAttributesAttributeNameDelete200Response**](UsersUserIdUserAttributesAttributeNameDelete200Response.md)
-
-### Authorization
-
-[BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## UsersUserIdUserAttributesPost
-
-> UsersUserIdUserAttributesPost200Response UsersUserIdUserAttributesPost(ctx, userId).UsersUserIdUserAttributesPostRequest(usersUserIdUserAttributesPostRequest).Execute()
-
-Add or update a user attribute
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	userId := "userId_example" // string | 
-	usersUserIdUserAttributesPostRequest := *openapiclient.NewUsersUserIdUserAttributesPostRequest("Name_example", "Value_example") // UsersUserIdUserAttributesPostRequest |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersAPI.UsersUserIdUserAttributesPost(context.Background(), userId).UsersUserIdUserAttributesPostRequest(usersUserIdUserAttributesPostRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.UsersUserIdUserAttributesPost``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UsersUserIdUserAttributesPost`: UsersUserIdUserAttributesPost200Response
-	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.UsersUserIdUserAttributesPost`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUsersUserIdUserAttributesPostRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **usersUserIdUserAttributesPostRequest** | [**UsersUserIdUserAttributesPostRequest**](UsersUserIdUserAttributesPostRequest.md) |  | 
-
-### Return type
-
-[**UsersUserIdUserAttributesPost200Response**](UsersUserIdUserAttributesPost200Response.md)
 
 ### Authorization
 

@@ -4,12 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Email** | **string** | The email of the user | 
-**FirstName** | **string** | The first name of the user | 
-**LastName** | **string** | The last name of the user | 
-**Active** | Pointer to **bool** | Whether the user is enabled or not | [optional] [default to true]
-**Metadata** | Pointer to **map[string]interface{}** |  | [optional] [default to {}]
-**UserType** | Pointer to **string** | The user type | [optional] 
+**Email** | **string** | The email of the user. | 
+**FirstName** | **string** | The first name of the user. | 
+**LastName** | **string** | The last name of the user. | 
+**Active** | Pointer to **bool** | Whether the user is enabled or not. Defaults to &#x60;true&#x60;. | [optional] [default to true]
+**Metadata** | Pointer to **map[string]interface{}** | Custom metadata associated with the user. Defaults to an empty object. | [optional] [default to {}]
+**UserType** | Pointer to **string** | The user type. Defaults to &#x60;default&#x60;. | [optional] [default to "default"]
+**SeatType** | Pointer to **string** | The user&#39;s seat type. Requires the Named Seats feature on your plan. When omitted, the organization&#39;s just-in-time default seat type is used. | [optional] 
 
 ## Methods
 
@@ -164,6 +165,31 @@ SetUserType sets UserType field to given value.
 `func (o *UsersPostRequest) HasUserType() bool`
 
 HasUserType returns a boolean if a field has been set.
+
+### GetSeatType
+
+`func (o *UsersPostRequest) GetSeatType() string`
+
+GetSeatType returns the SeatType field if non-nil, zero value otherwise.
+
+### GetSeatTypeOk
+
+`func (o *UsersPostRequest) GetSeatTypeOk() (*string, bool)`
+
+GetSeatTypeOk returns a tuple with the SeatType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSeatType
+
+`func (o *UsersPostRequest) SetSeatType(v string)`
+
+SetSeatType sets SeatType field to given value.
+
+### HasSeatType
+
+`func (o *UsersPostRequest) HasSeatType() bool`
+
+HasSeatType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

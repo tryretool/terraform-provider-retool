@@ -78,6 +78,49 @@ You can understand what commands to run to build the library, and get more conte
 
 Following that a cursor agent was able to make remarkable progress on updating the provider code to respect this, including tests.
 
+## Notes from updating to 4.0.0
+
+Updated from 2.12.0 to 4.0.0 (Retool stable 3.334 -> 4.0).
+
+### Spec transformation
+The ad-hoc transformation steps (single tag per operation, permissions
+`oneOf`->`anyOf`, and relaxing response-only required fields `folder_id`,
+`seat_type`, `default_value`) are now consolidated into `transform_spec.py`.
+Regenerate with:
+```
+python3 transform_spec.py <raw_4.0_spec.json> openAPISpec.json
+go generate
+```
+Notes:
+- 4.0 already emits a single tag per operation, so that step is a no-op now.
+- 4.0 pluralized several tags (e.g. `Access Request` -> `Access Requests`),
+  which renames the generated `api_*.go` files. `--minimal-update` does not
+  delete the old files, so stale files must be removed (compare the tree
+  against `api/.openapi-generator/FILES`).
+
+### API changes relevant to the provider
+- **`GET /users/{userId}`**: response `data` is now a flat object instead of an
+  `anyOf` wrapper. `internal/provider/user` updated to read `user.Data` directly.
+- **AWS CodeCommit source control config**: `access_key_id`, `secret_access_key`,
+  `https_username`, `https_password` are now optional (only `url`/`region`
+  required), and `assume_role` / `auth_with_default_credential_provider_chain`
+  were added. `NewAWSCodeCommitConfig` now takes only `(url, region)`.
+- **Bitbucket source control config**: 4.0 once again *requires* the `type`
+  field (`AppPassword`/`Token`) on the Bitbucket config (2.12.0 had to omit it).
+  The old "remove Bitbucket `type`" transform was therefore dropped, and
+  `NewBitbucketConfigAnyOf` now takes `(type_, username, appPassword)`; the
+  provider sends `"AppPassword"`.
+- **`folder_id` / `seat_type` / `default_value`**: marked required on responses
+  but omitted by not-yet-migrated instances; relaxed to optional in the spec
+  (verified against a live 4.0 instance returning 400 / unmarshal errors).
+- New optional fields elsewhere (handled by regen, surfaced separately as
+  provider attributes): user `seat_type`, configuration variable
+  `default_value`, SSO `oidc_end_session_url`.
+
+### Testing
+- Unit tests: passing.
+- Acceptance tests: see commit history / test recordings.
+
 ## Notes from updating to 2.12.0
 
 Updated from 2.9.0 to 2.12.0 using automated transformation script. Key changes:

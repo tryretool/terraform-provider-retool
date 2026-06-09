@@ -1,14 +1,14 @@
 # \AppThemesAPI
 
-All URIs are relative to *http://.*
+All URIs are relative to *https://stable-4-0.retool.dev/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AppThemesGet**](AppThemesAPI.md#AppThemesGet) | **Get** /app_themes | List all app themes
-[**AppThemesIdDelete**](AppThemesAPI.md#AppThemesIdDelete) | **Delete** /app_themes/{id} | Delete app theme
-[**AppThemesIdGet**](AppThemesAPI.md#AppThemesIdGet) | **Get** /app_themes/{id} | Get app theme
-[**AppThemesPost**](AppThemesAPI.md#AppThemesPost) | **Post** /app_themes | Create app theme
-[**AppThemesPut**](AppThemesAPI.md#AppThemesPut) | **Put** /app_themes | Update app theme
+[**AppThemesGet**](AppThemesAPI.md#AppThemesGet) | **Get** /app_themes | List app themes
+[**AppThemesIdDelete**](AppThemesAPI.md#AppThemesIdDelete) | **Delete** /app_themes/{id} | Delete an app theme
+[**AppThemesIdGet**](AppThemesAPI.md#AppThemesIdGet) | **Get** /app_themes/{id} | Get an app theme
+[**AppThemesPost**](AppThemesAPI.md#AppThemesPost) | **Post** /app_themes | Create an app theme
+[**AppThemesPut**](AppThemesAPI.md#AppThemesPut) | **Put** /app_themes | Update an app theme
 
 
 
@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 > AppThemesGet200Response AppThemesGet(ctx).Execute()
 
-List all app themes
+List app themes
 
 
 
@@ -77,7 +77,7 @@ Other parameters are passed through a pointer to a apiAppThemesGetRequest struct
 
 > AppThemesIdDelete(ctx, id).Execute()
 
-Delete app theme
+Delete an app theme
 
 
 
@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
 
 > AppThemesIdGet200Response AppThemesIdGet(ctx, id).Execute()
 
-Get app theme
+Get an app theme
 
 
 
@@ -215,7 +215,7 @@ Name | Type | Description  | Notes
 
 > AppThemesPut200Response AppThemesPost(ctx).AppThemesGet200ResponseDataInner(appThemesGet200ResponseDataInner).Execute()
 
-Create app theme
+Create an app theme
 
 
 
@@ -282,7 +282,7 @@ Name | Type | Description  | Notes
 
 > AppThemesPut200Response AppThemesPut(ctx).AppThemesGet200ResponseDataInner(appThemesGet200ResponseDataInner).Execute()
 
-Update app theme
+Update an app theme
 
 
 

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | The name of the user attribute. Must be alphanumeric and without spaces. | 
 **Label** | **string** | A short description of the user attribute. | 
-**DataType** | **string** | The data type of the attribute, can be one of string | json | number. | 
+**DataType** | **string** | The data type of the attribute. Valid types are &#x60;string&#x60;, &#x60;json&#x60;, or &#x60;number&#x60;. | 
 **DefaultValue** | Pointer to **NullableString** | A default value to apply to users that don&#39;t have an attribute set. | [optional] 
 
 ## Methods

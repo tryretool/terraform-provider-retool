@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Success** | **bool** | API request succeeded | 
+**Success** | **bool** | Whether the API request was successful. | 
 **Data** | [**SpacesSpaceIdGet200ResponseData**](SpacesSpaceIdGet200ResponseData.md) |  | 
 
 ## Methods

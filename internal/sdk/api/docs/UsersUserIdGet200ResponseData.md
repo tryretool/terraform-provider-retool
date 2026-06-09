@@ -4,25 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** | The id of the user | 
-**LegacyId** | **float32** | The legacy id of the user | 
-**Email** | **string** | The email of the user | 
-**Active** | **bool** | Whether the user is active or not | 
-**CreatedAt** | **time.Time** |  | 
-**LastActive** | **NullableTime** |  | 
-**FirstName** | **NullableString** | The first name of the user | 
-**LastName** | **NullableString** | The last name of the user | 
-**Metadata** | **map[string]interface{}** |  | [default to {}]
-**IsAdmin** | **bool** | Whether the user is an admin or not | 
-**UserType** | **string** | The user type | 
-**TwoFactorAuthEnabled** | **bool** | Whether two factor authentication is enabled for this user | 
-**Groups** | [**[]UsersUserIdGet200ResponseDataAnyOf1GroupsInner**](UsersUserIdGet200ResponseDataAnyOf1GroupsInner.md) | The groups that the user is part of | 
+**Id** | **string** | The ID of the user. | 
+**LegacyId** | **float32** | The legacy ID of the user. | 
+**Email** | **string** | The email of the user. | 
+**Active** | **bool** | Whether the user is active or not. | 
+**CreatedAt** | **time.Time** | The timestamp when the user was created. | 
+**LastActive** | **NullableTime** | The timestamp when the user was last active. | 
+**FirstName** | **NullableString** | The first name of the user. | 
+**LastName** | **NullableString** | The last name of the user. | 
+**Metadata** | **map[string]interface{}** | Custom metadata associated with the user. | [default to {}]
+**IsAdmin** | **bool** | Whether the user is an admin or not. | 
+**UserType** | **string** | The user type. | 
+**SeatType** | Pointer to **NullableString** | The user&#39;s seat type. Only meaningful on plans that have the Named Seats feature; on other plans the value is informational. Setting this field via API requires the Named Seats feature. | [optional] 
+**TwoFactorAuthEnabled** | **bool** | Whether two-factor authentication is enabled for this user. | 
+**Groups** | Pointer to [**[]UsersUserIdGet200ResponseDataGroupsInner**](UsersUserIdGet200ResponseDataGroupsInner.md) | The groups that the user is part of. Only included when &#x60;includeGroups&#x60; query parameter is &#x60;true&#x60;. | [optional] 
 
 ## Methods
 
 ### NewUsersUserIdGet200ResponseData
 
-`func NewUsersUserIdGet200ResponseData(id string, legacyId float32, email string, active bool, createdAt time.Time, lastActive NullableTime, firstName NullableString, lastName NullableString, metadata map[string]interface{}, isAdmin bool, userType string, twoFactorAuthEnabled bool, groups []UsersUserIdGet200ResponseDataAnyOf1GroupsInner, ) *UsersUserIdGet200ResponseData`
+`func NewUsersUserIdGet200ResponseData(id string, legacyId float32, email string, active bool, createdAt time.Time, lastActive NullableTime, firstName NullableString, lastName NullableString, metadata map[string]interface{}, isAdmin bool, userType string, twoFactorAuthEnabled bool, ) *UsersUserIdGet200ResponseData`
 
 NewUsersUserIdGet200ResponseData instantiates a new UsersUserIdGet200ResponseData object
 This constructor will assign default values to properties that have it defined,
@@ -287,6 +288,41 @@ and a boolean to check if the value has been set.
 SetUserType sets UserType field to given value.
 
 
+### GetSeatType
+
+`func (o *UsersUserIdGet200ResponseData) GetSeatType() string`
+
+GetSeatType returns the SeatType field if non-nil, zero value otherwise.
+
+### GetSeatTypeOk
+
+`func (o *UsersUserIdGet200ResponseData) GetSeatTypeOk() (*string, bool)`
+
+GetSeatTypeOk returns a tuple with the SeatType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSeatType
+
+`func (o *UsersUserIdGet200ResponseData) SetSeatType(v string)`
+
+SetSeatType sets SeatType field to given value.
+
+### HasSeatType
+
+`func (o *UsersUserIdGet200ResponseData) HasSeatType() bool`
+
+HasSeatType returns a boolean if a field has been set.
+
+### SetSeatTypeNil
+
+`func (o *UsersUserIdGet200ResponseData) SetSeatTypeNil(b bool)`
+
+ SetSeatTypeNil sets the value for SeatType to be an explicit nil
+
+### UnsetSeatType
+`func (o *UsersUserIdGet200ResponseData) UnsetSeatType()`
+
+UnsetSeatType ensures that no value is present for SeatType, not even an explicit nil
 ### GetTwoFactorAuthEnabled
 
 `func (o *UsersUserIdGet200ResponseData) GetTwoFactorAuthEnabled() bool`
@@ -309,23 +345,28 @@ SetTwoFactorAuthEnabled sets TwoFactorAuthEnabled field to given value.
 
 ### GetGroups
 
-`func (o *UsersUserIdGet200ResponseData) GetGroups() []UsersUserIdGet200ResponseDataAnyOf1GroupsInner`
+`func (o *UsersUserIdGet200ResponseData) GetGroups() []UsersUserIdGet200ResponseDataGroupsInner`
 
 GetGroups returns the Groups field if non-nil, zero value otherwise.
 
 ### GetGroupsOk
 
-`func (o *UsersUserIdGet200ResponseData) GetGroupsOk() (*[]UsersUserIdGet200ResponseDataAnyOf1GroupsInner, bool)`
+`func (o *UsersUserIdGet200ResponseData) GetGroupsOk() (*[]UsersUserIdGet200ResponseDataGroupsInner, bool)`
 
 GetGroupsOk returns a tuple with the Groups field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGroups
 
-`func (o *UsersUserIdGet200ResponseData) SetGroups(v []UsersUserIdGet200ResponseDataAnyOf1GroupsInner)`
+`func (o *UsersUserIdGet200ResponseData) SetGroups(v []UsersUserIdGet200ResponseDataGroupsInner)`
 
 SetGroups sets Groups field to given value.
 
+### HasGroups
+
+`func (o *UsersUserIdGet200ResponseData) HasGroups() bool`
+
+HasGroups returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

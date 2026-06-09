@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** | The type of resource. | 
+**Type** | **string** |  | 
 **DisplayName** | **string** |  | 
 **Options** | [**ResourcesPostRequestOptions**](ResourcesPostRequestOptions.md) |  | 
 

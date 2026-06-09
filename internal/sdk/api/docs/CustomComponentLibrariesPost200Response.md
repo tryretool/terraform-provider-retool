@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Success** | **bool** | API request succeeded | 
+**Success** | **bool** | Whether the API request was successful. | 
 **Data** | [**CustomComponentLibrariesLibraryIdGet200ResponseData**](CustomComponentLibrariesLibraryIdGet200ResponseData.md) |  | 
 
 ## Methods

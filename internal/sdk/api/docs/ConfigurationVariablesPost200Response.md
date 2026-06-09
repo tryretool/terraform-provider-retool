@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Success** | **bool** | API request succeeded | 
+**Success** | **bool** | Whether the API request was successful. | 
 **Data** | [**ConfigurationVariablesGet200ResponseDataInner**](ConfigurationVariablesGet200ResponseDataInner.md) |  | 
 
 ## Methods

@@ -1,13 +1,15 @@
 # \UserAttributesAPI
 
-All URIs are relative to *http://.*
+All URIs are relative to *https://stable-4-0.retool.dev/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**UserAttributesGet**](UserAttributesAPI.md#UserAttributesGet) | **Get** /user_attributes | Get organization user attributes
-[**UserAttributesIdDelete**](UserAttributesAPI.md#UserAttributesIdDelete) | **Delete** /user_attributes/{id} | Delete an user attribute from the organization
-[**UserAttributesIdPatch**](UserAttributesAPI.md#UserAttributesIdPatch) | **Patch** /user_attributes/{id} | Update organization user attribute
-[**UserAttributesPost**](UserAttributesAPI.md#UserAttributesPost) | **Post** /user_attributes | Create a new user attribute for the organization
+[**UserAttributesGet**](UserAttributesAPI.md#UserAttributesGet) | **Get** /user_attributes | List organization user attributes
+[**UserAttributesIdDelete**](UserAttributesAPI.md#UserAttributesIdDelete) | **Delete** /user_attributes/{id} | Delete an organization user attribute
+[**UserAttributesIdPatch**](UserAttributesAPI.md#UserAttributesIdPatch) | **Patch** /user_attributes/{id} | Update an organization user attribute
+[**UserAttributesPost**](UserAttributesAPI.md#UserAttributesPost) | **Post** /user_attributes | Create an organization user attribute
+[**UsersUserIdUserAttributesAttributeNameDelete**](UserAttributesAPI.md#UsersUserIdUserAttributesAttributeNameDelete) | **Delete** /users/{userId}/user_attributes/{attributeName} | Delete a user attribute
+[**UsersUserIdUserAttributesPost**](UserAttributesAPI.md#UsersUserIdUserAttributesPost) | **Post** /users/{userId}/user_attributes | Create or update a user attribute
 
 
 
@@ -15,7 +17,7 @@ Method | HTTP request | Description
 
 > UserAttributesGet200Response UserAttributesGet(ctx).Execute()
 
-Get organization user attributes
+List organization user attributes
 
 
 
@@ -76,7 +78,7 @@ Other parameters are passed through a pointer to a apiUserAttributesGetRequest s
 
 > UserAttributesIdDelete(ctx, id).UpdateExistingUsers(updateExistingUsers).Execute()
 
-Delete an user attribute from the organization
+Delete an organization user attribute
 
 
 
@@ -93,8 +95,8 @@ import (
 )
 
 func main() {
-	id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The id of the user attribute
-	updateExistingUsers := "updateExistingUsers_example" // string | Whether to update existing users with the deleted attribute (optional)
+	id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	updateExistingUsers := "updateExistingUsers_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -112,7 +114,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The id of the user attribute | 
+**id** | **string** |  | 
 
 ### Other Parameters
 
@@ -122,7 +124,7 @@ Other parameters are passed through a pointer to a apiUserAttributesIdDeleteRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateExistingUsers** | **string** | Whether to update existing users with the deleted attribute | 
+ **updateExistingUsers** | **string** |  | 
 
 ### Return type
 
@@ -146,7 +148,7 @@ Name | Type | Description  | Notes
 
 > UserAttributesIdPatch200Response UserAttributesIdPatch(ctx, id).UserAttributesIdPatchRequest(userAttributesIdPatchRequest).Execute()
 
-Update organization user attribute
+Update an organization user attribute
 
 
 
@@ -163,7 +165,7 @@ import (
 )
 
 func main() {
-	id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The id of the user attribute
+	id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 	userAttributesIdPatchRequest := *openapiclient.NewUserAttributesIdPatchRequest([]openapiclient.ReplaceOperation{*openapiclient.NewReplaceOperation("Op_example", "Path_example")}) // UserAttributesIdPatchRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -184,7 +186,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The id of the user attribute | 
+**id** | **string** |  | 
 
 ### Other Parameters
 
@@ -218,7 +220,7 @@ Name | Type | Description  | Notes
 
 > UserAttributesPost200Response UserAttributesPost(ctx).UserAttributesPostRequest(userAttributesPostRequest).Execute()
 
-Create a new user attribute for the organization
+Create an organization user attribute
 
 
 
@@ -265,6 +267,151 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**UserAttributesPost200Response**](UserAttributesPost200Response.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UsersUserIdUserAttributesAttributeNameDelete
+
+> UsersUserIdUserAttributesAttributeNameDelete200Response UsersUserIdUserAttributesAttributeNameDelete(ctx, userId, attributeName).Execute()
+
+Delete a user attribute
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	userId := "user_1234" // string | 
+	attributeName := "attributeName_example" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UserAttributesAPI.UsersUserIdUserAttributesAttributeNameDelete(context.Background(), userId, attributeName).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAttributesAPI.UsersUserIdUserAttributesAttributeNameDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UsersUserIdUserAttributesAttributeNameDelete`: UsersUserIdUserAttributesAttributeNameDelete200Response
+	fmt.Fprintf(os.Stdout, "Response from `UserAttributesAPI.UsersUserIdUserAttributesAttributeNameDelete`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **string** |  | 
+**attributeName** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUsersUserIdUserAttributesAttributeNameDeleteRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**UsersUserIdUserAttributesAttributeNameDelete200Response**](UsersUserIdUserAttributesAttributeNameDelete200Response.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UsersUserIdUserAttributesPost
+
+> UsersUserIdUserAttributesPost200Response UsersUserIdUserAttributesPost(ctx, userId).UsersUserIdUserAttributesPostRequest(usersUserIdUserAttributesPostRequest).Execute()
+
+Create or update a user attribute
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	userId := "user_1234" // string | 
+	usersUserIdUserAttributesPostRequest := *openapiclient.NewUsersUserIdUserAttributesPostRequest("Name_example", "Value_example") // UsersUserIdUserAttributesPostRequest |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UserAttributesAPI.UsersUserIdUserAttributesPost(context.Background(), userId).UsersUserIdUserAttributesPostRequest(usersUserIdUserAttributesPostRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAttributesAPI.UsersUserIdUserAttributesPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UsersUserIdUserAttributesPost`: UsersUserIdUserAttributesPost200Response
+	fmt.Fprintf(os.Stdout, "Response from `UserAttributesAPI.UsersUserIdUserAttributesPost`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUsersUserIdUserAttributesPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **usersUserIdUserAttributesPostRequest** | [**UsersUserIdUserAttributesPostRequest**](UsersUserIdUserAttributesPostRequest.md) |  | 
+
+### Return type
+
+[**UsersUserIdUserAttributesPost200Response**](UsersUserIdUserAttributesPost200Response.md)
 
 ### Authorization
 

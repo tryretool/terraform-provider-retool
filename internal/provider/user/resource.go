@@ -297,19 +297,9 @@ func (r *userResource) Read(ctx context.Context, req resource.ReadRequest, resp 
 	}
 
 	// Map the API response to the Terraform state.
-	// In API 2.12.0, the user data is wrapped in an anyOf structure.
-	var userData *api.UsersUserIdGet200ResponseDataAnyOf
-	switch {
-	case user.Data.UsersUserIdGet200ResponseDataAnyOf != nil:
-		userData = user.Data.UsersUserIdGet200ResponseDataAnyOf
-	case user.Data.UsersUserIdGet200ResponseDataAnyOf1 != nil:
-		// Handle the alternative variant if needed.
-		tflog.Error(ctx, "Unexpected user data variant (anyOf1)")
-		return
-	default:
-		tflog.Error(ctx, "No user data in response")
-		return
-	}
+	// As of API 4.0, the user data is returned as a flat object (previously
+	// wrapped in an anyOf structure).
+	userData := &user.Data
 
 	state.ID = types.StringValue(userData.Id)
 	state.LegacyID = types.StringValue(fmt.Sprintf("%.0f", userData.LegacyId))

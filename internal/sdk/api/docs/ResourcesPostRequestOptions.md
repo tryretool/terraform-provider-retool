@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AuthenticationOptions** | [**GRPCOptionsAuthenticationOptions**](GRPCOptionsAuthenticationOptions.md) |  | 
 **DatabaseOptions** | [**SnowflakeOptionsDatabaseOptions**](SnowflakeOptionsDatabaseOptions.md) |  | 
 **AccountIdentifier** | **string** |  | 
 **UserRole** | Pointer to **string** |  | [optional] 
-**AuthenticationOptions** | [**GRPCOptionsAuthenticationOptions**](GRPCOptionsAuthenticationOptions.md) |  | 
-**BaseUrl** | **string** | Use the absolute URL (e.g. https://example.com). | 
+**BaseUrl** | **string** |  | 
 **UrlParameters** | Pointer to **[][]string** |  | [optional] 
 **Headers** | Pointer to **[][]string** |  | [optional] 
 **ExtraBodyValues** | Pointer to **[][]string** | Extra body values are not passed for GET or HEAD requests. | [optional] 
@@ -24,12 +24,29 @@ Name | Type | Description | Notes
 **ServiceName** | Pointer to **string** |  | [optional] 
 **ServiceNames** | Pointer to **[]string** |  | [optional] 
 **VerifySessionActionEnabled** | Pointer to **bool** |  | [optional] 
+**KeySource** | **string** | Always &#39;byok&#39; (bring your own key) — this provider requires you to supply credentials. Defaults to &#39;byok&#39; and may be omitted. | [default to "byok"]
+**ApiKey** | **string** |  | 
+**CustomHeaders** | Pointer to **[][]string** |  | [optional] 
+**Region** | **string** |  | 
+**AccessKeyId** | Pointer to **string** |  | [optional] 
+**SecretAccessKey** | Pointer to **string** |  | [optional] 
+**SessionToken** | Pointer to **string** |  | [optional] 
+**AssumeRole** | Pointer to **string** |  | [optional] 
+**AuthWithDefaultCredentialProviderChain** | Pointer to **bool** | Retool will source AWS credentials from the credential provider chain. Use this option to authenticate with credentials provided in environment variables or the underlying instance role. | [optional] 
+**DeploymentNames** | **[]string** |  | 
+**ApiVersion** | Pointer to **string** |  | [optional] 
+**WebGroundingEnabled** | Pointer to **bool** |  | [optional] 
+**ProjectId** | **string** |  | 
+**Location** | **string** |  | 
+**ServiceAccountKey** | **string** |  | 
+**CompatibleSchema** | **string** |  | 
+**ModelList** | **[]string** |  | 
 
 ## Methods
 
 ### NewResourcesPostRequestOptions
 
-`func NewResourcesPostRequestOptions(databaseOptions SnowflakeOptionsDatabaseOptions, accountIdentifier string, authenticationOptions GRPCOptionsAuthenticationOptions, baseUrl string, ) *ResourcesPostRequestOptions`
+`func NewResourcesPostRequestOptions(authenticationOptions GRPCOptionsAuthenticationOptions, databaseOptions SnowflakeOptionsDatabaseOptions, accountIdentifier string, baseUrl string, keySource string, apiKey string, region string, deploymentNames []string, projectId string, location string, serviceAccountKey string, compatibleSchema string, modelList []string, ) *ResourcesPostRequestOptions`
 
 NewResourcesPostRequestOptions instantiates a new ResourcesPostRequestOptions object
 This constructor will assign default values to properties that have it defined,
@@ -43,6 +60,26 @@ will change when the set of required properties is changed
 NewResourcesPostRequestOptionsWithDefaults instantiates a new ResourcesPostRequestOptions object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAuthenticationOptions
+
+`func (o *ResourcesPostRequestOptions) GetAuthenticationOptions() GRPCOptionsAuthenticationOptions`
+
+GetAuthenticationOptions returns the AuthenticationOptions field if non-nil, zero value otherwise.
+
+### GetAuthenticationOptionsOk
+
+`func (o *ResourcesPostRequestOptions) GetAuthenticationOptionsOk() (*GRPCOptionsAuthenticationOptions, bool)`
+
+GetAuthenticationOptionsOk returns a tuple with the AuthenticationOptions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthenticationOptions
+
+`func (o *ResourcesPostRequestOptions) SetAuthenticationOptions(v GRPCOptionsAuthenticationOptions)`
+
+SetAuthenticationOptions sets AuthenticationOptions field to given value.
+
 
 ### GetDatabaseOptions
 
@@ -108,26 +145,6 @@ SetUserRole sets UserRole field to given value.
 `func (o *ResourcesPostRequestOptions) HasUserRole() bool`
 
 HasUserRole returns a boolean if a field has been set.
-
-### GetAuthenticationOptions
-
-`func (o *ResourcesPostRequestOptions) GetAuthenticationOptions() GRPCOptionsAuthenticationOptions`
-
-GetAuthenticationOptions returns the AuthenticationOptions field if non-nil, zero value otherwise.
-
-### GetAuthenticationOptionsOk
-
-`func (o *ResourcesPostRequestOptions) GetAuthenticationOptionsOk() (*GRPCOptionsAuthenticationOptions, bool)`
-
-GetAuthenticationOptionsOk returns a tuple with the AuthenticationOptions field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAuthenticationOptions
-
-`func (o *ResourcesPostRequestOptions) SetAuthenticationOptions(v GRPCOptionsAuthenticationOptions)`
-
-SetAuthenticationOptions sets AuthenticationOptions field to given value.
-
 
 ### GetBaseUrl
 
@@ -543,6 +560,386 @@ SetVerifySessionActionEnabled sets VerifySessionActionEnabled field to given val
 `func (o *ResourcesPostRequestOptions) HasVerifySessionActionEnabled() bool`
 
 HasVerifySessionActionEnabled returns a boolean if a field has been set.
+
+### GetKeySource
+
+`func (o *ResourcesPostRequestOptions) GetKeySource() string`
+
+GetKeySource returns the KeySource field if non-nil, zero value otherwise.
+
+### GetKeySourceOk
+
+`func (o *ResourcesPostRequestOptions) GetKeySourceOk() (*string, bool)`
+
+GetKeySourceOk returns a tuple with the KeySource field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKeySource
+
+`func (o *ResourcesPostRequestOptions) SetKeySource(v string)`
+
+SetKeySource sets KeySource field to given value.
+
+
+### GetApiKey
+
+`func (o *ResourcesPostRequestOptions) GetApiKey() string`
+
+GetApiKey returns the ApiKey field if non-nil, zero value otherwise.
+
+### GetApiKeyOk
+
+`func (o *ResourcesPostRequestOptions) GetApiKeyOk() (*string, bool)`
+
+GetApiKeyOk returns a tuple with the ApiKey field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApiKey
+
+`func (o *ResourcesPostRequestOptions) SetApiKey(v string)`
+
+SetApiKey sets ApiKey field to given value.
+
+
+### GetCustomHeaders
+
+`func (o *ResourcesPostRequestOptions) GetCustomHeaders() [][]string`
+
+GetCustomHeaders returns the CustomHeaders field if non-nil, zero value otherwise.
+
+### GetCustomHeadersOk
+
+`func (o *ResourcesPostRequestOptions) GetCustomHeadersOk() (*[][]string, bool)`
+
+GetCustomHeadersOk returns a tuple with the CustomHeaders field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomHeaders
+
+`func (o *ResourcesPostRequestOptions) SetCustomHeaders(v [][]string)`
+
+SetCustomHeaders sets CustomHeaders field to given value.
+
+### HasCustomHeaders
+
+`func (o *ResourcesPostRequestOptions) HasCustomHeaders() bool`
+
+HasCustomHeaders returns a boolean if a field has been set.
+
+### GetRegion
+
+`func (o *ResourcesPostRequestOptions) GetRegion() string`
+
+GetRegion returns the Region field if non-nil, zero value otherwise.
+
+### GetRegionOk
+
+`func (o *ResourcesPostRequestOptions) GetRegionOk() (*string, bool)`
+
+GetRegionOk returns a tuple with the Region field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRegion
+
+`func (o *ResourcesPostRequestOptions) SetRegion(v string)`
+
+SetRegion sets Region field to given value.
+
+
+### GetAccessKeyId
+
+`func (o *ResourcesPostRequestOptions) GetAccessKeyId() string`
+
+GetAccessKeyId returns the AccessKeyId field if non-nil, zero value otherwise.
+
+### GetAccessKeyIdOk
+
+`func (o *ResourcesPostRequestOptions) GetAccessKeyIdOk() (*string, bool)`
+
+GetAccessKeyIdOk returns a tuple with the AccessKeyId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccessKeyId
+
+`func (o *ResourcesPostRequestOptions) SetAccessKeyId(v string)`
+
+SetAccessKeyId sets AccessKeyId field to given value.
+
+### HasAccessKeyId
+
+`func (o *ResourcesPostRequestOptions) HasAccessKeyId() bool`
+
+HasAccessKeyId returns a boolean if a field has been set.
+
+### GetSecretAccessKey
+
+`func (o *ResourcesPostRequestOptions) GetSecretAccessKey() string`
+
+GetSecretAccessKey returns the SecretAccessKey field if non-nil, zero value otherwise.
+
+### GetSecretAccessKeyOk
+
+`func (o *ResourcesPostRequestOptions) GetSecretAccessKeyOk() (*string, bool)`
+
+GetSecretAccessKeyOk returns a tuple with the SecretAccessKey field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSecretAccessKey
+
+`func (o *ResourcesPostRequestOptions) SetSecretAccessKey(v string)`
+
+SetSecretAccessKey sets SecretAccessKey field to given value.
+
+### HasSecretAccessKey
+
+`func (o *ResourcesPostRequestOptions) HasSecretAccessKey() bool`
+
+HasSecretAccessKey returns a boolean if a field has been set.
+
+### GetSessionToken
+
+`func (o *ResourcesPostRequestOptions) GetSessionToken() string`
+
+GetSessionToken returns the SessionToken field if non-nil, zero value otherwise.
+
+### GetSessionTokenOk
+
+`func (o *ResourcesPostRequestOptions) GetSessionTokenOk() (*string, bool)`
+
+GetSessionTokenOk returns a tuple with the SessionToken field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSessionToken
+
+`func (o *ResourcesPostRequestOptions) SetSessionToken(v string)`
+
+SetSessionToken sets SessionToken field to given value.
+
+### HasSessionToken
+
+`func (o *ResourcesPostRequestOptions) HasSessionToken() bool`
+
+HasSessionToken returns a boolean if a field has been set.
+
+### GetAssumeRole
+
+`func (o *ResourcesPostRequestOptions) GetAssumeRole() string`
+
+GetAssumeRole returns the AssumeRole field if non-nil, zero value otherwise.
+
+### GetAssumeRoleOk
+
+`func (o *ResourcesPostRequestOptions) GetAssumeRoleOk() (*string, bool)`
+
+GetAssumeRoleOk returns a tuple with the AssumeRole field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAssumeRole
+
+`func (o *ResourcesPostRequestOptions) SetAssumeRole(v string)`
+
+SetAssumeRole sets AssumeRole field to given value.
+
+### HasAssumeRole
+
+`func (o *ResourcesPostRequestOptions) HasAssumeRole() bool`
+
+HasAssumeRole returns a boolean if a field has been set.
+
+### GetAuthWithDefaultCredentialProviderChain
+
+`func (o *ResourcesPostRequestOptions) GetAuthWithDefaultCredentialProviderChain() bool`
+
+GetAuthWithDefaultCredentialProviderChain returns the AuthWithDefaultCredentialProviderChain field if non-nil, zero value otherwise.
+
+### GetAuthWithDefaultCredentialProviderChainOk
+
+`func (o *ResourcesPostRequestOptions) GetAuthWithDefaultCredentialProviderChainOk() (*bool, bool)`
+
+GetAuthWithDefaultCredentialProviderChainOk returns a tuple with the AuthWithDefaultCredentialProviderChain field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthWithDefaultCredentialProviderChain
+
+`func (o *ResourcesPostRequestOptions) SetAuthWithDefaultCredentialProviderChain(v bool)`
+
+SetAuthWithDefaultCredentialProviderChain sets AuthWithDefaultCredentialProviderChain field to given value.
+
+### HasAuthWithDefaultCredentialProviderChain
+
+`func (o *ResourcesPostRequestOptions) HasAuthWithDefaultCredentialProviderChain() bool`
+
+HasAuthWithDefaultCredentialProviderChain returns a boolean if a field has been set.
+
+### GetDeploymentNames
+
+`func (o *ResourcesPostRequestOptions) GetDeploymentNames() []string`
+
+GetDeploymentNames returns the DeploymentNames field if non-nil, zero value otherwise.
+
+### GetDeploymentNamesOk
+
+`func (o *ResourcesPostRequestOptions) GetDeploymentNamesOk() (*[]string, bool)`
+
+GetDeploymentNamesOk returns a tuple with the DeploymentNames field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeploymentNames
+
+`func (o *ResourcesPostRequestOptions) SetDeploymentNames(v []string)`
+
+SetDeploymentNames sets DeploymentNames field to given value.
+
+
+### GetApiVersion
+
+`func (o *ResourcesPostRequestOptions) GetApiVersion() string`
+
+GetApiVersion returns the ApiVersion field if non-nil, zero value otherwise.
+
+### GetApiVersionOk
+
+`func (o *ResourcesPostRequestOptions) GetApiVersionOk() (*string, bool)`
+
+GetApiVersionOk returns a tuple with the ApiVersion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApiVersion
+
+`func (o *ResourcesPostRequestOptions) SetApiVersion(v string)`
+
+SetApiVersion sets ApiVersion field to given value.
+
+### HasApiVersion
+
+`func (o *ResourcesPostRequestOptions) HasApiVersion() bool`
+
+HasApiVersion returns a boolean if a field has been set.
+
+### GetWebGroundingEnabled
+
+`func (o *ResourcesPostRequestOptions) GetWebGroundingEnabled() bool`
+
+GetWebGroundingEnabled returns the WebGroundingEnabled field if non-nil, zero value otherwise.
+
+### GetWebGroundingEnabledOk
+
+`func (o *ResourcesPostRequestOptions) GetWebGroundingEnabledOk() (*bool, bool)`
+
+GetWebGroundingEnabledOk returns a tuple with the WebGroundingEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWebGroundingEnabled
+
+`func (o *ResourcesPostRequestOptions) SetWebGroundingEnabled(v bool)`
+
+SetWebGroundingEnabled sets WebGroundingEnabled field to given value.
+
+### HasWebGroundingEnabled
+
+`func (o *ResourcesPostRequestOptions) HasWebGroundingEnabled() bool`
+
+HasWebGroundingEnabled returns a boolean if a field has been set.
+
+### GetProjectId
+
+`func (o *ResourcesPostRequestOptions) GetProjectId() string`
+
+GetProjectId returns the ProjectId field if non-nil, zero value otherwise.
+
+### GetProjectIdOk
+
+`func (o *ResourcesPostRequestOptions) GetProjectIdOk() (*string, bool)`
+
+GetProjectIdOk returns a tuple with the ProjectId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProjectId
+
+`func (o *ResourcesPostRequestOptions) SetProjectId(v string)`
+
+SetProjectId sets ProjectId field to given value.
+
+
+### GetLocation
+
+`func (o *ResourcesPostRequestOptions) GetLocation() string`
+
+GetLocation returns the Location field if non-nil, zero value otherwise.
+
+### GetLocationOk
+
+`func (o *ResourcesPostRequestOptions) GetLocationOk() (*string, bool)`
+
+GetLocationOk returns a tuple with the Location field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLocation
+
+`func (o *ResourcesPostRequestOptions) SetLocation(v string)`
+
+SetLocation sets Location field to given value.
+
+
+### GetServiceAccountKey
+
+`func (o *ResourcesPostRequestOptions) GetServiceAccountKey() string`
+
+GetServiceAccountKey returns the ServiceAccountKey field if non-nil, zero value otherwise.
+
+### GetServiceAccountKeyOk
+
+`func (o *ResourcesPostRequestOptions) GetServiceAccountKeyOk() (*string, bool)`
+
+GetServiceAccountKeyOk returns a tuple with the ServiceAccountKey field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServiceAccountKey
+
+`func (o *ResourcesPostRequestOptions) SetServiceAccountKey(v string)`
+
+SetServiceAccountKey sets ServiceAccountKey field to given value.
+
+
+### GetCompatibleSchema
+
+`func (o *ResourcesPostRequestOptions) GetCompatibleSchema() string`
+
+GetCompatibleSchema returns the CompatibleSchema field if non-nil, zero value otherwise.
+
+### GetCompatibleSchemaOk
+
+`func (o *ResourcesPostRequestOptions) GetCompatibleSchemaOk() (*string, bool)`
+
+GetCompatibleSchemaOk returns a tuple with the CompatibleSchema field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCompatibleSchema
+
+`func (o *ResourcesPostRequestOptions) SetCompatibleSchema(v string)`
+
+SetCompatibleSchema sets CompatibleSchema field to given value.
+
+
+### GetModelList
+
+`func (o *ResourcesPostRequestOptions) GetModelList() []string`
+
+GetModelList returns the ModelList field if non-nil, zero value otherwise.
+
+### GetModelListOk
+
+`func (o *ResourcesPostRequestOptions) GetModelListOk() (*[]string, bool)`
+
+GetModelListOk returns a tuple with the ModelList field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModelList
+
+`func (o *ResourcesPostRequestOptions) SetModelList(v []string)`
+
+SetModelList sets ModelList field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,13 +1,13 @@
 # \UserTasksAPI
 
-All URIs are relative to *http://.*
+All URIs are relative to *https://stable-4-0.retool.dev/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**UserTasksGet**](UserTasksAPI.md#UserTasksGet) | **Get** /user_tasks | List User Tasks
-[**UserTasksTaskIdCancelPatch**](UserTasksAPI.md#UserTasksTaskIdCancelPatch) | **Patch** /user_tasks/{taskId}/cancel | Cancels a user task.
-[**UserTasksTaskIdReassignPatch**](UserTasksAPI.md#UserTasksTaskIdReassignPatch) | **Patch** /user_tasks/{taskId}/reassign | Reassign a user task to a group or a user.
-[**UserTasksTaskIdSubmitPatch**](UserTasksAPI.md#UserTasksTaskIdSubmitPatch) | **Patch** /user_tasks/{taskId}/submit | Submits a user task.
+[**UserTasksGet**](UserTasksAPI.md#UserTasksGet) | **Get** /user_tasks | List user tasks
+[**UserTasksTaskIdCancelPatch**](UserTasksAPI.md#UserTasksTaskIdCancelPatch) | **Patch** /user_tasks/{taskId}/cancel | Cancel a user task
+[**UserTasksTaskIdReassignPatch**](UserTasksAPI.md#UserTasksTaskIdReassignPatch) | **Patch** /user_tasks/{taskId}/reassign | Reassign a user task
+[**UserTasksTaskIdSubmitPatch**](UserTasksAPI.md#UserTasksTaskIdSubmitPatch) | **Patch** /user_tasks/{taskId}/submit | Submit a user task
 
 
 
@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 > UserTasksGet200Response UserTasksGet(ctx).AssignedToUsers(assignedToUsers).Statuses(statuses).WorkflowIds(workflowIds).Limit(limit).NextToken(nextToken).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
 
-List User Tasks
+List user tasks
 
 
 
@@ -32,13 +32,13 @@ import (
 )
 
 func main() {
-	assignedToUsers := *openapiclient.NewUserTasksGetAssignedToUsersParameter() // UserTasksGetAssignedToUsersParameter | Filter tasks by assignment. Provide one or more user ids. If not provided, returns all accessible tasks. (optional)
-	statuses := "statuses_example" // string | A comma-separated list of statuses. (optional)
-	workflowIds := "workflowIds_example" // string | A comma-separated list of workflow IDs. (optional)
-	limit := "limit_example" // string | The maximum number of tasks to include in the response. (optional)
-	nextToken := "nextToken_example" // string | The next token from the previous API response. This is used for paginating through an arbitrary number of tasks. (optional)
-	startingAfter := "startingAfter_example" // string | The ID of the task following which the response will include subsequent tasks. (optional)
-	endingBefore := "endingBefore_example" // string | The ID of the task before which the response will include preceding tasks. (optional)
+	assignedToUsers := *openapiclient.NewUserTasksGetAssignedToUsersParameter() // UserTasksGetAssignedToUsersParameter |  (optional)
+	statuses := "statuses_example" // string |  (optional)
+	workflowIds := "workflowIds_example" // string |  (optional)
+	limit := "limit_example" // string |  (optional)
+	nextToken := "nextToken_example" // string |  (optional)
+	startingAfter := "startingAfter_example" // string |  (optional)
+	endingBefore := "endingBefore_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -63,13 +63,13 @@ Other parameters are passed through a pointer to a apiUserTasksGetRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **assignedToUsers** | [**UserTasksGetAssignedToUsersParameter**](UserTasksGetAssignedToUsersParameter.md) | Filter tasks by assignment. Provide one or more user ids. If not provided, returns all accessible tasks. | 
- **statuses** | **string** | A comma-separated list of statuses. | 
- **workflowIds** | **string** | A comma-separated list of workflow IDs. | 
- **limit** | **string** | The maximum number of tasks to include in the response. | 
- **nextToken** | **string** | The next token from the previous API response. This is used for paginating through an arbitrary number of tasks. | 
- **startingAfter** | **string** | The ID of the task following which the response will include subsequent tasks. | 
- **endingBefore** | **string** | The ID of the task before which the response will include preceding tasks. | 
+ **assignedToUsers** | [**UserTasksGetAssignedToUsersParameter**](UserTasksGetAssignedToUsersParameter.md) |  | 
+ **statuses** | **string** |  | 
+ **workflowIds** | **string** |  | 
+ **limit** | **string** |  | 
+ **nextToken** | **string** |  | 
+ **startingAfter** | **string** |  | 
+ **endingBefore** | **string** |  | 
 
 ### Return type
 
@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 
 > UserTasksTaskIdSubmitPatch200Response UserTasksTaskIdCancelPatch(ctx, taskId).UserTasksTaskIdCancelPatchRequest(userTasksTaskIdCancelPatchRequest).Execute()
 
-Cancels a user task.
+Cancel a user task
 
 
 
@@ -110,7 +110,7 @@ import (
 )
 
 func main() {
-	taskId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The ID of the user task.
+	taskId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 	userTasksTaskIdCancelPatchRequest := *openapiclient.NewUserTasksTaskIdCancelPatchRequest("Email_example") // UserTasksTaskIdCancelPatchRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -131,7 +131,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taskId** | **string** | The ID of the user task. | 
+**taskId** | **string** |  | 
 
 ### Other Parameters
 
@@ -165,7 +165,7 @@ Name | Type | Description  | Notes
 
 > UserTasksTaskIdSubmitPatch200Response UserTasksTaskIdReassignPatch(ctx, taskId).UserTasksTaskIdReassignPatchRequest(userTasksTaskIdReassignPatchRequest).Execute()
 
-Reassign a user task to a group or a user.
+Reassign a user task
 
 
 
@@ -182,7 +182,7 @@ import (
 )
 
 func main() {
-	taskId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The ID of the user task.
+	taskId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 	userTasksTaskIdReassignPatchRequest := *openapiclient.NewUserTasksTaskIdReassignPatchRequest("Email_example", []openapiclient.UserTasksTaskIdReassignPatchRequestAssigneesInner{*openapiclient.NewUserTasksTaskIdReassignPatchRequestAssigneesInner("Type_example", "Id_example")}) // UserTasksTaskIdReassignPatchRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -203,7 +203,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taskId** | **string** | The ID of the user task. | 
+**taskId** | **string** |  | 
 
 ### Other Parameters
 
@@ -237,7 +237,7 @@ Name | Type | Description  | Notes
 
 > UserTasksTaskIdSubmitPatch200Response UserTasksTaskIdSubmitPatch(ctx, taskId).UserTasksTaskIdSubmitPatchRequest(userTasksTaskIdSubmitPatchRequest).Execute()
 
-Submits a user task.
+Submit a user task
 
 
 
@@ -254,7 +254,7 @@ import (
 )
 
 func main() {
-	taskId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The ID of the user task.
+	taskId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 	userTasksTaskIdSubmitPatchRequest := *openapiclient.NewUserTasksTaskIdSubmitPatchRequest("Email_example", map[string]interface{}{"key": interface{}(123)}) // UserTasksTaskIdSubmitPatchRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -275,7 +275,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taskId** | **string** | The ID of the user task. | 
+**taskId** | **string** |  | 
 
 ### Other Parameters
 

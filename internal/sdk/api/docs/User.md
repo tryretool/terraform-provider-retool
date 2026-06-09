@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** |  | 
-**Id** | **string** |  | 
+**Id** | **string** | The unique identifier for the user. | 
 
 ## Methods
 

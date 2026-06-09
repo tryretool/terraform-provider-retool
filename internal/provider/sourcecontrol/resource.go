@@ -451,7 +451,11 @@ func updateSourceControlConfig(ctx context.Context, client *api.APIClient, model
 			return
 		}
 
-		awsConfigObj := api.NewAWSCodeCommitConfig(awsCodeCommitConfig.URL.ValueString(), awsCodeCommitConfig.Region.ValueString(), awsCodeCommitConfig.AccessKeyID.ValueString(), awsCodeCommitConfig.SecretAccessKey.ValueString(), awsCodeCommitConfig.HTTPSUsername.ValueString(), awsCodeCommitConfig.HTTPSPassword.ValueString())
+		awsConfigObj := api.NewAWSCodeCommitConfig(awsCodeCommitConfig.URL.ValueString(), awsCodeCommitConfig.Region.ValueString())
+		awsConfigObj.AccessKeyId = awsCodeCommitConfig.AccessKeyID.ValueStringPointer()
+		awsConfigObj.SecretAccessKey = awsCodeCommitConfig.SecretAccessKey.ValueStringPointer()
+		awsConfigObj.HttpsUsername = awsCodeCommitConfig.HTTPSUsername.ValueStringPointer()
+		awsConfigObj.HttpsPassword = awsCodeCommitConfig.HTTPSPassword.ValueStringPointer()
 		awsCodeCommit := api.NewAWSCodeCommit(*awsConfigObj, "AWS CodeCommit", model.Org.ValueString(), model.Repo.ValueString(), model.DefaultBranch.ValueString())
 		awsCodeCommit.RepoVersion = model.RepoVersion.ValueStringPointer()
 		config = api.SourceControlConfigPutRequestConfig{
@@ -464,7 +468,7 @@ func updateSourceControlConfig(ctx context.Context, client *api.APIClient, model
 		if globalDiags.HasError() {
 			return
 		}
-		bitbucketConfigInner := api.NewBitbucketConfigAnyOf(bitbucketConfig.Username.ValueString(), bitbucketConfig.AppPassword.ValueString())
+		bitbucketConfigInner := api.NewBitbucketConfigAnyOf("AppPassword", bitbucketConfig.Username.ValueString(), bitbucketConfig.AppPassword.ValueString())
 		bitbucketConfigInner.Url = bitbucketConfig.URL.ValueStringPointer()
 		bitbucketConfigInner.EnterpriseApiUrl = bitbucketConfig.EnterpriseAPIURL.ValueStringPointer()
 		bitbucketConfigWrapped := api.BitbucketConfig{
@@ -617,7 +621,7 @@ func (r *sourceControlResource) Read(ctx context.Context, _ resource.ReadRequest
 			Region:          types.StringValue(response.Data.AWSCodeCommit.Config.Region),
 			AccessKeyID:     types.StringNull(), // API sends placeholder value that we don't need.
 			SecretAccessKey: types.StringNull(), // API sends placeholder value that we don't need,.
-			HTTPSUsername:   types.StringValue(response.Data.AWSCodeCommit.Config.HttpsUsername),
+			HTTPSUsername:   types.StringPointerValue(response.Data.AWSCodeCommit.Config.HttpsUsername),
 			HTTPSPassword:   types.StringNull(), // API sends placeholder value that we don't need.
 		}
 		awsCodeCommitConfigModelObj, diags := types.ObjectValueFrom(ctx, awsCodeCommitConfigModel.attributeTypes(), awsCodeCommitConfigModel)

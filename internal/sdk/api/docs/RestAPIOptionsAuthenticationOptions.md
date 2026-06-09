@@ -10,17 +10,22 @@ Name | Type | Description | Notes
 **Auth0ClientSecret** | **string** |  | 
 **Auth0CustomAudience** | **string** |  | 
 **AmazonAwsRegion** | **string** |  | 
-**AmazonServiceName** | **string** |  | 
 **AmazonAccessKeyId** | **string** |  | 
 **AmazonSecretAccessKey** | **string** |  | 
-**AuthWithDefaultCredentialProviderChain** | Pointer to **bool** |  | [optional] 
+**AssumeRole** | Pointer to **string** |  | [optional] 
+**AuthWithDefaultCredentialProviderChain** | **bool** |  | 
+**AmazonServiceName** | **string** |  | 
 **EnableAwsv4AuthenticationViaHeaders** | Pointer to **bool** |  | [optional] 
+**AzureidScope** | Pointer to **string** |  | [optional] 
+**AzureidTenantId** | Pointer to **string** |  | [optional] 
+**AzureidClientId** | Pointer to **string** |  | [optional] 
+**AzureidClientSecret** | Pointer to **string** |  | [optional] 
 **BasicUsername** | **string** |  | 
 **BasicPassword** | Pointer to **string** |  | [optional] 
 **BearerToken** | Pointer to **string** |  | [optional] 
 **DigestUsername** | **string** |  | 
 **DigestPassword** | **string** |  | 
-**Oauth1SignatureMethod** | [**RestAPIOptionsAuthenticationOptionsAnyOf5Oauth1SignatureMethod**](RestAPIOptionsAuthenticationOptionsAnyOf5Oauth1SignatureMethod.md) |  | 
+**Oauth1SignatureMethod** | [**RestAPIOptionsAuthenticationOptionsAnyOf6Oauth1SignatureMethod**](RestAPIOptionsAuthenticationOptionsAnyOf6Oauth1SignatureMethod.md) |  | 
 **Oauth1ConsumerKey** | **string** |  | 
 **Oauth1ConsumerSecret** | **string** |  | 
 **Oauth1TokenKey** | **string** |  | 
@@ -37,14 +42,19 @@ Name | Type | Description | Notes
 **Oauth2IdToken** | Pointer to **string** |  | [optional] 
 **Oauth2RefreshToken** | Pointer to **string** |  | [optional] 
 **Oauth2Scope** | Pointer to **string** |  | [optional] 
+**Oauth2Resource** | Pointer to **string** |  | [optional] 
 **Oauth2ShareUserCredentials** | Pointer to **bool** |  | [optional] 
-**VerifySessionUrl** | Pointer to **string** |  | [optional] 
+**VerifySessionUrl** | **string** |  | 
+**RawAuthorizationScheme** | **string** |  | 
+**ServiceAccountKey** | **string** |  | 
+**ServiceAccountScope** | **string** |  | 
+**SessionCookieName** | **string** |  | 
 
 ## Methods
 
 ### NewRestAPIOptionsAuthenticationOptions
 
-`func NewRestAPIOptionsAuthenticationOptions(authenticationType string, auth0Domain string, auth0ClientId string, auth0ClientSecret string, auth0CustomAudience string, amazonAwsRegion string, amazonServiceName string, amazonAccessKeyId string, amazonSecretAccessKey string, basicUsername string, digestUsername string, digestPassword string, oauth1SignatureMethod RestAPIOptionsAuthenticationOptionsAnyOf5Oauth1SignatureMethod, oauth1ConsumerKey string, oauth1ConsumerSecret string, oauth1TokenKey string, oauth1TokenSecret string, oauth1RealmParameter string, oauth2AccessTokenUrl string, oauth2AuthUrl string, oauth2ClientId string, oauth2ClientSecret string, ) *RestAPIOptionsAuthenticationOptions`
+`func NewRestAPIOptionsAuthenticationOptions(authenticationType string, auth0Domain string, auth0ClientId string, auth0ClientSecret string, auth0CustomAudience string, amazonAwsRegion string, amazonAccessKeyId string, amazonSecretAccessKey string, authWithDefaultCredentialProviderChain bool, amazonServiceName string, basicUsername string, digestUsername string, digestPassword string, oauth1SignatureMethod RestAPIOptionsAuthenticationOptionsAnyOf6Oauth1SignatureMethod, oauth1ConsumerKey string, oauth1ConsumerSecret string, oauth1TokenKey string, oauth1TokenSecret string, oauth1RealmParameter string, oauth2AccessTokenUrl string, oauth2AuthUrl string, oauth2ClientId string, oauth2ClientSecret string, verifySessionUrl string, rawAuthorizationScheme string, serviceAccountKey string, serviceAccountScope string, sessionCookieName string, ) *RestAPIOptionsAuthenticationOptions`
 
 NewRestAPIOptionsAuthenticationOptions instantiates a new RestAPIOptionsAuthenticationOptions object
 This constructor will assign default values to properties that have it defined,
@@ -179,26 +189,6 @@ and a boolean to check if the value has been set.
 SetAmazonAwsRegion sets AmazonAwsRegion field to given value.
 
 
-### GetAmazonServiceName
-
-`func (o *RestAPIOptionsAuthenticationOptions) GetAmazonServiceName() string`
-
-GetAmazonServiceName returns the AmazonServiceName field if non-nil, zero value otherwise.
-
-### GetAmazonServiceNameOk
-
-`func (o *RestAPIOptionsAuthenticationOptions) GetAmazonServiceNameOk() (*string, bool)`
-
-GetAmazonServiceNameOk returns a tuple with the AmazonServiceName field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAmazonServiceName
-
-`func (o *RestAPIOptionsAuthenticationOptions) SetAmazonServiceName(v string)`
-
-SetAmazonServiceName sets AmazonServiceName field to given value.
-
-
 ### GetAmazonAccessKeyId
 
 `func (o *RestAPIOptionsAuthenticationOptions) GetAmazonAccessKeyId() string`
@@ -239,6 +229,31 @@ and a boolean to check if the value has been set.
 SetAmazonSecretAccessKey sets AmazonSecretAccessKey field to given value.
 
 
+### GetAssumeRole
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetAssumeRole() string`
+
+GetAssumeRole returns the AssumeRole field if non-nil, zero value otherwise.
+
+### GetAssumeRoleOk
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetAssumeRoleOk() (*string, bool)`
+
+GetAssumeRoleOk returns a tuple with the AssumeRole field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAssumeRole
+
+`func (o *RestAPIOptionsAuthenticationOptions) SetAssumeRole(v string)`
+
+SetAssumeRole sets AssumeRole field to given value.
+
+### HasAssumeRole
+
+`func (o *RestAPIOptionsAuthenticationOptions) HasAssumeRole() bool`
+
+HasAssumeRole returns a boolean if a field has been set.
+
 ### GetAuthWithDefaultCredentialProviderChain
 
 `func (o *RestAPIOptionsAuthenticationOptions) GetAuthWithDefaultCredentialProviderChain() bool`
@@ -258,11 +273,26 @@ and a boolean to check if the value has been set.
 
 SetAuthWithDefaultCredentialProviderChain sets AuthWithDefaultCredentialProviderChain field to given value.
 
-### HasAuthWithDefaultCredentialProviderChain
 
-`func (o *RestAPIOptionsAuthenticationOptions) HasAuthWithDefaultCredentialProviderChain() bool`
+### GetAmazonServiceName
 
-HasAuthWithDefaultCredentialProviderChain returns a boolean if a field has been set.
+`func (o *RestAPIOptionsAuthenticationOptions) GetAmazonServiceName() string`
+
+GetAmazonServiceName returns the AmazonServiceName field if non-nil, zero value otherwise.
+
+### GetAmazonServiceNameOk
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetAmazonServiceNameOk() (*string, bool)`
+
+GetAmazonServiceNameOk returns a tuple with the AmazonServiceName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAmazonServiceName
+
+`func (o *RestAPIOptionsAuthenticationOptions) SetAmazonServiceName(v string)`
+
+SetAmazonServiceName sets AmazonServiceName field to given value.
+
 
 ### GetEnableAwsv4AuthenticationViaHeaders
 
@@ -288,6 +318,106 @@ SetEnableAwsv4AuthenticationViaHeaders sets EnableAwsv4AuthenticationViaHeaders 
 `func (o *RestAPIOptionsAuthenticationOptions) HasEnableAwsv4AuthenticationViaHeaders() bool`
 
 HasEnableAwsv4AuthenticationViaHeaders returns a boolean if a field has been set.
+
+### GetAzureidScope
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetAzureidScope() string`
+
+GetAzureidScope returns the AzureidScope field if non-nil, zero value otherwise.
+
+### GetAzureidScopeOk
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetAzureidScopeOk() (*string, bool)`
+
+GetAzureidScopeOk returns a tuple with the AzureidScope field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAzureidScope
+
+`func (o *RestAPIOptionsAuthenticationOptions) SetAzureidScope(v string)`
+
+SetAzureidScope sets AzureidScope field to given value.
+
+### HasAzureidScope
+
+`func (o *RestAPIOptionsAuthenticationOptions) HasAzureidScope() bool`
+
+HasAzureidScope returns a boolean if a field has been set.
+
+### GetAzureidTenantId
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetAzureidTenantId() string`
+
+GetAzureidTenantId returns the AzureidTenantId field if non-nil, zero value otherwise.
+
+### GetAzureidTenantIdOk
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetAzureidTenantIdOk() (*string, bool)`
+
+GetAzureidTenantIdOk returns a tuple with the AzureidTenantId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAzureidTenantId
+
+`func (o *RestAPIOptionsAuthenticationOptions) SetAzureidTenantId(v string)`
+
+SetAzureidTenantId sets AzureidTenantId field to given value.
+
+### HasAzureidTenantId
+
+`func (o *RestAPIOptionsAuthenticationOptions) HasAzureidTenantId() bool`
+
+HasAzureidTenantId returns a boolean if a field has been set.
+
+### GetAzureidClientId
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetAzureidClientId() string`
+
+GetAzureidClientId returns the AzureidClientId field if non-nil, zero value otherwise.
+
+### GetAzureidClientIdOk
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetAzureidClientIdOk() (*string, bool)`
+
+GetAzureidClientIdOk returns a tuple with the AzureidClientId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAzureidClientId
+
+`func (o *RestAPIOptionsAuthenticationOptions) SetAzureidClientId(v string)`
+
+SetAzureidClientId sets AzureidClientId field to given value.
+
+### HasAzureidClientId
+
+`func (o *RestAPIOptionsAuthenticationOptions) HasAzureidClientId() bool`
+
+HasAzureidClientId returns a boolean if a field has been set.
+
+### GetAzureidClientSecret
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetAzureidClientSecret() string`
+
+GetAzureidClientSecret returns the AzureidClientSecret field if non-nil, zero value otherwise.
+
+### GetAzureidClientSecretOk
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetAzureidClientSecretOk() (*string, bool)`
+
+GetAzureidClientSecretOk returns a tuple with the AzureidClientSecret field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAzureidClientSecret
+
+`func (o *RestAPIOptionsAuthenticationOptions) SetAzureidClientSecret(v string)`
+
+SetAzureidClientSecret sets AzureidClientSecret field to given value.
+
+### HasAzureidClientSecret
+
+`func (o *RestAPIOptionsAuthenticationOptions) HasAzureidClientSecret() bool`
+
+HasAzureidClientSecret returns a boolean if a field has been set.
 
 ### GetBasicUsername
 
@@ -401,20 +531,20 @@ SetDigestPassword sets DigestPassword field to given value.
 
 ### GetOauth1SignatureMethod
 
-`func (o *RestAPIOptionsAuthenticationOptions) GetOauth1SignatureMethod() RestAPIOptionsAuthenticationOptionsAnyOf5Oauth1SignatureMethod`
+`func (o *RestAPIOptionsAuthenticationOptions) GetOauth1SignatureMethod() RestAPIOptionsAuthenticationOptionsAnyOf6Oauth1SignatureMethod`
 
 GetOauth1SignatureMethod returns the Oauth1SignatureMethod field if non-nil, zero value otherwise.
 
 ### GetOauth1SignatureMethodOk
 
-`func (o *RestAPIOptionsAuthenticationOptions) GetOauth1SignatureMethodOk() (*RestAPIOptionsAuthenticationOptionsAnyOf5Oauth1SignatureMethod, bool)`
+`func (o *RestAPIOptionsAuthenticationOptions) GetOauth1SignatureMethodOk() (*RestAPIOptionsAuthenticationOptionsAnyOf6Oauth1SignatureMethod, bool)`
 
 GetOauth1SignatureMethodOk returns a tuple with the Oauth1SignatureMethod field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOauth1SignatureMethod
 
-`func (o *RestAPIOptionsAuthenticationOptions) SetOauth1SignatureMethod(v RestAPIOptionsAuthenticationOptionsAnyOf5Oauth1SignatureMethod)`
+`func (o *RestAPIOptionsAuthenticationOptions) SetOauth1SignatureMethod(v RestAPIOptionsAuthenticationOptionsAnyOf6Oauth1SignatureMethod)`
 
 SetOauth1SignatureMethod sets Oauth1SignatureMethod field to given value.
 
@@ -784,6 +914,31 @@ SetOauth2Scope sets Oauth2Scope field to given value.
 
 HasOauth2Scope returns a boolean if a field has been set.
 
+### GetOauth2Resource
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2Resource() string`
+
+GetOauth2Resource returns the Oauth2Resource field if non-nil, zero value otherwise.
+
+### GetOauth2ResourceOk
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetOauth2ResourceOk() (*string, bool)`
+
+GetOauth2ResourceOk returns a tuple with the Oauth2Resource field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOauth2Resource
+
+`func (o *RestAPIOptionsAuthenticationOptions) SetOauth2Resource(v string)`
+
+SetOauth2Resource sets Oauth2Resource field to given value.
+
+### HasOauth2Resource
+
+`func (o *RestAPIOptionsAuthenticationOptions) HasOauth2Resource() bool`
+
+HasOauth2Resource returns a boolean if a field has been set.
+
 ### GetOauth2ShareUserCredentials
 
 `func (o *RestAPIOptionsAuthenticationOptions) GetOauth2ShareUserCredentials() bool`
@@ -828,11 +983,86 @@ and a boolean to check if the value has been set.
 
 SetVerifySessionUrl sets VerifySessionUrl field to given value.
 
-### HasVerifySessionUrl
 
-`func (o *RestAPIOptionsAuthenticationOptions) HasVerifySessionUrl() bool`
+### GetRawAuthorizationScheme
 
-HasVerifySessionUrl returns a boolean if a field has been set.
+`func (o *RestAPIOptionsAuthenticationOptions) GetRawAuthorizationScheme() string`
+
+GetRawAuthorizationScheme returns the RawAuthorizationScheme field if non-nil, zero value otherwise.
+
+### GetRawAuthorizationSchemeOk
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetRawAuthorizationSchemeOk() (*string, bool)`
+
+GetRawAuthorizationSchemeOk returns a tuple with the RawAuthorizationScheme field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRawAuthorizationScheme
+
+`func (o *RestAPIOptionsAuthenticationOptions) SetRawAuthorizationScheme(v string)`
+
+SetRawAuthorizationScheme sets RawAuthorizationScheme field to given value.
+
+
+### GetServiceAccountKey
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetServiceAccountKey() string`
+
+GetServiceAccountKey returns the ServiceAccountKey field if non-nil, zero value otherwise.
+
+### GetServiceAccountKeyOk
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetServiceAccountKeyOk() (*string, bool)`
+
+GetServiceAccountKeyOk returns a tuple with the ServiceAccountKey field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServiceAccountKey
+
+`func (o *RestAPIOptionsAuthenticationOptions) SetServiceAccountKey(v string)`
+
+SetServiceAccountKey sets ServiceAccountKey field to given value.
+
+
+### GetServiceAccountScope
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetServiceAccountScope() string`
+
+GetServiceAccountScope returns the ServiceAccountScope field if non-nil, zero value otherwise.
+
+### GetServiceAccountScopeOk
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetServiceAccountScopeOk() (*string, bool)`
+
+GetServiceAccountScopeOk returns a tuple with the ServiceAccountScope field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServiceAccountScope
+
+`func (o *RestAPIOptionsAuthenticationOptions) SetServiceAccountScope(v string)`
+
+SetServiceAccountScope sets ServiceAccountScope field to given value.
+
+
+### GetSessionCookieName
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetSessionCookieName() string`
+
+GetSessionCookieName returns the SessionCookieName field if non-nil, zero value otherwise.
+
+### GetSessionCookieNameOk
+
+`func (o *RestAPIOptionsAuthenticationOptions) GetSessionCookieNameOk() (*string, bool)`
+
+GetSessionCookieNameOk returns a tuple with the SessionCookieName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSessionCookieName
+
+`func (o *RestAPIOptionsAuthenticationOptions) SetSessionCookieName(v string)`
+
+SetSessionCookieName sets SessionCookieName field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

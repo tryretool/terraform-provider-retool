@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Success** | **bool** | API request failed | 
-**Message** | **string** | Error message | 
+**Success** | **bool** | Whether the API request was successful. | 
+**Message** | **string** | Error message. | 
 
 ## Methods
 

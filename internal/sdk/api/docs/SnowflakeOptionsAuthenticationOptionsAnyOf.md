@@ -4,15 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**BearerToken** | Pointer to **string** |  | [optional] 
 **AuthenticationType** | **string** |  | 
-**Username** | **string** |  | 
-**Password** | **string** |  | 
 
 ## Methods
 
 ### NewSnowflakeOptionsAuthenticationOptionsAnyOf
 
-`func NewSnowflakeOptionsAuthenticationOptionsAnyOf(authenticationType string, username string, password string, ) *SnowflakeOptionsAuthenticationOptionsAnyOf`
+`func NewSnowflakeOptionsAuthenticationOptionsAnyOf(authenticationType string, ) *SnowflakeOptionsAuthenticationOptionsAnyOf`
 
 NewSnowflakeOptionsAuthenticationOptionsAnyOf instantiates a new SnowflakeOptionsAuthenticationOptionsAnyOf object
 This constructor will assign default values to properties that have it defined,
@@ -26,6 +25,31 @@ will change when the set of required properties is changed
 NewSnowflakeOptionsAuthenticationOptionsAnyOfWithDefaults instantiates a new SnowflakeOptionsAuthenticationOptionsAnyOf object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetBearerToken
+
+`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf) GetBearerToken() string`
+
+GetBearerToken returns the BearerToken field if non-nil, zero value otherwise.
+
+### GetBearerTokenOk
+
+`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf) GetBearerTokenOk() (*string, bool)`
+
+GetBearerTokenOk returns a tuple with the BearerToken field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBearerToken
+
+`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf) SetBearerToken(v string)`
+
+SetBearerToken sets BearerToken field to given value.
+
+### HasBearerToken
+
+`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf) HasBearerToken() bool`
+
+HasBearerToken returns a boolean if a field has been set.
 
 ### GetAuthenticationType
 
@@ -45,46 +69,6 @@ and a boolean to check if the value has been set.
 `func (o *SnowflakeOptionsAuthenticationOptionsAnyOf) SetAuthenticationType(v string)`
 
 SetAuthenticationType sets AuthenticationType field to given value.
-
-
-### GetUsername
-
-`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf) GetUsername() string`
-
-GetUsername returns the Username field if non-nil, zero value otherwise.
-
-### GetUsernameOk
-
-`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf) GetUsernameOk() (*string, bool)`
-
-GetUsernameOk returns a tuple with the Username field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUsername
-
-`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf) SetUsername(v string)`
-
-SetUsername sets Username field to given value.
-
-
-### GetPassword
-
-`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf) GetPassword() string`
-
-GetPassword returns the Password field if non-nil, zero value otherwise.
-
-### GetPasswordOk
-
-`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf) GetPasswordOk() (*string, bool)`
-
-GetPasswordOk returns a tuple with the Password field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPassword
-
-`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf) SetPassword(v string)`
-
-SetPassword sets Password field to given value.
 
 
 

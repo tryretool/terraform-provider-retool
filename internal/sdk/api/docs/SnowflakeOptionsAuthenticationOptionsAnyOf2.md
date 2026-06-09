@@ -5,15 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AuthenticationType** | **string** |  | 
-**Oauth2ClientId** | **string** |  | 
-**Oauth2ClientSecret** | **string** |  | 
-**Oauth2CallbackUrl** | Pointer to **string** |  | [optional] 
+**Username** | **string** |  | 
+**PrivateKey** | **string** |  | 
+**PrivateKeyPassphrase** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewSnowflakeOptionsAuthenticationOptionsAnyOf2
 
-`func NewSnowflakeOptionsAuthenticationOptionsAnyOf2(authenticationType string, oauth2ClientId string, oauth2ClientSecret string, ) *SnowflakeOptionsAuthenticationOptionsAnyOf2`
+`func NewSnowflakeOptionsAuthenticationOptionsAnyOf2(authenticationType string, username string, privateKey string, ) *SnowflakeOptionsAuthenticationOptionsAnyOf2`
 
 NewSnowflakeOptionsAuthenticationOptionsAnyOf2 instantiates a new SnowflakeOptionsAuthenticationOptionsAnyOf2 object
 This constructor will assign default values to properties that have it defined,
@@ -48,70 +48,70 @@ and a boolean to check if the value has been set.
 SetAuthenticationType sets AuthenticationType field to given value.
 
 
-### GetOauth2ClientId
+### GetUsername
 
-`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf2) GetOauth2ClientId() string`
+`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf2) GetUsername() string`
 
-GetOauth2ClientId returns the Oauth2ClientId field if non-nil, zero value otherwise.
+GetUsername returns the Username field if non-nil, zero value otherwise.
 
-### GetOauth2ClientIdOk
+### GetUsernameOk
 
-`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf2) GetOauth2ClientIdOk() (*string, bool)`
+`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf2) GetUsernameOk() (*string, bool)`
 
-GetOauth2ClientIdOk returns a tuple with the Oauth2ClientId field if it's non-nil, zero value otherwise
+GetUsernameOk returns a tuple with the Username field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOauth2ClientId
+### SetUsername
 
-`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf2) SetOauth2ClientId(v string)`
+`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf2) SetUsername(v string)`
 
-SetOauth2ClientId sets Oauth2ClientId field to given value.
+SetUsername sets Username field to given value.
 
 
-### GetOauth2ClientSecret
+### GetPrivateKey
 
-`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf2) GetOauth2ClientSecret() string`
+`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf2) GetPrivateKey() string`
 
-GetOauth2ClientSecret returns the Oauth2ClientSecret field if non-nil, zero value otherwise.
+GetPrivateKey returns the PrivateKey field if non-nil, zero value otherwise.
 
-### GetOauth2ClientSecretOk
+### GetPrivateKeyOk
 
-`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf2) GetOauth2ClientSecretOk() (*string, bool)`
+`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf2) GetPrivateKeyOk() (*string, bool)`
 
-GetOauth2ClientSecretOk returns a tuple with the Oauth2ClientSecret field if it's non-nil, zero value otherwise
+GetPrivateKeyOk returns a tuple with the PrivateKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOauth2ClientSecret
+### SetPrivateKey
 
-`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf2) SetOauth2ClientSecret(v string)`
+`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf2) SetPrivateKey(v string)`
 
-SetOauth2ClientSecret sets Oauth2ClientSecret field to given value.
+SetPrivateKey sets PrivateKey field to given value.
 
 
-### GetOauth2CallbackUrl
+### GetPrivateKeyPassphrase
 
-`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf2) GetOauth2CallbackUrl() string`
+`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf2) GetPrivateKeyPassphrase() string`
 
-GetOauth2CallbackUrl returns the Oauth2CallbackUrl field if non-nil, zero value otherwise.
+GetPrivateKeyPassphrase returns the PrivateKeyPassphrase field if non-nil, zero value otherwise.
 
-### GetOauth2CallbackUrlOk
+### GetPrivateKeyPassphraseOk
 
-`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf2) GetOauth2CallbackUrlOk() (*string, bool)`
+`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf2) GetPrivateKeyPassphraseOk() (*string, bool)`
 
-GetOauth2CallbackUrlOk returns a tuple with the Oauth2CallbackUrl field if it's non-nil, zero value otherwise
+GetPrivateKeyPassphraseOk returns a tuple with the PrivateKeyPassphrase field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOauth2CallbackUrl
+### SetPrivateKeyPassphrase
 
-`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf2) SetOauth2CallbackUrl(v string)`
+`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf2) SetPrivateKeyPassphrase(v string)`
 
-SetOauth2CallbackUrl sets Oauth2CallbackUrl field to given value.
+SetPrivateKeyPassphrase sets PrivateKeyPassphrase field to given value.
 
-### HasOauth2CallbackUrl
+### HasPrivateKeyPassphrase
 
-`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf2) HasOauth2CallbackUrl() bool`
+`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf2) HasPrivateKeyPassphrase() bool`
 
-HasOauth2CallbackUrl returns a boolean if a field has been set.
+HasPrivateKeyPassphrase returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

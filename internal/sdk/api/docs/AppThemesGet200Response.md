@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Success** | **bool** | API request succeeded | 
-**Data** | [**[]AppThemesGet200ResponseDataInner**](AppThemesGet200ResponseDataInner.md) | An array of requested items | 
+**Success** | **bool** | Whether the API request was successful. | 
+**Data** | [**[]AppThemesGet200ResponseDataInner**](AppThemesGet200ResponseDataInner.md) | An array of requested items. | 
 
 ## Methods
 

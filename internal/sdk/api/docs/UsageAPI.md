@@ -1,23 +1,23 @@
 # \UsageAPI
 
-All URIs are relative to *http://.*
+All URIs are relative to *https://stable-4-0.retool.dev/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**UsageAppDetailsGet**](UsageAPI.md#UsageAppDetailsGet) | **Get** /usage/app_details | The app details for the selected app and organizations
-[**UsageAppSummaryGet**](UsageAPI.md#UsageAppSummaryGet) | **Get** /usage/app_summary | The app summaries for the selected organizations
-[**UsageGet**](UsageAPI.md#UsageGet) | **Get** /usage | The usage summary for the selected organizations
+[**UsageAppDetailsGet**](UsageAPI.md#UsageAppDetailsGet) | **Get** /usage/app_details | Get app usage details
+[**UsageAppSummaryGet**](UsageAPI.md#UsageAppSummaryGet) | **Get** /usage/app_summary | Get app usage summaries
+[**UsageGet**](UsageAPI.md#UsageGet) | **Get** /usage | Get usage summary
 [**UsageOrganizationsGet**](UsageAPI.md#UsageOrganizationsGet) | **Get** /usage/organizations | List organizations
-[**UsageUserDetailsGet**](UsageAPI.md#UsageUserDetailsGet) | **Get** /usage/user_details | The user details for the selected user and organizations
-[**UsageUserSummaryGet**](UsageAPI.md#UsageUserSummaryGet) | **Get** /usage/user_summary | The summaries of user usage for the selected organizations
+[**UsageUserDetailsGet**](UsageAPI.md#UsageUserDetailsGet) | **Get** /usage/user_details | Get user usage details
+[**UsageUserSummaryGet**](UsageAPI.md#UsageUserSummaryGet) | **Get** /usage/user_summary | Get user usage summaries
 
 
 
 ## UsageAppDetailsGet
 
-> UsageAppDetailsGet200Response UsageAppDetailsGet(ctx).StartDate(startDate).AppName(appName).OrgIds(orgIds).EndDate(endDate).Execute()
+> UsageAppDetailsGet200Response UsageAppDetailsGet(ctx).StartDate(startDate).AppName(appName).OrgIds(orgIds).EndDate(endDate).Limit(limit).NextToken(nextToken).Execute()
 
-The app details for the selected app and organizations
+Get app usage details
 
 
 
@@ -34,14 +34,16 @@ import (
 )
 
 func main() {
-	startDate := "2024-01-15" // string | The start date of the date range
-	appName := "appName_example" // string | The name of the app to retrieve usage data for
-	orgIds := "org_id1,org_id2" // string | A comma separated list of org ids to retrieve usage data for (optional)
-	endDate := "2024-01-30" // string | The end date of the date range. If not specified, then minimum(start_date + 30 days, today - 1) is used. (optional)
+	startDate := "2024-01-15" // string | 
+	appName := "appName_example" // string | 
+	orgIds := "org_id1,org_id2" // string |  (optional)
+	endDate := "2024-01-30" // string |  (optional)
+	limit := int32(50) // int32 |  (optional)
+	nextToken := "eyJsYXN0SWQiOjEyM30..." // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsageAPI.UsageAppDetailsGet(context.Background()).StartDate(startDate).AppName(appName).OrgIds(orgIds).EndDate(endDate).Execute()
+	resp, r, err := apiClient.UsageAPI.UsageAppDetailsGet(context.Background()).StartDate(startDate).AppName(appName).OrgIds(orgIds).EndDate(endDate).Limit(limit).NextToken(nextToken).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsageAPI.UsageAppDetailsGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -62,10 +64,12 @@ Other parameters are passed through a pointer to a apiUsageAppDetailsGetRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **startDate** | **string** | The start date of the date range | 
- **appName** | **string** | The name of the app to retrieve usage data for | 
- **orgIds** | **string** | A comma separated list of org ids to retrieve usage data for | 
- **endDate** | **string** | The end date of the date range. If not specified, then minimum(start_date + 30 days, today - 1) is used. | 
+ **startDate** | **string** |  | 
+ **appName** | **string** |  | 
+ **orgIds** | **string** |  | 
+ **endDate** | **string** |  | 
+ **limit** | **int32** |  | 
+ **nextToken** | **string** |  | 
 
 ### Return type
 
@@ -89,7 +93,7 @@ Name | Type | Description  | Notes
 
 > UsageAppSummaryGet200Response UsageAppSummaryGet(ctx).StartDate(startDate).OrgIds(orgIds).EndDate(endDate).Execute()
 
-The app summaries for the selected organizations
+Get app usage summaries
 
 
 
@@ -106,9 +110,9 @@ import (
 )
 
 func main() {
-	startDate := "2024-01-15" // string | The start date of the date range
-	orgIds := "org_id1,org_id2" // string | A comma separated list of org ids to retrieve usage data for (optional)
-	endDate := "2024-01-30" // string | The end date of the date range. If not specified, then minimum(start_date + 30 days, today - 1) is used. (optional)
+	startDate := "2024-01-15" // string | 
+	orgIds := "org_id1,org_id2" // string |  (optional)
+	endDate := "2024-01-30" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -133,9 +137,9 @@ Other parameters are passed through a pointer to a apiUsageAppSummaryGetRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **startDate** | **string** | The start date of the date range | 
- **orgIds** | **string** | A comma separated list of org ids to retrieve usage data for | 
- **endDate** | **string** | The end date of the date range. If not specified, then minimum(start_date + 30 days, today - 1) is used. | 
+ **startDate** | **string** |  | 
+ **orgIds** | **string** |  | 
+ **endDate** | **string** |  | 
 
 ### Return type
 
@@ -159,7 +163,7 @@ Name | Type | Description  | Notes
 
 > UsageGet200Response UsageGet(ctx).StartDate(startDate).OrgIds(orgIds).EndDate(endDate).Execute()
 
-The usage summary for the selected organizations
+Get usage summary
 
 
 
@@ -176,9 +180,9 @@ import (
 )
 
 func main() {
-	startDate := "2024-01-15" // string | The start date of the date range
-	orgIds := "org_id1,org_id2" // string | A comma separated list of org ids to retrieve usage data for (optional)
-	endDate := "2024-01-30" // string | The end date of the date range. If not specified, then minimum(start_date + 30 days, today - 1) is used. (optional)
+	startDate := "2024-01-15" // string | 
+	orgIds := "org_id1,org_id2" // string |  (optional)
+	endDate := "2024-01-30" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -203,9 +207,9 @@ Other parameters are passed through a pointer to a apiUsageGetRequest struct via
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **startDate** | **string** | The start date of the date range | 
- **orgIds** | **string** | A comma separated list of org ids to retrieve usage data for | 
- **endDate** | **string** | The end date of the date range. If not specified, then minimum(start_date + 30 days, today - 1) is used. | 
+ **startDate** | **string** |  | 
+ **orgIds** | **string** |  | 
+ **endDate** | **string** |  | 
 
 ### Return type
 
@@ -290,7 +294,7 @@ Other parameters are passed through a pointer to a apiUsageOrganizationsGetReque
 
 > UsageUserDetailsGet200Response UsageUserDetailsGet(ctx).StartDate(startDate).Email(email).OrgIds(orgIds).EndDate(endDate).Execute()
 
-The user details for the selected user and organizations
+Get user usage details
 
 
 
@@ -307,10 +311,10 @@ import (
 )
 
 func main() {
-	startDate := "2024-01-15" // string | The start date of the date range
-	email := "email_example" // string | The email of the user to retrieve usage data for
-	orgIds := "org_id1,org_id2" // string | A comma separated list of org ids to retrieve usage data for (optional)
-	endDate := "2024-01-30" // string | The end date of the date range. If not specified, then minimum(start_date + 30 days, today - 1) is used. (optional)
+	startDate := "2024-01-15" // string | 
+	email := "email_example" // string | 
+	orgIds := "org_id1,org_id2" // string |  (optional)
+	endDate := "2024-01-30" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -335,10 +339,10 @@ Other parameters are passed through a pointer to a apiUsageUserDetailsGetRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **startDate** | **string** | The start date of the date range | 
- **email** | **string** | The email of the user to retrieve usage data for | 
- **orgIds** | **string** | A comma separated list of org ids to retrieve usage data for | 
- **endDate** | **string** | The end date of the date range. If not specified, then minimum(start_date + 30 days, today - 1) is used. | 
+ **startDate** | **string** |  | 
+ **email** | **string** |  | 
+ **orgIds** | **string** |  | 
+ **endDate** | **string** |  | 
 
 ### Return type
 
@@ -362,7 +366,7 @@ Name | Type | Description  | Notes
 
 > UsageUserSummaryGet200Response UsageUserSummaryGet(ctx).StartDate(startDate).OrgIds(orgIds).EndDate(endDate).Execute()
 
-The summaries of user usage for the selected organizations
+Get user usage summaries
 
 
 
@@ -379,9 +383,9 @@ import (
 )
 
 func main() {
-	startDate := "2024-01-15" // string | The start date of the date range
-	orgIds := "org_id1,org_id2" // string | A comma separated list of org ids to retrieve usage data for (optional)
-	endDate := "2024-01-30" // string | The end date of the date range. If not specified, then minimum(start_date + 30 days, today - 1) is used. (optional)
+	startDate := "2024-01-15" // string | 
+	orgIds := "org_id1,org_id2" // string |  (optional)
+	endDate := "2024-01-30" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -406,9 +410,9 @@ Other parameters are passed through a pointer to a apiUsageUserSummaryGetRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **startDate** | **string** | The start date of the date range | 
- **orgIds** | **string** | A comma separated list of org ids to retrieve usage data for | 
- **endDate** | **string** | The end date of the date range. If not specified, then minimum(start_date + 30 days, today - 1) is used. | 
+ **startDate** | **string** |  | 
+ **orgIds** | **string** |  | 
+ **endDate** | **string** |  | 
 
 ### Return type
 

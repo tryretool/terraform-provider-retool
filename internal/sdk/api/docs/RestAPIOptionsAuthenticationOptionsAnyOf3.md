@@ -4,14 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BearerToken** | Pointer to **string** |  | [optional] 
 **AuthenticationType** | **string** |  | 
+**BasicUsername** | **string** |  | 
+**BasicPassword** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewRestAPIOptionsAuthenticationOptionsAnyOf3
 
-`func NewRestAPIOptionsAuthenticationOptionsAnyOf3(authenticationType string, ) *RestAPIOptionsAuthenticationOptionsAnyOf3`
+`func NewRestAPIOptionsAuthenticationOptionsAnyOf3(authenticationType string, basicUsername string, ) *RestAPIOptionsAuthenticationOptionsAnyOf3`
 
 NewRestAPIOptionsAuthenticationOptionsAnyOf3 instantiates a new RestAPIOptionsAuthenticationOptionsAnyOf3 object
 This constructor will assign default values to properties that have it defined,
@@ -25,31 +26,6 @@ will change when the set of required properties is changed
 NewRestAPIOptionsAuthenticationOptionsAnyOf3WithDefaults instantiates a new RestAPIOptionsAuthenticationOptionsAnyOf3 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetBearerToken
-
-`func (o *RestAPIOptionsAuthenticationOptionsAnyOf3) GetBearerToken() string`
-
-GetBearerToken returns the BearerToken field if non-nil, zero value otherwise.
-
-### GetBearerTokenOk
-
-`func (o *RestAPIOptionsAuthenticationOptionsAnyOf3) GetBearerTokenOk() (*string, bool)`
-
-GetBearerTokenOk returns a tuple with the BearerToken field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBearerToken
-
-`func (o *RestAPIOptionsAuthenticationOptionsAnyOf3) SetBearerToken(v string)`
-
-SetBearerToken sets BearerToken field to given value.
-
-### HasBearerToken
-
-`func (o *RestAPIOptionsAuthenticationOptionsAnyOf3) HasBearerToken() bool`
-
-HasBearerToken returns a boolean if a field has been set.
 
 ### GetAuthenticationType
 
@@ -70,6 +46,51 @@ and a boolean to check if the value has been set.
 
 SetAuthenticationType sets AuthenticationType field to given value.
 
+
+### GetBasicUsername
+
+`func (o *RestAPIOptionsAuthenticationOptionsAnyOf3) GetBasicUsername() string`
+
+GetBasicUsername returns the BasicUsername field if non-nil, zero value otherwise.
+
+### GetBasicUsernameOk
+
+`func (o *RestAPIOptionsAuthenticationOptionsAnyOf3) GetBasicUsernameOk() (*string, bool)`
+
+GetBasicUsernameOk returns a tuple with the BasicUsername field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBasicUsername
+
+`func (o *RestAPIOptionsAuthenticationOptionsAnyOf3) SetBasicUsername(v string)`
+
+SetBasicUsername sets BasicUsername field to given value.
+
+
+### GetBasicPassword
+
+`func (o *RestAPIOptionsAuthenticationOptionsAnyOf3) GetBasicPassword() string`
+
+GetBasicPassword returns the BasicPassword field if non-nil, zero value otherwise.
+
+### GetBasicPasswordOk
+
+`func (o *RestAPIOptionsAuthenticationOptionsAnyOf3) GetBasicPasswordOk() (*string, bool)`
+
+GetBasicPasswordOk returns a tuple with the BasicPassword field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBasicPassword
+
+`func (o *RestAPIOptionsAuthenticationOptionsAnyOf3) SetBasicPassword(v string)`
+
+SetBasicPassword sets BasicPassword field to given value.
+
+### HasBasicPassword
+
+`func (o *RestAPIOptionsAuthenticationOptionsAnyOf3) HasBasicPassword() bool`
+
+HasBasicPassword returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

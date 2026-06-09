@@ -1,14 +1,14 @@
 # \ResourceConfigurationsAPI
 
-All URIs are relative to *http://.*
+All URIs are relative to *https://stable-4-0.retool.dev/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ResourceConfigurationsConfigurationIdDelete**](ResourceConfigurationsAPI.md#ResourceConfigurationsConfigurationIdDelete) | **Delete** /resource_configurations/{configurationId} | Delete resource configuration
-[**ResourceConfigurationsConfigurationIdGet**](ResourceConfigurationsAPI.md#ResourceConfigurationsConfigurationIdGet) | **Get** /resource_configurations/{configurationId} | Get resource configuration by id
+[**ResourceConfigurationsConfigurationIdDelete**](ResourceConfigurationsAPI.md#ResourceConfigurationsConfigurationIdDelete) | **Delete** /resource_configurations/{configurationId} | Delete a resource configuration
+[**ResourceConfigurationsConfigurationIdGet**](ResourceConfigurationsAPI.md#ResourceConfigurationsConfigurationIdGet) | **Get** /resource_configurations/{configurationId} | Get a resource configuration
 [**ResourceConfigurationsConfigurationIdPatch**](ResourceConfigurationsAPI.md#ResourceConfigurationsConfigurationIdPatch) | **Patch** /resource_configurations/{configurationId} | Update a resource configuration
-[**ResourceConfigurationsGet**](ResourceConfigurationsAPI.md#ResourceConfigurationsGet) | **Get** /resource_configurations | Get resource configurations
-[**ResourceConfigurationsPost**](ResourceConfigurationsAPI.md#ResourceConfigurationsPost) | **Post** /resource_configurations | Create resource configuration
+[**ResourceConfigurationsGet**](ResourceConfigurationsAPI.md#ResourceConfigurationsGet) | **Get** /resource_configurations | List resource configurations
+[**ResourceConfigurationsPost**](ResourceConfigurationsAPI.md#ResourceConfigurationsPost) | **Post** /resource_configurations | Create a resource configuration
 
 
 
@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 > ResourceConfigurationsConfigurationIdDelete(ctx, configurationId).Execute()
 
-Delete resource configuration
+Delete a resource configuration
 
 
 
@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-	configurationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The resource configuration id.
+	configurationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -51,7 +51,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**configurationId** | **string** | The resource configuration id. | 
+**configurationId** | **string** |  | 
 
 ### Other Parameters
 
@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 > ResourceConfigurationsConfigurationIdGet200Response ResourceConfigurationsConfigurationIdGet(ctx, configurationId).Execute()
 
-Get resource configuration by id
+Get a resource configuration
 
 
 
@@ -101,7 +101,7 @@ import (
 )
 
 func main() {
-	configurationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The resource configuration id.
+	configurationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -121,7 +121,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**configurationId** | **string** | The resource configuration id. | 
+**configurationId** | **string** |  | 
 
 ### Other Parameters
 
@@ -171,7 +171,7 @@ import (
 )
 
 func main() {
-	configurationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The resource configuration id.
+	configurationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 	resourceConfigurationsConfigurationIdPatchRequest := *openapiclient.NewResourceConfigurationsConfigurationIdPatchRequest([]openapiclient.ReplaceOperation{*openapiclient.NewReplaceOperation("Op_example", "Path_example")}) // ResourceConfigurationsConfigurationIdPatchRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -192,7 +192,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**configurationId** | **string** | The resource configuration id. | 
+**configurationId** | **string** |  | 
 
 ### Other Parameters
 
@@ -226,7 +226,7 @@ Name | Type | Description  | Notes
 
 > ResourceConfigurationsGet200Response ResourceConfigurationsGet(ctx).ResourceType(resourceType).ResourceId(resourceId).EnvironmentId(environmentId).Limit(limit).NextToken(nextToken).Execute()
 
-Get resource configurations
+List resource configurations
 
 
 
@@ -243,11 +243,11 @@ import (
 )
 
 func main() {
-	resourceType := "resourceType_example" // string | The type of resource. (optional)
-	resourceId := "resourceId_example" // string | The uuid or name for the resource. (optional)
+	resourceType := "resourceType_example" // string |  (optional)
+	resourceId := "resourceId_example" // string |  (optional)
 	environmentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string |  (optional)
-	limit := int32(50) // int32 | Maximum number of items to return per page. If not provided, all items are returned. When provided, enables pagination and the response will include next_token for retrieving subsequent pages. Valid range: 1-100. (optional)
-	nextToken := "eyJsYXN0SWQiOjEyM30..." // string | Cursor token for retrieving the next page of results. Obtained from the next_token field of a previous paginated response. Only valid when the limit parameter is also provided. (optional)
+	limit := int32(50) // int32 |  (optional)
+	nextToken := "eyJsYXN0SWQiOjEyM30..." // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -272,11 +272,11 @@ Other parameters are passed through a pointer to a apiResourceConfigurationsGetR
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resourceType** | **string** | The type of resource. | 
- **resourceId** | **string** | The uuid or name for the resource. | 
+ **resourceType** | **string** |  | 
+ **resourceId** | **string** |  | 
  **environmentId** | **string** |  | 
- **limit** | **int32** | Maximum number of items to return per page. If not provided, all items are returned. When provided, enables pagination and the response will include next_token for retrieving subsequent pages. Valid range: 1-100. | 
- **nextToken** | **string** | Cursor token for retrieving the next page of results. Obtained from the next_token field of a previous paginated response. Only valid when the limit parameter is also provided. | 
+ **limit** | **int32** |  | 
+ **nextToken** | **string** |  | 
 
 ### Return type
 
@@ -300,7 +300,7 @@ Name | Type | Description  | Notes
 
 > ResourceConfigurationsPost200Response ResourceConfigurationsPost(ctx).ResourceConfigurationsPostRequest(resourceConfigurationsPostRequest).Execute()
 
-Create resource configuration
+Create a resource configuration
 
 
 
@@ -317,7 +317,7 @@ import (
 )
 
 func main() {
-	resourceConfigurationsPostRequest := *openapiclient.NewResourceConfigurationsPostRequest("ResourceId_example", "EnvironmentId_example", *openapiclient.NewResourcesPostRequestOptions(*openapiclient.NewSnowflakeOptionsDatabaseOptions("Name_example"), "AccountIdentifier_example", *openapiclient.NewGRPCOptionsAuthenticationOptions("AuthenticationType_example", "Auth0Domain_example", "Auth0ClientId_example", "Auth0ClientSecret_example", "Auth0CustomAudience_example", "Oauth2AccessTokenUrl_example", "Oauth2AuthUrl_example", "Oauth2ClientId_example", "Oauth2ClientSecret_example"), "BaseUrl_example")) // ResourceConfigurationsPostRequest |  (optional)
+	resourceConfigurationsPostRequest := *openapiclient.NewResourceConfigurationsPostRequest("ResourceId_example", "EnvironmentId_example", *openapiclient.NewResourcesPostRequestOptions(*openapiclient.NewGRPCOptionsAuthenticationOptions("AuthenticationType_example", "Auth0Domain_example", "Auth0ClientId_example", "Auth0ClientSecret_example", "Auth0CustomAudience_example", "Oauth2AccessTokenUrl_example", "Oauth2AuthUrl_example", "Oauth2ClientId_example", "Oauth2ClientSecret_example"), *openapiclient.NewSnowflakeOptionsDatabaseOptions("Name_example"), "AccountIdentifier_example", "BaseUrl_example", "KeySource_example", "ApiKey_example", "Region_example", []string{"DeploymentNames_example"}, "ProjectId_example", "Location_example", "ServiceAccountKey_example", "CompatibleSchema_example", []string{"ModelList_example"})) // ResourceConfigurationsPostRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

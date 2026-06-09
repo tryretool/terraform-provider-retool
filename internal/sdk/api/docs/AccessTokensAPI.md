@@ -1,10 +1,10 @@
 # \AccessTokensAPI
 
-All URIs are relative to *http://.*
+All URIs are relative to *https://stable-4-0.retool.dev/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AccessTokensAccessTokenIdGet**](AccessTokensAPI.md#AccessTokensAccessTokenIdGet) | **Get** /access_tokens/:accessTokenId | Get a single access token
+[**AccessTokensAccessTokenIdGet**](AccessTokensAPI.md#AccessTokensAccessTokenIdGet) | **Get** /access_tokens/:accessTokenId | Get an access token
 [**AccessTokensGet**](AccessTokensAPI.md#AccessTokensGet) | **Get** /access_tokens | List access tokens
 [**AccessTokensPost**](AccessTokensAPI.md#AccessTokensPost) | **Post** /access_tokens | Create an access token
 
@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 > AccessTokensAccessTokenIdGet200Response AccessTokensAccessTokenIdGet(ctx).Execute()
 
-Get a single access token
+Get an access token
 
 
 

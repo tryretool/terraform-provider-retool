@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** |  | 
-**Id** | **NullableFloat32** | The ID number of the group | 
+**Id** | **NullableFloat32** | The ID number of the group. | 
 
 ## Methods
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Metadata** | **map[string]interface{}** | The updated user metadata, containing the new attribute value | [default to {}]
+**Metadata** | **map[string]interface{}** | The updated user metadata, containing the new attribute value. | [default to {}]
 
 ## Methods
 

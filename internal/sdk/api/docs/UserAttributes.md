@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** | The id of the user attribute | 
-**Name** | **string** | The name of the user attribute | 
-**Label** | **string** | The label of the user attribute | 
-**DataType** | **string** | The data type of the user attribute. Valid types are &#x60;string&#x60;, &#x60;number&#x60;, or &#x60;json&#x60; | 
-**DefaultValue** | **NullableString** | The default value of the user attribute, assigned to all users without the attribute set | 
-**IntercomAttributeName** | **NullableString** | The name of the Intercom user attribute that this attribute should be mapped to | 
+**Id** | **string** | The id of the user attribute. | 
+**Name** | **string** | The name of the user attribute. | 
+**Label** | **string** | The label of the user attribute. | 
+**DataType** | **string** | The data type of the user attribute. Valid types are &#x60;string&#x60;, &#x60;number&#x60;, or &#x60;json&#x60;. | 
+**DefaultValue** | Pointer to **NullableString** | The default value of the user attribute, assigned to all users without the attribute set. | [optional] 
+**IntercomAttributeName** | **NullableString** | The name of the Intercom user attribute that this attribute should be mapped to. | 
 
 ## Methods
 
 ### NewUserAttributes
 
-`func NewUserAttributes(id string, name string, label string, dataType string, defaultValue NullableString, intercomAttributeName NullableString, ) *UserAttributes`
+`func NewUserAttributes(id string, name string, label string, dataType string, intercomAttributeName NullableString, ) *UserAttributes`
 
 NewUserAttributes instantiates a new UserAttributes object
 This constructor will assign default values to properties that have it defined,
@@ -129,6 +129,11 @@ and a boolean to check if the value has been set.
 
 SetDefaultValue sets DefaultValue field to given value.
 
+### HasDefaultValue
+
+`func (o *UserAttributes) HasDefaultValue() bool`
+
+HasDefaultValue returns a boolean if a field has been set.
 
 ### SetDefaultValueNil
 

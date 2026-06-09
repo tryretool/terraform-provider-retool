@@ -1,15 +1,15 @@
 # \PermissionsAPI
 
-All URIs are relative to *http://.*
+All URIs are relative to *https://stable-4-0.retool.dev/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PermissionsAccessListObjectTypeObjectIdGet**](PermissionsAPI.md#PermissionsAccessListObjectTypeObjectIdGet) | **Get** /permissions/accessList/{objectType}/{objectId} | Get the access list of an app or folder
+[**PermissionsAccessListObjectTypeObjectIdGet**](PermissionsAPI.md#PermissionsAccessListObjectTypeObjectIdGet) | **Get** /permissions/accessList/{objectType}/{objectId} | Get an access list
 [**PermissionsGrantPost**](PermissionsAPI.md#PermissionsGrantPost) | **Post** /permissions/grant | Grant permissions
 [**PermissionsListObjectsPost**](PermissionsAPI.md#PermissionsListObjectsPost) | **Post** /permissions/listObjects | List objects a group can access
 [**PermissionsRevokePost**](PermissionsAPI.md#PermissionsRevokePost) | **Post** /permissions/revoke | Revoke permissions
 [**RolePermissionsRemoveRoleGrantsForSubjectPost**](PermissionsAPI.md#RolePermissionsRemoveRoleGrantsForSubjectPost) | **Post** /role_permissions/remove_role_grants_for_subject/ | Delete a role grant for a subject
-[**RolePermissionsRoleGrantsGet**](PermissionsAPI.md#RolePermissionsRoleGrantsGet) | **Get** /role_permissions/role_grants | Get role grants
+[**RolePermissionsRoleGrantsGet**](PermissionsAPI.md#RolePermissionsRoleGrantsGet) | **Get** /role_permissions/role_grants | List role grants
 [**RolePermissionsRoleGrantsPost**](PermissionsAPI.md#RolePermissionsRoleGrantsPost) | **Post** /role_permissions/role_grants | Create a role grant
 [**RolePermissionsRoleGrantsRoleGrantIdDelete**](PermissionsAPI.md#RolePermissionsRoleGrantsRoleGrantIdDelete) | **Delete** /role_permissions/role_grants/{roleGrantId} | Delete a role grant
 [**RolePermissionsRoleGrantsSubjectTypeSubjectIdGet**](PermissionsAPI.md#RolePermissionsRoleGrantsSubjectTypeSubjectIdGet) | **Get** /role_permissions/role_grants/{subjectType}/{subjectId} | Get role grants for a subject
@@ -24,7 +24,7 @@ Method | HTTP request | Description
 
 > PermissionsAccessListObjectTypeObjectIdGet200Response PermissionsAccessListObjectTypeObjectIdGet(ctx, objectId, objectType).Execute()
 
-Get the access list of an app or folder
+Get an access list
 
 
 
@@ -41,7 +41,7 @@ import (
 )
 
 func main() {
-	objectId := "objectId_example" // string | Object ID. Apps can be accessed by numeric id or UUID. Folders can be accessed by numeric id.
+	objectId := "objectId_example" // string | 
 	objectType := "objectType_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -62,7 +62,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**objectId** | **string** | Object ID. Apps can be accessed by numeric id or UUID. Folders can be accessed by numeric id. | 
+**objectId** | **string** |  | 
 **objectType** | **string** |  | 
 
 ### Other Parameters
@@ -359,7 +359,7 @@ Name | Type | Description  | Notes
 
 > RolePermissionsRoleGrantsGet(ctx).Execute()
 
-Get role grants
+List role grants
 
 
 
@@ -499,7 +499,7 @@ import (
 )
 
 func main() {
-	roleGrantId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The id of the role grant
+	roleGrantId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -517,7 +517,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**roleGrantId** | **string** | The id of the role grant | 
+**roleGrantId** | **string** |  | 
 
 ### Other Parameters
 
@@ -567,8 +567,8 @@ import (
 )
 
 func main() {
-	subjectType := "subjectType_example" // string | The type of the subject
-	subjectId := "subjectId_example" // string | The id of the subject
+	subjectType := "subjectType_example" // string | 
+	subjectId := "subjectId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -586,8 +586,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**subjectType** | **string** | The type of the subject | 
-**subjectId** | **string** | The id of the subject | 
+**subjectType** | **string** |  | 
+**subjectId** | **string** |  | 
 
 ### Other Parameters
 
@@ -765,7 +765,7 @@ import (
 )
 
 func main() {
-	roleId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The id of the role
+	roleId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -783,7 +783,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**roleId** | **string** | The id of the role | 
+**roleId** | **string** |  | 
 
 ### Other Parameters
 
@@ -833,7 +833,7 @@ import (
 )
 
 func main() {
-	roleId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The id of the role
+	roleId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 	rolePermissionsRolesRoleIdPatchRequest := *openapiclient.NewRolePermissionsRolesRoleIdPatchRequest() // RolePermissionsRolesRoleIdPatchRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -854,7 +854,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**roleId** | **string** | The id of the role | 
+**roleId** | **string** |  | 
 
 ### Other Parameters
 
