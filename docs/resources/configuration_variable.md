@@ -67,6 +67,7 @@ resource "retool_configuration_variable" "test_config_var_as_secret" {
 
 ### Optional
 
+- `default_value` (String) The default value used for environments that do not have an explicit value set.
 - `description` (String) A brief description of the configuration variable's purpose.
 - `secret` (Boolean) Whether the configuration variable is a secret. Secrets are encrypted and not exposed in the Retool UI.
 

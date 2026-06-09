@@ -40,11 +40,12 @@ type configurationVariableValueModel struct {
 
 // configurationVariableResourceModel defines the data model for the configuration variable resource.
 type configurationVariableResourceModel struct {
-	ID          types.String                      `tfsdk:"id"`
-	Name        types.String                      `tfsdk:"name"`
-	Description types.String                      `tfsdk:"description"`
-	Secret      types.Bool                        `tfsdk:"secret"`
-	Values      []configurationVariableValueModel `tfsdk:"values"`
+	ID           types.String                      `tfsdk:"id"`
+	Name         types.String                      `tfsdk:"name"`
+	Description  types.String                      `tfsdk:"description"`
+	Secret       types.Bool                        `tfsdk:"secret"`
+	DefaultValue types.String                      `tfsdk:"default_value"`
+	Values       []configurationVariableValueModel `tfsdk:"values"`
 }
 
 // Create a new Configuration Variable resource.
@@ -102,6 +103,13 @@ func (r *configurationVariableResource) Schema(_ context.Context, _ resource.Sch
 				Description: "Whether the configuration variable is a secret. Secrets are encrypted and not exposed in the Retool UI.",
 				Default:     booldefault.StaticBool(false),
 			},
+			"default_value": schema.StringAttribute{
+				Optional:      true,
+				Computed:      true,
+				Description:   "The default value used for environments that do not have an explicit value set.",
+				Validators:    []validator.String{stringvalidator.LengthBetween(0, 4096)},
+				PlanModifiers: []planmodifier.String{stringplanmodifier.UseStateForUnknown()},
+			},
 			"values": schema.ListNestedAttribute{
 				Description: "A list of environment-specific values for the configuration variable.",
 				Required:    true,
@@ -142,6 +150,9 @@ func (r *configurationVariableResource) Create(ctx context.Context, req resource
 		configuratonVariable.Description = plan.Description.ValueStringPointer()
 	}
 	configuratonVariable.Secret = plan.Secret.ValueBool()
+	if !plan.DefaultValue.IsNull() && !plan.DefaultValue.IsUnknown() {
+		configuratonVariable.SetDefaultValue(plan.DefaultValue.ValueString())
+	}
 
 	var values []api.ConfigurationVariablesGet200ResponseDataInnerValuesInner
 	for _, v := range plan.Values {
@@ -173,6 +184,11 @@ func (r *configurationVariableResource) Create(ctx context.Context, req resource
 
 	// Map response body to schema and populate Computed attribute values.
 	plan.ID = types.StringValue(response.Data.Id)
+	if response.Data.DefaultValue.Get() != nil {
+		plan.DefaultValue = types.StringValue(*response.Data.DefaultValue.Get())
+	} else if plan.DefaultValue.IsUnknown() {
+		plan.DefaultValue = types.StringNull()
+	}
 
 	diags = resp.State.Set(ctx, plan)
 	resp.Diagnostics.Append(diags...)
@@ -220,6 +236,12 @@ func (r *configurationVariableResource) Read(ctx context.Context, req resource.R
 	}
 
 	state.Secret = types.BoolValue(response.Data.Secret)
+
+	if response.Data.DefaultValue.Get() != nil {
+		state.DefaultValue = types.StringValue(*response.Data.DefaultValue.Get())
+	} else {
+		state.DefaultValue = types.StringNull()
+	}
 
 	// For secrets, the API returns encrypted values that we cannot use.
 	// We preserve values from the existing state (which come from the config).
@@ -299,6 +321,9 @@ func (r *configurationVariableResource) Update(ctx context.Context, req resource
 		Description: plan.Description.ValueStringPointer(),
 		Secret:      plan.Secret.ValueBool(),
 		Values:      values,
+	}
+	if !plan.DefaultValue.IsNull() && !plan.DefaultValue.IsUnknown() {
+		updatePayload.SetDefaultValue(plan.DefaultValue.ValueString())
 	}
 
 	_, httpResponse, err := r.client.ConfigurationVariablesAPI.ConfigurationVariablesIdPut(ctx, configurationVariableID).ConfigurationVariablesPostRequest(updatePayload).Execute()
