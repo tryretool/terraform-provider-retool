@@ -249,8 +249,8 @@ func (r *userResource) Create(ctx context.Context, req resource.CreateRequest, r
 	plan.UserType = types.StringValue(response.Data.UserType)
 	plan.TwoFactorAuthEnabled = types.BoolValue(response.Data.TwoFactorAuthEnabled)
 
-	// seat_type is only returned by instances using the seat-based user model.
-	// Reflect the API value when present; otherwise fall back to null so the
+	// The seat_type attribute is only returned by instances using the seat-based user
+	// model. Reflect the API value when present; otherwise fall back to null so the
 	// attribute resolves to a known value on instances that don't support it.
 	if response.Data.SeatType.Get() != nil {
 		plan.SeatType = types.StringValue(*response.Data.SeatType.Get())

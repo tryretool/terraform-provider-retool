@@ -336,9 +336,10 @@ func (r *configurationVariableResource) Update(ctx context.Context, req resource
 		return
 	}
 
-	// default_value is Optional+Computed: resolve it to a known value after apply so
-	// Terraform never sees an unknown value in the final state. Reflect the API value
-	// when present; if the API omits it and nothing was configured, fall back to null.
+	// The default_value attribute is Optional+Computed: resolve it to a known value
+	// after apply so Terraform never sees an unknown value in the final state. Reflect
+	// the API value when present; if the API omits it and nothing was configured, fall
+	// back to null.
 	if response.Data.DefaultValue.Get() != nil {
 		plan.DefaultValue = types.StringValue(*response.Data.DefaultValue.Get())
 	} else if plan.DefaultValue.IsUnknown() {
