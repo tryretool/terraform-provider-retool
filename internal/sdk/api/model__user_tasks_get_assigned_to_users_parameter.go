@@ -56,7 +56,7 @@ func (dst *UserTasksGetAssignedToUsersParameter) UnmarshalJSON(data []byte) erro
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src UserTasksGetAssignedToUsersParameter) MarshalJSON() ([]byte, error) {
 	if src.ArrayOfString != nil {
-		return json.Marshal(&src.ArrayOfString)
+		return json.Marshal(src.ArrayOfString)
 	}
 
 	if src.String != nil {

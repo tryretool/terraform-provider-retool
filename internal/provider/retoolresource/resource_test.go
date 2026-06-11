@@ -71,6 +71,39 @@ func TestAccRetoolResource(t *testing.T) {
 	})
 }
 
+// testRetoolResourceBearerConfig exercises a REST API resource that uses
+// bearer-token authentication (see issue #61). Before the options request schema
+// was made free-form, the typed anyOf round-trip silently dropped base_url for
+// "thin" auth objects like bearer, so this configuration failed to apply.
+const testRetoolResourceBearerConfig = `
+	resource "retool_resource" "test_bearer_resource" {
+		display_name = "Test REST API Bearer"
+		type         = "restapi"
+		options      = jsonencode({
+			base_url = "https://api.example.com"
+			authentication_options = {
+				authentication_type = "bearer"
+				bearer_token        = "test-bearer-token"
+			}
+		})
+	}
+`
+
+func TestAccRetoolResourceBearerAuth(t *testing.T) {
+	acctest.Test(t, resource.TestCase{
+		Steps: []resource.TestStep{
+			{
+				Config: testRetoolResourceBearerConfig,
+				Check: resource.ComposeTestCheckFunc(
+					resource.TestCheckResourceAttr("retool_resource.test_bearer_resource", "display_name", "Test REST API Bearer"),
+					resource.TestCheckResourceAttr("retool_resource.test_bearer_resource", "type", "restapi"),
+					resource.TestCheckResourceAttrSet("retool_resource.test_bearer_resource", "id"),
+				),
+			},
+		},
+	})
+}
+
 func sweepRetoolResources(region string) error {
 	log.Printf("Sweeping Retool resources in region %s", region)
 	client, err := acctest.SweeperClient()

@@ -105,7 +105,7 @@ import (
 )
 
 func main() {
-	resourcesPostRequest := *openapiclient.NewResourcesPostRequest("Type_example", "DisplayName_example", *openapiclient.NewResourcesPostRequestOptions(*openapiclient.NewGRPCOptionsAuthenticationOptions("AuthenticationType_example", "Auth0Domain_example", "Auth0ClientId_example", "Auth0ClientSecret_example", "Auth0CustomAudience_example", "Oauth2AccessTokenUrl_example", "Oauth2AuthUrl_example", "Oauth2ClientId_example", "Oauth2ClientSecret_example"), *openapiclient.NewSnowflakeOptionsDatabaseOptions("Name_example"), "AccountIdentifier_example", "BaseUrl_example", "KeySource_example", "ApiKey_example", "Region_example", []string{"DeploymentNames_example"}, "ProjectId_example", "Location_example", "ServiceAccountKey_example", "CompatibleSchema_example", []string{"ModelList_example"})) // ResourcesPostRequest |  (optional)
+	resourcesPostRequest := *openapiclient.NewResourcesPostRequest("Type_example", "DisplayName_example", map[string]interface{}{"key": interface{}(123)}) // ResourcesPostRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

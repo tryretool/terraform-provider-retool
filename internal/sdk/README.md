@@ -84,9 +84,9 @@ Updated from 2.12.0 to 4.0.0 (Retool stable 3.334 -> 4.0).
 
 ### Spec transformation
 The ad-hoc transformation steps (single tag per operation, permissions
-`oneOf`->`anyOf`, and relaxing response-only required fields `folder_id`,
-`seat_type`, `default_value`) are now consolidated into `transform_spec.py`.
-Regenerate with:
+`oneOf`->`anyOf`, free-form resource `options` request bodies, and relaxing
+response-only required fields `folder_id`, `seat_type`, `default_value`) are now
+consolidated into `transform_spec.py`. Regenerate with:
 ```
 python3 transform_spec.py <raw_4.0_spec.json> openAPISpec.json
 go generate
@@ -113,6 +113,19 @@ Notes:
 - **`folder_id` / `seat_type` / `default_value`**: marked required on responses
   but omitted by not-yet-migrated instances; relaxed to optional in the spec
   (verified against a live 4.0 instance returning 400 / unmarshal errors).
+- **Resource `options` request bodies are now free-form objects** (issue #61).
+  The provider treats a resource's / resource configuration's `options` as an
+  opaque JSON blob, but the spec modeled it as a large `anyOf` union. The
+  generated client ambiguously matched "thin" option objects (e.g. bearer-token
+  REST API auth) to the wrong union member and silently dropped fields like
+  `base_url`. `transform_spec.py` rewrites the `options` *request* schema for
+  `/resources` and `/resource_configurations` to `{type: object}` so options
+  pass through untouched (`ResourcesPostRequest.Options` is now
+  `map[string]interface{}`). Responses are left typed. Splitting the request
+  type out caused the response options model to regenerate and hit the
+  generator's invalid-field-name bug, so `fix_generated_code.sh` now rewrites
+  `map[string]interface{} *map[string]interface{}` -> `AdditionalProperties`
+  across every affected file (not just the one hard-coded path).
 - New optional fields elsewhere (handled by regen, surfaced separately as
   provider attributes): user `seat_type`, configuration variable
   `default_value`, SSO `oidc_end_session_url`.

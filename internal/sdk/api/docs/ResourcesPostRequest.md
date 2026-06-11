@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** |  | 
 **DisplayName** | **string** |  | 
-**Options** | [**ResourcesPostRequestOptions**](ResourcesPostRequestOptions.md) |  | 
+**Options** | **map[string]interface{}** |  | 
 
 ## Methods
 
 ### NewResourcesPostRequest
 
-`func NewResourcesPostRequest(type_ string, displayName string, options ResourcesPostRequestOptions, ) *ResourcesPostRequest`
+`func NewResourcesPostRequest(type_ string, displayName string, options map[string]interface{}, ) *ResourcesPostRequest`
 
 NewResourcesPostRequest instantiates a new ResourcesPostRequest object
 This constructor will assign default values to properties that have it defined,
@@ -69,20 +69,20 @@ SetDisplayName sets DisplayName field to given value.
 
 ### GetOptions
 
-`func (o *ResourcesPostRequest) GetOptions() ResourcesPostRequestOptions`
+`func (o *ResourcesPostRequest) GetOptions() map[string]interface{}`
 
 GetOptions returns the Options field if non-nil, zero value otherwise.
 
 ### GetOptionsOk
 
-`func (o *ResourcesPostRequest) GetOptionsOk() (*ResourcesPostRequestOptions, bool)`
+`func (o *ResourcesPostRequest) GetOptionsOk() (*map[string]interface{}, bool)`
 
 GetOptionsOk returns a tuple with the Options field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOptions
 
-`func (o *ResourcesPostRequest) SetOptions(v ResourcesPostRequestOptions)`
+`func (o *ResourcesPostRequest) SetOptions(v map[string]interface{})`
 
 SetOptions sets Options field to given value.
 

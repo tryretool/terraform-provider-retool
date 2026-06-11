@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Id** | **string** | The uuid for the resource configuration. | 
 **Resource** | [**ResourcesGet200ResponseDataInner**](ResourcesGet200ResponseDataInner.md) |  | 
 **Environment** | [**ResourceConfigurationsGet200ResponseDataInnerEnvironment**](ResourceConfigurationsGet200ResponseDataInnerEnvironment.md) |  | 
-**Options** | [**ResourcesPostRequestOptions**](ResourcesPostRequestOptions.md) |  | 
+**Options** | [**ResourceConfigurationsGet200ResponseDataInnerOptions**](ResourceConfigurationsGet200ResponseDataInnerOptions.md) |  | 
 **CreatedAt** | **string** |  | 
 **UpdatedAt** | **string** |  | 
 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewResourceConfigurationsConfigurationIdPatch200ResponseData
 
-`func NewResourceConfigurationsConfigurationIdPatch200ResponseData(id string, resource ResourcesGet200ResponseDataInner, environment ResourceConfigurationsGet200ResponseDataInnerEnvironment, options ResourcesPostRequestOptions, createdAt string, updatedAt string, ) *ResourceConfigurationsConfigurationIdPatch200ResponseData`
+`func NewResourceConfigurationsConfigurationIdPatch200ResponseData(id string, resource ResourcesGet200ResponseDataInner, environment ResourceConfigurationsGet200ResponseDataInnerEnvironment, options ResourceConfigurationsGet200ResponseDataInnerOptions, createdAt string, updatedAt string, ) *ResourceConfigurationsConfigurationIdPatch200ResponseData`
 
 NewResourceConfigurationsConfigurationIdPatch200ResponseData instantiates a new ResourceConfigurationsConfigurationIdPatch200ResponseData object
 This constructor will assign default values to properties that have it defined,
@@ -92,20 +92,20 @@ SetEnvironment sets Environment field to given value.
 
 ### GetOptions
 
-`func (o *ResourceConfigurationsConfigurationIdPatch200ResponseData) GetOptions() ResourcesPostRequestOptions`
+`func (o *ResourceConfigurationsConfigurationIdPatch200ResponseData) GetOptions() ResourceConfigurationsGet200ResponseDataInnerOptions`
 
 GetOptions returns the Options field if non-nil, zero value otherwise.
 
 ### GetOptionsOk
 
-`func (o *ResourceConfigurationsConfigurationIdPatch200ResponseData) GetOptionsOk() (*ResourcesPostRequestOptions, bool)`
+`func (o *ResourceConfigurationsConfigurationIdPatch200ResponseData) GetOptionsOk() (*ResourceConfigurationsGet200ResponseDataInnerOptions, bool)`
 
 GetOptionsOk returns a tuple with the Options field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOptions
 
-`func (o *ResourceConfigurationsConfigurationIdPatch200ResponseData) SetOptions(v ResourcesPostRequestOptions)`
+`func (o *ResourceConfigurationsConfigurationIdPatch200ResponseData) SetOptions(v ResourceConfigurationsGet200ResponseDataInnerOptions)`
 
 SetOptions sets Options field to given value.
 

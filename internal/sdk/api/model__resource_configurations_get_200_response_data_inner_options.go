@@ -15,8 +15,8 @@ import (
 	"fmt"
 )
 
-// ResourcesPostRequestOptions struct for ResourcesPostRequestOptions
-type ResourcesPostRequestOptions struct {
+// ResourceConfigurationsGet200ResponseDataInnerOptions struct for ResourceConfigurationsGet200ResponseDataInnerOptions
+type ResourceConfigurationsGet200ResponseDataInnerOptions struct {
 	AWSBedrockOptions *AWSBedrockOptions
 	AnthropicOptions *AnthropicOptions
 	AzureBlobOptions *AzureBlobOptions
@@ -35,7 +35,7 @@ type ResourcesPostRequestOptions struct {
 }
 
 // Unmarshal JSON data into any of the pointers in the struct
-func (dst *ResourcesPostRequestOptions) UnmarshalJSON(data []byte) error {
+func (dst *ResourceConfigurationsGet200ResponseDataInnerOptions) UnmarshalJSON(data []byte) error {
 	var err error
 	// try to unmarshal JSON data into AWSBedrockOptions
 	err = json.Unmarshal(data, &dst.AWSBedrockOptions);
@@ -232,11 +232,11 @@ func (dst *ResourcesPostRequestOptions) UnmarshalJSON(data []byte) error {
 		dst.AdditionalProperties = nil
 	}
 
-	return fmt.Errorf("data failed to match schemas in anyOf(ResourcesPostRequestOptions)")
+	return fmt.Errorf("data failed to match schemas in anyOf(ResourceConfigurationsGet200ResponseDataInnerOptions)")
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src ResourcesPostRequestOptions) MarshalJSON() ([]byte, error) {
+func (src ResourceConfigurationsGet200ResponseDataInnerOptions) MarshalJSON() ([]byte, error) {
 	if src.AWSBedrockOptions != nil {
 		return json.Marshal(src.AWSBedrockOptions)
 	}
@@ -300,38 +300,38 @@ func (src ResourcesPostRequestOptions) MarshalJSON() ([]byte, error) {
 	return nil, nil // no data in anyOf schemas
 }
 
-type NullableResourcesPostRequestOptions struct {
-	value *ResourcesPostRequestOptions
+type NullableResourceConfigurationsGet200ResponseDataInnerOptions struct {
+	value *ResourceConfigurationsGet200ResponseDataInnerOptions
 	isSet bool
 }
 
-func (v NullableResourcesPostRequestOptions) Get() *ResourcesPostRequestOptions {
+func (v NullableResourceConfigurationsGet200ResponseDataInnerOptions) Get() *ResourceConfigurationsGet200ResponseDataInnerOptions {
 	return v.value
 }
 
-func (v *NullableResourcesPostRequestOptions) Set(val *ResourcesPostRequestOptions) {
+func (v *NullableResourceConfigurationsGet200ResponseDataInnerOptions) Set(val *ResourceConfigurationsGet200ResponseDataInnerOptions) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableResourcesPostRequestOptions) IsSet() bool {
+func (v NullableResourceConfigurationsGet200ResponseDataInnerOptions) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableResourcesPostRequestOptions) Unset() {
+func (v *NullableResourceConfigurationsGet200ResponseDataInnerOptions) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableResourcesPostRequestOptions(val *ResourcesPostRequestOptions) *NullableResourcesPostRequestOptions {
-	return &NullableResourcesPostRequestOptions{value: val, isSet: true}
+func NewNullableResourceConfigurationsGet200ResponseDataInnerOptions(val *ResourceConfigurationsGet200ResponseDataInnerOptions) *NullableResourceConfigurationsGet200ResponseDataInnerOptions {
+	return &NullableResourceConfigurationsGet200ResponseDataInnerOptions{value: val, isSet: true}
 }
 
-func (v NullableResourcesPostRequestOptions) MarshalJSON() ([]byte, error) {
+func (v NullableResourceConfigurationsGet200ResponseDataInnerOptions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableResourcesPostRequestOptions) UnmarshalJSON(src []byte) error {
+func (v *NullableResourceConfigurationsGet200ResponseDataInnerOptions) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

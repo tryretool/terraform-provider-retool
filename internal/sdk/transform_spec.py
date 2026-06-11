@@ -20,7 +20,14 @@ Transforms:
      /permissions/revoke return arrays whose variants are structurally identical
      (only the `type` enum differs). oneOf makes the generated unmarshaler fail
      with "data matches more than one schema"; anyOf works.
-  3. Optional response fields. `folder_id`, `seat_type` and `default_value` are
+  3. Free-form resource `options` request bodies. The provider treats a
+     resource's / resource configuration's `options` as an opaque JSON blob, but
+     the spec models it as a large `anyOf` union. The generated Go client
+     ambiguously matches "thin" option objects (e.g. bearer-token auth) to the
+     wrong union member and silently drops fields such as `base_url`. Replace the
+     `options` request schema with a free-form object so it passes through
+     untouched. (Responses are left typed.)
+  4. Optional response fields. `folder_id`, `seat_type` and `default_value` are
      marked required on several response schemas but the API omits them on
      older / not-yet-migrated instances, breaking unmarshaling. Remove them from
      every `required` array (they stay in `properties`). None of these are
@@ -69,6 +76,35 @@ def fix_permissions_oneof_to_anyof(spec):
     return changes
 
 
+def fix_freeform_resource_options(spec):
+    """Replace the `options` request schema of resources / resource configurations
+    with a free-form object (the provider treats options as opaque JSON)."""
+    changes = 0
+    for path, item in spec.get("paths", {}).items():
+        if not path.startswith(("/resources", "/resource_configurations")):
+            continue
+        for method in METHODS:
+            op = item.get(method)
+            if not isinstance(op, dict):
+                continue
+            content = op.get("requestBody", {}).get("content", {})
+            for media in content.values():
+                schema = media.get("schema")
+                if not isinstance(schema, dict):
+                    continue
+                props = schema.get("properties")
+                if not isinstance(props, dict):
+                    continue
+                opt = props.get("options")
+                if isinstance(opt, dict) and ("anyOf" in opt or "oneOf" in opt):
+                    new_opt = {"type": "object", "additionalProperties": True}
+                    if "description" in opt:
+                        new_opt["description"] = opt["description"]
+                    props["options"] = new_opt
+                    changes += 1
+    return changes
+
+
 def _walk(obj):
     if isinstance(obj, dict):
         yield obj
@@ -108,6 +144,7 @@ def main():
     summary = {
         "single-tag operations": fix_tags(spec),
         "permissions oneOf->anyOf": fix_permissions_oneof_to_anyof(spec),
+        "free-form resource options requests": fix_freeform_resource_options(spec),
         "optional response fields relaxed": fix_optional_response_fields(spec),
     }
 

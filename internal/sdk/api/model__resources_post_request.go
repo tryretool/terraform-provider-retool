@@ -22,7 +22,7 @@ var _ MappedNullable = &ResourcesPostRequest{}
 type ResourcesPostRequest struct {
 	Type string `json:"type"`
 	DisplayName string `json:"display_name"`
-	Options ResourcesPostRequestOptions `json:"options"`
+	Options map[string]interface{} `json:"options"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,7 +32,7 @@ type _ResourcesPostRequest ResourcesPostRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResourcesPostRequest(type_ string, displayName string, options ResourcesPostRequestOptions) *ResourcesPostRequest {
+func NewResourcesPostRequest(type_ string, displayName string, options map[string]interface{}) *ResourcesPostRequest {
 	this := ResourcesPostRequest{}
 	this.Type = type_
 	this.DisplayName = displayName
@@ -97,9 +97,9 @@ func (o *ResourcesPostRequest) SetDisplayName(v string) {
 }
 
 // GetOptions returns the Options field value
-func (o *ResourcesPostRequest) GetOptions() ResourcesPostRequestOptions {
+func (o *ResourcesPostRequest) GetOptions() map[string]interface{} {
 	if o == nil {
-		var ret ResourcesPostRequestOptions
+		var ret map[string]interface{}
 		return ret
 	}
 
@@ -108,15 +108,15 @@ func (o *ResourcesPostRequest) GetOptions() ResourcesPostRequestOptions {
 
 // GetOptionsOk returns a tuple with the Options field value
 // and a boolean to check if the value has been set.
-func (o *ResourcesPostRequest) GetOptionsOk() (*ResourcesPostRequestOptions, bool) {
+func (o *ResourcesPostRequest) GetOptionsOk() (map[string]interface{}, bool) {
 	if o == nil {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Options, true
+	return o.Options, true
 }
 
 // SetOptions sets field value
-func (o *ResourcesPostRequest) SetOptions(v ResourcesPostRequestOptions) {
+func (o *ResourcesPostRequest) SetOptions(v map[string]interface{}) {
 	o.Options = v
 }
 

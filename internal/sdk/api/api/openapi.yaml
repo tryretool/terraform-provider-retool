@@ -6031,7 +6031,7 @@ components:
         environment:
           $ref: '#/components/schemas/_resource_configurations_get_200_response_data_inner_environment'
         options:
-          $ref: '#/components/schemas/_resources_post_request_options'
+          $ref: '#/components/schemas/_resource_configurations_get_200_response_data_inner_options'
         created_at:
           example: 2019-02-08T11:45:48.899Z
           type: string
@@ -14200,6 +14200,416 @@ components:
       - success
       - total_count
       type: object
+    _resources_post_request:
+      properties:
+        type:
+          enum:
+          - anthropic
+          - awsBedrock
+          - azureAI
+          - azureBlob
+          - customAIProvider
+          - dbServer
+          - googleGemini
+          - googleVertexAI
+          - grpc
+          - kafka
+          - mcp
+          - mysql
+          - openAIProvider
+          - postgresql
+          - redshift
+          - restapi
+          - snowflake
+          - sns
+          - sqs
+          type: string
+        display_name:
+          minLength: 1
+          type: string
+        options:
+          additionalProperties: true
+          type: object
+      required:
+      - display_name
+      - options
+      - type
+      type: object
+    _resources_post_200_response_data:
+      additionalProperties: false
+      description: The created resource.
+      example:
+        protected: true
+        updated_at: 2019-02-24T18:28:18.790Z
+        created_at: 2019-02-08T11:45:48.899Z
+        id: id
+        type: airflow
+        display_name: display_name
+        folder_id: folder_id
+      properties:
+        id:
+          description: The uuid or name for the resource.
+          type: string
+        type:
+          description: The type of resource.
+          enum:
+          - airflow
+          - alloydb
+          - anthropic
+          - asana
+          - athena
+          - awsBedrock
+          - azureAI
+          - azureBlob
+          - basecamp
+          - bigid
+          - bigquery
+          - cassandra
+          - circleci
+          - clickhouse
+          - closeio
+          - cockroachdb
+          - cosmosdb
+          - couchdb
+          - customAIProvider
+          - databricks
+          - databricksLakebase
+          - datadog
+          - datastore
+          - dbServer
+          - denodo
+          - dynamodb
+          - elasticsearch
+          - firebase
+          - front
+          - gcs
+          - github
+          - googleAnalytics
+          - googleCalendar
+          - googleDocs
+          - googleGemini
+          - googleMaps
+          - googleSearchConsole
+          - googleSlides
+          - googleVertexAI
+          - googlesheets
+          - graphql
+          - grpc
+          - hubspot
+          - jdbc
+          - jira
+          - kafka
+          - lambda
+          - launchdarkly
+          - mcp
+          - microsoftTeams
+          - mongodb
+          - motherduck
+          - mssql
+          - mysql
+          - notion
+          - onesignal
+          - openAI
+          - openAIProvider
+          - openapi
+          - oracledb
+          - postgresql
+          - presto
+          - redis
+          - redshift
+          - restapi
+          - rethinkdb
+          - retoolAI
+          - retoolDb
+          - retoolEmail
+          - retoolSdk
+          - retoolStorage
+          - s3
+          - salesforce
+          - saphana
+          - sendgrid
+          - serviceNow
+          - shell
+          - slack
+          - slackopenapi
+          - smtp
+          - snowflake
+          - sns
+          - sqs
+          - stripe
+          - tavily
+          - twilio
+          - vertica
+          type: string
+        display_name:
+          minLength: 1
+          type: string
+        folder_id:
+          description: The id of the folder this resource belongs to
+          nullable: true
+          type: string
+        protected:
+          description: Whether the resource is protected in source control
+          type: boolean
+        created_at:
+          example: 2019-02-08T11:45:48.899Z
+          type: string
+        updated_at:
+          example: 2019-02-24T18:28:18.790Z
+          type: string
+      required:
+      - created_at
+      - display_name
+      - id
+      - protected
+      - type
+      - updated_at
+      type: object
+    _resources_post_200_response:
+      example:
+        data:
+          protected: true
+          updated_at: 2019-02-24T18:28:18.790Z
+          created_at: 2019-02-08T11:45:48.899Z
+          id: id
+          type: airflow
+          display_name: display_name
+          folder_id: folder_id
+        success: true
+      properties:
+        success:
+          description: Whether the API request was successful.
+          type: boolean
+        data:
+          $ref: '#/components/schemas/_resources_post_200_response_data'
+      required:
+      - data
+      - success
+      type: object
+    _resources__resourceId__get_200_response:
+      description: A single resource
+      example:
+        data:
+          protected: true
+          updated_at: 2019-02-24T18:28:18.790Z
+          created_at: 2019-02-08T11:45:48.899Z
+          id: id
+          type: airflow
+          display_name: display_name
+          folder_id: folder_id
+        success: true
+      properties:
+        success:
+          description: Whether the API request was successful.
+          type: boolean
+        data:
+          $ref: '#/components/schemas/_resources_get_200_response_data_inner'
+      required:
+      - data
+      - success
+      type: object
+    _resources__resourceId__patch_request:
+      additionalProperties: false
+      description: The body of a request to update a resource.
+      properties:
+        operations:
+          description: "A list of operations to apply to the resource. See the [JSON\
+            \ PATCH specification](https://tools.ietf.org/html/rfc6902) for more details."
+          items:
+            $ref: '#/components/schemas/Replace_Operation'
+          type: array
+      required:
+      - operations
+      type: object
+    _resources__resourceId__patch_200_response_data:
+      additionalProperties: false
+      description: The updated resource.
+      example:
+        protected: true
+        updated_at: 2019-02-24T18:28:18.790Z
+        created_at: 2019-02-08T11:45:48.899Z
+        id: id
+        type: airflow
+        display_name: display_name
+        folder_id: folder_id
+      properties:
+        id:
+          description: The uuid or name for the resource.
+          type: string
+        type:
+          description: The type of resource.
+          enum:
+          - airflow
+          - alloydb
+          - anthropic
+          - asana
+          - athena
+          - awsBedrock
+          - azureAI
+          - azureBlob
+          - basecamp
+          - bigid
+          - bigquery
+          - cassandra
+          - circleci
+          - clickhouse
+          - closeio
+          - cockroachdb
+          - cosmosdb
+          - couchdb
+          - customAIProvider
+          - databricks
+          - databricksLakebase
+          - datadog
+          - datastore
+          - dbServer
+          - denodo
+          - dynamodb
+          - elasticsearch
+          - firebase
+          - front
+          - gcs
+          - github
+          - googleAnalytics
+          - googleCalendar
+          - googleDocs
+          - googleGemini
+          - googleMaps
+          - googleSearchConsole
+          - googleSlides
+          - googleVertexAI
+          - googlesheets
+          - graphql
+          - grpc
+          - hubspot
+          - jdbc
+          - jira
+          - kafka
+          - lambda
+          - launchdarkly
+          - mcp
+          - microsoftTeams
+          - mongodb
+          - motherduck
+          - mssql
+          - mysql
+          - notion
+          - onesignal
+          - openAI
+          - openAIProvider
+          - openapi
+          - oracledb
+          - postgresql
+          - presto
+          - redis
+          - redshift
+          - restapi
+          - rethinkdb
+          - retoolAI
+          - retoolDb
+          - retoolEmail
+          - retoolSdk
+          - retoolStorage
+          - s3
+          - salesforce
+          - saphana
+          - sendgrid
+          - serviceNow
+          - shell
+          - slack
+          - slackopenapi
+          - smtp
+          - snowflake
+          - sns
+          - sqs
+          - stripe
+          - tavily
+          - twilio
+          - vertica
+          type: string
+        display_name:
+          minLength: 1
+          type: string
+        folder_id:
+          description: The id of the folder this resource belongs to
+          nullable: true
+          type: string
+        protected:
+          description: Whether the resource is protected in source control
+          type: boolean
+        created_at:
+          example: 2019-02-08T11:45:48.899Z
+          type: string
+        updated_at:
+          example: 2019-02-24T18:28:18.790Z
+          type: string
+      required:
+      - created_at
+      - display_name
+      - id
+      - protected
+      - type
+      - updated_at
+      type: object
+    _resources__resourceId__patch_200_response:
+      example:
+        data:
+          protected: true
+          updated_at: 2019-02-24T18:28:18.790Z
+          created_at: 2019-02-08T11:45:48.899Z
+          id: id
+          type: airflow
+          display_name: display_name
+          folder_id: folder_id
+        success: true
+      properties:
+        success:
+          description: Whether the API request was successful.
+          type: boolean
+        data:
+          $ref: '#/components/schemas/_resources__resourceId__patch_200_response_data'
+      required:
+      - data
+      - success
+      type: object
+    _resource_configurations_get_200_response_data_inner_environment:
+      description: Environment
+      example:
+        default: true
+        color: '#FFFFFF'
+        updated_at: updated_at
+        name: name
+        description: description
+        created_at: created_at
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          format: uuid
+          type: string
+        name:
+          type: string
+        description:
+          nullable: true
+          type: string
+        color:
+          example: '#FFFFFF'
+          pattern: "^#[A-Fa-f0-9]{6}$"
+          type: string
+        default:
+          type: boolean
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - color
+      - created_at
+      - default
+      - description
+      - id
+      - name
+      - updated_at
+      type: object
     Azure_Blob_Options_authentication_options_anyOf:
       additionalProperties: false
       example:
@@ -15152,7 +15562,7 @@ components:
       - model_list
       title: Custom AI Provider Options
       type: object
-    _resources_post_request_options:
+    _resource_configurations_get_200_response_data_inner_options:
       anyOf:
       - $ref: '#/components/schemas/Azure_Blob_Options'
       - $ref: '#/components/schemas/Postgres_Options'
@@ -15171,415 +15581,6 @@ components:
       - additionalProperties: false
         properties: {}
         type: object
-    _resources_post_request:
-      properties:
-        type:
-          enum:
-          - anthropic
-          - awsBedrock
-          - azureAI
-          - azureBlob
-          - customAIProvider
-          - dbServer
-          - googleGemini
-          - googleVertexAI
-          - grpc
-          - kafka
-          - mcp
-          - mysql
-          - openAIProvider
-          - postgresql
-          - redshift
-          - restapi
-          - snowflake
-          - sns
-          - sqs
-          type: string
-        display_name:
-          minLength: 1
-          type: string
-        options:
-          $ref: '#/components/schemas/_resources_post_request_options'
-      required:
-      - display_name
-      - options
-      - type
-      type: object
-    _resources_post_200_response_data:
-      additionalProperties: false
-      description: The created resource.
-      example:
-        protected: true
-        updated_at: 2019-02-24T18:28:18.790Z
-        created_at: 2019-02-08T11:45:48.899Z
-        id: id
-        type: airflow
-        display_name: display_name
-        folder_id: folder_id
-      properties:
-        id:
-          description: The uuid or name for the resource.
-          type: string
-        type:
-          description: The type of resource.
-          enum:
-          - airflow
-          - alloydb
-          - anthropic
-          - asana
-          - athena
-          - awsBedrock
-          - azureAI
-          - azureBlob
-          - basecamp
-          - bigid
-          - bigquery
-          - cassandra
-          - circleci
-          - clickhouse
-          - closeio
-          - cockroachdb
-          - cosmosdb
-          - couchdb
-          - customAIProvider
-          - databricks
-          - databricksLakebase
-          - datadog
-          - datastore
-          - dbServer
-          - denodo
-          - dynamodb
-          - elasticsearch
-          - firebase
-          - front
-          - gcs
-          - github
-          - googleAnalytics
-          - googleCalendar
-          - googleDocs
-          - googleGemini
-          - googleMaps
-          - googleSearchConsole
-          - googleSlides
-          - googleVertexAI
-          - googlesheets
-          - graphql
-          - grpc
-          - hubspot
-          - jdbc
-          - jira
-          - kafka
-          - lambda
-          - launchdarkly
-          - mcp
-          - microsoftTeams
-          - mongodb
-          - motherduck
-          - mssql
-          - mysql
-          - notion
-          - onesignal
-          - openAI
-          - openAIProvider
-          - openapi
-          - oracledb
-          - postgresql
-          - presto
-          - redis
-          - redshift
-          - restapi
-          - rethinkdb
-          - retoolAI
-          - retoolDb
-          - retoolEmail
-          - retoolSdk
-          - retoolStorage
-          - s3
-          - salesforce
-          - saphana
-          - sendgrid
-          - serviceNow
-          - shell
-          - slack
-          - slackopenapi
-          - smtp
-          - snowflake
-          - sns
-          - sqs
-          - stripe
-          - tavily
-          - twilio
-          - vertica
-          type: string
-        display_name:
-          minLength: 1
-          type: string
-        folder_id:
-          description: The id of the folder this resource belongs to
-          nullable: true
-          type: string
-        protected:
-          description: Whether the resource is protected in source control
-          type: boolean
-        created_at:
-          example: 2019-02-08T11:45:48.899Z
-          type: string
-        updated_at:
-          example: 2019-02-24T18:28:18.790Z
-          type: string
-      required:
-      - created_at
-      - display_name
-      - id
-      - protected
-      - type
-      - updated_at
-      type: object
-    _resources_post_200_response:
-      example:
-        data:
-          protected: true
-          updated_at: 2019-02-24T18:28:18.790Z
-          created_at: 2019-02-08T11:45:48.899Z
-          id: id
-          type: airflow
-          display_name: display_name
-          folder_id: folder_id
-        success: true
-      properties:
-        success:
-          description: Whether the API request was successful.
-          type: boolean
-        data:
-          $ref: '#/components/schemas/_resources_post_200_response_data'
-      required:
-      - data
-      - success
-      type: object
-    _resources__resourceId__get_200_response:
-      description: A single resource
-      example:
-        data:
-          protected: true
-          updated_at: 2019-02-24T18:28:18.790Z
-          created_at: 2019-02-08T11:45:48.899Z
-          id: id
-          type: airflow
-          display_name: display_name
-          folder_id: folder_id
-        success: true
-      properties:
-        success:
-          description: Whether the API request was successful.
-          type: boolean
-        data:
-          $ref: '#/components/schemas/_resources_get_200_response_data_inner'
-      required:
-      - data
-      - success
-      type: object
-    _resources__resourceId__patch_request:
-      additionalProperties: false
-      description: The body of a request to update a resource.
-      properties:
-        operations:
-          description: "A list of operations to apply to the resource. See the [JSON\
-            \ PATCH specification](https://tools.ietf.org/html/rfc6902) for more details."
-          items:
-            $ref: '#/components/schemas/Replace_Operation'
-          type: array
-      required:
-      - operations
-      type: object
-    _resources__resourceId__patch_200_response_data:
-      additionalProperties: false
-      description: The updated resource.
-      example:
-        protected: true
-        updated_at: 2019-02-24T18:28:18.790Z
-        created_at: 2019-02-08T11:45:48.899Z
-        id: id
-        type: airflow
-        display_name: display_name
-        folder_id: folder_id
-      properties:
-        id:
-          description: The uuid or name for the resource.
-          type: string
-        type:
-          description: The type of resource.
-          enum:
-          - airflow
-          - alloydb
-          - anthropic
-          - asana
-          - athena
-          - awsBedrock
-          - azureAI
-          - azureBlob
-          - basecamp
-          - bigid
-          - bigquery
-          - cassandra
-          - circleci
-          - clickhouse
-          - closeio
-          - cockroachdb
-          - cosmosdb
-          - couchdb
-          - customAIProvider
-          - databricks
-          - databricksLakebase
-          - datadog
-          - datastore
-          - dbServer
-          - denodo
-          - dynamodb
-          - elasticsearch
-          - firebase
-          - front
-          - gcs
-          - github
-          - googleAnalytics
-          - googleCalendar
-          - googleDocs
-          - googleGemini
-          - googleMaps
-          - googleSearchConsole
-          - googleSlides
-          - googleVertexAI
-          - googlesheets
-          - graphql
-          - grpc
-          - hubspot
-          - jdbc
-          - jira
-          - kafka
-          - lambda
-          - launchdarkly
-          - mcp
-          - microsoftTeams
-          - mongodb
-          - motherduck
-          - mssql
-          - mysql
-          - notion
-          - onesignal
-          - openAI
-          - openAIProvider
-          - openapi
-          - oracledb
-          - postgresql
-          - presto
-          - redis
-          - redshift
-          - restapi
-          - rethinkdb
-          - retoolAI
-          - retoolDb
-          - retoolEmail
-          - retoolSdk
-          - retoolStorage
-          - s3
-          - salesforce
-          - saphana
-          - sendgrid
-          - serviceNow
-          - shell
-          - slack
-          - slackopenapi
-          - smtp
-          - snowflake
-          - sns
-          - sqs
-          - stripe
-          - tavily
-          - twilio
-          - vertica
-          type: string
-        display_name:
-          minLength: 1
-          type: string
-        folder_id:
-          description: The id of the folder this resource belongs to
-          nullable: true
-          type: string
-        protected:
-          description: Whether the resource is protected in source control
-          type: boolean
-        created_at:
-          example: 2019-02-08T11:45:48.899Z
-          type: string
-        updated_at:
-          example: 2019-02-24T18:28:18.790Z
-          type: string
-      required:
-      - created_at
-      - display_name
-      - id
-      - protected
-      - type
-      - updated_at
-      type: object
-    _resources__resourceId__patch_200_response:
-      example:
-        data:
-          protected: true
-          updated_at: 2019-02-24T18:28:18.790Z
-          created_at: 2019-02-08T11:45:48.899Z
-          id: id
-          type: airflow
-          display_name: display_name
-          folder_id: folder_id
-        success: true
-      properties:
-        success:
-          description: Whether the API request was successful.
-          type: boolean
-        data:
-          $ref: '#/components/schemas/_resources__resourceId__patch_200_response_data'
-      required:
-      - data
-      - success
-      type: object
-    _resource_configurations_get_200_response_data_inner_environment:
-      description: Environment
-      example:
-        default: true
-        color: '#FFFFFF'
-        updated_at: updated_at
-        name: name
-        description: description
-        created_at: created_at
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        id:
-          format: uuid
-          type: string
-        name:
-          type: string
-        description:
-          nullable: true
-          type: string
-        color:
-          example: '#FFFFFF'
-          pattern: "^#[A-Fa-f0-9]{6}$"
-          type: string
-        default:
-          type: boolean
-        created_at:
-          type: string
-        updated_at:
-          type: string
-      required:
-      - color
-      - created_at
-      - default
-      - description
-      - id
-      - name
-      - updated_at
-      type: object
     _resource_configurations_get_200_response_data_inner:
       additionalProperties: false
       description: A list of resource configurations.
@@ -15623,7 +15624,7 @@ components:
         environment:
           $ref: '#/components/schemas/_resource_configurations_get_200_response_data_inner_environment'
         options:
-          $ref: '#/components/schemas/_resources_post_request_options'
+          $ref: '#/components/schemas/_resource_configurations_get_200_response_data_inner_options'
         created_at:
           example: 2019-02-08T11:45:48.899Z
           type: string
@@ -15741,7 +15742,8 @@ components:
           format: uuid
           type: string
         options:
-          $ref: '#/components/schemas/_resources_post_request_options'
+          additionalProperties: true
+          type: object
       required:
       - environment_id
       - options
@@ -15790,7 +15792,7 @@ components:
         environment:
           $ref: '#/components/schemas/_resource_configurations_get_200_response_data_inner_environment'
         options:
-          $ref: '#/components/schemas/_resources_post_request_options'
+          $ref: '#/components/schemas/_resource_configurations_get_200_response_data_inner_options'
         created_at:
           example: 2019-02-08T11:45:48.899Z
           type: string
@@ -15891,7 +15893,7 @@ components:
         environment:
           $ref: '#/components/schemas/_resource_configurations_get_200_response_data_inner_environment'
         options:
-          $ref: '#/components/schemas/_resources_post_request_options'
+          $ref: '#/components/schemas/_resource_configurations_get_200_response_data_inner_options'
         created_at:
           example: 2019-02-08T11:45:48.899Z
           type: string
@@ -15963,7 +15965,7 @@ components:
         environment:
           $ref: '#/components/schemas/_resource_configurations_get_200_response_data_inner_environment'
         options:
-          $ref: '#/components/schemas/_resources_post_request_options'
+          $ref: '#/components/schemas/_resource_configurations_get_200_response_data_inner_options'
         created_at:
           example: 2019-02-08T11:45:48.899Z
           type: string

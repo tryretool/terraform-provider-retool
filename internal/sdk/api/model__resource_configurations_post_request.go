@@ -24,7 +24,7 @@ type ResourceConfigurationsPostRequest struct {
 	ResourceId string `json:"resource_id"`
 	// A UUID that uniquely identifies an environment.
 	EnvironmentId string `json:"environment_id"`
-	Options ResourcesPostRequestOptions `json:"options"`
+	Options map[string]interface{} `json:"options"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,7 +34,7 @@ type _ResourceConfigurationsPostRequest ResourceConfigurationsPostRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResourceConfigurationsPostRequest(resourceId string, environmentId string, options ResourcesPostRequestOptions) *ResourceConfigurationsPostRequest {
+func NewResourceConfigurationsPostRequest(resourceId string, environmentId string, options map[string]interface{}) *ResourceConfigurationsPostRequest {
 	this := ResourceConfigurationsPostRequest{}
 	this.ResourceId = resourceId
 	this.EnvironmentId = environmentId
@@ -99,9 +99,9 @@ func (o *ResourceConfigurationsPostRequest) SetEnvironmentId(v string) {
 }
 
 // GetOptions returns the Options field value
-func (o *ResourceConfigurationsPostRequest) GetOptions() ResourcesPostRequestOptions {
+func (o *ResourceConfigurationsPostRequest) GetOptions() map[string]interface{} {
 	if o == nil {
-		var ret ResourcesPostRequestOptions
+		var ret map[string]interface{}
 		return ret
 	}
 
@@ -110,15 +110,15 @@ func (o *ResourceConfigurationsPostRequest) GetOptions() ResourcesPostRequestOpt
 
 // GetOptionsOk returns a tuple with the Options field value
 // and a boolean to check if the value has been set.
-func (o *ResourceConfigurationsPostRequest) GetOptionsOk() (*ResourcesPostRequestOptions, bool) {
+func (o *ResourceConfigurationsPostRequest) GetOptionsOk() (map[string]interface{}, bool) {
 	if o == nil {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Options, true
+	return o.Options, true
 }
 
 // SetOptions sets field value
-func (o *ResourceConfigurationsPostRequest) SetOptions(v ResourcesPostRequestOptions) {
+func (o *ResourceConfigurationsPostRequest) SetOptions(v map[string]interface{}) {
 	o.Options = v
 }
 
