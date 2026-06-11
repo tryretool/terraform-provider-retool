@@ -6,14 +6,14 @@ interactions:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
-        content_length: 54
+        content_length: 61
         transfer_encoding: []
         trailer: {}
         host: recorded.retool.dev
         remote_addr: ""
         request_uri: ""
         body: |
-            {"color":"#0000FF","name":"test-environment-no-desc"}
+            {"color":"#0000FF","name":"tf-acc-test-environment-no-desc"}
         form: {}
         headers:
             Content-Type:
@@ -28,15 +28,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 236
+        content_length: 243
         uncompressed: false
-        body: '{"success":true,"data":{"id":"72fd47f5-6315-4cce-bf7e-082eb6c7be96","name":"test-environment-no-desc","description":null,"color":"#0000FF","default":false,"created_at":"2025-11-13T01:18:10.996Z","updated_at":"2025-11-13T01:18:10.996Z"}}'
+        body: '{"success":true,"data":{"id":"13572d00-61d9-496c-b113-58da5d19c4a4","name":"tf-acc-test-environment-no-desc","description":null,"color":"#0000FF","default":false,"created_at":"2026-06-11T00:18:57.174Z","updated_at":"2026-06-11T00:18:57.174Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 3.456174125s
+        duration: 3.272196708s
     - id: 1
       request:
         proto: HTTP/1.1
@@ -53,7 +53,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/environments/72fd47f5-6315-4cce-bf7e-082eb6c7be96
+        url: https://recorded.retool.dev/api/v2/environments/13572d00-61d9-496c-b113-58da5d19c4a4
         method: GET
       response:
         proto: HTTP/1.1
@@ -61,15 +61,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 236
+        content_length: 243
         uncompressed: false
-        body: '{"success":true,"data":{"id":"72fd47f5-6315-4cce-bf7e-082eb6c7be96","name":"test-environment-no-desc","description":null,"color":"#0000FF","default":false,"created_at":"2025-11-13T01:18:10.996Z","updated_at":"2025-11-13T01:18:10.996Z"}}'
+        body: '{"success":true,"data":{"id":"13572d00-61d9-496c-b113-58da5d19c4a4","name":"tf-acc-test-environment-no-desc","description":null,"color":"#0000FF","default":false,"created_at":"2026-06-11T00:18:57.174Z","updated_at":"2026-06-11T00:18:57.174Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 51.932084ms
+        duration: 43.599167ms
     - id: 2
       request:
         proto: HTTP/1.1
@@ -86,7 +86,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/environments/72fd47f5-6315-4cce-bf7e-082eb6c7be96
+        url: https://recorded.retool.dev/api/v2/environments/13572d00-61d9-496c-b113-58da5d19c4a4
         method: DELETE
       response:
         proto: HTTP/1.1
@@ -100,4 +100,4 @@ interactions:
         headers: {}
         status: 204 No Content
         code: 204
-        duration: 38.388291ms
+        duration: 48.695583ms

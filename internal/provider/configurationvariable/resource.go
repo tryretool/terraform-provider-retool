@@ -326,7 +326,7 @@ func (r *configurationVariableResource) Update(ctx context.Context, req resource
 		updatePayload.SetDefaultValue(plan.DefaultValue.ValueString())
 	}
 
-	_, httpResponse, err := r.client.ConfigurationVariablesAPI.ConfigurationVariablesIdPut(ctx, configurationVariableID).ConfigurationVariablesPostRequest(updatePayload).Execute()
+	response, httpResponse, err := r.client.ConfigurationVariablesAPI.ConfigurationVariablesIdPut(ctx, configurationVariableID).ConfigurationVariablesPostRequest(updatePayload).Execute()
 	if err != nil {
 		resp.Diagnostics.AddError(
 			"Error updating configuration variable",
@@ -334,6 +334,15 @@ func (r *configurationVariableResource) Update(ctx context.Context, req resource
 		)
 		tflog.Error(ctx, "Error updating configuration variable", utils.AddHTTPStatusCode(map[string]interface{}{"id": configurationVariableID, "error": err.Error()}, httpResponse))
 		return
+	}
+
+	// default_value is Optional+Computed: resolve it to a known value after apply so
+	// Terraform never sees an unknown value in the final state. Reflect the API value
+	// when present; if the API omits it and nothing was configured, fall back to null.
+	if response.Data.DefaultValue.Get() != nil {
+		plan.DefaultValue = types.StringValue(*response.Data.DefaultValue.Get())
+	} else if plan.DefaultValue.IsUnknown() {
+		plan.DefaultValue = types.StringNull()
 	}
 
 	diags = resp.State.Set(ctx, plan)

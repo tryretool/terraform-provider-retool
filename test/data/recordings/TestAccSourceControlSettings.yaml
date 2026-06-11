@@ -34,9 +34,9 @@ interactions:
         headers:
             Content-Type:
                 - application/json; charset=utf-8
-        status: 200 OK
-        code: 200
-        duration: 80.003292ms
+        status: 201 Created
+        code: 201
+        duration: 114.965ms
     - id: 1
       request:
         proto: HTTP/1.1
@@ -69,7 +69,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 39.299833ms
+        duration: 44.247792ms
     - id: 2
       request:
         proto: HTTP/1.1
@@ -102,7 +102,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 34.270333ms
+        duration: 227.874ms
     - id: 3
       request:
         proto: HTTP/1.1
@@ -135,7 +135,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 35.76725ms
+        duration: 40.347667ms
     - id: 4
       request:
         proto: HTTP/1.1
@@ -171,7 +171,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 40.695917ms
+        duration: 48.574834ms
     - id: 5
       request:
         proto: HTTP/1.1
@@ -204,7 +204,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 41.831083ms
+        duration: 38.797333ms
     - id: 6
       request:
         proto: HTTP/1.1
@@ -237,7 +237,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 38.128125ms
+        duration: 44.536333ms
     - id: 7
       request:
         proto: HTTP/1.1
@@ -273,7 +273,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 49.727458ms
+        duration: 56.3595ms
     - id: 8
       request:
         proto: HTTP/1.1
@@ -306,7 +306,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 43.674625ms
+        duration: 50.629084ms
     - id: 9
       request:
         proto: HTTP/1.1
@@ -342,4 +342,4 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 73.9215ms
+        duration: 45.287792ms

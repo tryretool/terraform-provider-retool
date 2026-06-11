@@ -341,6 +341,7 @@ make test-acc-replay
 2. **Record after cleanup**: Run `make test-acc-sweep` before recording
 3. **One test at a time**: Use `FILTER=TestName` to record specific tests
 4. **Check recordings**: Ensure `.yaml` files are created in `test/data/recordings/`
+5. **Re-recording the whole suite**: Don't run a single `make test-acc-record` over everything - the instance's rolling rate limit gets exhausted partway through and the rest fail with 429s (even though the target runs serially). Use `make test-acc-record-each` (wraps `scripts/record_acc_tests.sh`), which records each test in its own process with a pause between them. It is resumable - re-run it after a 429 to finish the rest. Start from `rm -rf test/data/recordings` since cassettes store a redacted host and can't be re-recorded incrementally. Tune with `SLEEP_SECONDS` and scope with `FILTER`.
 
 **Expected results for LIVE API** (not CI):
 - ⚠️ **429 (Rate Limiting)**: Normal - use recordings for CI

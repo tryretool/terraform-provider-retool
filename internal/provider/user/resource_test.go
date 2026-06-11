@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"net/http"
 	"strings"
 	"testing"
 
@@ -14,7 +15,7 @@ import (
 
 const testUserConfig = `
 	resource "retool_user" "test_user" {
-		email = "tf-acc-user-v4@example.retool.com"
+		email = "tf-acc-user-v8@example.retool.com"
 		first_name = "Test"
 		last_name = "User"
 		active = true
@@ -24,7 +25,7 @@ const testUserConfig = `
 
 const testUpdatedUserConfig = `
 	resource "retool_user" "test_user" {
-		email = "tf-acc-user-v4@example.retool.com"
+		email = "tf-acc-user-v8@example.retool.com"
 		first_name = "Updated"
 		last_name = "TestUser"
 		active = true
@@ -34,7 +35,7 @@ const testUpdatedUserConfig = `
 
 const testDefaultValuesConfig = `
 	resource "retool_user" "test_user_with_defaults" {
-		email = "tf-acc-defaults-v4@example.retool.com"
+		email = "tf-acc-defaults-v8@example.retool.com"
 		first_name = "Default"
 		last_name = "User"
 	}
@@ -51,7 +52,7 @@ func TestAccUser(t *testing.T) {
 			{
 				Config: testUserConfig,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("retool_user.test_user", "email", "tf-acc-user-v4@example.retool.com"),
+					resource.TestCheckResourceAttr("retool_user.test_user", "email", "tf-acc-user-v8@example.retool.com"),
 					resource.TestCheckResourceAttr("retool_user.test_user", "first_name", "Test"),
 					resource.TestCheckResourceAttr("retool_user.test_user", "last_name", "User"),
 					resource.TestCheckResourceAttr("retool_user.test_user", "active", "true"),
@@ -73,7 +74,7 @@ func TestAccUser(t *testing.T) {
 			{
 				Config: testUpdatedUserConfig,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("retool_user.test_user", "email", "tf-acc-user-v4@example.retool.com"),
+					resource.TestCheckResourceAttr("retool_user.test_user", "email", "tf-acc-user-v8@example.retool.com"),
 					resource.TestCheckResourceAttr("retool_user.test_user", "first_name", "Updated"),
 					resource.TestCheckResourceAttr("retool_user.test_user", "last_name", "TestUser"),
 					resource.TestCheckResourceAttr("retool_user.test_user", "active", "true"),
@@ -98,7 +99,7 @@ func TestAccUserWithDefaults(t *testing.T) {
 			{
 				Config: testDefaultValuesConfig,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("retool_user.test_user_with_defaults", "email", "tf-acc-defaults-v4@example.retool.com"),
+					resource.TestCheckResourceAttr("retool_user.test_user_with_defaults", "email", "tf-acc-defaults-v8@example.retool.com"),
 					resource.TestCheckResourceAttr("retool_user.test_user_with_defaults", "first_name", "Default"),
 					resource.TestCheckResourceAttr("retool_user.test_user_with_defaults", "last_name", "User"),
 					resource.TestCheckResourceAttr("retool_user.test_user_with_defaults", "active", "true"),
@@ -129,8 +130,15 @@ func sweepUsers(region string) error {
 	for _, user := range users.Data {
 		if strings.HasPrefix(user.Email, "tf-acc") || strings.HasPrefix(user.Email, "terraform-test") {
 			log.Printf("Deleting user %s", user.Email)
-			_, err := client.UsersAPI.UsersUserIdDelete(context.Background(), user.Id).Execute()
+			httpResponse, err := client.UsersAPI.UsersUserIdDelete(context.Background(), user.Id).Execute()
 			if err != nil {
+				// Retool does not allow hard-deleting users (the provider's Delete only
+				// deactivates them), so the API returns 422 here. Treat that (and a 404
+				// for an already-removed user) as non-fatal so the sweep can finish.
+				if httpResponse != nil && (httpResponse.StatusCode == http.StatusUnprocessableEntity || httpResponse.StatusCode == http.StatusNotFound) {
+					log.Printf("Skipping user %s: cannot be deleted (status %d)", user.Email, httpResponse.StatusCode)
+					continue
+				}
 				return fmt.Errorf("Error deleting user %s: %s", user.Email, err.Error())
 			}
 		}

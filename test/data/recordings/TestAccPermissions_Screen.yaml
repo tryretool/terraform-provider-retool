@@ -30,13 +30,13 @@ interactions:
         trailer: {}
         content_length: 530
         uncompressed: false
-        body: '{"success":true,"data":{"id":163,"legacy_id":163,"name":"tf-acc-test-group-screen","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","universal_query_library_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"theme_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2026-02-05T21:13:26.851Z","created_at":"2026-02-05T21:13:26.851Z"}}'
+        body: '{"success":true,"data":{"id":255,"legacy_id":255,"name":"tf-acc-test-group-screen","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","universal_query_library_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"theme_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2026-06-11T00:23:58.825Z","created_at":"2026-06-11T00:23:58.825Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 103.687042ms
+        duration: 458.601875ms
     - id: 1
       request:
         proto: HTTP/1.1
@@ -49,7 +49,7 @@ interactions:
         remote_addr: ""
         request_uri: ""
         body: |
-            {"access_level":"use","object":{"appId":"2cc01bea-0222-11f1-a079-afa417c1dd75","id":"4d0f13b1-b919-4d52-ad19-d0b51f6dbcf7","type":"screen"},"subject":{"id":163,"type":"group"}}
+            {"access_level":"use","object":{"appId":"2cc01bea-0222-11f1-a079-afa417c1dd75","id":"4d0f13b1-b919-4d52-ad19-d0b51f6dbcf7","type":"screen"},"subject":{"id":255,"type":"group"}}
         form: {}
         headers:
             Content-Type:
@@ -72,7 +72,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 90.61075ms
+        duration: 98.442375ms
     - id: 2
       request:
         proto: HTTP/1.1
@@ -89,7 +89,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/groups/163
+        url: https://recorded.retool.dev/api/v2/groups/255
         method: GET
       response:
         proto: HTTP/1.1
@@ -99,13 +99,13 @@ interactions:
         trailer: {}
         content_length: 530
         uncompressed: false
-        body: '{"success":true,"data":{"id":163,"legacy_id":163,"name":"tf-acc-test-group-screen","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","universal_query_library_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"theme_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2026-02-05T21:13:26.851Z","created_at":"2026-02-05T21:13:26.851Z"}}'
+        body: '{"success":true,"data":{"id":255,"legacy_id":255,"name":"tf-acc-test-group-screen","members":[],"universal_app_access":"none","universal_resource_access":"none","universal_workflow_access":"none","universal_query_library_access":"none","user_invites":[],"user_list_access":false,"audit_log_access":false,"unpublished_release_access":false,"usage_analytics_access":false,"theme_access":false,"account_details_access":false,"landing_page_app_id":null,"updated_at":"2026-06-11T00:23:58.825Z","created_at":"2026-06-11T00:23:58.825Z"}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 48.685709ms
+        duration: 55.649875ms
     - id: 3
       request:
         proto: HTTP/1.1
@@ -118,7 +118,7 @@ interactions:
         remote_addr: ""
         request_uri: ""
         body: |
-            {"object_type":"app","subject":{"id":163,"type":"group"}}
+            {"object_type":"app","subject":{"id":255,"type":"group"}}
         form: {}
         headers:
             Content-Type:
@@ -141,7 +141,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 50.792208ms
+        duration: 55.715333ms
     - id: 4
       request:
         proto: HTTP/1.1
@@ -154,7 +154,7 @@ interactions:
         remote_addr: ""
         request_uri: ""
         body: |
-            {"object_type":"folder","subject":{"id":163,"type":"group"}}
+            {"object_type":"folder","subject":{"id":255,"type":"group"}}
         form: {}
         headers:
             Content-Type:
@@ -177,7 +177,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 44.506959ms
+        duration: 55.02325ms
     - id: 5
       request:
         proto: HTTP/1.1
@@ -190,7 +190,7 @@ interactions:
         remote_addr: ""
         request_uri: ""
         body: |
-            {"object_type":"resource","subject":{"id":163,"type":"group"}}
+            {"object_type":"resource","subject":{"id":255,"type":"group"}}
         form: {}
         headers:
             Content-Type:
@@ -213,7 +213,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 42.254ms
+        duration: 49.749958ms
     - id: 6
       request:
         proto: HTTP/1.1
@@ -226,7 +226,7 @@ interactions:
         remote_addr: ""
         request_uri: ""
         body: |
-            {"object_type":"resource_configuration","subject":{"id":163,"type":"group"}}
+            {"object_type":"resource_configuration","subject":{"id":255,"type":"group"}}
         form: {}
         headers:
             Content-Type:
@@ -249,7 +249,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 45.911833ms
+        duration: 48.020167ms
     - id: 7
       request:
         proto: HTTP/1.1
@@ -262,7 +262,7 @@ interactions:
         remote_addr: ""
         request_uri: ""
         body: |
-            {"object":{"appId":"2cc01bea-0222-11f1-a079-afa417c1dd75","id":"4d0f13b1-b919-4d52-ad19-d0b51f6dbcf7","type":"screen"},"subject":{"id":163,"type":"group"}}
+            {"object":{"appId":"2cc01bea-0222-11f1-a079-afa417c1dd75","id":"4d0f13b1-b919-4d52-ad19-d0b51f6dbcf7","type":"screen"},"subject":{"id":255,"type":"group"}}
         form: {}
         headers:
             Content-Type:
@@ -285,7 +285,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 67.194958ms
+        duration: 105.31975ms
     - id: 8
       request:
         proto: HTTP/1.1
@@ -302,7 +302,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/groups/163
+        url: https://recorded.retool.dev/api/v2/groups/255
         method: DELETE
       response:
         proto: HTTP/1.1
@@ -316,4 +316,4 @@ interactions:
         headers: {}
         status: 204 No Content
         code: 204
-        duration: 47.237041ms
+        duration: 57.663ms

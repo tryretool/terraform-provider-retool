@@ -75,8 +75,6 @@ func TestAccResourceConfiguration(t *testing.T) {
 					resource.TestCheckResourceAttrSet("retool_resource_configuration.test_config", "created_at"),
 					resource.TestCheckResourceAttrSet("retool_resource_configuration.test_config", "updated_at"),
 				),
-				// The API adds default values to options, which may cause a refresh plan.
-				ExpectNonEmptyPlan: true,
 			},
 			// Import state.
 			{
@@ -94,8 +92,6 @@ func TestAccResourceConfiguration(t *testing.T) {
 					resource.TestCheckResourceAttrSet("retool_resource_configuration.test_config", "resource_id"),
 					resource.TestCheckResourceAttrSet("retool_resource_configuration.test_config", "environment_id"),
 				),
-				// The API adds default values to options, which may cause a refresh plan.
-				ExpectNonEmptyPlan: true,
 			},
 		},
 		// Note: The test framework will automatically call Delete on all resources after the last step.

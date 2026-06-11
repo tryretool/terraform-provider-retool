@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"net/http"
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
@@ -250,8 +251,14 @@ func sweepSourceControl(region string) error {
 		return err
 	}
 
-	_, err = client.SourceControlAPI.SourceControlConfigDelete(context.Background()).Execute()
+	httpResponse, err := client.SourceControlAPI.SourceControlConfigDelete(context.Background()).Execute()
 	if err != nil {
+		// A 404 just means there is no Source Control config to delete, which is a
+		// clean state for the sweeper - treat it as success.
+		if httpResponse != nil && httpResponse.StatusCode == http.StatusNotFound {
+			log.Printf("No Source Control config to delete (404), skipping")
+			return nil
+		}
 		return fmt.Errorf("Error deleting Source Control config: %s", err.Error())
 	}
 	return nil
