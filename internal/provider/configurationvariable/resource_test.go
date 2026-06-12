@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"regexp"
+	"strings"
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
@@ -147,7 +148,7 @@ func sweepConfigurationVariables(region string) error {
 	}
 
 	for _, configurationVariable := range configurationVariables.Data {
-		if len(configurationVariable.Name) >= 16 && configurationVariable.Name[:16] == "tf-acc-test-" {
+		if strings.HasPrefix(configurationVariable.Name, "tf-acc-test-") {
 			log.Printf("Deleting configuration variable %s (%s)\n", configurationVariable.Name, configurationVariable.Id)
 			_, err := client.ConfigurationVariablesAPI.ConfigurationVariablesIdDelete(context.Background(), configurationVariable.Id).Execute()
 			if err != nil {

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** | The name of the user attribute (must match an existing attribute exactly) | 
-**Value** | **NullableString** | The value of the user attribute | 
+**Name** | **string** | The name of the user attribute. Must match an existing attribute exactly. | 
+**Value** | **NullableString** | The value of the user attribute. | 
 
 ## Methods
 

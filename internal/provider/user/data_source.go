@@ -42,6 +42,7 @@ type userDataSourceModel struct {
 	Active               types.Bool   `tfsdk:"active"`
 	Metadata             types.String `tfsdk:"metadata"`
 	UserType             types.String `tfsdk:"user_type"`
+	SeatType             types.String `tfsdk:"seat_type"`
 	CreatedAt            types.String `tfsdk:"created_at"`
 	LastActive           types.String `tfsdk:"last_active"`
 	IsAdmin              types.Bool   `tfsdk:"is_admin"`
@@ -113,6 +114,10 @@ func (d *usersDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, 
 							Computed:    true,
 							Description: "The user type.",
 						},
+						"seat_type": schema.StringAttribute{
+							Computed:    true,
+							Description: "The seat type of the user. One of 'builder', 'internalUser', or 'externalUser'. Available on Retool instances using the seat-based user model.",
+						},
 						"created_at": schema.StringAttribute{
 							Computed:    true,
 							Description: "The timestamp when the user was created.",
@@ -179,6 +184,12 @@ func (d *usersDataSource) Read(ctx context.Context, _ datasource.ReadRequest, re
 			userModel.LastActive = types.StringValue(user.LastActive.Get().String())
 		} else {
 			userModel.LastActive = types.StringNull()
+		}
+
+		if user.SeatType.Get() != nil {
+			userModel.SeatType = types.StringValue(*user.SeatType.Get())
+		} else {
+			userModel.SeatType = types.StringNull()
 		}
 
 		// Handle metadata.

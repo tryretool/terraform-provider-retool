@@ -1,28 +1,162 @@
 # \SourceControlAPI
 
-All URIs are relative to *http://.*
+All URIs are relative to *https://stable-4-0.retool.dev/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**SourceControlConfigDelete**](SourceControlAPI.md#SourceControlConfigDelete) | **Delete** /source_control/config | Delete source control provider configuration
+[**SourceControlBranchesPost**](SourceControlAPI.md#SourceControlBranchesPost) | **Post** /source_control/branches | Create a branch
+[**SourceControlBranchesResetPost**](SourceControlAPI.md#SourceControlBranchesResetPost) | **Post** /source_control/branches/reset | Reset a branch from remote
+[**SourceControlConfigDelete**](SourceControlAPI.md#SourceControlConfigDelete) | **Delete** /source_control/config | Delete source control configuration
 [**SourceControlConfigGet**](SourceControlAPI.md#SourceControlConfigGet) | **Get** /source_control/config | Get source control configuration
 [**SourceControlConfigPost**](SourceControlAPI.md#SourceControlConfigPost) | **Post** /source_control/config | Create source control configuration
 [**SourceControlConfigPut**](SourceControlAPI.md#SourceControlConfigPut) | **Put** /source_control/config | Set source control configuration
-[**SourceControlDeployPost**](SourceControlAPI.md#SourceControlDeployPost) | **Post** /source_control/deploy | Trigger deployment of latest changes
+[**SourceControlDeployPost**](SourceControlAPI.md#SourceControlDeployPost) | **Post** /source_control/deploy | Deploy latest changes
 [**SourceControlDeploymentIdGet**](SourceControlAPI.md#SourceControlDeploymentIdGet) | **Get** /source_control/deployment/{id} | Get a deployment
 [**SourceControlDeploymentsGet**](SourceControlAPI.md#SourceControlDeploymentsGet) | **Get** /source_control/deployments | List source control deployments
 [**SourceControlSettingsGet**](SourceControlAPI.md#SourceControlSettingsGet) | **Get** /source_control/settings | Get source control settings
 [**SourceControlSettingsPut**](SourceControlAPI.md#SourceControlSettingsPut) | **Put** /source_control/settings | Set source control settings
-[**SourceControlTestConnectionGet**](SourceControlAPI.md#SourceControlTestConnectionGet) | **Get** /source_control/test_connection | Tests source control connection
+[**SourceControlTestConnectionGet**](SourceControlAPI.md#SourceControlTestConnectionGet) | **Get** /source_control/test_connection | Test source control connection
 [**SourceControlTestDeployPost**](SourceControlAPI.md#SourceControlTestDeployPost) | **Post** /source_control/test_deploy | Test source control changes
 
+
+
+## SourceControlBranchesPost
+
+> SourceControlBranchesPost200Response SourceControlBranchesPost(ctx).SourceControlBranchesPostRequest(sourceControlBranchesPostRequest).Execute()
+
+Create a branch
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	sourceControlBranchesPostRequest := *openapiclient.NewSourceControlBranchesPostRequest("BranchName_example") // SourceControlBranchesPostRequest |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SourceControlAPI.SourceControlBranchesPost(context.Background()).SourceControlBranchesPostRequest(sourceControlBranchesPostRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SourceControlAPI.SourceControlBranchesPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SourceControlBranchesPost`: SourceControlBranchesPost200Response
+	fmt.Fprintf(os.Stdout, "Response from `SourceControlAPI.SourceControlBranchesPost`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSourceControlBranchesPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **sourceControlBranchesPostRequest** | [**SourceControlBranchesPostRequest**](SourceControlBranchesPostRequest.md) |  | 
+
+### Return type
+
+[**SourceControlBranchesPost200Response**](SourceControlBranchesPost200Response.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SourceControlBranchesResetPost
+
+> SourceControlBranchesResetPost200Response SourceControlBranchesResetPost(ctx).SourceControlBranchesResetPostRequest(sourceControlBranchesResetPostRequest).Execute()
+
+Reset a branch from remote
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	sourceControlBranchesResetPostRequest := *openapiclient.NewSourceControlBranchesResetPostRequest("BranchName_example") // SourceControlBranchesResetPostRequest |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SourceControlAPI.SourceControlBranchesResetPost(context.Background()).SourceControlBranchesResetPostRequest(sourceControlBranchesResetPostRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SourceControlAPI.SourceControlBranchesResetPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SourceControlBranchesResetPost`: SourceControlBranchesResetPost200Response
+	fmt.Fprintf(os.Stdout, "Response from `SourceControlAPI.SourceControlBranchesResetPost`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSourceControlBranchesResetPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **sourceControlBranchesResetPostRequest** | [**SourceControlBranchesResetPostRequest**](SourceControlBranchesResetPostRequest.md) |  | 
+
+### Return type
+
+[**SourceControlBranchesResetPost200Response**](SourceControlBranchesResetPost200Response.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## SourceControlConfigDelete
 
 > SourceControlConfigDelete(ctx).Execute()
 
-Delete source control provider configuration
+Delete source control configuration
 
 
 
@@ -274,7 +408,7 @@ Name | Type | Description  | Notes
 
 > SourceControlDeployPost200Response SourceControlDeployPost(ctx).Execute()
 
-Trigger deployment of latest changes
+Deploy latest changes
 
 
 
@@ -352,7 +486,7 @@ import (
 )
 
 func main() {
-	id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The deployment ID
+	id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -372,7 +506,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The deployment ID | 
+**id** | **string** |  | 
 
 ### Other Parameters
 
@@ -593,7 +727,7 @@ Name | Type | Description  | Notes
 
 > SourceControlTestConnectionGet200Response SourceControlTestConnectionGet(ctx).Execute()
 
-Tests source control connection
+Test source control connection
 
 
 

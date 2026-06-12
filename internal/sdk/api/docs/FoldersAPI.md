@@ -1,14 +1,14 @@
 # \FoldersAPI
 
-All URIs are relative to *http://.*
+All URIs are relative to *https://stable-4-0.retool.dev/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**FoldersFolderIdDelete**](FoldersAPI.md#FoldersFolderIdDelete) | **Delete** /folders/{folderId} | Delete folder
+[**FoldersFolderIdDelete**](FoldersAPI.md#FoldersFolderIdDelete) | **Delete** /folders/{folderId} | Delete a folder
 [**FoldersFolderIdGet**](FoldersAPI.md#FoldersFolderIdGet) | **Get** /folders/{folderId} | Get a folder
-[**FoldersFolderIdPatch**](FoldersAPI.md#FoldersFolderIdPatch) | **Patch** /folders/{folderId} | Update folder
+[**FoldersFolderIdPatch**](FoldersAPI.md#FoldersFolderIdPatch) | **Patch** /folders/{folderId} | Update a folder
 [**FoldersGet**](FoldersAPI.md#FoldersGet) | **Get** /folders | List folders
-[**FoldersPost**](FoldersAPI.md#FoldersPost) | **Post** /folders | Create folder
+[**FoldersPost**](FoldersAPI.md#FoldersPost) | **Post** /folders | Create a folder
 
 
 
@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 > FoldersFolderIdDelete(ctx, folderId).Recursive(recursive).Execute()
 
-Delete folder
+Delete a folder
 
 
 
@@ -33,8 +33,8 @@ import (
 )
 
 func main() {
-	folderId := "folderId_example" // string | The id of the folder
-	recursive := true // bool | Should the folder's contents also be deleted? (Only supported for app folders.) (optional)
+	folderId := "folderId_example" // string | 
+	recursive := true // bool |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -52,7 +52,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**folderId** | **string** | The id of the folder | 
+**folderId** | **string** |  | 
 
 ### Other Parameters
 
@@ -62,7 +62,7 @@ Other parameters are passed through a pointer to a apiFoldersFolderIdDeleteReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **recursive** | **bool** | Should the folder&#39;s contents also be deleted? (Only supported for app folders.) | 
+ **recursive** | **bool** |  | 
 
 ### Return type
 
@@ -103,7 +103,7 @@ import (
 )
 
 func main() {
-	folderId := "folderId_example" // string | The id of the folder
+	folderId := "folderId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -123,7 +123,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**folderId** | **string** | The id of the folder | 
+**folderId** | **string** |  | 
 
 ### Other Parameters
 
@@ -156,7 +156,7 @@ Name | Type | Description  | Notes
 
 > FoldersFolderIdPatch200Response FoldersFolderIdPatch(ctx, folderId).FoldersFolderIdPatchRequest(foldersFolderIdPatchRequest).Execute()
 
-Update folder
+Update a folder
 
 
 
@@ -173,7 +173,7 @@ import (
 )
 
 func main() {
-	folderId := "folderId_example" // string | The id of the folder
+	folderId := "folderId_example" // string | 
 	foldersFolderIdPatchRequest := *openapiclient.NewFoldersFolderIdPatchRequest([]openapiclient.FoldersFolderIdPatchRequestOperationsInner{*openapiclient.NewFoldersFolderIdPatchRequestOperationsInner("Op_example", "Path_example", "From_example")}) // FoldersFolderIdPatchRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -194,7 +194,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**folderId** | **string** | The id of the folder | 
+**folderId** | **string** |  | 
 
 ### Other Parameters
 
@@ -289,7 +289,7 @@ Other parameters are passed through a pointer to a apiFoldersGetRequest struct v
 
 > FoldersPost200Response FoldersPost(ctx).FoldersPostRequest(foldersPostRequest).Execute()
 
-Create folder
+Create a folder
 
 
 

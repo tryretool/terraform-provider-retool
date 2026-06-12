@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **OidcTokenUrl** | **string** |  | 
 **OidcUserinfoUrl** | Pointer to **string** |  | [optional] 
 **OidcAudience** | Pointer to **string** |  | [optional] 
+**OidcEndSessionUrl** | Pointer to **string** |  | [optional] 
 **JwtEmailKey** | **string** |  | 
 **JwtRolesKey** | Pointer to **string** |  | [optional] 
 **JwtFirstNameKey** | **string** |  | 
@@ -284,6 +285,31 @@ SetOidcAudience sets OidcAudience field to given value.
 `func (o *SsoConfigGet200ResponseData) HasOidcAudience() bool`
 
 HasOidcAudience returns a boolean if a field has been set.
+
+### GetOidcEndSessionUrl
+
+`func (o *SsoConfigGet200ResponseData) GetOidcEndSessionUrl() string`
+
+GetOidcEndSessionUrl returns the OidcEndSessionUrl field if non-nil, zero value otherwise.
+
+### GetOidcEndSessionUrlOk
+
+`func (o *SsoConfigGet200ResponseData) GetOidcEndSessionUrlOk() (*string, bool)`
+
+GetOidcEndSessionUrlOk returns a tuple with the OidcEndSessionUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOidcEndSessionUrl
+
+`func (o *SsoConfigGet200ResponseData) SetOidcEndSessionUrl(v string)`
+
+SetOidcEndSessionUrl sets OidcEndSessionUrl field to given value.
+
+### HasOidcEndSessionUrl
+
+`func (o *SsoConfigGet200ResponseData) HasOidcEndSessionUrl() bool`
+
+HasOidcEndSessionUrl returns a boolean if a field has been set.
 
 ### GetJwtEmailKey
 

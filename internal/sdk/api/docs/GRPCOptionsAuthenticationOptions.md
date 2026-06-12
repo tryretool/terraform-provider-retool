@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **Oauth2IdToken** | Pointer to **string** |  | [optional] 
 **Oauth2RefreshToken** | Pointer to **string** |  | [optional] 
 **Oauth2Scope** | Pointer to **string** |  | [optional] 
+**Oauth2Resource** | Pointer to **string** |  | [optional] 
 **Oauth2ShareUserCredentials** | Pointer to **bool** |  | [optional] 
 **VerifySessionUrl** | Pointer to **string** |  | [optional] 
 
@@ -432,6 +433,31 @@ SetOauth2Scope sets Oauth2Scope field to given value.
 `func (o *GRPCOptionsAuthenticationOptions) HasOauth2Scope() bool`
 
 HasOauth2Scope returns a boolean if a field has been set.
+
+### GetOauth2Resource
+
+`func (o *GRPCOptionsAuthenticationOptions) GetOauth2Resource() string`
+
+GetOauth2Resource returns the Oauth2Resource field if non-nil, zero value otherwise.
+
+### GetOauth2ResourceOk
+
+`func (o *GRPCOptionsAuthenticationOptions) GetOauth2ResourceOk() (*string, bool)`
+
+GetOauth2ResourceOk returns a tuple with the Oauth2Resource field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOauth2Resource
+
+`func (o *GRPCOptionsAuthenticationOptions) SetOauth2Resource(v string)`
+
+SetOauth2Resource sets Oauth2Resource field to given value.
+
+### HasOauth2Resource
+
+`func (o *GRPCOptionsAuthenticationOptions) HasOauth2Resource() bool`
+
+HasOauth2Resource returns a boolean if a field has been set.
 
 ### GetOauth2ShareUserCredentials
 

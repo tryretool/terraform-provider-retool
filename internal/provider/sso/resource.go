@@ -57,6 +57,7 @@ type oidcConfigModel struct {
 	AuthURL                   types.String `tfsdk:"auth_url"`
 	TokenURL                  types.String `tfsdk:"token_url"`
 	UserInfoURL               types.String `tfsdk:"userinfo_url"`
+	EndSessionURL             types.String `tfsdk:"end_session_url"`
 	Audience                  types.String `tfsdk:"audience"`
 	JWTEmailKey               types.String `tfsdk:"jwt_email_key"`
 	JWTRolesKey               types.String `tfsdk:"jwt_roles_key"`
@@ -77,6 +78,7 @@ func (m oidcConfigModel) attributeTypes() map[string]attr.Type {
 		"auth_url":                    types.StringType,
 		"token_url":                   types.StringType,
 		"userinfo_url":                types.StringType,
+		"end_session_url":             types.StringType,
 		"audience":                    types.StringType,
 		"jwt_email_key":               types.StringType,
 		"jwt_roles_key":               types.StringType,
@@ -234,6 +236,10 @@ func (r *ssoResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *
 					"userinfo_url": schema.StringAttribute{
 						Optional:    true,
 						Description: "OpenID User Info URL (Fat token URL)",
+					},
+					"end_session_url": schema.StringAttribute{
+						Optional:    true,
+						Description: "OpenID End Session URL (RP-initiated logout endpoint)",
 					},
 					"audience": schema.StringAttribute{
 						Optional:    true,
@@ -566,6 +572,7 @@ func (r *ssoResource) updateSSOConfig(ctx context.Context, plan ssoResourceModel
 				OidcAuthUrl:               oidcConfig.AuthURL.ValueString(),
 				OidcTokenUrl:              oidcConfig.TokenURL.ValueString(),
 				OidcUserinfoUrl:           oidcConfig.UserInfoURL.ValueStringPointer(),
+				OidcEndSessionUrl:         oidcConfig.EndSessionURL.ValueStringPointer(),
 				OidcAudience:              oidcConfig.Audience.ValueStringPointer(),
 				JwtEmailKey:               oidcConfig.JWTEmailKey.ValueString(),
 				JwtRolesKey:               oidcConfig.JWTRolesKey.ValueStringPointer(),
@@ -616,6 +623,7 @@ func (r *ssoResource) updateSSOConfig(ctx context.Context, plan ssoResourceModel
 			OidcAuthUrl:               oidcConfig.AuthURL.ValueString(),
 			OidcTokenUrl:              oidcConfig.TokenURL.ValueString(),
 			OidcUserinfoUrl:           oidcConfig.UserInfoURL.ValueStringPointer(),
+			OidcEndSessionUrl:         oidcConfig.EndSessionURL.ValueStringPointer(),
 			OidcAudience:              oidcConfig.Audience.ValueStringPointer(),
 			JwtEmailKey:               oidcConfig.JWTEmailKey.ValueString(),
 			JwtRolesKey:               oidcConfig.JWTRolesKey.ValueStringPointer(),
@@ -851,6 +859,7 @@ func (r *ssoResource) processOIDCConfig(ctx context.Context, config *api.GoogleO
 		AuthURL:                   types.StringPointerValue(&config.OidcAuthUrl),
 		TokenURL:                  types.StringPointerValue(&config.OidcTokenUrl),
 		UserInfoURL:               types.StringPointerValue(config.OidcUserinfoUrl),
+		EndSessionURL:             types.StringPointerValue(config.OidcEndSessionUrl),
 		Audience:                  types.StringPointerValue(config.OidcAudience),
 		JWTEmailKey:               types.StringPointerValue(&config.JwtEmailKey),
 		JWTRolesKey:               types.StringPointerValue(config.JwtRolesKey),
@@ -915,6 +924,7 @@ func (r *ssoResource) processStandaloneOIDCConfig(ctx context.Context, config *a
 		AuthURL:                   types.StringPointerValue(&config.OidcAuthUrl),
 		TokenURL:                  types.StringPointerValue(&config.OidcTokenUrl),
 		UserInfoURL:               types.StringPointerValue(config.OidcUserinfoUrl),
+		EndSessionURL:             types.StringPointerValue(config.OidcEndSessionUrl),
 		Audience:                  types.StringPointerValue(config.OidcAudience),
 		JWTEmailKey:               types.StringPointerValue(&config.JwtEmailKey),
 		JWTRolesKey:               types.StringPointerValue(config.JwtRolesKey),

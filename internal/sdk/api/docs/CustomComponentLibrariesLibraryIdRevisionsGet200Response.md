@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Success** | **bool** | API request succeeded | 
-**Data** | [**[]CustomComponentLibrariesLibraryIdRevisionsGet200ResponseDataInner**](CustomComponentLibrariesLibraryIdRevisionsGet200ResponseDataInner.md) | An array of requested items | 
+**Success** | **bool** | Whether the API request was successful. | 
+**Data** | [**[]CustomComponentLibrariesLibraryIdRevisionsGet200ResponseDataInner**](CustomComponentLibrariesLibraryIdRevisionsGet200ResponseDataInner.md) | An array of requested items. | 
 
 ## Methods
 

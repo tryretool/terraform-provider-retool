@@ -32,8 +32,14 @@ jobs:
         with:
           go-version-file: go.mod
           check-latest: true
+      - name: Setup Terraform with specified version on the runner
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_wrapper: false
       - name: Run acceptance tests
-        run: make test-acc-replay
+        # Pin the Terraform binary so the test framework doesn't try to auto-install
+        # one (the bundled HashiCorp release-signing key has expired).
+        run: TF_ACC_TERRAFORM_PATH="$(which terraform)" make test-acc-replay
 
   checks:
     name: Checks

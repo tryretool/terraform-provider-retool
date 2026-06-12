@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Metadata** | **map[string]interface{}** | The updated user metadata, without the deleted attribute | [default to {}]
+**Metadata** | **map[string]interface{}** | The updated user metadata, without the deleted attribute. | [default to {}]
 
 ## Methods
 

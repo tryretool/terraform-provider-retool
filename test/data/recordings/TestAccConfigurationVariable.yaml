@@ -28,15 +28,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 354
+        content_length: 375
         uncompressed: false
-        body: '{"success":true,"data":{"id":"18368cb2-21f6-40c4-9d54-5fc0a724219f","name":"tf-acc-test-configuration-variable","description":"Terraform acceptance test configuration variable","secret":false,"values":[{"environment_id":"23ba02f3-12c2-456e-826f-13b616daa5ce","value":"value1"},{"environment_id":"fc4a3c5b-6328-4990-b368-6879a1f38855","value":"value2"}]}}'
+        body: '{"success":true,"data":{"id":"53fa8805-2cb9-4943-a08b-f4de8f94e33b","name":"tf-acc-test-configuration-variable","description":"Terraform acceptance test configuration variable","secret":false,"values":[{"environment_id":"23ba02f3-12c2-456e-826f-13b616daa5ce","value":"value1"},{"environment_id":"fc4a3c5b-6328-4990-b368-6879a1f38855","value":"value2"}],"default_value":null}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 103.438875ms
+        duration: 98.639333ms
     - id: 1
       request:
         proto: HTTP/1.1
@@ -53,7 +53,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/configuration_variables/18368cb2-21f6-40c4-9d54-5fc0a724219f
+        url: https://recorded.retool.dev/api/v2/configuration_variables/53fa8805-2cb9-4943-a08b-f4de8f94e33b
         method: GET
       response:
         proto: HTTP/1.1
@@ -61,15 +61,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 354
+        content_length: 375
         uncompressed: false
-        body: '{"success":true,"data":{"id":"18368cb2-21f6-40c4-9d54-5fc0a724219f","name":"tf-acc-test-configuration-variable","description":"Terraform acceptance test configuration variable","secret":false,"values":[{"environment_id":"23ba02f3-12c2-456e-826f-13b616daa5ce","value":"value1"},{"environment_id":"fc4a3c5b-6328-4990-b368-6879a1f38855","value":"value2"}]}}'
+        body: '{"success":true,"data":{"id":"53fa8805-2cb9-4943-a08b-f4de8f94e33b","name":"tf-acc-test-configuration-variable","description":"Terraform acceptance test configuration variable","secret":false,"values":[{"environment_id":"23ba02f3-12c2-456e-826f-13b616daa5ce","value":"value1"},{"environment_id":"fc4a3c5b-6328-4990-b368-6879a1f38855","value":"value2"}],"default_value":null}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 43.669583ms
+        duration: 49.585667ms
     - id: 2
       request:
         proto: HTTP/1.1
@@ -86,7 +86,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/configuration_variables/18368cb2-21f6-40c4-9d54-5fc0a724219f
+        url: https://recorded.retool.dev/api/v2/configuration_variables/53fa8805-2cb9-4943-a08b-f4de8f94e33b
         method: GET
       response:
         proto: HTTP/1.1
@@ -94,15 +94,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 354
+        content_length: 375
         uncompressed: false
-        body: '{"success":true,"data":{"id":"18368cb2-21f6-40c4-9d54-5fc0a724219f","name":"tf-acc-test-configuration-variable","description":"Terraform acceptance test configuration variable","secret":false,"values":[{"environment_id":"23ba02f3-12c2-456e-826f-13b616daa5ce","value":"value1"},{"environment_id":"fc4a3c5b-6328-4990-b368-6879a1f38855","value":"value2"}]}}'
+        body: '{"success":true,"data":{"id":"53fa8805-2cb9-4943-a08b-f4de8f94e33b","name":"tf-acc-test-configuration-variable","description":"Terraform acceptance test configuration variable","secret":false,"values":[{"environment_id":"23ba02f3-12c2-456e-826f-13b616daa5ce","value":"value1"},{"environment_id":"fc4a3c5b-6328-4990-b368-6879a1f38855","value":"value2"}],"default_value":null}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 37.443292ms
+        duration: 51.295333ms
     - id: 3
       request:
         proto: HTTP/1.1
@@ -119,7 +119,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/configuration_variables/18368cb2-21f6-40c4-9d54-5fc0a724219f
+        url: https://recorded.retool.dev/api/v2/configuration_variables/53fa8805-2cb9-4943-a08b-f4de8f94e33b
         method: GET
       response:
         proto: HTTP/1.1
@@ -127,15 +127,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 354
+        content_length: 375
         uncompressed: false
-        body: '{"success":true,"data":{"id":"18368cb2-21f6-40c4-9d54-5fc0a724219f","name":"tf-acc-test-configuration-variable","description":"Terraform acceptance test configuration variable","secret":false,"values":[{"environment_id":"23ba02f3-12c2-456e-826f-13b616daa5ce","value":"value1"},{"environment_id":"fc4a3c5b-6328-4990-b368-6879a1f38855","value":"value2"}]}}'
+        body: '{"success":true,"data":{"id":"53fa8805-2cb9-4943-a08b-f4de8f94e33b","name":"tf-acc-test-configuration-variable","description":"Terraform acceptance test configuration variable","secret":false,"values":[{"environment_id":"23ba02f3-12c2-456e-826f-13b616daa5ce","value":"value1"},{"environment_id":"fc4a3c5b-6328-4990-b368-6879a1f38855","value":"value2"}],"default_value":null}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 38.119083ms
+        duration: 295.038625ms
     - id: 4
       request:
         proto: HTTP/1.1
@@ -155,7 +155,7 @@ interactions:
                 - application/json
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/configuration_variables/18368cb2-21f6-40c4-9d54-5fc0a724219f
+        url: https://recorded.retool.dev/api/v2/configuration_variables/53fa8805-2cb9-4943-a08b-f4de8f94e33b
         method: PUT
       response:
         proto: HTTP/1.1
@@ -163,15 +163,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 380
+        content_length: 401
         uncompressed: false
-        body: '{"success":true,"data":{"id":"18368cb2-21f6-40c4-9d54-5fc0a724219f","name":"tf-acc-test-configuration-variable-modified","description":"Terraform acceptance test configuration variable modified","secret":false,"values":[{"environment_id":"23ba02f3-12c2-456e-826f-13b616daa5ce","value":"new_value1"},{"environment_id":"fc4a3c5b-6328-4990-b368-6879a1f38855","value":"new_value2"}]}}'
+        body: '{"success":true,"data":{"id":"53fa8805-2cb9-4943-a08b-f4de8f94e33b","name":"tf-acc-test-configuration-variable-modified","description":"Terraform acceptance test configuration variable modified","secret":false,"values":[{"environment_id":"23ba02f3-12c2-456e-826f-13b616daa5ce","value":"new_value1"},{"environment_id":"fc4a3c5b-6328-4990-b368-6879a1f38855","value":"new_value2"}],"default_value":null}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 48.6035ms
+        duration: 69.084875ms
     - id: 5
       request:
         proto: HTTP/1.1
@@ -188,7 +188,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/configuration_variables/18368cb2-21f6-40c4-9d54-5fc0a724219f
+        url: https://recorded.retool.dev/api/v2/configuration_variables/53fa8805-2cb9-4943-a08b-f4de8f94e33b
         method: GET
       response:
         proto: HTTP/1.1
@@ -196,15 +196,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 380
+        content_length: 401
         uncompressed: false
-        body: '{"success":true,"data":{"id":"18368cb2-21f6-40c4-9d54-5fc0a724219f","name":"tf-acc-test-configuration-variable-modified","description":"Terraform acceptance test configuration variable modified","secret":false,"values":[{"environment_id":"23ba02f3-12c2-456e-826f-13b616daa5ce","value":"new_value1"},{"environment_id":"fc4a3c5b-6328-4990-b368-6879a1f38855","value":"new_value2"}]}}'
+        body: '{"success":true,"data":{"id":"53fa8805-2cb9-4943-a08b-f4de8f94e33b","name":"tf-acc-test-configuration-variable-modified","description":"Terraform acceptance test configuration variable modified","secret":false,"values":[{"environment_id":"23ba02f3-12c2-456e-826f-13b616daa5ce","value":"new_value1"},{"environment_id":"fc4a3c5b-6328-4990-b368-6879a1f38855","value":"new_value2"}],"default_value":null}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 39.122625ms
+        duration: 52.467334ms
     - id: 6
       request:
         proto: HTTP/1.1
@@ -221,7 +221,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/configuration_variables/18368cb2-21f6-40c4-9d54-5fc0a724219f
+        url: https://recorded.retool.dev/api/v2/configuration_variables/53fa8805-2cb9-4943-a08b-f4de8f94e33b
         method: GET
       response:
         proto: HTTP/1.1
@@ -229,15 +229,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 380
+        content_length: 401
         uncompressed: false
-        body: '{"success":true,"data":{"id":"18368cb2-21f6-40c4-9d54-5fc0a724219f","name":"tf-acc-test-configuration-variable-modified","description":"Terraform acceptance test configuration variable modified","secret":false,"values":[{"environment_id":"23ba02f3-12c2-456e-826f-13b616daa5ce","value":"new_value1"},{"environment_id":"fc4a3c5b-6328-4990-b368-6879a1f38855","value":"new_value2"}]}}'
+        body: '{"success":true,"data":{"id":"53fa8805-2cb9-4943-a08b-f4de8f94e33b","name":"tf-acc-test-configuration-variable-modified","description":"Terraform acceptance test configuration variable modified","secret":false,"values":[{"environment_id":"23ba02f3-12c2-456e-826f-13b616daa5ce","value":"new_value1"},{"environment_id":"fc4a3c5b-6328-4990-b368-6879a1f38855","value":"new_value2"}],"default_value":null}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 35.198042ms
+        duration: 54.861333ms
     - id: 7
       request:
         proto: HTTP/1.1
@@ -257,7 +257,7 @@ interactions:
                 - application/json
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/configuration_variables/18368cb2-21f6-40c4-9d54-5fc0a724219f
+        url: https://recorded.retool.dev/api/v2/configuration_variables/53fa8805-2cb9-4943-a08b-f4de8f94e33b
         method: PUT
       response:
         proto: HTTP/1.1
@@ -273,7 +273,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 400 Bad Request
         code: 400
-        duration: 37.519ms
+        duration: 62.904875ms
     - id: 8
       request:
         proto: HTTP/1.1
@@ -290,7 +290,7 @@ interactions:
         headers:
             User-Agent:
                 - OpenAPI-Generator/1.0.0/go
-        url: https://recorded.retool.dev/api/v2/configuration_variables/18368cb2-21f6-40c4-9d54-5fc0a724219f
+        url: https://recorded.retool.dev/api/v2/configuration_variables/53fa8805-2cb9-4943-a08b-f4de8f94e33b
         method: DELETE
       response:
         proto: HTTP/1.1
@@ -304,4 +304,4 @@ interactions:
         headers: {}
         status: 204 No Content
         code: 204
-        duration: 37.187292ms
+        duration: 65.703625ms

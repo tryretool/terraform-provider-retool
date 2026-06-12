@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Success** | **bool** | API request succeeded | 
+**Success** | **bool** | Whether the API request was successful. | 
 **Data** | [**SourceControlConfigPut200ResponseData**](SourceControlConfigPut200ResponseData.md) |  | 
 
 ## Methods

@@ -6,14 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AuthenticationType** | **string** |  | 
 **Username** | **string** |  | 
-**PrivateKey** | **string** |  | 
-**PrivateKeyPassphrase** | Pointer to **string** |  | [optional] 
+**Password** | **string** |  | 
 
 ## Methods
 
 ### NewSnowflakeOptionsAuthenticationOptionsAnyOf1
 
-`func NewSnowflakeOptionsAuthenticationOptionsAnyOf1(authenticationType string, username string, privateKey string, ) *SnowflakeOptionsAuthenticationOptionsAnyOf1`
+`func NewSnowflakeOptionsAuthenticationOptionsAnyOf1(authenticationType string, username string, password string, ) *SnowflakeOptionsAuthenticationOptionsAnyOf1`
 
 NewSnowflakeOptionsAuthenticationOptionsAnyOf1 instantiates a new SnowflakeOptionsAuthenticationOptionsAnyOf1 object
 This constructor will assign default values to properties that have it defined,
@@ -68,50 +67,25 @@ and a boolean to check if the value has been set.
 SetUsername sets Username field to given value.
 
 
-### GetPrivateKey
+### GetPassword
 
-`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf1) GetPrivateKey() string`
+`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf1) GetPassword() string`
 
-GetPrivateKey returns the PrivateKey field if non-nil, zero value otherwise.
+GetPassword returns the Password field if non-nil, zero value otherwise.
 
-### GetPrivateKeyOk
+### GetPasswordOk
 
-`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf1) GetPrivateKeyOk() (*string, bool)`
+`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf1) GetPasswordOk() (*string, bool)`
 
-GetPrivateKeyOk returns a tuple with the PrivateKey field if it's non-nil, zero value otherwise
+GetPasswordOk returns a tuple with the Password field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPrivateKey
+### SetPassword
 
-`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf1) SetPrivateKey(v string)`
+`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf1) SetPassword(v string)`
 
-SetPrivateKey sets PrivateKey field to given value.
+SetPassword sets Password field to given value.
 
-
-### GetPrivateKeyPassphrase
-
-`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf1) GetPrivateKeyPassphrase() string`
-
-GetPrivateKeyPassphrase returns the PrivateKeyPassphrase field if non-nil, zero value otherwise.
-
-### GetPrivateKeyPassphraseOk
-
-`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf1) GetPrivateKeyPassphraseOk() (*string, bool)`
-
-GetPrivateKeyPassphraseOk returns a tuple with the PrivateKeyPassphrase field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPrivateKeyPassphrase
-
-`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf1) SetPrivateKeyPassphrase(v string)`
-
-SetPrivateKeyPassphrase sets PrivateKeyPassphrase field to given value.
-
-### HasPrivateKeyPassphrase
-
-`func (o *SnowflakeOptionsAuthenticationOptionsAnyOf1) HasPrivateKeyPassphrase() bool`
-
-HasPrivateKeyPassphrase returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

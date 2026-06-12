@@ -1,15 +1,17 @@
 # \OrganizationAPI
 
-All URIs are relative to *http://.*
+All URIs are relative to *https://stable-4-0.retool.dev/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**OrganizationAiSettingsGet**](OrganizationAPI.md#OrganizationAiSettingsGet) | **Get** /organization/ai_settings | Get organization AI settings
 [**OrganizationAiSettingsPut**](OrganizationAPI.md#OrganizationAiSettingsPut) | **Put** /organization/ai_settings | Update organization AI settings
-[**OrganizationAnalyticsIntegrationsGet**](OrganizationAPI.md#OrganizationAnalyticsIntegrationsGet) | **Get** /organization/analytics_integrations | Get organization third-party Analytics Integrations settings
-[**OrganizationGet**](OrganizationAPI.md#OrganizationGet) | **Get** /organization/ | Get organization
-[**OrganizationInvalidateSessionsPost**](OrganizationAPI.md#OrganizationInvalidateSessionsPost) | **Post** /organization/invalidate_sessions/ | Invalidates all sessions for your organization
-[**OrganizationPatch**](OrganizationAPI.md#OrganizationPatch) | **Patch** /organization/ | Update advanced settings on organization
+[**OrganizationAnalyticsIntegrationsGet**](OrganizationAPI.md#OrganizationAnalyticsIntegrationsGet) | **Get** /organization/analytics_integrations | Get organization analytics integrations
+[**OrganizationCodeExecutorSettingsGet**](OrganizationAPI.md#OrganizationCodeExecutorSettingsGet) | **Get** /organization/code_executor_settings | Get org-level Code Executor resource settings
+[**OrganizationCodeExecutorSettingsPut**](OrganizationAPI.md#OrganizationCodeExecutorSettingsPut) | **Put** /organization/code_executor_settings | Update org-level Code Executor resource settings
+[**OrganizationGet**](OrganizationAPI.md#OrganizationGet) | **Get** /organization/ | Get organization settings
+[**OrganizationInvalidateSessionsPost**](OrganizationAPI.md#OrganizationInvalidateSessionsPost) | **Post** /organization/invalidate_sessions/ | Invalidate all sessions
+[**OrganizationPatch**](OrganizationAPI.md#OrganizationPatch) | **Patch** /organization/ | Update organization settings
 
 
 
@@ -144,7 +146,7 @@ Name | Type | Description  | Notes
 
 > OrganizationAnalyticsIntegrationsGet200Response OrganizationAnalyticsIntegrationsGet(ctx).Execute()
 
-Get organization third-party Analytics Integrations settings
+Get organization analytics integrations
 
 
 
@@ -201,11 +203,138 @@ Other parameters are passed through a pointer to a apiOrganizationAnalyticsInteg
 [[Back to README]](../README.md)
 
 
+## OrganizationCodeExecutorSettingsGet
+
+> OrganizationCodeExecutorSettingsGet200Response OrganizationCodeExecutorSettingsGet(ctx).Execute()
+
+Get org-level Code Executor resource settings
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.OrganizationCodeExecutorSettingsGet(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.OrganizationCodeExecutorSettingsGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `OrganizationCodeExecutorSettingsGet`: OrganizationCodeExecutorSettingsGet200Response
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.OrganizationCodeExecutorSettingsGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiOrganizationCodeExecutorSettingsGetRequest struct via the builder pattern
+
+
+### Return type
+
+[**OrganizationCodeExecutorSettingsGet200Response**](OrganizationCodeExecutorSettingsGet200Response.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## OrganizationCodeExecutorSettingsPut
+
+> OrganizationCodeExecutorSettingsPut200Response OrganizationCodeExecutorSettingsPut(ctx).OrganizationCodeExecutorSettingsGet200ResponseData(organizationCodeExecutorSettingsGet200ResponseData).Execute()
+
+Update org-level Code Executor resource settings
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	organizationCodeExecutorSettingsGet200ResponseData := *openapiclient.NewOrganizationCodeExecutorSettingsGet200ResponseData(NullableInt32(123), NullableInt32(123), false) // OrganizationCodeExecutorSettingsGet200ResponseData |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.OrganizationCodeExecutorSettingsPut(context.Background()).OrganizationCodeExecutorSettingsGet200ResponseData(organizationCodeExecutorSettingsGet200ResponseData).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.OrganizationCodeExecutorSettingsPut``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `OrganizationCodeExecutorSettingsPut`: OrganizationCodeExecutorSettingsPut200Response
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.OrganizationCodeExecutorSettingsPut`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiOrganizationCodeExecutorSettingsPutRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationCodeExecutorSettingsGet200ResponseData** | [**OrganizationCodeExecutorSettingsGet200ResponseData**](OrganizationCodeExecutorSettingsGet200ResponseData.md) |  | 
+
+### Return type
+
+[**OrganizationCodeExecutorSettingsPut200Response**](OrganizationCodeExecutorSettingsPut200Response.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## OrganizationGet
 
 > OrganizationGet200Response OrganizationGet(ctx).Execute()
 
-Get organization
+Get organization settings
 
 
 
@@ -266,7 +395,7 @@ Other parameters are passed through a pointer to a apiOrganizationGetRequest str
 
 > OrganizationInvalidateSessionsPost(ctx).Execute()
 
-Invalidates all sessions for your organization
+Invalidate all sessions
 
 
 
@@ -325,7 +454,7 @@ Other parameters are passed through a pointer to a apiOrganizationInvalidateSess
 
 > OrganizationPatch200Response OrganizationPatch(ctx).OrganizationPatchRequest(organizationPatchRequest).Execute()
 
-Update advanced settings on organization
+Update organization settings
 
 
 

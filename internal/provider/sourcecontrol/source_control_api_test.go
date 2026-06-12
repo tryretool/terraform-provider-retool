@@ -74,7 +74,11 @@ func testGitLabConfig(t *testing.T, client *api.APIClient) {
 }
 
 func testCodeCommitConfig(t *testing.T, client *api.APIClient) {
-	awsConfig := api.NewAWSCodeCommitConfig("https://git-codecommit.us-west-2.amazonaws.com", "us-west-2", "access_key_id", "secret_access_key", "https_username", "https_password")
+	awsConfig := api.NewAWSCodeCommitConfig("https://git-codecommit.us-west-2.amazonaws.com", "us-west-2")
+	awsConfig.AccessKeyId = api.PtrString("access_key_id")
+	awsConfig.SecretAccessKey = api.PtrString("secret_access_key")
+	awsConfig.HttpsUsername = api.PtrString("https_username")
+	awsConfig.HttpsPassword = api.PtrString("https_password")
 	awsCodeCommit := api.NewAWSCodeCommit(*awsConfig, "AWS CodeCommit", "org", "repo", "default_branch")
 	apiRequest := api.SourceControlConfigPutRequest{
 		Config: api.SourceControlConfigPutRequestConfig{
@@ -91,7 +95,7 @@ func testCodeCommitConfig(t *testing.T, client *api.APIClient) {
 }
 
 func testBitbucketConfig(t *testing.T, client *api.APIClient) {
-	bitbucketConfigInner := api.NewBitbucketConfigAnyOf("username", "app_password")
+	bitbucketConfigInner := api.NewBitbucketConfigAnyOf("AppPassword", "username", "app_password")
 	bitbucketConfig := api.BitbucketConfig{
 		BitbucketConfigAnyOf: bitbucketConfigInner,
 	}

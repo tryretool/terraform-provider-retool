@@ -19,12 +19,13 @@ Name | Type | Description | Notes
 **TwoFactorAuthRequired** | **bool** | Whether two-factor authentication is required for all users in the organization. | 
 **TwoFactorAuthType** | **NullableString** | Required 2FA type, applies to the whole organization | 
 **DisableNewLoginIpNotificationEmail** | **bool** | Whether notification emails for logins from new IPs are disabled. | 
+**HideEnvironmentToggle** | **bool** | Whether multiple environments are disabled (hidden from users). | 
 
 ## Methods
 
 ### NewOrganizationSettings
 
-`func NewOrganizationSettings(id string, requestAccessEnabled bool, aiSupportBotDisabled bool, retoolFormsDisabled bool, releaseManagementEnabled bool, cacheQueriesPerUser NullableBool, applyPreloadedCssToHomepage bool, preloadedCss NullableString, preloadedJavascript NullableString, javascriptLinks []string, workflowRunRetentionPeriodMins float32, appOwnersPermissionsManagement bool, twoFactorAuthRequired bool, twoFactorAuthType NullableString, disableNewLoginIpNotificationEmail bool, ) *OrganizationSettings`
+`func NewOrganizationSettings(id string, requestAccessEnabled bool, aiSupportBotDisabled bool, retoolFormsDisabled bool, releaseManagementEnabled bool, cacheQueriesPerUser NullableBool, applyPreloadedCssToHomepage bool, preloadedCss NullableString, preloadedJavascript NullableString, javascriptLinks []string, workflowRunRetentionPeriodMins float32, appOwnersPermissionsManagement bool, twoFactorAuthRequired bool, twoFactorAuthType NullableString, disableNewLoginIpNotificationEmail bool, hideEnvironmentToggle bool, ) *OrganizationSettings`
 
 NewOrganizationSettings instantiates a new OrganizationSettings object
 This constructor will assign default values to properties that have it defined,
@@ -377,6 +378,26 @@ and a boolean to check if the value has been set.
 `func (o *OrganizationSettings) SetDisableNewLoginIpNotificationEmail(v bool)`
 
 SetDisableNewLoginIpNotificationEmail sets DisableNewLoginIpNotificationEmail field to given value.
+
+
+### GetHideEnvironmentToggle
+
+`func (o *OrganizationSettings) GetHideEnvironmentToggle() bool`
+
+GetHideEnvironmentToggle returns the HideEnvironmentToggle field if non-nil, zero value otherwise.
+
+### GetHideEnvironmentToggleOk
+
+`func (o *OrganizationSettings) GetHideEnvironmentToggleOk() (*bool, bool)`
+
+GetHideEnvironmentToggleOk returns a tuple with the HideEnvironmentToggle field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHideEnvironmentToggle
+
+`func (o *OrganizationSettings) SetHideEnvironmentToggle(v bool)`
+
+SetHideEnvironmentToggle sets HideEnvironmentToggle field to given value.
 
 
 

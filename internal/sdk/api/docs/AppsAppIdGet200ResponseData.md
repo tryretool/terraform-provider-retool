@@ -7,7 +7,10 @@ Name | Type | Description | Notes
 **Id** | **string** | The app ID. | 
 **Name** | **string** | The name of the App | 
 **Description** | **NullableString** | The description of the App | 
-**FolderId** | **string** | The id of the folder | 
+**AppType** | **string** | Whether the app is a classic Retool app or a React app. | 
+**PublishedAppIdentifier** | **NullableString** | The published React app custom URL identifier. Null if the app is not a published React app. | 
+**PublishedAppUrl** | **NullableString** | The full published React app URL. Null if the app is not a published React app. | 
+**FolderId** | Pointer to **string** | The id of the folder | [optional] 
 **Protected** | **bool** | Whether the App is protected | 
 **Synced** | **bool** | Whether the App is synced | 
 **Shortlink** | **NullableString** | The shortlink of the App | 
@@ -21,7 +24,7 @@ Name | Type | Description | Notes
 
 ### NewAppsAppIdGet200ResponseData
 
-`func NewAppsAppIdGet200ResponseData(id string, name string, description NullableString, folderId string, protected bool, synced bool, shortlink NullableString, isModule bool, isMobileApp bool, createdAt string, updatedAt string, releaseVersion string, ) *AppsAppIdGet200ResponseData`
+`func NewAppsAppIdGet200ResponseData(id string, name string, description NullableString, appType string, publishedAppIdentifier NullableString, publishedAppUrl NullableString, protected bool, synced bool, shortlink NullableString, isModule bool, isMobileApp bool, createdAt string, updatedAt string, releaseVersion string, ) *AppsAppIdGet200ResponseData`
 
 NewAppsAppIdGet200ResponseData instantiates a new AppsAppIdGet200ResponseData object
 This constructor will assign default values to properties that have it defined,
@@ -106,6 +109,86 @@ SetDescription sets Description field to given value.
 `func (o *AppsAppIdGet200ResponseData) UnsetDescription()`
 
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
+### GetAppType
+
+`func (o *AppsAppIdGet200ResponseData) GetAppType() string`
+
+GetAppType returns the AppType field if non-nil, zero value otherwise.
+
+### GetAppTypeOk
+
+`func (o *AppsAppIdGet200ResponseData) GetAppTypeOk() (*string, bool)`
+
+GetAppTypeOk returns a tuple with the AppType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAppType
+
+`func (o *AppsAppIdGet200ResponseData) SetAppType(v string)`
+
+SetAppType sets AppType field to given value.
+
+
+### GetPublishedAppIdentifier
+
+`func (o *AppsAppIdGet200ResponseData) GetPublishedAppIdentifier() string`
+
+GetPublishedAppIdentifier returns the PublishedAppIdentifier field if non-nil, zero value otherwise.
+
+### GetPublishedAppIdentifierOk
+
+`func (o *AppsAppIdGet200ResponseData) GetPublishedAppIdentifierOk() (*string, bool)`
+
+GetPublishedAppIdentifierOk returns a tuple with the PublishedAppIdentifier field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPublishedAppIdentifier
+
+`func (o *AppsAppIdGet200ResponseData) SetPublishedAppIdentifier(v string)`
+
+SetPublishedAppIdentifier sets PublishedAppIdentifier field to given value.
+
+
+### SetPublishedAppIdentifierNil
+
+`func (o *AppsAppIdGet200ResponseData) SetPublishedAppIdentifierNil(b bool)`
+
+ SetPublishedAppIdentifierNil sets the value for PublishedAppIdentifier to be an explicit nil
+
+### UnsetPublishedAppIdentifier
+`func (o *AppsAppIdGet200ResponseData) UnsetPublishedAppIdentifier()`
+
+UnsetPublishedAppIdentifier ensures that no value is present for PublishedAppIdentifier, not even an explicit nil
+### GetPublishedAppUrl
+
+`func (o *AppsAppIdGet200ResponseData) GetPublishedAppUrl() string`
+
+GetPublishedAppUrl returns the PublishedAppUrl field if non-nil, zero value otherwise.
+
+### GetPublishedAppUrlOk
+
+`func (o *AppsAppIdGet200ResponseData) GetPublishedAppUrlOk() (*string, bool)`
+
+GetPublishedAppUrlOk returns a tuple with the PublishedAppUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPublishedAppUrl
+
+`func (o *AppsAppIdGet200ResponseData) SetPublishedAppUrl(v string)`
+
+SetPublishedAppUrl sets PublishedAppUrl field to given value.
+
+
+### SetPublishedAppUrlNil
+
+`func (o *AppsAppIdGet200ResponseData) SetPublishedAppUrlNil(b bool)`
+
+ SetPublishedAppUrlNil sets the value for PublishedAppUrl to be an explicit nil
+
+### UnsetPublishedAppUrl
+`func (o *AppsAppIdGet200ResponseData) UnsetPublishedAppUrl()`
+
+UnsetPublishedAppUrl ensures that no value is present for PublishedAppUrl, not even an explicit nil
 ### GetFolderId
 
 `func (o *AppsAppIdGet200ResponseData) GetFolderId() string`
@@ -125,6 +208,11 @@ and a boolean to check if the value has been set.
 
 SetFolderId sets FolderId field to given value.
 
+### HasFolderId
+
+`func (o *AppsAppIdGet200ResponseData) HasFolderId() bool`
+
+HasFolderId returns a boolean if a field has been set.
 
 ### GetProtected
 

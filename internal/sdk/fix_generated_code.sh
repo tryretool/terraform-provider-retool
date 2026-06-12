@@ -25,13 +25,17 @@ if [ -f ./api/model__user_tasks_get_assigned_to_users_parameter.go ]; then
     sed -i '' 's/src\.string/src.String/g' ./api/model__user_tasks_get_assigned_to_users_parameter.go
 fi
 
-# 4. Fix: model__resources_post_request_options.go
-if [ -f ./api/model__resources_post_request_options.go ]; then
-    sed -i '' 's/map\[string\]interface{} \*map\[string\]interface{}/AdditionalProperties *map[string]interface{}/g' ./api/model__resources_post_request_options.go
-    sed -i '' 's/dst\.map\[string\]interface{}/dst.AdditionalProperties/g' ./api/model__resources_post_request_options.go
-    sed -i '' 's/jsonmap\[string\]interface{}/jsonAdditionalProperties/g' ./api/model__resources_post_request_options.go
-    sed -i '' 's/src\.map\[string\]interface{}/src.AdditionalProperties/g' ./api/model__resources_post_request_options.go
-fi
+# 4. Fix invalid `map[string]interface{}` field names in anyOf option models.
+#    The generator emits `map[string]interface{} *map[string]interface{}` as a
+#    struct field (e.g. in *_options.go anyOf wrappers), which is not valid Go.
+#    Rename it (and its references) to AdditionalProperties across every file
+#    that contains the pattern.
+for f in $(grep -rl 'map\[string\]interface{} \*map\[string\]interface{}' ./api --include='*.go'); do
+    sed -i '' 's/map\[string\]interface{} \*map\[string\]interface{}/AdditionalProperties *map[string]interface{}/g' "$f"
+    sed -i '' 's/dst\.map\[string\]interface{}/dst.AdditionalProperties/g' "$f"
+    sed -i '' 's/jsonmap\[string\]interface{}/jsonAdditionalProperties/g' "$f"
+    sed -i '' 's/src\.map\[string\]interface{}/src.AdditionalProperties/g' "$f"
+done
 
 echo "Fixed marshaling bugs in generated code"
 

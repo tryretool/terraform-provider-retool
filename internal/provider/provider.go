@@ -41,7 +41,7 @@ var (
 	_ provider.Provider = &retoolProvider{}
 )
 
-const minimumRetoolVersion = "v3.75.0"
+const minimumRetoolVersion = "v4.0.0"
 
 // New is a helper function to simplify provider server and testing implementation.
 func New(version string) func() provider.Provider {

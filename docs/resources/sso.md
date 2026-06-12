@@ -83,6 +83,7 @@ Required:
 Optional:
 
 - `audience` (String) SSO Audience
+- `end_session_url` (String) OpenID End Session URL (RP-initiated logout endpoint)
 - `jit_enabled` (Boolean) Enable Just-In-Time User Provisioning
 - `jwt_roles_key` (String) Role Key in JWT Token
 - `restricted_domains` (List of String) Restricted Domains

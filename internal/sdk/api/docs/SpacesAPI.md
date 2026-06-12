@@ -1,6 +1,6 @@
 # \SpacesAPI
 
-All URIs are relative to *http://.*
+All URIs are relative to *https://stable-4-0.retool.dev/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -8,8 +8,8 @@ Method | HTTP request | Description
 [**SpacesGet**](SpacesAPI.md#SpacesGet) | **Get** /spaces | List spaces
 [**SpacesPost**](SpacesAPI.md#SpacesPost) | **Post** /spaces | Create a space
 [**SpacesSpaceIdDelete**](SpacesAPI.md#SpacesSpaceIdDelete) | **Delete** /spaces/{spaceId} | Delete a space
-[**SpacesSpaceIdGet**](SpacesAPI.md#SpacesSpaceIdGet) | **Get** /spaces/{spaceId} | Get space
-[**SpacesSpaceIdPut**](SpacesAPI.md#SpacesSpaceIdPut) | **Put** /spaces/{spaceId} | Update space
+[**SpacesSpaceIdGet**](SpacesAPI.md#SpacesSpaceIdGet) | **Get** /spaces/{spaceId} | Get a space
+[**SpacesSpaceIdPut**](SpacesAPI.md#SpacesSpaceIdPut) | **Put** /spaces/{spaceId} | Update a space
 
 
 
@@ -227,7 +227,7 @@ import (
 )
 
 func main() {
-	spaceId := "spaceId_example" // string | The id of the space to delete.
+	spaceId := "spaceId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -245,7 +245,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**spaceId** | **string** | The id of the space to delete. | 
+**spaceId** | **string** |  | 
 
 ### Other Parameters
 
@@ -278,7 +278,7 @@ Name | Type | Description  | Notes
 
 > SpacesSpaceIdGet200Response SpacesSpaceIdGet(ctx, spaceId).Execute()
 
-Get space
+Get a space
 
 
 
@@ -348,7 +348,7 @@ Name | Type | Description  | Notes
 
 > SpacesSpaceIdPut200Response SpacesSpaceIdPut(ctx, spaceId).SpacesSpaceIdPutRequest(spacesSpaceIdPutRequest).Execute()
 
-Update space
+Update a space
 
 
 

@@ -1,20 +1,20 @@
 # \ReleaseManagementAPI
 
-All URIs are relative to *http://.*
+All URIs are relative to *https://stable-4-0.retool.dev/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**SourceControlManifestsGet**](ReleaseManagementAPI.md#SourceControlManifestsGet) | **Get** /source_control/manifests | Lists all release manifests
+[**SourceControlManifestsGet**](ReleaseManagementAPI.md#SourceControlManifestsGet) | **Get** /source_control/manifests | List release manifests
 [**SourceControlManifestsManifestNameAppsAppUuidDeletePost**](ReleaseManagementAPI.md#SourceControlManifestsManifestNameAppsAppUuidDeletePost) | **Post** /source_control/manifests/{manifestName}/apps/{appUuid}/delete | Delete the entry for an app from a release manifest
 [**SourceControlManifestsManifestNameAppsAppUuidPut**](ReleaseManagementAPI.md#SourceControlManifestsManifestNameAppsAppUuidPut) | **Put** /source_control/manifests/{manifestName}/apps/{appUuid} | Set release configuration for app in manifest
 [**SourceControlManifestsManifestNameDeletePost**](ReleaseManagementAPI.md#SourceControlManifestsManifestNameDeletePost) | **Post** /source_control/manifests/{manifestName}/delete | Delete a release manifest
 [**SourceControlManifestsManifestNameElementUuidDeletePost**](ReleaseManagementAPI.md#SourceControlManifestsManifestNameElementUuidDeletePost) | **Post** /source_control/manifests/{manifestName}/{elementUuid}/delete | Delete element from release manifest
 [**SourceControlManifestsManifestNameElementUuidPut**](ReleaseManagementAPI.md#SourceControlManifestsManifestNameElementUuidPut) | **Put** /source_control/manifests/{manifestName}/{elementUuid} | Set release version for element in manifest
-[**SourceControlManifestsManifestNameGet**](ReleaseManagementAPI.md#SourceControlManifestsManifestNameGet) | **Get** /source_control/manifests/{manifestName} | Get a specific release manifest
+[**SourceControlManifestsManifestNameGet**](ReleaseManagementAPI.md#SourceControlManifestsManifestNameGet) | **Get** /source_control/manifests/{manifestName} | Get a release manifest
 [**SourceControlManifestsManifestNamePut**](ReleaseManagementAPI.md#SourceControlManifestsManifestNamePut) | **Put** /source_control/manifests/{manifestName} | Set release manifest
-[**SourceControlReleasesAppsAppUuidGet**](ReleaseManagementAPI.md#SourceControlReleasesAppsAppUuidGet) | **Get** /source_control/releases/apps/{appUuid} | Lists all available releases for the given app.
+[**SourceControlReleasesAppsAppUuidGet**](ReleaseManagementAPI.md#SourceControlReleasesAppsAppUuidGet) | **Get** /source_control/releases/apps/{appUuid} | List all available releases for the given app
 [**SourceControlReleasesAppsAppUuidPost**](ReleaseManagementAPI.md#SourceControlReleasesAppsAppUuidPost) | **Post** /source_control/releases/apps/{appUuid} | Create a release artifact
-[**SourceControlReleasesElementUuidGet**](ReleaseManagementAPI.md#SourceControlReleasesElementUuidGet) | **Get** /source_control/releases/{elementUuid} | Lists all available releases for the given element.
+[**SourceControlReleasesElementUuidGet**](ReleaseManagementAPI.md#SourceControlReleasesElementUuidGet) | **Get** /source_control/releases/{elementUuid} | List all available releases for the given element
 [**SourceControlReleasesElementUuidPost**](ReleaseManagementAPI.md#SourceControlReleasesElementUuidPost) | **Post** /source_control/releases/{elementUuid} | Create a release artifact
 
 
@@ -23,7 +23,7 @@ Method | HTTP request | Description
 
 > SourceControlManifestsGet200Response SourceControlManifestsGet(ctx).Execute()
 
-Lists all release manifests
+List release manifests
 
 
 
@@ -101,8 +101,8 @@ import (
 )
 
 func main() {
-	appUuid := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The uuid to specify an app of interest within the release manifest. This should be the uuid found in the source control repository, which may differ from the organization specific uuid.
-	manifestName := "manifestName_example" // string | Identifier for the manifest of interest
+	appUuid := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	manifestName := "manifestName_example" // string | 
 	sourceControlManifestsManifestNameDeletePostRequest := *openapiclient.NewSourceControlManifestsManifestNameDeletePostRequest() // SourceControlManifestsManifestNameDeletePostRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -123,8 +123,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appUuid** | **string** | The uuid to specify an app of interest within the release manifest. This should be the uuid found in the source control repository, which may differ from the organization specific uuid. | 
-**manifestName** | **string** | Identifier for the manifest of interest | 
+**appUuid** | **string** |  | 
+**manifestName** | **string** |  | 
 
 ### Other Parameters
 
@@ -176,8 +176,8 @@ import (
 )
 
 func main() {
-	appUuid := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The uuid to specify an app of interest within the release manifest. This should be the uuid found in the source control repository, which may differ from the organization specific uuid.
-	manifestName := "manifestName_example" // string | Identifier for the manifest of interest
+	appUuid := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	manifestName := "manifestName_example" // string | 
 	sourceControlManifestsManifestNameAppsAppUuidPutRequest := *openapiclient.NewSourceControlManifestsManifestNameAppsAppUuidPutRequest(*openapiclient.NewSourceControlManifestsManifestNameAppsAppUuidPutRequestRelease()) // SourceControlManifestsManifestNameAppsAppUuidPutRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -198,8 +198,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appUuid** | **string** | The uuid to specify an app of interest within the release manifest. This should be the uuid found in the source control repository, which may differ from the organization specific uuid. | 
-**manifestName** | **string** | Identifier for the manifest of interest | 
+**appUuid** | **string** |  | 
+**manifestName** | **string** |  | 
 
 ### Other Parameters
 
@@ -251,7 +251,7 @@ import (
 )
 
 func main() {
-	manifestName := "manifestName_example" // string | Identifier for the manifest of interest
+	manifestName := "manifestName_example" // string | 
 	sourceControlManifestsManifestNameDeletePostRequest := *openapiclient.NewSourceControlManifestsManifestNameDeletePostRequest() // SourceControlManifestsManifestNameDeletePostRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -272,7 +272,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**manifestName** | **string** | Identifier for the manifest of interest | 
+**manifestName** | **string** |  | 
 
 ### Other Parameters
 
@@ -323,9 +323,9 @@ import (
 )
 
 func main() {
-	elementUuid := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The uuid to specify an element of interest within the release manifest.
-	manifestName := "manifestName_example" // string | Identifier for the manifest of interest
-	elementType := "elementType_example" // string | The type of the element.
+	elementUuid := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	manifestName := "manifestName_example" // string | 
+	elementType := "elementType_example" // string | 
 	sourceControlManifestsManifestNameDeletePostRequest := *openapiclient.NewSourceControlManifestsManifestNameDeletePostRequest() // SourceControlManifestsManifestNameDeletePostRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -346,8 +346,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**elementUuid** | **string** | The uuid to specify an element of interest within the release manifest. | 
-**manifestName** | **string** | Identifier for the manifest of interest | 
+**elementUuid** | **string** |  | 
+**manifestName** | **string** |  | 
 
 ### Other Parameters
 
@@ -358,7 +358,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **elementType** | **string** | The type of the element. | 
+ **elementType** | **string** |  | 
  **sourceControlManifestsManifestNameDeletePostRequest** | [**SourceControlManifestsManifestNameDeletePostRequest**](SourceControlManifestsManifestNameDeletePostRequest.md) |  | 
 
 ### Return type
@@ -400,9 +400,9 @@ import (
 )
 
 func main() {
-	elementUuid := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The uuid to specify an element of interest within the release manifest.
-	manifestName := "manifestName_example" // string | Identifier for the manifest of interest
-	elementType := "elementType_example" // string | The type of the element.
+	elementUuid := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	manifestName := "manifestName_example" // string | 
+	elementType := "elementType_example" // string | 
 	sourceControlManifestsManifestNameAppsAppUuidPutRequest := *openapiclient.NewSourceControlManifestsManifestNameAppsAppUuidPutRequest(*openapiclient.NewSourceControlManifestsManifestNameAppsAppUuidPutRequestRelease()) // SourceControlManifestsManifestNameAppsAppUuidPutRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -423,8 +423,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**elementUuid** | **string** | The uuid to specify an element of interest within the release manifest. | 
-**manifestName** | **string** | Identifier for the manifest of interest | 
+**elementUuid** | **string** |  | 
+**manifestName** | **string** |  | 
 
 ### Other Parameters
 
@@ -435,7 +435,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **elementType** | **string** | The type of the element. | 
+ **elementType** | **string** |  | 
  **sourceControlManifestsManifestNameAppsAppUuidPutRequest** | [**SourceControlManifestsManifestNameAppsAppUuidPutRequest**](SourceControlManifestsManifestNameAppsAppUuidPutRequest.md) |  | 
 
 ### Return type
@@ -460,7 +460,7 @@ Name | Type | Description  | Notes
 
 > SourceControlManifestsManifestNameGet200Response SourceControlManifestsManifestNameGet(ctx, manifestName).Execute()
 
-Get a specific release manifest
+Get a release manifest
 
 
 
@@ -477,7 +477,7 @@ import (
 )
 
 func main() {
-	manifestName := "manifestName_example" // string | Identifier for the manifest of interest
+	manifestName := "manifestName_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -497,7 +497,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**manifestName** | **string** | Identifier for the manifest of interest | 
+**manifestName** | **string** |  | 
 
 ### Other Parameters
 
@@ -547,7 +547,7 @@ import (
 )
 
 func main() {
-	manifestName := "manifestName_example" // string | Identifier for the manifest of interest
+	manifestName := "manifestName_example" // string | 
 	sourceControlManifestsManifestNamePutRequest := *openapiclient.NewSourceControlManifestsManifestNamePutRequest() // SourceControlManifestsManifestNamePutRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -568,7 +568,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**manifestName** | **string** | Identifier for the manifest of interest | 
+**manifestName** | **string** |  | 
 
 ### Other Parameters
 
@@ -602,7 +602,7 @@ Name | Type | Description  | Notes
 
 > SourceControlReleasesAppsAppUuidGet200Response SourceControlReleasesAppsAppUuidGet(ctx, appUuid).Execute()
 
-Lists all available releases for the given app.
+List all available releases for the given app
 
 
 
@@ -619,7 +619,7 @@ import (
 )
 
 func main() {
-	appUuid := "appUuid_example" // string | The uuid of the app.
+	appUuid := "appUuid_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -639,7 +639,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appUuid** | **string** | The uuid of the app. | 
+**appUuid** | **string** |  | 
 
 ### Other Parameters
 
@@ -689,7 +689,7 @@ import (
 )
 
 func main() {
-	appUuid := "appUuid_example" // string | The uuid of the app.
+	appUuid := "appUuid_example" // string | 
 	sourceControlReleasesAppsAppUuidPostRequest := *openapiclient.NewSourceControlReleasesAppsAppUuidPostRequest("1.0.0") // SourceControlReleasesAppsAppUuidPostRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -710,7 +710,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appUuid** | **string** | The uuid of the app. | 
+**appUuid** | **string** |  | 
 
 ### Other Parameters
 
@@ -744,7 +744,7 @@ Name | Type | Description  | Notes
 
 > SourceControlReleasesAppsAppUuidGet200Response SourceControlReleasesElementUuidGet(ctx, elementUuid).ElementType(elementType).Execute()
 
-Lists all available releases for the given element.
+List all available releases for the given element
 
 
 
@@ -761,8 +761,8 @@ import (
 )
 
 func main() {
-	elementUuid := "elementUuid_example" // string | The uuid of the element.
-	elementType := "elementType_example" // string | The type of the element.
+	elementUuid := "elementUuid_example" // string | 
+	elementType := "elementType_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -782,7 +782,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**elementUuid** | **string** | The uuid of the element. | 
+**elementUuid** | **string** |  | 
 
 ### Other Parameters
 
@@ -792,7 +792,7 @@ Other parameters are passed through a pointer to a apiSourceControlReleasesEleme
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **elementType** | **string** | The type of the element. | 
+ **elementType** | **string** |  | 
 
 ### Return type
 
@@ -833,8 +833,8 @@ import (
 )
 
 func main() {
-	elementUuid := "elementUuid_example" // string | The uuid of the element.
-	elementType := "elementType_example" // string | The type of the element.
+	elementUuid := "elementUuid_example" // string | 
+	elementType := "elementType_example" // string | 
 	sourceControlReleasesAppsAppUuidPostRequest := *openapiclient.NewSourceControlReleasesAppsAppUuidPostRequest("1.0.0") // SourceControlReleasesAppsAppUuidPostRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -855,7 +855,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**elementUuid** | **string** | The uuid of the element. | 
+**elementUuid** | **string** |  | 
 
 ### Other Parameters
 
@@ -865,7 +865,7 @@ Other parameters are passed through a pointer to a apiSourceControlReleasesEleme
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **elementType** | **string** | The type of the element. | 
+ **elementType** | **string** |  | 
  **sourceControlReleasesAppsAppUuidPostRequest** | [**SourceControlReleasesAppsAppUuidPostRequest**](SourceControlReleasesAppsAppUuidPostRequest.md) |  | 
 
 ### Return type

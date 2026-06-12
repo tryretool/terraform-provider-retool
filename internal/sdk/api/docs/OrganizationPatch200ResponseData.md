@@ -19,12 +19,13 @@ Name | Type | Description | Notes
 **TwoFactorAuthRequired** | **bool** | Whether two-factor authentication is required for all users in the organization. | 
 **TwoFactorAuthType** | **NullableString** | Required 2FA type, applies to the whole organization | 
 **DisableNewLoginIpNotificationEmail** | **bool** | Whether notification emails for logins from new IPs are disabled. | 
+**HideEnvironmentToggle** | **bool** | Whether multiple environments are disabled (hidden from users). | 
 
 ## Methods
 
 ### NewOrganizationPatch200ResponseData
 
-`func NewOrganizationPatch200ResponseData(id string, requestAccessEnabled bool, aiSupportBotDisabled bool, retoolFormsDisabled bool, releaseManagementEnabled bool, cacheQueriesPerUser NullableBool, applyPreloadedCssToHomepage bool, preloadedCss NullableString, preloadedJavascript NullableString, javascriptLinks []string, workflowRunRetentionPeriodMins float32, appOwnersPermissionsManagement bool, twoFactorAuthRequired bool, twoFactorAuthType NullableString, disableNewLoginIpNotificationEmail bool, ) *OrganizationPatch200ResponseData`
+`func NewOrganizationPatch200ResponseData(id string, requestAccessEnabled bool, aiSupportBotDisabled bool, retoolFormsDisabled bool, releaseManagementEnabled bool, cacheQueriesPerUser NullableBool, applyPreloadedCssToHomepage bool, preloadedCss NullableString, preloadedJavascript NullableString, javascriptLinks []string, workflowRunRetentionPeriodMins float32, appOwnersPermissionsManagement bool, twoFactorAuthRequired bool, twoFactorAuthType NullableString, disableNewLoginIpNotificationEmail bool, hideEnvironmentToggle bool, ) *OrganizationPatch200ResponseData`
 
 NewOrganizationPatch200ResponseData instantiates a new OrganizationPatch200ResponseData object
 This constructor will assign default values to properties that have it defined,
@@ -377,6 +378,26 @@ and a boolean to check if the value has been set.
 `func (o *OrganizationPatch200ResponseData) SetDisableNewLoginIpNotificationEmail(v bool)`
 
 SetDisableNewLoginIpNotificationEmail sets DisableNewLoginIpNotificationEmail field to given value.
+
+
+### GetHideEnvironmentToggle
+
+`func (o *OrganizationPatch200ResponseData) GetHideEnvironmentToggle() bool`
+
+GetHideEnvironmentToggle returns the HideEnvironmentToggle field if non-nil, zero value otherwise.
+
+### GetHideEnvironmentToggleOk
+
+`func (o *OrganizationPatch200ResponseData) GetHideEnvironmentToggleOk() (*bool, bool)`
+
+GetHideEnvironmentToggleOk returns a tuple with the HideEnvironmentToggle field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHideEnvironmentToggle
+
+`func (o *OrganizationPatch200ResponseData) SetHideEnvironmentToggle(v bool)`
+
+SetHideEnvironmentToggle sets HideEnvironmentToggle field to given value.
 
 
 

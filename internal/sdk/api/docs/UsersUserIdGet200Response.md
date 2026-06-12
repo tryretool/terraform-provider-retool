@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Success** | **bool** | API request succeeded | 
+**Success** | **bool** | Whether the API request was successful. | 
 **Data** | [**UsersUserIdGet200ResponseData**](UsersUserIdGet200ResponseData.md) |  | 
 
 ## Methods

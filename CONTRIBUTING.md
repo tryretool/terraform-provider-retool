@@ -51,8 +51,29 @@ To run acceptance test using pre-recorded responses, do
 FILTER=TestAccFoo make test-acc-replay
 ```
 
+### Re-recording the whole suite (rate limits)
+Recording the entire suite in a single `make test-acc-record` run almost always fails partway through with `429 Too Many Requests`. The Retool instance enforces a *rolling* API rate limit, and the suite sustains enough requests that the budget is exhausted after the first few packages — even though `test-acc-record` already runs serially (`-p 1 -parallel 1`).
+
+To re-record everything reliably, record one test at a time with a pause between each so the rate limit can recover:
+```
+# 1. Clean up leftover resources from prior/aborted runs.
+make test-acc-sweep
+# 2. Start from a clean slate (cassettes store a redacted host, so partial/old
+#    cassettes can't be re-recorded incrementally - you must remove them).
+rm -rf test/data/recordings
+# 3. Record each acceptance test in its own process, pausing in between.
+make test-acc-record-each
+```
+`make test-acc-record-each` (a wrapper around `scripts/record_acc_tests.sh`) is **resumable**: it skips tests whose cassette already exists and removes the partial cassette of any test that fails, so if some still hit a `429` you can simply run it again to finish the rest. Tunable options:
+- `FILTER` — only record tests matching a name regex, e.g. `make test-acc-record-each FILTER=TestAccPermissions`.
+- `SLEEP_SECONDS` — seconds to wait between tests (default 30); raise it if your instance's limit is tight, e.g. `SLEEP_SECONDS=60 make test-acc-record-each`.
+
+Two gotchas to keep in mind:
+- **Users can't be deleted in Retool** (the provider's delete only deactivates them), so every successful re-record of the user tests consumes the test emails. Bump the `vN` suffix in `internal/provider/user/resource_test.go` before re-recording the user tests.
+- The single-process `make test-acc-record` is still fine for recording an individual test (`FILTER=TestAccFoo make test-acc-record`); the per-test script is for re-recording many/all tests at once.
+
 See `internal/acctest` for implementation details. The implementation was mostly copied from Auth0's Terraform provider: https://github.com/auth0/terraform-provider-auth0/tree/main/internal/acctest .
-Note that you may run into rate-limiting when recording new tests. See https://registry.terraform.io/providers/tryretool/retool/latest/docs#rate-limiting for more details on how to increase the limits or disable rate limiting completely on your Retool instance.
+The most durable fix for the rate limiting is to increase or disable the API rate limit on your test instance. See https://registry.terraform.io/providers/tryretool/retool/latest/docs#rate-limiting for details.
 
 # Documentation
 Run `go generate` in the root of this repository to generate provider docs. See https://developer.hashicorp.com/terraform/tutorials/providers-plugin-framework/providers-plugin-framework-documentation-generation for more details on how to add new examples.

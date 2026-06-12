@@ -1,22 +1,22 @@
 # \ResourcesAPI
 
-All URIs are relative to *http://.*
+All URIs are relative to *https://stable-4-0.retool.dev/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ResourcesGet**](ResourcesAPI.md#ResourcesGet) | **Get** /resources | Get resources
+[**ResourcesGet**](ResourcesAPI.md#ResourcesGet) | **Get** /resources | List resources
 [**ResourcesPost**](ResourcesAPI.md#ResourcesPost) | **Post** /resources | Create a resource
-[**ResourcesResourceIdDelete**](ResourcesAPI.md#ResourcesResourceIdDelete) | **Delete** /resources/{resourceId} | Delete resource
-[**ResourcesResourceIdGet**](ResourcesAPI.md#ResourcesResourceIdGet) | **Get** /resources/{resourceId} | Get resource by id
+[**ResourcesResourceIdDelete**](ResourcesAPI.md#ResourcesResourceIdDelete) | **Delete** /resources/{resourceId} | Delete a resource
+[**ResourcesResourceIdGet**](ResourcesAPI.md#ResourcesResourceIdGet) | **Get** /resources/{resourceId} | Get a resource
 [**ResourcesResourceIdPatch**](ResourcesAPI.md#ResourcesResourceIdPatch) | **Patch** /resources/{resourceId} | Update a resource
 
 
 
 ## ResourcesGet
 
-> ResourcesGet200Response ResourcesGet(ctx).ResourceType(resourceType).Limit(limit).NextToken(nextToken).Execute()
+> ResourcesGet200Response ResourcesGet(ctx).ResourceType(resourceType).NameContains(nameContains).Limit(limit).NextToken(nextToken).Execute()
 
-Get resources
+List resources
 
 
 
@@ -33,13 +33,14 @@ import (
 )
 
 func main() {
-	resourceType := "resourceType_example" // string | The type of resource. (optional)
-	limit := int32(50) // int32 | Maximum number of items to return per page. If not provided, all items are returned. When provided, enables pagination and the response will include next_token for retrieving subsequent pages. Valid range: 1-100. (optional)
-	nextToken := "eyJsYXN0SWQiOjEyM30..." // string | Cursor token for retrieving the next page of results. Obtained from the next_token field of a previous paginated response. Only valid when the limit parameter is also provided. (optional)
+	resourceType := "resourceType_example" // string |  (optional)
+	nameContains := "sales" // string |  (optional)
+	limit := int32(50) // int32 |  (optional)
+	nextToken := "eyJsYXN0SWQiOjEyM30..." // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ResourcesAPI.ResourcesGet(context.Background()).ResourceType(resourceType).Limit(limit).NextToken(nextToken).Execute()
+	resp, r, err := apiClient.ResourcesAPI.ResourcesGet(context.Background()).ResourceType(resourceType).NameContains(nameContains).Limit(limit).NextToken(nextToken).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ResourcesAPI.ResourcesGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -60,9 +61,10 @@ Other parameters are passed through a pointer to a apiResourcesGetRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resourceType** | **string** | The type of resource. | 
- **limit** | **int32** | Maximum number of items to return per page. If not provided, all items are returned. When provided, enables pagination and the response will include next_token for retrieving subsequent pages. Valid range: 1-100. | 
- **nextToken** | **string** | Cursor token for retrieving the next page of results. Obtained from the next_token field of a previous paginated response. Only valid when the limit parameter is also provided. | 
+ **resourceType** | **string** |  | 
+ **nameContains** | **string** |  | 
+ **limit** | **int32** |  | 
+ **nextToken** | **string** |  | 
 
 ### Return type
 
@@ -103,7 +105,7 @@ import (
 )
 
 func main() {
-	resourcesPostRequest := *openapiclient.NewResourcesPostRequest("Type_example", "DisplayName_example", *openapiclient.NewResourcesPostRequestOptions(*openapiclient.NewSnowflakeOptionsDatabaseOptions("Name_example"), "AccountIdentifier_example", *openapiclient.NewGRPCOptionsAuthenticationOptions("AuthenticationType_example", "Auth0Domain_example", "Auth0ClientId_example", "Auth0ClientSecret_example", "Auth0CustomAudience_example", "Oauth2AccessTokenUrl_example", "Oauth2AuthUrl_example", "Oauth2ClientId_example", "Oauth2ClientSecret_example"), "BaseUrl_example")) // ResourcesPostRequest |  (optional)
+	resourcesPostRequest := *openapiclient.NewResourcesPostRequest("Type_example", "DisplayName_example", map[string]interface{}{"key": interface{}(123)}) // ResourcesPostRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -152,7 +154,7 @@ Name | Type | Description  | Notes
 
 > ResourcesResourceIdDelete(ctx, resourceId).DeleteUnderlyingDB(deleteUnderlyingDB).Execute()
 
-Delete resource
+Delete a resource
 
 
 
@@ -169,8 +171,8 @@ import (
 )
 
 func main() {
-	resourceId := "resourceId_example" // string | The uuid or name for the resource.
-	deleteUnderlyingDB := true // bool | Whether to delete the underlying retool database when deleting the resource. (optional)
+	resourceId := "resourceId_example" // string | 
+	deleteUnderlyingDB := true // bool |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -188,7 +190,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourceId** | **string** | The uuid or name for the resource. | 
+**resourceId** | **string** |  | 
 
 ### Other Parameters
 
@@ -198,7 +200,7 @@ Other parameters are passed through a pointer to a apiResourcesResourceIdDeleteR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **deleteUnderlyingDB** | **bool** | Whether to delete the underlying retool database when deleting the resource. | 
+ **deleteUnderlyingDB** | **bool** |  | 
 
 ### Return type
 
@@ -222,7 +224,7 @@ Name | Type | Description  | Notes
 
 > ResourcesResourceIdGet200Response ResourcesResourceIdGet(ctx, resourceId).Execute()
 
-Get resource by id
+Get a resource
 
 
 
@@ -239,7 +241,7 @@ import (
 )
 
 func main() {
-	resourceId := "resourceId_example" // string | The uuid or name for the resource.
+	resourceId := "resourceId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -259,7 +261,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourceId** | **string** | The uuid or name for the resource. | 
+**resourceId** | **string** |  | 
 
 ### Other Parameters
 
@@ -309,7 +311,7 @@ import (
 )
 
 func main() {
-	resourceId := "resourceId_example" // string | The uuid or name for the resource.
+	resourceId := "resourceId_example" // string | 
 	resourcesResourceIdPatchRequest := *openapiclient.NewResourcesResourceIdPatchRequest([]openapiclient.ReplaceOperation{*openapiclient.NewReplaceOperation("Op_example", "Path_example")}) // ResourcesResourceIdPatchRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -330,7 +332,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourceId** | **string** | The uuid or name for the resource. | 
+**resourceId** | **string** |  | 
 
 ### Other Parameters
 

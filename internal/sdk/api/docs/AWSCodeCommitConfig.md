@@ -6,16 +6,18 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Url** | **string** | The domain used to access your self-hosted AWS CodeCommit instance. | 
 **Region** | **string** | The region of the CodeCommit repository. | 
-**AccessKeyId** | **string** | The Access key ID from your AWSCodeCommitFullAccess policy. | 
-**SecretAccessKey** | **string** | The Secret Access Key from your AWSCodeCommitFullAccess policy | 
-**HttpsUsername** | **string** | The HTTPS username from your security credentials. | 
-**HttpsPassword** | **string** | The HTTPS password from your security credentials. | 
+**AccessKeyId** | Pointer to **string** | The Access key ID from your AWSCodeCommitFullAccess policy. Optional when &#x60;auth_with_default_credential_provider_chain&#x60; is true (gated behind the &#x60;sourceControlCodeCommitIamRole&#x60; feature flag). | [optional] 
+**SecretAccessKey** | Pointer to **string** | The Secret Access Key from your AWSCodeCommitFullAccess policy. Optional when &#x60;auth_with_default_credential_provider_chain&#x60; is true. | [optional] 
+**HttpsUsername** | Pointer to **string** | The HTTPS username from your security credentials. Optional when &#x60;auth_with_default_credential_provider_chain&#x60; is true (Retool will SigV4-sign the git URL). | [optional] 
+**HttpsPassword** | Pointer to **string** | The HTTPS password from your security credentials. Optional when &#x60;auth_with_default_credential_provider_chain&#x60; is true. | [optional] 
+**AuthWithDefaultCredentialProviderChain** | Pointer to **bool** | When true, the backend resolves AWS credentials from the default provider chain instead of the static keys. Requires the &#x60;sourceControlCodeCommitIamRole&#x60; feature flag to be enabled. | [optional] 
+**AssumeRole** | Pointer to **string** | Optional STS role ARN to assume on top of the resolved credentials when using &#x60;auth_with_default_credential_provider_chain&#x60;. | [optional] 
 
 ## Methods
 
 ### NewAWSCodeCommitConfig
 
-`func NewAWSCodeCommitConfig(url string, region string, accessKeyId string, secretAccessKey string, httpsUsername string, httpsPassword string, ) *AWSCodeCommitConfig`
+`func NewAWSCodeCommitConfig(url string, region string, ) *AWSCodeCommitConfig`
 
 NewAWSCodeCommitConfig instantiates a new AWSCodeCommitConfig object
 This constructor will assign default values to properties that have it defined,
@@ -89,6 +91,11 @@ and a boolean to check if the value has been set.
 
 SetAccessKeyId sets AccessKeyId field to given value.
 
+### HasAccessKeyId
+
+`func (o *AWSCodeCommitConfig) HasAccessKeyId() bool`
+
+HasAccessKeyId returns a boolean if a field has been set.
 
 ### GetSecretAccessKey
 
@@ -109,6 +116,11 @@ and a boolean to check if the value has been set.
 
 SetSecretAccessKey sets SecretAccessKey field to given value.
 
+### HasSecretAccessKey
+
+`func (o *AWSCodeCommitConfig) HasSecretAccessKey() bool`
+
+HasSecretAccessKey returns a boolean if a field has been set.
 
 ### GetHttpsUsername
 
@@ -129,6 +141,11 @@ and a boolean to check if the value has been set.
 
 SetHttpsUsername sets HttpsUsername field to given value.
 
+### HasHttpsUsername
+
+`func (o *AWSCodeCommitConfig) HasHttpsUsername() bool`
+
+HasHttpsUsername returns a boolean if a field has been set.
 
 ### GetHttpsPassword
 
@@ -149,6 +166,61 @@ and a boolean to check if the value has been set.
 
 SetHttpsPassword sets HttpsPassword field to given value.
 
+### HasHttpsPassword
+
+`func (o *AWSCodeCommitConfig) HasHttpsPassword() bool`
+
+HasHttpsPassword returns a boolean if a field has been set.
+
+### GetAuthWithDefaultCredentialProviderChain
+
+`func (o *AWSCodeCommitConfig) GetAuthWithDefaultCredentialProviderChain() bool`
+
+GetAuthWithDefaultCredentialProviderChain returns the AuthWithDefaultCredentialProviderChain field if non-nil, zero value otherwise.
+
+### GetAuthWithDefaultCredentialProviderChainOk
+
+`func (o *AWSCodeCommitConfig) GetAuthWithDefaultCredentialProviderChainOk() (*bool, bool)`
+
+GetAuthWithDefaultCredentialProviderChainOk returns a tuple with the AuthWithDefaultCredentialProviderChain field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthWithDefaultCredentialProviderChain
+
+`func (o *AWSCodeCommitConfig) SetAuthWithDefaultCredentialProviderChain(v bool)`
+
+SetAuthWithDefaultCredentialProviderChain sets AuthWithDefaultCredentialProviderChain field to given value.
+
+### HasAuthWithDefaultCredentialProviderChain
+
+`func (o *AWSCodeCommitConfig) HasAuthWithDefaultCredentialProviderChain() bool`
+
+HasAuthWithDefaultCredentialProviderChain returns a boolean if a field has been set.
+
+### GetAssumeRole
+
+`func (o *AWSCodeCommitConfig) GetAssumeRole() string`
+
+GetAssumeRole returns the AssumeRole field if non-nil, zero value otherwise.
+
+### GetAssumeRoleOk
+
+`func (o *AWSCodeCommitConfig) GetAssumeRoleOk() (*string, bool)`
+
+GetAssumeRoleOk returns a tuple with the AssumeRole field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAssumeRole
+
+`func (o *AWSCodeCommitConfig) SetAssumeRole(v string)`
+
+SetAssumeRole sets AssumeRole field to given value.
+
+### HasAssumeRole
+
+`func (o *AWSCodeCommitConfig) HasAssumeRole() bool`
+
+HasAssumeRole returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

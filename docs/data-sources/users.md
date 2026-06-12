@@ -50,6 +50,7 @@ Read-Only:
 - `last_name` (String) The last name of the user.
 - `legacy_id` (String) The legacy ID of the user.
 - `metadata` (String) JSON string containing custom metadata for the user.
+- `seat_type` (String) The seat type of the user. One of 'builder', 'internalUser', or 'externalUser'. Available on Retool instances using the seat-based user model.
 - `two_factor_auth_enabled` (Boolean) Whether two-factor authentication is enabled for this user.
 - `user_type` (String) The user type.
 

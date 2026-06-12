@@ -1,14 +1,14 @@
 # \ObservabilityAPI
 
-All URIs are relative to *http://.*
+All URIs are relative to *https://stable-4-0.retool.dev/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ObservabilityConfigConfigIdDelete**](ObservabilityAPI.md#ObservabilityConfigConfigIdDelete) | **Delete** /observability/config/{configId} | Delete an observability provider configuration
-[**ObservabilityConfigConfigIdPut**](ObservabilityAPI.md#ObservabilityConfigConfigIdPut) | **Put** /observability/config/{configId} | Update an observability provider configuration
-[**ObservabilityConfigGet**](ObservabilityAPI.md#ObservabilityConfigGet) | **Get** /observability/config | Get observability provider configurations
-[**ObservabilityConfigPost**](ObservabilityAPI.md#ObservabilityConfigPost) | **Post** /observability/config | Create a new observability provider configuration
-[**ObservabilityProviderProviderTestPost**](ObservabilityAPI.md#ObservabilityProviderProviderTestPost) | **Post** /observability/provider/{provider}/test | Send a test error event to the observability provider
+[**ObservabilityConfigConfigIdDelete**](ObservabilityAPI.md#ObservabilityConfigConfigIdDelete) | **Delete** /observability/config/{configId} | Delete an observability configuration
+[**ObservabilityConfigConfigIdPut**](ObservabilityAPI.md#ObservabilityConfigConfigIdPut) | **Put** /observability/config/{configId} | Update an observability configuration
+[**ObservabilityConfigGet**](ObservabilityAPI.md#ObservabilityConfigGet) | **Get** /observability/config | List observability configurations
+[**ObservabilityConfigPost**](ObservabilityAPI.md#ObservabilityConfigPost) | **Post** /observability/config | Create an observability configuration
+[**ObservabilityProviderProviderTestPost**](ObservabilityAPI.md#ObservabilityProviderProviderTestPost) | **Post** /observability/provider/{provider}/test | Send a test error event
 
 
 
@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 > ObservabilityConfigConfigIdDelete(ctx, configId).Execute()
 
-Delete an observability provider configuration
+Delete an observability configuration
 
 
 
@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-	configId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The id of the observability configuration to delete.
+	configId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -51,7 +51,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**configId** | **string** | The id of the observability configuration to delete. | 
+**configId** | **string** |  | 
 
 ### Other Parameters
 
@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 > ObservabilityConfigConfigIdPut200Response ObservabilityConfigConfigIdPut(ctx, configId).ObservabilityConfigConfigIdPutRequest(observabilityConfigConfigIdPutRequest).Execute()
 
-Update an observability provider configuration
+Update an observability configuration
 
 
 
@@ -101,7 +101,7 @@ import (
 )
 
 func main() {
-	configId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The id of the observability configuration to update.
+	configId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 	observabilityConfigConfigIdPutRequest := *openapiclient.NewObservabilityConfigConfigIdPutRequest() // ObservabilityConfigConfigIdPutRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -122,7 +122,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**configId** | **string** | The id of the observability configuration to update. | 
+**configId** | **string** |  | 
 
 ### Other Parameters
 
@@ -156,7 +156,7 @@ Name | Type | Description  | Notes
 
 > ObservabilityConfigGet200Response ObservabilityConfigGet(ctx).Execute()
 
-Get observability provider configurations
+List observability configurations
 
 
 
@@ -217,7 +217,7 @@ Other parameters are passed through a pointer to a apiObservabilityConfigGetRequ
 
 > ObservabilityConfigPost200Response ObservabilityConfigPost(ctx).ObservabilityConfigPostRequest(observabilityConfigPostRequest).Execute()
 
-Create a new observability provider configuration
+Create an observability configuration
 
 
 
@@ -283,7 +283,7 @@ Name | Type | Description  | Notes
 
 > ObservabilityProviderProviderTestPost200Response ObservabilityProviderProviderTestPost(ctx, provider).Execute()
 
-Send a test error event to the observability provider
+Send a test error event
 
 
 
@@ -300,7 +300,7 @@ import (
 )
 
 func main() {
-	provider := *openapiclient.NewObservabilityProviderProviderTestPostProviderParameter() // ObservabilityProviderProviderTestPostProviderParameter | The observability provider name, either \"Sentry\" or \"Datadog\"
+	provider := *openapiclient.NewObservabilityProviderProviderTestPostProviderParameter() // ObservabilityProviderProviderTestPostProviderParameter | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -320,7 +320,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**provider** | [**ObservabilityProviderProviderTestPostProviderParameter**](.md) | The observability provider name, either \&quot;Sentry\&quot; or \&quot;Datadog\&quot; | 
+**provider** | [**ObservabilityProviderProviderTestPostProviderParameter**](.md) |  | 
 
 ### Other Parameters
 

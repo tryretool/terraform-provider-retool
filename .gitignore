@@ -30,3 +30,6 @@ go.work.sum
 
 *.tfstate
 *.tfstate.backup
+
+# Local toolchain downloaded for SDK regeneration (not committed)
+.tooling/

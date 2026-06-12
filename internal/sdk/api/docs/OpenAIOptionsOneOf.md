@@ -1,0 +1,119 @@
+# OpenAIOptionsOneOf
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**KeySource** | **string** | &#39;byok&#39; (bring your own key) — authenticates using the api_key you supply at the base_url you specify. | 
+**BaseUrl** | **string** |  | [default to "https://api.openai.com/v1"]
+**ApiKey** | **string** |  | 
+**CustomHeaders** | Pointer to **[][]string** |  | [optional] 
+
+## Methods
+
+### NewOpenAIOptionsOneOf
+
+`func NewOpenAIOptionsOneOf(keySource string, baseUrl string, apiKey string, ) *OpenAIOptionsOneOf`
+
+NewOpenAIOptionsOneOf instantiates a new OpenAIOptionsOneOf object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewOpenAIOptionsOneOfWithDefaults
+
+`func NewOpenAIOptionsOneOfWithDefaults() *OpenAIOptionsOneOf`
+
+NewOpenAIOptionsOneOfWithDefaults instantiates a new OpenAIOptionsOneOf object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
+### GetKeySource
+
+`func (o *OpenAIOptionsOneOf) GetKeySource() string`
+
+GetKeySource returns the KeySource field if non-nil, zero value otherwise.
+
+### GetKeySourceOk
+
+`func (o *OpenAIOptionsOneOf) GetKeySourceOk() (*string, bool)`
+
+GetKeySourceOk returns a tuple with the KeySource field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKeySource
+
+`func (o *OpenAIOptionsOneOf) SetKeySource(v string)`
+
+SetKeySource sets KeySource field to given value.
+
+
+### GetBaseUrl
+
+`func (o *OpenAIOptionsOneOf) GetBaseUrl() string`
+
+GetBaseUrl returns the BaseUrl field if non-nil, zero value otherwise.
+
+### GetBaseUrlOk
+
+`func (o *OpenAIOptionsOneOf) GetBaseUrlOk() (*string, bool)`
+
+GetBaseUrlOk returns a tuple with the BaseUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBaseUrl
+
+`func (o *OpenAIOptionsOneOf) SetBaseUrl(v string)`
+
+SetBaseUrl sets BaseUrl field to given value.
+
+
+### GetApiKey
+
+`func (o *OpenAIOptionsOneOf) GetApiKey() string`
+
+GetApiKey returns the ApiKey field if non-nil, zero value otherwise.
+
+### GetApiKeyOk
+
+`func (o *OpenAIOptionsOneOf) GetApiKeyOk() (*string, bool)`
+
+GetApiKeyOk returns a tuple with the ApiKey field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApiKey
+
+`func (o *OpenAIOptionsOneOf) SetApiKey(v string)`
+
+SetApiKey sets ApiKey field to given value.
+
+
+### GetCustomHeaders
+
+`func (o *OpenAIOptionsOneOf) GetCustomHeaders() [][]string`
+
+GetCustomHeaders returns the CustomHeaders field if non-nil, zero value otherwise.
+
+### GetCustomHeadersOk
+
+`func (o *OpenAIOptionsOneOf) GetCustomHeadersOk() (*[][]string, bool)`
+
+GetCustomHeadersOk returns a tuple with the CustomHeaders field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomHeaders
+
+`func (o *OpenAIOptionsOneOf) SetCustomHeaders(v [][]string)`
+
+SetCustomHeaders sets CustomHeaders field to given value.
+
+### HasCustomHeaders
+
+`func (o *OpenAIOptionsOneOf) HasCustomHeaders() bool`
+
+HasCustomHeaders returns a boolean if a field has been set.
+
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

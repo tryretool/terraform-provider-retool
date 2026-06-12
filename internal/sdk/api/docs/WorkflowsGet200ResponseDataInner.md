@@ -10,17 +10,18 @@ Name | Type | Description | Notes
 **Crontab** | **NullableString** | The cron tab of the Workflow | 
 **Timezone** | **NullableString** | The timezone of the Workflow | 
 **IsEnabled** | **bool** | Whether the Workflow is enabled | 
-**FolderId** | **string** | The folder ID of the Workflow | 
+**FolderId** | Pointer to **string** | The folder ID of the Workflow | [optional] 
 **Protected** | **bool** | Whether the Workflow is protected | 
 **CreatedBy** | **NullableFloat32** | The user ID of the creator of the Workflow | 
 **CreatedAt** | **time.Time** |  | 
 **UpdatedAt** | **time.Time** |  | 
+**CodeExecutorMemoryLimitMbs** | **NullableInt32** | Per-workflow Code Executor memory limit in MB. null &#x3D; use org or env var default. | 
 
 ## Methods
 
 ### NewWorkflowsGet200ResponseDataInner
 
-`func NewWorkflowsGet200ResponseDataInner(id string, name string, description NullableString, crontab NullableString, timezone NullableString, isEnabled bool, folderId string, protected bool, createdBy NullableFloat32, createdAt time.Time, updatedAt time.Time, ) *WorkflowsGet200ResponseDataInner`
+`func NewWorkflowsGet200ResponseDataInner(id string, name string, description NullableString, crontab NullableString, timezone NullableString, isEnabled bool, protected bool, createdBy NullableFloat32, createdAt time.Time, updatedAt time.Time, codeExecutorMemoryLimitMbs NullableInt32, ) *WorkflowsGet200ResponseDataInner`
 
 NewWorkflowsGet200ResponseDataInner instantiates a new WorkflowsGet200ResponseDataInner object
 This constructor will assign default values to properties that have it defined,
@@ -204,6 +205,11 @@ and a boolean to check if the value has been set.
 
 SetFolderId sets FolderId field to given value.
 
+### HasFolderId
+
+`func (o *WorkflowsGet200ResponseDataInner) HasFolderId() bool`
+
+HasFolderId returns a boolean if a field has been set.
 
 ### GetProtected
 
@@ -295,6 +301,36 @@ and a boolean to check if the value has been set.
 SetUpdatedAt sets UpdatedAt field to given value.
 
 
+### GetCodeExecutorMemoryLimitMbs
+
+`func (o *WorkflowsGet200ResponseDataInner) GetCodeExecutorMemoryLimitMbs() int32`
+
+GetCodeExecutorMemoryLimitMbs returns the CodeExecutorMemoryLimitMbs field if non-nil, zero value otherwise.
+
+### GetCodeExecutorMemoryLimitMbsOk
+
+`func (o *WorkflowsGet200ResponseDataInner) GetCodeExecutorMemoryLimitMbsOk() (*int32, bool)`
+
+GetCodeExecutorMemoryLimitMbsOk returns a tuple with the CodeExecutorMemoryLimitMbs field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCodeExecutorMemoryLimitMbs
+
+`func (o *WorkflowsGet200ResponseDataInner) SetCodeExecutorMemoryLimitMbs(v int32)`
+
+SetCodeExecutorMemoryLimitMbs sets CodeExecutorMemoryLimitMbs field to given value.
+
+
+### SetCodeExecutorMemoryLimitMbsNil
+
+`func (o *WorkflowsGet200ResponseDataInner) SetCodeExecutorMemoryLimitMbsNil(b bool)`
+
+ SetCodeExecutorMemoryLimitMbsNil sets the value for CodeExecutorMemoryLimitMbs to be an explicit nil
+
+### UnsetCodeExecutorMemoryLimitMbs
+`func (o *WorkflowsGet200ResponseDataInner) UnsetCodeExecutorMemoryLimitMbs()`
+
+UnsetCodeExecutorMemoryLimitMbs ensures that no value is present for CodeExecutorMemoryLimitMbs, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

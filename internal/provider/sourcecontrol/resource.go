@@ -76,12 +76,14 @@ func (m gitlabConfigModel) attributeTypes() map[string]attr.Type {
 }
 
 type awsCodeCommitConfigModel struct {
-	URL             types.String `tfsdk:"url"`
-	Region          types.String `tfsdk:"region"`
-	AccessKeyID     types.String `tfsdk:"access_key_id"`
-	SecretAccessKey types.String `tfsdk:"secret_access_key"`
-	HTTPSUsername   types.String `tfsdk:"https_username"`
-	HTTPSPassword   types.String `tfsdk:"https_password"`
+	URL                               types.String `tfsdk:"url"`
+	Region                            types.String `tfsdk:"region"`
+	AccessKeyID                       types.String `tfsdk:"access_key_id"`
+	SecretAccessKey                   types.String `tfsdk:"secret_access_key"`
+	HTTPSUsername                     types.String `tfsdk:"https_username"`
+	HTTPSPassword                     types.String `tfsdk:"https_password"`
+	AssumeRole                        types.String `tfsdk:"assume_role"`
+	AuthWithDefaultCredentialProvider types.Bool   `tfsdk:"auth_with_default_credential_provider_chain"`
 }
 
 func (m awsCodeCommitConfigModel) attributeTypes() map[string]attr.Type {
@@ -92,6 +94,8 @@ func (m awsCodeCommitConfigModel) attributeTypes() map[string]attr.Type {
 		"secret_access_key": types.StringType,
 		"https_username":    types.StringType,
 		"https_password":    types.StringType,
+		"assume_role":       types.StringType,
+		"auth_with_default_credential_provider_chain": types.BoolType,
 	}
 }
 
@@ -263,23 +267,31 @@ func (r *sourceControlResource) Schema(_ context.Context, _ resource.SchemaReque
 						Description: "The region of the CodeCommit repository.",
 					},
 					"access_key_id": schema.StringAttribute{
-						Required:    true,
-						Description: "The Access key ID from your AWSCodeCommitFullAccess policy.",
+						Optional:    true,
+						Description: "The Access key ID from your AWSCodeCommitFullAccess policy. Not required when using assume_role or auth_with_default_credential_provider_chain.",
 						Sensitive:   true,
 					},
 					"secret_access_key": schema.StringAttribute{
-						Required:    true,
-						Description: "The Secret Access Key from your AWSCodeCommitFullAccess policy",
+						Optional:    true,
+						Description: "The Secret Access Key from your AWSCodeCommitFullAccess policy. Not required when using assume_role or auth_with_default_credential_provider_chain.",
 						Sensitive:   true,
 					},
 					"https_username": schema.StringAttribute{
-						Required:    true,
+						Optional:    true,
 						Description: "The HTTPS username from your security credentials.",
 					},
 					"https_password": schema.StringAttribute{
-						Required:    true,
+						Optional:    true,
 						Description: "The HTTPS password from your security credentials.",
 						Sensitive:   true,
+					},
+					"assume_role": schema.StringAttribute{
+						Optional:    true,
+						Description: "The ARN of an IAM role for Retool to assume when accessing CodeCommit.",
+					},
+					"auth_with_default_credential_provider_chain": schema.BoolAttribute{
+						Optional:    true,
+						Description: "Whether to authenticate using the default AWS credential provider chain (e.g. the instance's IAM role) instead of static credentials.",
 					},
 				},
 			},
@@ -451,7 +463,15 @@ func updateSourceControlConfig(ctx context.Context, client *api.APIClient, model
 			return
 		}
 
-		awsConfigObj := api.NewAWSCodeCommitConfig(awsCodeCommitConfig.URL.ValueString(), awsCodeCommitConfig.Region.ValueString(), awsCodeCommitConfig.AccessKeyID.ValueString(), awsCodeCommitConfig.SecretAccessKey.ValueString(), awsCodeCommitConfig.HTTPSUsername.ValueString(), awsCodeCommitConfig.HTTPSPassword.ValueString())
+		awsConfigObj := api.NewAWSCodeCommitConfig(awsCodeCommitConfig.URL.ValueString(), awsCodeCommitConfig.Region.ValueString())
+		awsConfigObj.AccessKeyId = awsCodeCommitConfig.AccessKeyID.ValueStringPointer()
+		awsConfigObj.SecretAccessKey = awsCodeCommitConfig.SecretAccessKey.ValueStringPointer()
+		awsConfigObj.HttpsUsername = awsCodeCommitConfig.HTTPSUsername.ValueStringPointer()
+		awsConfigObj.HttpsPassword = awsCodeCommitConfig.HTTPSPassword.ValueStringPointer()
+		awsConfigObj.AssumeRole = awsCodeCommitConfig.AssumeRole.ValueStringPointer()
+		if !awsCodeCommitConfig.AuthWithDefaultCredentialProvider.IsNull() && !awsCodeCommitConfig.AuthWithDefaultCredentialProvider.IsUnknown() {
+			awsConfigObj.AuthWithDefaultCredentialProviderChain = awsCodeCommitConfig.AuthWithDefaultCredentialProvider.ValueBoolPointer()
+		}
 		awsCodeCommit := api.NewAWSCodeCommit(*awsConfigObj, "AWS CodeCommit", model.Org.ValueString(), model.Repo.ValueString(), model.DefaultBranch.ValueString())
 		awsCodeCommit.RepoVersion = model.RepoVersion.ValueStringPointer()
 		config = api.SourceControlConfigPutRequestConfig{
@@ -464,7 +484,7 @@ func updateSourceControlConfig(ctx context.Context, client *api.APIClient, model
 		if globalDiags.HasError() {
 			return
 		}
-		bitbucketConfigInner := api.NewBitbucketConfigAnyOf(bitbucketConfig.Username.ValueString(), bitbucketConfig.AppPassword.ValueString())
+		bitbucketConfigInner := api.NewBitbucketConfigAnyOf("AppPassword", bitbucketConfig.Username.ValueString(), bitbucketConfig.AppPassword.ValueString())
 		bitbucketConfigInner.Url = bitbucketConfig.URL.ValueStringPointer()
 		bitbucketConfigInner.EnterpriseApiUrl = bitbucketConfig.EnterpriseAPIURL.ValueStringPointer()
 		bitbucketConfigWrapped := api.BitbucketConfig{
@@ -617,8 +637,16 @@ func (r *sourceControlResource) Read(ctx context.Context, _ resource.ReadRequest
 			Region:          types.StringValue(response.Data.AWSCodeCommit.Config.Region),
 			AccessKeyID:     types.StringNull(), // API sends placeholder value that we don't need.
 			SecretAccessKey: types.StringNull(), // API sends placeholder value that we don't need,.
-			HTTPSUsername:   types.StringValue(response.Data.AWSCodeCommit.Config.HttpsUsername),
+			HTTPSUsername:   types.StringPointerValue(response.Data.AWSCodeCommit.Config.HttpsUsername),
 			HTTPSPassword:   types.StringNull(), // API sends placeholder value that we don't need.
+			AssumeRole:      types.StringPointerValue(response.Data.AWSCodeCommit.Config.AssumeRole),
+		}
+		// Reflect the credential-provider-chain flag only when enabled to avoid
+		// a perpetual diff for configs that leave it unset.
+		if chain := response.Data.AWSCodeCommit.Config.AuthWithDefaultCredentialProviderChain; chain != nil && *chain {
+			awsCodeCommitConfigModel.AuthWithDefaultCredentialProvider = types.BoolValue(true)
+		} else {
+			awsCodeCommitConfigModel.AuthWithDefaultCredentialProvider = types.BoolNull()
 		}
 		awsCodeCommitConfigModelObj, diags := types.ObjectValueFrom(ctx, awsCodeCommitConfigModel.attributeTypes(), awsCodeCommitConfigModel)
 		resp.Diagnostics.Append(diags...)

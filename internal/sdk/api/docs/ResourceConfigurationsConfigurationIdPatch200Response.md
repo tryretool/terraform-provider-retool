@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Success** | **bool** | API request succeeded | 
+**Success** | **bool** | Whether the API request was successful. | 
 **Data** | [**ResourceConfigurationsConfigurationIdPatch200ResponseData**](ResourceConfigurationsConfigurationIdPatch200ResponseData.md) |  | 
 
 ## Methods

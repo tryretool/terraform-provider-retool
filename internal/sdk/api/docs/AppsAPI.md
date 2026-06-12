@@ -1,13 +1,14 @@
 # \AppsAPI
 
-All URIs are relative to *http://.*
+All URIs are relative to *https://stable-4-0.retool.dev/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AppsAppIdDelete**](AppsAPI.md#AppsAppIdDelete) | **Delete** /apps/{appId} | Delete app
-[**AppsAppIdGet**](AppsAPI.md#AppsAppIdGet) | **Get** /apps/{appId} | Get app
-[**AppsCloneAppPost**](AppsAPI.md#AppsCloneAppPost) | **Post** /apps/cloneApp | Clone app
+[**AppsAppIdDelete**](AppsAPI.md#AppsAppIdDelete) | **Delete** /apps/{appId} | Delete an app
+[**AppsAppIdGet**](AppsAPI.md#AppsAppIdGet) | **Get** /apps/{appId} | Get an app
+[**AppsCloneAppPost**](AppsAPI.md#AppsCloneAppPost) | **Post** /apps/cloneApp | Clone an app
 [**AppsGet**](AppsAPI.md#AppsGet) | **Get** /apps | List apps
+[**AppsToolscriptValidatePost**](AppsAPI.md#AppsToolscriptValidatePost) | **Post** /apps/toolscript/validate | Validate Toolscript
 
 
 
@@ -15,7 +16,7 @@ Method | HTTP request | Description
 
 > AppsAppIdDelete(ctx, appId).Execute()
 
-Delete app
+Delete an app
 
 
 
@@ -32,7 +33,7 @@ import (
 )
 
 func main() {
-	appId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The app ID.
+	appId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -50,7 +51,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appId** | **string** | The app ID. | 
+**appId** | **string** |  | 
 
 ### Other Parameters
 
@@ -83,7 +84,7 @@ Name | Type | Description  | Notes
 
 > AppsAppIdGet200Response AppsAppIdGet(ctx, appId).Execute()
 
-Get app
+Get an app
 
 
 
@@ -100,7 +101,7 @@ import (
 )
 
 func main() {
-	appId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The app ID.
+	appId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -120,7 +121,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appId** | **string** | The app ID. | 
+**appId** | **string** |  | 
 
 ### Other Parameters
 
@@ -153,7 +154,7 @@ Name | Type | Description  | Notes
 
 > AppsAppIdGet200Response AppsCloneAppPost(ctx).AppsCloneAppPostRequest(appsCloneAppPostRequest).Execute()
 
-Clone app
+Clone an app
 
 
 
@@ -217,7 +218,7 @@ Name | Type | Description  | Notes
 
 ## AppsGet
 
-> AppsGet200Response AppsGet(ctx).Execute()
+> AppsGet200Response AppsGet(ctx).UsingResource(usingResource).NameContains(nameContains).Limit(limit).NextToken(nextToken).Execute()
 
 List apps
 
@@ -236,10 +237,14 @@ import (
 )
 
 func main() {
+	usingResource := *openapiclient.NewAppsGetUsingResourceParameter() // AppsGetUsingResourceParameter |  (optional)
+	nameContains := "dashboard" // string |  (optional)
+	limit := int32(50) // int32 |  (optional)
+	nextToken := "eyJsYXN0SWQiOjEyM30..." // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AppsAPI.AppsGet(context.Background()).Execute()
+	resp, r, err := apiClient.AppsAPI.AppsGet(context.Background()).UsingResource(usingResource).NameContains(nameContains).Limit(limit).NextToken(nextToken).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AppsAPI.AppsGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -251,12 +256,19 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiAppsGetRequest struct via the builder pattern
 
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **usingResource** | [**AppsGetUsingResourceParameter**](AppsGetUsingResourceParameter.md) |  | 
+ **nameContains** | **string** |  | 
+ **limit** | **int32** |  | 
+ **nextToken** | **string** |  | 
 
 ### Return type
 
@@ -269,6 +281,72 @@ Other parameters are passed through a pointer to a apiAppsGetRequest struct via 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppsToolscriptValidatePost
+
+> AppsToolscriptValidatePost200Response AppsToolscriptValidatePost(ctx).AppsToolscriptValidatePostRequest(appsToolscriptValidatePostRequest).Execute()
+
+Validate Toolscript
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	appsToolscriptValidatePostRequest := *openapiclient.NewAppsToolscriptValidatePostRequest([]openapiclient.AppsToolscriptValidatePostRequestToolscriptInner{*openapiclient.NewAppsToolscriptValidatePostRequestToolscriptInner("Path_example", "Contents_example")}) // AppsToolscriptValidatePostRequest |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AppsAPI.AppsToolscriptValidatePost(context.Background()).AppsToolscriptValidatePostRequest(appsToolscriptValidatePostRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AppsAPI.AppsToolscriptValidatePost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AppsToolscriptValidatePost`: AppsToolscriptValidatePost200Response
+	fmt.Fprintf(os.Stdout, "Response from `AppsAPI.AppsToolscriptValidatePost`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppsToolscriptValidatePostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **appsToolscriptValidatePostRequest** | [**AppsToolscriptValidatePostRequest**](AppsToolscriptValidatePostRequest.md) |  | 
+
+### Return type
+
+[**AppsToolscriptValidatePost200Response**](AppsToolscriptValidatePost200Response.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

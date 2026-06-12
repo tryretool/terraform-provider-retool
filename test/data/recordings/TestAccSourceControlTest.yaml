@@ -36,7 +36,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 201 Created
         code: 201
-        duration: 89.081709ms
+        duration: 93.246875ms
     - id: 1
       request:
         proto: HTTP/1.1
@@ -69,7 +69,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 45.44625ms
+        duration: 46.649333ms
     - id: 2
       request:
         proto: HTTP/1.1
@@ -102,7 +102,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 31.074792ms
+        duration: 44.887958ms
     - id: 3
       request:
         proto: HTTP/1.1
@@ -138,7 +138,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 37.122667ms
+        duration: 50.237792ms
     - id: 4
       request:
         proto: HTTP/1.1
@@ -171,7 +171,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 38.767542ms
+        duration: 38.533584ms
     - id: 5
       request:
         proto: HTTP/1.1
@@ -204,7 +204,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 43.242ms
+        duration: 38.716666ms
     - id: 6
       request:
         proto: HTTP/1.1
@@ -240,7 +240,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 41.623ms
+        duration: 58.67525ms
     - id: 7
       request:
         proto: HTTP/1.1
@@ -273,7 +273,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 30.6925ms
+        duration: 39.93675ms
     - id: 8
       request:
         proto: HTTP/1.1
@@ -306,7 +306,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 30.642625ms
+        duration: 45.327083ms
     - id: 9
       request:
         proto: HTTP/1.1
@@ -342,7 +342,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 43.874709ms
+        duration: 49.711334ms
     - id: 10
       request:
         proto: HTTP/1.1
@@ -375,7 +375,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 42.312792ms
+        duration: 43.390417ms
     - id: 11
       request:
         proto: HTTP/1.1
@@ -408,20 +408,20 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 37.5965ms
+        duration: 37.109875ms
     - id: 12
       request:
         proto: HTTP/1.1
         proto_major: 1
         proto_minor: 1
-        content_length: 270
+        content_length: 291
         transfer_encoding: []
         trailer: {}
         host: recorded.retool.dev
         remote_addr: ""
         request_uri: ""
         body: |
-            {"config":{"config":{"app_password":"app_password","enterprise_api_url":"https://bitbucket.mycompany.com/api/v3","url":"https://bitbucket.org","username":"username"},"default_branch":"main","org":"my-org","provider":"Bitbucket","repo":"my-repo","repo_version":"1.0.0"}}
+            {"config":{"config":{"app_password":"app_password","enterprise_api_url":"https://bitbucket.mycompany.com/api/v3","type":"AppPassword","url":"https://bitbucket.org","username":"username"},"default_branch":"main","org":"my-org","provider":"Bitbucket","repo":"my-repo","repo_version":"1.0.0"}}
         form: {}
         headers:
             Content-Type:
@@ -436,15 +436,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 295
+        content_length: 316
         uncompressed: false
-        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"Bitbucket","config":{"username":"username","url":"https://bitbucket.org","enterprise_api_url":"https://bitbucket.mycompany.com/api/v3","app_password":"---encrypted-on-server---"}}}'
+        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"Bitbucket","config":{"app_password":"---encrypted-on-server---","username":"username","type":"AppPassword","url":"https://bitbucket.org","enterprise_api_url":"https://bitbucket.mycompany.com/api/v3"}}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 69.94125ms
+        duration: 47.679125ms
     - id: 13
       request:
         proto: HTTP/1.1
@@ -469,15 +469,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 295
+        content_length: 316
         uncompressed: false
-        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"Bitbucket","config":{"username":"username","url":"https://bitbucket.org","enterprise_api_url":"https://bitbucket.mycompany.com/api/v3","app_password":"---encrypted-on-server---"}}}'
+        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"Bitbucket","config":{"app_password":"---encrypted-on-server---","username":"username","type":"AppPassword","url":"https://bitbucket.org","enterprise_api_url":"https://bitbucket.mycompany.com/api/v3"}}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 85.797208ms
+        duration: 36.758416ms
     - id: 14
       request:
         proto: HTTP/1.1
@@ -502,15 +502,15 @@ interactions:
         proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 295
+        content_length: 316
         uncompressed: false
-        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"Bitbucket","config":{"username":"username","url":"https://bitbucket.org","enterprise_api_url":"https://bitbucket.mycompany.com/api/v3","app_password":"---encrypted-on-server---"}}}'
+        body: '{"success":true,"data":{"org":"my-org","repo":"my-repo","default_branch":"main","repo_version":"1.0.0","provider":"Bitbucket","config":{"app_password":"---encrypted-on-server---","username":"username","type":"AppPassword","url":"https://bitbucket.org","enterprise_api_url":"https://bitbucket.mycompany.com/api/v3"}}}'
         headers:
             Content-Type:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 78.595167ms
+        duration: 35.265667ms
     - id: 15
       request:
         proto: HTTP/1.1
@@ -546,7 +546,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 89.045959ms
+        duration: 48.134583ms
     - id: 16
       request:
         proto: HTTP/1.1
@@ -579,7 +579,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 47.022541ms
+        duration: 39.805208ms
     - id: 17
       request:
         proto: HTTP/1.1
@@ -612,7 +612,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 52.35325ms
+        duration: 35.935791ms
     - id: 18
       request:
         proto: HTTP/1.1
@@ -648,7 +648,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 52.471834ms
+        duration: 49.171875ms
     - id: 19
       request:
         proto: HTTP/1.1
@@ -681,7 +681,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 49.701458ms
+        duration: 36.736708ms
     - id: 20
       request:
         proto: HTTP/1.1
@@ -714,7 +714,7 @@ interactions:
                 - application/json; charset=utf-8
         status: 200 OK
         code: 200
-        duration: 48.586292ms
+        duration: 37.025333ms
     - id: 21
       request:
         proto: HTTP/1.1
@@ -745,4 +745,4 @@ interactions:
         headers: {}
         status: 204 No Content
         code: 204
-        duration: 83.430583ms
+        duration: 53.08725ms

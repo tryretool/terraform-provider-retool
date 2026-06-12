@@ -36,6 +36,7 @@ resource "retool_user" "example" {
 
 - `active` (Boolean) Whether the user is active or not. Default is true.
 - `metadata` (String) JSON string containing custom metadata for the user.
+- `seat_type` (String) The seat type of the user. One of 'builder', 'internalUser', or 'externalUser'. Available on Retool instances using the seat-based user model.
 - `user_type` (String) The user type. Accepted values vary by Retool instance configuration.
 
 ### Read-Only

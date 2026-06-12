@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | The uuid for the resource configuration. | 
-**Resource** | [**ResourceConfigurationsGet200ResponseDataInnerResource**](ResourceConfigurationsGet200ResponseDataInnerResource.md) |  | 
+**Resource** | [**ResourcesGet200ResponseDataInner**](ResourcesGet200ResponseDataInner.md) |  | 
 **Environment** | [**ResourceConfigurationsGet200ResponseDataInnerEnvironment**](ResourceConfigurationsGet200ResponseDataInnerEnvironment.md) |  | 
-**Options** | [**ResourcesPostRequestOptions**](ResourcesPostRequestOptions.md) |  | 
+**Options** | [**ResourceConfigurationsGet200ResponseDataInnerOptions**](ResourceConfigurationsGet200ResponseDataInnerOptions.md) |  | 
 **CreatedAt** | **string** |  | 
 **UpdatedAt** | **string** |  | 
 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewResourceConfigurationsGet200ResponseDataInner
 
-`func NewResourceConfigurationsGet200ResponseDataInner(id string, resource ResourceConfigurationsGet200ResponseDataInnerResource, environment ResourceConfigurationsGet200ResponseDataInnerEnvironment, options ResourcesPostRequestOptions, createdAt string, updatedAt string, ) *ResourceConfigurationsGet200ResponseDataInner`
+`func NewResourceConfigurationsGet200ResponseDataInner(id string, resource ResourcesGet200ResponseDataInner, environment ResourceConfigurationsGet200ResponseDataInnerEnvironment, options ResourceConfigurationsGet200ResponseDataInnerOptions, createdAt string, updatedAt string, ) *ResourceConfigurationsGet200ResponseDataInner`
 
 NewResourceConfigurationsGet200ResponseDataInner instantiates a new ResourceConfigurationsGet200ResponseDataInner object
 This constructor will assign default values to properties that have it defined,
@@ -52,20 +52,20 @@ SetId sets Id field to given value.
 
 ### GetResource
 
-`func (o *ResourceConfigurationsGet200ResponseDataInner) GetResource() ResourceConfigurationsGet200ResponseDataInnerResource`
+`func (o *ResourceConfigurationsGet200ResponseDataInner) GetResource() ResourcesGet200ResponseDataInner`
 
 GetResource returns the Resource field if non-nil, zero value otherwise.
 
 ### GetResourceOk
 
-`func (o *ResourceConfigurationsGet200ResponseDataInner) GetResourceOk() (*ResourceConfigurationsGet200ResponseDataInnerResource, bool)`
+`func (o *ResourceConfigurationsGet200ResponseDataInner) GetResourceOk() (*ResourcesGet200ResponseDataInner, bool)`
 
 GetResourceOk returns a tuple with the Resource field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetResource
 
-`func (o *ResourceConfigurationsGet200ResponseDataInner) SetResource(v ResourceConfigurationsGet200ResponseDataInnerResource)`
+`func (o *ResourceConfigurationsGet200ResponseDataInner) SetResource(v ResourcesGet200ResponseDataInner)`
 
 SetResource sets Resource field to given value.
 
@@ -92,20 +92,20 @@ SetEnvironment sets Environment field to given value.
 
 ### GetOptions
 
-`func (o *ResourceConfigurationsGet200ResponseDataInner) GetOptions() ResourcesPostRequestOptions`
+`func (o *ResourceConfigurationsGet200ResponseDataInner) GetOptions() ResourceConfigurationsGet200ResponseDataInnerOptions`
 
 GetOptions returns the Options field if non-nil, zero value otherwise.
 
 ### GetOptionsOk
 
-`func (o *ResourceConfigurationsGet200ResponseDataInner) GetOptionsOk() (*ResourcesPostRequestOptions, bool)`
+`func (o *ResourceConfigurationsGet200ResponseDataInner) GetOptionsOk() (*ResourceConfigurationsGet200ResponseDataInnerOptions, bool)`
 
 GetOptionsOk returns a tuple with the Options field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOptions
 
-`func (o *ResourceConfigurationsGet200ResponseDataInner) SetOptions(v ResourcesPostRequestOptions)`
+`func (o *ResourceConfigurationsGet200ResponseDataInner) SetOptions(v ResourceConfigurationsGet200ResponseDataInnerOptions)`
 
 SetOptions sets Options field to given value.
 

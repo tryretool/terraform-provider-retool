@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Success** | **bool** | API request succeeded | 
-**Data** | [**[]UsersUserIdGet200ResponseDataAnyOf**](UsersUserIdGet200ResponseDataAnyOf.md) | An array of requested items | 
-**TotalCount** | **float32** | Total number of items in the response | 
-**NextToken** | **NullableString** | A token to retrieve the next page of items in the collection | 
-**HasMore** | **bool** | Whether there are more items in the collection | 
+**Success** | **bool** | Whether the API request was successful. | 
+**Data** | [**[]UsersGet200ResponseDataInner**](UsersGet200ResponseDataInner.md) | An array of requested items. | 
+**TotalCount** | **float32** | Total number of items in the response. | 
+**NextToken** | **NullableString** | A token to retrieve the next page of items in the collection. | 
+**HasMore** | **bool** | Whether there are more items in the collection. | 
 
 ## Methods
 
 ### NewUsersGet200Response
 
-`func NewUsersGet200Response(success bool, data []UsersUserIdGet200ResponseDataAnyOf, totalCount float32, nextToken NullableString, hasMore bool, ) *UsersGet200Response`
+`func NewUsersGet200Response(success bool, data []UsersGet200ResponseDataInner, totalCount float32, nextToken NullableString, hasMore bool, ) *UsersGet200Response`
 
 NewUsersGet200Response instantiates a new UsersGet200Response object
 This constructor will assign default values to properties that have it defined,
@@ -51,20 +51,20 @@ SetSuccess sets Success field to given value.
 
 ### GetData
 
-`func (o *UsersGet200Response) GetData() []UsersUserIdGet200ResponseDataAnyOf`
+`func (o *UsersGet200Response) GetData() []UsersGet200ResponseDataInner`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *UsersGet200Response) GetDataOk() (*[]UsersUserIdGet200ResponseDataAnyOf, bool)`
+`func (o *UsersGet200Response) GetDataOk() (*[]UsersGet200ResponseDataInner, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *UsersGet200Response) SetData(v []UsersUserIdGet200ResponseDataAnyOf)`
+`func (o *UsersGet200Response) SetData(v []UsersGet200ResponseDataInner)`
 
 SetData sets Data field to given value.
 

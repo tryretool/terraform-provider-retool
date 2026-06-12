@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | 
-**Email** | **string** | The email of the user | 
-**IsGroupAdmin** | **bool** | Whether the user is a group admin | [default to false]
+**Id** | **string** | The unique identifier for the user. | 
+**Email** | **string** | The email of the user. | 
+**IsGroupAdmin** | **bool** | Whether the user is a group admin. | [default to false]
 
 ## Methods
 

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Operations** | [**[]ReplaceOperation**](ReplaceOperation.md) | A list of operations to apply to the user attribute. See the [JSON PATCH specification](https://tools.ietf.org/html/rfc6902) for more details. | 
-**UpdateExisting** | Pointer to **bool** | Whether to update existing users with the deleted attribute | [optional] 
+**UpdateExisting** | Pointer to **bool** | Whether to update existing users with the updated attribute. | [optional] 
 
 ## Methods
 

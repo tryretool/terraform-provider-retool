@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ResourceId** | **string** | A UUID that uniquely identifies a resource. This is also referenced within the Retool app. For example, when you edit a resource, the ID can be found in the url. | 
 **EnvironmentId** | **string** | A UUID that uniquely identifies an environment. | 
-**Options** | [**ResourcesPostRequestOptions**](ResourcesPostRequestOptions.md) |  | 
+**Options** | **map[string]interface{}** |  | 
 
 ## Methods
 
 ### NewResourceConfigurationsPostRequest
 
-`func NewResourceConfigurationsPostRequest(resourceId string, environmentId string, options ResourcesPostRequestOptions, ) *ResourceConfigurationsPostRequest`
+`func NewResourceConfigurationsPostRequest(resourceId string, environmentId string, options map[string]interface{}, ) *ResourceConfigurationsPostRequest`
 
 NewResourceConfigurationsPostRequest instantiates a new ResourceConfigurationsPostRequest object
 This constructor will assign default values to properties that have it defined,
@@ -69,20 +69,20 @@ SetEnvironmentId sets EnvironmentId field to given value.
 
 ### GetOptions
 
-`func (o *ResourceConfigurationsPostRequest) GetOptions() ResourcesPostRequestOptions`
+`func (o *ResourceConfigurationsPostRequest) GetOptions() map[string]interface{}`
 
 GetOptions returns the Options field if non-nil, zero value otherwise.
 
 ### GetOptionsOk
 
-`func (o *ResourceConfigurationsPostRequest) GetOptionsOk() (*ResourcesPostRequestOptions, bool)`
+`func (o *ResourceConfigurationsPostRequest) GetOptionsOk() (*map[string]interface{}, bool)`
 
 GetOptionsOk returns a tuple with the Options field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOptions
 
-`func (o *ResourceConfigurationsPostRequest) SetOptions(v ResourcesPostRequestOptions)`
+`func (o *ResourceConfigurationsPostRequest) SetOptions(v map[string]interface{})`
 
 SetOptions sets Options field to given value.
 

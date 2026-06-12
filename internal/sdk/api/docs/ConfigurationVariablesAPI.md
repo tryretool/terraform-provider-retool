@@ -1,12 +1,12 @@
 # \ConfigurationVariablesAPI
 
-All URIs are relative to *http://.*
+All URIs are relative to *https://stable-4-0.retool.dev/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ConfigurationVariablesGet**](ConfigurationVariablesAPI.md#ConfigurationVariablesGet) | **Get** /configuration_variables | List configuration variables and their values
-[**ConfigurationVariablesIdDelete**](ConfigurationVariablesAPI.md#ConfigurationVariablesIdDelete) | **Delete** /configuration_variables/{id} | Delete configuration variable
-[**ConfigurationVariablesIdGet**](ConfigurationVariablesAPI.md#ConfigurationVariablesIdGet) | **Get** /configuration_variables/{id} | Retreive a single configuration variable and its values
+[**ConfigurationVariablesIdDelete**](ConfigurationVariablesAPI.md#ConfigurationVariablesIdDelete) | **Delete** /configuration_variables/{id} | Delete a configuration variable
+[**ConfigurationVariablesIdGet**](ConfigurationVariablesAPI.md#ConfigurationVariablesIdGet) | **Get** /configuration_variables/{id} | Get a configuration variable
 [**ConfigurationVariablesIdPut**](ConfigurationVariablesAPI.md#ConfigurationVariablesIdPut) | **Put** /configuration_variables/{id} | Update a configuration variable
 [**ConfigurationVariablesPost**](ConfigurationVariablesAPI.md#ConfigurationVariablesPost) | **Post** /configuration_variables | Create a configuration variable
 
@@ -77,7 +77,7 @@ Other parameters are passed through a pointer to a apiConfigurationVariablesGetR
 
 > ConfigurationVariablesIdDelete(ctx, id).Execute()
 
-Delete configuration variable
+Delete a configuration variable
 
 
 
@@ -94,7 +94,7 @@ import (
 )
 
 func main() {
-	id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The ID of the configuration variable
+	id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -112,7 +112,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ID of the configuration variable | 
+**id** | **string** |  | 
 
 ### Other Parameters
 
@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
 
 > ConfigurationVariablesPost200Response ConfigurationVariablesIdGet(ctx, id).Execute()
 
-Retreive a single configuration variable and its values
+Get a configuration variable
 
 
 
@@ -162,7 +162,7 @@ import (
 )
 
 func main() {
-	id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The ID of the configuration variable
+	id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -182,7 +182,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ID of the configuration variable | 
+**id** | **string** |  | 
 
 ### Other Parameters
 
@@ -232,7 +232,7 @@ import (
 )
 
 func main() {
-	id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The ID of the configuration variable
+	id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 	configurationVariablesPostRequest := *openapiclient.NewConfigurationVariablesPostRequest("Name_example", false, []openapiclient.ConfigurationVariablesGet200ResponseDataInnerValuesInner{*openapiclient.NewConfigurationVariablesGet200ResponseDataInnerValuesInner("EnvironmentId_example", "Value_example")}) // ConfigurationVariablesPostRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -253,7 +253,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ID of the configuration variable | 
+**id** | **string** |  | 
 
 ### Other Parameters
 

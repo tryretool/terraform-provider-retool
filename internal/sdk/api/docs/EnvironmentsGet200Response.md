@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Success** | **bool** | API request succeeded | 
-**Data** | [**[]ResourceConfigurationsGet200ResponseDataInnerEnvironment**](ResourceConfigurationsGet200ResponseDataInnerEnvironment.md) | An array of requested items | 
-**TotalCount** | **float32** | Total number of items in the response | 
-**NextToken** | **NullableString** | A token to retrieve the next page of items in the collection | 
-**HasMore** | **bool** | Whether there are more items in the collection | 
+**Success** | **bool** | Whether the API request was successful. | 
+**Data** | [**[]ResourceConfigurationsGet200ResponseDataInnerEnvironment**](ResourceConfigurationsGet200ResponseDataInnerEnvironment.md) | An array of requested items. | 
+**TotalCount** | **float32** | Total number of items in the response. | 
+**NextToken** | **NullableString** | A token to retrieve the next page of items in the collection. | 
+**HasMore** | **bool** | Whether there are more items in the collection. | 
 
 ## Methods
 

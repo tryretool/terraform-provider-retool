@@ -1,14 +1,14 @@
 # \EnvironmentsAPI
 
-All URIs are relative to *http://.*
+All URIs are relative to *https://stable-4-0.retool.dev/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**EnvironmentsEnvironmentIdDelete**](EnvironmentsAPI.md#EnvironmentsEnvironmentIdDelete) | **Delete** /environments/{environmentId} | Delete environment
+[**EnvironmentsEnvironmentIdDelete**](EnvironmentsAPI.md#EnvironmentsEnvironmentIdDelete) | **Delete** /environments/{environmentId} | Delete an environment
 [**EnvironmentsEnvironmentIdGet**](EnvironmentsAPI.md#EnvironmentsEnvironmentIdGet) | **Get** /environments/{environmentId} | Get an environment
 [**EnvironmentsEnvironmentIdPatch**](EnvironmentsAPI.md#EnvironmentsEnvironmentIdPatch) | **Patch** /environments/{environmentId} | Update an environment
-[**EnvironmentsGet**](EnvironmentsAPI.md#EnvironmentsGet) | **Get** /environments | Get environments
-[**EnvironmentsPost**](EnvironmentsAPI.md#EnvironmentsPost) | **Post** /environments | Create environment
+[**EnvironmentsGet**](EnvironmentsAPI.md#EnvironmentsGet) | **Get** /environments | List environments
+[**EnvironmentsPost**](EnvironmentsAPI.md#EnvironmentsPost) | **Post** /environments | Create an environment
 
 
 
@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 > EnvironmentsEnvironmentIdDelete(ctx, environmentId).Execute()
 
-Delete environment
+Delete an environment
 
 
 
@@ -226,7 +226,7 @@ Name | Type | Description  | Notes
 
 > EnvironmentsGet200Response EnvironmentsGet(ctx).Execute()
 
-Get environments
+List environments
 
 
 
@@ -287,7 +287,7 @@ Other parameters are passed through a pointer to a apiEnvironmentsGetRequest str
 
 > EnvironmentsPost200Response EnvironmentsPost(ctx).EnvironmentsPostRequest(environmentsPostRequest).Execute()
 
-Create environment
+Create an environment
 
 
 

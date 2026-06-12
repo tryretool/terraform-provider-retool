@@ -4,14 +4,17 @@ This guide documents the process for updating the Terraform provider's Go SDK to
 
 ## Overview
 
-The SDK is generated from an OpenAPI spec using [OpenAPI Generator](https://openapi-generator.tech/). However, the raw spec from Retool's API requires manual modifications to work correctly with the Go code generator. This guide walks through the entire update process.
+The SDK is generated from an OpenAPI spec using [OpenAPI Generator](https://openapi-generator.tech/). The raw spec from Retool's API needs a handful of transformations before it generates working Go code; those are applied by **`internal/sdk/transform_spec.py`**. This guide walks through the entire update process.
 
 ## Prerequisites
 
-- OpenAPI Generator CLI installed (see main README.md)
-- Go development environment
-- Access to a Retool instance for testing
-- The new OpenAPI spec file (e.g., from https://api.retool.com/api/v2/spec)
+- OpenAPI Generator CLI **7.6.0** (the version pinned in `generate.go`). Install per the main README, or download the jar from Maven Central and invoke it with `java -jar` (needs a JDK).
+- Go development environment (see `go.mod` for the required version).
+- Terraform CLI on `PATH` (for `go generate` docs + acceptance tests). The test framework's auto-install is currently broken (expired HashiCorp signing key), so install Terraform yourself and, for acceptance tests, set `TF_ACC_TERRAFORM_PATH=$(which terraform)`.
+- Access to a Retool instance for testing.
+- The new OpenAPI spec file (e.g., from https://api.retool.com/api/v2/spec).
+
+> The previous spec is tracked in git (`internal/sdk/openAPISpec.json`), so git history is your backup — no need to keep `.backup` files.
 
 ## Update Process
 
@@ -27,144 +30,60 @@ The SDK is generated from an OpenAPI spec using [OpenAPI Generator](https://open
 
 ### Step 2: Apply Required Transformations
 
-The raw spec needs several modifications before it can generate working Go code. Create a Python script or manually apply these changes:
+All required spec transformations are consolidated in **`internal/sdk/transform_spec.py`**. It reads a raw spec and writes the transformed `openAPISpec.json` that `go generate` consumes:
 
-#### 2.1 Fix Multiple Tags (REQUIRED)
-
-**Problem**: Endpoints with multiple tags cause the generator to create duplicate types, resulting in compilation errors.
-
-**Solution**: Ensure every endpoint has only ONE tag. Keep the tag that matches the top-level path element.
-
-Example:
-```json
-// BAD: Multiple tags
-"tags": ["Users", "User Attributes"]
-
-// GOOD: Single tag matching top-level path
-"tags": ["Users"]
-```
-
-For `/users/{userId}/user_attributes/{attributeName}`, keep `["Users"]`.
-
-**Automation**:
-```python
-def fix_tags(spec):
-    for path, path_item in spec['paths'].items():
-        path_parts = [p for p in path.split('/') if p and not p.startswith('{')]
-        top_level_tag = path_parts[0].capitalize() if path_parts else None
-        
-        for method in ['get', 'post', 'put', 'patch', 'delete']:
-            if method in path_item and 'tags' in path_item[method]:
-                tags = path_item[method]['tags']
-                if len(tags) > 1:
-                    if top_level_tag and top_level_tag in tags:
-                        path_item[method]['tags'] = [top_level_tag]
-                    else:
-                        path_item[method]['tags'] = [tags[0]]
-```
-
-#### 2.2 Fix Permissions Endpoints: oneOf → anyOf (REQUIRED)
-
-**Problem**: Permissions endpoints return objects with identical structures but different enum values. Using `oneOf` causes unmarshaling errors ("data matches more than one schema").
-
-**Solution**: Change `oneOf` to `anyOf` in these endpoints:
-- `/permissions/listObjects` (POST response)
-- `/permissions/grant` (POST response)  
-- `/permissions/revoke` (POST response)
-
-**Location in spec**: Look for response schemas where `oneOf` contains objects with identical fields but different `type` enum values (folder, app, resource, resource_configuration).
-
-**Example**:
-```json
-// BEFORE
-"items": {
-  "oneOf": [
-    { "type": "folder", "properties": {...} },
-    { "type": "app", "properties": {...} }
-  ]
-}
-
-// AFTER
-"items": {
-  "anyOf": [
-    { "type": "folder", "properties": {...} },
-    { "type": "app", "properties": {...} }
-  ]
-}
-```
-
-#### 2.3 Fix Bitbucket Configuration (KNOWN ISSUE)
-
-**Problem**: The spec incorrectly marks `type` as required for Bitbucket configs. The Retool API rejects requests with this field and returns 400 errors.
-
-**Solution**: Remove `"type"` from the `required` arrays in Bitbucket configuration schemas.
-
-**Locations to check**:
-- Look for schemas with `app_password` or `username` + Bitbucket-specific fields
-- Both `AppPassword` and `Token` variants
-- GET/POST/PUT endpoints for source control
-
-**Example**:
-```json
-// BEFORE
-"required": ["type", "username", "app_password"]
-
-// AFTER  
-"required": ["username", "app_password"]
-```
-
-#### 2.4 Fix Resource `folder_id` in Response Schemas (CRITICAL)
-
-**Problem**: The spec incorrectly marks `folder_id` as required in resource response schemas, but the API doesn't always return it (depends on Retool version). This causes SDK unmarshaling errors.
-
-**Solution**: Remove `"folder_id"` from the `required` arrays in all resource and resource_configuration response schemas. This makes the field optional while keeping it in the schema for forwards compatibility.
-
-**Affected endpoints**:
-- `/resources` - POST, GET (single), GET (list), PATCH responses
-- `/resource_configurations` - POST, GET (single), GET (list), PATCH responses
-- Note: Some responses have `data.folder_id`, others have `data.resource.folder_id`
-
-**Automation**: Use the `fix_folder_id_response.py` script:
-```python
-# Script handles all variations automatically with error handling
-python3 fix_folder_id_response.py
-```
-
-**Why this matters**:
-- **Older Retool versions**: Don't return `folder_id` → SDK must accept response
-- **Newer Retool versions**: Return `folder_id` → SDK parses it normally
-- Making it optional ensures compatibility across all versions
-
-#### 2.5 Search for Other Breaking Changes
-
-Compare the new spec with the current one:
 ```bash
-# Look for new required fields
-diff <(jq '.paths[].post.requestBody.content."application/json".schema.required' internal/sdk/openAPISpec.json) \
-     <(jq '.paths[].post.requestBody.content."application/json".schema.required' internal/sdk/2.13.spec.json)
-
-# Check for structural changes in common endpoints
-jq '.paths."/users/{userId}"' internal/sdk/2.13.spec.json
-jq '.paths."/resources"' internal/sdk/2.13.spec.json
+cd internal/sdk
+python3 transform_spec.py <raw_new_spec.json> openAPISpec.json
 ```
+
+The transforms it applies (each written semantically so it survives upstream reordering):
+
+1. **Single tag per operation.** Multiple tags make the generator emit duplicate types and break compilation. Keeps the tag matching the top-level path segment (e.g. `/users/{userId}/user_attributes` → `Users`). As of 4.0 the upstream spec already does this, so it's usually a no-op.
+2. **Permissions `oneOf` → `anyOf`.** `/permissions/listObjects`, `/permissions/grant`, `/permissions/revoke` responses return structurally identical variants; `oneOf` causes "data matches more than one schema" unmarshal errors, `anyOf` doesn't.
+3. **Free-form resource `options` request bodies.** The provider treats `options` as an opaque JSON blob, but the spec models it as a large `anyOf` union. The generated client ambiguously matches "thin" option objects (e.g. bearer-token auth) to the wrong member and drops fields like `base_url`. The transform rewrites the `options` *request* schema for `/resources` and `/resource_configurations` to `{type: object}` (`Options` becomes `map[string]interface{}`). Responses are left typed.
+4. **Relax response-only required fields** (`folder_id`, `seat_type`, `default_value`). These are marked required on responses but omitted by not-yet-migrated instances, causing unmarshal errors. Removed from every `required` array (none are required in request bodies, so this is safe).
+
+> **Bitbucket note:** older versions had to *remove* `type` from the Bitbucket config (the API rejected it). 4.0 reversed this — `type` is now **required** (`AppPassword`/`Token`), so there is no Bitbucket transform anymore and the provider sends `type` (see Step 5). If you see Bitbucket 400s, check which way the current API wants it.
+
+**Finding NEW transformations for a version bump:** diff the new raw spec against the current `openAPISpec.json` (both are the same generator output style if you transform first). The most reliable approach is a small Python script that walks both specs and reports: paths added/removed, methods added/removed, and `required`/`properties`/`enum` diffs on the endpoints the provider actually calls. Pay special attention to:
+- new `oneOf`/`anyOf` unions (may need fix #2-style handling),
+- new fields marked `required` on responses (may need fix #4),
+- constructor signature changes (required fields added/removed),
+- response shape changes (e.g. an `anyOf` wrapper becoming a flat object).
+
+If you discover a new transformation, add it to `transform_spec.py` (and note it in the summary it prints).
 
 ### Step 3: Generate the SDK
 
-1. Replace the current spec:
-   ```bash
-   cd internal/sdk
-   cp openAPISpec.json openAPISpec.json.backup  # Always keep a backup!
-   cp 2.13.spec.json openAPISpec.json  # Use your transformed spec
-   ```
+1. Produce the transformed spec (Step 2) into `internal/sdk/openAPISpec.json`.
 
 2. Generate the code:
    ```bash
+   cd internal/sdk
    go generate
    ```
-   
-   This runs: `openapi-generator-cli generate -i openAPISpec.json -g go -o ./api -c generatorConfig.yaml --minimal-update && ./fix_generated_code.sh`
+   This runs: `openapi-generator-cli generate -i openAPISpec.json -g go -o ./api -c generatorConfig.yaml --minimal-update && ./fix_generated_code.sh`. If `openapi-generator-cli` isn't on `PATH`, run the generator jar directly with `java -jar <generator-7.6.0.jar> generate ...` followed by `./fix_generated_code.sh`.
 
-3. **Check for syntax errors immediately**:
+3. **Remove stale generated files.** `--minimal-update` does not delete files, so renamed types (e.g. when a tag is pluralized like `Access Request` → `Access Requests`, or when a shared type splits in two) leave orphaned `.go`/`.md` files that cause "redeclared" compile errors. Delete anything in `api/` that is no longer in the generator manifest, preserving the two manually-maintained permission alias files:
+   ```bash
+   cd api
+   python3 - <<'PY'
+   import os
+   manifest = {os.path.normpath(l.strip()) for l in open('.openapi-generator/FILES') if l.strip()}
+   keep = {'model__permissions_grant_post_200_response_data_inner.go',
+           'model__permissions_revoke_post_200_response_data_inner.go'}
+   for root, _, files in os.walk('.'):
+       for fn in files:
+           rel = os.path.normpath(os.path.join(root, fn)).removeprefix('./')
+           if rel.startswith('.openapi-generator') or rel in ('.openapi-generator-ignore', '.gitignore'):
+               continue
+           if rel.endswith(('.go', '.md', '.yaml', '.sh', '.yml')) and rel not in manifest and fn not in keep:
+               os.remove(rel); print('removed', rel)
+   PY
+   ```
+
+4. **Check for syntax errors immediately**:
    ```bash
    go build ./api
    ```
@@ -177,7 +96,7 @@ The OpenAPI Generator has known bugs that require post-generation fixes. These a
 
 1. **Pointer-to-pointer marshaling**: `json.Marshal(&src.Field)` → `json.Marshal(src.Field)`
 2. **Value receiver for MarshalJSON**: Pointer receivers → value receivers
-3. **Invalid field names** (API 2.12.0+): Generator creates invalid Go identifiers using keywords
+3. **Invalid field names**: the generator emits `map[string]interface{} *map[string]interface{}` as a struct field in some `anyOf` option wrappers. `fix_generated_code.sh` now rewrites this (and its references) to `AdditionalProperties` across **every** affected file (it greps for the pattern rather than hard-coding filenames), so newly-split option models are handled automatically.
 
 #### 4.2 New Invalid Field Names (Manual Check Required)
 
@@ -234,21 +153,17 @@ make test-unit 2>&1 | grep "undefined\|not enough arguments\|cannot use"
 
 #### 5.2 Common Breaking Changes
 
-**anyOf/oneOf wrapper types**: Newer API versions may wrap response data in discriminated unions.
+**anyOf/oneOf wrapper types**: response data shapes can change between discriminated unions and flat objects.
 
-Example from v2.12.0:
 ```go
-// OLD (v2.9.0)
-user.Data.Id
-user.Data.Email
-
-// NEW (v2.12.0)
+// 2.12.0: GET /users/{userId} data was an anyOf wrapper
 var userData *api.UsersUserIdGet200ResponseDataAnyOf
 if user.Data.UsersUserIdGet200ResponseDataAnyOf != nil {
     userData = user.Data.UsersUserIdGet200ResponseDataAnyOf
 }
-userData.Id
-userData.Email
+
+// 4.0: it's a flat object again
+userData := &user.Data
 ```
 
 **Constructor changes**: Check if required parameters changed.
@@ -258,27 +173,24 @@ userData.Email
 grep -r "api\.New" internal/provider/
 ```
 
-Example from v2.12.0:
+The Bitbucket constructor has flipped between versions as the spec's `type`
+requirement changed:
 ```go
-// OLD (v2.9.0)
+// 2.12.0 (type removed from spec)
 api.NewBitbucketConfigAnyOf(username, password)
 
-// NEW (v2.12.0) - now requires type
+// 4.0 (type required again)
 api.NewBitbucketConfigAnyOf("AppPassword", username, password)
 ```
+`NewAWSCodeCommitConfig` similarly changed in 4.0 to `(url, region)` only, with
+the credential fields becoming optional setters.
 
-**New required fields**: Check API changes in resource creation.
-
-```bash
-# Search for error messages containing "required property"
-# Run acceptance tests and check failures
-```
-
-**Important**: If you see errors about `folder_id` being required:
-- This is likely a spec bug, not a real API requirement
-- Check if `folder_id` is in response schemas' required arrays
-- Use `fix_folder_id_response.py` to remove it
-- Add `folder_id: null` to request bodies in provider code for backwards compatibility
+**New required fields**: Check API changes in resource creation. Run acceptance
+tests and look for `no value given for required property X` (an unmarshal error
+on a response field the API omits) — relax it via `transform_spec.py`'s
+`OPTIONAL_RESPONSE_FIELDS` list (this is how `folder_id`, `seat_type`, and
+`default_value` are handled). `retoolresource` still sends `folder_id: null` in
+its create request for backwards compatibility.
 
 #### 5.3 Files to Check
 
@@ -314,21 +226,27 @@ Expected: Should successfully fetch and display folders.
 
 #### 6.3 Acceptance Tests
 
-**IMPORTANT**: Acceptance tests use a recording/replay system for CI. Always use recordings:
+**IMPORTANT**: Acceptance tests use a recording/replay system for CI. Always use recordings.
+
+Because the test framework can no longer auto-install Terraform (expired signing key), set `TF_ACC_TERRAFORM_PATH` to a local Terraform binary for any live run:
 
 ```bash
-# Step 1: Record tests against live API (one-time or when API changes)
-RETOOL_HOST=test-instance.retool.dev \
-RETOOL_SCHEME=https \
-RETOOL_ACCESS_TOKEN=test_token \
-FILTER=TestAccFoo \
-make test-acc-record
+# Record a SINGLE test (lightest weight - only its cassette is written, others untouched):
+rm -f test/data/recordings/TestAccFoo.yaml
+RETOOL_HOST=test-instance.retool.dev RETOOL_SCHEME=https RETOOL_ACCESS_TOKEN=test_token \
+  TF_ACC_TERRAFORM_PATH="$(which terraform)" \
+  FILTER='^TestAccFoo$' make test-acc-record
 
-# Step 2: Replay tests using recordings (for CI and regular development)
-FILTER=TestAccFoo make test-acc-replay
+# Re-record the WHOLE suite (one test at a time, resumable, rate-limit friendly):
+make test-acc-sweep
+rm -rf test/data/recordings
+RETOOL_HOST=test-instance.retool.dev RETOOL_SCHEME=https RETOOL_ACCESS_TOKEN=test_token \
+  TF_ACC_TERRAFORM_PATH="$(which terraform)" \
+  make test-acc-record-each      # tune with SLEEP_SECONDS / scope with FILTER
 
-# Full replay suite
+# Replay (CI + regular dev; offline, no live API):
 make test-acc-replay
+FILTER=TestAccFoo make test-acc-replay
 ```
 
 **CRITICAL REQUIREMENTS**:
@@ -341,6 +259,7 @@ make test-acc-replay
 2. **Record after cleanup**: Run `make test-acc-sweep` before recording
 3. **One test at a time**: Use `FILTER=TestName` to record specific tests
 4. **Check recordings**: Ensure `.yaml` files are created in `test/data/recordings/`
+5. **Re-recording the whole suite**: Don't run a single `make test-acc-record` over everything - the instance's rolling rate limit gets exhausted partway through and the rest fail with 429s (even though the target runs serially). Use `make test-acc-record-each` (wraps `scripts/record_acc_tests.sh`), which records each test in its own process with a pause between them. It is resumable - re-run it after a 429 to finish the rest. Start from `rm -rf test/data/recordings` since cassettes store a redacted host and can't be re-recorded incrementally. Tune with `SLEEP_SECONDS` and scope with `FILTER`.
 
 **Expected results for LIVE API** (not CI):
 - ⚠️ **429 (Rate Limiting)**: Normal - use recordings for CI
@@ -386,7 +305,7 @@ If upgrading from A.B.C, note:
 
 **Cause**: Unmarshaling error in discriminated unions with identical structures.
 
-**Solution**: Change `oneOf` to `anyOf` in the spec (Step 2.2).
+**Solution**: Change `oneOf` to `anyOf` in the spec (Step 2, transform #2 in `transform_spec.py`).
 
 **Verification**: 
 ```bash
@@ -395,11 +314,30 @@ grep -n "oneOf" internal/sdk/openAPISpec.json | grep -A5 -B5 permissions
 
 ### Issue: Bitbucket config returns 400 errors
 
-**Cause**: API rejects the `type` field despite spec marking it required.
+**Cause**: mismatch on the Bitbucket `type` field. This has flipped between
+versions: pre-4.0 the API rejected `type` (it had to be omitted); 4.0 requires
+it (`AppPassword`/`Token`).
 
-**Solution**: Remove `type` from required arrays in Bitbucket schemas (Step 2.3).
+**Solution**: make the provider/spec match what the current API wants. For 4.0,
+`type` is required, so the provider passes `"AppPassword"` to
+`NewBitbucketConfigAnyOf` and there is no Bitbucket spec transform. Verify with
+`TestAccSourceControlTest`.
 
-**Verification**: Check that Bitbucket config constructors work in tests.
+### Issue: `redeclared in this block` after generating
+
+**Cause**: `--minimal-update` left stale files when a type was renamed/split
+(common when tags get pluralized).
+
+**Solution**: run the stale-file cleanup from Step 3.3 (delete files not in
+`.openapi-generator/FILES`).
+
+### Issue: a request silently drops fields (e.g. `base_url`) for some auth types
+
+**Cause**: the strongly-typed `anyOf` for resource `options` ambiguously matches
+"thin" objects to the wrong union member.
+
+**Solution**: ensure the `options` request schema is free-form (Step 2, transform
+#3). Confirm `ResourcesPostRequest.Options` is `map[string]interface{}`.
 
 ### Issue: "no value given for required property X"
 
@@ -444,8 +382,11 @@ make test-acc-sweep
 ## Quick Reference: Common Commands
 
 ```bash
-# Generate SDK
-cd internal/sdk && go generate
+# Transform a raw spec into the one the generator consumes
+cd internal/sdk && python3 transform_spec.py <raw_spec.json> openAPISpec.json
+
+# Generate SDK (then delete stale files per Step 3.3)
+go generate
 
 # Test compilation
 go build ./api
@@ -453,60 +394,20 @@ go build ./api
 # Run unit tests
 cd ../.. && make test-unit
 
-# Run acceptance tests with credentials
-RETOOL_HOST=host RETOOL_SCHEME=https RETOOL_ACCESS_TOKEN=token make test-acc
+# Replay acceptance tests (offline)
+make test-acc-replay
 
-# Clean up test resources
-make test-acc-sweep
-
-# Check git status (see what changed)
-git status
-
-# Create a backup before major changes
-cp internal/sdk/openAPISpec.json internal/sdk/openAPISpec.json.backup
+# Clean up test resources on the instance
+RETOOL_HOST=host RETOOL_SCHEME=https RETOOL_ACCESS_TOKEN=token make test-acc-sweep
 ```
 
-## Automation Script Template
+## Transformation Script
 
-For future updates, you can create a transformation script:
-
-```python
-#!/usr/bin/env python3
-"""Transform Retool OpenAPI spec for Go code generation."""
-import json
-from pathlib import Path
-
-def fix_tags(spec):
-    """Ensure every endpoint has only one tag."""
-    # Implementation from Step 2.1
-    pass
-
-def fix_permissions_oneof_to_anyof(spec):
-    """Change oneOf to anyOf in permissions endpoints."""
-    # Implementation from Step 2.2
-    pass
-
-def fix_bitbucket_configs(spec):
-    """Remove type from required in Bitbucket configs."""
-    # Implementation from Step 2.3
-    pass
-
-def main():
-    input_file = Path('2.XX.spec.json')
-    output_file = Path('openAPISpec.json')
-    
-    spec = json.load(input_file.open())
-    
-    fix_tags(spec)
-    fix_permissions_oneof_to_anyof(spec)
-    fix_bitbucket_configs(spec)
-    
-    json.dump(spec, output_file.open('w'), indent=2)
-    print(f"✓ Transformed {input_file} → {output_file}")
-
-if __name__ == '__main__':
-    main()
-```
+The transformations live in **`internal/sdk/transform_spec.py`** — extend that
+file rather than writing a new script. Add a new `fix_*` function, call it from
+`main()`, and include it in the printed summary so the counts are visible when
+you regenerate. The legacy `fix_folder_id_response.py` is superseded by
+`transform_spec.py`'s `fix_optional_response_fields` and can be ignored.
 
 ## Success Criteria
 
@@ -514,18 +415,36 @@ Before considering the update complete:
 
 - [ ] **Unit tests pass 100%** ← REQUIRED, no exceptions
 - [ ] **SDK compiles without errors** ← REQUIRED
+- [ ] Stale generated files removed (`go build ./api` is clean)
 - [ ] Smoke test successfully connects to API
 - [ ] **ALL acceptance tests pass in replay mode** ← REQUIRED for CI
 - [ ] Provider code updated for breaking changes
+- [ ] `transform_spec.py` updated for new spec transformations
 - [ ] `fix_generated_code.sh` updated for new generator bugs
 - [ ] README.md updated with upgrade notes
 - [ ] Test recordings updated for changed tests
+- [ ] Provider docs regenerated (`make docs`)
 - [ ] All changes committed with clear messages
 
 **Critical**: Unit tests and replay tests must have 100% pass rate. Live API tests may fail due to rate limiting/conflicts - this is expected and why we use recordings.
 
 ## Historical Updates
 
+- **3.334 → 4.0.0** (Jun 2026):
+  - Consolidated all spec transformations into `transform_spec.py` (single-tag,
+    permissions `oneOf`→`anyOf`, free-form resource `options` requests, and
+    relaxing `folder_id`/`seat_type`/`default_value`).
+  - Bitbucket `type` is required again → dropped the old Bitbucket transform;
+    `NewBitbucketConfigAnyOf` takes `("AppPassword", username, appPassword)`.
+  - `GET /users/{userId}` data went from an `anyOf` wrapper back to a flat object.
+  - `NewAWSCodeCommitConfig` reduced to `(url, region)`; credential fields optional.
+  - Generalized the invalid-field-name fix in `fix_generated_code.sh` to all files.
+  - Fixed bearer-token auth on REST API resources (#61) via free-form `options`.
+  - New optional provider attributes: user `seat_type`, configuration variable
+    `default_value`, SSO `oidc end_session_url`, source control CodeCommit
+    `assume_role` / `auth_with_default_credential_provider_chain`.
+  - Added `make test-acc-record-each` for rate-limit-friendly re-recording.
+  - ✅ Unit + full replay suite green.
 - **2.9.0 → 2.12.0** (Feb 2026): 
   - Fixed Bitbucket config (removed `type` field entirely from spec)
   - **Fixed resource `folder_id` issue**: Created `fix_folder_id_response.py` to remove from required arrays in all response schemas
@@ -541,13 +460,14 @@ Before considering the update complete:
 ## Tips for AI Agents
 
 1. **Always read README.md first** - Contains critical context and known issues
-2. **Compare specs before transforming** - Understand what changed
+2. **Compare specs before transforming** - Understand what changed; focus on endpoints the provider actually calls
 3. **Test incrementally** - Don't wait until the end to compile
-4. **Backup before replacing** - Keep `openAPISpec.json.backup`
-5. **Document as you go** - Update README.md with findings
-6. **Check generator bugs** - Every major version may introduce new issues
-7. **Run full test suite** - Acceptance tests catch subtle issues
-8. **Read error messages carefully** - They often point to exact fixes needed
+4. **Extend `transform_spec.py`** - Don't hand-edit `openAPISpec.json`; git history is your backup
+5. **Delete stale generated files** - `--minimal-update` leaves orphans that fail to compile
+6. **Document as you go** - Update README.md with findings
+7. **Check generator bugs** - Every major version may introduce new issues
+8. **Run the full replay suite** - Acceptance tests catch subtle issues
+9. **Read error messages carefully** - They often point to exact fixes needed
 
 ## Related Documentation
 

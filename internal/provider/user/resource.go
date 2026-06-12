@@ -40,6 +40,7 @@ type userResourceModel struct {
 	Active    types.Bool   `tfsdk:"active"`
 	Metadata  types.String `tfsdk:"metadata"`
 	UserType  types.String `tfsdk:"user_type"`
+	SeatType  types.String `tfsdk:"seat_type"`
 	// Read-only computed fields.
 	CreatedAt            types.String `tfsdk:"created_at"`
 	LastActive           types.String `tfsdk:"last_active"`
@@ -127,6 +128,11 @@ Note: Deleting a user resource sets the user to inactive (active: false) rather 
 				Computed:    true,
 				Description: "The user type. Accepted values vary by Retool instance configuration.",
 			},
+			"seat_type": schema.StringAttribute{
+				Optional:    true,
+				Computed:    true,
+				Description: "The seat type of the user. One of 'builder', 'internalUser', or 'externalUser'. Available on Retool instances using the seat-based user model.",
+			},
 			"created_at": schema.StringAttribute{
 				Computed:    true,
 				Description: "The timestamp when the user was created.",
@@ -191,6 +197,10 @@ func (r *userResource) Create(ctx context.Context, req resource.CreateRequest, r
 		user.SetUserType(plan.UserType.ValueString())
 	}
 
+	if !plan.SeatType.IsNull() && !plan.SeatType.IsUnknown() {
+		user.SetSeatType(plan.SeatType.ValueString())
+	}
+
 	tflog.Info(ctx, "Creating a user", map[string]interface{}{"email": plan.Email.ValueString()})
 
 	// Create new user.
@@ -238,6 +248,15 @@ func (r *userResource) Create(ctx context.Context, req resource.CreateRequest, r
 	plan.IsAdmin = types.BoolValue(response.Data.IsAdmin)
 	plan.UserType = types.StringValue(response.Data.UserType)
 	plan.TwoFactorAuthEnabled = types.BoolValue(response.Data.TwoFactorAuthEnabled)
+
+	// The seat_type attribute is only returned by instances using the seat-based user
+	// model. Reflect the API value when present; otherwise fall back to null so the
+	// attribute resolves to a known value on instances that don't support it.
+	if response.Data.SeatType.Get() != nil {
+		plan.SeatType = types.StringValue(*response.Data.SeatType.Get())
+	} else if plan.SeatType.IsUnknown() {
+		plan.SeatType = types.StringNull()
+	}
 
 	// Handle metadata.
 	switch {
@@ -297,19 +316,9 @@ func (r *userResource) Read(ctx context.Context, req resource.ReadRequest, resp 
 	}
 
 	// Map the API response to the Terraform state.
-	// In API 2.12.0, the user data is wrapped in an anyOf structure.
-	var userData *api.UsersUserIdGet200ResponseDataAnyOf
-	switch {
-	case user.Data.UsersUserIdGet200ResponseDataAnyOf != nil:
-		userData = user.Data.UsersUserIdGet200ResponseDataAnyOf
-	case user.Data.UsersUserIdGet200ResponseDataAnyOf1 != nil:
-		// Handle the alternative variant if needed.
-		tflog.Error(ctx, "Unexpected user data variant (anyOf1)")
-		return
-	default:
-		tflog.Error(ctx, "No user data in response")
-		return
-	}
+	// As of API 4.0, the user data is returned as a flat object (previously
+	// wrapped in an anyOf structure).
+	userData := &user.Data
 
 	state.ID = types.StringValue(userData.Id)
 	state.LegacyID = types.StringValue(fmt.Sprintf("%.0f", userData.LegacyId))
@@ -338,6 +347,11 @@ func (r *userResource) Read(ctx context.Context, req resource.ReadRequest, resp 
 
 	state.IsAdmin = types.BoolValue(userData.IsAdmin)
 	state.UserType = types.StringValue(userData.UserType)
+	if userData.SeatType.Get() != nil {
+		state.SeatType = types.StringValue(*userData.SeatType.Get())
+	} else {
+		state.SeatType = types.StringNull()
+	}
 	state.TwoFactorAuthEnabled = types.BoolValue(userData.TwoFactorAuthEnabled)
 
 	// Handle metadata.
@@ -443,6 +457,15 @@ func (r *userResource) Update(ctx context.Context, req resource.UpdateRequest, r
 		operations = append(operations, op)
 	}
 
+	if !plan.SeatType.Equal(state.SeatType) && !plan.SeatType.IsNull() && plan.SeatType.ValueString() != "" {
+		replaceOp := api.NewReplaceOperation("replace", "/seat_type")
+		replaceOp.SetValue(plan.SeatType.ValueString())
+		op := api.UsersUserIdPatchRequestOperationsInner{
+			ReplaceOperation: replaceOp,
+		}
+		operations = append(operations, op)
+	}
+
 	if len(operations) == 0 {
 		tflog.Info(ctx, "No changes detected for user", map[string]any{"userID": userID})
 		// No changes, just return current state.
@@ -488,6 +511,11 @@ func (r *userResource) Update(ctx context.Context, req resource.UpdateRequest, r
 
 	plan.IsAdmin = types.BoolValue(updateResponse.Data.IsAdmin)
 	plan.UserType = types.StringValue(updateResponse.Data.UserType)
+	if updateResponse.Data.SeatType.Get() != nil {
+		plan.SeatType = types.StringValue(*updateResponse.Data.SeatType.Get())
+	} else if plan.SeatType.IsUnknown() {
+		plan.SeatType = types.StringNull()
+	}
 	plan.TwoFactorAuthEnabled = types.BoolValue(updateResponse.Data.TwoFactorAuthEnabled)
 
 	// Handle metadata.

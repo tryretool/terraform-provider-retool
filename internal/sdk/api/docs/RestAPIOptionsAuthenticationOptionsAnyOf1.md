@@ -4,19 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AuthenticationType** | **string** |  | 
 **AmazonAwsRegion** | **string** |  | 
-**AmazonServiceName** | **string** |  | 
 **AmazonAccessKeyId** | **string** |  | 
 **AmazonSecretAccessKey** | **string** |  | 
+**AssumeRole** | Pointer to **string** |  | [optional] 
 **AuthWithDefaultCredentialProviderChain** | Pointer to **bool** |  | [optional] 
+**AuthenticationType** | **string** |  | 
+**AmazonServiceName** | **string** |  | 
 **EnableAwsv4AuthenticationViaHeaders** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
 ### NewRestAPIOptionsAuthenticationOptionsAnyOf1
 
-`func NewRestAPIOptionsAuthenticationOptionsAnyOf1(authenticationType string, amazonAwsRegion string, amazonServiceName string, amazonAccessKeyId string, amazonSecretAccessKey string, ) *RestAPIOptionsAuthenticationOptionsAnyOf1`
+`func NewRestAPIOptionsAuthenticationOptionsAnyOf1(amazonAwsRegion string, amazonAccessKeyId string, amazonSecretAccessKey string, authenticationType string, amazonServiceName string, ) *RestAPIOptionsAuthenticationOptionsAnyOf1`
 
 NewRestAPIOptionsAuthenticationOptionsAnyOf1 instantiates a new RestAPIOptionsAuthenticationOptionsAnyOf1 object
 This constructor will assign default values to properties that have it defined,
@@ -30,26 +31,6 @@ will change when the set of required properties is changed
 NewRestAPIOptionsAuthenticationOptionsAnyOf1WithDefaults instantiates a new RestAPIOptionsAuthenticationOptionsAnyOf1 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetAuthenticationType
-
-`func (o *RestAPIOptionsAuthenticationOptionsAnyOf1) GetAuthenticationType() string`
-
-GetAuthenticationType returns the AuthenticationType field if non-nil, zero value otherwise.
-
-### GetAuthenticationTypeOk
-
-`func (o *RestAPIOptionsAuthenticationOptionsAnyOf1) GetAuthenticationTypeOk() (*string, bool)`
-
-GetAuthenticationTypeOk returns a tuple with the AuthenticationType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAuthenticationType
-
-`func (o *RestAPIOptionsAuthenticationOptionsAnyOf1) SetAuthenticationType(v string)`
-
-SetAuthenticationType sets AuthenticationType field to given value.
-
 
 ### GetAmazonAwsRegion
 
@@ -69,26 +50,6 @@ and a boolean to check if the value has been set.
 `func (o *RestAPIOptionsAuthenticationOptionsAnyOf1) SetAmazonAwsRegion(v string)`
 
 SetAmazonAwsRegion sets AmazonAwsRegion field to given value.
-
-
-### GetAmazonServiceName
-
-`func (o *RestAPIOptionsAuthenticationOptionsAnyOf1) GetAmazonServiceName() string`
-
-GetAmazonServiceName returns the AmazonServiceName field if non-nil, zero value otherwise.
-
-### GetAmazonServiceNameOk
-
-`func (o *RestAPIOptionsAuthenticationOptionsAnyOf1) GetAmazonServiceNameOk() (*string, bool)`
-
-GetAmazonServiceNameOk returns a tuple with the AmazonServiceName field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAmazonServiceName
-
-`func (o *RestAPIOptionsAuthenticationOptionsAnyOf1) SetAmazonServiceName(v string)`
-
-SetAmazonServiceName sets AmazonServiceName field to given value.
 
 
 ### GetAmazonAccessKeyId
@@ -131,6 +92,31 @@ and a boolean to check if the value has been set.
 SetAmazonSecretAccessKey sets AmazonSecretAccessKey field to given value.
 
 
+### GetAssumeRole
+
+`func (o *RestAPIOptionsAuthenticationOptionsAnyOf1) GetAssumeRole() string`
+
+GetAssumeRole returns the AssumeRole field if non-nil, zero value otherwise.
+
+### GetAssumeRoleOk
+
+`func (o *RestAPIOptionsAuthenticationOptionsAnyOf1) GetAssumeRoleOk() (*string, bool)`
+
+GetAssumeRoleOk returns a tuple with the AssumeRole field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAssumeRole
+
+`func (o *RestAPIOptionsAuthenticationOptionsAnyOf1) SetAssumeRole(v string)`
+
+SetAssumeRole sets AssumeRole field to given value.
+
+### HasAssumeRole
+
+`func (o *RestAPIOptionsAuthenticationOptionsAnyOf1) HasAssumeRole() bool`
+
+HasAssumeRole returns a boolean if a field has been set.
+
 ### GetAuthWithDefaultCredentialProviderChain
 
 `func (o *RestAPIOptionsAuthenticationOptionsAnyOf1) GetAuthWithDefaultCredentialProviderChain() bool`
@@ -155,6 +141,46 @@ SetAuthWithDefaultCredentialProviderChain sets AuthWithDefaultCredentialProvider
 `func (o *RestAPIOptionsAuthenticationOptionsAnyOf1) HasAuthWithDefaultCredentialProviderChain() bool`
 
 HasAuthWithDefaultCredentialProviderChain returns a boolean if a field has been set.
+
+### GetAuthenticationType
+
+`func (o *RestAPIOptionsAuthenticationOptionsAnyOf1) GetAuthenticationType() string`
+
+GetAuthenticationType returns the AuthenticationType field if non-nil, zero value otherwise.
+
+### GetAuthenticationTypeOk
+
+`func (o *RestAPIOptionsAuthenticationOptionsAnyOf1) GetAuthenticationTypeOk() (*string, bool)`
+
+GetAuthenticationTypeOk returns a tuple with the AuthenticationType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthenticationType
+
+`func (o *RestAPIOptionsAuthenticationOptionsAnyOf1) SetAuthenticationType(v string)`
+
+SetAuthenticationType sets AuthenticationType field to given value.
+
+
+### GetAmazonServiceName
+
+`func (o *RestAPIOptionsAuthenticationOptionsAnyOf1) GetAmazonServiceName() string`
+
+GetAmazonServiceName returns the AmazonServiceName field if non-nil, zero value otherwise.
+
+### GetAmazonServiceNameOk
+
+`func (o *RestAPIOptionsAuthenticationOptionsAnyOf1) GetAmazonServiceNameOk() (*string, bool)`
+
+GetAmazonServiceNameOk returns a tuple with the AmazonServiceName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAmazonServiceName
+
+`func (o *RestAPIOptionsAuthenticationOptionsAnyOf1) SetAmazonServiceName(v string)`
+
+SetAmazonServiceName sets AmazonServiceName field to given value.
+
 
 ### GetEnableAwsv4AuthenticationViaHeaders
 

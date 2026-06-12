@@ -51,12 +51,17 @@ resource "retool_source_control" "scm" {
 
 Required:
 
-- `access_key_id` (String, Sensitive) The Access key ID from your AWSCodeCommitFullAccess policy.
+- `region` (String) The region of the CodeCommit repository.
+- `url` (String) The domain used to access your self-hosted AWS CodeCommit instance.
+
+Optional:
+
+- `access_key_id` (String, Sensitive) The Access key ID from your AWSCodeCommitFullAccess policy. Not required when using assume_role or auth_with_default_credential_provider_chain.
+- `assume_role` (String) The ARN of an IAM role for Retool to assume when accessing CodeCommit.
+- `auth_with_default_credential_provider_chain` (Boolean) Whether to authenticate using the default AWS credential provider chain (e.g. the instance's IAM role) instead of static credentials.
 - `https_password` (String, Sensitive) The HTTPS password from your security credentials.
 - `https_username` (String) The HTTPS username from your security credentials.
-- `region` (String) The region of the CodeCommit repository.
-- `secret_access_key` (String, Sensitive) The Secret Access Key from your AWSCodeCommitFullAccess policy
-- `url` (String) The domain used to access your self-hosted AWS CodeCommit instance.
+- `secret_access_key` (String, Sensitive) The Secret Access Key from your AWSCodeCommitFullAccess policy. Not required when using assume_role or auth_with_default_credential_provider_chain.
 
 
 <a id="nestedatt--azure_repos"></a>

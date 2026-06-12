@@ -12,14 +12,14 @@ Name | Type | Description | Notes
 **UniversalResourceAccess** | **string** | The universal resource access level for the group. This denotes the access level that this group has for all resources. | 
 **UniversalWorkflowAccess** | **string** | The universal workflow access level for the group. This denotes the access level that this group has for all workflows. | 
 **UniversalQueryLibraryAccess** | **string** | Level of access that the group has to the Query Library. | 
-**UserInvites** | [**[]GroupsGroupIdGet200ResponseDataUserInvitesInner**](GroupsGroupIdGet200ResponseDataUserInvitesInner.md) | A list of user invites that will be added to the group | 
-**UserListAccess** | **bool** | Whether the group has access to the user list | 
-**AuditLogAccess** | **bool** | Whether the group has access to the audit log | 
-**UnpublishedReleaseAccess** | **bool** | Whether the group has access to unpublished releases | 
-**UsageAnalyticsAccess** | **bool** | Whether the group has access to usage analytics | 
-**ThemeAccess** | **bool** | Whether the group has access to edit themes | 
-**AccountDetailsAccess** | **bool** | Whether the group has access to account details | 
-**LandingPageAppId** | **NullableString** | The app ID of the landing page | 
+**UserInvites** | [**[]GroupsGroupIdGet200ResponseDataUserInvitesInner**](GroupsGroupIdGet200ResponseDataUserInvitesInner.md) | A list of user invites that will be added to the group. | 
+**UserListAccess** | **bool** | Whether the group has access to the user list. | 
+**AuditLogAccess** | **bool** | Whether the group has access to the audit log. | 
+**UnpublishedReleaseAccess** | **bool** | Whether the group has access to unpublished releases. | 
+**UsageAnalyticsAccess** | **bool** | Whether the group has access to usage analytics. | 
+**ThemeAccess** | **bool** | Whether the group has access to edit themes. | 
+**AccountDetailsAccess** | **bool** | Whether the group has access to account details. | 
+**LandingPageAppId** | **NullableString** | The app ID of the landing page. | 
 **CreatedAt** | **string** |  | 
 **UpdatedAt** | **string** |  | 
 
