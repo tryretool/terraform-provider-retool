@@ -119,11 +119,10 @@ type healthCheckResponse struct {
 	Version string `json:"version"`
 }
 
-// isCompatibleVersion reports whether the version string returned by
-// /api/checkHealth satisfies minimumRetoolVersion.
+// IsCompatibleVersion reports whether a checkHealth version satisfies minimumRetoolVersion.
 //
 // Retool Cloud reports a build-hash-suffixed version (e.g. "4.8.0-0838649").
-// golang.org/x/mod/semver treats "0838649" as a pre-release identifier with an
+// Golang.org/x/mod/semver treats "0838649" as a pre-release identifier with an
 // illegal leading zero, marks the entire string invalid, and semver.Compare
 // then sorts any invalid string below every valid one - producing a false
 // "Incompatible Retool version" error. The suffix is build metadata, not a
