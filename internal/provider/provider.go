@@ -9,6 +9,7 @@ import (
 	"net"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -118,6 +119,22 @@ type healthCheckResponse struct {
 	Version string `json:"version"`
 }
 
+// isCompatibleVersion reports whether the version string returned by
+// /api/checkHealth satisfies minimumRetoolVersion.
+//
+// Retool Cloud reports a build-hash-suffixed version (e.g. "4.8.0-0838649").
+// golang.org/x/mod/semver treats "0838649" as a pre-release identifier with an
+// illegal leading zero, marks the entire string invalid, and semver.Compare
+// then sorts any invalid string below every valid one - producing a false
+// "Incompatible Retool version" error. The suffix is build metadata, not a
+// semver pre-release, so compare on the core MAJOR.MINOR.PATCH only.
+func isCompatibleVersion(version string) bool {
+	if i := strings.IndexAny(version, "-+"); i != -1 {
+		version = version[:i]
+	}
+	return semver.Compare("v"+version, minimumRetoolVersion) >= 0
+}
+
 func checkMinimalVersion(ctx context.Context, host string, scheme string, httpClient *http.Client) (bool, error) {
 	// Create HTTP client, make GET /api/checkHealth request, parse the version field out of the JSON response.
 	httpResponse, err := httpClient.Get(scheme + "://" + host + "/api/checkHealth")
@@ -148,7 +165,7 @@ func checkMinimalVersion(ctx context.Context, host string, scheme string, httpCl
 	}
 	tflog.Info(ctx, "Retool version", map[string]any{"version": healthCheck.Version})
 
-	return semver.Compare("v"+healthCheck.Version, minimumRetoolVersion) >= 0, nil
+	return isCompatibleVersion(healthCheck.Version), nil
 }
 
 // Configure prepares a Retool API client for data sources and resources.
