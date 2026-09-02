@@ -37,6 +37,7 @@ type retoolResourceModel struct {
 	Type        types.String `tfsdk:"type"`
 	DisplayName types.String `tfsdk:"display_name"`
 	Options     types.String `tfsdk:"options"`
+	FolderID    types.String `tfsdk:"folder_id"`
 	Protected   types.Bool   `tfsdk:"protected"`
 	CreatedAt   types.String `tfsdk:"created_at"`
 	UpdatedAt   types.String `tfsdk:"updated_at"`
@@ -97,6 +98,15 @@ func (r *retoolResourceResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Required:    true,
 				Description: "The display name of the resource.",
 			},
+			"folder_id": schema.StringAttribute{
+				Optional:    true,
+				Computed:    true,
+				Description: "The ID of the folder to place the resource in. If omitted, the resource is created in the root folder. Changing this forces the resource to be recreated.",
+				PlanModifiers: []planmodifier.String{
+					stringplanmodifier.UseStateForUnknown(),
+					stringplanmodifier.RequiresReplace(),
+				},
+			},
 			"options": schema.StringAttribute{
 				Required:    true,
 				Sensitive:   true,
@@ -130,23 +140,13 @@ func (r *retoolResourceResource) Create(ctx context.Context, req resource.Create
 		return
 	}
 
-	// Parse options JSON string to map.
-	var optionsMap map[string]interface{}
-	if err := json.Unmarshal([]byte(plan.Options.ValueString()), &optionsMap); err != nil {
+	requestBody, err := buildResourceCreateBody(plan)
+	if err != nil {
 		resp.Diagnostics.AddError(
 			"Invalid options JSON",
 			fmt.Sprintf("Could not parse options as JSON: %s", err.Error()),
 		)
 		return
-	}
-
-	// Create the request body manually to avoid sending empty fields.
-	// Note: folder_id must be explicitly set to null for backwards compatibility with existing configurations.
-	requestBody := map[string]interface{}{
-		"type":         plan.Type.ValueString(),
-		"display_name": plan.DisplayName.ValueString(),
-		"options":      optionsMap,
-		"folder_id":    nil,
 	}
 
 	requestJSON, err := json.Marshal(requestBody)
@@ -190,6 +190,11 @@ func (r *retoolResourceResource) Create(ctx context.Context, req resource.Create
 	plan.Protected = types.BoolValue(response.Data.Protected)
 	plan.CreatedAt = types.StringValue(response.Data.CreatedAt)
 	plan.UpdatedAt = types.StringValue(response.Data.UpdatedAt)
+	if response.Data.HasFolderId() {
+		plan.FolderID = types.StringValue(response.Data.GetFolderId())
+	} else {
+		plan.FolderID = types.StringNull()
+	}
 	// Note: We keep the options in state after creation, but it won't be refreshed on read.
 
 	// Set state to fully populated data.
@@ -237,6 +242,11 @@ func (r *retoolResourceResource) Read(ctx context.Context, req resource.ReadRequ
 	state.Protected = types.BoolValue(resource.Data.Protected)
 	state.CreatedAt = types.StringValue(resource.Data.CreatedAt)
 	state.UpdatedAt = types.StringValue(resource.Data.UpdatedAt)
+	if resource.Data.HasFolderId() {
+		state.FolderID = types.StringValue(resource.Data.GetFolderId())
+	} else {
+		state.FolderID = types.StringNull()
+	}
 	// Note: options are not returned by the API, so we keep the existing state value.
 
 	diags = resp.State.Set(ctx, &state)
@@ -303,6 +313,11 @@ func (r *retoolResourceResource) Update(ctx context.Context, req resource.Update
 	plan.Protected = types.BoolValue(updateResponse.Data.Protected)
 	plan.CreatedAt = types.StringValue(updateResponse.Data.CreatedAt)
 	plan.UpdatedAt = types.StringValue(updateResponse.Data.UpdatedAt)
+	if updateResponse.Data.HasFolderId() {
+		plan.FolderID = types.StringValue(updateResponse.Data.GetFolderId())
+	} else {
+		plan.FolderID = types.StringNull()
+	}
 	// Note: options are not returned by the API, so we keep the existing state value.
 
 	diags = resp.State.Set(ctx, plan)
@@ -342,6 +357,27 @@ func (r *retoolResourceResource) Delete(ctx context.Context, req resource.Delete
 	}
 
 	tflog.Info(ctx, "Retool resource deleted", map[string]interface{}{"id": resourceID})
+}
+
+// buildResourceCreateBody builds the create request body, omitting folder_id
+// unless it is set. Retool 4.x rejects a null folder_id.
+func buildResourceCreateBody(plan retoolResourceModel) (map[string]interface{}, error) {
+	var optionsMap map[string]interface{}
+	if err := json.Unmarshal([]byte(plan.Options.ValueString()), &optionsMap); err != nil {
+		return nil, err
+	}
+
+	body := map[string]interface{}{
+		"type":         plan.Type.ValueString(),
+		"display_name": plan.DisplayName.ValueString(),
+		"options":      optionsMap,
+	}
+
+	if !plan.FolderID.IsNull() && !plan.FolderID.IsUnknown() {
+		body["folder_id"] = plan.FolderID.ValueString()
+	}
+
+	return body, nil
 }
 
 // ImportState allows importing of a Retool Resource.

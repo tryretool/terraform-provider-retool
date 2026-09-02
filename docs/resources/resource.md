@@ -22,6 +22,9 @@ resource "retool_resource" "api" {
   display_name = "My REST API"
   type         = "restapi"
 
+  # Optional: place the resource in a specific folder. Omit to use the root folder.
+  folder_id = "folder_abc123"
+
   options = jsonencode({
     base_url = "https://api.example.com"
   })
@@ -80,6 +83,10 @@ resource "retool_resource" "database" {
 - `display_name` (String) The display name of the resource.
 - `options` (String, Sensitive) JSON string containing the resource configuration options. The structure varies by resource type. This field is write-only and cannot be read back after creation.
 - `type` (String) The type of resource (e.g., 'restapi', 'postgresql', 'mysql', 'snowflake'). Cannot be changed after creation.
+
+### Optional
+
+- `folder_id` (String) The ID of the folder to place the resource in. If omitted, the resource is created in the root folder. Changing this forces the resource to be recreated.
 
 ### Read-Only
 
