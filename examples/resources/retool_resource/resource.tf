@@ -2,6 +2,9 @@ resource "retool_resource" "api" {
   display_name = "My REST API"
   type         = "restapi"
 
+  # Optional: place the resource in a specific folder. Omit to use the root folder.
+  folder_id = "folder_abc123"
+
   options = jsonencode({
     base_url = "https://api.example.com"
   })

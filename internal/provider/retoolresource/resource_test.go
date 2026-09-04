@@ -48,6 +48,7 @@ func TestAccRetoolResource(t *testing.T) {
 					resource.TestCheckResourceAttrSet("retool_resource.test_resource", "created_at"),
 					resource.TestCheckResourceAttrSet("retool_resource.test_resource", "updated_at"),
 					resource.TestCheckResourceAttrSet("retool_resource.test_resource", "protected"),
+					resource.TestCheckResourceAttr("retool_resource.test_resource", "folder_id", "resource_1"),
 				),
 			},
 			// Import state.
