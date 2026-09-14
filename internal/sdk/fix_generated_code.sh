@@ -41,6 +41,36 @@ find ./api -name "*.go" -type f -exec sed -i '' 's/json\.Marshal(\&src\.\([A-Za-
 #    is used as a value type in another struct, Go won't call the pointer receiver method.
 find ./api -name "*.go" -type f -exec sed -i '' 's/func (src \*\([A-Za-z0-9_]*\)) MarshalJSON()/func (src \1) MarshalJSON()/g' {} \;
 
+# 5. Drop decoder.DisallowUnknownFields() from model UnmarshalJSON methods.
+#    Schemas the API declares as strict get this call, which turns any response
+#    field we don't know about into a hard error. The provider has to read
+#    instances newer than the spec it was built from, so an unrecognized field
+#    must be ignored, not fatal. The required-property check above it stays, so
+#    genuinely malformed responses are still rejected.
+#
+#    oneOf/anyOf variants are exempt — their strictness is what tells the variants
+#    apart, and a variant with a custom UnmarshalJSON bypasses whatever settings
+#    the union's dispatcher passed in, so it cannot come from anywhere else.
+#    Both dispatcher styles depend on it:
+#      - oneOf counts how many variants decode cleanly. Strip it and several match,
+#        giving "data matches more than one schema in oneOf".
+#      - anyOf returns on the first variant that decodes. Strip it and a payload
+#        matches an earlier, narrower variant, silently dropping the fields that
+#        variant doesn't declare.
+#    The variant list is read back out of the generated code so it stays correct
+#    as the spec changes.
+variant_types=$(grep -rhoE '(newStrictDecoder\(data\)\.Decode\(|json\.Unmarshal\(data, )&dst\.[A-Za-z0-9_]+\)' ./api --include='*.go' \
+    | sed -E 's/.*&dst\.([A-Za-z0-9_]+)\)$/\1/' | sort -u)
+
+for f in $(grep -rl 'decoder\.DisallowUnknownFields()' ./api --include='*.go'); do
+    receiver=$(grep -oE 'func \(o \*[A-Za-z0-9_]+\) UnmarshalJSON' "$f" \
+        | sed -E 's/func \(o \*([A-Za-z0-9_]+)\) UnmarshalJSON/\1/' | head -1)
+    if grep -qxF "$receiver" <<< "$variant_types"; then
+        continue
+    fi
+    sed -i '' '/^[[:space:]]*decoder\.DisallowUnknownFields()$/d' "$f"
+done
+
 echo "Fixed marshaling bugs in generated code"
 
 # Note: Permissions oneOf unmarshaling is not fixed automatically.

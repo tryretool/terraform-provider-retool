@@ -311,7 +311,6 @@ func (o *AccessTokensAccessTokenIdGet200ResponseData) UnmarshalJSON(data []byte)
 	varAccessTokensAccessTokenIdGet200ResponseData := _AccessTokensAccessTokenIdGet200ResponseData{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varAccessTokensAccessTokenIdGet200ResponseData)
 
 	if err != nil {

@@ -224,7 +224,6 @@ func (o *SpacesCopyElementsPostRequest) UnmarshalJSON(data []byte) (err error) {
 	varSpacesCopyElementsPostRequest := _SpacesCopyElementsPostRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varSpacesCopyElementsPostRequest)
 
 	if err != nil {

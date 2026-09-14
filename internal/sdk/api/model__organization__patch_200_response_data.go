@@ -550,7 +550,6 @@ func (o *OrganizationPatch200ResponseData) UnmarshalJSON(data []byte) (err error
 	varOrganizationPatch200ResponseData := _OrganizationPatch200ResponseData{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varOrganizationPatch200ResponseData)
 
 	if err != nil {

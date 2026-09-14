@@ -171,7 +171,6 @@ func (o *PermissionsListObjectsPostRequest) UnmarshalJSON(data []byte) (err erro
 	varPermissionsListObjectsPostRequest := _PermissionsListObjectsPostRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varPermissionsListObjectsPostRequest)
 
 	if err != nil {

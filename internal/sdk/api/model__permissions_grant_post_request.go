@@ -164,7 +164,6 @@ func (o *PermissionsGrantPostRequest) UnmarshalJSON(data []byte) (err error) {
 	varPermissionsGrantPostRequest := _PermissionsGrantPostRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varPermissionsGrantPostRequest)
 
 	if err != nil {

@@ -62,6 +62,15 @@ The generator creates `json.Marshal(&src.Field)` where `Field` is already a poin
 #### Bug 2: Value Receiver for MarshalJSON
 The generator creates `MarshalJSON` methods with pointer receivers (`func (src *Type) MarshalJSON()`), but when these structs are used as value types in parent structs (e.g., `Config SourceControlConfigPutRequestConfig` in `SourceControlConfigPutRequest`), Go won't call the pointer receiver method. The fix changes all `MarshalJSON` methods to use value receivers (`func (src Type) MarshalJSON()`).
 
+#### Strict unmarshaling
+Schemas the API declares as strict (zod `.strict()` → `additionalProperties: false`) get a `decoder.DisallowUnknownFields()` call in their generated `UnmarshalJSON`. That makes any response field the spec doesn't know about a hard error, which is the wrong trade for a Terraform provider: a released provider binary has to keep reading instances on Retool versions newer than the spec it was built from. Retool 4.34 adding `data_access_enforced` broke every `retool_resource` read this way, and a failed refresh aborts the whole `terraform plan`.
+
+`fix_generated_code.sh` removes the call. The required-property check above it stays, so genuinely malformed responses are still rejected — the client stops caring about *extra* fields, not *missing* ones.
+
+**oneOf/anyOf variants keep their strictness.** A union's `UnmarshalJSON` tries each variant and counts how many decode cleanly. Because a variant with its own `UnmarshalJSON` bypasses whatever settings the calling `json.Decoder` had, that count comes from the variant's own `DisallowUnknownFields`, *not* from `newStrictDecoder`. Strip it there and several variants match at once, so unions fail with `data matches more than one schema in oneOf`. `GoogleSAML` is the clearest case: its required properties are a superset of both `Google`'s and `SAML`'s, so the required-property check alone can't separate them. The script derives the variant list from the generated code (the types passed to `newStrictDecoder`) rather than hard-coding it, so it keeps up with spec changes.
+
+`decoding_test.go` covers both halves: unknown fields ignored, required fields still enforced, and variants still discriminated.
+
 ## Test client library
 There's a simple executable in `client` folder that makes an API request to localhost:3000 and prints out the response.
 You can run it as follows:

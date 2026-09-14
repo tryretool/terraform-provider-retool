@@ -166,7 +166,6 @@ func (o *UsageOrganizationsGet200ResponseDataInner) UnmarshalJSON(data []byte) (
 	varUsageOrganizationsGet200ResponseDataInner := _UsageOrganizationsGet200ResponseDataInner{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varUsageOrganizationsGet200ResponseDataInner)
 
 	if err != nil {

@@ -221,7 +221,6 @@ func (o *SpacesPost200ResponseData) UnmarshalJSON(data []byte) (err error) {
 	varSpacesPost200ResponseData := _SpacesPost200ResponseData{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varSpacesPost200ResponseData)
 
 	if err != nil {

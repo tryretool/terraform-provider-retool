@@ -550,7 +550,6 @@ func (o *OrganizationSettings) UnmarshalJSON(data []byte) (err error) {
 	varOrganizationSettings := _OrganizationSettings{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varOrganizationSettings)
 
 	if err != nil {

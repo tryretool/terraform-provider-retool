@@ -353,7 +353,6 @@ func (o *RedshiftOptionsDatabaseOptions) UnmarshalJSON(data []byte) (err error) 
 	varRedshiftOptionsDatabaseOptions := _RedshiftOptionsDatabaseOptions{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varRedshiftOptionsDatabaseOptions)
 
 	if err != nil {

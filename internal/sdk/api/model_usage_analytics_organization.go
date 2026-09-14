@@ -166,7 +166,6 @@ func (o *UsageAnalyticsOrganization) UnmarshalJSON(data []byte) (err error) {
 	varUsageAnalyticsOrganization := _UsageAnalyticsOrganization{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varUsageAnalyticsOrganization)
 
 	if err != nil {

@@ -271,7 +271,6 @@ func (o *PostgresOptionsDatabaseOptionsAnyOfSshTunnelOptions) UnmarshalJSON(data
 	varPostgresOptionsDatabaseOptionsAnyOfSshTunnelOptions := _PostgresOptionsDatabaseOptionsAnyOfSshTunnelOptions{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varPostgresOptionsDatabaseOptionsAnyOfSshTunnelOptions)
 
 	if err != nil {

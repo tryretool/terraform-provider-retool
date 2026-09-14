@@ -359,7 +359,6 @@ func (o *AWSCodeCommitConfig) UnmarshalJSON(data []byte) (err error) {
 	varAWSCodeCommitConfig := _AWSCodeCommitConfig{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varAWSCodeCommitConfig)
 
 	if err != nil {

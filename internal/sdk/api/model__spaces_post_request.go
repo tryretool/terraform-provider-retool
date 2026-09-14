@@ -172,7 +172,6 @@ func (o *SpacesPostRequest) UnmarshalJSON(data []byte) (err error) {
 	varSpacesPostRequest := _SpacesPostRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varSpacesPostRequest)
 
 	if err != nil {

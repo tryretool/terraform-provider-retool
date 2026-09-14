@@ -195,7 +195,6 @@ func (o *OrganizationAiSettingsGet200ResponseData) UnmarshalJSON(data []byte) (e
 	varOrganizationAiSettingsGet200ResponseData := _OrganizationAiSettingsGet200ResponseData{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varOrganizationAiSettingsGet200ResponseData)
 
 	if err != nil {

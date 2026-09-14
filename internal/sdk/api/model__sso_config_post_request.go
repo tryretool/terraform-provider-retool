@@ -107,7 +107,6 @@ func (o *SsoConfigPostRequest) UnmarshalJSON(data []byte) (err error) {
 	varSsoConfigPostRequest := _SsoConfigPostRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varSsoConfigPostRequest)
 
 	if err != nil {

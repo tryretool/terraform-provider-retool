@@ -108,7 +108,6 @@ func (o *ResourcesResourceIdPatchRequest) UnmarshalJSON(data []byte) (err error)
 	varResourcesResourceIdPatchRequest := _ResourcesResourceIdPatchRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varResourcesResourceIdPatchRequest)
 
 	if err != nil {

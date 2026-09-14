@@ -108,7 +108,6 @@ func (o *GroupsGroupIdPatchRequest) UnmarshalJSON(data []byte) (err error) {
 	varGroupsGroupIdPatchRequest := _GroupsGroupIdPatchRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varGroupsGroupIdPatchRequest)
 
 	if err != nil {

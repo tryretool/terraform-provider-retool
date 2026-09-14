@@ -145,7 +145,6 @@ func (o *SourceControlBranchesResetPostRequest) UnmarshalJSON(data []byte) (err 
 	varSourceControlBranchesResetPostRequest := _SourceControlBranchesResetPostRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varSourceControlBranchesResetPostRequest)
 
 	if err != nil {

@@ -182,7 +182,6 @@ func (o *UsersUserIdLogoutPost200ResponseData) UnmarshalJSON(data []byte) (err e
 	varUsersUserIdLogoutPost200ResponseData := _UsersUserIdLogoutPost200ResponseData{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varUsersUserIdLogoutPost200ResponseData)
 
 	if err != nil {

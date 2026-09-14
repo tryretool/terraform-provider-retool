@@ -504,7 +504,6 @@ func (o *MySQLOptionsDatabaseOptions) UnmarshalJSON(data []byte) (err error) {
 	varMySQLOptionsDatabaseOptions := _MySQLOptionsDatabaseOptions{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varMySQLOptionsDatabaseOptions)
 
 	if err != nil {

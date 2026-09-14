@@ -108,7 +108,6 @@ func (o *UsersUserIdPatchRequest) UnmarshalJSON(data []byte) (err error) {
 	varUsersUserIdPatchRequest := _UsersUserIdPatchRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varUsersUserIdPatchRequest)
 
 	if err != nil {
