@@ -1953,6 +1953,10 @@
             "type": "boolean",
             "description": "Whether the resource is protected in source control"
           },
+          "data_access_enforced": {
+            "type": "boolean",
+            "description": "Whether data access enforcement is turned on for this resource. This is a resource-wide switch that applies to all of its environments."
+          },
           "created_at": {
             "type": "string",
             "example": "2019-02-08T11:45:48.899Z"
@@ -2093,6 +2097,10 @@
               "protected": {
                 "type": "boolean",
                 "description": "Whether the resource is protected in source control"
+              },
+              "data_access_enforced": {
+                "type": "boolean",
+                "description": "Whether data access enforcement is turned on for this resource. This is a resource-wide switch that applies to all of its environments."
               },
               "created_at": {
                 "type": "string",
@@ -23886,6 +23894,10 @@
                             "type": "boolean",
                             "description": "Whether the resource is protected in source control"
                           },
+                          "data_access_enforced": {
+                            "type": "boolean",
+                            "description": "Whether data access enforcement is turned on for this resource. This is a resource-wide switch that applies to all of its environments."
+                          },
                           "created_at": {
                             "type": "string",
                             "example": "2019-02-08T11:45:48.899Z"
@@ -24124,6 +24136,10 @@
                           "type": "boolean",
                           "description": "Whether the resource is protected in source control"
                         },
+                        "data_access_enforced": {
+                          "type": "boolean",
+                          "description": "Whether data access enforcement is turned on for this resource. This is a resource-wide switch that applies to all of its environments."
+                        },
                         "created_at": {
                           "type": "string",
                           "example": "2019-02-08T11:45:48.899Z"
@@ -24307,6 +24323,10 @@
                         "protected": {
                           "type": "boolean",
                           "description": "Whether the resource is protected in source control"
+                        },
+                        "data_access_enforced": {
+                          "type": "boolean",
+                          "description": "Whether data access enforcement is turned on for this resource. This is a resource-wide switch that applies to all of its environments."
                         },
                         "created_at": {
                           "type": "string",
@@ -24533,6 +24553,10 @@
                         "protected": {
                           "type": "boolean",
                           "description": "Whether the resource is protected in source control"
+                        },
+                        "data_access_enforced": {
+                          "type": "boolean",
+                          "description": "Whether data access enforcement is turned on for this resource. This is a resource-wide switch that applies to all of its environments."
                         },
                         "created_at": {
                           "type": "string",
@@ -24894,6 +24918,10 @@
                               "protected": {
                                 "type": "boolean",
                                 "description": "Whether the resource is protected in source control"
+                              },
+                              "data_access_enforced": {
+                                "type": "boolean",
+                                "description": "Whether data access enforcement is turned on for this resource. This is a resource-wide switch that applies to all of its environments."
                               },
                               "created_at": {
                                 "type": "string",
@@ -26622,6 +26650,10 @@
                               "type": "boolean",
                               "description": "Whether the resource is protected in source control"
                             },
+                            "data_access_enforced": {
+                              "type": "boolean",
+                              "description": "Whether data access enforcement is turned on for this resource. This is a resource-wide switch that applies to all of its environments."
+                            },
                             "created_at": {
                               "type": "string",
                               "example": "2019-02-08T11:45:48.899Z"
@@ -28305,6 +28337,10 @@
                         "protected": {
                           "type": "boolean",
                           "description": "Whether the resource is protected in source control"
+                        },
+                        "data_access_enforced": {
+                          "type": "boolean",
+                          "description": "Whether data access enforcement is turned on for this resource. This is a resource-wide switch that applies to all of its environments."
                         },
                         "created_at": {
                           "type": "string",
@@ -30064,6 +30100,10 @@
                             "protected": {
                               "type": "boolean",
                               "description": "Whether the resource is protected in source control"
+                            },
+                            "data_access_enforced": {
+                              "type": "boolean",
+                              "description": "Whether data access enforcement is turned on for this resource. This is a resource-wide switch that applies to all of its environments."
                             },
                             "created_at": {
                               "type": "string",

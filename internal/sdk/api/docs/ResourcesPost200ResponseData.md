@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **DisplayName** | **string** |  | 
 **FolderId** | Pointer to **NullableString** | The id of the folder this resource belongs to | [optional] 
 **Protected** | **bool** | Whether the resource is protected in source control | 
+**DataAccessEnforced** | Pointer to **bool** | Whether data access enforcement is turned on for this resource. This is a resource-wide switch that applies to all of its environments. | [optional] 
 **CreatedAt** | **string** |  | 
 **UpdatedAt** | **string** |  | 
 
@@ -145,6 +146,31 @@ and a boolean to check if the value has been set.
 
 SetProtected sets Protected field to given value.
 
+
+### GetDataAccessEnforced
+
+`func (o *ResourcesPost200ResponseData) GetDataAccessEnforced() bool`
+
+GetDataAccessEnforced returns the DataAccessEnforced field if non-nil, zero value otherwise.
+
+### GetDataAccessEnforcedOk
+
+`func (o *ResourcesPost200ResponseData) GetDataAccessEnforcedOk() (*bool, bool)`
+
+GetDataAccessEnforcedOk returns a tuple with the DataAccessEnforced field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDataAccessEnforced
+
+`func (o *ResourcesPost200ResponseData) SetDataAccessEnforced(v bool)`
+
+SetDataAccessEnforced sets DataAccessEnforced field to given value.
+
+### HasDataAccessEnforced
+
+`func (o *ResourcesPost200ResponseData) HasDataAccessEnforced() bool`
+
+HasDataAccessEnforced returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
