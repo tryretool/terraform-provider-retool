@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **DisplayName** | **string** |  | 
 **FolderId** | Pointer to **NullableString** | The id of the folder this resource belongs to | [optional] 
 **Protected** | **bool** | Whether the resource is protected in source control | 
-**DataAccessEnforced** | Pointer to **bool** | Whether data access enforcement is turned on for this resource. This is a resource-wide switch that applies to all of its environments. | [optional] 
+**DataAccessEnforced** | Pointer to **bool** | Whether data access enforcement is turned on for this resource. This is configurable by environment | [optional] 
 **CreatedAt** | **string** |  | 
 **UpdatedAt** | **string** |  | 
 
