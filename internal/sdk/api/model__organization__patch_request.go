@@ -108,7 +108,6 @@ func (o *OrganizationPatchRequest) UnmarshalJSON(data []byte) (err error) {
 	varOrganizationPatchRequest := _OrganizationPatchRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varOrganizationPatchRequest)
 
 	if err != nil {

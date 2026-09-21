@@ -181,7 +181,6 @@ func (o *UserInvitesPostRequest) UnmarshalJSON(data []byte) (err error) {
 	varUserInvitesPostRequest := _UserInvitesPostRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varUserInvitesPostRequest)
 
 	if err != nil {

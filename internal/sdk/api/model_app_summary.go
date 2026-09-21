@@ -253,7 +253,6 @@ func (o *AppSummary) UnmarshalJSON(data []byte) (err error) {
 	varAppSummary := _AppSummary{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varAppSummary)
 
 	if err != nil {

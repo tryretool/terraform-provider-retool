@@ -191,7 +191,6 @@ func (o *UsageAppDetailsGet200ResponseData) UnmarshalJSON(data []byte) (err erro
 	varUsageAppDetailsGet200ResponseData := _UsageAppDetailsGet200ResponseData{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varUsageAppDetailsGet200ResponseData)
 
 	if err != nil {

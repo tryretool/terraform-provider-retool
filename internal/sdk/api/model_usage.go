@@ -339,7 +339,6 @@ func (o *Usage) UnmarshalJSON(data []byte) (err error) {
 	varUsage := _Usage{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varUsage)
 
 	if err != nil {

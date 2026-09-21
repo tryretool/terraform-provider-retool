@@ -135,7 +135,6 @@ func (o *PermissionsRevokePostRequest) UnmarshalJSON(data []byte) (err error) {
 	varPermissionsRevokePostRequest := _PermissionsRevokePostRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varPermissionsRevokePostRequest)
 
 	if err != nil {

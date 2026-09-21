@@ -165,7 +165,6 @@ func (o *ObservabilityConfigGet200ResponseDataInner) UnmarshalJSON(data []byte) 
 	varObservabilityConfigGet200ResponseDataInner := _ObservabilityConfigGet200ResponseDataInner{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varObservabilityConfigGet200ResponseDataInner)
 
 	if err != nil {

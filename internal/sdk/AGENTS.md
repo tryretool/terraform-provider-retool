@@ -97,6 +97,7 @@ The OpenAPI Generator has known bugs that require post-generation fixes. These a
 1. **Invalid field names**: the generator emits `map[string]interface{} *map[string]interface{}` as a struct field in some `anyOf` option wrappers. `fix_generated_code.sh` now rewrites this (and its references) to `AdditionalProperties` across **every** affected file (it greps for the pattern rather than hard-coding filenames), so newly-split option models are handled automatically.
 2. **Pointer-to-pointer marshaling**: `json.Marshal(&src.Field)` → `json.Marshal(src.Field)`
 3. **Value receiver for MarshalJSON**: Pointer receivers → value receivers
+4. **Strict unmarshaling**: `decoder.DisallowUnknownFields()` is removed from model `UnmarshalJSON` methods, so a response field the spec doesn't know about is ignored instead of failing the read. The required-property check above it stays. **oneOf/anyOf variants are exempt** — a variant's own strictness is what tells the variants apart, because a custom `UnmarshalJSON` bypasses the `newStrictDecoder` settings the union's dispatcher passes in. Strip it there and every variant matches, giving `data matches more than one schema in oneOf`. The script reads the variant list back out of the generated code, so it stays correct as the spec changes.
 
 The renames run first on purpose: a field the generator named `[]string` or `map[string]interface{}` doesn't match the marshaling patterns until it has a valid Go identifier.
 
@@ -194,11 +195,14 @@ on a response field the API omits) — relax it via `transform_spec.py`'s
 `default_value` and `data_access_enforced` are handled). `retoolresource` still
 sends `folder_id: null` in its create request for backwards compatibility.
 
-The mirror image is a field the API *adds*: the generated models call
-`decoder.DisallowUnknownFields()`, so a response field missing from the spec is a
-hard error (`json: unknown field "X"`), not something the client ignores. When a
-new Retool release adds a response field, it has to be backported into the spec
-even if the provider never reads it.
+The mirror image is a field the API *adds*. `fix_generated_code.sh` strips
+`decoder.DisallowUnknownFields()` from the models, so an unrecognized response
+field is ignored rather than fatal — you still want the field in the spec so the
+provider can read it, but forgetting it no longer breaks every request.
+
+The exception is oneOf/anyOf variants, which keep their strictness. A new field on
+one of those is still a hard error, and it can also make a payload match more than
+one variant. See fix #5 below.
 
 #### 5.3 Files to Check
 
@@ -438,6 +442,12 @@ Before considering the update complete:
 
 ## Historical Updates
 
+- **Tolerate unknown response fields** (Sep 2026):
+  - `fix_generated_code.sh` now strips `decoder.DisallowUnknownFields()` from
+    model `UnmarshalJSON` methods, so a Retool release that adds a response field
+    no longer breaks reads on an older provider build.
+  - oneOf/anyOf variants are exempt; their strictness is what discriminates them.
+  - `internal/sdk/decoding_test.go` guards both halves.
 - **4.34 `data_access_enforced`** (Sep 2026):
   - Backported the resources API's `data_access_enforced` response field into the
     spec's 10 inlined Resource schemas. Reads against 4.34+ instances were failing

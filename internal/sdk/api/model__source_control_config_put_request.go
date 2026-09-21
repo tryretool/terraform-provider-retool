@@ -107,7 +107,6 @@ func (o *SourceControlConfigPutRequest) UnmarshalJSON(data []byte) (err error) {
 	varSourceControlConfigPutRequest := _SourceControlConfigPutRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varSourceControlConfigPutRequest)
 
 	if err != nil {

@@ -248,7 +248,6 @@ func (o *ResourceConfigurationsConfigurationIdPatch200ResponseData) UnmarshalJSO
 	varResourceConfigurationsConfigurationIdPatch200ResponseData := _ResourceConfigurationsConfigurationIdPatch200ResponseData{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varResourceConfigurationsConfigurationIdPatch200ResponseData)
 
 	if err != nil {

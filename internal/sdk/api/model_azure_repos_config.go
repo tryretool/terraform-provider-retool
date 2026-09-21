@@ -224,7 +224,6 @@ func (o *AzureReposConfig) UnmarshalJSON(data []byte) (err error) {
 	varAzureReposConfig := _AzureReposConfig{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varAzureReposConfig)
 
 	if err != nil {

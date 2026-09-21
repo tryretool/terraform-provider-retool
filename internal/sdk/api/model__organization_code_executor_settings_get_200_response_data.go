@@ -170,7 +170,6 @@ func (o *OrganizationCodeExecutorSettingsGet200ResponseData) UnmarshalJSON(data 
 	varOrganizationCodeExecutorSettingsGet200ResponseData := _OrganizationCodeExecutorSettingsGet200ResponseData{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varOrganizationCodeExecutorSettingsGet200ResponseData)
 
 	if err != nil {

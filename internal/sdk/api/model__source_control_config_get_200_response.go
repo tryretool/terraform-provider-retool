@@ -136,7 +136,6 @@ func (o *SourceControlConfigGet200Response) UnmarshalJSON(data []byte) (err erro
 	varSourceControlConfigGet200Response := _SourceControlConfigGet200Response{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varSourceControlConfigGet200Response)
 
 	if err != nil {

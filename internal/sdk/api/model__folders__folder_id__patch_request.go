@@ -108,7 +108,6 @@ func (o *FoldersFolderIdPatchRequest) UnmarshalJSON(data []byte) (err error) {
 	varFoldersFolderIdPatchRequest := _FoldersFolderIdPatchRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varFoldersFolderIdPatchRequest)
 
 	if err != nil {

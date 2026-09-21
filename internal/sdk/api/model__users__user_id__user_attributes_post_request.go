@@ -139,7 +139,6 @@ func (o *UsersUserIdUserAttributesPostRequest) UnmarshalJSON(data []byte) (err e
 	varUsersUserIdUserAttributesPostRequest := _UsersUserIdUserAttributesPostRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varUsersUserIdUserAttributesPostRequest)
 
 	if err != nil {

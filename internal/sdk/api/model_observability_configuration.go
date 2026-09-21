@@ -165,7 +165,6 @@ func (o *ObservabilityConfiguration) UnmarshalJSON(data []byte) (err error) {
 	varObservabilityConfiguration := _ObservabilityConfiguration{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varObservabilityConfiguration)
 
 	if err != nil {

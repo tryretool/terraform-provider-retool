@@ -334,7 +334,6 @@ func (o *ResourcesGet200ResponseDataInner) UnmarshalJSON(data []byte) (err error
 	varResourcesGet200ResponseDataInner := _ResourcesGet200ResponseDataInner{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varResourcesGet200ResponseDataInner)
 
 	if err != nil {

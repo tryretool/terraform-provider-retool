@@ -253,7 +253,6 @@ func (o *SnowflakeOptionsDatabaseOptions) UnmarshalJSON(data []byte) (err error)
 	varSnowflakeOptionsDatabaseOptions := _SnowflakeOptionsDatabaseOptions{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varSnowflakeOptionsDatabaseOptions)
 
 	if err != nil {

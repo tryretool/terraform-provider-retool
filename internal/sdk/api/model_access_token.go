@@ -311,7 +311,6 @@ func (o *AccessToken) UnmarshalJSON(data []byte) (err error) {
 	varAccessToken := _AccessToken{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varAccessToken)
 
 	if err != nil {

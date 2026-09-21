@@ -145,7 +145,6 @@ func (o *UserAttributesIdPatchRequest) UnmarshalJSON(data []byte) (err error) {
 	varUserAttributesIdPatchRequest := _UserAttributesIdPatchRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varUserAttributesIdPatchRequest)
 
 	if err != nil {

@@ -107,7 +107,6 @@ func (o *SourceControlTestDeployPostRequest) UnmarshalJSON(data []byte) (err err
 	varSourceControlTestDeployPostRequest := _SourceControlTestDeployPostRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varSourceControlTestDeployPostRequest)
 
 	if err != nil {

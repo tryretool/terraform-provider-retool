@@ -108,7 +108,6 @@ func (o *AppsToolscriptValidatePostRequest) UnmarshalJSON(data []byte) (err erro
 	varAppsToolscriptValidatePostRequest := _AppsToolscriptValidatePostRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varAppsToolscriptValidatePostRequest)
 
 	if err != nil {

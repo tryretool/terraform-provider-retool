@@ -107,7 +107,6 @@ func (o *InfoIpAllowlistGet200ResponseData) UnmarshalJSON(data []byte) (err erro
 	varInfoIpAllowlistGet200ResponseData := _InfoIpAllowlistGet200ResponseData{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varInfoIpAllowlistGet200ResponseData)
 
 	if err != nil {

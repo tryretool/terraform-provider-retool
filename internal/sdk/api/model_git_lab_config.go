@@ -166,7 +166,6 @@ func (o *GitLabConfig) UnmarshalJSON(data []byte) (err error) {
 	varGitLabConfig := _GitLabConfig{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varGitLabConfig)
 
 	if err != nil {

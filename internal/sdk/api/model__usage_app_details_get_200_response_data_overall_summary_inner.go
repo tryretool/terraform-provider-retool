@@ -219,7 +219,6 @@ func (o *UsageAppDetailsGet200ResponseDataOverallSummaryInner) UnmarshalJSON(dat
 	varUsageAppDetailsGet200ResponseDataOverallSummaryInner := _UsageAppDetailsGet200ResponseDataOverallSummaryInner{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varUsageAppDetailsGet200ResponseDataOverallSummaryInner)
 
 	if err != nil {
