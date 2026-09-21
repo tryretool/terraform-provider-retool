@@ -294,7 +294,7 @@ func (src ResourceConfigurationsGet200ResponseDataInnerOptions) MarshalJSON() ([
 	}
 
 	if src.AdditionalProperties != nil {
-		return json.Marshal(&src.AdditionalProperties)
+		return json.Marshal(src.AdditionalProperties)
 	}
 
 	return nil, nil // no data in anyOf schemas

@@ -44,6 +44,11 @@ The permissions API endpoints (`/permissions/listObjects`, `/permissions/grant`,
 
 **Additional Fix**: The OpenAPI Generator failed to create separate type files for the grant and revoke endpoint array items (`PermissionsGrantPost200ResponseDataInner` and `PermissionsRevokePost200ResponseDataInner`). Type aliases were manually created to point these to `PermissionsListObjectsPost200ResponseDataInner` since all three endpoints use identical structures.
 
+#### Resource `data_access_enforced`
+Retool 4.34 added `data_access_enforced` to the resources API response. The 4.0 spec this SDK was generated from predates it, and the generated models reject unknown fields, so reads failed with `json: unknown field "data_access_enforced"` against any 4.34+ instance.
+
+The property was backported into all 10 inlined copies of the Resource schema (`/resources`, `/resources/{resourceId}`, and the `resource` sub-object on `/resource_configurations`). It is deliberately **not** in the `required` arrays: the API marks it required, but instances older than 4.34 omit it, and the provider has to read both. `data_access_enforced` is listed in `transform_spec.py`'s `OPTIONAL_RESPONSE_FIELDS` so a future regen from a raw 4.34+ spec keeps it optional.
+
 ## Generate client library code
 Just run `go generate` in this folder. All generated code lives in the `api` folder.
 Command line parameters for `openapi-generator` invocation are controlled via `generate.go` file.

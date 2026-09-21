@@ -42,7 +42,7 @@ The transforms it applies (each written semantically so it survives upstream reo
 1. **Single tag per operation.** Multiple tags make the generator emit duplicate types and break compilation. Keeps the tag matching the top-level path segment (e.g. `/users/{userId}/user_attributes` → `Users`). As of 4.0 the upstream spec already does this, so it's usually a no-op.
 2. **Permissions `oneOf` → `anyOf`.** `/permissions/listObjects`, `/permissions/grant`, `/permissions/revoke` responses return structurally identical variants; `oneOf` causes "data matches more than one schema" unmarshal errors, `anyOf` doesn't.
 3. **Free-form resource `options` request bodies.** The provider treats `options` as an opaque JSON blob, but the spec models it as a large `anyOf` union. The generated client ambiguously matches "thin" option objects (e.g. bearer-token auth) to the wrong member and drops fields like `base_url`. The transform rewrites the `options` *request* schema for `/resources` and `/resource_configurations` to `{type: object}` (`Options` becomes `map[string]interface{}`). Responses are left typed.
-4. **Relax response-only required fields** (`folder_id`, `seat_type`, `default_value`). These are marked required on responses but omitted by not-yet-migrated instances, causing unmarshal errors. Removed from every `required` array (none are required in request bodies, so this is safe).
+4. **Relax response-only required fields** (`folder_id`, `seat_type`, `default_value`, `data_access_enforced`). These are marked required on responses but omitted by not-yet-migrated instances, causing unmarshal errors. Removed from every `required` array (none are required in request bodies, so this is safe).
 
 > **Bitbucket note:** older versions had to *remove* `type` from the Bitbucket config (the API rejected it). 4.0 reversed this — `type` is now **required** (`AppPassword`/`Token`), so there is no Bitbucket transform anymore and the provider sends `type` (see Step 5). If you see Bitbucket 400s, check which way the current API wants it.
 
@@ -94,9 +94,11 @@ The OpenAPI Generator has known bugs that require post-generation fixes. These a
 
 #### 4.1 Known Issues (Auto-Fixed)
 
-1. **Pointer-to-pointer marshaling**: `json.Marshal(&src.Field)` → `json.Marshal(src.Field)`
-2. **Value receiver for MarshalJSON**: Pointer receivers → value receivers
-3. **Invalid field names**: the generator emits `map[string]interface{} *map[string]interface{}` as a struct field in some `anyOf` option wrappers. `fix_generated_code.sh` now rewrites this (and its references) to `AdditionalProperties` across **every** affected file (it greps for the pattern rather than hard-coding filenames), so newly-split option models are handled automatically.
+1. **Invalid field names**: the generator emits `map[string]interface{} *map[string]interface{}` as a struct field in some `anyOf` option wrappers. `fix_generated_code.sh` now rewrites this (and its references) to `AdditionalProperties` across **every** affected file (it greps for the pattern rather than hard-coding filenames), so newly-split option models are handled automatically.
+2. **Pointer-to-pointer marshaling**: `json.Marshal(&src.Field)` → `json.Marshal(src.Field)`
+3. **Value receiver for MarshalJSON**: Pointer receivers → value receivers
+
+The renames run first on purpose: a field the generator named `[]string` or `map[string]interface{}` doesn't match the marshaling patterns until it has a valid Go identifier.
 
 #### 4.2 New Invalid Field Names (Manual Check Required)
 
@@ -188,9 +190,15 @@ the credential fields becoming optional setters.
 **New required fields**: Check API changes in resource creation. Run acceptance
 tests and look for `no value given for required property X` (an unmarshal error
 on a response field the API omits) — relax it via `transform_spec.py`'s
-`OPTIONAL_RESPONSE_FIELDS` list (this is how `folder_id`, `seat_type`, and
-`default_value` are handled). `retoolresource` still sends `folder_id: null` in
-its create request for backwards compatibility.
+`OPTIONAL_RESPONSE_FIELDS` list (this is how `folder_id`, `seat_type`,
+`default_value` and `data_access_enforced` are handled). `retoolresource` still
+sends `folder_id: null` in its create request for backwards compatibility.
+
+The mirror image is a field the API *adds*: the generated models call
+`decoder.DisallowUnknownFields()`, so a response field missing from the spec is a
+hard error (`json: unknown field "X"`), not something the client ignores. When a
+new Retool release adds a response field, it has to be backported into the spec
+even if the provider never reads it.
 
 #### 5.3 Files to Check
 
@@ -430,6 +438,14 @@ Before considering the update complete:
 
 ## Historical Updates
 
+- **4.34 `data_access_enforced`** (Sep 2026):
+  - Backported the resources API's `data_access_enforced` response field into the
+    spec's 10 inlined Resource schemas. Reads against 4.34+ instances were failing
+    with `json: unknown field "data_access_enforced"`.
+  - Added to `OPTIONAL_RESPONSE_FIELDS` — instances older than 4.34 omit it.
+  - Reordered `fix_generated_code.sh` so the field renames run before the
+    marshaling fixes; previously the pointer-to-pointer fix could never match a
+    renamed field, so `go generate` was not reproducible.
 - **3.334 → 4.0.0** (Jun 2026):
   - Consolidated all spec transformations into `transform_spec.py` (single-tag,
     permissions `oneOf`→`anyOf`, free-form resource `options` requests, and

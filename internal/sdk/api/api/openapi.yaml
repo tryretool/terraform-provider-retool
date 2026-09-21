@@ -6004,6 +6004,10 @@ components:
         protected:
           description: Whether the resource is protected in source control
           type: boolean
+        data_access_enforced:
+          description: Whether data access enforcement is turned on for this resource.
+            This is a resource-wide switch that applies to all of its environments.
+          type: boolean
         created_at:
           example: 2019-02-08T11:45:48.899Z
           type: string
@@ -14027,6 +14031,7 @@ components:
       description: Resource
       example:
         protected: true
+        data_access_enforced: true
         updated_at: 2019-02-24T18:28:18.790Z
         created_at: 2019-02-08T11:45:48.899Z
         id: id
@@ -14138,6 +14143,10 @@ components:
         protected:
           description: Whether the resource is protected in source control
           type: boolean
+        data_access_enforced:
+          description: Whether data access enforcement is turned on for this resource.
+            This is a resource-wide switch that applies to all of its environments.
+          type: boolean
         created_at:
           example: 2019-02-08T11:45:48.899Z
           type: string
@@ -14157,6 +14166,7 @@ components:
       example:
         data:
         - protected: true
+          data_access_enforced: true
           updated_at: 2019-02-24T18:28:18.790Z
           created_at: 2019-02-08T11:45:48.899Z
           id: id
@@ -14164,6 +14174,7 @@ components:
           display_name: display_name
           folder_id: folder_id
         - protected: true
+          data_access_enforced: true
           updated_at: 2019-02-24T18:28:18.790Z
           created_at: 2019-02-08T11:45:48.899Z
           id: id
@@ -14240,6 +14251,7 @@ components:
       description: The created resource.
       example:
         protected: true
+        data_access_enforced: true
         updated_at: 2019-02-24T18:28:18.790Z
         created_at: 2019-02-08T11:45:48.899Z
         id: id
@@ -14351,6 +14363,10 @@ components:
         protected:
           description: Whether the resource is protected in source control
           type: boolean
+        data_access_enforced:
+          description: Whether data access enforcement is turned on for this resource.
+            This is a resource-wide switch that applies to all of its environments.
+          type: boolean
         created_at:
           example: 2019-02-08T11:45:48.899Z
           type: string
@@ -14369,6 +14385,7 @@ components:
       example:
         data:
           protected: true
+          data_access_enforced: true
           updated_at: 2019-02-24T18:28:18.790Z
           created_at: 2019-02-08T11:45:48.899Z
           id: id
@@ -14391,6 +14408,7 @@ components:
       example:
         data:
           protected: true
+          data_access_enforced: true
           updated_at: 2019-02-24T18:28:18.790Z
           created_at: 2019-02-08T11:45:48.899Z
           id: id
@@ -14426,6 +14444,7 @@ components:
       description: The updated resource.
       example:
         protected: true
+        data_access_enforced: true
         updated_at: 2019-02-24T18:28:18.790Z
         created_at: 2019-02-08T11:45:48.899Z
         id: id
@@ -14537,6 +14556,10 @@ components:
         protected:
           description: Whether the resource is protected in source control
           type: boolean
+        data_access_enforced:
+          description: Whether data access enforcement is turned on for this resource.
+            This is a resource-wide switch that applies to all of its environments.
+          type: boolean
         created_at:
           example: 2019-02-08T11:45:48.899Z
           type: string
@@ -14555,6 +14578,7 @@ components:
       example:
         data:
           protected: true
+          data_access_enforced: true
           updated_at: 2019-02-24T18:28:18.790Z
           created_at: 2019-02-08T11:45:48.899Z
           id: id
@@ -15596,6 +15620,7 @@ components:
         updated_at: 2019-02-24T18:28:18.790Z
         resource:
           protected: true
+          data_access_enforced: true
           updated_at: 2019-02-24T18:28:18.790Z
           created_at: 2019-02-08T11:45:48.899Z
           id: id
@@ -15653,6 +15678,7 @@ components:
           updated_at: 2019-02-24T18:28:18.790Z
           resource:
             protected: true
+            data_access_enforced: true
             updated_at: 2019-02-24T18:28:18.790Z
             created_at: 2019-02-08T11:45:48.899Z
             id: id
@@ -15682,6 +15708,7 @@ components:
           updated_at: 2019-02-24T18:28:18.790Z
           resource:
             protected: true
+            data_access_enforced: true
             updated_at: 2019-02-24T18:28:18.790Z
             created_at: 2019-02-08T11:45:48.899Z
             id: id
@@ -15764,6 +15791,7 @@ components:
         updated_at: 2019-02-24T18:28:18.790Z
         resource:
           protected: true
+          data_access_enforced: true
           updated_at: 2019-02-24T18:28:18.790Z
           created_at: 2019-02-08T11:45:48.899Z
           id: id
@@ -15821,6 +15849,7 @@ components:
           updated_at: 2019-02-24T18:28:18.790Z
           resource:
             protected: true
+            data_access_enforced: true
             updated_at: 2019-02-24T18:28:18.790Z
             created_at: 2019-02-08T11:45:48.899Z
             id: id
@@ -15865,6 +15894,7 @@ components:
         updated_at: 2019-02-24T18:28:18.790Z
         resource:
           protected: true
+          data_access_enforced: true
           updated_at: 2019-02-24T18:28:18.790Z
           created_at: 2019-02-08T11:45:48.899Z
           id: id
@@ -15937,6 +15967,7 @@ components:
         updated_at: 2019-02-24T18:28:18.790Z
         resource:
           protected: true
+          data_access_enforced: true
           updated_at: 2019-02-24T18:28:18.790Z
           created_at: 2019-02-08T11:45:48.899Z
           id: id
@@ -15994,6 +16025,7 @@ components:
           updated_at: 2019-02-24T18:28:18.790Z
           resource:
             protected: true
+            data_access_enforced: true
             updated_at: 2019-02-24T18:28:18.790Z
             created_at: 2019-02-08T11:45:48.899Z
             id: id

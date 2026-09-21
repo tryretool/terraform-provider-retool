@@ -30,6 +30,8 @@ type ResourcesGet200ResponseDataInner struct {
 	FolderId NullableString `json:"folder_id,omitempty"`
 	// Whether the resource is protected in source control
 	Protected bool `json:"protected"`
+	// Whether data access enforcement is turned on for this resource. This is a resource-wide switch that applies to all of its environments.
+	DataAccessEnforced *bool `json:"data_access_enforced,omitempty"`
 	CreatedAt string `json:"created_at"`
 	UpdatedAt string `json:"updated_at"`
 }
@@ -197,6 +199,38 @@ func (o *ResourcesGet200ResponseDataInner) SetProtected(v bool) {
 	o.Protected = v
 }
 
+// GetDataAccessEnforced returns the DataAccessEnforced field value if set, zero value otherwise.
+func (o *ResourcesGet200ResponseDataInner) GetDataAccessEnforced() bool {
+	if o == nil || IsNil(o.DataAccessEnforced) {
+		var ret bool
+		return ret
+	}
+	return *o.DataAccessEnforced
+}
+
+// GetDataAccessEnforcedOk returns a tuple with the DataAccessEnforced field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ResourcesGet200ResponseDataInner) GetDataAccessEnforcedOk() (*bool, bool) {
+	if o == nil || IsNil(o.DataAccessEnforced) {
+		return nil, false
+	}
+	return o.DataAccessEnforced, true
+}
+
+// HasDataAccessEnforced returns a boolean if a field has been set.
+func (o *ResourcesGet200ResponseDataInner) HasDataAccessEnforced() bool {
+	if o != nil && !IsNil(o.DataAccessEnforced) {
+		return true
+	}
+
+	return false
+}
+
+// SetDataAccessEnforced gets a reference to the given bool and assigns it to the DataAccessEnforced field.
+func (o *ResourcesGet200ResponseDataInner) SetDataAccessEnforced(v bool) {
+	o.DataAccessEnforced = &v
+}
+
 // GetCreatedAt returns the CreatedAt field value
 func (o *ResourcesGet200ResponseDataInner) GetCreatedAt() string {
 	if o == nil {
@@ -262,6 +296,9 @@ func (o ResourcesGet200ResponseDataInner) ToMap() (map[string]interface{}, error
 		toSerialize["folder_id"] = o.FolderId.Get()
 	}
 	toSerialize["protected"] = o.Protected
+	if !IsNil(o.DataAccessEnforced) {
+		toSerialize["data_access_enforced"] = o.DataAccessEnforced
+	}
 	toSerialize["created_at"] = o.CreatedAt
 	toSerialize["updated_at"] = o.UpdatedAt
 	return toSerialize, nil

@@ -27,11 +27,12 @@ Transforms:
      wrong union member and silently drops fields such as `base_url`. Replace the
      `options` request schema with a free-form object so it passes through
      untouched. (Responses are left typed.)
-  4. Optional response fields. `folder_id`, `seat_type` and `default_value` are
-     marked required on several response schemas but the API omits them on
-     older / not-yet-migrated instances, breaking unmarshaling. Remove them from
-     every `required` array (they stay in `properties`). None of these are
-     required in request bodies, so removing them globally is safe.
+  4. Optional response fields. `folder_id`, `seat_type`, `default_value` and
+     `data_access_enforced` are marked required on several response schemas but
+     the API omits them on older / not-yet-migrated instances, breaking
+     unmarshaling. Remove them from every `required` array (they stay in
+     `properties`). None of these are required in request bodies, so removing
+     them globally is safe.
 """
 import json
 import sys
@@ -118,7 +119,12 @@ def _walk(obj):
 # Fields that the spec marks required on responses but the API may omit on
 # instances that have not migrated to the relevant feature yet. None of these
 # are required in request bodies.
-OPTIONAL_RESPONSE_FIELDS = ("folder_id", "seat_type", "default_value")
+OPTIONAL_RESPONSE_FIELDS = (
+    "folder_id",
+    "seat_type",
+    "default_value",
+    "data_access_enforced",
+)
 
 
 def fix_optional_response_fields(spec):
