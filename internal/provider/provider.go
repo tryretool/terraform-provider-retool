@@ -307,13 +307,18 @@ func (p *retoolProvider) Configure(ctx context.Context, req provider.ConfigureRe
 	clientConfig.HTTPClient = httpClient
 
 	if requestsPerMinute > 0 {
-		currentTransport := clientConfig.HTTPClient.Transport
+		// Wrap a copy of the client so the rate limiter is not installed on a shared
+		// client (http.DefaultClient or one passed to NewWithHTTPClient). Otherwise every
+		// Configure call in the same process stacks another limiter on top of the last one.
+		throttledClient := *clientConfig.HTTPClient
+		currentTransport := throttledClient.Transport
 		if currentTransport == nil {
 			currentTransport = http.DefaultTransport
 		}
 		// Rate-limiter is using a token bucket algorithm to limit the number of requests per minute.
 		// The first parameter is the rate of token replenishment, the second is the capacity of the bucket.
-		clientConfig.HTTPClient.Transport = utils.NewThrottledTransport(time.Duration(60000/requestsPerMinute)*time.Millisecond, requestsPerMinute, currentTransport)
+		throttledClient.Transport = utils.NewThrottledTransport(time.Duration(60000/requestsPerMinute)*time.Millisecond, requestsPerMinute, currentTransport)
+		clientConfig.HTTPClient = &throttledClient
 	}
 
 	clientConfig.AddDefaultHeader("Authorization", "Bearer "+accessToken)
